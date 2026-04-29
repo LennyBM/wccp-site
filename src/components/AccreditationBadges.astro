@@ -1,0 +1,185 @@
+---
+// Premium accreditation badges — hand-drawn SVG approximations of the
+// official certification marks. Mono navy + yellow palette for layout
+// consistency. Replace the SVG content with the licensed full-colour
+// vector once each accreditation is confirmed at the client meeting.
+
+interface Props {
+  layout?: 'grid' | 'strip' | 'card';
+  filter?: 'all' | 'current' | 'pending';
+  showPending?: boolean;
+}
+
+const {
+  layout = 'grid',
+  filter = 'all',
+  showPending = true,
+} = Astro.props;
+
+type Accreditation = {
+  id: string;
+  name: string;
+  short: string;
+  description: string;
+  status: 'current' | 'pending' | 'placeholder';
+};
+
+const accreditations: Accreditation[] = [
+  { id: 'ce-ukca',         name: 'CE / UKCA Marking',                short: 'CE / UKCA',       description: 'EU + UK conformity assessment for construction products.', status: 'current' },
+  { id: 'bs-en-14992',     name: 'BS EN 14992:2007+A1:2012',          short: 'BS EN 14992',     description: 'Harmonised European standard for precast wall elements.',  status: 'current' },
+  { id: 'bs-8500',         name: 'BS 8500-1:2023',                    short: 'BS 8500',         description: 'British Standard for concrete specification + conformity.', status: 'current' },
+  { id: 'eurocode-2',      name: 'BS EN 1992 (Eurocode 2)',           short: 'Eurocode 2',      description: 'Design of concrete structures — UK + EU.',                  status: 'current' },
+  { id: 'iso-9001',        name: 'ISO 9001 Quality Management',       short: 'ISO 9001',        description: 'Quality management — application in progress.',             status: 'pending' },
+  { id: 'iso-14001',       name: 'ISO 14001 Environmental',           short: 'ISO 14001',       description: 'Environmental management — application in progress.',       status: 'pending' },
+  { id: 'iso-45001',       name: 'ISO 45001 Occupational H&S',         short: 'ISO 45001',       description: 'Occupational H&S management — pursuing certification.',     status: 'pending' },
+  { id: 'bes-6001',        name: 'BES 6001 Responsible Sourcing',     short: 'BES 6001',        description: 'BRE responsible sourcing — pursuing certification.',        status: 'pending' },
+  { id: 'mpa-precast',     name: 'MPA Precast Member',                 short: 'MPA Precast',     description: 'Mineral Products Association — UK precast trade body.',     status: 'placeholder' },
+  { id: 'made-in-britain', name: 'Made in Britain',                    short: 'Made in Britain', description: 'Official UK-manufactured mark for British products.',         status: 'placeholder' },
+];
+
+const visible = accreditations.filter((a) => {
+  if (filter === 'current' && a.status !== 'current') return false;
+  if (filter === 'pending' && a.status !== 'pending') return false;
+  if (!showPending && a.status !== 'current') return false;
+  return true;
+});
+
+const statusLabel = {
+  current: 'Certified',
+  pending: 'In progress',
+  placeholder: 'Pursuing',
+};
+const statusBadgeClass = {
+  current: 'bg-success/10 text-success',
+  pending: 'bg-yellow-100 text-yellow-800',
+  placeholder: 'bg-cast-100 text-cast-700',
+};
+---
+
+{layout === 'grid' && (
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    {visible.map((a) => (
+      <div class={`card p-5 flex flex-col items-center text-center ${a.status !== 'current' ? 'opacity-90' : ''}`}>
+        <div class="h-16 w-16 mb-3 flex items-center justify-center">
+          {/* CE / UKCA */}
+          {a.id === 'ce-ukca' && (
+            <svg viewBox="0 0 80 80" class="w-full h-full">
+              <rect x="2" y="2" width="76" height="76" rx="8" fill="#0A1A4F"/>
+              <rect x="2" y="2" width="76" height="76" rx="8" fill="none" stroke="#F5C518" stroke-width="2"/>
+              <text x="40" y="36" text-anchor="middle" font-family="Inter, Arial Black, sans-serif" font-size="16" font-weight="800" fill="#FFFFFF">CE</text>
+              <line x1="20" y1="44" x2="60" y2="44" stroke="#F5C518" stroke-width="1" opacity="0.6"/>
+              <text x="40" y="58" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#F5C518" letter-spacing="0.1em">UKCA</text>
+            </svg>
+          )}
+          {/* BS EN 14992 */}
+          {a.id === 'bs-en-14992' && (
+            <svg viewBox="0 0 80 80" class="w-full h-full">
+              <circle cx="40" cy="40" r="36" fill="#FAFAF7" stroke="#0A1A4F" stroke-width="2"/>
+              <text x="40" y="32" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#0A1A4F" letter-spacing="0.05em">BS EN</text>
+              <text x="40" y="50" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="800" fill="#0A1A4F">14992</text>
+              <text x="40" y="62" text-anchor="middle" font-family="Inter, sans-serif" font-size="6" font-weight="600" fill="#5C6470">PRECAST WALL</text>
+            </svg>
+          )}
+          {/* BS 8500 */}
+          {a.id === 'bs-8500' && (
+            <svg viewBox="0 0 80 80" class="w-full h-full">
+              <circle cx="40" cy="40" r="36" fill="#FAFAF7" stroke="#0A1A4F" stroke-width="2"/>
+              <text x="40" y="32" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#0A1A4F" letter-spacing="0.05em">BS</text>
+              <text x="40" y="50" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="800" fill="#0A1A4F">8500</text>
+              <text x="40" y="62" text-anchor="middle" font-family="Inter, sans-serif" font-size="6" font-weight="600" fill="#5C6470">CONCRETE 2023</text>
+            </svg>
+          )}
+          {/* Eurocode 2 */}
+          {a.id === 'eurocode-2' && (
+            <svg viewBox="0 0 80 80" class="w-full h-full">
+              <rect x="2" y="2" width="76" height="76" rx="8" fill="#0A1A4F"/>
+              <text x="40" y="34" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#F5C518" letter-spacing="0.05em">EUROCODE</text>
+              <text x="40" y="58" text-anchor="middle" font-family="Inter, sans-serif" font-size="32" font-weight="800" fill="#FFFFFF">2</text>
+            </svg>
+          )}
+          {/* ISO 9001 */}
+          {a.id === 'iso-9001' && (
+            <svg viewBox="0 0 80 80" class="w-full h-full">
+              <circle cx="40" cy="40" r="36" fill="#FAFAF7" stroke="#5C6470" stroke-width="2" stroke-dasharray="4 2"/>
+              <text x="40" y="34" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#5C6470" letter-spacing="0.05em">ISO</text>
+              <text x="40" y="52" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="800" fill="#5C6470">9001</text>
+              <text x="40" y="64" text-anchor="middle" font-family="Inter, sans-serif" font-size="5" font-weight="600" fill="#5C6470">QUALITY MGMT</text>
+            </svg>
+          )}
+          {/* ISO 14001 */}
+          {a.id === 'iso-14001' && (
+            <svg viewBox="0 0 80 80" class="w-full h-full">
+              <circle cx="40" cy="40" r="36" fill="#FAFAF7" stroke="#5C6470" stroke-width="2" stroke-dasharray="4 2"/>
+              <text x="40" y="34" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#5C6470" letter-spacing="0.05em">ISO</text>
+              <text x="40" y="52" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="800" fill="#5C6470">14001</text>
+              <text x="40" y="64" text-anchor="middle" font-family="Inter, sans-serif" font-size="5" font-weight="600" fill="#5C6470">ENVIRONMENT</text>
+            </svg>
+          )}
+          {/* ISO 45001 */}
+          {a.id === 'iso-45001' && (
+            <svg viewBox="0 0 80 80" class="w-full h-full">
+              <circle cx="40" cy="40" r="36" fill="#FAFAF7" stroke="#5C6470" stroke-width="2" stroke-dasharray="4 2"/>
+              <text x="40" y="34" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#5C6470" letter-spacing="0.05em">ISO</text>
+              <text x="40" y="52" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="800" fill="#5C6470">45001</text>
+              <text x="40" y="64" text-anchor="middle" font-family="Inter, sans-serif" font-size="5" font-weight="600" fill="#5C6470">SAFETY</text>
+            </svg>
+          )}
+          {/* BES 6001 */}
+          {a.id === 'bes-6001' && (
+            <svg viewBox="0 0 80 80" class="w-full h-full">
+              <rect x="2" y="2" width="76" height="76" rx="8" fill="#FAFAF7" stroke="#5C6470" stroke-width="2" stroke-dasharray="4 2"/>
+              <text x="40" y="32" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#5C6470" letter-spacing="0.05em">BES</text>
+              <text x="40" y="50" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="800" fill="#5C6470">6001</text>
+              <text x="40" y="62" text-anchor="middle" font-family="Inter, sans-serif" font-size="5" font-weight="600" fill="#5C6470">RESPONSIBLE</text>
+            </svg>
+          )}
+          {/* MPA Precast */}
+          {a.id === 'mpa-precast' && (
+            <svg viewBox="0 0 80 80" class="w-full h-full">
+              <rect x="2" y="2" width="76" height="76" rx="8" fill="#FAFAF7" stroke="#5C6470" stroke-width="2" stroke-dasharray="4 2"/>
+              <text x="40" y="38" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" font-weight="800" fill="#5C6470">MPA</text>
+              <text x="40" y="56" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" font-weight="700" fill="#5C6470" letter-spacing="0.1em">PRECAST</text>
+            </svg>
+          )}
+          {/* Made in Britain */}
+          {a.id === 'made-in-britain' && (
+            <svg viewBox="0 0 80 80" class="w-full h-full">
+              <circle cx="40" cy="40" r="36" fill="#FAFAF7" stroke="#5C6470" stroke-width="2" stroke-dasharray="4 2"/>
+              <path d="M40 16 L46 28 L40 38 L34 28 Z" fill="#5C6470"/>
+              <text x="40" y="52" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" font-weight="800" fill="#5C6470">MADE IN</text>
+              <text x="40" y="62" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="800" fill="#5C6470">BRITAIN</text>
+            </svg>
+          )}
+        </div>
+        <div class="font-display text-sm font-semibold text-navy-700 mb-1">{a.short}</div>
+        <span class={`inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded ${statusBadgeClass[a.status]}`}>
+          {statusLabel[a.status]}
+        </span>
+        <p class="text-[11px] text-cast-700 leading-relaxed mt-2">{a.description}</p>
+      </div>
+    ))}
+  </div>
+)}
+
+{layout === 'strip' && (
+  <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
+    {visible.map((a) => (
+      <div class={`flex flex-col items-center gap-1.5 ${a.status !== 'current' ? 'opacity-60' : ''}`} title={`${a.name} — ${statusLabel[a.status]}`}>
+        <div class="h-12 w-12 flex items-center justify-center">
+          <!-- Reuse mini badge — same conditionals as grid -->
+          {a.id === 'ce-ukca' && (<svg viewBox="0 0 80 80" class="w-full h-full"><rect x="2" y="2" width="76" height="76" rx="8" fill="#0A1A4F"/><rect x="2" y="2" width="76" height="76" rx="8" fill="none" stroke="#F5C518" stroke-width="2"/><text x="40" y="36" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="800" fill="#FFFFFF">CE</text><text x="40" y="58" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#F5C518" letter-spacing="0.1em">UKCA</text></svg>)}
+          {a.id === 'bs-en-14992' && (<svg viewBox="0 0 80 80" class="w-full h-full"><circle cx="40" cy="40" r="36" fill="#FAFAF7" stroke="#0A1A4F" stroke-width="2"/><text x="40" y="36" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#0A1A4F">BS EN</text><text x="40" y="54" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="800" fill="#0A1A4F">14992</text></svg>)}
+          {a.id === 'bs-8500' && (<svg viewBox="0 0 80 80" class="w-full h-full"><circle cx="40" cy="40" r="36" fill="#FAFAF7" stroke="#0A1A4F" stroke-width="2"/><text x="40" y="36" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#0A1A4F">BS</text><text x="40" y="54" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="800" fill="#0A1A4F">8500</text></svg>)}
+          {a.id === 'eurocode-2' && (<svg viewBox="0 0 80 80" class="w-full h-full"><rect x="2" y="2" width="76" height="76" rx="8" fill="#0A1A4F"/><text x="40" y="36" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#F5C518">EUROCODE</text><text x="40" y="58" text-anchor="middle" font-family="Inter, sans-serif" font-size="28" font-weight="800" fill="#FFFFFF">2</text></svg>)}
+          {a.id === 'iso-9001' && (<svg viewBox="0 0 80 80" class="w-full h-full"><circle cx="40" cy="40" r="36" fill="#FAFAF7" stroke="#5C6470" stroke-width="2" stroke-dasharray="4 2"/><text x="40" y="36" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#5C6470">ISO</text><text x="40" y="54" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="800" fill="#5C6470">9001</text></svg>)}
+          {a.id === 'iso-14001' && (<svg viewBox="0 0 80 80" class="w-full h-full"><circle cx="40" cy="40" r="36" fill="#FAFAF7" stroke="#5C6470" stroke-width="2" stroke-dasharray="4 2"/><text x="40" y="36" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#5C6470">ISO</text><text x="40" y="54" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#5C6470">14001</text></svg>)}
+          {a.id === 'iso-45001' && (<svg viewBox="0 0 80 80" class="w-full h-full"><circle cx="40" cy="40" r="36" fill="#FAFAF7" stroke="#5C6470" stroke-width="2" stroke-dasharray="4 2"/><text x="40" y="36" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#5C6470">ISO</text><text x="40" y="54" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#5C6470">45001</text></svg>)}
+          {a.id === 'bes-6001' && (<svg viewBox="0 0 80 80" class="w-full h-full"><rect x="2" y="2" width="76" height="76" rx="8" fill="#FAFAF7" stroke="#5C6470" stroke-width="2" stroke-dasharray="4 2"/><text x="40" y="36" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#5C6470">BES</text><text x="40" y="54" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="800" fill="#5C6470">6001</text></svg>)}
+          {a.id === 'mpa-precast' && (<svg viewBox="0 0 80 80" class="w-full h-full"><rect x="2" y="2" width="76" height="76" rx="8" fill="#FAFAF7" stroke="#5C6470" stroke-width="2" stroke-dasharray="4 2"/><text x="40" y="40" text-anchor="middle" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="#5C6470">MPA</text><text x="40" y="58" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" font-weight="700" fill="#5C6470">PRECAST</text></svg>)}
+          {a.id === 'made-in-britain' && (<svg viewBox="0 0 80 80" class="w-full h-full"><circle cx="40" cy="40" r="36" fill="#FAFAF7" stroke="#5C6470" stroke-width="2" stroke-dasharray="4 2"/><text x="40" y="44" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="800" fill="#5C6470">MADE IN</text><text x="40" y="58" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="800" fill="#5C6470">BRITAIN</text></svg>)}
+        </div>
+        <span class="font-display text-[11px] font-semibold text-cast-700 uppercase tracking-wide">{a.short}</span>
+      </div>
+    ))}
+  </div>
+)}

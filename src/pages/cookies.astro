@@ -1,0 +1,144 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const lastUpdated = '29 April 2026';
+---
+
+<BaseLayout
+  title="Cookie Policy"
+  description={`Cookies used on ${site.shortUrl} — what they do, why we use them, and how to change your preferences. PECR and DUAA 2025 compliant.`}
+  schema="Article"
+>
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <p class="eyebrow text-yellow mb-4">Legal</p>
+      <h1 class="font-display text-display-xl text-white mb-4">Cookie Policy</h1>
+      <p class="text-white/90 text-lg max-w-2xl">
+        Plain-English summary of every cookie we set, why, and how to change your mind.
+      </p>
+      <p class="text-cast-200 text-sm mt-6">Last updated: {lastUpdated}</p>
+    </div>
+  </section>
+
+  <section class="container-wccp py-16">
+    <div class="max-w-prose-wide mx-auto space-y-10 text-cast-700 text-base leading-relaxed">
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">What cookies are</h2>
+        <p>
+          Cookies are small text files a website saves on your device. They let us remember your preferences,
+          keep the site secure, and (with your consent) understand which pages people find useful. We use the
+          term "cookies" loosely to also cover similar storage technologies such as localStorage and pixels.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">Essential cookies (always on)</h2>
+        <p class="mb-4">
+          These are strictly necessary for the site to work. Under regulation 6(4) of PECR, they don't require consent.
+        </p>
+        <div class="card overflow-hidden">
+          <table class="spec-table w-full text-sm">
+            <thead class="bg-bone-200">
+              <tr>
+                <th class="px-4 py-3">Name</th>
+                <th class="px-4 py-3">Purpose</th>
+                <th class="px-4 py-3">Lifespan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="px-4">cookieyes-consent</td>
+                <td class="px-4">Stores your cookie preferences so we don't ask again on every page.</td>
+                <td class="px-4">12 months</td>
+              </tr>
+              <tr>
+                <td class="px-4">__cf_bm</td>
+                <td class="px-4">Cloudflare bot management — protects the site from automated abuse.</td>
+                <td class="px-4">30 minutes</td>
+              </tr>
+              <tr>
+                <td class="px-4">XSRF-TOKEN</td>
+                <td class="px-4">Anti-forgery token for the quote and contact forms.</td>
+                <td class="px-4">Session</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">Analytics & performance (optional)</h2>
+        <p class="mb-4">
+          We use privacy-respecting analytics to count visits and see which pages get used. Under the
+          <strong class="text-navy"> Data (Use and Access) Act 2025</strong> (in force February 2026), some
+          low-risk first-party analytics are now exempt from prior consent — but we still ask, because we'd rather
+          give you the choice.
+        </p>
+        <div class="card overflow-hidden">
+          <table class="spec-table w-full text-sm">
+            <thead class="bg-bone-200">
+              <tr>
+                <th class="px-4 py-3">Name</th>
+                <th class="px-4 py-3">Purpose</th>
+                <th class="px-4 py-3">Lifespan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="px-4">_pa_*</td>
+                <td class="px-4">Plausible / Fathom-style aggregate page-view counter (no personal data, no cross-site tracking).</td>
+                <td class="px-4">24 hours</td>
+              </tr>
+              <tr>
+                <td class="px-4">_ga / _ga_*</td>
+                <td class="px-4">Google Analytics 4 (only if you opt in). Anonymised IP, no advertising signals.</td>
+                <td class="px-4">14 months</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">Marketing cookies</h2>
+        <p>
+          We do not currently run paid advertising or remarketing pixels on this site. If that changes, we'll add
+          them here and ask for your consent before they fire.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">How to change your preferences</h2>
+        <p>
+          Click the "Cookie settings" link in the footer at any time to revisit your choices. Our consent management
+          platform (CookieYes / Cookiebot) records and refreshes consent every twelve months in line with ICO guidance.
+        </p>
+        <p class="mt-3">
+          You can also block cookies in your browser settings — see
+          <a href="https://ico.org.uk/your-data-matters/online/cookies/" class="text-ember font-semibold hover:underline" rel="noopener" target="_blank">ico.org.uk/your-data-matters/online/cookies</a>
+          for step-by-step instructions for every major browser.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">Legal basis</h2>
+        <p>
+          We rely on regulation 6 of the Privacy and Electronic Communications Regulations (PECR) 2003 and the
+          consent provisions of the UK GDPR for non-essential cookies. The Data (Use and Access) Act 2025 has
+          relaxed the consent requirement for certain low-risk analytics from February 2026 — we will continue
+          to ask for consent regardless, as a matter of policy.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">Questions</h2>
+        <p>
+          Email <a href={`mailto:${site.contact.email}`} class="text-ember font-semibold hover:underline">{site.contact.email}</a>
+          or call <a href={`tel:${site.contact.phoneIntl}`} class="text-ember font-semibold hover:underline">{site.contact.phone}</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

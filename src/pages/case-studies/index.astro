@@ -1,0 +1,237 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const caseStudies = [
+  {
+    slug: 'example-dairy-farm',
+    name: 'Higher Beara Farm',
+    parish: 'Bratton Clovelly, Devon',
+    sector: 'Agricultural',
+    sectorTag: 'agricultural',
+    region: 'devon',
+    year: '2025',
+    product: '250mm slurry panels',
+    tonnes: '420t',
+    days: '11 days',
+    quote: '"They turned up when they said they would. The yard was back in use the following week."',
+    attribution: 'Mike, herd manager',
+  },
+  {
+    slug: 'cornish-beef-cubicles',
+    name: 'Trewithen Barton',
+    parish: 'St Erme, Cornwall',
+    sector: 'Agricultural',
+    sectorTag: 'agricultural',
+    region: 'cornwall',
+    year: '2025',
+    product: 'Cattle cubicles · 180-cow shed',
+    tonnes: '95t',
+    days: '6 days',
+    quote: '"Fitted right first time. The cattle settled in within forty-eight hours."',
+    attribution: 'Andrew, farm owner',
+  },
+  {
+    slug: 'somerset-grain-store',
+    name: 'Hillside Farms',
+    parish: 'Curry Rivel, Somerset',
+    sector: 'Agricultural',
+    sectorTag: 'agricultural',
+    region: 'somerset',
+    year: '2024',
+    product: 'L-block grain bay walls',
+    tonnes: '310t',
+    days: '4 days',
+    quote: '"Saved us a fortune over poured walls and we can move them when we need to."',
+    attribution: 'James, partner',
+  },
+  {
+    slug: 'devon-retaining-wall-civils',
+    name: 'A30 highway scheme',
+    parish: 'Sourton, Devon',
+    sector: 'Civils',
+    sectorTag: 'civils',
+    region: 'devon',
+    year: '2025',
+    product: 'King Post retaining walls',
+    tonnes: '680t',
+    days: '14 days',
+    quote: '"WCCP slotted into the programme and beat the schedule by three days."',
+    attribution: 'Site agent, principal contractor',
+  },
+  {
+    slug: 'cornish-anaerobic-digester',
+    name: 'Polmorla AD plant',
+    parish: 'Wadebridge, Cornwall',
+    sector: 'Bespoke',
+    sectorTag: 'bespoke',
+    region: 'cornwall',
+    year: '2024',
+    product: 'Bespoke AD tank panels',
+    tonnes: '540t',
+    days: '21 days',
+    quote: '"They engineered around our digester geometry — no off-the-shelf option fitted."',
+    attribution: 'Project engineer',
+  },
+  {
+    slug: 'somerset-robot-base',
+    name: 'Manor Farm Dairy',
+    parish: 'Wells, Somerset',
+    sector: 'Agricultural',
+    sectorTag: 'agricultural',
+    region: 'somerset',
+    year: '2026',
+    product: 'Lely Astronaut robot bases',
+    tonnes: '28t',
+    days: '3 days',
+    quote: '"Level to the millimetre. The Lely engineers commissioned without a single shim."',
+    attribution: 'Sarah, dairy manager',
+  },
+];
+---
+
+<BaseLayout
+  title="Case studies — slurry stores, cubicles, retaining walls"
+  description="Real WCCP precast concrete projects across Devon, Cornwall and Somerset. Slurry stores, cubicle housing, retaining walls and bespoke jobs — with tonnage, install days and customer feedback."
+>
+  <!-- Hero -->
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="max-w-3xl">
+        <p class="eyebrow text-yellow mb-5">Our work</p>
+        <h1 class="font-display text-display-xl text-white mb-5">
+          The jobs we've cast, delivered and stood behind.
+        </h1>
+        <p class="text-lg text-white/90 max-w-2xl leading-relaxed">
+          Five hundred-plus farms, civils contractors and architects across the South West. Pick a sector
+          or a county and see what good looks like.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filters -->
+  <section class="bg-bone-200 border-b border-cast-100 sticky top-0 z-20">
+    <div class="container-wccp py-4">
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="text-sm font-bold text-navy uppercase tracking-wide mr-2">Filter:</span>
+        <button data-filter="all" class="filter-btn btn-sm bg-navy text-white">All projects</button>
+        <button data-filter="agricultural" class="filter-btn btn-sm border-2 border-cast-200 text-navy hover:bg-navy hover:text-white">Agricultural</button>
+        <button data-filter="civils" class="filter-btn btn-sm border-2 border-cast-200 text-navy hover:bg-navy hover:text-white">Civils</button>
+        <button data-filter="bespoke" class="filter-btn btn-sm border-2 border-cast-200 text-navy hover:bg-navy hover:text-white">Bespoke</button>
+        <span class="hidden md:inline-block w-px h-6 bg-cast-200 mx-2"></span>
+        <button data-filter="devon" class="filter-btn btn-sm border-2 border-cast-200 text-navy hover:bg-navy hover:text-white">Devon</button>
+        <button data-filter="cornwall" class="filter-btn btn-sm border-2 border-cast-200 text-navy hover:bg-navy hover:text-white">Cornwall</button>
+        <button data-filter="somerset" class="filter-btn btn-sm border-2 border-cast-200 text-navy hover:bg-navy hover:text-white">Somerset</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Grid -->
+  <section class="container-wccp py-12 md:py-16">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5" id="case-grid">
+      {caseStudies.map((c) => (
+        <a
+          href={`/case-studies/${c.slug}`}
+          class="case-card card overflow-hidden group flex flex-col"
+          data-sector={c.sectorTag}
+          data-region={c.region}
+        >
+          <!-- Hero image placeholder -->
+          <div class="aspect-[4/3] bg-cast-100 overflow-hidden relative">
+            <div class="w-full h-full bg-gradient-to-br from-navy via-navy-700 to-cast-700 group-hover:scale-105 transition-transform duration-500"></div>
+            <div class="absolute top-3 left-3 flex gap-2">
+              <span class="text-[11px] font-bold uppercase tracking-wide bg-yellow text-navy px-2 py-1 rounded">{c.sector}</span>
+              <span class="text-[11px] font-bold uppercase tracking-wide bg-white/90 text-navy px-2 py-1 rounded">{c.year}</span>
+            </div>
+          </div>
+
+          <div class="p-6 flex flex-col flex-1">
+            <h3 class="font-display text-xl font-bold text-navy mb-1 group-hover:text-ember transition-colors">{c.name}</h3>
+            <p class="text-cast text-sm mb-4">{c.parish}</p>
+
+            <!-- Stat strip -->
+            <div class="grid grid-cols-3 gap-2 border-y border-cast-100 py-3 mb-4">
+              <div>
+                <div class="font-display font-bold text-navy text-lg leading-none">{c.tonnes}</div>
+                <div class="text-[10px] text-cast uppercase tracking-wide mt-1">Concrete</div>
+              </div>
+              <div>
+                <div class="font-display font-bold text-navy text-lg leading-none">{c.days}</div>
+                <div class="text-[10px] text-cast uppercase tracking-wide mt-1">On site</div>
+              </div>
+              <div>
+                <div class="font-display font-bold text-navy text-sm leading-tight">{c.product}</div>
+                <div class="text-[10px] text-cast uppercase tracking-wide mt-1">Product</div>
+              </div>
+            </div>
+
+            <blockquote class="text-cast text-sm italic leading-relaxed mb-2 flex-1">{c.quote}</blockquote>
+            <p class="text-xs text-cast font-medium">— {c.attribution}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <p id="empty-state" class="hidden text-center py-16 text-cast-700 text-lg">No case studies match those filters yet.</p>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-yellow text-navy py-12">
+    <div class="container-wccp text-center max-w-2xl mx-auto">
+      <h2 class="font-display text-display-md mb-3">Could yours be next?</h2>
+      <p class="text-navy text-lg mb-6">
+        We document every job — and we'll happily put a prospective customer in touch with someone we've already worked for.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/quote" class="btn-secondary">Start a quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn bg-navy text-white hover:bg-navy-700">Call {site.contact.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+    const cards = document.querySelectorAll<HTMLAnchorElement>('.case-card');
+    const empty = document.getElementById('empty-state');
+    let activeSector = 'all';
+    let activeRegion = 'all';
+
+    const sectors = new Set(['all', 'agricultural', 'civils', 'bespoke']);
+
+    function applyFilter() {
+      let visible = 0;
+      cards.forEach((card) => {
+        const s = card.dataset.sector ?? '';
+        const r = card.dataset.region ?? '';
+        const show =
+          (activeSector === 'all' || s === activeSector) &&
+          (activeRegion === 'all' || r === activeRegion);
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      if (empty) empty.classList.toggle('hidden', visible !== 0);
+    }
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter ?? 'all';
+        const isSector = sectors.has(filter);
+        if (isSector) activeSector = filter; else activeRegion = filter === 'all' ? 'all' : filter;
+
+        // Reset visual state across the relevant group
+        buttons.forEach((b) => {
+          const f = b.dataset.filter ?? 'all';
+          const groupIsSector = sectors.has(f);
+          if (groupIsSector === isSector) {
+            b.classList.remove('bg-navy', 'text-white');
+            b.classList.add('border-2', 'border-cast-200', 'text-navy');
+          }
+        });
+        btn.classList.remove('border-2', 'border-cast-200');
+        btn.classList.add('bg-navy', 'text-white');
+        applyFilter();
+      });
+    });
+  </script>
+</BaseLayout>

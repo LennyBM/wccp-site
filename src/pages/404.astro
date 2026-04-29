@@ -1,0 +1,78 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const helpfulLinks = [
+  { href: '/products', label: 'Products', desc: 'The full precast catalogue.' },
+  { href: '/sectors/agricultural', label: 'Agricultural', desc: 'Cubicles, slurry, silage, robot bases.' },
+  { href: '/sectors/civils', label: 'Civils & infrastructure', desc: 'Walls, culverts, padstones, pits.' },
+  { href: '/sectors/bespoke', label: 'Bespoke', desc: "If we can lift it, we can probably make it." },
+  { href: '/about', label: 'Our story', desc: 'Family-run in North Devon since 1971.' },
+  { href: '/contact', label: 'Contact', desc: 'Phone, WhatsApp, or the form.' },
+];
+---
+
+<BaseLayout
+  title="Page not found"
+  description="That page isn't here. Try the products catalogue, the sectors, or give the yard a ring."
+  noindex={true}
+>
+  <section class="container-wccp py-20 md:py-28">
+    <div class="max-w-2xl mb-16">
+      <p class="eyebrow text-ember mb-4">404 · Page not found</p>
+      <h1 class="font-display text-display-2xl text-navy mb-6">
+        This one must have<br />
+        <span class="text-ember">been delivered already.</span>
+      </h1>
+      <p class="text-cast text-lg leading-relaxed mb-8">
+        The page you're after isn't here. Maybe it's moved, maybe it never existed, maybe a panel
+        fell on the URL. Either way — here's where to head next.
+      </p>
+
+      <!-- Search placeholder -->
+      <form action="/search" method="get" class="flex gap-2 mb-2">
+        <label for="q" class="sr-only">Search the site</label>
+        <input
+          id="q"
+          name="q"
+          type="search"
+          placeholder="Search products, sectors, articles…"
+          class="input flex-1"
+        />
+        <button type="submit" class="btn-primary">Search</button>
+      </form>
+      <p class="text-cast text-sm">Or pick a destination below.</p>
+    </div>
+
+    <!-- Helpful links -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
+      {helpfulLinks.map((l) => (
+        <a href={l.href} class="card p-6 group">
+          <h3 class="font-display text-xl font-bold text-navy mb-2 group-hover:text-ember transition-colors">
+            {l.label}
+          </h3>
+          <p class="text-cast text-sm leading-relaxed mb-4">{l.desc}</p>
+          <div class="flex items-center gap-2 text-ember font-semibold text-sm">
+            Go
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+              <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- Friendly footer note -->
+    <div class="bg-bone-200 rounded p-8 text-center">
+      <p class="eyebrow text-cast mb-3">Or just ring up</p>
+      <h2 class="font-display text-display-md mb-3">We're at the yard, weekdays.</h2>
+      <p class="text-cast mb-6">It's quicker than clicking around.</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href={`https://wa.me/${site.contact.whatsapp.replace('+', '')}`} class="btn-yellow">WhatsApp</a>
+        <a href="/" class="btn-ghost">Back to home</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

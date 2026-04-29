@@ -1,0 +1,93 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const lastReviewed = '29 April 2026';
+---
+
+<BaseLayout
+  title="Accessibility Statement"
+  description={`Accessibility statement for ${site.shortUrl}. We aim to meet WCAG 2.2 AA and welcome feedback on barriers you encounter.`}
+  schema="Article"
+>
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <p class="eyebrow text-yellow mb-4">Legal</p>
+      <h1 class="font-display text-display-xl text-white mb-4">Accessibility Statement</h1>
+      <p class="text-white/90 text-lg max-w-2xl">
+        We want everyone to be able to read about our products, get a quote and contact the yard — whatever device,
+        browser or assistive technology you use.
+      </p>
+      <p class="text-cast-200 text-sm mt-6">Last reviewed: {lastReviewed}</p>
+    </div>
+  </section>
+
+  <section class="container-wccp py-16">
+    <div class="max-w-prose-wide mx-auto space-y-8 text-cast-700 text-base leading-relaxed">
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">Our commitment</h2>
+        <p>
+          {site.legalName} is committed to making this website accessible in line with the
+          <strong class="text-navy"> Web Content Accessibility Guidelines (WCAG) 2.2 at Level AA</strong> and our duties under the
+          <strong class="text-navy"> Equality Act 2010</strong> not to discriminate against disabled users.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">What we've done</h2>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>Designed with strong colour contrast (Heritage Navy on Concrete White exceeds 4.5:1).</li>
+          <li>Body text is resizable to 200% without breaking the layout.</li>
+          <li>Every interactive element is keyboard-reachable, with a visible focus ring.</li>
+          <li>Forms use proper labels, error messages and autocomplete hints.</li>
+          <li>Images have meaningful alternative text; decorative images are hidden from assistive tech.</li>
+          <li>Headings are nested correctly so screen readers can navigate by structure.</li>
+          <li>The site works without JavaScript for all critical journeys (quote, contact, navigation).</li>
+          <li>"Skip to main content" link at the top of every page.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">Known issues</h2>
+        <p>We're aware of the following gaps and are working to fix them:</p>
+        <ul class="list-disc pl-6 space-y-2 mt-3">
+          <li>Some legacy product PDFs are not fully tagged for screen readers — we'll re-export priority documents during 2026.</li>
+          <li>Embedded maps (Google) inherit Google's own accessibility limitations; a text address and phone number is always available alongside.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">If something's not working for you</h2>
+        <p>
+          We'd rather know. If you find a barrier or need information in a different format (large print, plain text,
+          audio, or read aloud over the phone), please get in touch:
+        </p>
+        <ul class="list-disc pl-6 space-y-2 mt-3">
+          <li>Email: <a href={`mailto:${site.contact.email}`} class="text-ember font-semibold hover:underline">{site.contact.email}</a></li>
+          <li>Phone: <a href={`tel:${site.contact.phoneIntl}`} class="text-ember font-semibold hover:underline">{site.contact.phone}</a> (Mon–Fri, {site.hours.weekdays})</li>
+          <li>Post: {site.legalName}, {site.address.street}, {site.address.town}, {site.address.postcode}</li>
+        </ul>
+        <p class="mt-3">We aim to respond within 5 working days.</p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">Enforcement</h2>
+        <p>
+          If you contact us with a complaint and you're not happy with our response, you can contact the Equality
+          Advisory and Support Service (EASS):
+          <a href="https://www.equalityadvisoryservice.com/" class="text-ember font-semibold hover:underline" rel="noopener" target="_blank">equalityadvisoryservice.com</a>.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">How we test</h2>
+        <p>
+          The site is checked using a combination of automated tooling (axe DevTools, Lighthouse), keyboard-only
+          navigation, and manual screen-reader testing with NVDA on Windows and VoiceOver on macOS / iOS.
+          We re-test after every major release and at least once a quarter.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

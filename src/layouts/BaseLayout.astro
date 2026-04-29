@@ -1,0 +1,108 @@
+---
+import '@/styles/global.css';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import MobileStickyBar from '@/components/MobileStickyBar.astro';
+import SchemaOrg from '@/components/SchemaOrg.astro';
+import CookieBanner from '@/components/CookieBanner.astro';
+import { site } from '@/config/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+  schema?: 'Organization' | 'LocalBusiness' | 'Product' | 'Article' | 'FAQPage' | 'HowTo' | 'BreadcrumbList' | 'Service';
+  schemaData?: Record<string, unknown>;
+  canonical?: string;
+}
+
+const {
+  title,
+  description = site.description,
+  image = '/og-default.svg',
+  noindex = false,
+  schema = 'Organization',
+  schemaData,
+  canonical,
+} = Astro.props;
+
+const pageTitle = title ? `${title} | ${site.name}` : `${site.name} — ${site.shortTagline}`;
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, site.url).toString();
+const ogImage = new URL(image, site.url).toString();
+---
+
+<!doctype html>
+<html lang="en-GB" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- hreflang self-reference (en-GB primary, x-default fallback) -->
+    <link rel="alternate" hreflang="en-GB" href={canonicalUrl} />
+    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+
+    <!-- Theming for browser UI -->
+    <meta name="theme-color" content="#0A2351" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0A2351" media="(prefers-color-scheme: dark)" />
+    <meta name="msapplication-TileColor" content="#0A2351" />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <!-- Premium typography: Bricolage Grotesque (display) + Inter (body)
+         self-hosted via @fontsource-variable; loaded by src/styles/global.css. -->
+
+    <!-- Sitemap + RSS -->
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="alternate" type="application/rss+xml" title={site.name} href="/feed.xml" />
+
+    <!-- Schema.org JSON-LD -->
+    <SchemaOrg type={schema} data={schemaData} />
+
+    <slot name="head" />
+  </head>
+  <body>
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-navy focus:text-white focus:px-4 focus:py-2 focus:rounded"
+    >
+      Skip to main content
+    </a>
+    <a
+      href="#footer-accreditations"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-44 focus:z-[100] focus:bg-navy focus:text-white focus:px-4 focus:py-2 focus:rounded"
+    >
+      Skip to footer accreditations
+    </a>
+
+    <Header />
+
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+
+    <Footer />
+    <MobileStickyBar />
+    <CookieBanner />
+  </body>
+</html>

@@ -1,0 +1,356 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const standards = [
+  {
+    id: 'bs-8500',
+    code: 'BS 8500-1:2023',
+    title: 'Concrete specification, performance, production and conformity',
+    direct:
+      'BS 8500-1:2023 is the UK complement to BS EN 206. It defines designated and designed concrete mixes by exposure class (XC, XD, XS, XF, XA), strength class (e.g. C40/50) and minimum cement content. We specify every WCCP mix to BS 8500-1:2023 with the relevant exposure class for the duty.',
+    covers:
+      'Concrete strength classes from C20/25 to C100/115, exposure environments (carbonation, chlorides, freeze-thaw, chemical attack), cement types (CEM I to CEM V), aggregate sizing, slump classes and conformity testing.',
+    matters:
+      'A wrongly specified mix is the most common reason precast fails early. The wrong cement type in a sulphate environment, an under-cover bar, or an under-cement-content mix all read as fine on the day and fail in the third year. Specifying to BS 8500 is what stops that.',
+    applies:
+      'Every mix we cast — slurry storage (XA2/XA3, C40/50 SR), silage clamps (XA2, C40/50 SR), retaining walls (XC2/XC3, C32/40), padstones (XC1, C40/50), prestressed panels (XC4/XF1, C40/50).',
+  },
+  {
+    id: 'bs-en-14992',
+    code: 'BS EN 14992',
+    title: 'Precast concrete products — wall elements',
+    direct:
+      'BS EN 14992 is the harmonised European standard for precast concrete wall elements. It covers prestressed and reinforced wall panels supplied as factory-cast products, defines the declared performance characteristics, and is the basis for UKCA marking on every panel WCCP produces.',
+    covers:
+      'Geometric tolerances, surface finishes, mechanical resistance (bending, shear, axial), thermal performance, fire resistance, acoustic performance, durability, dangerous substances and the factory production control system that backs the declaration of performance.',
+    matters:
+      'BS EN 14992 is the standard a procurement officer asks for by name. Without it, your panels are not legally marketable in the UK as construction products under the Construction Products Regulation. Every WCCP panel ships with a declaration of performance referencing this standard.',
+    applies:
+      'All prestressed wall panels (100, 150, 180, 280mm), L-blocks for retaining and silage clamp duty, king-post wall panels and bunker walls. Every panel is marked, traceable and ships with its DoP.',
+  },
+  {
+    id: 'eurocode-2',
+    code: 'BS EN 1992 (Eurocode 2)',
+    title: 'Design of concrete structures',
+    direct:
+      'BS EN 1992 — Eurocode 2 — is the structural design code for concrete in the UK and EU. Part 1-1 covers general rules and rules for buildings; Part 1-2 covers fire; Part 3 covers liquid-retaining structures (slurry tanks, water tanks). Every WCCP structural calc is to Eurocode 2.',
+    covers:
+      'Ultimate and serviceability limit states, partial safety factors, reinforcement detailing, anchorage and lap lengths, crack-width control, deflection limits, fatigue, durability and design for fire. Slurry stores and water-retaining structures get the Part 3 crack-width treatment.',
+    matters:
+      'Building Regulations Approved Document A and the Construction Products Regulation route structural compliance through the Eurocodes. A panel designed by hand to a 1980s code can be technically adequate but is not the design any modern engineer will sign off.',
+    applies:
+      'All structural calculations on prestressed panels, retaining systems, padstones, vehicle pits and bespoke civils elements. Slurry store calculations follow BS EN 1992-3 (liquid-retaining and containment) for crack-width control to 0.2mm.',
+  },
+  {
+    id: 'bs-en-1916',
+    code: 'BS EN 1916 / BS 5911',
+    title: 'Concrete pipes and ancillary products — box culverts and pipes',
+    direct:
+      'BS EN 1916 covers concrete pipes and fittings; BS 5911 is the UK national specification for the same family, including box culverts and headwall sections. It defines load classes (DN ratings), joint detail, hydraulic capacity and strength testing for highway and drainage culverts.',
+    covers:
+      'Three-edge bearing strength, joint type (rebated, ogee, spigot-and-socket), hydraulic-pressure rating, internal smoothness, durability under chlorides and freeze-thaw, and product-specific quality control.',
+    matters:
+      'Highway authorities and water companies will not accept culverts that do not reference BS EN 1916 / BS 5911 on the delivery ticket. The DN rating drives the burial depth and surcharge tolerance — get the rating wrong and the culvert collapses under a 44-tonne lorry.',
+    applies:
+      'All WCCP box culverts (600mm to 3000mm internal), headwall and wing-wall sections, and twin-cell aggregate-rated culverts for highway and farm-track crossings. Cast to your hydraulic calc, marked with the DN rating.',
+  },
+  {
+    id: 'ssafo-2018',
+    code: 'SSAFO 2018',
+    title: 'Silage, Slurry and Agricultural Fuel Oil Regulations 2018',
+    direct:
+      'SSAFO 2018 is the statutory instrument that governs slurry, silage effluent and agricultural fuel-oil storage in England. It requires a 20-year minimum design life, structural adequacy to BS 5502-50 and BS EN 1992-3, impermeability, and 14 days written notice to the Environment Agency before construction.',
+    covers:
+      'Construction standards for slurry tanks, lagoons and silage clamps; minimum freeboard at parapet; effluent capture from clamps; spacing rules from watercourses and boreholes; and the EA notification regime under Form WQE1.',
+    matters:
+      'A non-compliant slurry store is an environmental offence. The Environment Agency can issue stop notices, require remediation and prosecute. Grant funding (Slurry Infrastructure Grant, Countryside Stewardship) is conditional on full SSAFO compliance.',
+    applies:
+      'Every slurry storage system, silage clamp wall and clamp-floor we cast. We supply the structural calculations, the C40/50 sulphate-resisting mix certificate and a written capacity statement for your EA file.',
+  },
+  {
+    id: 'bs-5502-22',
+    code: 'BS 5502-22:2003',
+    title: 'Buildings and structures for agriculture — code of practice for design',
+    direct:
+      'BS 5502 is the UK code of practice for agricultural buildings and structures. Part 22 deals with cattle housing — cubicles, feed barriers, kerbs, slatted floors and gates. It informs cubicle dimensions, livestock loadings and the durability requirements for the dairy environment.',
+    covers:
+      'Liveweight loadings, bedding and cubicle geometry, gate and barrier strength, kerb and slat detailing, drainage falls, ventilation requirements and material durability for the slurry, urine and silage environment.',
+    matters:
+      'Cubicle systems sized below BS 5502-22 cause refusal, lameness and elevated cell counts. AHDB Dairy 2024 builds on the same dimensional logic but the structural and durability rules trace back to BS 5502.',
+    applies:
+      'All cattle cubicles, cubicle end walls, feed troughs, water troughs and footbaths. We cross-reference AHDB Dairy 2024 dimensions against the BS 5502-22 structural requirements before we cast.',
+  },
+  {
+    id: 'bs-en-1996',
+    code: 'BS EN 1996 (Eurocode 6)',
+    title: 'Design of masonry structures — bearing and padstones',
+    direct:
+      'BS EN 1996 is the Eurocode for masonry design. It governs the bearing pressure that a steel beam, lintel or roof truss can apply to a wall, and therefore drives the size and concrete strength of the padstone underneath. Every WCCP padstone is sized against an Eurocode 6 bearing calc.',
+    covers:
+      'Compressive strength of masonry, partial safety factors for ULS and SLS, eccentric and concentrated loads, bearing pressure under concentrated loads, padstone dimensioning, and the interaction between bearing element and supporting masonry.',
+    matters:
+      'A correctly sized padstone is the difference between a steel beam sitting safely on a wall and a localised crushing failure that splits the wall vertically. Eurocode 6 is the design route Building Control inspectors expect.',
+    applies:
+      'All WCCP padstones — schedule us your bearing reactions and we cast to Eurocode 6 with C40/50 concrete, marked and delivered in load order.',
+  },
+  {
+    id: 'bs-en-13369',
+    code: 'BS EN 13369',
+    title: 'Common rules for precast concrete products',
+    direct:
+      'BS EN 13369 is the common-rules standard underneath every product-specific precast standard (BS EN 14992 for walls, BS EN 13225 for linear elements, BS EN 1916 for pipes, etc.). It defines the factory production control (FPC) system, the testing regime and the quality documentation backing every precast unit.',
+    covers:
+      'Factory production control, raw material control, in-process testing (slump, cube strength, cover, dimensional), record keeping, traceability, calibration of testing equipment and the audit regime by notified bodies.',
+    matters:
+      'BS EN 13369 is the standard the notified body audits us against. Without an FPC system to BS EN 13369, none of the product-specific UKCA marks are legally valid. It is the spine of every precast quality system in the UK.',
+    applies:
+      'Every product through the WCCP yard. Cube tests on every pour, cover tested on every batch, dimensional checks logged on every panel. Records kept for ten years and available for audit.',
+  },
+  {
+    id: 'ce-ukca',
+    code: 'CE / UKCA marking',
+    title: 'Construction Products Regulation conformity marking',
+    direct:
+      'CE and UKCA are the conformity marks under the Construction Products Regulation. Both are recognised in the UK during the current transition. Every WCCP product covered by a harmonised standard (BS EN 14992, BS EN 1916, BS EN 13225) ships with a UKCA mark and a declaration of performance.',
+    covers:
+      'Declared performance against the harmonised standard, factory production control to BS EN 13369, notified-body involvement (system 2+ for our prestressed elements), and the duty to keep declarations of performance available to clients for ten years from supply.',
+    matters:
+      'No conformity mark, no legal sale of a construction product. Procurement officers, building control and tier-1 main contractors all check the DoP. Without it, your panels cannot go in the wall.',
+    applies:
+      'All prestressed wall panels, structural retaining systems, culverts and load-bearing elements. Each load ships with a single PDF pack containing the DoP, the calc, the mix cert and the cube tests.',
+  },
+];
+const standardCount = standards.length;
+
+const faqs = [
+  {
+    q: 'What is the difference between BS, BS EN and Eurocode?',
+    a: 'BS is a British Standard published by BSI. BS EN is the British adoption of a European Norm — same text as the EN, plus a UK national annex. Eurocodes are a specific set of ten harmonised structural design standards (EN 1990 to EN 1999); BS EN 1992 is Eurocode 2 in UK form. Where a BS EN exists, it normally supersedes the older standalone BS.',
+  },
+  {
+    q: 'Do WCCP products carry CE or UKCA marks?',
+    a: 'Both. The UK is currently in a transition where CE and UKCA marks are both recognised on construction products. Every WCCP product covered by a harmonised standard — prestressed panels, retaining systems, culverts — ships with a UKCA-marked declaration of performance. We can issue CE-marked DoPs for European clients on request.',
+  },
+  {
+    q: 'Where do I find the standards on a delivered panel?',
+    a: 'On the side of the panel and on the delivery ticket. Each panel carries a stamp with its product code, the casting date, the cube-test reference and the relevant harmonised standard (e.g. BS EN 14992). The delivery ticket repeats the standard, the mix designation and the load reference for traceability.',
+  },
+  {
+    q: 'What is BS 5502-50 and how does it differ from BS 5502-22?',
+    a: 'BS 5502 is split into parts. Part 22 (BS 5502-22:2003) covers cattle housing — cubicles, feed barriers, gates. Part 50 (BS 5502-50:1993) covers the design and construction of slurry tanks, lagoons and reception pits. Slurry stores reference Part 50 plus BS EN 1992-3 for the crack-width control.',
+  },
+  {
+    q: 'Do I need to know the standards to order from WCCP?',
+    a: 'No. We do the standards-mapping for you. Tell us the application — slurry store, retaining wall, padstone, culvert — and we cast to the right standards, supply the right paperwork, and reference the right codes on the delivery. Engineers and contractors get the technical pack as a single PDF.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="Standards explained — BS, BS EN and Eurocodes for UK precast concrete"
+  description="The standards behind WCCP precast: BS 8500-1:2023, BS EN 14992, Eurocode 2 (BS EN 1992), BS EN 1916, SSAFO 2018, BS 5502-22, BS EN 1996, BS EN 13369 and UKCA marking — explained for engineers, farmers and contractors."
+  image="/images/standards.jpg"
+  schema="Article"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+
+  <!-- Hero -->
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-14 md:py-16">
+      <nav class="text-sm text-white/90 mb-6" aria-label="Breadcrumb">
+        <a href="/guides" class="hover:text-yellow">Guides</a>
+        <span class="mx-2 text-cast">/</span>
+        <span class="text-white/90">Standards explained</span>
+      </nav>
+      <p class="eyebrow text-yellow mb-4">Reference · Pillar guide</p>
+      <h1 class="font-display text-display-xl text-white mb-6 max-w-4xl">
+        Standards explained — BS, BS EN and Eurocodes for UK precast.
+      </h1>
+
+      <!-- Direct answer for AI engines -->
+      <div class="bg-navy-700 border-l-4 border-yellow p-6 max-w-3xl rounded-r">
+        <p class="text-white/90 text-lg leading-relaxed">
+          <strong class="text-white">Direct answer:</strong> WCCP precast is cast to BS 8500-1:2023 (concrete
+          specification), BS EN 14992 (precast wall elements), BS EN 1992 / Eurocode 2 (structural design),
+          BS EN 1916 (box culverts), SSAFO 2018 (slurry compliance), BS 5502-22:2003 (agricultural
+          buildings), BS EN 1996 / Eurocode 6 (masonry padstones) and BS EN 13369 (factory production
+          control). Every product covered by a harmonised standard ships with a UKCA-marked declaration
+          of performance.
+        </p>
+      </div>
+
+      <!-- Byline -->
+      <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/90">
+        <div>
+          By <span class="text-white font-semibold">WCCP Engineering Team</span>
+        </div>
+        <div>
+          Published <time datetime="2026-04-29">29 April 2026</time>
+        </div>
+        <div>
+          Last reviewed <time datetime="2026-04-29">29 April 2026</time>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Body -->
+  <article class="container-wccp py-12 md:py-16">
+    <div class="grid lg:grid-cols-[1fr_18rem] gap-10 lg:gap-16">
+      <!-- Main content -->
+      <div class="max-w-3xl">
+
+        <!-- Why standards matter -->
+        <section id="why" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Why standards matter on a precast job.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Standards are how a designer, a contractor and a manufacturer agree what
+            "good" looks like — without writing the rules from scratch on every job.</strong> A panel cast to
+            BS EN 14992 means the same thing in Holsworthy as it does in Hull. A C40/50 mix to BS 8500
+            performs the same in slurry whether it left our yard or someone else's.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            Standards do four jobs at once. They protect the buyer (a UKCA mark is a legal contract that
+            the panel does what the DoP says). They protect the manufacturer (cast to the standard, document
+            it, and you have a defence). They protect the regulator (a notified body audits us against
+            BS EN 13369 every year). And they protect the engineer who has to sign the design off.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            Below are the {standardCount} standards that govern most of what we cast. Skim the codes you
+            recognise; the bits you don't are linked back to the products they apply to.
+          </p>
+        </section>
+
+        <!-- Each standard -->
+        {standards.map((s) => (
+          <section id={s.id} class="mb-12 scroll-mt-24">
+            <h2 class="font-display text-3xl text-navy mb-2">{s.code}</h2>
+            <p class="eyebrow text-ember mb-4">{s.title}</p>
+
+            <p class="text-cast-700 text-lg leading-relaxed mb-4">
+              <strong class="text-navy">{s.direct}</strong>
+            </p>
+
+            <div class="grid sm:grid-cols-3 gap-4 mb-2">
+              <div class="card p-5">
+                <p class="eyebrow text-cast mb-2">What it covers</p>
+                <p class="text-cast-700 text-sm leading-relaxed">{s.covers}</p>
+              </div>
+              <div class="card p-5">
+                <p class="eyebrow text-cast mb-2">Why it matters</p>
+                <p class="text-cast-700 text-sm leading-relaxed">{s.matters}</p>
+              </div>
+              <div class="card p-5">
+                <p class="eyebrow text-cast mb-2">Where it applies on WCCP</p>
+                <p class="text-cast-700 text-sm leading-relaxed">{s.applies}</p>
+              </div>
+            </div>
+          </section>
+        ))}
+
+        <!-- FAQ -->
+        <section id="faq" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-6">Frequently asked questions</h2>
+          <div class="space-y-4">
+            {faqs.map((f) => (
+              <details class="card p-5 group">
+                <summary class="font-display text-lg font-bold text-navy cursor-pointer flex items-start justify-between gap-4">
+                  <span>{f.q}</span>
+                  <svg class="w-5 h-5 mt-1 flex-shrink-0 text-ember transition-transform group-open:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="12" y1="5" x2="12" y2="19" stroke-linecap="round"/>
+                    <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+                  </svg>
+                </summary>
+                <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <!-- CTA inline -->
+        <section class="bg-navy text-white rounded-lg p-8 md:p-10">
+          <h2 class="font-display text-2xl md:text-3xl text-white mb-3">Need the paperwork pack?</h2>
+          <p class="text-white/90 mb-6 leading-relaxed">
+            Every WCCP delivery ships with the declaration of performance, the structural calc, the mix
+            certificate and the cube-test record — as a single PDF. Tell us the job and we will send a
+            sample pack so your QS can review the format before the order.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href={`mailto:${site.contact.quotesEmail}`} class="btn-yellow">Request a sample pack</a>
+            <a href="/quote" class="btn bg-white text-navy hover:bg-bone">Start a quote</a>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Sticky TOC (desktop) -->
+      <aside class="hidden lg:block">
+        <div class="sticky top-24">
+          <p class="eyebrow text-cast mb-4">On this page</p>
+          <ol class="space-y-3 text-sm border-l border-cast-100 pl-4">
+            <li><a href="#why" class="text-cast hover:text-ember">Why standards matter</a></li>
+            {standards.map((s) => (
+              <li><a href={`#${s.id}`} class="text-cast hover:text-ember">{s.code}</a></li>
+            ))}
+            <li><a href="#faq" class="text-cast hover:text-ember">FAQ</a></li>
+          </ol>
+
+          <div class="mt-8 p-4 bg-yellow rounded-lg">
+            <p class="text-xs font-bold text-navy uppercase tracking-wide mb-2">Engineer's pack</p>
+            <p class="text-sm text-navy mb-3 leading-snug">DoP, calcs, mix cert, cube tests — one PDF per load.</p>
+            <a href={`mailto:${site.contact.quotesEmail}`} class="text-navy font-bold text-sm hover:underline">Request a sample →</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+  <!-- Related guides -->
+  <section class="bg-bone-200 py-16">
+    <div class="container-wccp">
+      <p class="eyebrow text-cast mb-3">Related guides</p>
+      <h2 class="font-display text-display-md mb-8">Keep reading.</h2>
+
+      <div class="grid md:grid-cols-3 gap-5">
+        <a href="/guides/concrete-grades" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Materials</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Concrete grades for agricultural use</h3>
+          <p class="text-cast-700 text-sm leading-relaxed">C32/40 vs C40/50, exposure classes and sulphate-resisting cements explained.</p>
+        </a>
+        <a href="/guides/ssafo-2018" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Regulations</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">SSAFO 2018 compliance checklist</h3>
+          <p class="text-cast-700 text-sm leading-relaxed">14-day notice, BS 5502-50 design life, drainage rules and EA inspection rights.</p>
+        </a>
+        <a href="/guides/prestressed-vs-reinforced" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Engineering</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Prestressed vs reinforced precast</h3>
+          <p class="text-cast-700 text-sm leading-relaxed">Where each system suits — span, surcharge, geometry and cost compared.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="container-wccp py-16 text-center">
+    <h2 class="font-display text-display-lg mb-4">Talk to the yard.</h2>
+    <p class="text-cast-700 text-lg max-w-xl mx-auto mb-8">
+      Same-day callback Monday to Friday. We will talk you through the standards before you commit a penny.
+    </p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+      <a href="/quote" class="btn-primary">Configure a quote</a>
+    </div>
+  </section>
+</BaseLayout>

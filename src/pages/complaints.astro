@@ -1,0 +1,133 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const lastUpdated = '29 April 2026';
+---
+
+<BaseLayout
+  title="Complaints Procedure"
+  description={`How to make a complaint to ${site.name}. Acknowledged within 5 working days, full response within 30. ICO escalation available.`}
+  schema="Article"
+>
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <p class="eyebrow text-yellow mb-4">Legal</p>
+      <h1 class="font-display text-display-xl text-white mb-4">Complaints Procedure</h1>
+      <p class="text-white/90 text-lg max-w-2xl">
+        We'd rather hear it than not. If we've got something wrong — a delivery, a product, an invoice, the way we've
+        handled your data — please tell us and we'll put it right.
+      </p>
+      <p class="text-cast-200 text-sm mt-6">Last updated: {lastUpdated}</p>
+    </div>
+  </section>
+
+  <section class="container-wccp py-16">
+    <div class="max-w-prose-wide mx-auto space-y-10 text-cast-700 text-base leading-relaxed">
+
+      <div class="card p-6 bg-yellow-50 border-yellow-200">
+        <p class="text-navy font-semibold mb-2">Our promise</p>
+        <p class="text-cast">
+          From <strong class="text-navy">19 June 2026</strong>, in line with the Data (Use and Access) Act 2025, we publish this
+          complaints procedure for any concern about how we handle personal data — but we apply the same process to every
+          complaint, whatever the subject.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">1. How to complain</h2>
+        <p>You can complain in any of the following ways. Please include your name, a daytime phone number, your order or quote reference (if known), and a clear description of what's gone wrong.</p>
+        <div class="grid sm:grid-cols-3 gap-4 mt-5">
+          <div class="card p-5">
+            <p class="eyebrow text-cast mb-2">Email</p>
+            <a href={`mailto:${site.contact.email}?subject=Complaint`} class="text-navy font-bold hover:text-ember break-all">{site.contact.email}</a>
+            <p class="text-sm text-cast mt-2">Subject line: "Complaint"</p>
+          </div>
+          <div class="card p-5">
+            <p class="eyebrow text-cast mb-2">Phone</p>
+            <a href={`tel:${site.contact.phoneIntl}`} class="text-navy font-bold hover:text-ember">{site.contact.phone}</a>
+            <p class="text-sm text-cast mt-2">Mon–Fri, {site.hours.weekdays}</p>
+          </div>
+          <div class="card p-5">
+            <p class="eyebrow text-cast mb-2">Post</p>
+            <p class="text-navy font-bold leading-snug">
+              The Managing Director<br/>
+              {site.legalName}<br/>
+              {site.address.street}<br/>
+              {site.address.town}<br/>
+              {site.address.postcode}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">2. What happens next</h2>
+        <ol class="list-decimal pl-6 space-y-3">
+          <li>
+            <strong class="text-navy">Acknowledgement within 5 working days.</strong>
+            We'll confirm we've received your complaint and tell you who's looking into it.
+          </li>
+          <li>
+            <strong class="text-navy">Investigation.</strong>
+            We review the records, speak to the people involved, and gather any evidence we need.
+          </li>
+          <li>
+            <strong class="text-navy">Full response within 30 calendar days.</strong>
+            We'll explain what we've found, what we'll do to put it right, and what we'll change so it doesn't happen again. If a complaint is unusually complex we'll tell you in advance and agree a longer timeline with you.
+          </li>
+          <li>
+            <strong class="text-navy">Escalation.</strong>
+            If you're not satisfied with our response, you can ask for it to be reviewed by a director who wasn't involved in the original investigation.
+          </li>
+        </ol>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">3. Going to a regulator</h2>
+        <p>
+          If you remain unhappy after our internal review, you have the right to take your complaint outside the company:
+        </p>
+        <ul class="list-disc pl-6 space-y-3 mt-3">
+          <li>
+            <strong class="text-navy">Data protection complaints</strong> — the Information Commissioner's Office (ICO):
+            <a href="https://ico.org.uk/make-a-complaint/" class="text-ember font-semibold hover:underline" rel="noopener" target="_blank">ico.org.uk/make-a-complaint</a> · 0303 123 1113.
+          </li>
+          <li>
+            <strong class="text-navy">Product or contract disputes</strong> — small-claims court (England &amp; Wales) or, by agreement, an independent mediator.
+          </li>
+          <li>
+            <strong class="text-navy">Accessibility</strong> — Equality Advisory and Support Service:
+            <a href="https://www.equalityadvisoryservice.com/" class="text-ember font-semibold hover:underline" rel="noopener" target="_blank">equalityadvisoryservice.com</a>.
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">4. Records we keep</h2>
+        <p>
+          We log every complaint, the outcome, and any actions taken. Records are kept for 6 years and reviewed
+          annually so we can spot patterns and improve. They are not used for marketing and are accessible only to
+          staff who need them.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">5. Vexatious or anonymous complaints</h2>
+        <p>
+          We try to investigate every complaint, including anonymous ones, but a lack of contact details may limit
+          what we can do. We reserve the right to decline to engage with abusive or vexatious correspondence.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA strip -->
+  <section class="bg-bone-200 py-12">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-md text-navy mb-3">Or pick up the phone.</h2>
+      <p class="text-cast mb-6 max-w-xl mx-auto">Most things get sorted faster on a five-minute call than in a five-day email chain.</p>
+      <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+    </div>
+  </section>
+</BaseLayout>

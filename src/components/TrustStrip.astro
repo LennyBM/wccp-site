@@ -1,0 +1,25 @@
+---
+// Above-the-fold trust strip. Shown on homepage + sector hubs.
+const items = [
+  { label: 'Made in North Devon since 1971' },
+  { label: 'CE / UKCA certified' },
+  { label: 'BS 8500-1:2023 compliant' },
+  { label: 'Nationwide delivery' },
+  { label: '£5m public liability' },
+];
+---
+
+<div class="bg-navy text-white">
+  <div class="container-wccp py-3">
+    <ul class="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs sm:text-sm font-medium">
+      {items.map((item) => (
+        <li class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-yellow shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+            <polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>{item.label}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>

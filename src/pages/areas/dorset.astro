@@ -1,0 +1,199 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const towns = [
+  { name: 'Dorchester', drive: '2 hr 10' },
+  { name: 'Bridport', drive: '2 hr' },
+  { name: 'Weymouth', drive: '2 hr 20' },
+  { name: 'Sherborne', drive: '1 hr 50' },
+  { name: 'Shaftesbury', drive: '2 hr' },
+  { name: 'Blandford Forum', drive: '2 hr 15' },
+  { name: 'Wimborne', drive: '2 hr 30' },
+  { name: 'Beaminster', drive: '1 hr 50' },
+  { name: 'Gillingham', drive: '2 hr' },
+  { name: 'Sturminster Newton', drive: '2 hr 5' },
+  { name: 'Lyme Regis', drive: '1 hr 40' },
+  { name: 'Christchurch', drive: '2 hr 45' },
+];
+
+const faqs = [
+  {
+    q: 'Which Dorset farms have you supplied recently?',
+    a: 'Dairy units around Sherborne and Sturminster Newton, beef finishers in the Marshwood Vale and arable holdings near Dorchester. We also supplied L-blocks for a winery near Bridport and a stable yard near Shaftesbury in 2025. Browse the case study index for examples.',
+  },
+  {
+    q: 'Do you work with Dorset civils contractors?',
+    a: 'Yes. We supply box culverts, retaining walls and bespoke padstones to principal contractors working on the A35, A37 and A350 corridors. Recent work has included a roundabout reconfiguration scheme and a bridge approach wall east of Bridport.',
+  },
+  {
+    q: 'How does coverage work for Dorset given Holsworthy is in Devon?',
+    a: "Dorset is on the further side of our patch, but our own lorries reach Dorchester and Sherborne comfortably inside a working day. For projects above 100 tonnes we'll usually run a dedicated delivery cycle. For smaller jobs we batch loads with other Dorset deliveries to keep mileage out of your quote.",
+  },
+  {
+    q: 'What are typical lead times into Dorset?',
+    a: 'Catalogue items — cubicle beds, L-blocks, slurry panels — are usually 2–3 weeks from order. Bespoke commissions run 6–10 weeks depending on complexity. We always confirm a delivery slot before you commit to ground works.',
+  },
+  {
+    q: 'What standards do you cast to for Dorset civils and agricultural work?',
+    a: 'All concrete is C40/50 sulphate-resisting where appropriate. Civils elements are designed to BS EN 1992-1-1 (Eurocode 2), agricultural buildings to BS 5502, slurry stores to SSAFO 2018, and watertight structures to BS 8007 principles. Box culverts are cast to BS EN 14844.',
+  },
+];
+
+const localBusinessSchema = {
+  areaServed: {
+    '@type': 'AdministrativeArea',
+    name: 'Dorset, United Kingdom',
+  },
+  mainEntityOfPage: 'https://westcountryconcreteproducts.co.uk/areas/dorset',
+};
+---
+
+<BaseLayout
+  title="Precast concrete supplier serving Dorset farms and contractors"
+  description="WCCP precast concrete delivered across Dorset — Dorchester, Bridport, Sherborne, Shaftesbury and beyond. Slurry stores, cubicles, retaining walls. Cast in Holsworthy since 1971."
+  schema="LocalBusiness"
+  schemaData={localBusinessSchema}
+>
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <nav class="text-sm text-white/90 mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-yellow">Home</a>
+        <span class="mx-2 text-cast">/</span>
+        <a href="/areas" class="hover:text-yellow">Areas served</a>
+        <span class="mx-2 text-cast">/</span>
+        <span class="text-white/90">Dorset</span>
+      </nav>
+      <p class="eyebrow text-yellow mb-5">Dorset · across the West Country</p>
+      <h1 class="font-display text-display-xl text-white mb-5 max-w-4xl">
+        Precast concrete supplier serving Dorset farms and contractors.
+      </h1>
+      <p class="text-lg text-white/90 max-w-2xl leading-relaxed mb-8">
+        From Lyme Regis through Dorchester to Wimborne — we cast in Holsworthy and deliver across Dorset
+        every week. Dairy, beef, civils, equestrian. If it's precast and it's in Dorset, we've probably
+        already supplied one.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="/quote" class="btn-primary">Get a Dorset quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-yellow">Call {site.contact.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-16">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <p class="eyebrow text-cast mb-3">Where we deliver</p>
+        <h2 class="font-display text-display-lg mb-5">Dorset's well within range from Holsworthy.</h2>
+        <p class="text-cast-700 text-lg leading-relaxed mb-4">
+          The yard's on the A3072 in North Devon, and Dorset's a couple of hours east. Our own fleet runs
+          Dorset deliveries every week — 8-wheelers for tight farm tracks in the Marshwood Vale and
+          Blackmore Vale, artics for civils sites where the access is open.
+        </p>
+        <p class="text-cast-700 text-lg leading-relaxed">
+          Most Dorset deliveries are batched against other South Coast jobs to keep mileage out of your
+          quote. Bigger jobs we run dedicated.
+        </p>
+      </div>
+
+      <div class="aspect-[4/3] bg-bone-200 rounded-lg border border-cast-100 relative overflow-hidden">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <svg viewBox="0 0 200 200" class="w-3/4 h-3/4 text-navy/10">
+            <path d="M30 90 Q60 70 100 75 Q140 70 170 90 Q175 115 160 130 Q120 145 80 140 Q40 135 30 115 Q25 100 30 90 Z" fill="currentColor" />
+          </svg>
+        </div>
+        <div class="absolute top-1/2 left-1/4 w-3 h-3 rounded-full bg-ember ring-4 ring-ember/20"></div>
+        <div class="absolute top-1/2 left-1/4 transform translate-x-4 -translate-y-2 text-xs font-bold text-navy bg-white px-2 py-1 rounded shadow-soft">
+          Dorset coverage
+        </div>
+        <div class="absolute bottom-3 right-3 text-[11px] text-cast">Coverage map · placeholder</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-bone-200 py-16">
+    <div class="container-wccp">
+      <p class="eyebrow text-cast mb-3">Towns we cover</p>
+      <h2 class="font-display text-display-lg mb-8">Drive times from the Holsworthy yard</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+        {towns.map((t) => (
+          <div class="card p-4 flex items-center justify-between">
+            <span class="font-display font-bold text-navy">{t.name}</span>
+            <span class="text-xs text-cast font-medium">{t.drive}</span>
+          </div>
+        ))}
+      </div>
+      <p class="text-sm text-cast mt-6 italic">
+        Outside this list? We deliver county-wide and beyond — call the yard for a haulage quote.
+      </p>
+    </div>
+  </section>
+
+  <section class="container-wccp py-16">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-8 gap-4">
+      <div>
+        <p class="eyebrow text-cast mb-3">Dorset work</p>
+        <h2 class="font-display text-display-lg">Recent jobs in the county.</h2>
+      </div>
+      <a href="/case-studies" class="text-ember font-bold hover:text-ember-700 inline-flex items-center gap-2">
+        All case studies
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+          <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-5">
+      <a href="/case-studies/ashford-estate-civils" class="card p-6 group">
+        <span class="eyebrow text-ember mb-3 block">Estate work · 2025</span>
+        <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Ashford Estate — three-farm modernisation</h3>
+        <p class="text-cast text-sm leading-relaxed">920 tonnes of L-blocks, bunker walls and cubicles across three tenant farms.</p>
+      </a>
+      <a href="/case-studies/wessex-ad-plant" class="card p-6 group">
+        <span class="eyebrow text-ember mb-3 block">Bespoke · 2024</span>
+        <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Wessex AD — bespoke digestate tanks</h3>
+        <p class="text-cast text-sm leading-relaxed">Custom precast tank sections for an AD plant near Yeovil — 3,200 tonnes.</p>
+      </a>
+      <a href="/case-studies" class="card p-6 group">
+        <span class="eyebrow text-ember mb-3 block">More Dorset jobs</span>
+        <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Browse all case studies</h3>
+        <p class="text-cast text-sm leading-relaxed">Filter the case study index to see every project we've documented in Dorset and the West Country.</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="bg-bone-200 py-16">
+    <div class="container-wccp max-w-3xl">
+      <p class="eyebrow text-cast mb-3">Dorset FAQ</p>
+      <h2 class="font-display text-display-lg mb-8">Local questions, local answers.</h2>
+      <div class="space-y-3">
+        {faqs.map((f) => (
+          <details class="card p-5 group">
+            <summary class="font-display text-lg font-bold text-navy cursor-pointer flex items-start justify-between gap-4">
+              <span>{f.q}</span>
+              <svg class="w-5 h-5 mt-1 flex-shrink-0 text-ember transition-transform group-open:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19" stroke-linecap="round"/>
+                <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+              </svg>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-yellow text-navy py-12">
+    <div class="container-wccp text-center max-w-2xl mx-auto">
+      <h2 class="font-display text-display-md mb-3">Dorset job to spec?</h2>
+      <p class="text-navy text-lg mb-6">
+        Call the yard, send a sketch on WhatsApp, or fill in the quote form — same-day callback Mon–Fri.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href="/quote" class="btn bg-navy text-white hover:bg-navy-700">Start a quote</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

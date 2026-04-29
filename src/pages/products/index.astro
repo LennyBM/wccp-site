@@ -1,0 +1,188 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import { site } from '@/config/site';
+
+type Sector = 'agricultural' | 'civils' | 'bespoke';
+
+interface Product {
+  href: string;
+  label: string;
+  spec: string;
+  sectors: Sector[];
+}
+
+const products: Product[] = [
+  // Agricultural
+  { href: '/products/cattle-cubicles', label: 'Cattle Cubicles', spec: 'Holstein / Jersey / beef · 1100–1250mm wide', sectors: ['agricultural'] },
+  { href: '/products/slurry-storage', label: 'Slurry Storage', spec: 'SSAFO 2018 · 250–5000m³ · C40/50 SR', sectors: ['agricultural'] },
+  { href: '/products/feed-troughs', label: 'Feed Troughs', spec: '3.0m / 4.5m sections · galvanised lip', sectors: ['agricultural'] },
+  { href: '/products/silage-clamp-walls', label: 'Silage Clamp Walls', spec: '3.0–6.0m · sulphate-resisting C40/50', sectors: ['agricultural'] },
+  { href: '/products/milking-robot-bases', label: 'Milking Robot Bases', spec: 'DeLaval · Lely · GEA · ±2mm level', sectors: ['agricultural'] },
+  { href: '/products/footbaths', label: 'Footbaths', spec: '2.4 / 3.0 / 3.6m · single-piece cast', sectors: ['agricultural'] },
+  { href: '/products/water-troughs', label: 'Water Troughs', spec: 'Frost-protected · 200–1500L', sectors: ['agricultural'] },
+  { href: '/products/cattle-grids', label: 'Cattle Grids', spec: 'BS 4008 · 4.0–6.0m clear span', sectors: ['agricultural'] },
+  // Civils
+  { href: '/products/prestressed-panels', label: 'Prestressed Wall Panels', spec: '100 / 150 / 180 / 280mm · BS EN 14992', sectors: ['civils', 'agricultural'] },
+  { href: '/products/retaining-walls', label: 'Retaining Walls', spec: 'King post · L-block · cantilever', sectors: ['civils', 'agricultural'] },
+  { href: '/products/king-post-walls', label: 'King Post Walls', spec: 'UC 152–305 posts · panel infill', sectors: ['civils'] },
+  { href: '/products/l-blocks', label: 'L-Block Retaining', spec: '600mm to 4.0m · interlocking', sectors: ['civils', 'agricultural'] },
+  { href: '/products/culverts', label: 'Culverts & Box Sections', spec: '600–3000mm · BS 5911 / EN 14844', sectors: ['civils'] },
+  { href: '/products/padstones', label: 'Padstones & Bearings', spec: 'C40/50 · cast to engineer schedule', sectors: ['civils'] },
+  { href: '/products/vehicle-pits', label: 'Vehicle Inspection Pits', spec: 'HGV / PSV · BS EN 1992 design', sectors: ['civils'] },
+  { href: '/products/manhole-bases', label: 'Manhole Bases', spec: 'DN1200–DN3000 · BS EN 1917', sectors: ['civils'] },
+  { href: '/products/headwalls', label: 'Headwalls & Wing Walls', spec: 'CIRIA C786 · cast as a kit', sectors: ['civils'] },
+  // Bespoke
+  { href: '/products/architectural-panels', label: 'Architectural Panels', spec: 'Board-marked · exposed-aggregate', sectors: ['bespoke'] },
+  { href: '/products/custom-plinths', label: 'Custom Plinths', spec: 'Plant, transformer, generator bases', sectors: ['bespoke', 'civils'] },
+  { href: '/products/cast-stone', label: 'Cast Stone & Heritage', spec: 'Copings, lintels, bollards · colour-matched', sectors: ['bespoke'] },
+  { href: '/products/bespoke-civils', label: 'Bespoke Civils', spec: 'Specials, transitions, junction boxes', sectors: ['bespoke', 'civils'] },
+];
+
+const filters: { id: Sector | 'all'; label: string }[] = [
+  { id: 'all', label: 'All products' },
+  { id: 'agricultural', label: 'Agricultural' },
+  { id: 'civils', label: 'Civils' },
+  { id: 'bespoke', label: 'Bespoke' },
+];
+---
+
+<BaseLayout
+  title="Products — full precast concrete range"
+  description="Complete WCCP product range: cattle cubicles, slurry storage, prestressed panels, retaining walls, culverts, padstones, milking robot bases, bespoke architectural casts and more."
+  schema="Organization"
+>
+  <TrustStrip />
+
+  <!-- Hero -->
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <p class="eyebrow text-yellow mb-4">The full range</p>
+      <h1 class="font-display text-display-xl text-white mb-4 max-w-3xl">
+        Every product we cast, in one place.
+      </h1>
+      <p class="text-lg text-white/90 max-w-2xl leading-relaxed">
+        Filter by sector or scroll the lot. Spec sheets and pricing on every page —
+        and if it isn't here, we probably still cast it. Talk to the yard.
+      </p>
+    </div>
+  </section>
+
+  <!-- Sticky filter bar -->
+  <div class="sticky top-0 z-30 bg-bone border-b border-cast-100 shadow-sm">
+    <div class="container-wccp py-4">
+      <div class="flex flex-wrap items-center gap-2 md:gap-3" role="tablist" aria-label="Filter products by sector">
+        <span class="text-cast text-sm font-medium uppercase tracking-wide mr-2 hidden md:inline">Filter:</span>
+        {filters.map((f, i) => (
+          <button
+            type="button"
+            data-filter={f.id}
+            class:list={[
+              'filter-btn px-4 py-2 rounded-full font-semibold text-sm transition-colors border-2',
+              i === 0
+                ? 'bg-navy text-white border-navy'
+                : 'bg-white text-navy border-cast-100 hover:border-navy',
+            ]}
+            aria-pressed={i === 0 ? 'true' : 'false'}
+          >
+            {f.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Products grid -->
+  <section class="container-wccp py-16">
+    <p id="result-count" class="text-cast text-sm mb-6">
+      Showing <span data-count>{products.length}</span> products
+    </p>
+
+    <div id="product-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {products.map((p) => (
+        <article
+          class="product-card card overflow-hidden group flex flex-col"
+          data-sectors={p.sectors.join(',')}
+        >
+          <a href={p.href} class="block">
+            <div class="aspect-[16/10] bg-cast-100 overflow-hidden">
+              <div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100 group-hover:scale-105 transition-transform duration-500"></div>
+            </div>
+          </a>
+          <div class="p-6 flex flex-col flex-1">
+            <a href={p.href}>
+              <h3 class="font-display text-lg font-bold text-navy mb-1 group-hover:text-ember transition-colors">
+                {p.label}
+              </h3>
+            </a>
+            <p class="text-cast text-sm mb-4 flex-1">{p.spec}</p>
+            <div class="flex flex-wrap gap-2 mt-auto">
+              <a href={p.href} class="btn-ghost btn-sm">Spec sheet</a>
+              <a href={`/quote?product=${encodeURIComponent(p.label)}`} class="btn-secondary btn-sm">Enquire</a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <p id="empty-state" class="hidden text-center text-cast py-16">
+      Nothing matches that filter. Try another sector or
+      <a href="/quote" class="text-ember font-bold">talk to us about a bespoke job</a>.
+    </p>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-bone-200 py-16">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-lg mb-4">Don't see it?</h2>
+      <p class="text-cast-700 text-lg max-w-xl mx-auto mb-8">
+        Most weeks we cast something that isn't on this list. Send a sketch or a photo —
+        we will come back with a quote and a lead time.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/sectors/bespoke" class="btn-secondary">Bespoke & one-offs</a>
+        <a href="/quote" class="btn-primary">Configure a quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-yellow">Call {site.contact.phone}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const cards = document.querySelectorAll<HTMLElement>('.product-card');
+  const countEl = document.querySelector<HTMLElement>('[data-count]');
+  const emptyEl = document.getElementById('empty-state');
+  const gridEl = document.getElementById('product-grid');
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter ?? 'all';
+
+      buttons.forEach((b) => {
+        const active = b === btn;
+        b.setAttribute('aria-pressed', active ? 'true' : 'false');
+        b.classList.toggle('bg-navy', active);
+        b.classList.toggle('text-white', active);
+        b.classList.toggle('border-navy', active);
+        b.classList.toggle('bg-white', !active);
+        b.classList.toggle('text-navy', !active);
+        b.classList.toggle('border-cast-100', !active);
+      });
+
+      let visible = 0;
+      cards.forEach((card) => {
+        const sectors = (card.dataset.sectors ?? '').split(',');
+        const show = filter === 'all' || sectors.includes(filter);
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+
+      if (countEl) countEl.textContent = String(visible);
+      if (emptyEl && gridEl) {
+        emptyEl.classList.toggle('hidden', visible !== 0);
+        gridEl.classList.toggle('hidden', visible === 0);
+      }
+    });
+  });
+</script>

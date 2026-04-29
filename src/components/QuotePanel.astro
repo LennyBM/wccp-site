@@ -1,0 +1,101 @@
+---
+// QuotePanel.astro
+//
+// Sticky-on-desktop / inline-on-mobile quote aside for product pages.
+// Renders a small product photo, the product name in display font,
+// indicative "From" price + range, lead-time, and an ember "Add to
+// quote" CTA that deep-links to the configurator with the product
+// pre-selected.
+//
+// Drop-in via:
+//   <QuotePanel productName="Slurry Storage" priceFrom="£3,400"
+//               leadTime="4–6 weeks" productSlug="slurry-storage" />
+//
+// Wire-up onto product detail pages is intentionally deferred — this
+// component exists so it can be slotted in once copy/pricing is signed
+// off without restructuring the page templates.
+
+import ProductIllustration from './ProductIllustration.astro';
+
+interface Props {
+  productName: string;
+  priceFrom: string;
+  priceRange?: string;
+  leadTime: string;
+  productSlug: string;
+  imageSrc?: string;
+  imageAlt?: string;
+}
+
+const {
+  productName,
+  priceFrom,
+  priceRange,
+  leadTime,
+  productSlug,
+  imageSrc,
+  imageAlt = '',
+} = Astro.props;
+
+const quoteHref = `/quote?product=${encodeURIComponent(productSlug)}`;
+---
+
+<aside
+  class="quote-panel block lg:sticky lg:top-32"
+  aria-label={`Quote panel for ${productName}`}
+>
+  <div class="bg-white border border-cast-100 rounded-lg shadow-soft overflow-hidden">
+    <!-- Image / illustration -->
+    <div class="aspect-[4/3] bg-bone-200 relative overflow-hidden">
+      {imageSrc ? (
+        <img
+          src={imageSrc}
+          alt={imageAlt}
+          loading="lazy"
+          decoding="async"
+          class="absolute inset-0 w-full h-full object-cover"
+        />
+      ) : (
+        <ProductIllustration product={productSlug as any} variant="card" />
+      )}
+    </div>
+
+    <div class="p-5 lg:p-6">
+      <h3 class="font-display text-xl font-semibold text-navy-700 mb-3 leading-tight">
+        {productName}
+      </h3>
+
+      <dl class="space-y-3 mb-5 text-sm">
+        <div class="flex items-baseline justify-between gap-3 pb-3 border-b border-cast-100">
+          <dt class="text-eyebrow text-cast">From</dt>
+          <dd class="text-right">
+            <span class="font-display font-semibold text-2xl text-navy-700 tabular-nums">{priceFrom}</span>
+            {priceRange && (
+              <span class="block text-xs text-cast mt-0.5">{priceRange}</span>
+            )}
+          </dd>
+        </div>
+        <div class="flex items-baseline justify-between gap-3">
+          <dt class="text-eyebrow text-cast">Lead time</dt>
+          <dd class="font-semibold text-navy-700 text-sm">{leadTime}</dd>
+        </div>
+      </dl>
+
+      <a
+        href={quoteHref}
+        class="btn-primary w-full group"
+        data-product-slug={productSlug}
+      >
+        <span>Add to quote</span>
+        <svg class="w-4 h-4 arrow-float" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+          <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+
+      <p class="mt-3 text-xs text-cast text-center">
+        Indicative only · firm price after spec review
+      </p>
+    </div>
+  </div>
+</aside>

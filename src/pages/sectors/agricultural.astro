@@ -1,0 +1,280 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import ProductIllustration from '@/components/ProductIllustration.astro';
+import { Image } from 'astro:assets';
+import sectorAgriculturalHero from '@/assets/images/sector-agricultural.jpg';
+import { site } from '@/config/site';
+
+// Map product hrefs to illustration slugs
+const slugMap: Record<string, string> = {
+  '/products/cattle-cubicles':     'cattle-cubicles',
+  '/products/slurry-storage':      'slurry-storage',
+  '/products/feed-troughs':        'feed-troughs',
+  '/products/silage-clamp-walls':  'silage-clamp-walls',
+  '/products/milking-robot-bases': 'milking-robot-bases',
+  '/products/footbaths':           'footbaths',
+};
+
+const products = [
+  {
+    href: '/products/cattle-cubicles',
+    label: 'Cattle Cubicles',
+    meta: 'Holstein, Jersey and beef sizing · cast 200mm web',
+    desc: 'Cubicle loops and divisions cast to suit your herd, with neck rails set for the breed. We measure the shed, you milk on Monday.',
+  },
+  {
+    href: '/products/slurry-storage',
+    label: 'Slurry Storage',
+    meta: 'SSAFO 2018-compliant · 6-month capacity',
+    desc: 'Above-ground panel stores from 250m³ to 5,000m³+. Sulphate-resisting C40/50 mix, prestressed panels, full SSAFO sign-off pack.',
+  },
+  {
+    href: '/products/feed-troughs',
+    label: 'Feed Troughs',
+    meta: '3.0m and 4.5m sections · steel-edged',
+    desc: 'Heavy-duty trough sections with galvanised lip protection. Cast as one piece — no joints to clean out, no joints to fail.',
+  },
+  {
+    href: '/products/silage-clamp-walls',
+    label: 'Silage Clamp Walls',
+    meta: 'C40/50 sulphate-resisting · 3.0m to 6.0m',
+    desc: 'L-shape and prestressed-panel clamps. Wall-and-floor effluent capture, ramp returns, push-off ends — engineered for the muck.',
+  },
+  {
+    href: '/products/milking-robot-bases',
+    label: 'Milking Robot Bases',
+    meta: 'DeLaval VMS · Lely Astronaut · GEA',
+    desc: 'Pre-cast bases drilled to manufacturer template. Cable ducts cast in. Level to within 2mm — robot lands and runs.',
+  },
+  {
+    href: '/products/footbaths',
+    label: 'Footbaths',
+    meta: 'Cast in one piece · 2.4m / 3.0m / 3.6m',
+    desc: 'Pre-bath and treatment-bath in a single cast unit. Drainable, durable, and shaped to keep solution where it belongs.',
+  },
+];
+
+const trustPoints = [
+  {
+    title: 'We farm-finish, not factory-finish.',
+    body: 'Our team grew up on Devon farms. Drainage, falls, gates, slip — we think about the cow and the man with the scraper, not just the spec sheet.',
+  },
+  {
+    title: 'SSAFO, NVZ and Red Tractor sign-off.',
+    body: 'Every slurry job ships with the structural calcs, mix certs and capacity statement your inspector wants to see. We do the paperwork so you do not.',
+  },
+  {
+    title: 'Grant-ready quotes.',
+    body: 'We size and quote for FETF and the Slurry Infrastructure Grant in the format Defra wants. Itemised, dated, and ready to submit.',
+  },
+  {
+    title: 'Delivered on a Hiab.',
+    body: 'Our own lorry, our own driver. We unload where the slab is going, not at the gate. South West routes daily, nationwide on planned runs.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'Is your slurry storage SSAFO 2018 compliant?',
+    a: 'Yes — every slurry store we cast meets the Silage, Slurry and Agricultural Fuel Oil Regulations 2018. We supply the structural calculations, the C40/50 sulphate-resisting mix certificate, and a written capacity statement signed by our engineer for your Environment Agency or NVZ inspection.',
+  },
+  {
+    q: 'How do you size cubicles for my herd?',
+    a: 'We size to the cow, not the catalogue. Holstein-Friesian usually want 1200mm wide × 2400–2500mm long; Jersey crosses are happier at 1100mm × 2300mm; beef sucklers need a longer bed at 2600mm. We ask for breed, average weight and shed dimensions, then send a CAD layout before we cast a thing.',
+  },
+  {
+    q: 'How much slurry capacity do I need?',
+    a: 'For NVZ compliance you need six months of storage based on herd size, rainfall and dirty-water inputs. As a rough rule, a 200-cow dairy in North Devon needs around 2,500–3,000m³. We have a calculator and we will run your numbers properly before quoting.',
+  },
+  {
+    q: 'What are typical lead times?',
+    a: 'Catalogue products — cubicles, troughs, panels — are usually 2 to 4 weeks from order. Slurry stores and bespoke clamps run 6 to 10 weeks depending on size and time of year. Spring and autumn are busy; talk to us early.',
+  },
+  {
+    q: 'Do you deliver and offload?',
+    a: 'Yes. We run our own Hiab lorries across Devon, Cornwall, Somerset and Dorset weekly, and nationwide on planned runs. We offload where the units are going — at the slab, not at the gate — provided the ground is solid and access works.',
+  },
+];
+
+const schemaData = {
+  serviceType: 'Agricultural precast concrete supply',
+  provider: {
+    '@type': 'LocalBusiness',
+    name: site.name,
+    telephone: site.contact.phone,
+  },
+  areaServed: site.areasServed,
+  description:
+    'Precast concrete for the dairy, beef and arable farm: cattle cubicles, SSAFO-compliant slurry storage, silage clamp walls, feed troughs, milking robot bases and footbaths. Cast in North Devon since 1971.',
+};
+---
+
+<BaseLayout
+  title="Agricultural precast — cubicles, slurry, clamps, robot bases"
+  description="SSAFO-compliant slurry stores, cattle cubicles sized to the breed, silage clamps and milking robot bases. Cast in North Devon, delivered across the South West and nationwide."
+  image="/images/sector-agricultural.jpg"
+  schema="Service"
+  schemaData={schemaData}
+>
+  <TrustStrip />
+
+  <!-- Hero -->
+  <section class="relative bg-navy-700 text-white overflow-hidden">
+    <!-- Real photograph: Devon dairy shed with cattle cubicles -->
+    <div aria-hidden="true" class="absolute inset-0">
+      <Image
+        src={sectorAgriculturalHero}
+        alt=""
+        widths={[640, 960, 1280, 1600, 1920]}
+        sizes="100vw"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+        class="w-full h-full object-cover scale-105 animate-fade-in"
+        style="object-position: center 50%;"
+      />
+      <!-- Heavy navy gradient so headline pops -->
+      <div class="absolute inset-0" style="background: linear-gradient(105deg, rgba(10, 26, 79, 0.9) 0%, rgba(10, 26, 79, 0.7) 45%, rgba(10, 26, 79, 0.35) 100%);"></div>
+      <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(10,26,79,0.4) 0%, transparent 30%, transparent 70%, rgba(10,26,79,0.5) 100%);"></div>
+    </div>
+
+    <div class="relative container-wccp py-20 md:py-28">
+      <div class="max-w-3xl">
+        <p class="eyebrow text-yellow mb-6 animate-fade-in-down">
+          <span class="inline-block w-8 h-px bg-yellow align-middle mr-3"></span>
+          For the dairy, beef and arable farm
+        </p>
+        <h1 class="font-display text-display-2xl text-white mb-6 animate-fade-in-up" style="animation-delay: 100ms;">
+          Concrete for farms<br />
+          that have to <span class="text-yellow">work tomorrow.</span>
+        </h1>
+        <p class="text-lg md:text-xl text-white/90 max-w-2xl mb-10 leading-relaxed animate-fade-in-up" style="animation-delay: 220ms;">
+          Cubicles, slurry, clamps, troughs, robot bases — cast in North Devon to last the lifetime
+          of the shed. SSAFO-ready. Grant-ready. On the lorry when we say it will be.
+        </p>
+        <div class="flex flex-wrap gap-3 animate-fade-in-up" style="animation-delay: 340ms;">
+          <a href="/quote" class="btn-primary">Get a quote in 24h</a>
+          <a href={`tel:${site.contact.phoneIntl}`} class="btn-yellow">
+            Call {site.contact.phone}
+          </a>
+          <a href="#products" class="btn-ghost border-white text-white hover:bg-white hover:text-navy-700">
+            Browse products
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section id="products" class="container-wccp py-20">
+    <div class="max-w-2xl mb-12">
+      <p class="eyebrow text-cast mb-3">What we cast</p>
+      <h2 class="font-display text-display-lg mb-4">Six products that make up most of the farm.</h2>
+      <p class="text-cast-700 text-lg">
+        We cast more than this — but these are what the yard ships every week. If yours is not on the
+        list, it almost certainly fits under bespoke.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {products.map((p) => (
+        <a href={p.href} class="card p-6 group">
+          <div class="mb-5">
+            <ProductIllustration product={slugMap[p.href] as any} variant="card" />
+          </div>
+          <h3 class="font-display text-xl font-bold text-navy mb-1 group-hover:text-ember transition-colors">
+            {p.label}
+          </h3>
+          <p class="text-cast text-sm font-medium mb-3">{p.meta}</p>
+          <p class="text-cast text-sm leading-relaxed">{p.desc}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Why farmers choose WCCP -->
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">Why farmers choose us</p>
+        <h2 class="font-display text-display-lg mb-4">We cast for people who have to milk in the morning.</h2>
+        <p class="text-cast-700 text-lg">
+          Four reasons the farms who try us tend to come back when the next shed goes up.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        {trustPoints.map((t) => (
+          <div class="card p-7">
+            <h3 class="font-display text-xl font-bold text-navy mb-2">{t.title}</h3>
+            <p class="text-cast-700 leading-relaxed">{t.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FETF / SIG grant strip -->
+  <section class="bg-yellow text-navy py-12">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-navy mb-2">FETF 2026 · Slurry Infrastructure Grant 2026</p>
+          <h2 class="font-display text-display-md">£74m on the table — we will quote it the way Defra wants.</h2>
+          <p class="mt-3 max-w-2xl">
+            SIG opens for stage-two applications and FETF refresh runs alongside. Itemised quotes,
+            capacity statements, structural calcs — all in the format the grant team are looking for.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href="/grants/slurry-grant" class="btn-secondary">Read the guide</a>
+          <a href="/quote" class="btn bg-navy text-white hover:bg-navy-700">Start a grant quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="container-wccp py-20">
+    <div class="max-w-2xl mb-12">
+      <p class="eyebrow text-cast mb-3">Common questions</p>
+      <h2 class="font-display text-display-lg mb-4">What farmers ask before they order.</h2>
+      <p class="text-cast-700 text-lg">
+        Five things that come up most weeks on the phone. If yours is not here, ring the yard.
+      </p>
+    </div>
+
+    <div class="max-w-3xl space-y-4">
+      {faqs.map((f) => (
+        <details class="card p-6 group">
+          <summary class="font-display text-lg font-bold text-navy cursor-pointer list-none flex justify-between items-start gap-4">
+            <span>{f.q}</span>
+            <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+          </summary>
+          <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-navy text-white py-20">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-xl mb-4 text-white">Talk to the yard.</h2>
+      <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">
+        Ring us, send a WhatsApp with photos and rough sizes, or start a quote online.
+        Same-day callback Monday to Friday.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-yellow">
+          Call {site.contact.phone}
+        </a>
+        <a href={`https://wa.me/${site.contact.whatsapp.replace('+', '')}`} class="btn-secondary">
+          WhatsApp us
+        </a>
+        <a href="/quote" class="btn-primary">Configure a quote</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

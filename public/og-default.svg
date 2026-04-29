@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="West Country Concrete Products — Made in North Devon since 1971">
+  <!-- Background: Heritage Navy -->
+  <rect width="1200" height="630" fill="#0A2351"/>
+
+  <!-- Subtle navy gradient depth -->
+  <defs>
+    <linearGradient id="navyDepth" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0A2351" stop-opacity="0"/>
+      <stop offset="1" stop-color="#040D1F" stop-opacity="0.55"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#navyDepth)"/>
+
+  <!-- Stamp seal in upper left -->
+  <g transform="translate(80,80)">
+    <rect width="120" height="120" rx="10" fill="#0A2351" stroke="#F5C13B" stroke-width="3"/>
+    <text x="60" y="78"
+          text-anchor="middle"
+          font-family="'Work Sans', system-ui, sans-serif"
+          font-weight="700"
+          font-size="42"
+          fill="#F5C13B"
+          stroke="#F6F4EE"
+          stroke-width="0.8"
+          paint-order="stroke fill"
+          letter-spacing="-1">WCCP</text>
+  </g>
+
+  <!-- Eyebrow -->
+  <text x="80" y="270"
+        font-family="'Work Sans', system-ui, sans-serif"
+        font-weight="700"
+        font-size="22"
+        letter-spacing="6"
+        fill="#F5C13B">HERITAGE TRADE — EST. 1971</text>
+
+  <!-- Main wordmark: West Country Concrete Products -->
+  <g font-family="'Work Sans', system-ui, sans-serif"
+     font-weight="700"
+     fill="#F6F4EE"
+     letter-spacing="-2">
+    <text x="80" y="360" font-size="84">West Country</text>
+    <text x="80" y="450" font-size="84">Concrete Products</text>
+  </g>
+
+  <!-- Subline -->
+  <text x="80" y="510"
+        font-family="'Public Sans', system-ui, sans-serif"
+        font-weight="500"
+        font-size="30"
+        fill="#F5C13B">Made in North Devon since 1971</text>
+
+  <!-- Heritage stripe at bottom: yellow + navy alternating -->
+  <g transform="translate(0,560)">
+    <rect width="1200" height="70" fill="#0A2351"/>
+    <g>
+      <!-- 8px yellow / 8px navy repeat -->
+      <pattern id="heritageStripe" width="32" height="70" patternUnits="userSpaceOnUse">
+        <rect width="16" height="70" fill="#F5C13B"/>
+        <rect x="16" width="16" height="70" fill="#0A2351"/>
+      </pattern>
+      <rect width="1200" height="14" fill="url(#heritageStripe)"/>
+      <rect y="56" width="1200" height="14" fill="url(#heritageStripe)"/>
+    </g>
+    <!-- Centre band -->
+    <text x="600" y="42"
+          text-anchor="middle"
+          font-family="'Work Sans', system-ui, sans-serif"
+          font-weight="700"
+          font-size="18"
+          letter-spacing="4"
+          fill="#F6F4EE">PRECAST CONCRETE  ·  NORTH DEVON  ·  NATIONWIDE DELIVERY</text>
+  </g>
+</svg>

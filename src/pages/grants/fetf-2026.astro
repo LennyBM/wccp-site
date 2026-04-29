@@ -1,0 +1,217 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const faqs = [
+  {
+    q: 'Has the FETF 2026 window closed?',
+    a: 'Yes. The Farming Equipment and Technology Fund 2026 application window ran from 3 March 2026 to 28 May 2026 and is now closed for new applications. If you submitted before the deadline, your claim period continues — but new enquiries should focus on FETF 2027.',
+  },
+  {
+    q: 'How much funding was available in FETF 2026?',
+    a: 'The total fund was £50m, split into three themes. The Productivity & Slurry theme — most relevant to precast — received £30m. Grants ranged from £1,000 to £25,000 (Productivity) or up to £50,000 (Slurry / Animal Health & Welfare).',
+  },
+  {
+    q: 'When will FETF 2027 open?',
+    a: 'Defra has not confirmed an exact date. Based on the 2024–2026 cycle, expect a window between February and May 2027, with the published item list released roughly 6 weeks before opening. Register your interest with us and we\'ll alert you the day it goes live.',
+  },
+  {
+    q: 'Which WCCP-related items have appeared on past FETF lists?',
+    a: 'Slurry separators, slurry covers, weeping-wall bases, calf hutches with concrete pads, automatic feed pushers (with concrete bases), and various silage clamp accessories. The exact list changes each round — never assume an item carries over.',
+  },
+  {
+    q: 'How can I prepare for FETF 2027?',
+    a: 'Build a "wishlist" with quotes already in hand, get any planning paperwork moving early, and pre-register an SBI if you don\'t have one. The fund is first-come-first-served scoring on date of submission, so being ready on day one matters.',
+  },
+];
+
+const schemaData = {
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="FETF 2026 — closed. Prepare for FETF 2027."
+  description="The Farming Equipment and Technology Fund 2026 closed on 28 May 2026. Here's how to prepare for FETF 2027 — eligible items, expected window, and how WCCP can help you get a quote ready before day one."
+  image="/images/grants/fetf-2026.jpg"
+  schema="FAQPage"
+  schemaData={schemaData}
+>
+  <!-- Hero (closed-window framing) -->
+  <section class="bg-navy text-white relative">
+    <div class="container-wccp py-16 md:py-24">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded text-xs font-bold bg-danger/20 border border-danger text-white uppercase tracking-wide mb-6">
+        <span class="w-2 h-2 bg-danger rounded-full"></span> FETF 2026 window closed
+      </div>
+      <p class="eyebrow text-yellow mb-4">Defra · Farming Equipment & Technology Fund</p>
+      <h1 class="font-display text-display-2xl text-white mb-6">
+        FETF 2026 has closed. <span class="text-yellow">Get ready for 2027.</span>
+      </h1>
+      <p class="text-white/90 text-lg max-w-2xl mb-8 leading-relaxed">
+        The 3 March – 28 May 2026 window is over. £50m of total funding was allocated. The next round is expected to
+        open in spring 2027 — and the farms with quotes already in hand will be the ones funded.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="/quote?product=slurry-storage&grant=fetf-2027" class="btn-primary">Build your FETF 2027 list</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-yellow">Call {site.contact.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recap stats -->
+  <section class="bg-yellow text-navy py-10">
+    <div class="container-wccp">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div>
+          <div class="font-display font-bold text-display-lg">£50m</div>
+          <div class="text-sm font-medium uppercase tracking-wide">Total fund (2026)</div>
+        </div>
+        <div>
+          <div class="font-display font-bold text-display-lg">£30m</div>
+          <div class="text-sm font-medium uppercase tracking-wide">Productivity & Slurry</div>
+        </div>
+        <div>
+          <div class="font-display font-bold text-display-lg">3 Mar</div>
+          <div class="text-sm font-medium uppercase tracking-wide">Window opened</div>
+        </div>
+        <div>
+          <div class="font-display font-bold text-display-lg">28 May</div>
+          <div class="text-sm font-medium uppercase tracking-wide">Window closed</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What FETF was -->
+  <section class="container-wccp py-16">
+    <div class="grid lg:grid-cols-2 gap-12">
+      <div>
+        <p class="eyebrow text-cast mb-3">A quick recap</p>
+        <h2 class="font-display text-display-lg mb-4">FETF 2026 in 60 seconds.</h2>
+        <p class="text-cast-700 text-lg leading-relaxed mb-4">
+          The Farming Equipment and Technology Fund is Defra's annual capital grant for off-the-shelf items that
+          improve productivity, animal health and slurry management. Unlike the larger SIG, FETF runs on a
+          published-item-list model: only items on the list are funded, and you claim against a fixed grant amount.
+        </p>
+        <p class="text-cast-700 text-lg leading-relaxed">
+          The 2026 round had three themes — <strong class="text-navy">Productivity (£25m)</strong>, <strong class="text-navy">Slurry &amp; Nutrient Management (£15m)</strong>
+          and <strong class="text-navy">Animal Health &amp; Welfare (£10m)</strong>. Concrete-related items appeared in all three, mostly
+          through bases, pads and ancillary works to support eligible equipment.
+        </p>
+      </div>
+      <div class="card p-8 bg-bone-100">
+        <p class="eyebrow text-cast mb-3">Items linked to precast</p>
+        <h3 class="font-display text-2xl text-navy mb-4">What got funded in 2026</h3>
+        <ul class="space-y-3 text-cast">
+          <li class="flex gap-3"><span class="text-ember font-bold">→</span> Slurry separators (separator base supplied by us)</li>
+          <li class="flex gap-3"><span class="text-ember font-bold">→</span> Slurry store covers — concrete edge beam works</li>
+          <li class="flex gap-3"><span class="text-ember font-bold">→</span> Weeping-wall bases and silage acid drainage</li>
+          <li class="flex gap-3"><span class="text-ember font-bold">→</span> Calf hutch concrete pads</li>
+          <li class="flex gap-3"><span class="text-ember font-bold">→</span> Robotic feed-push and feed-out kit (concrete bases)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Prepare for 2027 -->
+  <section class="bg-bone-200 py-16">
+    <div class="container-wccp">
+      <p class="eyebrow text-cast mb-3">Get ahead</p>
+      <h2 class="font-display text-display-lg mb-8">How to prepare for FETF 2027.</h2>
+      <ol class="grid md:grid-cols-2 gap-6">
+        {[
+          { n: '01', t: 'Audit your wishlist now', d: 'Walk the yard with a notebook. What kit is past it? What\'s on the next-round list? Note the makes and models.' },
+          { n: '02', t: 'Pre-register your SBI', d: 'No SBI / CPH? Apply on the RPA portal — it can take six weeks and you\'ll need it ready on day one.' },
+          { n: '03', t: 'Get quotes in writing', d: 'FETF claims need an itemised manufacturer quotation. We\'ll provide one valid for 6 months — refresh it once the 2027 list is published.' },
+          { n: '04', t: 'Plan the concrete works', d: 'Robot pushers, separators and cubicle systems all need a level slab. Spec the base now — it\'s often the long-lead item.' },
+          { n: '05', t: 'Sign up for Defra alerts', d: 'gov.uk/government/news has the announcements. Or let us watch for you and ping you the day it opens.' },
+          { n: '06', t: 'Be ready to apply day one', d: 'FETF scoring rewards early submission. Have evidence, quotes and account details ready in a single folder.' },
+        ].map((step) => (
+          <li class="card p-6">
+            <div class="font-display font-bold text-display-md text-ember mb-2">{step.n}</div>
+            <h3 class="font-display text-xl text-navy mb-2">{step.t}</h3>
+            <p class="text-cast-700 leading-relaxed">{step.d}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Common mistakes -->
+  <section class="container-wccp py-16">
+    <p class="eyebrow text-cast mb-3">Lessons from 2026</p>
+    <h2 class="font-display text-display-lg mb-8">What stopped farms claiming this year.</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {[
+        { t: 'Submitted on day 60', d: 'The Productivity theme oversubscribed inside three weeks. Late submissions were declined despite being eligible.' },
+        { t: 'Wrong item code', d: 'Item codes change between rounds. A 2024 reference is not a 2026 reference. Always copy from the live list.' },
+        { t: 'Missing concrete spec', d: 'Robot bases without a structural detail were rejected. We supply a stamped detail with every quote.' },
+        { t: 'No CPH', d: 'Multi-holding businesses sometimes fund through the wrong holding. Each CPH is a separate ceiling.' },
+      ].map((m) => (
+        <div class="card p-6">
+          <h3 class="font-display text-lg text-navy mb-2">{m.t}</h3>
+          <p class="text-cast text-sm leading-relaxed">{m.d}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Eligibility checklist for 2027 -->
+  <section class="bg-bone-200 py-16">
+    <div class="container-wccp">
+      <div class="max-w-prose-wide mx-auto">
+        <p class="eyebrow text-cast mb-3">Day-one checklist</p>
+        <h2 class="font-display text-display-lg mb-6">Be ready for FETF 2027</h2>
+        <ul class="space-y-3">
+          {[
+            'I have an active SBI and CPH (or have applied).',
+            'I have a written wishlist of likely-eligible items.',
+            'I have a manufacturer quotation in writing for any concrete works.',
+            'I know which holding I\'ll claim against.',
+            'I\'ve subscribed to Defra notifications.',
+          ].map((c) => (
+            <li class="flex gap-3 items-start card p-4">
+              <input type="checkbox" class="mt-1 h-5 w-5 rounded border-2 border-cast-200 accent-ember" />
+              <span class="text-cast">{c}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="container-wccp py-16">
+    <p class="eyebrow text-cast mb-3">Common questions</p>
+    <h2 class="font-display text-display-lg mb-8">FAQ</h2>
+    <div class="max-w-prose-wide space-y-3">
+      {faqs.map((f) => (
+        <details class="card p-5 group">
+          <summary class="font-display text-lg text-navy cursor-pointer list-none flex justify-between items-center gap-4">
+            <span>{f.q}</span>
+            <span class="text-ember text-2xl group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <p class="text-cast mt-3 leading-relaxed">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-navy text-white py-16">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-xl text-white mb-4">Get a 2027-ready quote.</h2>
+      <p class="text-white/90 text-lg mb-8 max-w-xl mx-auto">
+        Tell us what you'd like to fund and we'll have a written, item-coded quotation in your inbox within five working days.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-yellow">Call {site.contact.phone}</a>
+        <a href="/quote?product=slurry-storage&grant=fetf-2027" class="btn-primary">Start a quote</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

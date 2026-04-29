@@ -1,0 +1,233 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import { site } from '@/config/site';
+
+const specs = [
+  { thickness: '180mm', height: '2.4m', weight: '1,037 kg/m', cover: '50mm', exposure: 'XA3', use: 'Standard dairy clamps' },
+  { thickness: '180mm', height: '3.0m', weight: '1,296 kg/m', cover: '50mm', exposure: 'XA3', use: 'Mid-height clamps with vehicle loading' },
+  { thickness: '200mm', height: '3.6m', weight: '1,728 kg/m', cover: '50mm', exposure: 'XA3', use: 'Larger clamps, taller stack' },
+  { thickness: '250mm', height: '4.5m', weight: '2,700 kg/m', cover: '50mm', exposure: 'XA3', use: 'High-density maize, deep clamps' },
+  { thickness: '280mm', height: '5.0m', weight: '3,360 kg/m', cover: '50mm', exposure: 'XA3', use: 'Strategic clamps, AD feedstock' },
+  { thickness: '280mm', height: '6.0m', weight: '4,032 kg/m', cover: '50mm', exposure: 'XA3', use: 'Maximum-height contractor clamps' },
+];
+
+const applications = [
+  'Dairy farm grass and maize silage clamps',
+  'Beef finishing-unit feed-stock clamps',
+  'AD plant silage clamp feedstock storage',
+  'Push walls — driven against during clamp filling',
+  'Transition walls between filling bays',
+  'Ramp returns and end walls',
+  'Effluent collection channels and tank walls',
+];
+
+const related = [
+  { href: '/products/prestressed-panels', label: 'Prestressed Panels', meta: 'BS EN 14992 · 100/150/180/280mm' },
+  { href: '/products/l-blocks', label: 'L-Block Retaining', meta: '1m–6m · interlocking' },
+  { href: '/products/slurry-storage', label: 'Slurry Storage', meta: 'SSAFO 2018-compliant' },
+  { href: '/products/cattle-cubicles', label: 'Cattle Cubicles', meta: 'AHDB 2024 sized' },
+];
+
+const faqs = [
+  { q: 'Why sulphate-resisting cement?', a: 'Silage effluent is around pH 3.8–4.2 and rich in lactic and acetic acids. Standard Portland cement reacts and the panel face deteriorates. CEM III/A (ground-granulated blast-furnace slag blend) is far more resistant — it is what gives the wall a 30+ year service life in clamp service.' },
+  { q: 'What exposure class do you cast to?', a: 'XA3 — the most aggressive chemical exposure under BS EN 206. That drives the mix design (C40/50 SR), the cover (50mm minimum) and the curing regime. We cast and certify every clamp wall to that spec.' },
+  { q: 'How thick a wall do I need?', a: 'For a 3m clamp we use 180mm panels, 4.5m needs 250mm, 6m needs 280mm. The driver is the surcharge from the silage stack pushing out, plus the vehicle loading on top during filling. We size each scheme.' },
+  { q: 'Can the panels take a tractor pushing against them?', a: 'Yes — the structural design accounts for vehicle impact during filling. We assume the tractor will rub the wall and we engineer for it. Push-wall details with thickened upstands available where you want extra protection.' },
+  { q: 'Lead time?', a: 'Catalogue thicknesses run 3 to 5 weeks. Spring is the busy clamp season; get the order in by mid-winter if you are commissioning for the May silage cut.' },
+];
+
+const productSchema = {
+  name: 'Silage Clamp Wall Panels',
+  description: 'Precast silage clamp wall panels in C40/50 sulphate-resisting concrete (CEM III/A). Designed for XA3 exposure class with 50mm cover. Heights to 6.0m. Engineered for silage effluent at pH 3.8–4.2.',
+  brand: { '@type': 'Brand', name: site.name },
+  manufacturer: { '@type': 'Organization', name: site.name },
+  category: 'Precast silage clamp wall',
+  material: 'Prestressed reinforced concrete, C40/50 sulphate-resisting CEM III/A (BS 8500-1:2023, XA3)',
+  weight: { '@type': 'QuantitativeValue', minValue: 1037, maxValue: 4032, unitCode: 'KGM', unitText: 'kilogram per linear metre' },
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 14992 / SSAFO 2018' },
+    { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 sulphate-resisting' },
+    { '@type': 'PropertyValue', name: 'Cement type', value: 'CEM III/A (GGBS blend)' },
+    { '@type': 'PropertyValue', name: 'Exposure class', value: 'XA3 (BS EN 206)' },
+    { '@type': 'PropertyValue', name: 'Reinforcement cover', value: '50 mm minimum' },
+    { '@type': 'PropertyValue', name: 'Service pH', value: '3.8 – 4.2 (silage effluent)' },
+    { '@type': 'PropertyValue', name: 'Maximum height', value: '6.0 m' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '3–5 weeks catalogue' },
+    { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
+  ],
+  offers: { '@type': 'Offer', priceCurrency: 'GBP', availability: 'https://schema.org/InStock', seller: { '@type': 'Organization', name: site.name } },
+};
+
+const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+---
+
+<BaseLayout
+  title="Silage Clamp Walls — C40/50 sulphate-resisting · XA3"
+  description="Precast silage clamp walls in C40/50 sulphate-resisting concrete (CEM III/A). Designed for pH 3.8–4.2 silage effluent. Heights to 6.0m, 50mm cover. SSAFO 2018."
+  image="/images/products/silage-clamp-walls.jpg"
+  schema="Product"
+  schemaData={productSchema}
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <TrustStrip />
+
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow text-yellow mb-4">Agricultural · silage · push walls</p>
+          <h1 class="font-display text-display-xl text-white mb-4">Silage Clamp Walls.</h1>
+          <p class="text-lg text-white/90 leading-relaxed mb-6">
+            Precast clamp walls in C40/50 sulphate-resisting concrete (CEM III/A). Designed for the
+            XA3 exposure of silage effluent at pH 3.8–4.2, with 50mm cover to reinforcement. Heights
+            to 6.0m. The wall that lasts decades, not seasons.
+          </p>
+          <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
+            <li class="flex gap-2"><span class="text-yellow">·</span> C40/50 SR mix</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> CEM III/A binder</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> XA3 exposure</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 50mm cover</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Heights to 6.0m</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 3–5 week lead</li>
+          </ul>
+          <div class="flex flex-wrap gap-3">
+            <a href="/quote?product=Silage+Clamp+Walls" class="btn-primary">Configure a quote</a>
+            <a href="/spec-sheets/silage-clamp-walls.pdf" class="btn-yellow">Download spec sheet</a>
+            <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">Call {site.contact.phone}</a>
+          </div>
+        </div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-300 via-cast to-navy"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-20">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Specification</p>
+      <h2 class="font-display text-display-lg mb-4">Thicknesses, heights and exposure.</h2>
+      <p class="text-cast-700 text-lg">Catalogue panels for typical clamp configurations. All panels cast XA3, 50mm cover, sulphate-resisting.</p>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="spec-table w-full text-left border-collapse">
+        <thead class="bg-navy text-white">
+          <tr>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Thickness</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Height</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Weight</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Cover</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Exposure</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
+          </tr>
+        </thead>
+        <tbody>
+          {specs.map((s, i) => (
+            <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
+              <td class="px-4 py-3 font-bold text-navy">{s.thickness}</td>
+              <td class="px-4 py-3">{s.height}</td>
+              <td class="px-4 py-3">{s.weight}</td>
+              <td class="px-4 py-3">{s.cover}</td>
+              <td class="px-4 py-3">{s.exposure}</td>
+              <td class="px-4 py-3 text-cast">{s.use}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow text-cast mb-3">Where they go</p>
+          <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">From a 3m grass clamp on a 200-cow dairy to a 6m maize clamp at an AD plant — same panel system, same paperwork.</p>
+          <ul class="space-y-3">
+            {applications.map((a) => (<li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">·</span><span>{a}</span></li>))}
+          </ul>
+        </div>
+        <div class="card p-8">
+          <p class="eyebrow text-cast mb-3">Standards & certification</p>
+          <h3 class="font-display text-2xl font-bold text-navy mb-4">Cast for the silage environment.</h3>
+          <dl class="space-y-4 text-sm">
+            <div><dt class="font-bold text-navy">SSAFO 2018</dt><dd class="text-cast">Silage, Slurry and Agricultural Fuel Oil regulations — clamp design and capacity.</dd></div>
+            <div><dt class="font-bold text-navy">BS EN 14992</dt><dd class="text-cast">Precast wall elements — UKCA marked.</dd></div>
+            <div><dt class="font-bold text-navy">BS 8500-1:2023</dt><dd class="text-cast">Concrete spec — DC-3/DC-4 designations for aggressive ground.</dd></div>
+            <div><dt class="font-bold text-navy">BS EN 206</dt><dd class="text-cast">Concrete exposure classes — XA3 for chemical aggressive environments.</dd></div>
+            <div><dt class="font-bold text-navy">BS EN 1992 (Eurocode 2)</dt><dd class="text-cast">Concrete structural design — surcharge and vehicle-loading checks.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-yellow text-navy py-16">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-navy mb-2">Configure your clamp</p>
+          <h2 class="font-display text-display-md">Send wall heights and run length — we will quote inside 24 hours.</h2>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href="/quote?product=Silage+Clamp+Walls" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
+          <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-20">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
+      <div>
+        <p class="eyebrow text-cast mb-3">Related products</p>
+        <h2 class="font-display text-display-lg">Often ordered alongside.</h2>
+      </div>
+      <a href="/products" class="text-ember font-bold hover:text-ember-700 inline-flex items-center gap-2">View full range
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" /><polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </a>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {related.map((r) => (
+        <a href={r.href} class="card p-5 group">
+          <div class="aspect-[16/10] bg-cast-100 mb-4 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100"></div></div>
+          <h3 class="font-display text-base font-bold text-navy mb-1 group-hover:text-ember">{r.label}</h3>
+          <p class="text-cast text-xs">{r.meta}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">Common questions</p>
+        <h2 class="font-display text-display-lg mb-4">What people ask about clamp walls.</h2>
+        <p class="text-cast-700 text-lg">Five questions we answer most weeks. If yours is not here, ring the yard.</p>
+      </div>
+      <div class="max-w-3xl space-y-4">
+        {faqs.map((f) => (
+          <details class="card p-6 group">
+            <summary class="font-display text-lg font-bold text-navy cursor-pointer list-none flex justify-between items-start gap-4">
+              <span>{f.q}</span>
+              <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-navy text-white py-20">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
+      <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">Send heights, run length and the silage type. Quote and lead-time same day.</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/quote?product=Silage+Clamp+Walls" class="btn-yellow">Configure a quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

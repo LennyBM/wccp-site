@@ -1,0 +1,540 @@
+---
+import { site } from '@/config/site';
+import SocialIcon from './SocialIcon.astro';
+import Logo from './Logo.astro';
+
+const navItems = [
+  { href: '/sectors/agricultural', label: 'Agricultural' },
+  { href: '/sectors/civils', label: 'Civils' },
+  { href: '/sectors/bespoke', label: 'Bespoke' },
+  { href: '/products', label: 'Products', mega: true },
+  { href: '/case-studies', label: 'Case Studies' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+
+// Flagship products grouped for the mega-menu.
+const megaCols = [
+  {
+    title: 'Agricultural',
+    href: '/sectors/agricultural',
+    items: [
+      { href: '/products/cattle-cubicles',     label: 'Cattle Cubicles',     spec: 'Pre-cast loops, dairy + beef' },
+      { href: '/products/slurry-storage',      label: 'Slurry Storage',      spec: '200/250/300mm panels, SSAFO 2018' },
+      { href: '/products/feed-troughs',        label: 'Feed Troughs',        spec: 'Reinforced trough lengths to 2.4m' },
+      { href: '/products/water-troughs',       label: 'Water Troughs',       spec: 'Frost-rated, 200–800L capacity' },
+      { href: '/products/silage-clamp-walls',  label: 'Silage Clamp Walls',  spec: 'Acid-resistant, up to 4.0m' },
+      { href: '/products/milking-robot-bases', label: 'Milking Robot Bases', spec: 'Lely/DeLaval-ready, level-cast' },
+      { href: '/products/footbaths',           label: 'Footbaths',           spec: 'Pre-cast, drain-ready, 1.8–3.6m' },
+    ],
+  },
+  {
+    title: 'Civils',
+    href: '/sectors/civils',
+    items: [
+      { href: '/products/prestressed-panels', label: 'Prestressed Wall Panels', spec: 'BS EN 14992, slim profile' },
+      { href: '/products/retaining-walls',    label: 'Retaining Walls',         spec: 'L-form & buttressed designs' },
+      { href: '/products/king-post-walls',    label: 'King Post Walls',         spec: 'UC-section + infill panels' },
+      { href: '/products/l-blocks',           label: 'L-Blocks',                spec: 'Bay walls, bunds, push-walls' },
+      { href: '/products/cantilever-walls',   label: 'Cantilever Walls',        spec: 'No tie-back, fast install' },
+      { href: '/products/culverts',           label: 'Box Culverts',            spec: '600mm–3m span, BS 5400' },
+      { href: '/products/padstones',          label: 'Padstones',               spec: 'Bearing-load to engineer spec' },
+    ],
+  },
+  {
+    title: 'Bespoke',
+    href: '/sectors/bespoke',
+    items: [
+      { href: '/products/vehicle-pits',        label: 'Vehicle Pits',        spec: 'Workshop & inspection pits' },
+      { href: '/products/cubicle-end-walls',   label: 'Cubicle End Walls',   spec: 'Made to barn dimensions' },
+      { href: '/products/clean-rooms',         label: 'Clean Rooms',         spec: 'Food-grade smooth finish' },
+      { href: '/products/interlocking-blocks', label: 'Interlocking Blocks', spec: 'Reusable site walling' },
+      { href: '/sectors/bespoke',              label: 'Custom moulds',       spec: 'Drawing in Friday, quote Monday' },
+    ],
+  },
+];
+---
+
+<!-- Top utility bar — phone + social. Hidden on mobile. -->
+<div class="hidden md:block bg-navy-ink text-white/90 text-xs">
+  <div class="container-wccp">
+    <div class="flex items-center justify-between h-9">
+      <div class="flex items-center gap-5">
+        <a href={`tel:${site.contact.phoneIntl}`} class="flex items-center gap-1.5 hover:text-yellow transition-colors duration-200">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="font-semibold">{site.contact.phone}</span>
+        </a>
+        <span class="text-white/40">·</span>
+        <a href={`mailto:${site.contact.email}`} class="hover:text-yellow transition-colors duration-200">{site.contact.email}</a>
+        <span class="text-white/40 hidden lg:inline">·</span>
+        <span class="hidden lg:inline">{site.address.town}, Devon · {site.hours.weekdays} Mon–Fri</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-white/60">Find us:</span>
+        <a href={site.socials.facebook} target="_blank" rel="noopener noreferrer" aria-label="WCCP on Facebook" class="hover:text-yellow transition-colors duration-200">
+          <SocialIcon network="facebook" size={14} />
+        </a>
+        <a href={`https://wa.me/${site.contact.whatsapp.replace('+', '')}`} target="_blank" rel="noopener noreferrer" aria-label="Message WCCP on WhatsApp" class="hover:text-yellow transition-colors duration-200">
+          <SocialIcon network="whatsapp" size={14} />
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header
+  id="header"
+  class="sticky top-0 z-40 bg-bone/95 backdrop-blur-md border-b border-cast-100 transition-shadow duration-300"
+  data-scrolled="false"
+>
+  <!-- Heritage stripe nod to the trade-show banner identity -->
+  <div class="heritage-stripe" aria-hidden="true"></div>
+
+  <div class="container-wccp">
+    <div class="flex items-center justify-between h-16 lg:h-20">
+      <!-- Wordmark — uses the dedicated Logo component -->
+      <a
+        href="/"
+        class="flex items-center gap-3 group"
+        aria-label={`${site.name} — home`}
+      >
+        <Logo size={40} class="transition-transform duration-400 ease-spring group-hover:scale-105 group-hover:shadow-soft rounded" />
+        <div class="hidden sm:block leading-tight">
+          <div class="font-display font-semibold text-navy-700 text-sm lg:text-base tracking-tight">
+            West Country
+          </div>
+          <div class="font-display font-semibold text-navy-700 text-sm lg:text-base tracking-tight">
+            Concrete Products
+          </div>
+        </div>
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden lg:flex items-center" aria-label="Primary" id="primary-nav">
+        {navItems.map((item) => (
+          item.mega ? (
+            <div class="relative" data-mega-root>
+              <a
+                href={item.href}
+                class="nav-link inline-flex items-center gap-1"
+                data-mega-trigger
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-controls="mega-products"
+              >
+                {item.label}
+                <svg class="w-3 h-3 transition-transform duration-200" data-mega-chevron viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="6 9 12 15 18 9" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          ) : (
+            <a href={item.href} class="nav-link">
+              {item.label}
+            </a>
+          )
+        ))}
+      </nav>
+
+      <!-- Right CTAs -->
+      <div class="flex items-center gap-2 lg:gap-2">
+        <!-- WhatsApp icon button — desktop only -->
+        <a
+          href={`https://wa.me/${site.contact.whatsapp.replace('+', '')}?text=${encodeURIComponent('Hi WCCP — I\'d like to ask about ')}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hidden md:inline-flex icon-chip-whatsapp"
+          aria-label="Message us on WhatsApp"
+        >
+          <SocialIcon network="whatsapp" size={18} />
+        </a>
+
+        <a href="/quote" class="btn-primary btn-sm hidden sm:inline-flex group">
+          <span>Get a quote</span>
+          <svg class="w-3.5 h-3.5 arrow-float" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+            <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+
+        <button
+          type="button"
+          id="menu-toggle"
+          class="lg:hidden p-2 text-navy-700 hover:bg-cast-50 rounded transition-colors duration-200"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== Mega-menu panel (desktop) ====== -->
+  <div
+    id="mega-products"
+    class="mega-panel hidden lg:block absolute left-0 right-0 bg-white border-b border-cast-100 shadow-lifted"
+    data-open="false"
+    aria-hidden="true"
+  >
+    <div class="container-wccp py-8 lg:py-10">
+      <div class="grid grid-cols-12 gap-8">
+        {megaCols.map((col) => (
+          <div class="col-span-3">
+            <div class="flex items-baseline justify-between mb-4">
+              <p class="eyebrow text-cast">{col.title}</p>
+              <a href={col.href} class="text-xs font-bold text-ember hover:text-ember-600 transition-colors duration-200">
+                See all →
+              </a>
+            </div>
+            <ul class="space-y-3">
+              {col.items.map((it) => (
+                <li>
+                  <a href={it.href} class="block group/item">
+                    <span class="block text-sm font-bold text-navy-700 group-hover/item:text-ember transition-colors duration-200">{it.label}</span>
+                    <span class="block text-xs text-cast leading-snug mt-0.5">{it.spec}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+
+        <!-- Featured product card -->
+        <div class="col-span-3">
+          <div class="rounded-lg overflow-hidden bg-bone-200 border border-cast-100 h-full flex flex-col">
+            <div class="aspect-[4/3] bg-navy-700 overflow-hidden">
+              <img
+                src="/images/products/cattle-cubicles.jpg"
+                alt="Pre-cast cattle cubicles, freshly cast at the Holsworthy yard"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="p-5 flex-1 flex flex-col">
+              <p class="eyebrow text-ember mb-2">Featured</p>
+              <h3 class="font-display text-base font-bold text-navy-700 mb-1">Cattle Cubicles</h3>
+              <p class="text-xs text-cast leading-snug mb-4 flex-1">
+                Our most-installed product — drawn Friday, cast Monday, on-site by week's end.
+              </p>
+              <a href="/quote?product=cattle-cubicles" class="btn-primary btn-sm w-full justify-center">
+                Get a quote in 24h
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu backdrop scrim -->
+  <div
+    id="mobile-menu-backdrop"
+    class="lg:hidden hidden fixed inset-0 bg-navy-ink/60 z-40 transition-opacity duration-300 opacity-0"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Mobile menu — slide-in panel from right -->
+  <nav
+    id="mobile-menu"
+    class="lg:hidden hidden fixed top-0 right-0 bottom-0 z-50 w-[88%] max-w-sm bg-bone shadow-lifted border-l border-cast-100 overflow-y-auto transform translate-x-full transition-transform duration-300 ease-out-quart"
+    aria-label="Mobile primary"
+    aria-hidden="true"
+  >
+    <div class="container-wccp py-4">
+      <!-- Top bar: prominent phone + close -->
+      <div class="flex items-center justify-between pb-4 border-b border-cast-100">
+        <a
+          href={`tel:${site.contact.phoneIntl}`}
+          class="flex items-center gap-2 text-navy-700 font-display font-bold text-lg hover:text-ember transition-colors"
+        >
+          <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-ember text-white">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          {site.contact.phone}
+        </a>
+        <button
+          type="button"
+          id="menu-close"
+          class="p-2 text-navy-700 hover:bg-cast-50 rounded transition-colors"
+          aria-label="Close menu"
+        >
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" stroke-linecap="round"/>
+            <line x1="6" y1="6" x2="18" y2="18" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <p class="text-xs text-cast-700 mt-3 mb-4">
+        Mon–Fri {site.hours.weekdays} · Same-day callback
+      </p>
+
+      <div class="space-y-1">
+        {navItems.map((item) => (
+          item.mega ? (
+            <details class="group/m">
+              <summary class="flex items-center justify-between px-3 py-3 text-base font-semibold text-navy-700 hover:bg-navy-700 hover:text-white rounded transition-colors duration-200 cursor-pointer list-none">
+                <span>{item.label}</span>
+                <svg class="w-4 h-4 transition-transform duration-200 group-open/m:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="6 9 12 15 18 9" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </summary>
+              <div class="pl-3 pr-1 pb-3 pt-2 space-y-4">
+                {megaCols.map((col) => (
+                  <div>
+                    <p class="eyebrow text-cast mb-2 px-3">{col.title}</p>
+                    <ul class="space-y-1">
+                      {col.items.map((it) => (
+                        <li>
+                          <a href={it.href} class="block px-3 py-2 text-sm font-semibold text-navy-700 hover:bg-cast-50 rounded transition-colors duration-200">
+                            {it.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+                <a href="/products" class="block px-3 py-2 text-sm font-bold text-ember hover:underline">
+                  See all products →
+                </a>
+              </div>
+            </details>
+          ) : (
+            <a
+              href={item.href}
+              class="block px-3 py-3 text-base font-semibold text-navy-700 hover:bg-navy-700 hover:text-white rounded transition-colors duration-200"
+            >
+              {item.label}
+            </a>
+          )
+        ))}
+      </div>
+      <div class="pt-3 mt-3 border-t border-cast-100 space-y-2">
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary w-full">
+          Call {site.contact.phone}
+        </a>
+        <a href="/quote" class="btn-primary w-full">Get a quote</a>
+      </div>
+      <div class="pt-3 flex items-center justify-center gap-3">
+        <a href={site.socials.facebook} target="_blank" rel="noopener noreferrer" class="icon-chip-facebook" aria-label="WCCP on Facebook">
+          <SocialIcon network="facebook" size={16} />
+        </a>
+        <a href={`https://wa.me/${site.contact.whatsapp.replace('+', '')}`} target="_blank" rel="noopener noreferrer" class="icon-chip-whatsapp" aria-label="WhatsApp">
+          <SocialIcon network="whatsapp" size={16} />
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<style>
+  /* Mega-menu: drops below the header bar via absolute positioning + smooth open/close */
+  .mega-panel {
+    top: 100%;
+    transform-origin: top center;
+    opacity: 0;
+    transform: translateY(-6px);
+    pointer-events: none;
+    transition: opacity 220ms cubic-bezier(0.16, 1, 0.3, 1), transform 220ms cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 220ms;
+    visibility: hidden;
+  }
+  .mega-panel[data-open="true"] {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    visibility: visible;
+    transition: opacity 240ms cubic-bezier(0.16, 1, 0.3, 1), transform 240ms cubic-bezier(0.16, 1, 0.3, 1), visibility 0s;
+  }
+  [data-mega-trigger][aria-expanded="true"] [data-mega-chevron] {
+    transform: rotate(180deg);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mega-panel { transition: none; }
+  }
+</style>
+
+<script>
+  // ====== Mobile menu: slide-in panel + backdrop scrim + focus-trap ======
+  const toggle = document.getElementById('menu-toggle');
+  const closeBtn = document.getElementById('menu-close');
+  const menu = document.getElementById('mobile-menu');
+  const backdrop = document.getElementById('mobile-menu-backdrop');
+  let lastFocused: HTMLElement | null = null;
+
+  const getFocusable = (): HTMLElement[] => {
+    if (!menu) return [];
+    const sel = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    return Array.from(menu.querySelectorAll<HTMLElement>(sel)).filter((el) => !el.hasAttribute('hidden') && el.offsetParent !== null);
+  };
+
+  const openMenu = () => {
+    if (!menu || !backdrop || !toggle) return;
+    lastFocused = document.activeElement as HTMLElement;
+    menu.classList.remove('hidden');
+    backdrop.classList.remove('hidden');
+    // Force a reflow so the transition triggers
+    void menu.offsetWidth;
+    menu.classList.remove('translate-x-full');
+    backdrop.classList.remove('opacity-0');
+    backdrop.classList.add('opacity-100');
+    menu.setAttribute('aria-hidden', 'false');
+    toggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+    // Focus first focusable element after transition
+    setTimeout(() => {
+      const focusables = getFocusable();
+      if (focusables.length) focusables[0].focus();
+    }, 60);
+  };
+
+  const closeMenu = () => {
+    if (!menu || !backdrop || !toggle) return;
+    menu.classList.add('translate-x-full');
+    backdrop.classList.remove('opacity-100');
+    backdrop.classList.add('opacity-0');
+    menu.setAttribute('aria-hidden', 'true');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      menu.classList.add('hidden');
+      backdrop.classList.add('hidden');
+    }, 300);
+    if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+  };
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = menu?.getAttribute('aria-hidden') === 'false';
+    if (isOpen) closeMenu(); else openMenu();
+  });
+  closeBtn?.addEventListener('click', () => closeMenu());
+  backdrop?.addEventListener('click', () => closeMenu());
+
+  // Focus-trap + ESC handling while menu open
+  document.addEventListener('keydown', (e) => {
+    if (!menu || menu.getAttribute('aria-hidden') !== 'false') return;
+    if (e.key === 'Escape') { e.preventDefault(); closeMenu(); return; }
+    if (e.key !== 'Tab') return;
+    const focusables = getFocusable();
+    if (!focusables.length) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    const active = document.activeElement as HTMLElement | null;
+    if (e.shiftKey) {
+      if (active === first || !menu.contains(active)) { e.preventDefault(); last.focus(); }
+    } else {
+      if (active === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+
+  const header = document.getElementById('header');
+  const onScroll = () => {
+    if (!header) return;
+    const scrolled = window.scrollY > 8;
+    header.dataset.scrolled = String(scrolled);
+    if (scrolled) header.classList.add('shadow-soft');
+    else header.classList.remove('shadow-soft');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      }
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach((el) => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach((el) => el.classList.add('is-visible'));
+  }
+
+  // ====== Mega-menu: hover (desktop) + click + ESC + focus-out + outside-click ======
+  const megaTrigger = document.querySelector('[data-mega-trigger]') as HTMLAnchorElement | null;
+  const megaPanel = document.getElementById('mega-products');
+  const megaRoot = document.querySelector('[data-mega-root]') as HTMLElement | null;
+  let megaCloseTimer: number | undefined;
+
+  const setMegaOpen = (open: boolean) => {
+    if (!megaPanel || !megaTrigger) return;
+    megaPanel.dataset.open = String(open);
+    megaPanel.setAttribute('aria-hidden', String(!open));
+    megaTrigger.setAttribute('aria-expanded', String(open));
+  };
+  const openMega = () => {
+    if (megaCloseTimer) { clearTimeout(megaCloseTimer); megaCloseTimer = undefined; }
+    setMegaOpen(true);
+  };
+  const closeMega = (delay = 0) => {
+    if (megaCloseTimer) clearTimeout(megaCloseTimer);
+    if (delay > 0) {
+      megaCloseTimer = window.setTimeout(() => setMegaOpen(false), delay);
+    } else {
+      setMegaOpen(false);
+    }
+  };
+
+  if (megaTrigger && megaPanel && megaRoot) {
+    // Desktop hover — use mouseenter on the root container so the bridge to the panel stays open
+    megaRoot.addEventListener('mouseenter', () => {
+      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) openMega();
+    });
+    megaRoot.addEventListener('mouseleave', () => {
+      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) closeMega(160);
+    });
+    megaPanel.addEventListener('mouseenter', () => openMega());
+    megaPanel.addEventListener('mouseleave', () => closeMega(160));
+
+    // Click — toggle (and prevent navigating away on the first click for mobile/tablet)
+    megaTrigger.addEventListener('click', (e) => {
+      const isOpen = megaPanel.dataset.open === 'true';
+      if (!isOpen) {
+        e.preventDefault();
+        openMega();
+      }
+    });
+
+    // ESC closes
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && megaPanel.dataset.open === 'true') {
+        closeMega();
+        megaTrigger.focus();
+      }
+    });
+
+    // Click outside closes
+    document.addEventListener('click', (e) => {
+      if (megaPanel.dataset.open !== 'true') return;
+      const target = e.target as Node;
+      if (!megaPanel.contains(target) && !megaRoot.contains(target)) {
+        closeMega();
+      }
+    });
+
+    // Focus-out (tab away) closes
+    const handleFocusOut = () => {
+      // Defer so the new focused element is the active one
+      setTimeout(() => {
+        const active = document.activeElement;
+        if (!active) return;
+        if (megaPanel.contains(active) || megaRoot.contains(active)) return;
+        closeMega();
+      }, 0);
+    };
+    megaRoot.addEventListener('focusout', handleFocusOut);
+    megaPanel.addEventListener('focusout', handleFocusOut);
+  }
+</script>

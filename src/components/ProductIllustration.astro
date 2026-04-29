@@ -1,0 +1,613 @@
+---
+// Premium product visual — prefers a real photograph if one exists, otherwise
+// falls back to a hand-drawn SVG architectural section illustration in the
+// WCCP brand palette. Either way it reads as "intentional editorial design",
+// not "missing image".
+
+import { Image } from 'astro:assets';
+import { productImages, productCaptions } from '@/config/product-images';
+
+interface Props {
+  product:
+    | 'cattle-cubicles'
+    | 'slurry-storage'
+    | 'milking-robot-bases'
+    | 'prestressed-panels'
+    | 'retaining-walls'
+    | 'king-post-walls'
+    | 'l-blocks'
+    | 'cantilever-walls'
+    | 'silage-clamp-walls'
+    | 'feed-troughs'
+    | 'water-troughs'
+    | 'footbaths'
+    | 'culverts'
+    | 'padstones'
+    | 'vehicle-pits'
+    | 'bespoke'
+    | 'interlocking-blocks'
+    | 'cubicle-end-walls'
+    | 'clean-rooms'
+    | 'civils'
+    | 'bespoke-sector';
+  variant?: 'card' | 'hero';
+  class?: string;
+  /** Force the SVG fallback even when a photo exists (e.g. for diagram-style hero treatment). */
+  preferIllustration?: boolean;
+}
+
+const { product, variant = 'card', class: className = '', preferIllustration = false } = Astro.props;
+
+// Common dimensions
+const aspectClass = variant === 'hero' ? 'aspect-[3/2]' : 'aspect-[4/3]';
+
+// Prefer real photography when available
+const photoSrc = !preferIllustration ? productImages[product] : undefined;
+const altText = productCaptions[product] || '';
+
+// === Brand colour tokens (used inline because SVG fill needs hex) ===
+const C = {
+  navy:    '#0A1A4F',
+  navyLogo:'#0000FE',
+  yellow:  '#F5C518',
+  ember:   '#E54D17',
+  bone:    '#FAFAF7',
+  cast:    '#5C6470',
+  castLight: '#BCC1C9',
+  white:   '#FFFFFF',
+  concrete:'#D9DADC',
+  concreteShadow: '#A8AAAE',
+  grass:   '#5E7A4E',
+  earth:   '#7A6244',
+  sky:     '#E0E8F2',
+};
+---
+
+<div class={`relative ${aspectClass} ${className} bg-bone-200 overflow-hidden rounded-lg group/illu`}>
+  {photoSrc ? (
+    <>
+      <Image
+        src={photoSrc}
+        alt={altText}
+        widths={[400, 800, 1200, 1600]}
+        sizes="(max-width: 768px) 100vw, 50vw"
+        loading="lazy"
+        decoding="async"
+        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out-quart group-hover/illu:scale-105 group-hover:scale-105"
+      />
+      <!-- Subtle vignette gradient for legibility of any future overlay text -->
+      <div
+        aria-hidden="true"
+        class="absolute inset-0 bg-gradient-to-t from-navy-700/15 via-transparent to-transparent pointer-events-none"
+      ></div>
+      <!-- Yellow corner heritage accent on photo too, for brand consistency -->
+      <div
+        aria-hidden="true"
+        class="absolute top-0 right-0 w-12 h-12 pointer-events-none opacity-90"
+        style={`background: linear-gradient(225deg, ${C.yellow} 0%, ${C.yellow} 28%, transparent 28%);`}
+      ></div>
+    </>
+  ) : (
+    <>
+      <!-- Ambient backdrop pattern -->
+      <div
+        aria-hidden="true"
+        class="absolute inset-0 grid-pattern opacity-40"
+      ></div>
+
+      <!-- Subtle yellow corner accent (heritage signature) -->
+      <div
+        aria-hidden="true"
+        class="absolute top-0 right-0 w-16 h-16"
+        style={`background: linear-gradient(225deg, ${C.yellow} 0%, ${C.yellow} 30%, transparent 30%);`}
+      ></div>
+
+  <!-- The illustration -->
+  <svg viewBox="0 0 400 300" class="absolute inset-0 w-full h-full" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <!-- Subtle ground line -->
+    <line x1="20" y1="240" x2="380" y2="240" stroke={C.cast} stroke-width="0.5" stroke-dasharray="4 3" opacity="0.4"/>
+
+    {/* === Cattle Cubicles === */}
+    {product === 'cattle-cubicles' && (
+      <g>
+        <!-- Three cubicle dividers in side elevation -->
+        {[80, 180, 280].map((x) => (
+          <g>
+            <!-- Cubicle divider — looped concrete + steel -->
+            <path d={`M${x} 240 L${x} 130 Q${x} 110 ${x + 20} 110 L${x + 70} 110 Q${x + 90} 110 ${x + 90} 130 L${x + 90} 175`} fill="none" stroke={C.navy} stroke-width="3" stroke-linecap="round"/>
+            <!-- Concrete bed -->
+            <rect x={x - 5} y="220" width="100" height="20" fill={C.concrete} stroke={C.cast} stroke-width="1"/>
+            <!-- Bedding hatching -->
+            <pattern id={`bed-${x}`} patternUnits="userSpaceOnUse" width="4" height="4" patternTransform="rotate(0)">
+              <line x1="0" y1="2" x2="4" y2="2" stroke={C.cast} stroke-width="0.3" opacity="0.4"/>
+            </pattern>
+            <rect x={x - 5} y="220" width="100" height="20" fill={`url(#bed-${x})`}/>
+          </g>
+        ))}
+        <!-- Annotation -->
+        <g font-family="Inter, sans-serif" font-size="9" fill={C.cast} font-weight="600">
+          <line x1="80" y1="265" x2="180" y2="265" stroke={C.cast} stroke-width="0.5"/>
+          <line x1="80" y1="262" x2="80" y2="268" stroke={C.cast} stroke-width="0.5"/>
+          <line x1="180" y1="262" x2="180" y2="268" stroke={C.cast} stroke-width="0.5"/>
+          <text x="130" y="280" text-anchor="middle">2.4m</text>
+        </g>
+        <!-- Yellow accent dot (neck rail) -->
+        <circle cx="170" cy="115" r="3" fill={C.yellow}/>
+      </g>
+    )}
+
+    {/* === Slurry Storage === */}
+    {product === 'slurry-storage' && (
+      <g>
+        <!-- Tank cross-section -->
+        <ellipse cx="200" cy="240" rx="160" ry="20" fill={C.concrete} stroke={C.navy} stroke-width="2"/>
+        <path d="M40 240 L40 80 Q40 60 200 60 Q360 60 360 80 L360 240" fill="none" stroke={C.navy} stroke-width="3"/>
+        <!-- Slurry level -->
+        <path d="M44 200 Q200 195 356 200 L356 240 Q200 250 44 240 Z" fill={C.earth} opacity="0.55"/>
+        <line x1="44" y1="200" x2="356" y2="200" stroke={C.ember} stroke-width="1.5" stroke-dasharray="6 3"/>
+        <!-- Tank wall ribs -->
+        {[80, 130, 180, 230, 270, 320].map((x) => (
+          <line x1={x} y1="65" x2={x} y2="240" stroke={C.castLight} stroke-width="0.8" opacity="0.5"/>
+        ))}
+        <!-- Annotation -->
+        <g font-family="Inter, sans-serif" font-size="9" fill={C.cast}>
+          <text x="200" y="50" text-anchor="middle" font-weight="700" fill={C.navy}>250–5,000m³</text>
+          <text x="200" y="195" text-anchor="middle" font-size="8" font-weight="600" fill={C.ember}>6-month capacity</text>
+        </g>
+        <!-- Yellow corner -->
+        <circle cx="50" cy="80" r="3" fill={C.yellow}/>
+      </g>
+    )}
+
+    {/* === Milking Robot Bases === */}
+    {product === 'milking-robot-bases' && (
+      <g>
+        <!-- Concrete plinth -->
+        <rect x="100" y="195" width="200" height="45" fill={C.concrete} stroke={C.navy} stroke-width="2"/>
+        <!-- Chamfered edge -->
+        <line x1="100" y1="195" x2="115" y2="180" stroke={C.navy} stroke-width="1.5"/>
+        <line x1="300" y1="195" x2="285" y2="180" stroke={C.navy} stroke-width="1.5"/>
+        <line x1="115" y1="180" x2="285" y2="180" stroke={C.navy} stroke-width="2"/>
+        <!-- Drainage gully -->
+        <rect x="125" y="195" width="150" height="6" fill={C.navy}/>
+        <!-- Robot frame outline -->
+        <rect x="140" y="80" width="120" height="100" fill="none" stroke={C.navy} stroke-width="2.5" rx="4"/>
+        <rect x="155" y="95" width="90" height="50" fill={C.bone} stroke={C.cast} stroke-width="1"/>
+        <circle cx="200" cy="120" r="14" fill="none" stroke={C.ember} stroke-width="2.5"/>
+        <!-- Brand label area -->
+        <rect x="172" y="155" width="56" height="14" fill={C.navy}/>
+        <text x="200" y="165" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" font-weight="800" fill={C.yellow}>VMS / A5</text>
+        <!-- Cable ducts (yellow accents) -->
+        <circle cx="120" cy="218" r="3" fill={C.yellow}/>
+        <circle cx="280" cy="218" r="3" fill={C.yellow}/>
+        <!-- Annotation -->
+        <text x="200" y="270" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="600" fill={C.cast}>±2mm level tolerance</text>
+      </g>
+    )}
+
+    {/* === Prestressed Panels === */}
+    {product === 'prestressed-panels' && (
+      <g>
+        <!-- Stack of panels in side elevation -->
+        {[0, 1, 2, 3, 4, 5].map((i) => {
+          const y = 90 + i * 25;
+          return (
+            <g>
+              <rect x="60" y={y} width="280" height="22" fill={C.concrete} stroke={C.navy} stroke-width="1"/>
+              <!-- Strand ends -->
+              {[80, 130, 200, 270, 320].map((x) => (
+                <circle cx={x} cy={y + 11} r="1.5" fill={C.ember}/>
+              ))}
+            </g>
+          );
+        })}
+        <!-- Annotation lines -->
+        <g font-family="Inter, sans-serif" font-size="8" fill={C.cast} font-weight="600">
+          <line x1="350" y1="90" x2="370" y2="90" stroke={C.cast} stroke-width="0.5"/>
+          <line x1="350" y1="240" x2="370" y2="240" stroke={C.cast} stroke-width="0.5"/>
+          <line x1="365" y1="90" x2="365" y2="240" stroke={C.cast} stroke-width="0.5"/>
+          <text x="375" y="170" font-size="9" font-weight="700" fill={C.navy}>1.5m</text>
+        </g>
+        <text x="200" y="270" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="600" fill={C.cast}>100/150/180/280mm thicknesses</text>
+        <!-- Yellow strand indicator -->
+        <text x="80" y="80" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" font-weight="700" fill={C.yellow}>STRAND</text>
+      </g>
+    )}
+
+    {/* === Retaining Walls (family hub) === */}
+    {(product === 'retaining-walls' || product === 'civils') && (
+      <g>
+        <!-- Earth being retained -->
+        <path d="M40 240 L40 130 L200 130 Q220 140 220 165 L220 240 Z" fill={C.earth} opacity="0.6"/>
+        <pattern id="hatch-earth" patternUnits="userSpaceOnUse" width="6" height="6">
+          <line x1="0" y1="0" x2="6" y2="6" stroke={C.cast} stroke-width="0.3" opacity="0.4"/>
+        </pattern>
+        <path d="M40 240 L40 130 L200 130 Q220 140 220 165 L220 240 Z" fill="url(#hatch-earth)"/>
+        <!-- Wall -->
+        <rect x="220" y="100" width="20" height="140" fill={C.concrete} stroke={C.navy} stroke-width="2"/>
+        <!-- Foundation -->
+        <rect x="200" y="240" width="80" height="20" fill={C.concrete} stroke={C.navy} stroke-width="2"/>
+        <!-- Surface line -->
+        <line x1="240" y1="260" x2="380" y2="260" stroke={C.navy} stroke-width="2"/>
+        <!-- Top edge yellow -->
+        <line x1="220" y1="100" x2="240" y2="100" stroke={C.yellow} stroke-width="3"/>
+        <!-- Annotation -->
+        <g font-family="Inter, sans-serif" font-size="8" fill={C.cast} font-weight="600">
+          <line x1="195" y1="100" x2="195" y2="240" stroke={C.cast} stroke-width="0.5"/>
+          <text x="190" y="170" text-anchor="end" font-size="9" font-weight="700" fill={C.navy}>1m–6m</text>
+          <text x="290" y="280" text-anchor="middle" font-weight="600">Surcharge to 60 kN/m²</text>
+        </g>
+      </g>
+    )}
+
+    {/* === King Post Walls === */}
+    {product === 'king-post-walls' && (
+      <g>
+        <!-- Three steel posts -->
+        {[80, 200, 320].map((x) => (
+          <g>
+            <rect x={x - 6} y="80" width="12" height="160" fill={C.navy}/>
+            <rect x={x - 4} y="80" width="8" height="160" fill={C.navy} opacity="0.7"/>
+            <line x1={x} y1="80" x2={x} y2="240" stroke={C.yellow} stroke-width="1" opacity="0.6"/>
+          </g>
+        ))}
+        <!-- Panels between posts -->
+        {[0, 1, 2, 3].map((i) => {
+          const y = 95 + i * 35;
+          return (
+            <g>
+              <rect x="86" y={y} width="108" height="32" fill={C.concrete} stroke={C.cast} stroke-width="0.8"/>
+              <rect x="206" y={y} width="108" height="32" fill={C.concrete} stroke={C.cast} stroke-width="0.8"/>
+            </g>
+          );
+        })}
+        <!-- Foundation -->
+        <rect x="40" y="240" width="320" height="14" fill={C.cast} opacity="0.4"/>
+        <!-- Surcharge arrow -->
+        <line x1="120" y1="60" x2="120" y2="78" stroke={C.ember} stroke-width="2"/>
+        <polyline points="115 70, 120 78, 125 70" fill="none" stroke={C.ember} stroke-width="2"/>
+        <!-- Annotation -->
+        <text x="200" y="275" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill={C.navy}>UB / UC × precast panels</text>
+      </g>
+    )}
+
+    {/* === L-Blocks === */}
+    {product === 'l-blocks' && (
+      <g>
+        <!-- Three interlocking L-blocks in section -->
+        {[0, 1, 2].map((i) => {
+          const x = 50 + i * 100;
+          return (
+            <path
+              d={`M${x} 240 L${x} 90 L${x + 20} 90 L${x + 20} 220 L${x + 90} 220 L${x + 90} 240 Z`}
+              fill={C.concrete}
+              stroke={C.navy}
+              stroke-width="2"
+            />
+          );
+        })}
+        <!-- Material being retained -->
+        <path d="M70 220 L70 95 L150 95 L150 195 L240 195 L240 95 L320 95 L320 195 L355 195 L355 220 Z" fill={C.yellow} opacity="0.4"/>
+        <pattern id="grain" patternUnits="userSpaceOnUse" width="3" height="3">
+          <circle cx="1.5" cy="1.5" r="0.6" fill={C.yellow} opacity="0.6"/>
+        </pattern>
+        <path d="M70 220 L70 95 L150 95 L150 195 L240 195 L240 95 L320 95 L320 195 L355 195 L355 220 Z" fill="url(#grain)"/>
+        <!-- Annotation -->
+        <g font-family="Inter, sans-serif" font-size="9" fill={C.cast} font-weight="600">
+          <text x="200" y="275" text-anchor="middle" font-weight="700" fill={C.navy}>Heights 1m – 6m · interlocking</text>
+        </g>
+        <!-- Top yellow edge -->
+        <line x1="50" y1="90" x2="70" y2="90" stroke={C.yellow} stroke-width="3"/>
+        <line x1="150" y1="90" x2="170" y2="90" stroke={C.yellow} stroke-width="3"/>
+        <line x1="250" y1="90" x2="270" y2="90" stroke={C.yellow} stroke-width="3"/>
+      </g>
+    )}
+
+    {/* === Cantilever Walls === */}
+    {product === 'cantilever-walls' && (
+      <g>
+        <!-- Earth -->
+        <path d="M40 240 L40 100 L210 100 L210 240 Z" fill={C.earth} opacity="0.55"/>
+        <pattern id="hatch-cant" patternUnits="userSpaceOnUse" width="6" height="6">
+          <line x1="0" y1="0" x2="6" y2="6" stroke={C.cast} stroke-width="0.3" opacity="0.5"/>
+        </pattern>
+        <path d="M40 240 L40 100 L210 100 L210 240 Z" fill="url(#hatch-cant)"/>
+        <!-- Cantilever wall -->
+        <path d="M210 70 L230 70 L230 235 L290 235 L290 250 L160 250 L160 235 L210 235 Z" fill={C.concrete} stroke={C.navy} stroke-width="2.5"/>
+        <!-- Reinforcement indication -->
+        <line x1="220" y1="75" x2="220" y2="232" stroke={C.ember} stroke-width="0.8" stroke-dasharray="3 2"/>
+        <line x1="170" y1="240" x2="280" y2="240" stroke={C.ember} stroke-width="0.8" stroke-dasharray="3 2"/>
+        <!-- Yellow top -->
+        <line x1="210" y1="70" x2="230" y2="70" stroke={C.yellow} stroke-width="3"/>
+        <!-- Annotation -->
+        <text x="220" y="275" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill={C.navy}>1.5m – 6m · 50yr design life</text>
+      </g>
+    )}
+
+    {/* === Silage Clamp Walls === */}
+    {product === 'silage-clamp-walls' && (
+      <g>
+        <!-- Two parallel walls (A-frame buttress section) -->
+        <polygon points="60,240 60,90 90,90 80,240" fill={C.concrete} stroke={C.navy} stroke-width="2"/>
+        <polygon points="340,240 340,90 310,90 320,240" fill={C.concrete} stroke={C.navy} stroke-width="2"/>
+        <!-- Silage between -->
+        <path d="M85 240 L85 110 Q200 95 315 110 L315 240 Z" fill={C.grass} opacity="0.85"/>
+        <!-- Silage texture -->
+        <pattern id="silage" patternUnits="userSpaceOnUse" width="5" height="5">
+          <line x1="0" y1="2.5" x2="5" y2="2.5" stroke={C.navy} stroke-width="0.3" opacity="0.4"/>
+        </pattern>
+        <path d="M85 240 L85 110 Q200 95 315 110 L315 240 Z" fill="url(#silage)"/>
+        <!-- Sheet on top -->
+        <path d="M85 110 Q200 95 315 110" fill="none" stroke={C.navy} stroke-width="2"/>
+        <!-- Yellow top of walls -->
+        <line x1="60" y1="90" x2="90" y2="90" stroke={C.yellow} stroke-width="3"/>
+        <line x1="310" y1="90" x2="340" y2="90" stroke={C.yellow} stroke-width="3"/>
+        <!-- Annotation -->
+        <text x="200" y="275" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill={C.navy}>C40/50 SR · XA3 exposure</text>
+      </g>
+    )}
+
+    {/* === Feed Troughs === */}
+    {product === 'feed-troughs' && (
+      <g>
+        <!-- L-shaped trough cross-section -->
+        <path d="M100 240 L100 150 L300 150 L300 175 L130 175 L130 240 Z" fill={C.concrete} stroke={C.navy} stroke-width="2.5"/>
+        <!-- Galvanised steel lip -->
+        <line x1="100" y1="150" x2="305" y2="150" stroke={C.castLight} stroke-width="3"/>
+        <!-- Feed in the trough -->
+        <path d="M133 175 Q200 173 297 175 L297 200 Q200 198 133 200 Z" fill={C.yellow} opacity="0.6"/>
+        <pattern id="silage-feed" patternUnits="userSpaceOnUse" width="3" height="3">
+          <line x1="0" y1="0" x2="3" y2="3" stroke={C.earth} stroke-width="0.3" opacity="0.6"/>
+        </pattern>
+        <path d="M133 175 Q200 173 297 175 L297 200 Q200 198 133 200 Z" fill="url(#silage-feed)"/>
+        <!-- Cow head silhouette suggestion -->
+        <ellipse cx="60" cy="160" rx="18" ry="22" fill={C.navy} opacity="0.85"/>
+        <ellipse cx="50" cy="170" rx="6" ry="3" fill={C.bone}/>
+        <line x1="42" y1="155" x2="38" y2="148" stroke={C.navy} stroke-width="2"/>
+        <!-- Annotation -->
+        <text x="200" y="275" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill={C.navy}>2.44m sections · steel-edged</text>
+      </g>
+    )}
+
+    {/* === Water Troughs === */}
+    {product === 'water-troughs' && (
+      <g>
+        <!-- Trough -->
+        <rect x="90" y="170" width="220" height="55" fill={C.concrete} stroke={C.navy} stroke-width="2.5"/>
+        <!-- Water -->
+        <rect x="100" y="180" width="200" height="38" fill={C.sky}/>
+        <!-- Wave detail -->
+        <path d="M100 188 Q150 184 200 188 T300 188" fill="none" stroke={C.navy} stroke-width="0.8" opacity="0.5"/>
+        <path d="M100 196 Q150 192 200 196 T300 196" fill="none" stroke={C.navy} stroke-width="0.5" opacity="0.4"/>
+        <!-- Ball valve fitting -->
+        <rect x="306" y="160" width="8" height="20" fill={C.cast}/>
+        <circle cx="316" cy="178" r="4" fill={C.ember}/>
+        <!-- Ground -->
+        <rect x="20" y="225" width="360" height="20" fill={C.grass} opacity="0.5"/>
+        <!-- Yellow top edge -->
+        <line x1="90" y1="170" x2="310" y2="170" stroke={C.yellow} stroke-width="2"/>
+        <!-- Annotation -->
+        <text x="200" y="275" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill={C.navy}>1300 × 600 · frost-protected</text>
+      </g>
+    )}
+
+    {/* === Footbaths === */}
+    {product === 'footbaths' && (
+      <g>
+        <!-- Bath cross-section, narrow -->
+        <path d="M80 130 L320 130 L320 220 L300 240 L100 240 L80 220 Z" fill={C.concrete} stroke={C.navy} stroke-width="2.5"/>
+        <!-- Solution -->
+        <path d="M100 200 L300 200 L295 235 L105 235 Z" fill="#3A7BA8" opacity="0.75"/>
+        <!-- Surface ripple -->
+        <line x1="105" y1="200" x2="295" y2="200" stroke={C.bone} stroke-width="1" opacity="0.6"/>
+        <line x1="120" y1="205" x2="280" y2="205" stroke={C.bone} stroke-width="0.5" opacity="0.4"/>
+        <!-- Step into bath -->
+        <line x1="80" y1="130" x2="320" y2="130" stroke={C.yellow} stroke-width="2"/>
+        <!-- Annotation -->
+        <text x="200" y="120" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill={C.navy}>4.0m × 875mm · two-part kit</text>
+        <text x="200" y="275" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" font-weight="600" fill={C.cast}>From £1,425 + VAT delivered</text>
+      </g>
+    )}
+
+    {/* === Box Culverts === */}
+    {product === 'culverts' && (
+      <g>
+        <!-- Box culvert section -->
+        <rect x="80" y="100" width="240" height="140" fill={C.concrete} stroke={C.navy} stroke-width="3"/>
+        <rect x="105" y="125" width="190" height="90" fill={C.bone} stroke={C.navy} stroke-width="2"/>
+        <!-- Earth above -->
+        <rect x="40" y="60" width="320" height="40" fill={C.earth} opacity="0.5"/>
+        <pattern id="earth-cul" patternUnits="userSpaceOnUse" width="4" height="4">
+          <circle cx="2" cy="2" r="0.5" fill={C.cast} opacity="0.4"/>
+        </pattern>
+        <rect x="40" y="60" width="320" height="40" fill="url(#earth-cul)"/>
+        <!-- Reinforcement marker -->
+        <circle cx="90" cy="115" r="2" fill={C.ember}/>
+        <circle cx="310" cy="115" r="2" fill={C.ember}/>
+        <circle cx="90" cy="225" r="2" fill={C.ember}/>
+        <circle cx="310" cy="225" r="2" fill={C.ember}/>
+        <!-- Internal dimension -->
+        <text x="200" y="175" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill={C.navy}>1.0m–3.6m</text>
+        <text x="200" y="270" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="600" fill={C.cast}>BS EN 1916 · HA loading</text>
+        <!-- Yellow accent -->
+        <line x1="80" y1="100" x2="320" y2="100" stroke={C.yellow} stroke-width="2"/>
+      </g>
+    )}
+
+    {/* === Padstones === */}
+    {product === 'padstones' && (
+      <g>
+        <!-- Blockwork wall -->
+        {[0, 1, 2].map((row) => {
+          const y = 240 - row * 30;
+          const offset = row % 2 === 0 ? 0 : 22;
+          return (
+            <g>
+              {[0, 1, 2, 3, 4].map((col) => (
+                <rect x={45 + col * 45 - offset} y={y - 28} width="42" height="26" fill={C.bone} stroke={C.cast} stroke-width="0.8"/>
+              ))}
+            </g>
+          );
+        })}
+        <!-- Padstone (highlighted) -->
+        <rect x="135" y="120" width="120" height="32" fill={C.concrete} stroke={C.navy} stroke-width="3"/>
+        <!-- Steel I-beam on top -->
+        <rect x="155" y="80" width="80" height="6" fill={C.navy}/>
+        <rect x="180" y="86" width="30" height="34" fill={C.navy}/>
+        <rect x="155" y="120" width="80" height="6" fill={C.navy}/>
+        <!-- Yellow accent (load indicator) -->
+        <line x1="195" y1="60" x2="195" y2="78" stroke={C.ember} stroke-width="2"/>
+        <polyline points="190 70, 195 78, 200 70" fill="none" stroke={C.ember} stroke-width="2"/>
+        <!-- Annotation -->
+        <text x="195" y="170" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill={C.yellow}>PADSTONE</text>
+        <text x="200" y="275" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="600" fill={C.cast}>BS EN 1996 · sized to UC/UB</text>
+      </g>
+    )}
+
+    {/* === Vehicle Pits === */}
+    {product === 'vehicle-pits' && (
+      <g>
+        <!-- Ground level -->
+        <line x1="20" y1="130" x2="380" y2="130" stroke={C.cast} stroke-width="2"/>
+        <!-- Pit walls -->
+        <rect x="80" y="130" width="240" height="115" fill={C.bone}/>
+        <rect x="80" y="130" width="240" height="115" fill="none" stroke={C.navy} stroke-width="3"/>
+        <!-- Concrete walls section -->
+        <rect x="60" y="130" width="20" height="115" fill={C.concrete} stroke={C.navy} stroke-width="1"/>
+        <rect x="320" y="130" width="20" height="115" fill={C.concrete} stroke={C.navy} stroke-width="1"/>
+        <rect x="60" y="240" width="280" height="20" fill={C.concrete} stroke={C.navy} stroke-width="1"/>
+        <!-- LED strip indicators (yellow) -->
+        <line x1="85" y1="135" x2="315" y2="135" stroke={C.yellow} stroke-width="2"/>
+        <!-- Tractor wheels straddling pit -->
+        <circle cx="50" cy="120" r="14" fill={C.navy}/>
+        <circle cx="50" cy="120" r="6" fill={C.castLight}/>
+        <circle cx="350" cy="120" r="14" fill={C.navy}/>
+        <circle cx="350" cy="120" r="6" fill={C.castLight}/>
+        <!-- Drainage -->
+        <rect x="190" y="245" width="20" height="6" fill={C.navy}/>
+        <!-- Annotation -->
+        <text x="200" y="195" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill={C.navy}>1.5m × 1.1m × 6.5m</text>
+        <text x="200" y="278" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="600" fill={C.cast}>HSE INDG422 compliant</text>
+      </g>
+    )}
+
+    {/* === Bespoke === */}
+    {(product === 'bespoke' || product === 'bespoke-sector') && (
+      <g>
+        <!-- Drawing → mould → cast → deliver process -->
+        <!-- Step 1: drawing -->
+        <rect x="40" y="100" width="60" height="80" fill={C.bone} stroke={C.navy} stroke-width="2"/>
+        <line x1="48" y1="115" x2="92" y2="115" stroke={C.cast} stroke-width="0.5"/>
+        <line x1="48" y1="125" x2="80" y2="125" stroke={C.cast} stroke-width="0.5"/>
+        <path d="M48 140 L70 130 L92 165" fill="none" stroke={C.navy} stroke-width="1"/>
+        <line x1="48" y1="170" x2="92" y2="170" stroke={C.cast} stroke-width="0.5"/>
+        <!-- Arrow -->
+        <line x1="105" y1="140" x2="125" y2="140" stroke={C.yellow} stroke-width="2.5"/>
+        <polyline points="120 135, 125 140, 120 145" fill="none" stroke={C.yellow} stroke-width="2.5"/>
+        <!-- Step 2: mould -->
+        <rect x="135" y="105" width="55" height="75" fill={C.cast} stroke={C.navy} stroke-width="2"/>
+        <rect x="142" y="115" width="41" height="55" fill={C.bone}/>
+        <!-- Arrow -->
+        <line x1="195" y1="140" x2="215" y2="140" stroke={C.yellow} stroke-width="2.5"/>
+        <polyline points="210 135, 215 140, 210 145" fill="none" stroke={C.yellow} stroke-width="2.5"/>
+        <!-- Step 3: cast -->
+        <rect x="225" y="105" width="55" height="75" fill={C.concrete} stroke={C.navy} stroke-width="2"/>
+        <line x1="225" y1="120" x2="280" y2="120" stroke={C.yellow} stroke-width="1.5"/>
+        <!-- Arrow -->
+        <line x1="285" y1="140" x2="305" y2="140" stroke={C.yellow} stroke-width="2.5"/>
+        <polyline points="300 135, 305 140, 300 145" fill="none" stroke={C.yellow} stroke-width="2.5"/>
+        <!-- Step 4: deliver (lorry silhouette) -->
+        <rect x="315" y="125" width="40" height="35" fill={C.navy}/>
+        <rect x="315" y="115" width="20" height="10" fill={C.navy}/>
+        <circle cx="325" cy="170" r="6" fill={C.ink}/>
+        <circle cx="350" cy="170" r="6" fill={C.ink}/>
+        <!-- Annotation -->
+        <g font-family="Inter, sans-serif" font-size="8" font-weight="700" fill={C.cast} text-anchor="middle">
+          <text x="70" y="200">DESIGN</text>
+          <text x="162" y="200">MOULD</text>
+          <text x="252" y="200">CAST</text>
+          <text x="335" y="200">DELIVER</text>
+        </g>
+        <text x="200" y="270" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill={C.navy}>If it's precast, we can make it</text>
+      </g>
+    )}
+
+    {/* === Interlocking Blocks === */}
+    {product === 'interlocking-blocks' && (
+      <g>
+        <!-- 4-high stack of beton blocks -->
+        {[0, 1, 2, 3].map((row) => {
+          const y = 230 - row * 30;
+          const offset = row % 2 === 0 ? 0 : 35;
+          return (
+            <g>
+              {[0, 1, 2, 3].map((col) => (
+                <g>
+                  <rect x={50 + col * 70 - offset} y={y - 28} width="68" height="28" fill={C.concrete} stroke={C.navy} stroke-width="1.5"/>
+                  <!-- Lugs on top -->
+                  {row < 3 && (
+                    <rect x={68 + col * 70 - offset} y={y - 32} width="32" height="4" fill={C.navy}/>
+                  )}
+                </g>
+              ))}
+            </g>
+          );
+        })}
+        <!-- Yellow corner highlight -->
+        <line x1="50" y1="138" x2="118" y2="138" stroke={C.yellow} stroke-width="3"/>
+        <!-- Annotation -->
+        <text x="200" y="275" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill={C.navy}>1600 × 800 × 800mm · 1485kg</text>
+      </g>
+    )}
+
+    {/* === Cubicle End Walls === */}
+    {product === 'cubicle-end-walls' && (
+      <g>
+        <!-- End wall with integrated trough -->
+        <path d="M100 80 L300 80 L300 200 L320 200 L320 240 L80 240 L80 200 L100 200 Z" fill={C.concrete} stroke={C.navy} stroke-width="2.5"/>
+        <!-- Integrated water trough -->
+        <rect x="120" y="160" width="160" height="35" fill={C.sky} stroke={C.navy} stroke-width="1.5"/>
+        <line x1="125" y1="170" x2="275" y2="170" stroke={C.bone} stroke-width="0.8" opacity="0.7"/>
+        <!-- Lifting points -->
+        <circle cx="130" cy="100" r="4" fill={C.yellow} stroke={C.navy} stroke-width="1.5"/>
+        <circle cx="270" cy="100" r="4" fill={C.yellow} stroke={C.navy} stroke-width="1.5"/>
+        <!-- Annotation -->
+        <text x="200" y="125" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill={C.navy}>End wall + integrated trough</text>
+        <text x="200" y="275" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="600" fill={C.cast}>4.4 × 1.2 × 0.1m double · 1230kg</text>
+      </g>
+    )}
+
+    {/* === Clean Rooms === */}
+    {product === 'clean-rooms' && (
+      <g>
+        <!-- Cleanroom enclosure plan -->
+        <rect x="80" y="80" width="240" height="160" fill={C.bone} stroke={C.navy} stroke-width="3"/>
+        <!-- Internal smooth-cast walls -->
+        <rect x="100" y="100" width="200" height="120" fill={C.white} stroke={C.castLight} stroke-width="1"/>
+        <!-- Robot pit -->
+        <rect x="170" y="135" width="60" height="50" fill={C.navy}/>
+        <text x="200" y="166" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="800" fill={C.yellow}>VMS</text>
+        <!-- Drainage channel -->
+        <line x1="100" y1="200" x2="300" y2="200" stroke={C.ember} stroke-width="2"/>
+        <!-- LED indicators -->
+        <circle cx="120" cy="115" r="2" fill={C.yellow}/>
+        <circle cx="280" cy="115" r="2" fill={C.yellow}/>
+        <!-- Door indication -->
+        <line x1="80" y1="180" x2="80" y2="160" stroke={C.bone} stroke-width="4"/>
+        <path d="M80 180 Q90 170 80 160" fill="none" stroke={C.cast} stroke-width="0.8"/>
+        <!-- Annotation -->
+        <text x="200" y="270" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill={C.navy}>Hygienic plan · all four robot brands</text>
+      </g>
+    )}
+  </svg>
+
+  <!-- Subtle "schematic" watermark -->
+  <div
+    aria-hidden="true"
+    class="absolute bottom-3 left-4 font-mono text-[10px] uppercase tracking-widest text-cast-300 select-none"
+  >
+    WCCP · {product.replace(/-/g, ' ')}
+  </div>
+    </>
+  )}
+</div>

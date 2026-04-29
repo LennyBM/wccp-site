@@ -1,0 +1,245 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import { site } from '@/config/site';
+
+const specs = [
+  { model: 'DeLaval VMS V300', size: '3.6m × 2.4m × 200mm', weight: '4,150 kg', drainage: '110mm centre fall', use: 'Single-box dairy, 60–70 cows/box' },
+  { model: 'DeLaval VMS V310', size: '3.6m × 2.4m × 200mm', weight: '4,150 kg', drainage: '110mm centre fall', use: 'V300 with batch milking option' },
+  { model: 'Lely Astronaut A5', size: '3.4m × 2.2m × 200mm', weight: '3,580 kg', drainage: '110mm offset fall', use: 'Single-box, free-cow-traffic herds' },
+  { model: 'Lely Astronaut A5 Next', size: '3.4m × 2.2m × 220mm', weight: '3,940 kg', drainage: '110mm offset fall', use: 'Latest-generation A5 install' },
+  { model: 'GEA DairyRobot R9500', size: '3.5m × 2.3m × 200mm', weight: '3,850 kg', drainage: '110mm twin fall', use: 'Box-by-box GEA installs' },
+  { model: 'BouMatic MR-S1', size: '3.5m × 2.3m × 200mm', weight: '3,850 kg', drainage: '110mm centre fall', use: 'BouMatic single-box robot' },
+];
+
+const applications = [
+  'New-build robotic milking parlours — single and multi-box',
+  'Conversions from rotary or herringbone to robot',
+  'Replacement bases on first-generation robot upgrades',
+  'Multi-box dairy expansions on grant-funded units',
+  'Dry-cow and fresh-cow group robot bases',
+  'Cleanroom-integrated bases with tanked floor gully',
+  'Mixed-fleet farms running two manufacturers across boxes',
+];
+
+const related = [
+  { href: '/products/clean-rooms', label: 'Clean Rooms', meta: 'Tanked floor gully · machine pit' },
+  { href: '/products/cattle-cubicles', label: 'Cattle Cubicles', meta: 'AHDB 2024 sized' },
+  { href: '/products/water-troughs', label: 'Water Troughs', meta: 'Single + double row' },
+  { href: '/products/slurry-storage', label: 'Slurry Storage', meta: 'SSAFO 2018-compliant' },
+];
+
+const faqs = [
+  { q: 'Which robots do you cast bases for?', a: 'DeLaval VMS V300 and V310, Lely Astronaut A5 and A5 Next, GEA DairyRobot R9500 and BouMatic MR-S1 are catalogue. We hold each manufacturer\'s installation drawing on file and cast the base — anchors, drainage, conduits — to their published tolerance.' },
+  { q: 'How do you handle vibration isolation?', a: 'The base is cast as a separate slab, isolated from the building floor by a 25mm flexible joint and bedded on a 100mm compacted MOT Type 1. The robot manufacturer specifies the isolation detail; we cast it in. Cuts vibration transmission to neighbouring beds and stops the robot logging false fault codes.' },
+  { q: 'Drainage — what do you supply?', a: 'A 110mm uPVC outlet cast through the base with the fall pre-formed for the box layout. Centre fall for VMS, offset for Astronaut, twin fall for GEA. We pour to the millimetre — robot makers are precise about this and a wonky base means a flooded box.' },
+  { q: 'Can you supply a clean room base too?', a: 'Yes — we cast the cleanroom slab and the robot base as a matched set, with a tanked floor gully separating them. See our clean-rooms page for the full spec.' },
+  { q: 'What is the lead time?', a: 'Standard robot bases run 3 to 4 weeks from drawing sign-off. We need the manufacturer\'s install drawing or commissioning pack before we cast — book the engineer in early so we are not waiting for it.' },
+];
+
+const productSchema = {
+  name: 'Precast Milking Robot Bases',
+  description: 'Manufacturer-specific precast bases for DeLaval VMS V300/V310, Lely Astronaut A5/A5 Next, GEA DairyRobot R9500 and BouMatic MR-S1. C40/50 concrete with vibration isolation, cast-in drainage and conduit.',
+  brand: { '@type': 'Brand', name: site.name },
+  manufacturer: { '@type': 'Organization', name: site.name },
+  category: 'Precast concrete equipment base',
+  material: 'Reinforced concrete, C40/50 (BS 8500-1:2023)',
+  weight: {
+    '@type': 'QuantitativeValue',
+    minValue: 3580,
+    maxValue: 4150,
+    unitCode: 'KGM',
+    unitText: 'kilogram per base',
+  },
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 13369 / BS 8500-1:2023' },
+    { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50' },
+    { '@type': 'PropertyValue', name: 'Compatible robots', value: 'DeLaval VMS V300/V310, Lely A5/A5 Next, GEA R9500, BouMatic MR-S1' },
+    { '@type': 'PropertyValue', name: 'Vibration isolation', value: '25mm flexible joint, 100mm MOT Type 1 sub-base' },
+    { '@type': 'PropertyValue', name: 'Drainage', value: '110mm uPVC outlet, manufacturer-specific fall' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '3–4 weeks from drawing sign-off' },
+    { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
+  ],
+  offers: { '@type': 'Offer', priceCurrency: 'GBP', availability: 'https://schema.org/InStock', seller: { '@type': 'Organization', name: site.name } },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+
+<BaseLayout
+  title="Milking Robot Bases — DeLaval · Lely · GEA · BouMatic"
+  description="Precast milking robot bases. DeLaval VMS V300/V310, Lely Astronaut A5/A5 Next, GEA R9500, BouMatic. Vibration isolation, cast-in drainage, C40/50."
+  image="/images/products/milking-robot-bases.jpg"
+  schema="Product"
+  schemaData={productSchema}
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <TrustStrip />
+
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow text-yellow mb-4">Agricultural · robotic dairy</p>
+          <h1 class="font-display text-display-xl text-white mb-4">Milking Robot Bases.</h1>
+          <p class="text-lg text-white/90 leading-relaxed mb-6">
+            Manufacturer-specific precast bases for DeLaval VMS, Lely Astronaut, GEA DairyRobot
+            and BouMatic. Vibration isolation, cast-in drainage, anchor pattern poured to the
+            millimetre. C40/50 concrete, cast in our Holsworthy yard.
+          </p>
+          <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
+            <li class="flex gap-2"><span class="text-yellow">·</span> DeLaval / Lely / GEA</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> BouMatic compatible</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Vibration isolated</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Cast-in drainage</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> C40/50 mix</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 3–4 week lead</li>
+          </ul>
+          <div class="flex flex-wrap gap-3">
+            <a href="/quote?product=Milking+Robot+Bases" class="btn-primary">Configure a quote</a>
+            <a href="/spec-sheets/milking-robot-bases.pdf" class="btn-yellow">Download spec sheet</a>
+            <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">Call {site.contact.phone}</a>
+          </div>
+        </div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
+          <div class="w-full h-full bg-gradient-to-br from-cast-300 via-cast to-navy"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-20">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Specification</p>
+      <h2 class="font-display text-display-lg mb-4">Robot models, base sizes and weights.</h2>
+      <p class="text-cast-700 text-lg">Catalogue bases for current-generation robots. We need the manufacturer\'s install drawing before we cast.</p>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="spec-table w-full text-left border-collapse">
+        <thead class="bg-navy text-white">
+          <tr>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Robot model</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Base size</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Weight</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Drainage</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
+          </tr>
+        </thead>
+        <tbody>
+          {specs.map((s, i) => (
+            <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
+              <td class="px-4 py-3 font-bold text-navy">{s.model}</td>
+              <td class="px-4 py-3">{s.size}</td>
+              <td class="px-4 py-3">{s.weight}</td>
+              <td class="px-4 py-3">{s.drainage}</td>
+              <td class="px-4 py-3 text-cast">{s.use}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow text-cast mb-3">Where they go</p>
+          <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">From a single-box first install to a six-box expansion, we cast each base to the manufacturer\'s anchor pattern and drainage detail.</p>
+          <ul class="space-y-3">
+            {applications.map((a) => (
+              <li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">·</span><span>{a}</span></li>
+            ))}
+          </ul>
+        </div>
+        <div class="card p-8">
+          <p class="eyebrow text-cast mb-3">Standards & references</p>
+          <h3 class="font-display text-2xl font-bold text-navy mb-4">Cast to manufacturer and British standards.</h3>
+          <dl class="space-y-4 text-sm">
+            <div><dt class="font-bold text-navy">BS EN 13369</dt><dd class="text-cast">Common rules for precast concrete — factory production control.</dd></div>
+            <div><dt class="font-bold text-navy">BS 8500-1:2023</dt><dd class="text-cast">Concrete spec — C40/50 designed mix for dairy environments.</dd></div>
+            <div><dt class="font-bold text-navy">BS 5502-22:2003</dt><dd class="text-cast">Agricultural buildings — cattle housing loadings.</dd></div>
+            <div><dt class="font-bold text-navy">Manufacturer install drawings</dt><dd class="text-cast">DeLaval, Lely, GEA and BouMatic published install tolerances followed exactly.</dd></div>
+            <div><dt class="font-bold text-navy">BS EN 1992 (Eurocode 2)</dt><dd class="text-cast">Structural design of concrete — base reinforcement designed in-house.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-yellow text-navy py-16">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-navy mb-2">Configure your robot base</p>
+          <h2 class="font-display text-display-md">Tell us robot model, box count and shed dimensions — we will quote inside 24 hours.</h2>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href="/quote?product=Milking+Robot+Bases" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
+          <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-20">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
+      <div>
+        <p class="eyebrow text-cast mb-3">Related products</p>
+        <h2 class="font-display text-display-lg">Often ordered alongside.</h2>
+      </div>
+      <a href="/products" class="text-ember font-bold hover:text-ember-700 inline-flex items-center gap-2">View full range
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" /><polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </a>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {related.map((r) => (
+        <a href={r.href} class="card p-5 group">
+          <div class="aspect-[16/10] bg-cast-100 mb-4 rounded overflow-hidden">
+            <div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100"></div>
+          </div>
+          <h3 class="font-display text-base font-bold text-navy mb-1 group-hover:text-ember">{r.label}</h3>
+          <p class="text-cast text-xs">{r.meta}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">Common questions</p>
+        <h2 class="font-display text-display-lg mb-4">What people ask about robot bases.</h2>
+        <p class="text-cast-700 text-lg">Five questions we answer most weeks. If yours is not here, ring the yard.</p>
+      </div>
+      <div class="max-w-3xl space-y-4">
+        {faqs.map((f) => (
+          <details class="card p-6 group">
+            <summary class="font-display text-lg font-bold text-navy cursor-pointer list-none flex justify-between items-start gap-4">
+              <span>{f.q}</span>
+              <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-navy text-white py-20">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
+      <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">Send us robot model, box count and the shed drawing. Quote and lead-time same day.</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/quote?product=Milking+Robot+Bases" class="btn-yellow">Configure a quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,348 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+type FAQ = { q: string; a: string };
+
+const faqGroups: { id: string; title: string; eyebrow: string; faqs: FAQ[] }[] = [
+  {
+    id: 'products',
+    eyebrow: 'Products & specifications',
+    title: 'What we make and how it\'s built',
+    faqs: [
+      {
+        q: 'What standards do you manufacture to?',
+        a: 'Everything that leaves the yard is made to BS EN 13369 (common rules for precast products), BS EN 14992 for wall elements, BS EN 13225 for linear structural elements, and BS 8500 for concrete specification. Agricultural panels carry CE/UKCA marking where required.',
+      },
+      {
+        q: 'What concrete grade do you use?',
+        a: 'Standard mix is C40/50 sulphate-resisting with CEM II/B-V cement and a maximum water-cement ratio of 0.45. For slurry, silage and aggressive ground conditions we go to C50/60 with DC-4 designation. Bespoke mixes available on request.',
+      },
+      {
+        q: 'What thicknesses are prestressed panels available in?',
+        a: 'Standard prestressed wall panels come in 100mm, 150mm, 180mm and 280mm thicknesses, in widths from 1.0m to 2.5m and lengths up to 12m. Bespoke sizing available.',
+      },
+      {
+        q: 'Can you make bespoke shapes?',
+        a: 'Yes. We design, mould and cast one-offs all the time — from architectural copings to non-standard culvert sections. Send a sketch or DWG and we\'ll come back with feasibility, cost and a lead time.',
+      },
+      {
+        q: 'What\'s the difference between prestressed and reinforced?',
+        a: 'Reinforced concrete uses passive steel bars to handle tension. Prestressed concrete uses high-tensile strands tensioned before the concrete cures, putting the panel into permanent compression. The result: thinner, stronger, longer-spanning panels with far better crack resistance — particularly important for slurry and silage applications.',
+      },
+      {
+        q: 'How long does precast concrete last?',
+        a: 'Properly specified precast concrete has a 50-100 year design life. Our oldest panels still in service date back to the 1970s. The two enemies are sulphate attack (handled by mix design) and impact damage (handled by panel thickness and reinforcement).',
+      },
+      {
+        q: 'Are your products fire-rated?',
+        a: 'Concrete is non-combustible. Our standard wall panels achieve REI 120 (120 minutes integrity, insulation and load-bearing) under BS EN 13501-2 fire classification. Higher ratings available for specific applications.',
+      },
+      {
+        q: 'Can panels be painted, rendered or clad?',
+        a: 'Yes — concrete takes paint, render, timber cladding or stone facing readily. We can supply panels with a smooth as-cast finish, a textured finish, or pre-drilled fixings for cladding battens. Specify at order.',
+      },
+    ],
+  },
+  {
+    id: 'ordering',
+    eyebrow: 'Ordering & delivery',
+    title: 'Lead times, transport, install',
+    faqs: [
+      {
+        q: 'What\'s the lead time?',
+        a: 'For stock items: same week if you ring before Wednesday. For made-to-order standard products: 2-4 weeks. For bespoke or large civils projects: 4-8 weeks depending on mould availability and quantity. We\'ll give you a real date, not a guess.',
+      },
+      {
+        q: 'Do you deliver to my postcode?',
+        a: 'We deliver across Devon, Cornwall, Somerset, Dorset, Wiltshire and onwards across the UK. Devon and Cornwall are our home patch — most loads go out on our own wagons. National deliveries use trusted hauliers with the right kit for precast.',
+      },
+      {
+        q: 'What\'s the minimum order?',
+        a: 'No formal minimum, but transport efficiency means a single panel will cost more per unit than a full load. Most customers order by the load (8-12 panels) or by the project. Trade and merchant accounts welcome.',
+      },
+      {
+        q: 'Do you offer installation?',
+        a: 'Increasingly, yes. We have a small install team for slurry stores, silage clamps and retaining walls. For larger civils projects we work with trusted groundwork contractors we can recommend.',
+      },
+      {
+        q: 'How are products craned into place?',
+        a: 'Panels are supplied with cast-in lifting anchors (Halfen-style). On site you\'ll need a HIAB-equipped delivery wagon, a telehandler or a crane depending on weight. Our delivery driver can position panels with our HIAB for most farm jobs.',
+      },
+      {
+        q: 'What\'s the delivery cost?',
+        a: 'Built into the quote and based on postcode, load size and access. Local Devon/Cornwall deliveries are typically £150-£400 per load. National deliveries are quoted per job. Self-collection welcome from the yard at Holsworthy.',
+      },
+      {
+        q: 'Do you have stock for same-week pickup?',
+        a: 'Yes — we keep buffer stock of our most popular cubicle beds, prestressed panels, A-panels and L-blocks. Ring the yard before you set off and we\'ll confirm what\'s on the ground.',
+      },
+      {
+        q: 'How is pricing structured?',
+        a: 'Per panel for catalogue products, per linear metre for wall systems, per project for civils and bespoke. Prices include casting and lifting anchors. Transport, install and VAT are itemised separately on every quote.',
+      },
+    ],
+  },
+  {
+    id: 'agricultural',
+    eyebrow: 'Agricultural',
+    title: 'Farm-specific questions',
+    faqs: [
+      {
+        q: 'Are your slurry products SSAFO 2018-compliant?',
+        a: 'Yes. All our slurry storage panels meet The Water Resources (Control of Pollution) (Silage, Slurry and Agricultural Fuel Oil) (England) Regulations 2010 as amended in 2018. Designed for 6-month minimum storage capacity, watertight joints, and compliant freeboard.',
+      },
+      {
+        q: 'What size cubicles do you make for different breeds?',
+        a: 'Standard sizes: Holstein-Friesian — 2.4m × 1.2m. Jersey — 2.1m × 1.1m. Beef sucklers — 2.5m × 1.25m. Heifers — 2.2m × 1.1m. Custom sizes for crossbreeds or unusual herds available — send us your average mature cow weight.',
+      },
+      {
+        q: 'How much slurry storage do I need?',
+        a: 'For SSAFO compliance you need a minimum 6 months. For a 200-cow dairy herd that\'s typically 2,500-3,000m³. We\'ll size it from your herd numbers, housing system and rainfall catchment. Use our slurry calculator on the slurry-storage product page.',
+      },
+      {
+        q: 'Do you make milking robot bases?',
+        a: 'Yes — bespoke pre-cast bases for DeLaval VMS, Lely Astronaut and GEA DairyRobot installations. Cast with the right falls, drainage, cable ducts and bolt-down points. Lead time 3-4 weeks from drawing approval.',
+      },
+      {
+        q: 'How do I design a silage clamp?',
+        a: 'Start with tonnage required, then density (we use 700kg/m³ wilted grass), then divide by usable height (typically 3m). We use C40/50 sulphate-resisting concrete with effluent channels and non-slip aprons. We\'ll do the design with you — bring rough dimensions and intended throughput.',
+      },
+      {
+        q: 'How do I mount feed troughs?',
+        a: 'Our feed troughs come with cast-in fixings for bolting to a slab, or as freestanding units with footplates. For new builds we recommend cast-in bolt boxes set into the slab pour. We can supply a setting-out drawing.',
+      },
+      {
+        q: 'Do you make footbaths?',
+        a: 'Yes. Standard precast footbath is 3.0m × 0.8m × 0.15m deep, with a non-slip base and integral drain. Pre-bath wash sections also available. SSAFO-compliant where used as a hard standing.',
+      },
+      {
+        q: 'Can you supply for organic and welfare schemes?',
+        a: 'Yes — our standard cubicle dimensions, lying surfaces and group housing layouts are designed to comply with RSPCA Assured, Red Tractor and Soil Association space requirements. Confirm specifics at quote stage.',
+      },
+    ],
+  },
+  {
+    id: 'civils',
+    eyebrow: 'Civils & infrastructure',
+    title: 'For contractors, engineers, specifiers',
+    faqs: [
+      {
+        q: 'Are your products CE / UKCA marked?',
+        a: 'Yes. Wall panels are marked to BS EN 14992, structural elements to BS EN 13225, retaining systems to BS EN 1992-1-1. Declarations of Performance (DoP) issued with every order.',
+      },
+      {
+        q: 'Are you on any frameworks?',
+        a: 'We supply Tier 1 and Tier 2 contractors directly and are a named supplier on several South West regional frameworks. Constructionline registration and CHAS approval — confirm specifics with the office.',
+      },
+      {
+        q: 'What\'s the lead time on a spec\'d civils project?',
+        a: 'From drawing approval to first delivery: typically 4-6 weeks for standard sections, 6-10 weeks for bespoke moulds. Phased deliveries to suit programme — tell us your install rate and we\'ll match it.',
+      },
+      {
+        q: 'Do you provide EPDs?',
+        a: 'Yes — Environmental Product Declarations available for all major product lines, generated to EN 15804 + A2. CO₂e per m³ data on request for whole-life carbon assessments.',
+      },
+      {
+        q: 'Can you provide drawings, CAD blocks or BIM objects?',
+        a: 'Yes. PDF data sheets, .dwg blocks (for AutoCAD), and Revit .rfa families available. Email-gated downloads on our /downloads page, or talk to the design office for project-specific output.',
+      },
+      {
+        q: 'Do you design retaining walls?',
+        a: 'Yes — our in-house team designs King Post, L-Block and cantilever systems to Eurocode 7. Provide ground conditions, retained height and surcharge loadings and we\'ll come back with a sized system, drawings, and structural calculations stamped by a chartered engineer.',
+      },
+    ],
+  },
+  {
+    id: 'grants',
+    eyebrow: 'Grants & funding',
+    title: 'SIG, FETF and how we help',
+    faqs: [
+      {
+        q: 'What is SIG Round 4?',
+        a: 'The Slurry Infrastructure Grant Round 4 is a £74m DEFRA fund that pays 50% of slurry store, cover and separator costs in England. Round 4 closes 30 September 2026. We help with eligibility, sizing, quotes and timeline — see our slurry-grant guide.',
+      },
+      {
+        q: 'What is FETF 2026/2027?',
+        a: 'The Farming Equipment and Technology Fund offers grants of £1k-£25k for productivity, slurry and animal-health equipment. Items are pre-listed by DEFRA. Several of our products are eligible — check our FETF guide for the current list.',
+      },
+      {
+        q: 'Which of your products are grant-eligible?',
+        a: 'Slurry storage panels, slurry separators, covered yards, and certain animal-housing items typically qualify under SIG and FETF. Eligibility changes between rounds — confirm with us before you specify.',
+      },
+      {
+        q: 'Can you help with the application?',
+        a: 'We can\'t fill it in for you (that\'s your job or your agent\'s) but we provide everything you need: specification, drawings, itemised quotes, supplier statements and timeline. Many applicants use us alongside an agricultural consultant — happy to recommend one local.',
+      },
+      {
+        q: 'When are the deadlines?',
+        a: 'SIG Round 4: closes 30 September 2026. FETF 2026: rolling windows announced quarterly by DEFRA. Sign up to our newsletter for deadline alerts, or check the /grants pages for current dates.',
+      },
+    ],
+  },
+  {
+    id: 'company',
+    eyebrow: 'About us',
+    title: 'Who we are and where we\'re from',
+    faqs: [
+      {
+        q: 'How long have you been trading?',
+        a: 'We started casting in 1971 — that\'s 55 years of precast in North Devon. Three generations of the same family business, now in a purpose-built yard near Holsworthy.',
+      },
+      {
+        q: 'Where are you based?',
+        a: 'Off Andigestion Lane, Chilsworthy, Holsworthy, Devon EX22 7HH. Beside the Severn Trent biogas plant. Visitors welcome by appointment.',
+      },
+      {
+        q: 'Are you insured?',
+        a: 'Yes — £10m public liability, £5m product liability, and full employers\' liability. Certificates available on request before any contract.',
+      },
+      {
+        q: 'Are you family-owned?',
+        a: 'Yes. Founded by the Millard family in 1971 and still family-led. The next generation are working in the yard now.',
+      },
+      {
+        q: 'How far do you trade?',
+        a: 'Devon, Cornwall, Somerset, Dorset and Wiltshire are our home turf. We deliver to projects across the UK regularly — recent jobs in Yorkshire, Lancashire, Wales and the Scottish Borders. If you\'re willing to pay the carriage we\'re willing to load the wagon.',
+      },
+    ],
+  },
+];
+
+const allFaqs = faqGroups.flatMap((g) => g.faqs);
+
+const schemaData = {
+  mainEntity: allFaqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+---
+
+<BaseLayout
+  title="FAQs — answers from the yard"
+  description="Forty answers to the questions we get asked most: products, lead times, agricultural, civils, grants and the company. Plain Devon English, no fluff."
+  schema="FAQPage"
+  schemaData={schemaData}
+>
+  <!-- Hero -->
+  <section class="relative bg-navy text-white overflow-hidden">
+    <div class="relative container-wccp py-20 md:py-24">
+      <div class="max-w-3xl">
+        <p class="eyebrow text-yellow mb-6">Forty straight answers</p>
+        <h1 class="font-display text-display-2xl text-white mb-6">
+          The questions we get asked most.<br />
+          <span class="text-yellow">Answered plainly.</span>
+        </h1>
+        <p class="text-lg md:text-xl text-white/90 max-w-2xl leading-relaxed">
+          If yours isn't here, ring the yard on {site.contact.phone} or send a WhatsApp.
+          We answer the phone — that's still the fastest way.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search + jump nav -->
+  <section class="bg-bone-200 py-10 sticky top-0 z-30 border-b border-cast-200">
+    <div class="container-wccp">
+      <div class="grid md:grid-cols-[1fr_auto] gap-4 items-center">
+        <div>
+          <label for="faq-search" class="sr-only">Search FAQs</label>
+          <input
+            id="faq-search"
+            type="search"
+            placeholder="Search the FAQs… (try 'slurry' or 'lead time')"
+            class="input"
+            autocomplete="off"
+          />
+        </div>
+        <div class="flex flex-wrap gap-2 justify-start md:justify-end">
+          {faqGroups.map((g) => (
+            <a href={`#${g.id}`} class="btn-ghost text-xs px-3 py-1.5">{g.eyebrow}</a>
+          ))}
+        </div>
+      </div>
+      <p id="faq-empty" class="hidden mt-4 text-cast text-sm">
+        No FAQs match that search. Ring the yard on {site.contact.phone}.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ groups -->
+  {faqGroups.map((g, i) => (
+    <section id={g.id} class={`py-16 md:py-20 ${i % 2 === 1 ? 'bg-bone-200' : ''}`}>
+      <div class="container-wccp">
+        <div class="max-w-2xl mb-10">
+          <p class="eyebrow text-cast mb-3">{g.eyebrow}</p>
+          <h2 class="font-display text-display-lg">{g.title}</h2>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-4 faq-list">
+          {g.faqs.map((f) => (
+            <details class="faq-item card p-6 group" data-question={f.q.toLowerCase()} data-answer={f.a.toLowerCase()}>
+              <summary class="font-display text-lg font-bold text-navy cursor-pointer list-none flex items-start justify-between gap-4">
+                <span class="flex-1">{f.q}</span>
+                <span class="text-ember text-2xl leading-none transition-transform group-open:rotate-45 select-none">+</span>
+              </summary>
+              <p class="mt-4 text-cast-700 leading-relaxed">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- Final CTA -->
+  <section class="bg-yellow text-navy py-12">
+    <div class="container-wccp text-center">
+      <p class="eyebrow text-navy mb-3">Still stuck?</p>
+      <h2 class="font-display text-display-md mb-3">Ring the yard. We answer the phone.</h2>
+      <p class="text-navy text-lg max-w-2xl mx-auto mb-8">
+        Same-day callback, Monday to Friday. Or WhatsApp with photos and rough sizes — we'll work with what you've got.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href="/contact" class="btn bg-navy text-white hover:bg-navy-700">Send a message</a>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      const search = document.getElementById('faq-search');
+      const empty = document.getElementById('faq-empty');
+      const items = Array.from(document.querySelectorAll('.faq-item'));
+      const sections = Array.from(document.querySelectorAll('section[id]'));
+
+      if (!search) return;
+
+      search.addEventListener('input', function () {
+        const q = (search.value || '').trim().toLowerCase();
+        let visible = 0;
+
+        items.forEach(function (item) {
+          const text = (item.dataset.question || '') + ' ' + (item.dataset.answer || '');
+          const match = !q || text.indexOf(q) !== -1;
+          item.style.display = match ? '' : 'none';
+          if (match) visible++;
+        });
+
+        // hide empty group sections
+        sections.forEach(function (sec) {
+          const list = sec.querySelector('.faq-list');
+          if (!list) return;
+          const anyVisible = Array.from(list.querySelectorAll('.faq-item')).some(function (el) {
+            return el.style.display !== 'none';
+          });
+          sec.style.display = anyVisible ? '' : 'none';
+        });
+
+        if (empty) empty.classList.toggle('hidden', visible !== 0);
+      });
+    })();
+  </script>
+</BaseLayout>

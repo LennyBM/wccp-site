@@ -1,0 +1,205 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const towns = [
+  { name: 'Launceston', drive: '25 min' },
+  { name: 'Bude', drive: '20 min' },
+  { name: 'Bodmin', drive: '50 min' },
+  { name: 'Camelford', drive: '40 min' },
+  { name: 'Wadebridge', drive: '55 min' },
+  { name: 'Newquay', drive: '70 min' },
+  { name: 'St Austell', drive: '75 min' },
+  { name: 'Truro', drive: '80 min' },
+  { name: 'Camborne', drive: '95 min' },
+  { name: 'Falmouth', drive: '95 min' },
+  { name: 'Penzance', drive: '110 min' },
+  { name: 'Liskeard', drive: '60 min' },
+];
+
+const faqs = [
+  {
+    q: 'How far do you deliver in Cornwall?',
+    a: "Anywhere in the county. The Holsworthy yard sits ten miles from the Cornish border on the A3072 — we're routinely delivering to West Penwith, the Lizard and the Roseland Peninsula on a single day's run.",
+  },
+  {
+    q: 'Do you supply Cornish dairy farms?',
+    a: 'Regularly. North and East Cornwall dairies — around Launceston, Camelford and Wadebridge — make up a meaningful share of our annual order book. We supply slurry stores, cubicles, robot bases and silage clamp walls across the duchy.',
+  },
+  {
+    q: 'Can you handle Cornwall\'s narrow lanes and hill access?',
+    a: "Yes. We use 8-wheel rigid lorries for tight Cornish lanes and four-axle artics where access allows. Our drivers know the lanes — and where they don't, we'll do a recce ahead of the first load.",
+  },
+  {
+    q: 'Do you work with Cornwall Council and Cornish civils contractors?',
+    a: 'Yes. We supply precast retaining walls, padstones and bespoke civils items into the Cornwall Council framework supply chain and to principal contractors working across the duchy and the Tamar crossings.',
+  },
+  {
+    q: 'How quickly can you deliver to West Cornwall?',
+    a: 'Standard catalogue items leave the yard within five working days for delivery anywhere in Cornwall. Bespoke and prestressed items run to a casting schedule — call the yard for a current lead time.',
+  },
+];
+
+const localBusinessSchema = {
+  areaServed: {
+    '@type': 'AdministrativeArea',
+    name: 'Cornwall, United Kingdom',
+  },
+  mainEntityOfPage: 'https://westcountryconcreteproducts.co.uk/areas/cornwall',
+};
+---
+
+<BaseLayout
+  title="Precast concrete supplier serving Cornwall farms and contractors"
+  description="WCCP precast concrete delivered across Cornwall — Truro, Launceston, Bodmin, Penzance and beyond. Slurry stores, cubicles, retaining walls. Cast in Holsworthy since 1971."
+  schema="LocalBusiness"
+  schemaData={localBusinessSchema}
+>
+  <!-- Hero -->
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <nav class="text-sm text-white/90 mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-yellow">Home</a>
+        <span class="mx-2 text-cast">/</span>
+        <a href="/areas" class="hover:text-yellow">Areas served</a>
+        <span class="mx-2 text-cast">/</span>
+        <span class="text-white/90">Cornwall</span>
+      </nav>
+      <p class="eyebrow text-yellow mb-5">Cornwall · across the Tamar</p>
+      <h1 class="font-display text-display-xl text-white mb-5 max-w-4xl">
+        Precast concrete supplier serving Cornwall farms and contractors.
+      </h1>
+      <p class="text-lg text-white/90 max-w-2xl leading-relaxed mb-8">
+        Holsworthy to Penzance is a single working day for our fleet. Cornwall is half our weekly
+        delivery route — dairies near Launceston, beef sheds toward Bodmin, silage clamps on the
+        Roseland — we know the lanes and we cast for the climate.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="/quote" class="btn-primary">Get a Cornwall quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-yellow">Call {site.contact.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Coverage map placeholder + drive times -->
+  <section class="container-wccp py-16">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <p class="eyebrow text-cast mb-3">Where we deliver</p>
+        <h2 class="font-display text-display-lg mb-5">Right across the duchy, on our own lorries.</h2>
+        <p class="text-cast-700 text-lg leading-relaxed mb-4">
+          The yard's on the A3072 ten miles from the Cornish border. From there we run loads daily
+          across North Cornwall, weekly to West Penwith and the Lizard, and we'll route around
+          tractor traffic on the Atlantic Highway when the season's on.
+        </p>
+        <p class="text-cast-700 text-lg leading-relaxed">
+          Cornish jobs get the same delivery commitment as Devon — most catalogue items land within
+          a week, big bespoke jobs schedule against the casting bed.
+        </p>
+      </div>
+
+      <div class="aspect-[4/3] bg-bone-200 rounded-lg border border-cast-100 relative overflow-hidden">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <svg viewBox="0 0 200 200" class="w-3/4 h-3/4 text-navy/10">
+            <path d="M30 90 Q40 70 80 75 Q120 70 160 90 Q175 110 165 130 Q120 145 80 135 Q40 130 25 115 Q22 100 30 90 Z" fill="currentColor" />
+          </svg>
+        </div>
+        <div class="absolute top-[20%] right-[18%] w-3 h-3 rounded-full bg-ember ring-4 ring-ember/20"></div>
+        <div class="absolute top-[15%] right-[10%] text-xs font-bold text-navy bg-white px-2 py-1 rounded shadow-soft">
+          Holsworthy yard
+        </div>
+        <div class="absolute bottom-3 right-3 text-[11px] text-cast">Coverage map · placeholder</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Towns served -->
+  <section class="bg-bone-200 py-16">
+    <div class="container-wccp">
+      <p class="eyebrow text-cast mb-3">Towns we cover</p>
+      <h2 class="font-display text-display-lg mb-8">Drive times from the Holsworthy yard</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+        {towns.map((t) => (
+          <div class="card p-4 flex items-center justify-between">
+            <span class="font-display font-bold text-navy">{t.name}</span>
+            <span class="text-xs text-cast font-medium">{t.drive}</span>
+          </div>
+        ))}
+      </div>
+      <p class="text-sm text-cast mt-6 italic">
+        Outside this list? We cover the duchy end to end — call the yard for a haulage quote.
+      </p>
+    </div>
+  </section>
+
+  <!-- Local case studies teaser -->
+  <section class="container-wccp py-16">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-8 gap-4">
+      <div>
+        <p class="eyebrow text-cast mb-3">Cornwall work</p>
+        <h2 class="font-display text-display-lg">Recent jobs in the duchy.</h2>
+      </div>
+      <a href="/case-studies" class="text-ember font-bold hover:text-ember-700 inline-flex items-center gap-2">
+        All Cornwall case studies
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+          <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-5">
+      <a href="/case-studies/cornish-beef-cubicles" class="card p-6 group">
+        <span class="eyebrow text-ember mb-3 block">St Erme · 2025</span>
+        <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Trewithen Barton — 180-cow cubicle shed</h3>
+        <p class="text-cast text-sm leading-relaxed">95 tonnes of cubicles fitted in six days, herd settled in 48 hours.</p>
+      </a>
+      <a href="/case-studies/cornish-anaerobic-digester" class="card p-6 group">
+        <span class="eyebrow text-ember mb-3 block">Wadebridge · 2024</span>
+        <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Polmorla AD plant — bespoke tank panels</h3>
+        <p class="text-cast text-sm leading-relaxed">540 tonnes of bespoke AD tank panels engineered around the digester geometry.</p>
+      </a>
+      <a href="/case-studies" class="card p-6 group">
+        <span class="eyebrow text-ember mb-3 block">More Cornwall jobs</span>
+        <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Browse all Cornwall case studies</h3>
+        <p class="text-cast text-sm leading-relaxed">Filter the case study index by Cornwall to see every project we've documented in the duchy.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-bone-200 py-16">
+    <div class="container-wccp max-w-3xl">
+      <p class="eyebrow text-cast mb-3">Cornwall FAQ</p>
+      <h2 class="font-display text-display-lg mb-8">Local questions, local answers.</h2>
+      <div class="space-y-3">
+        {faqs.map((f) => (
+          <details class="card p-5 group">
+            <summary class="font-display text-lg font-bold text-navy cursor-pointer flex items-start justify-between gap-4">
+              <span>{f.q}</span>
+              <svg class="w-5 h-5 mt-1 flex-shrink-0 text-ember transition-transform group-open:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19" stroke-linecap="round"/>
+                <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+              </svg>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-yellow text-navy py-12">
+    <div class="container-wccp text-center max-w-2xl mx-auto">
+      <h2 class="font-display text-display-md mb-3">Cornwall job to spec?</h2>
+      <p class="text-navy text-lg mb-6">
+        Call the yard, send a sketch on WhatsApp, or fill in the quote form — same-day callback Mon–Fri.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href="/quote" class="btn bg-navy text-white hover:bg-navy-700">Start a quote</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

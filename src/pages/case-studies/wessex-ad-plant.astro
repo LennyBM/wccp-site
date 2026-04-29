@@ -1,0 +1,186 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const facts = [
+  { label: 'Client', value: 'Wessex AD (placeholder name)' },
+  { label: 'Location', value: 'Near Yeovil, Somerset' },
+  { label: 'Sector', value: 'Bespoke — anaerobic digestion' },
+  { label: 'Products', value: '6× custom precast tank sections, bespoke moulds' },
+  { label: 'Concrete', value: '3,200 tonnes' },
+  { label: 'Lead time', value: '8 weeks design + 3 weeks install' },
+  { label: 'Project value', value: '£580,000' },
+  { label: 'Standards', value: 'BS EN 1992-3, BS 8007 watertight design' },
+  { label: 'Completed', value: 'September 2024' },
+];
+
+const articleSchema = {
+  author: {
+    '@type': 'Person',
+    name: 'WCCP engineering team',
+    description: 'Family-run precast concrete manufacturer in Holsworthy, North Devon, casting since 1971.',
+  },
+  datePublished: '2024-10-15',
+  mainEntityOfPage: 'https://westcountryconcreteproducts.co.uk/case-studies/wessex-ad-plant',
+};
+---
+
+<BaseLayout
+  title="Wessex AD — bespoke digestate tanks, near Yeovil, Somerset"
+  description="WCCP cast six bespoke precast tank sections — 3,200 tonnes — for an anaerobic digestion plant near Yeovil. Eight weeks of design, three weeks of install."
+  image="/images/case-studies/wessex-ad-plant.jpg"
+  schema="Article"
+  schemaData={articleSchema}
+>
+  <section class="relative bg-navy text-white">
+    <div class="aspect-[16/7] md:aspect-[16/6] bg-gradient-to-br from-navy via-navy-700 to-cast-700 relative">
+      <div class="absolute inset-0 hero-gradient"></div>
+      <div class="absolute bottom-0 left-0 right-0 container-wccp pb-10 md:pb-14">
+        <nav class="text-sm text-white/90 mb-4" aria-label="Breadcrumb">
+          <a href="/case-studies" class="hover:text-yellow">Case studies</a>
+          <span class="mx-2 text-cast-300">/</span>
+          <span class="text-white/90">Wessex AD plant</span>
+        </nav>
+        <p class="eyebrow text-yellow mb-3">Bespoke · Somerset · 2024</p>
+        <h1 class="font-display text-display-xl text-white mb-3 max-w-3xl">Wessex AD — bespoke digestate tanks</h1>
+        <p class="text-white/90 text-lg max-w-2xl">
+          Six custom-cast precast tank sections for digestate storage and reception. 3,200 tonnes,
+          bespoke moulds, watertight to BS 8007 — supplied to an anaerobic digestion plant near Yeovil.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-bone-200 border-b border-cast-100">
+    <div class="container-wccp py-8">
+      <div class="grid grid-cols-3 gap-6 max-w-3xl mx-auto text-center">
+        <div>
+          <div class="font-display font-bold text-display-lg text-navy leading-none">3,200t</div>
+          <div class="text-cast text-sm uppercase tracking-wide mt-2">Concrete delivered</div>
+        </div>
+        <div>
+          <div class="font-display font-bold text-display-lg text-navy leading-none">11</div>
+          <div class="text-cast text-sm uppercase tracking-wide mt-2">Weeks total</div>
+        </div>
+        <div>
+          <div class="font-display font-bold text-display-lg text-navy leading-none">£580k</div>
+          <div class="text-cast text-sm uppercase tracking-wide mt-2">Project value</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-12 md:py-16">
+    <div class="grid lg:grid-cols-[1fr_18rem] gap-10 lg:gap-16">
+      <div class="max-w-3xl">
+
+        <p class="text-2xl font-display text-navy leading-snug mb-10 border-l-4 border-yellow pl-5">
+          A bespoke commission, not a catalogue job. We designed the moulds, cast the sections, hauled them
+          to Somerset and installed a watertight digestate store no other UK supplier had quoted on time.
+        </p>
+
+        <h2 class="font-display text-2xl text-navy mb-3">The challenge</h2>
+        <p class="text-cast-700 text-lg leading-relaxed mb-8">
+          Wessex AD's process engineer needed digestate storage and a reception pit sized for the plant's
+          design throughput, with geometry that didn't match any standard precast catalogue. National
+          suppliers came back with 26-week leads. The build programme had eleven weeks. The owner phoned
+          Holsworthy on a Friday afternoon.
+        </p>
+
+        <h2 class="font-display text-2xl text-navy mb-3">The solution</h2>
+        <p class="text-cast-700 text-lg leading-relaxed mb-4">
+          We designed six custom precast tank sections — four for the main digestate store and two for the
+          reception pit — to BS EN 1992-3 with watertight detailing to BS 8007 principles. C40/50
+          sulphate-resisting concrete, 280mm wall thickness, integral kicker and waterstop continuity at
+          every joint. Our drawing office took the process engineer's GA and turned it into a cast schedule
+          inside ten days.
+        </p>
+        <p class="text-cast-700 text-lg leading-relaxed mb-4">
+          Bespoke timber-and-steel moulds were built at the yard for the curved sections — eight weeks
+          of fabrication and casting, running two pours a week so the sections cured under controlled
+          conditions before transport. Each unit was hydrostatically tested at the yard before it left, so
+          the only watertightness checks on site were the joint seals between sections.
+        </p>
+        <p class="text-cast-700 text-lg leading-relaxed mb-8">
+          Install ran for three weeks on a single artic delivery cycle — one section per day, set, sealed
+          and signed off by our engineer before the next arrived. The process engineer was on the phone for
+          the first three lifts and on holiday for the rest.
+        </p>
+
+        <h2 class="font-display text-2xl text-navy mb-4">From the yard to site</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-10">
+          {[1,2,3,4,5,6].map(() => (
+            <div class="aspect-square bg-gradient-to-br from-cast-200 to-cast-100 rounded"></div>
+          ))}
+        </div>
+
+        <blockquote class="bg-navy text-white p-8 md:p-10 rounded-lg mb-10">
+          <svg class="w-10 h-10 text-yellow mb-4" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 7H5a2 2 0 00-2 2v4a2 2 0 002 2h2v2a2 2 0 01-2 2H4v2h1a4 4 0 004-4V7zm10 0h-4a2 2 0 00-2 2v4a2 2 0 002 2h2v2a2 2 0 01-2 2h-1v2h1a4 4 0 004-4V7z"/>
+          </svg>
+          <p class="font-display text-xl md:text-2xl text-white leading-snug mb-4">
+            We had three nationals tell us 26 weeks. WCCP took the drawing on Friday and had our first
+            section in the ground eleven weeks later. They make bespoke feel like catalogue.
+          </p>
+          <footer class="text-white/90">
+            <span class="font-bold text-white">Sarah (placeholder)</span> · Process engineer, AD plant near Yeovil
+          </footer>
+        </blockquote>
+
+        <h2 class="font-display text-2xl text-navy mb-3">The result</h2>
+        <p class="text-cast-700 text-lg leading-relaxed mb-10">
+          The plant commissioned on schedule with full digestate storage and a watertight reception pit
+          that passed first inspection. Eleven weeks from drawing to handover, against a 26-week national
+          lead. We've quoted three more AD plants since, off the back of the photos alone.
+        </p>
+
+        <section class="bg-bone-200 border border-cast-100 rounded-lg p-8">
+          <h2 class="font-display text-2xl text-navy mb-3">Bespoke commission?</h2>
+          <p class="text-cast-700 leading-relaxed mb-6">
+            If it's precast and it can be delivered, we can make it. Send a GA, a sketch, even a photo with
+            measurements — we'll come back with a feasibility note inside a week.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="/quote" class="btn-primary">Start a quote</a>
+            <a href="/sectors/bespoke" class="btn-ghost">Bespoke capability</a>
+          </div>
+        </section>
+      </div>
+
+      <aside>
+        <div class="sticky top-24 card p-6">
+          <p class="eyebrow text-cast mb-4">Project facts</p>
+          <dl class="space-y-3 text-sm">
+            {facts.map((f) => (
+              <div>
+                <dt class="text-cast text-xs uppercase tracking-wide font-bold">{f.label}</dt>
+                <dd class="text-navy font-medium mt-0.5">{f.value}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <hr class="my-6 border-cast-100" />
+
+          <a href="/case-studies" class="text-ember font-bold text-sm hover:text-ember-700 inline-flex items-center gap-2">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="19" y1="12" x2="5" y2="12" stroke-linecap="round"/>
+              <polyline points="12 19 5 12 12 5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Back to all case studies
+          </a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="container-wccp py-16 text-center">
+    <h2 class="font-display text-display-lg mb-4">Talk to the yard.</h2>
+    <p class="text-cast-700 text-lg max-w-xl mx-auto mb-8">
+      Same-day callback Monday to Friday. We work with what you've got — sketches, photos or full plans.
+    </p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+      <a href="/quote" class="btn-primary">Configure a quote</a>
+    </div>
+  </section>
+</BaseLayout>

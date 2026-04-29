@@ -1,0 +1,411 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const faqs = [
+  {
+    q: 'How much does a king post retaining wall cost per metre?',
+    a: 'In 2026 a king post retaining wall costs £140–180/lm supply-only at 1m retained height, £260–340/lm at 3m, and £440–580/lm at 5m. Installed prices add roughly £120–180/lm depending on access, foundations and surcharge. Prices are South West UK indicative and exclude excavation and drainage.',
+  },
+  {
+    q: 'What is included in the supply-only price?',
+    a: 'Supply-only covers the steel UC posts cut to length, precast infill panels, joint sealant and ex-yard delivery within the South West. It excludes site survey, foundations, post sockets, excavation, backfill, drainage, geotextiles and labour for installation.',
+  },
+  {
+    q: 'How much do post sockets cost?',
+    a: 'Augered concrete-filled sockets are typically £180–280 per post for a 600mm diameter at 1.5m depth, scaling up to £450–650 each for 1,200mm × 3.0m sockets needed on tall walls. Costs include auger hire, C32/40 mass concrete and labour. Hard ground or rock can add 30–50%.',
+  },
+  {
+    q: 'Does soil type change the cost?',
+    a: 'Yes. Cohesive clays are the cheapest to retain — sockets and foundations are easier and surcharge tolerance is higher. Granular sands and gravels need deeper sockets or longer toes. Made ground, peat and very wet sites can require piling or ground improvement, doubling foundation cost.',
+  },
+  {
+    q: 'What about delivery?',
+    a: 'Delivery within 50 miles of our Holsworthy yard is included on full-load orders. Beyond 50 miles we charge £2.20–£2.80 per mile. Part-load deliveries or restricted access (rural farm tracks, urban sites with crane offload) are quoted individually.',
+  },
+  {
+    q: 'Can I install the wall myself?',
+    a: 'Yes for short, low walls (under 2m height, under 30m run) provided you have post-driving or auger access. Most farm contractors handle 2m–3m supply-only installs. Above 3m, or with significant surcharge, we recommend our installed price — the engineering and post embedment is unforgiving.',
+  },
+  {
+    q: 'What\'s the cheapest way to build a retaining wall?',
+    a: 'For under 2m and short runs (under 30m), L-blocks supply-only on a prepared base are typically cheapest at around £200–290/lm. Above 2m or longer than 30m, king post supply-only with a competent local installer wins on price. Cantilever is rarely the cheapest option.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="How much does a king post retaining wall cost per metre in the UK?"
+  description="UK king post retaining wall cost: £140–580 per linear metre supply-only, £260–760/lm installed. Cost breakdown by height, soil type and run length, plus indicative prices for 1m to 5m walls."
+  image="/images/guides/retaining-wall-cost-uk.jpg"
+  schema="Article"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-14 md:py-16">
+      <nav class="text-sm text-white/90 mb-6" aria-label="Breadcrumb">
+        <a href="/guides" class="hover:text-yellow">Guides</a>
+        <span class="mx-2 text-cast">/</span>
+        <span class="text-white/90">King post wall cost UK</span>
+      </nav>
+      <p class="eyebrow text-yellow mb-4">Pricing · Pillar guide</p>
+      <h1 class="font-display text-display-xl text-white mb-6 max-w-4xl">
+        How much does a king post retaining wall cost per metre in the UK?
+      </h1>
+
+      <div class="bg-navy-700 border-l-4 border-yellow p-6 max-w-3xl rounded-r">
+        <p class="text-white/90 text-lg leading-relaxed">
+          <strong class="text-white">Direct answer:</strong> A king post retaining wall in the UK costs
+          £140–580 per linear metre supply-only depending on retained height, and £260–760/lm installed.
+          At a typical 3m retained height, expect £260–340/lm supply-only or £380–480/lm installed
+          (2026 South West UK prices, excluding excavation, backfill and drainage).
+        </p>
+      </div>
+
+      <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/90">
+        <div>By <span class="text-white font-semibold">WCCP Engineering Team</span></div>
+        <div>Published <time datetime="2026-04-04">4 April 2026</time></div>
+        <div>Updated <time datetime="2026-04-28">28 April 2026</time></div>
+      </div>
+    </div>
+  </section>
+
+  <article class="container-wccp py-12 md:py-16">
+    <div class="grid lg:grid-cols-[1fr_18rem] gap-10 lg:gap-16">
+      <div class="max-w-3xl">
+
+        <details class="lg:hidden mb-10 border border-cast-100 rounded-lg p-5">
+          <summary class="font-display text-lg font-bold text-navy cursor-pointer">On this page</summary>
+          <ol class="mt-4 space-y-2 text-cast list-decimal list-inside">
+            <li><a href="#breakdown" class="hover:text-ember">Cost breakdown</a></li>
+            <li><a href="#height" class="hover:text-ember">Height vs cost table</a></li>
+            <li><a href="#soil" class="hover:text-ember">Soil-type variation</a></li>
+            <li><a href="#supply-vs-install" class="hover:text-ember">Supply-only vs installed</a></li>
+            <li><a href="#foundation" class="hover:text-ember">Foundation cost</a></li>
+            <li><a href="#examples" class="hover:text-ember">Worked examples</a></li>
+            <li><a href="#checklist" class="hover:text-ember">Quote checklist</a></li>
+            <li><a href="#faq" class="hover:text-ember">FAQ</a></li>
+          </ol>
+        </details>
+
+        <section id="breakdown" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What does the cost actually break down into?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">A typical 3m king post wall installed at £400/lm breaks down roughly as:
+            steel UC posts £80/lm; precast panels £110/lm; post sockets and foundations £90/lm; install
+            labour and crane £80/lm; delivery £25/lm; design and tolerance £15/lm. Excavation, backfill
+            and drainage are usually separate trades.</strong>
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            Steel and concrete each take a roughly equal share of the supply cost. Steel cost moves
+            with rolled section prices (London Metal Exchange index) and varies 10–15% year-on-year.
+            Concrete is more stable. On installed price, post sockets are the wildcard — they swing
+            heavily with ground conditions.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            What's typically not in our quote: drainage (perforated land drain at the wall heel,
+            granular surround, geotextile), backfill material, excavation, top rail or fencing, and
+            any haunching at top or base. These are quoted separately by us or your groundworks
+            contractor.
+          </p>
+        </section>
+
+        <section id="height" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">How does cost change with retained height?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            <strong class="text-navy">Cost per linear metre roughly doubles between 1m and 3m, and again
+            between 3m and 5m. Posts get heavier (152×152 UC23 at 1m → 305×305 UC97 at 5m), panels
+            get thicker, sockets get deeper, and crane time per post goes up. Above 5m the cost curve
+            steepens further as design moves bespoke.</strong>
+          </p>
+
+          <div class="overflow-x-auto mb-4 -mx-4 sm:mx-0">
+            <table class="spec-table min-w-full px-4 sm:px-0">
+              <thead>
+                <tr>
+                  <th>Retained height</th>
+                  <th>Supply only (£/lm)</th>
+                  <th>Installed (£/lm)</th>
+                  <th>Typical post size</th>
+                  <th>Socket depth</th>
+                </tr>
+              </thead>
+              <tbody class="text-cast">
+                <tr>
+                  <td>1.0m</td>
+                  <td><strong class="text-navy">£140–180</strong></td>
+                  <td><strong class="text-navy">£260–340</strong></td>
+                  <td>152×152 UC23</td>
+                  <td>1.0m</td>
+                </tr>
+                <tr>
+                  <td>2.0m</td>
+                  <td><strong class="text-navy">£200–260</strong></td>
+                  <td><strong class="text-navy">£320–420</strong></td>
+                  <td>203×203 UC46</td>
+                  <td>1.5m</td>
+                </tr>
+                <tr>
+                  <td>3.0m</td>
+                  <td><strong class="text-navy">£260–340</strong></td>
+                  <td><strong class="text-navy">£380–480</strong></td>
+                  <td>254×254 UC73</td>
+                  <td>2.0m</td>
+                </tr>
+                <tr>
+                  <td>4.0m</td>
+                  <td><strong class="text-navy">£340–440</strong></td>
+                  <td><strong class="text-navy">£500–620</strong></td>
+                  <td>305×305 UC97</td>
+                  <td>2.5m</td>
+                </tr>
+                <tr>
+                  <td>5.0m</td>
+                  <td><strong class="text-navy">£440–580</strong></td>
+                  <td><strong class="text-navy">£620–760</strong></td>
+                  <td>305×305 UC137</td>
+                  <td>3.0m</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-sm text-cast italic">
+            2026 indicative South West UK pricing. Posts at 2.0m centres, infill panels 200mm thick
+            C40/50. Surcharge 10 kN/m². Cohesive clay sub-base. Sockets at 600mm diameter to 4m
+            retained height, 900mm at 5m.
+          </p>
+        </section>
+
+        <section id="soil" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">How does soil type change the cost?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Stiff clay is the cheapest to build into. Sand, gravel and made ground
+            need deeper sockets and add 15–30% to foundation cost. Soft clay, peat and high water
+            table can require piling, doubling foundation cost. Rock at 1.5m depth+ adds 20–40% from
+            slower auger progress.</strong>
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            Soil type also affects surcharge tolerance and toe stability. A wall on stiff clay can
+            usually take a tractor passing at 1m. The same wall on soft sand might need either heavier
+            posts or a 2m exclusion zone. Proper geotechnical input is essential — a Standard Penetration
+            Test (SPT) or hand-auger sample at the wall line costs £400–800 and saves orders of magnitude
+            more.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            We can quote against assumed ground conditions, but we always note assumptions in the quote.
+            If actual conditions on site differ, we re-quote — never spec a wall against unknown ground.
+          </p>
+        </section>
+
+        <section id="supply-vs-install" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Supply-only vs installed — which makes sense?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Supply-only suits self-install on smaller walls (under 3m, under 50m)
+            with experienced groundworks contractors. Installed suits taller walls, complex sites,
+            programme-critical jobs and any client without an in-house team. Installed is usually
+            £100–180/lm more than supply, but covers crane, install labour, embedment tolerance
+            and warranty.</strong>
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            Most farms with a 250 plant ticket and a self-employed digger driver handle 2m walls
+            comfortably. Larger civils contractors can manage 4m+ on supply-only. Installed makes
+            sense when the wall is on the critical path and any re-work would cause programme
+            damage — installed includes performance warranty.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            We do both. About 70% of our retaining wall jobs are supply-only across the South West,
+            30% installed. The installed price always includes setting-out, post embedment to
+            tolerance, panel infill, joint sealing and a defects liability period.
+          </p>
+        </section>
+
+        <section id="foundation" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What does the foundation actually cost?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Concrete-filled augered post sockets cost £180–280 each at 600mm diameter
+            × 1.5m depth (suitable for 2m walls), £320–450 at 750mm × 2.5m (3m walls), and £450–650+
+            at 900mm × 3.0m (4–5m walls). At 2.0m post centres that's £90–325/lm of foundation cost
+            depending on wall height.</strong>
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            Costs include auger hire, C32/40 mass concrete supply, labour to lift and embed posts to
+            tolerance, and disposal of arisings. Tolerance is critical — a post 25mm out of plumb at
+            top of socket becomes 50mm at top of wall, and panels won't drop in.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            On rocky ground (Devon and Cornwall slate, granite) socketing rates drop and cost rises.
+            On soft ground (alluvial, peat) we may recommend driven steel piles instead — typically
+            similar cost per post but more reliable embedment.
+          </p>
+        </section>
+
+        <section id="examples" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What does a typical job cost in total?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            <strong class="text-navy">A 30m × 2m wall installed runs £9,600–12,600. A 50m × 3m wall runs
+            £19,000–24,000. A 100m × 4m wall £50,000–62,000. A 150m × 5m £93,000–114,000. All exclude
+            excavation, backfill and drainage which add roughly 25–35% to the supplied wall cost.</strong>
+          </p>
+
+          <div class="overflow-x-auto mb-4 -mx-4 sm:mx-0">
+            <table class="spec-table min-w-full px-4 sm:px-0">
+              <thead>
+                <tr>
+                  <th>Wall</th>
+                  <th>Supply only</th>
+                  <th>Installed (wall only)</th>
+                  <th>Including groundworks</th>
+                </tr>
+              </thead>
+              <tbody class="text-cast">
+                <tr>
+                  <td>30m × 2m</td>
+                  <td><strong class="text-navy">£6,000–7,800</strong></td>
+                  <td><strong class="text-navy">£9,600–12,600</strong></td>
+                  <td>£12,000–17,000</td>
+                </tr>
+                <tr>
+                  <td>50m × 3m</td>
+                  <td><strong class="text-navy">£13,000–17,000</strong></td>
+                  <td><strong class="text-navy">£19,000–24,000</strong></td>
+                  <td>£24,000–32,000</td>
+                </tr>
+                <tr>
+                  <td>100m × 4m</td>
+                  <td><strong class="text-navy">£34,000–44,000</strong></td>
+                  <td><strong class="text-navy">£50,000–62,000</strong></td>
+                  <td>£62,500–82,000</td>
+                </tr>
+                <tr>
+                  <td>150m × 5m</td>
+                  <td><strong class="text-navy">£66,000–87,000</strong></td>
+                  <td><strong class="text-navy">£93,000–114,000</strong></td>
+                  <td>£116,000–152,000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-sm text-cast italic">
+            Indicative 2026 South West UK costs. Groundworks figure includes excavation, drainage,
+            geotextile and granular backfill at ~30% of supplied wall cost.
+          </p>
+        </section>
+
+        <section id="checklist" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What we need to give you an accurate quote (8-point checklist)</h2>
+          <div class="bg-bone-200 border-l-4 border-ember p-6 rounded-r">
+            <ol class="text-cast-700 text-base leading-relaxed space-y-3 list-decimal pl-5">
+              <li>Run length in metres (or a sketched plan with dimensions)</li>
+              <li>Maximum retained height (and minimum if the wall steps)</li>
+              <li>Surcharge: vehicles, stockpiles, buildings near the wall</li>
+              <li>Soil type if known (clay, sand, made ground, rock)</li>
+              <li>Site access (road width, gate height, crane standing area)</li>
+              <li>Programme dates (start on site, completion)</li>
+              <li>Supply-only or installed preferred</li>
+              <li>Postcode for delivery costing</li>
+            </ol>
+          </div>
+        </section>
+
+        <section id="faq" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-6">Frequently asked questions</h2>
+          <div class="space-y-4">
+            {faqs.map((f) => (
+              <details class="card p-5 group">
+                <summary class="font-display text-lg font-bold text-navy cursor-pointer flex items-start justify-between gap-4">
+                  <span>{f.q}</span>
+                  <svg class="w-5 h-5 mt-1 flex-shrink-0 text-ember transition-transform group-open:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="12" y1="5" x2="12" y2="19" stroke-linecap="round"/>
+                    <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+                  </svg>
+                </summary>
+                <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section class="bg-navy text-white rounded-lg p-8 md:p-10">
+          <h2 class="font-display text-2xl md:text-3xl text-white mb-3">Ready for a fixed quote?</h2>
+          <p class="text-white/90 mb-6 leading-relaxed">
+            Send us your run length, retained height and surcharge case. We'll come back with a
+            fixed price for supply-only and installed within 24 hours.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="/products/retaining-walls" class="btn-yellow">See retaining wall range</a>
+            <a href="/quote" class="btn bg-white text-navy hover:bg-bone">Start a quote</a>
+          </div>
+        </section>
+
+      </div>
+
+      <aside class="hidden lg:block">
+        <div class="sticky top-24">
+          <p class="eyebrow text-cast mb-4">On this page</p>
+          <ol class="space-y-3 text-sm border-l border-cast-100 pl-4">
+            <li><a href="#breakdown" class="text-cast hover:text-ember">Cost breakdown</a></li>
+            <li><a href="#height" class="text-cast hover:text-ember">Height vs cost</a></li>
+            <li><a href="#soil" class="text-cast hover:text-ember">Soil-type variation</a></li>
+            <li><a href="#supply-vs-install" class="text-cast hover:text-ember">Supply vs installed</a></li>
+            <li><a href="#foundation" class="text-cast hover:text-ember">Foundation cost</a></li>
+            <li><a href="#examples" class="text-cast hover:text-ember">Worked examples</a></li>
+            <li><a href="#checklist" class="text-cast hover:text-ember">Quote checklist</a></li>
+            <li><a href="#faq" class="text-cast hover:text-ember">FAQ</a></li>
+          </ol>
+
+          <div class="mt-8 p-4 bg-yellow rounded-lg">
+            <p class="text-xs font-bold text-navy uppercase tracking-wide mb-2">Same-day pricing</p>
+            <p class="text-sm text-navy mb-3 leading-snug">Send heights, lengths, surcharge — costs back within 24 hours.</p>
+            <a href="/quote" class="text-navy font-bold text-sm hover:underline">Start a quote →</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+  <section class="bg-bone-200 py-16">
+    <div class="container-wccp">
+      <p class="eyebrow text-cast mb-3">Related guides</p>
+      <h2 class="font-display text-display-md mb-8">Keep reading.</h2>
+
+      <div class="grid md:grid-cols-3 gap-5">
+        <a href="/guides/retaining-wall-types" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Civils</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">King post vs L-block vs cantilever</h3>
+          <p class="text-cast text-sm leading-relaxed">Pick the right system before you price it — height, surcharge and run length.</p>
+        </a>
+        <a href="/guides/concrete-grades" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Materials</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Concrete grades for agricultural use</h3>
+          <p class="text-cast text-sm leading-relaxed">C32/40 vs C40/50 explained, exposure classes and panel mix design.</p>
+        </a>
+        <a href="/guides/prestressed-vs-reinforced" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Materials</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Prestressed vs reinforced panels</h3>
+          <p class="text-cast text-sm leading-relaxed">When prestressing pays back — span, load and BS EN 14992.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-16 text-center">
+    <h2 class="font-display text-display-lg mb-4">Talk to the yard.</h2>
+    <p class="text-cast-700 text-lg max-w-xl mx-auto mb-8">
+      Same-day callback Monday to Friday. We'll talk you through the price before you commit a penny.
+    </p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+      <a href="/quote" class="btn-primary">Configure a quote</a>
+    </div>
+  </section>
+</BaseLayout>

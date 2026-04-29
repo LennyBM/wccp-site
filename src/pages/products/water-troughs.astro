@@ -1,0 +1,230 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import { site } from '@/config/site';
+
+const specs = [
+  { type: 'Single-row standard', size: '1300 × 600 × 400mm', capacity: '180 L', weight: '210 kg', use: 'Single-row cubicle service, calf pens' },
+  { type: 'Double-row twin', size: '1300 × 1200 × 400mm', capacity: '360 L', weight: '380 kg', use: 'Cubicle row dividers, two-sided drink' },
+  { type: 'Frost-protected single', size: '1300 × 600 × 500mm', capacity: '180 L', weight: '260 kg', use: 'Outdoor handling yards, exposed sites' },
+  { type: 'Frost-protected double', size: '1300 × 1200 × 500mm', capacity: '360 L', weight: '470 kg', use: 'Outdoor wintering pads, dispersed cubicles' },
+  { type: 'Heavy-duty double', size: '1800 × 1200 × 450mm', capacity: '550 L', weight: '620 kg', use: 'Robotic herds, high-yield groups' },
+  { type: 'Tip-over (clean-out)', size: '1300 × 600 × 400mm', capacity: '180 L', weight: '230 kg', use: 'High-mastitis groups, easy-clean rotation' },
+];
+
+const applications = [
+  'Cubicle-housed dairy parlour cross-overs',
+  'Robotic-milking herd pre/post-robot drink stations',
+  'Outdoor cattle handling yards and crushes',
+  'Dispersed wintering pads with frost protection',
+  'Beef finishing units and youngstock pens',
+  'Sheep handling races and lambing yards',
+  'Field troughs for grazed paddocks',
+];
+
+const related = [
+  { href: '/products/feed-troughs', label: 'Feed Troughs', meta: 'L-shape · single + double-sided' },
+  { href: '/products/cattle-cubicles', label: 'Cattle Cubicles', meta: 'AHDB 2024 sized' },
+  { href: '/products/cubicle-end-walls', label: 'Cubicle End Walls', meta: 'Integrated water trough option' },
+  { href: '/products/footbaths', label: 'Footbaths', meta: '4m kit · £1,425+VAT' },
+];
+
+const faqs = [
+  { q: 'How big a trough do I need?', a: 'AHDB recommends 100mm of trough perimeter per cow on a free-flow system. Our standard 1300×600 single gives drink for around 25 cows; the double 1300×1200 covers 50. For robot herds with tighter cow flow, double up — cows drink in waves around the robot.' },
+  { q: 'Do you do frost-protected versions?', a: 'Yes — the frost-protected variants have a deeper sump and an insulated jacket option. Coupled with a thermostatic immersion or trace heating, they will run through a Devon winter without freezing. Outdoor handling and dispersed wintering pads usually want them.' },
+  { q: 'How are they installed?', a: 'Standard troughs sit on a 100mm bedding screed and bolt down via M12 cast-in sockets. Plumbing is 22mm copper or MDPE to a side-mount float valve — we cast the inlet on whichever side suits your shed. Drain plug is a 50mm BSP brass.' },
+  { q: 'Can I get a tip-over for cleaning?', a: 'Yes — the tip-over variant pivots on a stainless pin so you can rotate the bowl out, scrub it and rotate back. High-mastitis herds and those on a very tight hygiene programme order them as standard.' },
+  { q: 'Lead time?', a: 'Catalogue troughs ship in 2 to 3 weeks. Frost-protected and tip-over variants run 3 to 4 weeks. Stock often available — ring the yard for current availability.' },
+];
+
+const productSchema = {
+  name: 'Precast Cattle Water Troughs',
+  description: 'Single and double-row precast water troughs for dairy and beef cattle. Standard 1300×600mm at 180 L and 1300×1200mm at 360 L. Frost-protected and tip-over variants. C40/50 concrete.',
+  brand: { '@type': 'Brand', name: site.name },
+  manufacturer: { '@type': 'Organization', name: site.name },
+  category: 'Precast water trough',
+  material: 'Reinforced concrete, C40/50 (BS 8500-1:2023)',
+  weight: { '@type': 'QuantitativeValue', minValue: 210, maxValue: 620, unitCode: 'KGM', unitText: 'kilogram per trough' },
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 13369 / BS 5502-22:2003' },
+    { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
+    { '@type': 'PropertyValue', name: 'Standard size (single)', value: '1300 × 600 × 400 mm, 180 L' },
+    { '@type': 'PropertyValue', name: 'Standard size (double)', value: '1300 × 1200 × 400 mm, 360 L' },
+    { '@type': 'PropertyValue', name: 'Variants', value: 'Single / double / frost-protected / heavy-duty / tip-over' },
+    { '@type': 'PropertyValue', name: 'Anchor', value: 'M12 cast-in sockets' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '2–3 weeks catalogue' },
+    { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
+  ],
+  offers: { '@type': 'Offer', priceCurrency: 'GBP', availability: 'https://schema.org/InStock', seller: { '@type': 'Organization', name: site.name } },
+};
+
+const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+---
+
+<BaseLayout
+  title="Water Troughs — single + double-row · 1300×600mm"
+  description="Precast cattle water troughs. Single 1300×600 at 180L, double 1300×1200 at 360L. Frost-protected and tip-over variants. Cast in North Devon."
+  image="/images/products/water-troughs.jpg"
+  schema="Product"
+  schemaData={productSchema}
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <TrustStrip />
+
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow text-yellow mb-4">Agricultural · cattle · water</p>
+          <h1 class="font-display text-display-xl text-white mb-4">Water Troughs.</h1>
+          <p class="text-lg text-white/90 leading-relaxed mb-6">
+            Single and double-row precast water troughs sized to AHDB cow-flow guidance. Standard
+            1300 × 600 × 400mm single at 180 L, double at 360 L. Frost-protected, heavy-duty and
+            tip-over variants on the catalogue.
+          </p>
+          <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
+            <li class="flex gap-2"><span class="text-yellow">·</span> 1300 × 600 single</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 1300 × 1200 double</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 180 L / 360 L</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Frost-protected</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Tip-over option</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 2–3 week lead</li>
+          </ul>
+          <div class="flex flex-wrap gap-3">
+            <a href="/quote?product=Water+Troughs" class="btn-primary">Configure a quote</a>
+            <a href="/spec-sheets/water-troughs.pdf" class="btn-yellow">Download spec sheet</a>
+            <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">Call {site.contact.phone}</a>
+          </div>
+        </div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-300 via-cast to-navy"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-20">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Specification</p>
+      <h2 class="font-display text-display-lg mb-4">Variants, capacities and weights.</h2>
+      <p class="text-cast-700 text-lg">Catalogue troughs sized to AHDB cow-flow recommendations. Bespoke sizes and integrated cubicle-end-wall combinations on application.</p>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="spec-table w-full text-left border-collapse">
+        <thead class="bg-navy text-white">
+          <tr>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Type</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Size (L×W×H)</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Capacity</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Weight</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
+          </tr>
+        </thead>
+        <tbody>
+          {specs.map((s, i) => (
+            <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
+              <td class="px-4 py-3 font-bold text-navy">{s.type}</td>
+              <td class="px-4 py-3">{s.size}</td>
+              <td class="px-4 py-3">{s.capacity}</td>
+              <td class="px-4 py-3">{s.weight}</td>
+              <td class="px-4 py-3 text-cast">{s.use}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow text-cast mb-3">Where they go</p>
+          <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">From a cubicle-shed cross-over to a wintering pad with frost protection — same trough family, sized for the herd.</p>
+          <ul class="space-y-3">
+            {applications.map((a) => (<li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">·</span><span>{a}</span></li>))}
+          </ul>
+        </div>
+        <div class="card p-8">
+          <p class="eyebrow text-cast mb-3">Standards & references</p>
+          <h3 class="font-display text-2xl font-bold text-navy mb-4">Cast and sized to current best practice.</h3>
+          <dl class="space-y-4 text-sm">
+            <div><dt class="font-bold text-navy">BS EN 13369</dt><dd class="text-cast">Common rules for precast concrete — factory production control.</dd></div>
+            <div><dt class="font-bold text-navy">BS 5502-22:2003</dt><dd class="text-cast">Agricultural buildings — cattle housing.</dd></div>
+            <div><dt class="font-bold text-navy">BS 8500-1:2023</dt><dd class="text-cast">Concrete spec — C40/50 designed mix.</dd></div>
+            <div><dt class="font-bold text-navy">AHDB Dairy</dt><dd class="text-cast">Cow-flow and trough sizing guidance: 100mm trough perimeter per cow.</dd></div>
+            <div><dt class="font-bold text-navy">DEFRA Code</dt><dd class="text-cast">Welfare of livestock — cattle. Continuous water provision required.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-yellow text-navy py-16">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-navy mb-2">Configure your trough run</p>
+          <h2 class="font-display text-display-md">Send herd size and shed layout — we will quote inside 24 hours.</h2>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href="/quote?product=Water+Troughs" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
+          <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-20">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
+      <div>
+        <p class="eyebrow text-cast mb-3">Related products</p>
+        <h2 class="font-display text-display-lg">Often ordered alongside.</h2>
+      </div>
+      <a href="/products" class="text-ember font-bold hover:text-ember-700 inline-flex items-center gap-2">View full range
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" /><polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </a>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {related.map((r) => (
+        <a href={r.href} class="card p-5 group">
+          <div class="aspect-[16/10] bg-cast-100 mb-4 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100"></div></div>
+          <h3 class="font-display text-base font-bold text-navy mb-1 group-hover:text-ember">{r.label}</h3>
+          <p class="text-cast text-xs">{r.meta}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">Common questions</p>
+        <h2 class="font-display text-display-lg mb-4">What people ask about water troughs.</h2>
+        <p class="text-cast-700 text-lg">Five questions we answer most weeks. If yours is not here, ring the yard.</p>
+      </div>
+      <div class="max-w-3xl space-y-4">
+        {faqs.map((f) => (
+          <details class="card p-6 group">
+            <summary class="font-display text-lg font-bold text-navy cursor-pointer list-none flex justify-between items-start gap-4">
+              <span>{f.q}</span>
+              <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-navy text-white py-20">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
+      <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">Send herd size and shed dimensions. Quote and lead-time same day.</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/quote?product=Water+Troughs" class="btn-yellow">Configure a quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,261 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const datasheets = [
+  { slug: 'cattle-cubicles', name: 'Cattle Cubicles', meta: 'Holstein / Jersey / beef sizes' },
+  { slug: 'slurry-storage', name: 'Slurry Storage', meta: 'SSAFO 2018-compliant panels' },
+  { slug: 'prestressed-panels', name: 'Prestressed Wall Panels', meta: '100/150/180/280mm' },
+  { slug: 'milking-robot-bases', name: 'Milking Robot Bases', meta: 'DeLaval · Lely · GEA' },
+  { slug: 'retaining-walls', name: 'Retaining Walls', meta: 'King Post · L-Block · Cantilever' },
+  { slug: 'silage-clamp-walls', name: 'Silage Clamp Walls', meta: 'C40/50 · sulphate-resisting' },
+  { slug: 'feed-troughs', name: 'Feed Troughs', meta: 'Standard and bespoke sizes' },
+  { slug: 'water-troughs', name: 'Water Troughs', meta: 'Frost-resistant designs' },
+  { slug: 'l-blocks', name: 'L-Blocks', meta: 'Stackable retaining blocks' },
+  { slug: 'a-panels', name: 'A-Panels', meta: 'Slurry & silage A-panels' },
+  { slug: 'culverts', name: 'Box Culverts', meta: 'Highways & drainage' },
+  { slug: 'padstones', name: 'Padstones', meta: 'Bearing pads to spec' },
+  { slug: 'vehicle-pits', name: 'Vehicle Inspection Pits', meta: 'Pre-cast pit liners' },
+  { slug: 'footbaths', name: 'Footbaths', meta: 'Cattle hoof-care units' },
+  { slug: 'cubicle-beds', name: 'Cubicle Beds', meta: 'Mat-ready precast beds' },
+  { slug: 'manhole-rings', name: 'Manhole Rings', meta: 'Standard manhole sections' },
+  { slug: 'drain-channels', name: 'Drain Channels', meta: 'Slot drains & gulleys' },
+  { slug: 'bespoke', name: 'Bespoke Precast', meta: 'One-off shapes & sizes' },
+];
+
+const roles = ['Architect', 'Engineer', 'Contractor', 'Farmer', 'Specifier', 'Other'];
+---
+
+<BaseLayout
+  title="Downloads — datasheets, CAD, BIM"
+  description="Datasheets, CAD blocks, BIM objects and brochures for our full precast range. Email-gated for the technical packs — instant download for the brochure."
+>
+  <!-- Hero -->
+  <section class="relative bg-navy text-white overflow-hidden">
+    <div class="relative container-wccp py-20 md:py-24">
+      <div class="max-w-3xl">
+        <p class="eyebrow text-yellow mb-6">Resources</p>
+        <h1 class="font-display text-display-2xl text-white mb-6">
+          Datasheets, CAD, BIM —<br />
+          <span class="text-yellow">straight to your inbox.</span>
+        </h1>
+        <p class="text-lg md:text-xl text-white/90 max-w-2xl leading-relaxed">
+          Drop your details once and unlock the lot. PDFs for the office, .dwg blocks for the
+          drawing board, .rfa families for Revit. Or grab the brochure on its own — no email needed.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Email capture -->
+  <section class="bg-yellow text-navy py-12 border-b-4 border-navy">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-[1fr_2fr] gap-8 items-center">
+        <div>
+          <p class="eyebrow text-navy mb-3">One form, all the files</p>
+          <h2 class="font-display text-display-md mb-2">Get the full pack.</h2>
+          <p class="text-navy text-lg leading-relaxed">
+            Email link sent in 60 seconds. Datasheets, CAD blocks and Revit families in a single zip.
+          </p>
+        </div>
+
+        <form
+          name="download-pack"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="card p-6 bg-bone-100 grid sm:grid-cols-2 gap-4"
+        >
+          <input type="hidden" name="form-name" value="download-pack" />
+          <p class="hidden">
+            <label>Don't fill this out: <input name="bot-field" /></label>
+          </p>
+
+          <div>
+            <label for="dl-name" class="block text-sm font-semibold text-navy mb-1">Name *</label>
+            <input id="dl-name" name="name" type="text" required class="input" autocomplete="name" />
+          </div>
+
+          <div>
+            <label for="dl-email" class="block text-sm font-semibold text-navy mb-1">Email *</label>
+            <input id="dl-email" name="email" type="email" required class="input" autocomplete="email" />
+          </div>
+
+          <div>
+            <label for="dl-role" class="block text-sm font-semibold text-navy mb-1">Role *</label>
+            <select id="dl-role" name="role" required class="input">
+              <option value="">— Select —</option>
+              {roles.map((r) => <option value={r}>{r}</option>)}
+            </select>
+          </div>
+
+          <div>
+            <label for="dl-company" class="block text-sm font-semibold text-navy mb-1">Company</label>
+            <input id="dl-company" name="company" type="text" class="input" autocomplete="organization" />
+          </div>
+
+          <div class="sm:col-span-2">
+            <button type="submit" class="btn-primary w-full justify-center">Send me the pack</button>
+            <p class="text-cast text-xs text-center mt-2">
+              We'll only email you about products and grants you've asked about. Unsubscribe any time.
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Free downloads (no gate) -->
+  <section class="container-wccp py-20">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">No email needed</p>
+      <h2 class="font-display text-display-lg">Free downloads.</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <a href="/downloads/wccp-brochure-2026.pdf" class="card p-6 group block">
+        <div class="aspect-[16/10] bg-gradient-to-br from-navy to-navy-700 rounded mb-5 flex items-center justify-center text-white font-display font-bold text-2xl">
+          Brochure 2026
+        </div>
+        <p class="eyebrow text-ember mb-2">Brochure · PDF · 12MB</p>
+        <h3 class="font-display text-lg font-bold text-navy mb-1 group-hover:text-ember">Full product brochure</h3>
+        <p class="text-cast text-sm">Every product, every spec — the whole catalogue in one PDF.</p>
+      </a>
+
+      <a href="/downloads/fetf-2026-guide.pdf" class="card p-6 group block">
+        <div class="aspect-[16/10] bg-yellow rounded mb-5 flex items-center justify-center font-display font-bold text-2xl text-navy">
+          FETF 2026
+        </div>
+        <p class="eyebrow text-ember mb-2">Grant guide · PDF · 2MB</p>
+        <h3 class="font-display text-lg font-bold text-navy mb-1 group-hover:text-ember">FETF 2026 grant guide</h3>
+        <p class="text-cast text-sm">Eligible items, deadlines and how to apply for the Farming Equipment fund.</p>
+      </a>
+
+      <a href="/downloads/slurry-compliance-guide.pdf" class="card p-6 group block">
+        <div class="aspect-[16/10] bg-gradient-to-br from-ember to-ember-700 rounded mb-5 flex items-center justify-center text-white font-display font-bold text-2xl">
+          SSAFO 2018
+        </div>
+        <p class="eyebrow text-ember mb-2">Compliance guide · PDF · 3MB</p>
+        <h3 class="font-display text-lg font-bold text-navy mb-1 group-hover:text-ember">Slurry compliance guide</h3>
+        <p class="text-cast text-sm">SSAFO 2018 explained — capacity, freeboard, joints, inspection.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Datasheet PDFs -->
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-10">
+        <p class="eyebrow text-cast mb-3">Email-gated · 18 datasheets</p>
+        <h2 class="font-display text-display-lg">Product datasheets.</h2>
+        <p class="text-cast-700 text-lg mt-3">
+          One per product family. Specs, tolerances, fixings, lifting weights, BS standards.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {datasheets.map((d) => (
+          <a href={`#download-${d.slug}`} data-gate={d.slug} class="card p-5 group flex items-start gap-4 dl-gate">
+            <div class="w-12 h-12 rounded bg-cast-100 text-navy flex items-center justify-center shrink-0 group-hover:bg-yellow transition-colors">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="14 2 14 8 20 8" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="12" y1="18" x2="12" y2="12" stroke-linecap="round"/>
+                <polyline points="9 15 12 18 15 15" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="eyebrow text-cast text-xs mb-1">PDF · datasheet</p>
+              <h3 class="font-display text-base font-bold text-navy group-hover:text-ember leading-snug">{d.name}</h3>
+              <p class="text-cast text-xs mt-1">{d.meta}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CAD blocks -->
+  <section class="container-wccp py-20">
+    <div class="grid lg:grid-cols-2 gap-12 items-start">
+      <div>
+        <p class="eyebrow text-cast mb-3">For architects and engineers</p>
+        <h2 class="font-display text-display-lg mb-4">CAD blocks (.dwg).</h2>
+        <p class="text-cast-700 text-lg leading-relaxed mb-6">
+          Drop our products straight into your AutoCAD drawings. Plan, elevation and section blocks
+          for cubicles, slurry panels, retaining walls, culverts and the rest. Drawn to BS 8888.
+        </p>
+        <a href="#cad-pack" data-gate="cad-pack" class="btn-primary dl-gate">Request CAD pack</a>
+      </div>
+
+      <div class="card p-8 bg-bone-200">
+        <p class="eyebrow text-ember mb-3">What's in the pack</p>
+        <ul class="space-y-2 text-cast">
+          <li>· Plan and elevation blocks for all 18 product families</li>
+          <li>· Standard sizes and bespoke parametric variants</li>
+          <li>· Drawn to BS 8888 with layered linework</li>
+          <li>· Compatible with AutoCAD 2018+ (also opens in BricsCAD, DraftSight)</li>
+          <li>· Updated quarterly</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- BIM objects -->
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <div class="card p-8 order-2 lg:order-1">
+          <p class="eyebrow text-ember mb-3">What's in the pack</p>
+          <ul class="space-y-2 text-cast">
+            <li>· Revit families (.rfa) for all major product lines</li>
+            <li>· Type catalogues with all standard sizes</li>
+            <li>· Embedded performance data for COBie</li>
+            <li>· LOD 300 — sufficient for design coordination</li>
+            <li>· EPDs linked for whole-life carbon assessment</li>
+          </ul>
+        </div>
+
+        <div class="order-1 lg:order-2">
+          <p class="eyebrow text-cast mb-3">For BIM workflows</p>
+          <h2 class="font-display text-display-lg mb-4">Revit families (.rfa).</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            Native Revit 2022+ families for our complete catalogue. Type-driven, parametric where
+            it matters, with embedded EPD links for carbon accounting.
+          </p>
+          <a href="#bim-pack" data-gate="bim-pack" class="btn-primary dl-gate">Request BIM pack</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="container-wccp py-20 text-center">
+    <h2 class="font-display text-display-xl mb-4">Need something specific?</h2>
+    <p class="text-cast-700 text-lg max-w-xl mx-auto mb-8">
+      Project drawings, custom sections, EPDs for tender — talk to the design office and we'll get it
+      to you the same working day.
+    </p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href="/contact" class="btn-secondary">Contact the office</a>
+      <a href={`tel:${site.contact.phoneIntl}`} class="btn-yellow">Call {site.contact.phone}</a>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      const links = document.querySelectorAll('.dl-gate');
+      const form = document.querySelector('form[name="download-pack"]');
+      links.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          if (form) {
+            form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            const first = form.querySelector('input[name="name"]');
+            if (first) setTimeout(function () { first.focus(); }, 600);
+          }
+        });
+      });
+    })();
+  </script>
+</BaseLayout>

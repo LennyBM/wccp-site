@@ -1,0 +1,186 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const facts = [
+  { label: 'Client', value: 'Higgins Civils (placeholder name)' },
+  { label: 'Location', value: 'A30 corridor, near Exeter' },
+  { label: 'Sector', value: 'Civils — Highways scheme' },
+  { label: 'Products', value: '3× box culverts (2.4 × 1.8 × 12m), 180m L-block wall' },
+  { label: 'Concrete', value: '1,160 tonnes' },
+  { label: 'Lead time', value: '9 days delivered' },
+  { label: 'Project value', value: '£340,000' },
+  { label: 'Completed', value: 'October 2024' },
+  { label: 'Standards', value: 'BS EN 14844, BS EN 1992-1-1' },
+];
+
+const articleSchema = {
+  author: {
+    '@type': 'Person',
+    name: 'WCCP engineering team',
+    description: 'Family-run precast concrete manufacturer in Holsworthy, North Devon, casting since 1971.',
+  },
+  datePublished: '2024-11-04',
+  mainEntityOfPage: 'https://westcountryconcreteproducts.co.uk/case-studies/higgins-civils-roundabout',
+};
+---
+
+<BaseLayout
+  title="Higgins Civils — A30 roundabout reconfiguration, near Exeter"
+  description="WCCP supplied three 12m box culverts and 180m of L-block retaining wall — 1,160 tonnes — for a Highways scheme near Exeter. Delivered in nine days."
+  image="/images/case-studies/higgins-civils-roundabout.jpg"
+  schema="Article"
+  schemaData={articleSchema}
+>
+  <section class="relative bg-navy text-white">
+    <div class="aspect-[16/7] md:aspect-[16/6] bg-gradient-to-br from-navy via-navy-700 to-cast-700 relative">
+      <div class="absolute inset-0 hero-gradient"></div>
+      <div class="absolute bottom-0 left-0 right-0 container-wccp pb-10 md:pb-14">
+        <nav class="text-sm text-white/90 mb-4" aria-label="Breadcrumb">
+          <a href="/case-studies" class="hover:text-yellow">Case studies</a>
+          <span class="mx-2 text-cast-300">/</span>
+          <span class="text-white/90">Higgins Civils — A30 roundabout</span>
+        </nav>
+        <p class="eyebrow text-yellow mb-3">Civils · Devon · 2024</p>
+        <h1 class="font-display text-display-xl text-white mb-3 max-w-3xl">Higgins Civils — A30 roundabout reconfiguration</h1>
+        <p class="text-white/90 text-lg max-w-2xl">
+          Three 12-metre box culverts and 180 metres of L-block retaining wall, delivered to a Highways
+          principal contractor working a tight overnight closure schedule.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-bone-200 border-b border-cast-100">
+    <div class="container-wccp py-8">
+      <div class="grid grid-cols-3 gap-6 max-w-3xl mx-auto text-center">
+        <div>
+          <div class="font-display font-bold text-display-lg text-navy leading-none">1,160t</div>
+          <div class="text-cast text-sm uppercase tracking-wide mt-2">Concrete delivered</div>
+        </div>
+        <div>
+          <div class="font-display font-bold text-display-lg text-navy leading-none">9</div>
+          <div class="text-cast text-sm uppercase tracking-wide mt-2">Days delivered</div>
+        </div>
+        <div>
+          <div class="font-display font-bold text-display-lg text-navy leading-none">£340k</div>
+          <div class="text-cast text-sm uppercase tracking-wide mt-2">Project value</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-12 md:py-16">
+    <div class="grid lg:grid-cols-[1fr_18rem] gap-10 lg:gap-16">
+      <div class="max-w-3xl">
+
+        <p class="text-2xl font-display text-navy leading-snug mb-10 border-l-4 border-yellow pl-5">
+          Three box culverts, 180 metres of retaining wall, one Highways closure window. We cast it,
+          delivered it and the principal contractor closed up before the morning peak.
+        </p>
+
+        <h2 class="font-display text-2xl text-navy mb-3">The challenge</h2>
+        <p class="text-cast-700 text-lg leading-relaxed mb-8">
+          Higgins won a roundabout reconfiguration on the A30 corridor with a tight overnight closure
+          schedule. They needed three 2.4m × 1.8m × 12m box culvert runs and 180 metres of L-block retaining
+          wall delivered in sequence to match the closure programme — late deliveries would burn the
+          possessions and the contract.
+        </p>
+
+        <h2 class="font-display text-2xl text-navy mb-3">The solution</h2>
+        <p class="text-cast-700 text-lg leading-relaxed mb-4">
+          The box culverts were cast as 2-metre units, six per 12-metre run, in C50/60 to BS EN 14844 with
+          stainless rebar at the shear faces and integral lifting points cast in. We pre-numbered and laid
+          out the units in delivery order at the yard so each lorry left with the correct invert sequence
+          for that night's possession.
+        </p>
+        <p class="text-cast-700 text-lg leading-relaxed mb-4">
+          The 180-metre L-block wall was specified at 2.4 metre height to BS EN 1992-1-1, sulphate-resisting
+          concrete given the proximity to the carriageway drainage. We cast 450 tonnes of L-blocks ahead of
+          the wall programme so the contractor could pull units forward without dragging on lead times.
+        </p>
+        <p class="text-cast-700 text-lg leading-relaxed mb-8">
+          Deliveries ran on a nine-day rolling schedule, four-axle artics by night so the lorries cleared
+          the carriageway before reopening. Our transport manager held a delivery slot diary against the
+          contractor's possession plan — we'd rather an empty truck than a missed window. Every unit
+          arrived on time and in spec.
+        </p>
+
+        <h2 class="font-display text-2xl text-navy mb-4">From the yard to site</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-10">
+          {[1,2,3,4,5,6].map(() => (
+            <div class="aspect-square bg-gradient-to-br from-cast-200 to-cast-100 rounded"></div>
+          ))}
+        </div>
+
+        <blockquote class="bg-navy text-white p-8 md:p-10 rounded-lg mb-10">
+          <svg class="w-10 h-10 text-yellow mb-4" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 7H5a2 2 0 00-2 2v4a2 2 0 002 2h2v2a2 2 0 01-2 2H4v2h1a4 4 0 004-4V7zm10 0h-4a2 2 0 00-2 2v4a2 2 0 002 2h2v2a2 2 0 01-2 2h-1v2h1a4 4 0 004-4V7z"/>
+          </svg>
+          <p class="font-display text-xl md:text-2xl text-white leading-snug mb-4">
+            We've used national precast suppliers before and waited weeks for replacements when something
+            cracked in transit. WCCP turned up with the right unit on the right night, every night.
+          </p>
+          <footer class="text-white/90">
+            <span class="font-bold text-white">Mark (placeholder)</span> · Site agent, civils contractor on the A30 corridor
+          </footer>
+        </blockquote>
+
+        <h2 class="font-display text-2xl text-navy mb-3">The result</h2>
+        <p class="text-cast-700 text-lg leading-relaxed mb-10">
+          The roundabout reopened on programme, no missed possessions, no rejected units. Higgins have
+          since added WCCP to their preferred supply chain for highways and infrastructure work across the
+          South West.
+        </p>
+
+        <section class="bg-bone-200 border border-cast-100 rounded-lg p-8">
+          <h2 class="font-display text-2xl text-navy mb-3">Highways or civils principal contractor?</h2>
+          <p class="text-cast-700 leading-relaxed mb-6">
+            We supply box culverts, retaining walls and bespoke precast to the highways supply chain across
+            the South West. Send your scheme drawings — we'll come back with a fixed price and a
+            possession-ready delivery plan.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="/quote" class="btn-primary">Start a quote</a>
+            <a href="/products/retaining-walls" class="btn-ghost">See civils range</a>
+          </div>
+        </section>
+      </div>
+
+      <aside>
+        <div class="sticky top-24 card p-6">
+          <p class="eyebrow text-cast mb-4">Project facts</p>
+          <dl class="space-y-3 text-sm">
+            {facts.map((f) => (
+              <div>
+                <dt class="text-cast text-xs uppercase tracking-wide font-bold">{f.label}</dt>
+                <dd class="text-navy font-medium mt-0.5">{f.value}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <hr class="my-6 border-cast-100" />
+
+          <a href="/case-studies" class="text-ember font-bold text-sm hover:text-ember-700 inline-flex items-center gap-2">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="19" y1="12" x2="5" y2="12" stroke-linecap="round"/>
+              <polyline points="12 19 5 12 12 5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Back to all case studies
+          </a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="container-wccp py-16 text-center">
+    <h2 class="font-display text-display-lg mb-4">Talk to the yard.</h2>
+    <p class="text-cast-700 text-lg max-w-xl mx-auto mb-8">
+      Same-day callback Monday to Friday. We work with what you've got — sketches, photos or full plans.
+    </p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+      <a href="/quote" class="btn-primary">Configure a quote</a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,355 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const faqs = [
+  {
+    q: 'What was FETF 2026?',
+    a: 'The Farming Equipment and Technology Fund 2026 was a Defra grant scheme offering 50–60% funding (capped at £25,000 per applicant per theme) for eligible items in productivity, slurry, animal health and welfare themes. Applications opened in spring 2026 and closed on 28 May 2026.',
+  },
+  {
+    q: 'Did the FETF 2026 window close?',
+    a: 'Yes — FETF 2026 closed on 28 May 2026. Successful applicants were notified through summer 2026 and had until early 2027 to claim. Defra has indicated FETF 2027 will follow a similar structure; we recommend preparing now if you missed this round.',
+  },
+  {
+    q: 'Which WCCP products were on the FETF 2026 eligible items list?',
+    a: 'Several. Slurry separation, covered slurry storage, slurry channel covers and dirty water tanks were all on the Slurry theme list. Cattle handling and milking robot bases featured under Productivity. Each item had a fixed grant rate published in the FETF 2026 manual.',
+  },
+  {
+    q: 'How much funding could I get on a slurry store under FETF 2026?',
+    a: 'FETF 2026 typically funded 50–60% of the published reference cost for each eligible item, with a £25,000 cap per applicant within the Slurry theme. For larger slurry storage projects, applicants combined FETF with the Slurry Infrastructure Grant (SIG), which is a separate, larger scheme.',
+  },
+  {
+    q: 'What is the difference between FETF and SIG?',
+    a: 'FETF funds discrete equipment items (tank covers, separators, scrapers) at standard rates with a £25,000 cap per theme. SIG funds whole slurry infrastructure projects (new stores, store extensions) at higher caps (£250,000+) with site-specific design and a more involved application.',
+  },
+  {
+    q: 'Will FETF 2027 happen?',
+    a: 'Defra has indicated continued funding under the SFI/Capital Grants framework, with FETF expected to return in 2027 in similar form. Eligible items may shift slightly. We recommend signing up for the Defra grant alert service and preparing your applicant evidence early.',
+  },
+  {
+    q: 'What were the most common FETF 2026 application mistakes?',
+    a: 'In order: missing the deadline, applying for ineligible items, not reading the published reference costs (overspending the difference unfunded), missing supplier quotes, and forgetting that FETF requires the item to be installed and claimed within the grant window — usually 12 months.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="FETF 2026: which WCCP products were eligible?"
+  description="FETF 2026 closed on 28 May 2026. Review the WCCP products that qualified, grant rates, Productivity and Slurry theme breakdown, and a 6-step prep checklist for FETF 2027."
+  image="/images/guides/fetf-2026-eligible-products.jpg"
+  schema="Article"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-14 md:py-16">
+      <nav class="text-sm text-white/90 mb-6" aria-label="Breadcrumb">
+        <a href="/guides" class="hover:text-yellow">Guides</a>
+        <span class="mx-2 text-cast">/</span>
+        <span class="text-white/90">FETF 2026 eligible products</span>
+      </nav>
+      <p class="eyebrow text-yellow mb-4">Grants · Pillar guide</p>
+      <h1 class="font-display text-display-xl text-white mb-6 max-w-4xl">
+        FETF 2026: which WCCP products were eligible?
+      </h1>
+
+      <div class="bg-navy-700 border-l-4 border-yellow p-6 max-w-3xl rounded-r">
+        <p class="text-white/90 text-lg leading-relaxed">
+          <strong class="text-white">Direct answer:</strong> The FETF 2026 application window closed on
+          28 May 2026. Several WCCP products were on the eligible items list — covered slurry storage,
+          slurry channel covers, dirty water tanks, cattle handling and milking robot bases — funded at
+          50–60% of published reference costs up to £25,000 per applicant per theme. Below: what was
+          funded, lessons learned and how to prepare for FETF 2027.
+        </p>
+      </div>
+
+      <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/90">
+        <div>By <span class="text-white font-semibold">WCCP Engineering Team</span></div>
+        <div>Published <time datetime="2026-04-02">2 April 2026</time></div>
+        <div>Updated <time datetime="2026-04-28">28 April 2026</time></div>
+      </div>
+    </div>
+  </section>
+
+  <article class="container-wccp py-12 md:py-16">
+    <div class="grid lg:grid-cols-[1fr_18rem] gap-10 lg:gap-16">
+      <div class="max-w-3xl">
+
+        <details class="lg:hidden mb-10 border border-cast-100 rounded-lg p-5">
+          <summary class="font-display text-lg font-bold text-navy cursor-pointer">On this page</summary>
+          <ol class="mt-4 space-y-2 text-cast list-decimal list-inside">
+            <li><a href="#what" class="hover:text-ember">What FETF 2026 funded</a></li>
+            <li><a href="#eligible" class="hover:text-ember">WCCP products that qualified</a></li>
+            <li><a href="#rates" class="hover:text-ember">Grant rates table</a></li>
+            <li><a href="#themes" class="hover:text-ember">Productivity and Slurry themes</a></li>
+            <li><a href="#mistakes" class="hover:text-ember">Common application mistakes</a></li>
+            <li><a href="#prep" class="hover:text-ember">Prep checklist for FETF 2027</a></li>
+            <li><a href="#faq" class="hover:text-ember">FAQ</a></li>
+          </ol>
+        </details>
+
+        <section id="what" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What did FETF 2026 actually fund?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">FETF 2026 was the Farming Equipment and Technology Fund — a Defra capital
+            grant scheme offering fixed-rate contributions on a published list of eligible items. The
+            2026 round had three themes (Productivity, Slurry, and Animal Health & Welfare), each capped
+            at £25,000 per applicant. The window opened in spring 2026 and closed 28 May 2026.</strong>
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            FETF works differently to the Slurry Infrastructure Grant (SIG). FETF funds discrete equipment
+            items at fixed rates — applicants pick from the eligible items list, receive the published
+            grant amount per unit and pay the difference. SIG funds bespoke slurry infrastructure projects
+            with site-specific design and much higher individual caps.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            Many farmers combined FETF and SIG in 2026 — using SIG for the main slurry store build and
+            FETF for ancillary items like channel covers, dirty water tanks and slurry separators. The
+            combination was the most efficient route to a fully-funded slurry upgrade.
+          </p>
+        </section>
+
+        <section id="eligible" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Which WCCP products were on the FETF 2026 eligible items list?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            <strong class="text-navy">Across the Slurry and Productivity themes, several WCCP-supplied items were
+            eligible: slurry channel covers, covered slurry storage, dirty water tanks, milking robot bases
+            and cattle handling kit. Each had a published reference cost and grant rate in the FETF 2026
+            manual, and applicants were free to choose any approved supplier.</strong>
+          </p>
+
+          <div class="overflow-x-auto mb-4 -mx-4 sm:mx-0">
+            <table class="spec-table min-w-full px-4 sm:px-0">
+              <thead>
+                <tr>
+                  <th>FETF item</th>
+                  <th>Theme</th>
+                  <th>WCCP product</th>
+                  <th>Indicative grant</th>
+                </tr>
+              </thead>
+              <tbody class="text-cast">
+                <tr>
+                  <td>Slurry channel covers</td>
+                  <td>Slurry</td>
+                  <td>Precast cover slabs</td>
+                  <td><strong class="text-navy">£40 per m²</strong></td>
+                </tr>
+                <tr>
+                  <td>Slurry tank cover (rigid)</td>
+                  <td>Slurry</td>
+                  <td>Precast tank cover panels</td>
+                  <td><strong class="text-navy">£60 per m²</strong></td>
+                </tr>
+                <tr>
+                  <td>Dirty water tank, 50m³</td>
+                  <td>Slurry</td>
+                  <td>Sectional precast tank</td>
+                  <td><strong class="text-navy">~£3,500</strong></td>
+                </tr>
+                <tr>
+                  <td>Milking robot base</td>
+                  <td>Productivity</td>
+                  <td>Precast robot base + plinth</td>
+                  <td><strong class="text-navy">~£2,400 each</strong></td>
+                </tr>
+                <tr>
+                  <td>Cattle handling crush base</td>
+                  <td>Productivity</td>
+                  <td>Precast handling slabs</td>
+                  <td><strong class="text-navy">~£500 each</strong></td>
+                </tr>
+                <tr>
+                  <td>Covered yard precast slabs</td>
+                  <td>Slurry</td>
+                  <td>Precast slatted floors</td>
+                  <td><strong class="text-navy">£90 per m²</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-sm text-cast italic">
+            Indicative 2026 figures from the published FETF 2026 manual. Actual grant value depended on
+            the exact item code, with Defra publishing the final reference cost per item.
+          </p>
+        </section>
+
+        <section id="rates" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What were the grant rates and caps?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Standard items were funded at 50% of published reference cost. Items
+            categorised as innovative or low-uptake received 60%. Maximum grant per applicant per theme
+            was £25,000. An applicant could draw across all three themes for a maximum total of around
+            £75,000 — though most farms used Slurry only.</strong>
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            Reference costs were published per item, not per supplier. If the actual installed cost was
+            below the reference cost, the grant was 50% (or 60%) of the actual. If above, the grant was
+            capped at the reference rate — applicants paid the difference.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            Minimum grant value per application was £1,000. That ruled out single-item applications for
+            small purchases. Most applicants bundled multiple items (e.g. tank cover + channel cover +
+            dirty water tank) into one Slurry-theme application.
+          </p>
+        </section>
+
+        <section id="themes" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">How did the Productivity and Slurry themes break down?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">The Slurry theme funded items that reduced ammonia or methane emissions —
+            covers, separators, low-emission spreading kit, dirty water tanks and ancillary infrastructure.
+            The Productivity theme funded items that improved on-farm efficiency — cattle handling,
+            robotic milking infrastructure, weighing kit and ventilation upgrades.</strong>
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            For WCCP customers the Slurry theme dominated. Covering an existing slurry store with rigid
+            precast panels was a high-impact intervention: it cut ammonia emissions by around 60–70%,
+            reduced rainwater dilution and met Clean Air Strategy 2024 commitments. FETF funded these
+            covers at £60/m² — typically about half the supplied cost.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            The Productivity theme picked up milking robot bases (we supply DeLaval VMS and Lely Astronaut
+            base packages with cable trays cast in) and cattle handling slabs. Both were specified at
+            standard rates and rarely contested.
+          </p>
+        </section>
+
+        <section id="mistakes" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What were the common FETF 2026 application mistakes?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Top five: missing the 28 May 2026 deadline; applying for items that weren't
+            on the eligible list; assuming the published reference cost matched the supplied cost;
+            forgetting to retain quotes and invoices for claim stage; and not installing within the
+            12-month grant window.</strong>
+          </p>
+          <ul class="text-cast-700 text-lg leading-relaxed space-y-3 list-disc pl-6 mb-4">
+            <li><strong class="text-navy">Late application.</strong> The window was firm. Defra published it months in advance — applicants who waited until May missed out.</li>
+            <li><strong class="text-navy">Ineligible items.</strong> Only items on the published list qualified. "Equivalent" alternatives didn't, however good the engineering case was.</li>
+            <li><strong class="text-navy">Reference cost confusion.</strong> Reference cost was Defra's number for grant calculation, not the market price. Applicants had to budget for the gap.</li>
+            <li><strong class="text-navy">Documentation gaps.</strong> Quotes, invoices, photos and supplier details all had to be retained for claim. Missing one delayed payment by months.</li>
+            <li><strong class="text-navy">Install delays.</strong> Items had to be installed and claimed within the grant window. Late deliveries forfeited the grant.</li>
+          </ul>
+        </section>
+
+        <section id="prep" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">FETF 2027 prep checklist (6 steps)</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            <strong class="text-navy">FETF 2027 is expected to launch in spring 2027 with similar themes and
+            structure. Use the closed window now to prepare so that, when the FETF 2027 manual is published,
+            you can apply on day one. Six steps cover the bulk of the preparation.</strong>
+          </p>
+          <div class="bg-bone-200 border-l-4 border-ember p-6 rounded-r">
+            <ol class="text-cast-700 text-base leading-relaxed space-y-3 list-decimal pl-5">
+              <li><strong class="text-navy">Sign up to Defra grant alerts.</strong> Defra publishes the FETF manual 6–8 weeks before the application window. Alerts are free at gov.uk.</li>
+              <li><strong class="text-navy">Identify your priority items.</strong> Walk the yard with the FETF 2026 eligible list — most items will reappear. Note dimensions, quantities and rough budgets.</li>
+              <li><strong class="text-navy">Get quotes ready.</strong> Suppliers (us included) will quote against expected grant items. A quote in your file is half the application done.</li>
+              <li><strong class="text-navy">Confirm holding/business numbers.</strong> Single Business Identifier (SBI) and County Parish Holding (CPH) numbers must be live and current.</li>
+              <li><strong class="text-navy">Plan installation timing.</strong> FETF allows ~12 months from approval to claim. Don't apply for items that can't be in the ground within that window.</li>
+              <li><strong class="text-navy">Combine with SIG where applicable.</strong> Big slurry projects benefit from SIG + FETF stacking. Plan the architecture before the windows open.</li>
+            </ol>
+          </div>
+        </section>
+
+        <section id="faq" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-6">Frequently asked questions</h2>
+          <div class="space-y-4">
+            {faqs.map((f) => (
+              <details class="card p-5 group">
+                <summary class="font-display text-lg font-bold text-navy cursor-pointer flex items-start justify-between gap-4">
+                  <span>{f.q}</span>
+                  <svg class="w-5 h-5 mt-1 flex-shrink-0 text-ember transition-transform group-open:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="12" y1="5" x2="12" y2="19" stroke-linecap="round"/>
+                    <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+                  </svg>
+                </summary>
+                <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section class="bg-navy text-white rounded-lg p-8 md:p-10">
+          <h2 class="font-display text-2xl md:text-3xl text-white mb-3">Preparing for FETF 2027 or SIG 2026?</h2>
+          <p class="text-white/90 mb-6 leading-relaxed">
+            We have a grant-aware quote pack ready for slurry covers, channel slabs, dirty water tanks
+            and robot bases. Tell us what you're planning and we'll spec to FETF reference items where
+            possible.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="/grants/fetf-2026" class="btn-yellow">FETF 2026 hub</a>
+            <a href="/quote" class="btn bg-white text-navy hover:bg-bone">Start a quote</a>
+          </div>
+        </section>
+
+      </div>
+
+      <aside class="hidden lg:block">
+        <div class="sticky top-24">
+          <p class="eyebrow text-cast mb-4">On this page</p>
+          <ol class="space-y-3 text-sm border-l border-cast-100 pl-4">
+            <li><a href="#what" class="text-cast hover:text-ember">What FETF funded</a></li>
+            <li><a href="#eligible" class="text-cast hover:text-ember">Eligible WCCP products</a></li>
+            <li><a href="#rates" class="text-cast hover:text-ember">Grant rates</a></li>
+            <li><a href="#themes" class="text-cast hover:text-ember">Themes</a></li>
+            <li><a href="#mistakes" class="text-cast hover:text-ember">Common mistakes</a></li>
+            <li><a href="#prep" class="text-cast hover:text-ember">FETF 2027 prep</a></li>
+            <li><a href="#faq" class="text-cast hover:text-ember">FAQ</a></li>
+          </ol>
+
+          <div class="mt-8 p-4 bg-yellow rounded-lg">
+            <p class="text-xs font-bold text-navy uppercase tracking-wide mb-2">Window closed</p>
+            <p class="text-sm text-navy mb-3 leading-snug">FETF 2026 closed 28 May 2026. Prep now for FETF 2027.</p>
+            <a href="/grants/slurry-grant" class="text-navy font-bold text-sm hover:underline">See SIG 2026 →</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+  <section class="bg-bone-200 py-16">
+    <div class="container-wccp">
+      <p class="eyebrow text-cast mb-3">Related guides</p>
+      <h2 class="font-display text-display-md mb-8">Keep reading.</h2>
+
+      <div class="grid md:grid-cols-3 gap-5">
+        <a href="/guides/ssafo-2018" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Regulations</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">SSAFO 2018 compliance checklist</h3>
+          <p class="text-cast text-sm leading-relaxed">14-point checklist, EA notification and freeboard rules.</p>
+        </a>
+        <a href="/guides/slurry-wall-thickness" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Slurry storage</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">How thick should a slurry store wall be?</h3>
+          <p class="text-cast text-sm leading-relaxed">200mm vs 250mm vs 300mm panels by retained height.</p>
+        </a>
+        <a href="/guides/cubicle-sizing" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Cattle housing</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Cattle cubicle sizing by breed</h3>
+          <p class="text-cast text-sm leading-relaxed">Holstein, Jersey, beef and Continental dimensions to AHDB Dairy 2024.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-16 text-center">
+    <h2 class="font-display text-display-lg mb-4">Talk to the yard.</h2>
+    <p class="text-cast-700 text-lg max-w-xl mx-auto mb-8">
+      Same-day callback Monday to Friday. We'll talk you through the grant fit before you commit a penny.
+    </p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+      <a href="/quote" class="btn-primary">Configure a quote</a>
+    </div>
+  </section>
+</BaseLayout>

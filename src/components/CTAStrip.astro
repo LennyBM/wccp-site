@@ -1,0 +1,82 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  primaryCta?: { href: string; label: string };
+  secondaryCta?: { href: string; label: string };
+  variant?: 'navy' | 'yellow' | 'bone';
+  eyebrow?: string;
+}
+
+const {
+  title,
+  description,
+  primaryCta,
+  secondaryCta,
+  variant = 'navy',
+  eyebrow,
+} = Astro.props;
+
+const variantClasses = {
+  navy:   'bg-navy-logo text-white',
+  yellow: 'bg-yellow text-navy',
+  bone:   'bg-bone-200 text-ink',
+}[variant];
+
+const eyebrowColor = variant === 'navy' ? 'text-yellow' : 'text-navy';
+const descriptionColor = variant === 'navy' ? 'text-white/85' : 'text-cast';
+---
+
+<section class={`relative overflow-hidden ${variantClasses}`}>
+  {variant === 'navy' && (
+    <div
+      aria-hidden="true"
+      class="absolute -top-24 -right-24 w-[80%] h-[200%] opacity-[0.05] pointer-events-none"
+      style="background-image: repeating-linear-gradient(45deg, #FBF547 0, #FBF547 2px, transparent 2px, transparent 22px); transform: rotate(-12deg);"
+    />
+  )}
+  {variant === 'yellow' && (
+    <div
+      aria-hidden="true"
+      class="absolute inset-0 opacity-10 pointer-events-none"
+      style="background-image: repeating-linear-gradient(-45deg, #0000FE 0, #0000FE 1px, transparent 1px, transparent 16px);"
+    />
+  )}
+
+  <div class="relative container-wccp py-16 lg:py-20">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+      <div class="max-w-2xl">
+        {eyebrow && <p class={`eyebrow ${eyebrowColor} mb-3`}>{eyebrow}</p>}
+        <h2 class={`font-display text-display-lg ${variant === 'navy' ? 'text-white' : 'text-navy'} mb-3`}>
+          {title}
+        </h2>
+        {description && <p class={`text-lg leading-relaxed ${descriptionColor}`}>{description}</p>}
+      </div>
+
+      {(primaryCta || secondaryCta) && (
+        <div class="flex flex-wrap gap-3 shrink-0">
+          {primaryCta && (
+            <a
+              href={primaryCta.href}
+              class={variant === 'navy' ? 'btn-primary' : 'btn-secondary'}
+            >
+              <span>{primaryCta.label}</span>
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+                <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          )}
+          {secondaryCta && (
+            <a
+              href={secondaryCta.href}
+              class={variant === 'navy' ? 'btn-yellow' : 'btn-ghost'}
+            >
+              {secondaryCta.label}
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+  </div>
+</section>

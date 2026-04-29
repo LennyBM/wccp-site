@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="WCCP — West Country Concrete Products">
+  <!-- Heritage Navy seal -->
+  <rect width="180" height="180" rx="22" fill="#0A2351"/>
+  <!-- Thin white border around the wordmark -->
+  <rect x="14" y="14" width="152" height="152" rx="14" fill="none" stroke="#F6F4EE" stroke-width="3" opacity="0.9"/>
+  <!-- Three-line WCCP stack, stamped seal effect -->
+  <g font-family="'Work Sans', system-ui, -apple-system, 'Segoe UI', sans-serif"
+     font-weight="700"
+     text-anchor="middle"
+     fill="#F5C13B"
+     stroke="#F6F4EE"
+     stroke-width="1.4"
+     paint-order="stroke fill">
+    <text x="90" y="62" font-size="26" letter-spacing="2">WEST COUNTRY</text>
+    <text x="90" y="104" font-size="44" letter-spacing="-1">WCCP</text>
+    <text x="90" y="142" font-size="20" letter-spacing="3">SINCE 1971</text>
+  </g>
+</svg>

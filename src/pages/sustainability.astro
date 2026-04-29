@@ -1,0 +1,179 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const standards = [
+  { name: 'CE / UKCA marking', body: 'All structural precast products carry CE/UKCA marking with declarations of performance.', status: 'current' },
+  { name: 'BS EN 14992', body: 'European standard for precast concrete wall elements. All prestressed and reinforced wall panels conform.', status: 'current' },
+  { name: 'BS 8500-1:2023', body: 'UK specification for concrete. Mix designs documented and traceable, including sulphate-resisting and low-permeability variants.', status: 'current' },
+  { name: 'BS EN 1992 (Eurocode 2)', body: 'Design of concrete structures. All bespoke and structural elements designed and detailed to Eurocode 2.', status: 'current' },
+  { name: 'ISO 9001 — Quality management', body: 'Quality management system implementation underway. Internal procedures aligned; external certification scheduled.', status: 'in-progress' },
+  { name: 'ISO 14001 — Environmental management', body: 'Environmental management system being formalised at the new Chilsworthy site. Certification target 2026.', status: 'in-progress' },
+  { name: 'BES 6001 — Responsible sourcing', body: 'Responsible sourcing certification under preparation. Aggregate and cement supply chains being audited.', status: 'in-progress' },
+];
+
+const principles = [
+  {
+    title: 'Concrete that lasts 50 years +',
+    body: "The most sustainable building is the one you don't have to rebuild. Properly specified precast carries a design life of 50 to 100 years. Most of what we cast outlives the original brief.",
+  },
+  {
+    title: 'Local sourcing where we can',
+    body: 'Aggregates from Devon and Cornwall quarries. Steel from UK suppliers. Drivers and fitters who live within an hour of the yard. Less haulage, less embodied carbon.',
+  },
+  {
+    title: 'Co-located with renewable energy',
+    body: "Our Chilsworthy yard sits next to Severn Trent's anaerobic digestion plant. The infrastructure links are real and growing.",
+  },
+  {
+    title: 'Honest about the journey',
+    body: "Concrete has a carbon problem. We're not pretending otherwise. We're cutting where we can — mix design, transport, energy — and we'll publish numbers as we have them.",
+  },
+];
+---
+
+<BaseLayout
+  title="Sustainability & accreditations — standards, certifications, the journey"
+  description="West Country Concrete Products holds CE/UKCA marking, conforms to BS EN 14992, BS 8500-1:2023 and BS EN 1992. ISO 9001/14001 and BES 6001 certifications in progress. Co-located with Severn Trent biogas at Chilsworthy."
+  schema="Organization"
+>
+  <!-- Hero -->
+  <section class="relative bg-navy text-white overflow-hidden">
+    <div class="heritage-stripe absolute inset-x-0 bottom-0"></div>
+    <div class="relative container-wccp py-20 md:py-28">
+      <div class="max-w-3xl">
+        <p class="eyebrow text-yellow mb-6">Standards · Certifications · Journey</p>
+        <h1 class="font-display text-display-2xl text-white mb-6">
+          Sustainability,<br />
+          <span class="text-yellow">honestly accounted for.</span>
+        </h1>
+        <p class="text-lg md:text-xl text-white/90 max-w-2xl leading-relaxed">
+          Concrete is carbon-intensive. We don't dress that up. What we do is hold to British and
+          European standards, cut emissions where we can, and publish the work — finished and in progress.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Principles -->
+  <section class="container-wccp py-20">
+    <div class="max-w-2xl mb-12">
+      <p class="eyebrow text-cast mb-3">How we think about it</p>
+      <h2 class="font-display text-display-lg">Four things we hold to.</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      {principles.map((p, i) => (
+        <div class="card p-8">
+          <div class="font-display text-display-md text-ember mb-3">0{i + 1}</div>
+          <h3 class="font-display text-2xl font-bold text-navy mb-3">{p.title}</h3>
+          <p class="text-cast-700 leading-relaxed">{p.body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Standards & accreditations grid -->
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">Accreditations & standards</p>
+        <h2 class="font-display text-display-lg">What we hold, and what's next.</h2>
+        <p class="text-cast-700 text-lg mt-4">
+          Current accreditations are listed first. Certifications in progress are listed below them — we'll
+          update this page as each lands.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {standards.map((s) => (
+          <div class={`card p-6 ${s.status === 'in-progress' ? 'border-dashed' : ''}`}>
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <h3 class="font-display text-lg font-bold text-navy">{s.name}</h3>
+              {s.status === 'current' ? (
+                <span class="trust-badge bg-navy text-white text-xs flex-shrink-0">Current</span>
+              ) : (
+                <span class="trust-badge bg-yellow text-navy text-xs flex-shrink-0">In progress</span>
+              )}
+            </div>
+            <p class="text-cast text-sm leading-relaxed">{s.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Carbon credentials placeholder -->
+  <section class="container-wccp py-20">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <p class="eyebrow text-cast mb-3">Carbon</p>
+        <h2 class="font-display text-display-lg mb-6">Numbers, not slogans.</h2>
+        <p class="text-cast-700 text-lg leading-relaxed mb-5">
+          We're working on Environmental Product Declarations (EPDs) for our flagship products and a
+          published embodied-carbon figure (kgCO₂e/m³) for our standard mix designs.
+        </p>
+        <p class="text-cast-700 text-lg leading-relaxed mb-8">
+          When the figures are independently verified, they'll go on the site — not before. In the
+          meantime, ask us at quote stage and we'll share what we have.
+        </p>
+        <a href="/contact" class="btn-secondary">Ask about a specific product</a>
+      </div>
+      <div class="card p-8 bg-bone-200 border-dashed">
+        <p class="eyebrow text-ember mb-3">Coming soon</p>
+        <h3 class="font-display text-2xl font-bold text-navy mb-4">Carbon dashboard</h3>
+        <ul class="space-y-3 text-cast">
+          <li class="flex items-start gap-3">
+            <span class="text-ember font-bold">·</span>
+            <span>EPDs for flagship precast products</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-ember font-bold">·</span>
+            <span>Embodied carbon (A1–A3) per m³ of concrete</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-ember font-bold">·</span>
+            <span>Scope 1 & 2 emissions, Chilsworthy yard</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-ember font-bold">·</span>
+            <span>Heat & power benefit from adjacent AD plant</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- AD plant adjacency -->
+  <section class="bg-navy text-white py-20">
+    <div class="container-wccp">
+      <div class="max-w-3xl">
+        <p class="eyebrow text-yellow mb-3">Co-location</p>
+        <h2 class="font-display text-display-lg mb-6">Next door to the biogas plant.</h2>
+        <p class="text-white/90 text-lg leading-relaxed mb-5">
+          Our Chilsworthy yard is built beside Severn Trent Green Power's Holsworthy AD plant — one of
+          the UK's largest food-waste anaerobic digestion sites. The plant turns food waste into
+          renewable gas and electricity.
+        </p>
+        <p class="text-white/90 text-lg leading-relaxed">
+          Sitting next door is a deliberate choice. Heat, power and infrastructure links are part of
+          the long-term plan. It's not a silver bullet for concrete's carbon footprint — but it's a
+          sensible bit of joined-up thinking, and a story we're proud of.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="container-wccp py-20 text-center">
+    <h2 class="font-display text-display-xl mb-4">Ask the awkward questions.</h2>
+    <p class="text-cast-700 text-lg max-w-xl mx-auto mb-8">
+      Specifying for a BREEAM project? Need a declaration of performance? Want the carbon figure on a
+      panel? Ring up and ask.
+    </p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+      <a href={`mailto:${site.contact.email}`} class="btn-ghost">{site.contact.email}</a>
+      <a href="/contact" class="btn-primary">Send a message</a>
+    </div>
+  </section>
+</BaseLayout>

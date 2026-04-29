@@ -1,0 +1,235 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import { site } from '@/config/site';
+
+const specs = [
+  { spec: 'Overall length', value: '4.0 m (two-part kit)' },
+  { spec: 'Overall width', value: '1300 mm' },
+  { spec: 'Overall height', value: '875 mm' },
+  { spec: 'Bath depth', value: '150 mm working depth' },
+  { spec: 'Bath length', value: '3.0 m treatment zone' },
+  { spec: 'Approach + exit', value: '0.5 m each end' },
+  { spec: 'Volume', value: '~580 L formalin or 5% solution' },
+  { spec: 'Weight (each half)', value: '~1,150 kg' },
+  { spec: 'Price (kit, delivered)', value: '£1,425 + VAT' },
+  { spec: 'Sealant + applicator gun', value: 'Supplied with kit' },
+];
+
+const applications = [
+  'Routine herd-walk-through hoof treatment',
+  'Targeted high-mastitis or digital-dermatitis groups',
+  'Robotic milking herd post-robot exit lane',
+  'Beef finishing units treating digital dermatitis',
+  'Sheep dipping (formalin / zinc sulphate solution)',
+  'AI / fertility yard cow-flow treatment',
+  'Show preparation and pre-export hoof care',
+];
+
+const related = [
+  { href: '/products/cattle-cubicles', label: 'Cattle Cubicles', meta: 'AHDB 2024 sized' },
+  { href: '/products/water-troughs', label: 'Water Troughs', meta: 'Single + double row' },
+  { href: '/products/cubicle-end-walls', label: 'Cubicle End Walls', meta: 'Trough + footbath option' },
+  { href: '/products/feed-troughs', label: 'Feed Troughs', meta: 'L-shape · 2440×900' },
+];
+
+const faqs = [
+  { q: 'What is in the kit and what does it cost?', a: 'Our standard footbath is a 4-metre two-part kit at £1,425 plus VAT, delivered. Two precast sections that join at the centre, with sealant and an applicator gun supplied. Overall dimensions are 1300mm wide and 875mm high. The 3m treatment zone is plenty for cow-flow at parlour speed.' },
+  { q: 'Why two parts?', a: 'A single 4-metre cast unit is heavy and awkward to install. The two-part design lets a 16-tonne HIAB lift each half straight off the lorry into position. The joint is sealed with the supplied sealant and the applicator gun — five minutes of work and you have a watertight 4-metre bath.' },
+  { q: 'How do I install it?', a: 'On a flat 100mm hardcore base, butted up to your existing collecting yard or exit race. The two halves sit side-by-side, sealant down the joint, weight does the rest. No bolting down required for routine use; bolt down with M12 anchors if you want it permanent.' },
+  { q: 'What chemical can I use?', a: 'Formalin (4%), copper sulphate (5%), zinc sulphate (10%) — all standard treatments. The sulphate-resisting C40/50 mix handles all of them. Empty and rinse weekly to keep treatment fresh; a 1300mm bath does that easily.' },
+  { q: 'Lead time and delivery?', a: 'Stock often available — usually 1 to 2 weeks. Delivered on a HIAB lorry that offloads itself onto your prepared base. £1,425 plus VAT is the all-in delivered price for a UK mainland address. Talk to the yard for confirmation.' },
+];
+
+const productSchema = {
+  name: 'Precast Cattle Footbath — 4m Two-Part Kit',
+  description: '4-metre two-part precast cattle footbath kit. 1300mm wide × 875mm overall height with 150mm working depth and 3m treatment zone. Sealant and applicator gun supplied. £1,425 + VAT delivered.',
+  brand: { '@type': 'Brand', name: site.name },
+  manufacturer: { '@type': 'Organization', name: site.name },
+  category: 'Precast cattle footbath',
+  material: 'Reinforced concrete, C40/50 sulphate-resisting (BS 8500-1:2023)',
+  weight: { '@type': 'QuantitativeValue', value: 2300, unitCode: 'KGM', unitText: 'kilogram per kit (two halves)' },
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 13369' },
+    { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 sulphate-resisting' },
+    { '@type': 'PropertyValue', name: 'Overall dimensions', value: '4000 × 1300 × 875 mm' },
+    { '@type': 'PropertyValue', name: 'Treatment zone', value: '3.0 m × 150 mm working depth' },
+    { '@type': 'PropertyValue', name: 'Configuration', value: 'Two-part kit, sealant + gun supplied' },
+    { '@type': 'PropertyValue', name: 'Compatible chemicals', value: 'Formalin, copper sulphate, zinc sulphate' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '1–2 weeks (stock dependent)' },
+    { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
+  ],
+  offers: {
+    '@type': 'Offer',
+    priceCurrency: 'GBP',
+    price: 1425,
+    priceSpecification: { '@type': 'PriceSpecification', price: 1425, priceCurrency: 'GBP', valueAddedTaxIncluded: false },
+    availability: 'https://schema.org/InStock',
+    seller: { '@type': 'Organization', name: site.name },
+  },
+};
+
+const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+---
+
+<BaseLayout
+  title="Footbaths — 4m two-part kit · £1,425+VAT delivered"
+  description="4-metre two-part precast cattle footbath kit. 1300mm wide, 875mm overall height. Sealant and applicator gun supplied. £1,425+VAT delivered. Cast in North Devon."
+  image="/images/products/footbaths.jpg"
+  schema="Product"
+  schemaData={productSchema}
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <TrustStrip />
+
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow text-yellow mb-4">Agricultural · cattle health · hoof care</p>
+          <h1 class="font-display text-display-xl text-white mb-4">Footbaths.</h1>
+          <p class="text-lg text-white/90 leading-relaxed mb-6">
+            4-metre two-part precast footbath kit at <strong class="text-white">£1,425 plus VAT, delivered</strong>.
+            1300mm wide and 875mm overall height. Sealant and applicator gun supplied. Lift each half into
+            place, seal the joint, and you are running treatment within the hour.
+          </p>
+          <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
+            <li class="flex gap-2"><span class="text-yellow">·</span> 4m two-part kit</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 1300mm wide</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 875mm high</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Sealant + gun</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Sulphate-resisting</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 1–2 week lead</li>
+          </ul>
+          <div class="flex flex-wrap gap-3">
+            <a href="/quote?product=Footbaths" class="btn-primary">Order a kit</a>
+            <a href="/spec-sheets/footbaths.pdf" class="btn-yellow">Download spec sheet</a>
+            <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">Call {site.contact.phone}</a>
+          </div>
+        </div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-300 via-cast to-navy"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-20">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Specification</p>
+      <h2 class="font-display text-display-lg mb-4">Dimensions, capacity and price.</h2>
+      <p class="text-cast-700 text-lg">One kit, fully specified. Sealant and applicator gun included. £1,425+VAT delivered to UK mainland.</p>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="spec-table w-full text-left border-collapse">
+        <thead class="bg-navy text-white">
+          <tr>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Specification</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          {specs.map((s, i) => (
+            <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
+              <td class="px-4 py-3 font-bold text-navy">{s.spec}</td>
+              <td class="px-4 py-3">{s.value}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow text-cast mb-3">Where they go</p>
+          <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">From a routine parlour-exit walk-through to a targeted digital-dermatitis treatment programme — same kit, used across hundreds of UK herds.</p>
+          <ul class="space-y-3">
+            {applications.map((a) => (<li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">·</span><span>{a}</span></li>))}
+          </ul>
+        </div>
+        <div class="card p-8">
+          <p class="eyebrow text-cast mb-3">Standards & references</p>
+          <h3 class="font-display text-2xl font-bold text-navy mb-4">Cast for the chemical environment.</h3>
+          <dl class="space-y-4 text-sm">
+            <div><dt class="font-bold text-navy">BS EN 13369</dt><dd class="text-cast">Common rules for precast concrete — factory production control.</dd></div>
+            <div><dt class="font-bold text-navy">BS 8500-1:2023</dt><dd class="text-cast">Concrete spec — sulphate-resisting designed mix.</dd></div>
+            <div><dt class="font-bold text-navy">BS 5502-22:2003</dt><dd class="text-cast">Agricultural buildings — cattle handling structures.</dd></div>
+            <div><dt class="font-bold text-navy">AHDB Dairy hoof health</dt><dd class="text-cast">3m treatment zone is the published minimum for effective contact time at parlour exit speed.</dd></div>
+            <div><dt class="font-bold text-navy">DEFRA welfare codes</dt><dd class="text-cast">Routine hoof care recommended for dairy and beef.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-yellow text-navy py-16">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-navy mb-2">£1,425 + VAT delivered</p>
+          <h2 class="font-display text-display-md">Order a 4-metre two-part footbath kit. Usually shipping from stock.</h2>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href="/quote?product=Footbaths" class="btn bg-navy text-white hover:bg-navy-700">Order now</a>
+          <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-20">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
+      <div>
+        <p class="eyebrow text-cast mb-3">Related products</p>
+        <h2 class="font-display text-display-lg">Often ordered alongside.</h2>
+      </div>
+      <a href="/products" class="text-ember font-bold hover:text-ember-700 inline-flex items-center gap-2">View full range
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" /><polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </a>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {related.map((r) => (
+        <a href={r.href} class="card p-5 group">
+          <div class="aspect-[16/10] bg-cast-100 mb-4 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100"></div></div>
+          <h3 class="font-display text-base font-bold text-navy mb-1 group-hover:text-ember">{r.label}</h3>
+          <p class="text-cast text-xs">{r.meta}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">Common questions</p>
+        <h2 class="font-display text-display-lg mb-4">What people ask about footbaths.</h2>
+        <p class="text-cast-700 text-lg">Five questions we answer most weeks. If yours is not here, ring the yard.</p>
+      </div>
+      <div class="max-w-3xl space-y-4">
+        {faqs.map((f) => (
+          <details class="card p-6 group">
+            <summary class="font-display text-lg font-bold text-navy cursor-pointer list-none flex justify-between items-start gap-4">
+              <span>{f.q}</span>
+              <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-navy text-white py-20">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-xl mb-4 text-white">Ready to order?</h2>
+      <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">£1,425+VAT, delivered to UK mainland. Stock often available — ring the yard.</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/quote?product=Footbaths" class="btn-yellow">Order a kit</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

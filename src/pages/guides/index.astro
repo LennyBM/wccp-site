@@ -1,0 +1,136 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const guides = [
+  {
+    href: '/guides/slurry-wall-thickness',
+    title: 'How thick should a UK slurry store wall be?',
+    desc: 'SSAFO 2018-compliant wall thickness by retained slurry depth — 200mm, 250mm and 300mm panels compared, with C40/50 sulphate-resisting concrete specs.',
+    eyebrow: 'Slurry storage',
+    readTime: '9 min read',
+  },
+  {
+    href: '/guides/cattle-cubicle-sizing',
+    title: 'Cattle cubicle sizing for Holstein, Jersey and beef breeds',
+    desc: 'Cubicle length, width and lunge space by breed and bodyweight. RSPCA Assured and Red Tractor 2026 dimensions, plus rear kerb height and bedding choice.',
+    eyebrow: 'Cattle housing',
+    readTime: '7 min read',
+  },
+  {
+    href: '/guides/ssafo-2018-compliance',
+    title: 'SSAFO 2018 compliance checklist',
+    desc: 'The Silage, Slurry and Agricultural Fuel Oil Regulations 2018 in plain English. 14-day notice, BS 5502-50 design life, drainage, EA inspection rights.',
+    eyebrow: 'Regulations',
+    readTime: '11 min read',
+  },
+  {
+    href: '/guides/retaining-wall-comparison',
+    title: 'King Post vs L-Block vs Cantilever retaining walls',
+    desc: 'Three precast retaining systems compared on cost, install speed, soil pressure, height limits and reuse value. Which to spec for which job.',
+    eyebrow: 'Civils',
+    readTime: '8 min read',
+  },
+  {
+    href: '/guides/concrete-grades-agriculture',
+    title: 'Concrete grades for agricultural use (C32/40, C40/50)',
+    desc: 'Why slurry stores need C40/50 sulphate-resisting and silage clamps need acid-resistant mixes. Cement classes, aggregate selection and BS 8500-1 in practice.',
+    eyebrow: 'Materials',
+    readTime: '6 min read',
+  },
+  {
+    href: '/guides/prestressed-vs-reinforced',
+    title: 'Prestressed vs reinforced concrete panels',
+    desc: 'Where pre-tensioned strand earns its keep, where conventional rebar wins on price, and how panel thickness changes by spec. BS EN 14992 and BS EN 13369.',
+    eyebrow: 'Materials',
+    readTime: '7 min read',
+  },
+  {
+    href: '/guides/fetf-2026-eligible-products',
+    title: 'FETF 2026 grant — eligible products',
+    desc: 'The Farming Equipment and Technology Fund 2026 round explained: what precast items qualify, the grant cap, the application window and evidence required.',
+    eyebrow: 'Grants',
+    readTime: '6 min read',
+  },
+  {
+    href: '/guides/slurry-infrastructure-grant-2026',
+    title: 'Slurry Infrastructure Grant 2026 — what you need to know',
+    desc: 'The £74m Slurry Infrastructure Grant Round 4. Capacity bands, eligibility, the 30 September 2026 deadline and how to spec a store that scores well.',
+    eyebrow: 'Grants',
+    readTime: '10 min read',
+  },
+];
+---
+
+<BaseLayout
+  title="Guides & resources for farmers, contractors and architects"
+  description="Plain-English guides to precast concrete for UK agriculture and civils. Slurry stores, cubicles, retaining walls, BS standards, FETF and SIG grants — written by the WCCP engineering team."
+>
+  <!-- Hero -->
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="max-w-3xl">
+        <p class="eyebrow text-yellow mb-5">Knowledge base</p>
+        <h1 class="font-display text-display-xl text-white mb-5">
+          Guides written by the people who cast the concrete.
+        </h1>
+        <p class="text-lg text-white/90 max-w-2xl leading-relaxed">
+          Specs, standards, grant deadlines and answers to the questions farmers and contractors
+          actually ring us about. No fluff, no marketing soup — just the numbers you need to make
+          a decision.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pillar grid -->
+  <section class="container-wccp py-16 md:py-20">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Pillar guides</p>
+      <h2 class="font-display text-display-lg mb-4">Start here.</h2>
+      <p class="text-cast-700 text-lg">
+        Each guide goes deep on one question. Read straight through, or jump to the section you need.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {guides.map((g) => (
+        <a href={g.href} class="card p-6 group flex flex-col">
+          <div class="flex items-center justify-between mb-4">
+            <span class="eyebrow text-ember">{g.eyebrow}</span>
+            <span class="text-xs text-cast font-medium">{g.readTime}</span>
+          </div>
+          <h3 class="font-display text-xl font-bold text-navy mb-3 group-hover:text-ember transition-colors leading-snug">
+            {g.title}
+          </h3>
+          <p class="text-cast text-sm leading-relaxed mb-5 flex-1">{g.desc}</p>
+          <div class="flex items-center gap-2 text-ember font-semibold text-sm">
+            Read the guide
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+              <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Yellow heritage stripe divider -->
+  <div class="heritage-stripe"></div>
+
+  <!-- CTA -->
+  <section class="bg-bone-200 py-16">
+    <div class="container-wccp text-center max-w-2xl mx-auto">
+      <h2 class="font-display text-display-lg mb-4">Got a question we haven't answered?</h2>
+      <p class="text-cast-700 text-lg mb-8">
+        Ring the yard. Same-day callback Monday to Friday — and if it's a question we hear twice,
+        we'll write a guide on it.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href="/quote" class="btn-primary">Start a quote</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,83 @@
+---
+// DUAA-compliant cookie banner placeholder.
+// In production this should be replaced by CookieYes or Cookiebot CMP for full
+// granular consent + auto-blocking, but this static banner gets us live with a
+// compliant baseline (equally prominent accept/reject + link to policy).
+---
+
+<div
+  id="cookie-banner"
+  class="hidden fixed bottom-4 right-4 left-4 sm:left-auto sm:max-w-md z-[60] bg-white border border-cast-200 rounded-lg shadow-lifted p-5 animate-fade-in-up lg:bottom-6 lg:right-6"
+  role="region"
+  aria-label="Cookie consent"
+>
+  <!-- Heritage stripe top accent -->
+  <div aria-hidden="true" class="absolute top-0 left-0 right-0 heritage-stripe rounded-t-lg"></div>
+
+  <div class="pt-2">
+    <h2 id="cookie-banner-title" class="font-display text-base font-bold text-navy mb-2">We use cookies.</h2>
+    <p class="text-sm text-cast-700 leading-relaxed mb-4">
+      Essential cookies keep the site working. We'd like to use analytics cookies to understand how
+      visitors use the site — none of them identify you personally.
+      <a href="/cookies" class="text-ember font-semibold underline hover:no-underline">Read our cookie policy</a>.
+    </p>
+    <div class="grid grid-cols-2 gap-2">
+      <button
+        type="button"
+        id="cookie-reject"
+        class="btn-ghost btn-sm cookie-btn"
+        aria-labelledby="cookie-banner-title cookie-reject-label"
+      >
+        <span id="cookie-reject-label">Reject all</span>
+      </button>
+      <button
+        type="button"
+        id="cookie-accept"
+        class="btn-primary btn-sm cookie-btn"
+        aria-labelledby="cookie-banner-title cookie-accept-label"
+      >
+        <span id="cookie-accept-label">Accept all</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Distinct, visible focus styling for cookie buttons — beyond the global ember outline ring */
+  .cookie-btn:focus-visible {
+    outline: 3px solid theme('colors.yellow.DEFAULT');
+    outline-offset: 3px;
+    box-shadow: 0 0 0 5px theme('colors.navy.700');
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var KEY = 'wccp_cookie_consent_v1';
+    var banner = document.getElementById('cookie-banner');
+    if (!banner) return;
+    var existing = null;
+    try { existing = localStorage.getItem(KEY); } catch (_) {}
+
+    if (!existing) {
+      // Show after a short delay so it doesn't fight the initial paint
+      setTimeout(function () { banner.classList.remove('hidden'); }, 800);
+    }
+
+    function record(choice) {
+      try {
+        localStorage.setItem(KEY, JSON.stringify({
+          choice: choice,
+          at: new Date().toISOString(),
+          v: 1,
+        }));
+      } catch (_) {}
+      banner.classList.add('hidden');
+      // Dispatch a custom event so analytics scripts can react if needed
+      window.dispatchEvent(new CustomEvent('wccp:consent', { detail: { choice: choice } }));
+    }
+
+    document.getElementById('cookie-accept')?.addEventListener('click', function () { record('all'); });
+    document.getElementById('cookie-reject')?.addEventListener('click', function () { record('essential'); });
+  })();
+</script>

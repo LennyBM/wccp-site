@@ -1,0 +1,131 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const lastUpdated = '29 April 2026';
+---
+
+<BaseLayout
+  title="Privacy Policy"
+  description={`How ${site.name} collects, uses and protects your personal data under UK GDPR, the Data Protection Act 2018 and the Data (Use and Access) Act 2025.`}
+  schema="Article"
+>
+  <!-- Hero -->
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <p class="eyebrow text-yellow mb-4">Legal</p>
+      <h1 class="font-display text-display-xl text-white mb-4">Privacy Policy</h1>
+      <p class="text-white/90 text-lg max-w-2xl">
+        How we collect, use and look after your personal data — written in plain English, compliant with UK GDPR and the Data (Use and Access) Act 2025.
+      </p>
+      <p class="text-cast-200 text-sm mt-6">Last updated: {lastUpdated}</p>
+    </div>
+  </section>
+
+  <section class="container-wccp py-16">
+    <div class="max-w-prose-wide mx-auto prose-content space-y-10 text-cast-700 text-base leading-relaxed">
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">1. Who we are</h2>
+        <p>
+          {site.legalName} (company number {site.companyNumber}) — referred to in this policy as "we", "us" or "WCCP" — is the data controller responsible for any personal data you share with us through this website, by phone, by email or in person.
+        </p>
+        <p class="mt-3">
+          Registered address: {site.address.street}, {site.address.locality}, {site.address.town}, {site.address.region}, {site.address.postcode}, {site.address.countryName}.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">2. What we collect</h2>
+        <ul class="list-disc pl-6 space-y-2">
+          <li><strong class="text-navy">Contact data</strong> — name, company, email, phone, postcode and any free-text notes you send us via the quote form, contact form or by email.</li>
+          <li><strong class="text-navy">Project data</strong> — drawings, specifications, photographs and site information you share with us so we can quote and manufacture for you.</li>
+          <li><strong class="text-navy">Transaction data</strong> — purchase orders, delivery addresses, invoices and payment records (we do not store card details — payments are handled by our bank).</li>
+          <li><strong class="text-navy">Technical data</strong> — IP address, device type, browser type, pages visited and approximate location, collected via essential cookies and (with your consent) analytics.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">3. Why we use it (lawful bases)</h2>
+        <p>Under Article 6 of the UK GDPR, we rely on the following lawful bases:</p>
+        <ul class="list-disc pl-6 space-y-2 mt-3">
+          <li><strong class="text-navy">Contract</strong> — to quote, manufacture and deliver products you've asked us for.</li>
+          <li><strong class="text-navy">Legitimate interests</strong> — to respond to enquiries, run our business, prevent fraud, and improve the website. We've balanced these interests against your rights.</li>
+          <li><strong class="text-navy">Legal obligation</strong> — to keep accounting and tax records under the Companies Act 2006 and HMRC rules.</li>
+          <li><strong class="text-navy">Consent</strong> — for non-essential cookies and any marketing emails (you can withdraw consent at any time).</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">4. Who we share it with</h2>
+        <p>We do not sell your data. We share it only with:</p>
+        <ul class="list-disc pl-6 space-y-2 mt-3">
+          <li>Hauliers and installers contracted to deliver or fit your order.</li>
+          <li>Our accountants, auditors and bank (for invoicing and payment).</li>
+          <li>Hosting and email providers acting under written processor agreements (UK / EEA-based where possible).</li>
+          <li>Law enforcement or regulators where we are legally required to do so.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">5. How long we keep it</h2>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>Quote enquiries that don't proceed: <strong class="text-navy">24 months</strong> then deleted.</li>
+          <li>Customer records and contracts: <strong class="text-navy">7 years</strong> after final transaction (HMRC / Companies Act).</li>
+          <li>Website analytics: <strong class="text-navy">14 months</strong> maximum.</li>
+          <li>CCTV at the yard: <strong class="text-navy">31 days</strong> on a rolling overwrite.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">6. Your rights</h2>
+        <p>Under UK GDPR and the Data Protection Act 2018, you have the right to:</p>
+        <ul class="list-disc pl-6 space-y-2 mt-3">
+          <li><strong class="text-navy">Access</strong> the personal data we hold about you.</li>
+          <li><strong class="text-navy">Rectification</strong> — ask us to correct anything that's wrong.</li>
+          <li><strong class="text-navy">Erasure</strong> ("right to be forgotten") where we no longer need the data.</li>
+          <li><strong class="text-navy">Restriction</strong> of processing in certain circumstances.</li>
+          <li><strong class="text-navy">Portability</strong> — receive your data in a machine-readable format.</li>
+          <li><strong class="text-navy">Objection</strong> — to processing based on legitimate interests or for direct marketing.</li>
+          <li><strong class="text-navy">Withdraw consent</strong> at any time where we rely on it.</li>
+        </ul>
+        <p class="mt-3">
+          To exercise any of these rights, email <a href={`mailto:${site.contact.email}`} class="text-ember font-semibold hover:underline">{site.contact.email}</a> or write to us at the address above. We'll respond within one calendar month.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">7. Data Protection Officer</h2>
+        <p>
+          We are not required to appoint a statutory DPO, but our designated privacy contact is the Managing Director.
+          Email <a href={`mailto:${site.contact.email}`} class="text-ember font-semibold hover:underline">{site.contact.email}</a> with "Data protection" in the subject line.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">8. Complaints</h2>
+        <p>
+          If you're unhappy with how we've handled your data, please tell us first — we'd rather put it right.
+          You also have the right to complain to the <strong class="text-navy">Information Commissioner's Office (ICO)</strong>:
+        </p>
+        <p class="mt-3">
+          <a href="https://ico.org.uk/make-a-complaint/" class="text-ember font-semibold hover:underline" rel="noopener" target="_blank">ico.org.uk/make-a-complaint</a> · 0303 123 1113 · Wycliffe House, Water Lane, Wilmslow SK9 5AF
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">9. International transfers</h2>
+        <p>
+          Where our processors store data outside the UK, we rely on UK adequacy regulations or the International Data Transfer Agreement (IDTA). We do not use providers in jurisdictions without appropriate safeguards.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">10. Changes to this policy</h2>
+        <p>
+          We review this policy at least once a year and after any material change to our processing. The "last updated" date at the top reflects the most recent revision.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,62 @@
+---
+interface FAQ {
+  q: string;
+  a: string;
+}
+
+interface Props {
+  faqs: FAQ[];
+  /** Add JSON-LD FAQPage schema if true */
+  withSchema?: boolean;
+  /** Optional headline above the accordion */
+  title?: string;
+  /** Optional eyebrow above the headline */
+  eyebrow?: string;
+}
+
+const { faqs, withSchema = true, title, eyebrow } = Astro.props;
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
+---
+
+<section class="container-wccp py-16 lg:py-20">
+  {(eyebrow || title) && (
+    <div class="max-w-2xl mb-10">
+      {eyebrow && <p class="eyebrow text-cast mb-3">{eyebrow}</p>}
+      {title  && <h2 class="font-display text-display-lg">{title}</h2>}
+    </div>
+  )}
+
+  <div class="max-w-prose-wide mx-auto space-y-3">
+    {faqs.map((f) => (
+      <details class="group bg-white border border-cast-100 rounded-lg shadow-soft transition-shadow duration-300 open:shadow-lifted">
+        <summary class="flex items-start justify-between gap-4 cursor-pointer list-none px-6 py-5 select-none">
+          <h3 class="font-display text-lg font-bold text-navy text-balance m-0">{f.q}</h3>
+          <span aria-hidden="true" class="shrink-0 mt-1 inline-flex items-center justify-center w-8 h-8 rounded-full bg-yellow text-navy transition-transform duration-300 group-open:rotate-45">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="12" y1="5" x2="12" y2="19" stroke-linecap="round"/>
+              <line x1="5"  y1="12" x2="19" y2="12" stroke-linecap="round"/>
+            </svg>
+          </span>
+        </summary>
+        <div class="px-6 pb-6 text-cast-700 leading-relaxed border-t border-cast-100 pt-4 animate-fade-in" set:html={f.a} />
+      </details>
+    ))}
+  </div>
+</section>
+
+{withSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
+
+<style>
+  /* Hide default disclosure marker across browsers */
+  details > summary::-webkit-details-marker { display: none; }
+  details > summary { list-style: none; }
+</style>

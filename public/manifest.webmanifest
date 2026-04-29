@@ -1,0 +1,26 @@
+{
+  "name": "West Country Concrete Products",
+  "short_name": "WCCP",
+  "description": "Precast concrete products made in North Devon since 1971. Nationwide delivery.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#0000FE",
+  "background_color": "#F8F8F6",
+  "lang": "en-GB",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.svg",
+      "sizes": "180x180",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

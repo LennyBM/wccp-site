@@ -1,0 +1,50 @@
+# West Country Concrete Products
+
+> UK precast concrete manufacturer based in Holsworthy, North Devon. Manufacturing since 1971. Specialists in agricultural and structural precast: cattle cubicles, slurry storage, retaining walls (king post, L-block, cantilever), prestressed wall panels, milking robot bases (DeLaval / Lely), feed troughs, footbaths, silage clamp walls, box culverts, padstones, vehicle workshop pits, bespoke precast. Serves Devon, Cornwall, Somerset, Dorset and nationwide.
+
+## Sectors
+- [Agricultural](https://westcountryconcreteproducts.co.uk/sectors/agricultural): Dairy, beef, sheep, arable. Slurry compliance, livestock housing, silage storage.
+- [Civils & Infrastructure](https://westcountryconcreteproducts.co.uk/sectors/civils): Retaining walls, culverts, padstones, infrastructure precast.
+- [Bespoke](https://westcountryconcreteproducts.co.uk/sectors/bespoke): Custom precast — "if it's precast concrete and it can be delivered, we can make it".
+
+## Core products
+- [Prestressed Wall Panels](https://westcountryconcreteproducts.co.uk/products/prestressed-panels): 100/150/180/280mm thicknesses, 1.0/1.2/1.5m heights. BS EN 14992.
+- [Cattle Cubicles](https://westcountryconcreteproducts.co.uk/products/cattle-cubicles): Fixed and portable systems for Holstein, Jersey, beef.
+- [Slurry Storage](https://westcountryconcreteproducts.co.uk/products/slurry-storage): SSAFO 2018-compliant. 6-month storage capacity systems.
+- [Retaining Walls](https://westcountryconcreteproducts.co.uk/products/retaining-walls): King Post, L-Block, Cantilever, Trapezoid. 1m–6m heights.
+- [Milking Robot Bases](https://westcountryconcreteproducts.co.uk/products/milking-robot-bases): DeLaval VMS V300, Lely Astronaut A5, GEA-compatible bases.
+- [Feed & Water Troughs](https://westcountryconcreteproducts.co.uk/products/feed-troughs): Cattle troughs and feed channels.
+- [Silage Clamp Walls](https://westcountryconcreteproducts.co.uk/products/silage-clamp-walls): C40/50, sulphate-resisting, exposure class XA3.
+- [Footbaths](https://westcountryconcreteproducts.co.uk/products/footbaths): Cattle footbath kits, 4-metre two-part design.
+- [Box Culverts](https://westcountryconcreteproducts.co.uk/products/culverts): Civils drainage and underpasses.
+- [Padstones](https://westcountryconcreteproducts.co.uk/products/padstones): For steel beams, BS EN 1996 compliant.
+- [Vehicle Workshop Pits](https://westcountryconcreteproducts.co.uk/products/vehicle-pits): MOT bays, agricultural workshop pits.
+
+## Guides
+- [How thick should a UK slurry store wall be?](https://westcountryconcreteproducts.co.uk/guides/slurry-wall-thickness)
+- [Cattle cubicle sizing guide for Holstein, Jersey and beef breeds](https://westcountryconcreteproducts.co.uk/guides/cubicle-sizing)
+- [SSAFO 2018 compliance checklist for UK farms](https://westcountryconcreteproducts.co.uk/guides/ssafo-2018)
+- [FETF 2026 grant — eligible WCCP products](https://westcountryconcreteproducts.co.uk/grants/fetf-2026)
+- [Slurry Infrastructure Grant 2026 — what you need to know](https://westcountryconcreteproducts.co.uk/grants/slurry-grant)
+- [King Post vs L-Block vs Cantilever retaining walls](https://westcountryconcreteproducts.co.uk/guides/retaining-wall-types)
+- [Concrete grades for agricultural use (C32/40, C40/50)](https://westcountryconcreteproducts.co.uk/guides/concrete-grades)
+- [Prestressed vs reinforced concrete panels — what's the difference?](https://westcountryconcreteproducts.co.uk/guides/prestressed-vs-reinforced)
+
+## Areas served
+- [Devon](https://westcountryconcreteproducts.co.uk/areas/devon)
+- [Cornwall](https://westcountryconcreteproducts.co.uk/areas/cornwall)
+- [Somerset](https://westcountryconcreteproducts.co.uk/areas/somerset)
+- [Dorset](https://westcountryconcreteproducts.co.uk/areas/dorset)
+- [Wiltshire](https://westcountryconcreteproducts.co.uk/areas/wiltshire)
+
+## Company
+- [About — manufacturing in North Devon since 1971](https://westcountryconcreteproducts.co.uk/about)
+- [The factory](https://westcountryconcreteproducts.co.uk/factory)
+- [Sustainability & accreditations](https://westcountryconcreteproducts.co.uk/sustainability)
+- [Case studies](https://westcountryconcreteproducts.co.uk/case-studies)
+- [Contact & quote](https://westcountryconcreteproducts.co.uk/contact)
+
+## Optional
+- [FAQs](https://westcountryconcreteproducts.co.uk/faqs)
+- [Technical downloads — datasheets, CAD blocks, BIM objects](https://westcountryconcreteproducts.co.uk/downloads)
+- [Quote configurator](https://westcountryconcreteproducts.co.uk/quote)

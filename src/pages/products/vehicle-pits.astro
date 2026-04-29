@@ -1,0 +1,233 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import { site } from '@/config/site';
+
+const specs = [
+  { length: '6.5 m (2 sections)', width: '1500mm internal', depth: '1100mm', section: '3.7m × 1.5m × 1.1m', weight: '6,200 kg/section', use: 'Standard MOT inspection bay (Class IV / VII)' },
+  { length: '8.0 m (2 sections)', width: '1500mm internal', depth: '1100mm', section: '4.0m × 1.5m × 1.1m', weight: '6,800 kg/section', use: 'HGV / agricultural workshop pit' },
+  { length: '10.0 m (3 sections)', width: '1500mm internal', depth: '1100mm', section: '3.3m × 1.5m × 1.1m', weight: '5,800 kg/section', use: 'Bus / coach inspection pits' },
+  { length: '12.0 m (3 sections)', width: '1500mm internal', depth: '1100mm', section: '4.0m × 1.5m × 1.1m', weight: '6,800 kg/section', use: 'Articulated HGV pits' },
+  { length: '6.5 m (deeper)', width: '1500mm internal', depth: '1400mm', section: '3.7m × 1.5m × 1.4m', weight: '7,400 kg/section', use: 'Tall / agricultural machinery access' },
+  { length: 'Bespoke', width: '1200–1800mm', depth: 'to 1500mm', section: 'Cast to drawing', weight: 'On application', use: 'Specialist workshop fit-outs' },
+];
+
+const applications = [
+  'MOT class IV (cars / light vans) inspection bays',
+  'MOT class VII (3.5–7.5t goods vehicles) bays',
+  'HGV and agricultural commercial workshops',
+  'Bus and coach maintenance depots',
+  'Plant and earthmoving equipment workshops',
+  'Local authority fleet maintenance pits',
+  'Agricultural-engineer servicing pits',
+];
+
+const related = [
+  { href: '/products/culverts', label: 'Box Culverts', meta: 'BS EN 1916 · 1.0–3.6m' },
+  { href: '/products/clean-rooms', label: 'Clean Rooms', meta: 'Tanked floor · machine pit' },
+  { href: '/products/bespoke', label: 'Bespoke Precast', meta: 'Custom moulds · 4–8 wk' },
+  { href: '/products/padstones', label: 'Padstones', meta: '200×200 to 600×600' },
+];
+
+const faqs = [
+  { q: 'Are your pits HSE-compliant?', a: 'Yes — sized and detailed to HSE INDG422 (Safe working in vehicle inspection pits). 1500mm internal width gives clear working room either side of the chassis; 1100mm depth puts the technician at safe ergonomic height. We supply the LOLER lifting cert and the install drawing.' },
+  { q: 'How is it installed?', a: 'Sections are 3.7m or 4.0m long depending on overall pit length. Each section drops into a pre-excavated hole on a 150mm blinding layer, levelled and grouted. A 6.5m two-section pit goes in over two days. We supply the install drawing, the lifting eyes are cast in, and we can recommend a Devon-based contractor.' },
+  { q: 'Drainage and lighting?', a: 'Cast-in 110mm uPVC drain to interceptor, plus cast-in conduits for 24V LED strip lighting and 16A power outlets. We will sleeve to your spec — feed pipes, compressed air, lube reel returns. Tell us before we cast.' },
+  { q: 'What loadings?', a: 'Catalogue pits take HGV loadings as standard — a 44-tonne artic over the pit cover plates is no problem. Bespoke pits up to plant and crane axle loads on application.' },
+  { q: 'Lead time?', a: 'Catalogue 6.5m and 8m pits run 4 to 6 weeks. Bespoke depths and widths run 8 to 10 weeks. Send the workshop drawing first — most concerns are resolvable in a 30-minute call with our design team.' },
+];
+
+const productSchema = {
+  name: 'Precast Vehicle Inspection Pits',
+  description: 'Workshop and MOT inspection pits to HSE INDG422. 6.5m and 8m standard lengths, 1500mm internal width × 1100mm deep, 3.7m sections. Drainage, lighting and power conduits cast in.',
+  brand: { '@type': 'Brand', name: site.name },
+  manufacturer: { '@type': 'Organization', name: site.name },
+  category: 'Precast vehicle inspection pit',
+  material: 'Reinforced concrete, C40/50 (BS 8500-1:2023)',
+  weight: { '@type': 'QuantitativeValue', minValue: 5800, maxValue: 7400, unitCode: 'KGM', unitText: 'kilogram per section' },
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 13369 / HSE INDG422' },
+    { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
+    { '@type': 'PropertyValue', name: 'Internal width', value: '1500 mm' },
+    { '@type': 'PropertyValue', name: 'Internal depth', value: '1100 mm standard (1400 mm deeper option)' },
+    { '@type': 'PropertyValue', name: 'Section length', value: '3.7 m / 4.0 m' },
+    { '@type': 'PropertyValue', name: 'Standard pit lengths', value: '6.5 m / 8.0 m / 10.0 m / 12.0 m' },
+    { '@type': 'PropertyValue', name: 'Loading', value: '44 t HGV axle (catalogue)' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '4–6 weeks catalogue, 8–10 weeks bespoke' },
+    { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
+  ],
+  offers: { '@type': 'Offer', priceCurrency: 'GBP', availability: 'https://schema.org/InStock', seller: { '@type': 'Organization', name: site.name } },
+};
+
+const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+---
+
+<BaseLayout
+  title="Vehicle Inspection Pits — 6.5m + 8m · HSE INDG422"
+  description="Workshop and MOT inspection pits. 6.5m and 8m lengths, 1500mm wide × 1100mm deep. HSE INDG422 compliant. 3.7m sections. Cast-in drainage and lighting. Cast in North Devon."
+  image="/images/products/vehicle-pits.jpg"
+  schema="Product"
+  schemaData={productSchema}
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <TrustStrip />
+
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow text-yellow mb-4">Civils · workshop · MOT</p>
+          <h1 class="font-display text-display-xl text-white mb-4">Vehicle Inspection Pits.</h1>
+          <p class="text-lg text-white/90 leading-relaxed mb-6">
+            Precast workshop and MOT inspection pits to HSE INDG422. Standard 6.5m and 8m lengths,
+            1500mm internal width × 1100mm depth, in 3.7m sections. Drainage, lighting and power
+            conduits cast in. 44-tonne HGV axle-rated.
+          </p>
+          <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
+            <li class="flex gap-2"><span class="text-yellow">·</span> HSE INDG422</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 6.5m + 8m standard</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 1500mm wide</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 1100mm deep</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 3.7m sections</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 44t axle rated</li>
+          </ul>
+          <div class="flex flex-wrap gap-3">
+            <a href="/quote?product=Vehicle+Pits" class="btn-primary">Configure a quote</a>
+            <a href="/spec-sheets/vehicle-pits.pdf" class="btn-yellow">Download spec sheet</a>
+            <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">Call {site.contact.phone}</a>
+          </div>
+        </div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-300 via-cast to-navy"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-20">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Specification</p>
+      <h2 class="font-display text-display-lg mb-4">Lengths, sections and depths.</h2>
+      <p class="text-cast-700 text-lg">Catalogue pit configurations to HSE INDG422. Bespoke sizes for specialist workshops on application.</p>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="spec-table w-full text-left border-collapse">
+        <thead class="bg-navy text-white">
+          <tr>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Pit length</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Width</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Depth</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Section</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Section weight</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
+          </tr>
+        </thead>
+        <tbody>
+          {specs.map((s, i) => (
+            <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
+              <td class="px-4 py-3 font-bold text-navy">{s.length}</td>
+              <td class="px-4 py-3">{s.width}</td>
+              <td class="px-4 py-3">{s.depth}</td>
+              <td class="px-4 py-3">{s.section}</td>
+              <td class="px-4 py-3">{s.weight}</td>
+              <td class="px-4 py-3 text-cast">{s.use}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow text-cast mb-3">Where they go</p>
+          <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">From a single MOT bay at a village garage to a four-pit HGV workshop — same product range, scaled by length.</p>
+          <ul class="space-y-3">
+            {applications.map((a) => (<li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">·</span><span>{a}</span></li>))}
+          </ul>
+        </div>
+        <div class="card p-8">
+          <p class="eyebrow text-cast mb-3">Standards & certification</p>
+          <h3 class="font-display text-2xl font-bold text-navy mb-4">HSE-compliant, structurally certified.</h3>
+          <dl class="space-y-4 text-sm">
+            <div><dt class="font-bold text-navy">HSE INDG422</dt><dd class="text-cast">Safe working in vehicle inspection pits — width, depth, access and lighting.</dd></div>
+            <div><dt class="font-bold text-navy">BS EN 13369</dt><dd class="text-cast">Common rules for precast — factory production control.</dd></div>
+            <div><dt class="font-bold text-navy">BS EN 1992 (Eurocode 2)</dt><dd class="text-cast">Concrete structural design — slab, walls and base calculation.</dd></div>
+            <div><dt class="font-bold text-navy">BS 8500-1:2023</dt><dd class="text-cast">Concrete spec — designated mix for the workshop environment.</dd></div>
+            <div><dt class="font-bold text-navy">DVSA MOT spec</dt><dd class="text-cast">Approved for Class IV and VII MOT testing stations.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-yellow text-navy py-16">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-navy mb-2">Configure your inspection pit</p>
+          <h2 class="font-display text-display-md">Send workshop length, vehicle type and any sleeves required — we will quote inside 24 hours.</h2>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href="/quote?product=Vehicle+Pits" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
+          <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-20">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
+      <div>
+        <p class="eyebrow text-cast mb-3">Related products</p>
+        <h2 class="font-display text-display-lg">Often ordered alongside.</h2>
+      </div>
+      <a href="/products" class="text-ember font-bold hover:text-ember-700 inline-flex items-center gap-2">View full range
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" /><polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </a>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {related.map((r) => (
+        <a href={r.href} class="card p-5 group">
+          <div class="aspect-[16/10] bg-cast-100 mb-4 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100"></div></div>
+          <h3 class="font-display text-base font-bold text-navy mb-1 group-hover:text-ember">{r.label}</h3>
+          <p class="text-cast text-xs">{r.meta}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">Common questions</p>
+        <h2 class="font-display text-display-lg mb-4">What people ask about inspection pits.</h2>
+        <p class="text-cast-700 text-lg">Five questions we answer most weeks. If yours is not here, ring the yard.</p>
+      </div>
+      <div class="max-w-3xl space-y-4">
+        {faqs.map((f) => (
+          <details class="card p-6 group">
+            <summary class="font-display text-lg font-bold text-navy cursor-pointer list-none flex justify-between items-start gap-4">
+              <span>{f.q}</span>
+              <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-navy text-white py-20">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
+      <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">Send the workshop drawing and the vehicle types. Quote and lead-time same day.</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/quote?product=Vehicle+Pits" class="btn-yellow">Configure a quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

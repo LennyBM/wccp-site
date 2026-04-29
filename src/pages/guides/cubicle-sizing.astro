@@ -1,0 +1,420 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const faqs = [
+  {
+    q: 'What is the standard UK cattle cubicle size for Holsteins?',
+    a: 'A standard UK Holstein-Friesian cubicle is 2.4m long by 1.2m wide, with the neck rail 1.15m above the bed and the brisket board 1.7m forward of the rear kerb. AHDB Dairy 2024 guidance treats this as the baseline for cows of 600–700kg liveweight.',
+  },
+  {
+    q: 'How do I size a cubicle for Jersey cows?',
+    a: 'Jerseys are smaller — typically 380–500kg — so cubicles are reduced to 2.2m long by 1.1m wide, with neck rail at 1.05m and brisket board 1.55m from the kerb. Oversizing a Jersey cubicle leads to soiled beds and elevated cell counts.',
+  },
+  {
+    q: 'What size cubicle does a beef suckler cow need?',
+    a: 'Suckler beef cubicles run 2.4m × 1.2m for medium frames and 2.5m × 1.25m for Continental breeds (Limousin, Charolais, Simmental). Neck rail sits at 1.20m–1.25m to accommodate the deeper chest and longer rising arc compared with a dairy cow.',
+  },
+  {
+    q: 'How high should the neck rail be?',
+    a: 'For a 650kg Holstein, set the neck rail at 1.15m above the bed surface. The rule of thumb is 0.83 × wither height. Too low and cows refuse to enter; too high and they stand half-in, dunging on the bed. Adjust seasonally if bedding depth changes.',
+  },
+  {
+    q: 'Where should the brisket board sit?',
+    a: 'The brisket board should be 1.7m from the rear kerb for a Holstein, 1.55m for a Jersey, and 1.75m–1.8m for a large Continental. Maximum height 100mm and rounded — a sharp or tall brisket board causes hock and knee lesions when the cow rises.',
+  },
+  {
+    q: 'Can I retrofit cubicles to a different breed?',
+    a: 'Yes. Most WCCP cubicle divisions are bolt-down or socketed, so length, width and neck rail can be repositioned. Brisket boards and head rails are typically replaced rather than moved. Allow half a day per row of 20 cubicles for a full reconfiguration.',
+  },
+  {
+    q: 'What does AHDB say about lunge space?',
+    a: 'AHDB Dairy 2024 specifies 0.6m of clear lunge space forward of the brisket board for an open-fronted cubicle, or a head-to-head pair of 4.8m total length. Cows lunge forward 0.6–0.9m when rising, and obstructing that motion causes refusals and injuries.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="What size cattle cubicle does a Holstein, Jersey or beef cow need?"
+  description="UK cattle cubicle sizing by breed: 2.4m × 1.2m Holstein, 2.2m × 1.1m Jersey, up to 2.5m × 1.25m beef. Neck rail, brisket board, lunge space and AHDB Dairy 2024 standards."
+  image="/images/guides/cubicle-sizing.jpg"
+  schema="Article"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <!-- Hero -->
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-14 md:py-16">
+      <nav class="text-sm text-white/90 mb-6" aria-label="Breadcrumb">
+        <a href="/guides" class="hover:text-yellow">Guides</a>
+        <span class="mx-2 text-cast">/</span>
+        <span class="text-white/90">Cattle cubicle sizing</span>
+      </nav>
+      <p class="eyebrow text-yellow mb-4">Cattle housing · Pillar guide</p>
+      <h1 class="font-display text-display-xl text-white mb-6 max-w-4xl">
+        What size cattle cubicle does a Holstein, Jersey or beef cow need?
+      </h1>
+
+      <div class="bg-navy-700 border-l-4 border-yellow p-6 max-w-3xl rounded-r">
+        <p class="text-white/90 text-lg leading-relaxed">
+          <strong class="text-white">Direct answer:</strong> A standard UK Holstein-Friesian cattle
+          cubicle measures 2.4m long by 1.2m wide, with a neck rail at 1.15m and a brisket board
+          1.7m from the kerb (AHDB Dairy 2024). Jerseys typically use 2.2m × 1.1m; beef breeds
+          2.4m × 1.2m to 2.5m × 1.25m for Continental crosses.
+        </p>
+      </div>
+
+      <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/90">
+        <div>By <span class="text-white font-semibold">WCCP Engineering Team</span></div>
+        <div>Published <time datetime="2026-03-18">18 March 2026</time></div>
+        <div>Updated <time datetime="2026-04-25">25 April 2026</time></div>
+      </div>
+    </div>
+  </section>
+
+  <article class="container-wccp py-12 md:py-16">
+    <div class="grid lg:grid-cols-[1fr_18rem] gap-10 lg:gap-16">
+      <div class="max-w-3xl">
+
+        <!-- Mobile TOC -->
+        <details class="lg:hidden mb-10 border border-cast-100 rounded-lg p-5">
+          <summary class="font-display text-lg font-bold text-navy cursor-pointer">On this page</summary>
+          <ol class="mt-4 space-y-2 text-cast list-decimal list-inside">
+            <li><a href="#ahdb" class="hover:text-ember">AHDB Dairy 2024 standards</a></li>
+            <li><a href="#breed-table" class="hover:text-ember">Breed-by-breed sizing table</a></li>
+            <li><a href="#bodyweight" class="hover:text-ember">Body weight vs cubicle dimensions</a></li>
+            <li><a href="#neck-rail" class="hover:text-ember">Neck rail height</a></li>
+            <li><a href="#brisket-board" class="hover:text-ember">Brisket board position</a></li>
+            <li><a href="#lunge-space" class="hover:text-ember">Lunge space</a></li>
+            <li><a href="#mistakes" class="hover:text-ember">Common sizing mistakes</a></li>
+            <li><a href="#checklist" class="hover:text-ember">Sizing checklist</a></li>
+            <li><a href="#faq" class="hover:text-ember">FAQ</a></li>
+          </ol>
+        </details>
+
+        <section id="ahdb" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What does AHDB Dairy 2024 say about cubicle sizing?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">AHDB Dairy's 2024 housing guidance ties cubicle dimensions to cow size — specifically wither
+            height and diagonal body length — rather than treating "Holstein" or "Jersey" as a single number.</strong>
+            For a 650kg Holstein the recommendation is 2.4m total length, 1.2m centre-to-centre width,
+            neck rail at 1.15m and brisket board 1.7m from the kerb.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            The numbers come from welfare research showing cows lunge forward 0.6–0.9m when rising and
+            need a clear bed length of around 1.8m to lie comfortably with their legs tucked. Cubicles
+            sized for an "average" 1990s Holstein (typically 2.2m × 1.1m) are now too small for modern
+            Holsteins which routinely weigh 700kg+ and stand 1.45m at the wither.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            The guidance is welfare-led but ties directly to commercial outcomes: cows in undersized
+            cubicles spend less time lying, drop yield (around 1.5 litres per hour of lying-time lost),
+            and develop more hock and knee lesions. Sizing is one of the cheapest yield levers a dairy
+            unit has.
+          </p>
+        </section>
+
+        <section id="breed-table" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What are the cubicle dimensions for each breed?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            <strong class="text-navy">Holstein-Friesian: 2.4m × 1.2m. Jersey: 2.2m × 1.1m. Beef suckler (medium): 2.4m × 1.2m.
+            Continental beef: 2.5m × 1.25m. Heifers: scale 90% of mature herd dimensions.</strong>
+            The width given is centre-to-centre between divisions; the bed itself is 50–80mm narrower
+            once division thickness is accounted for.
+          </p>
+
+          <div class="overflow-x-auto mb-4 -mx-4 sm:mx-0">
+            <table class="spec-table min-w-full px-4 sm:px-0">
+              <thead>
+                <tr>
+                  <th>Breed / type</th>
+                  <th>Length</th>
+                  <th>Width (c/c)</th>
+                  <th>Neck rail height</th>
+                  <th>Brisket board</th>
+                </tr>
+              </thead>
+              <tbody class="text-cast">
+                <tr>
+                  <td>Holstein-Friesian (650kg)</td>
+                  <td><strong class="text-navy">2.40m</strong></td>
+                  <td><strong class="text-navy">1.20m</strong></td>
+                  <td>1.15m</td>
+                  <td>1.70m from kerb</td>
+                </tr>
+                <tr>
+                  <td>Holstein (large, 750kg+)</td>
+                  <td><strong class="text-navy">2.50m</strong></td>
+                  <td><strong class="text-navy">1.25m</strong></td>
+                  <td>1.20m</td>
+                  <td>1.75m from kerb</td>
+                </tr>
+                <tr>
+                  <td>Jersey (450kg)</td>
+                  <td><strong class="text-navy">2.20m</strong></td>
+                  <td><strong class="text-navy">1.10m</strong></td>
+                  <td>1.05m</td>
+                  <td>1.55m from kerb</td>
+                </tr>
+                <tr>
+                  <td>Crossbreed (Holstein × Jersey)</td>
+                  <td><strong class="text-navy">2.30m</strong></td>
+                  <td><strong class="text-navy">1.15m</strong></td>
+                  <td>1.10m</td>
+                  <td>1.60m from kerb</td>
+                </tr>
+                <tr>
+                  <td>Beef suckler (medium frame)</td>
+                  <td><strong class="text-navy">2.40m</strong></td>
+                  <td><strong class="text-navy">1.20m</strong></td>
+                  <td>1.20m</td>
+                  <td>1.70m from kerb</td>
+                </tr>
+                <tr>
+                  <td>Continental beef (Limousin, Charolais)</td>
+                  <td><strong class="text-navy">2.50m</strong></td>
+                  <td><strong class="text-navy">1.25m</strong></td>
+                  <td>1.25m</td>
+                  <td>1.80m from kerb</td>
+                </tr>
+                <tr>
+                  <td>Dairy heifers (in calf)</td>
+                  <td><strong class="text-navy">2.20m</strong></td>
+                  <td><strong class="text-navy">1.10m</strong></td>
+                  <td>1.05m</td>
+                  <td>1.55m from kerb</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-sm text-cast italic">
+            All dimensions to AHDB Dairy 2024 housing guidance. Add 50mm bedding allowance for sand or
+            deep-bed mattresses.
+          </p>
+        </section>
+
+        <section id="bodyweight" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">How does body weight change cubicle dimensions?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">As a rule of thumb, cubicle length should equal 1.83 × hook bone height,
+            and cubicle width should be 0.83 × hook bone height. For a 650kg Holstein with a 1.30m hook
+            bone height, that gives 2.38m × 1.08m — close to the 2.4m × 1.2m standard once a small margin
+            is added for movement.</strong>
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            Modern dairy genetics have added 50–80kg of mature weight per decade since the 1980s. A
+            1990s Holstein at 600kg fitted comfortably in a 2.3m × 1.15m cubicle. Today's 720kg cow
+            doesn't, and you'll see her lying diagonally, dunging on the rear of the bed, or refusing
+            to enter at all.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            We recommend measuring 10 representative cows in your herd — wither height, hook bone
+            height and diagonal body length — before specifying a new cubicle row. The five-minute
+            measurement saves a £30,000 mistake.
+          </p>
+        </section>
+
+        <section id="neck-rail" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">How high should the neck rail be?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Set the neck rail at 0.83 × wither height — 1.15m for a typical Holstein,
+            1.05m for a Jersey, 1.20m–1.25m for Continental beef. Position it 1.7m forward of the rear
+            kerb (or matched to the brisket board distance for the breed).</strong>
+            The rail's job is to position the cow when she enters so she dungs in the passage, not
+            on the bed.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            Too low and the cow refuses to enter — you'll see chains of cows queuing in the passage
+            with the cubicles empty. Too high and she stands half-in, dunging on the front of the bed.
+            The "knee test" works: a cow should be able to stand square in the cubicle with her front
+            knees on the bed and her hocks just inside the rear kerb.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            All WCCP cubicle divisions ship with adjustable neck rails on a swedge tube fixing.
+            Typical adjustment range is ±100mm in 25mm increments, which covers most herd shifts.
+          </p>
+        </section>
+
+        <section id="brisket-board" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Where does the brisket board go?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">The brisket board sits 1.7m from the rear kerb for a Holstein, 1.55m for
+            a Jersey, 1.75–1.8m for Continental beef. Maximum height 100mm above the bed, with a
+            radiused or chamfered top edge.</strong> Its purpose is to control where the cow's chest
+            rests — pushing her hindquarters back so she dungs in the passage.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            Common mistakes: too high (causes hock lesions on rising), too sharp (knee abrasions),
+            too far back (cow over-shoots and lies with chest in the lunge space), or no board at all
+            (cow drifts forward and dungs on the bed). A 100mm precast board with a 25mm radius edge
+            is the AHDB-aligned standard.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            We supply brisket boards either cast integrally with the bed (deep-bed sand systems) or
+            as bolt-down precast strips (mattress and rubber-mat systems). The bolt-down version
+            allows seasonal adjustment for in-calf heifers joining the milking herd.
+          </p>
+        </section>
+
+        <section id="lunge-space" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">How much lunge space does a cow need?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">A cow needs 0.6m–0.9m of unobstructed lunge space forward of the brisket
+            board. For an open-fronted cubicle that means 0.6m clear to a wall; for head-to-head pairs
+            the total cubicle-to-cubicle length should be 4.8m (for Holsteins) so each cow has
+            unobstructed lunge into the opposing cubicle.</strong>
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            Cattle don't rise like horses. They throw their heads forward and downward to shift their
+            centre of gravity, then heave the hindquarters up, then the front. Block that head movement
+            with a wall, gate or solid head rail and the cow can't rise — she'll either refuse to lie
+            or struggle when she does, increasing injury risk.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            Open-fronted (against an outside wall) and head-to-head (paired) layouts both work.
+            Avoid forward-blocked layouts — sometimes seen in retrofitted older buildings — unless
+            you can guarantee 1.0m+ of clear lunge space in front.
+          </p>
+        </section>
+
+        <section id="mistakes" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What are the 5 most common cubicle sizing mistakes?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">In order of frequency: cubicles too short for modern Holsteins, neck rail
+            too low or too far back, brisket board too high, head-to-head pairs only 4.5m total, and
+            mixing dairy and dry cow groups in the same cubicle size.</strong>
+            Each one shaves litres off yield or adds vet bills.
+          </p>
+          <ul class="text-cast-700 text-lg leading-relaxed space-y-3 list-disc pl-6 mb-4">
+            <li><strong class="text-navy">Old beds, new cows.</strong> A 2.2m bed designed for 1995 Holsteins is too short for 2026 Holsteins. Measure your cows.</li>
+            <li><strong class="text-navy">Neck rail set for an empty bed.</strong> Add bedding depth to the height. A 50mm sand or mattress depth means the rail is effectively 50mm lower than spec.</li>
+            <li><strong class="text-navy">Brisket board too tall.</strong> Above 100mm the board catches the cow's foreleg as she rises. We see hock lesions in herds with 150mm timber boards.</li>
+            <li><strong class="text-navy">Head-to-head too short.</strong> 4.5m total isn't enough for two Holsteins to lunge. Specify 4.8m, or 5.0m for large-frame herds.</li>
+            <li><strong class="text-navy">One size for all groups.</strong> Heifers, dry cows and milkers don't fit one size. Group sizing increases lying time and yield in every benchmarked study.</li>
+          </ul>
+        </section>
+
+        <section id="checklist" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Cubicle sizing checklist (10 points)</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            <strong class="text-navy">Tick all ten and your cubicles will pass the AHDB welfare audit and
+            maximise lying time. Most issues we see on farm visits are one of these ten items.</strong>
+          </p>
+          <div class="bg-bone-200 border-l-4 border-ember p-6 rounded-r">
+            <ol class="text-cast-700 text-base leading-relaxed space-y-3 list-decimal pl-5">
+              <li>Measured 10 representative cows for wither height and diagonal body length</li>
+              <li>Cubicle length matched to breed (2.4m Holstein, 2.2m Jersey, 2.5m Continental beef)</li>
+              <li>Cubicle width centre-to-centre matched to breed (1.10m–1.25m)</li>
+              <li>Neck rail at 0.83 × wither height (1.05m–1.25m typical)</li>
+              <li>Brisket board 1.55m–1.80m from rear kerb, max 100mm tall, radiused edge</li>
+              <li>0.6m+ clear lunge space forward, or 4.8m head-to-head total</li>
+              <li>Bedding depth allowance added to neck rail and brisket board calculation</li>
+              <li>Heifer / dry cow / milker groups sized separately where housed in different rows</li>
+              <li>Adjustable neck rail fixings for seasonal or breed shifts</li>
+              <li>Passage width minimum 3.0m behind cubicles for cow flow and scraper clearance</li>
+            </ol>
+          </div>
+        </section>
+
+        <section id="faq" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-6">Frequently asked questions</h2>
+          <div class="space-y-4">
+            {faqs.map((f) => (
+              <details class="card p-5 group">
+                <summary class="font-display text-lg font-bold text-navy cursor-pointer flex items-start justify-between gap-4">
+                  <span>{f.q}</span>
+                  <svg class="w-5 h-5 mt-1 flex-shrink-0 text-ember transition-transform group-open:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="12" y1="5" x2="12" y2="19" stroke-linecap="round"/>
+                    <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+                  </svg>
+                </summary>
+                <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section class="bg-navy text-white rounded-lg p-8 md:p-10">
+          <h2 class="font-display text-2xl md:text-3xl text-white mb-3">Designing a cubicle shed?</h2>
+          <p class="text-white/90 mb-6 leading-relaxed">
+            Send us your herd numbers, breed mix and a building sketch. We'll come back with a row
+            layout, division schedule and a fixed price within 24 hours.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="/products/cattle-cubicles" class="btn-yellow">See cattle cubicle range</a>
+            <a href="/quote" class="btn bg-white text-navy hover:bg-bone">Start a quote</a>
+          </div>
+        </section>
+
+      </div>
+
+      <aside class="hidden lg:block">
+        <div class="sticky top-24">
+          <p class="eyebrow text-cast mb-4">On this page</p>
+          <ol class="space-y-3 text-sm border-l border-cast-100 pl-4">
+            <li><a href="#ahdb" class="text-cast hover:text-ember">AHDB Dairy 2024</a></li>
+            <li><a href="#breed-table" class="text-cast hover:text-ember">Breed sizing table</a></li>
+            <li><a href="#bodyweight" class="text-cast hover:text-ember">Body weight vs size</a></li>
+            <li><a href="#neck-rail" class="text-cast hover:text-ember">Neck rail height</a></li>
+            <li><a href="#brisket-board" class="text-cast hover:text-ember">Brisket board</a></li>
+            <li><a href="#lunge-space" class="text-cast hover:text-ember">Lunge space</a></li>
+            <li><a href="#mistakes" class="text-cast hover:text-ember">Common mistakes</a></li>
+            <li><a href="#checklist" class="text-cast hover:text-ember">Sizing checklist</a></li>
+            <li><a href="#faq" class="text-cast hover:text-ember">FAQ</a></li>
+          </ol>
+
+          <div class="mt-8 p-4 bg-yellow rounded-lg">
+            <p class="text-xs font-bold text-navy uppercase tracking-wide mb-2">Free layout check</p>
+            <p class="text-sm text-navy mb-3 leading-snug">Send us your shed dimensions, we'll mark up a cubicle plan.</p>
+            <a href="/quote" class="text-navy font-bold text-sm hover:underline">Request a layout →</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+  <section class="bg-bone-200 py-16">
+    <div class="container-wccp">
+      <p class="eyebrow text-cast mb-3">Related guides</p>
+      <h2 class="font-display text-display-md mb-8">Keep reading.</h2>
+
+      <div class="grid md:grid-cols-3 gap-5">
+        <a href="/guides/concrete-grades" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Materials</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Concrete grades for agricultural use</h3>
+          <p class="text-cast text-sm leading-relaxed">C32/40 vs C40/50, exposure classes, and which grade suits cubicle bases vs slurry walls.</p>
+        </a>
+        <a href="/guides/ssafo-2018" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Regulations</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">SSAFO 2018 compliance checklist</h3>
+          <p class="text-cast text-sm leading-relaxed">Slurry, silage and fuel oil rules, EA notification and freeboard requirements.</p>
+        </a>
+        <a href="/guides/fetf-2026-eligible-products" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Grants</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">FETF 2026 eligible products</h3>
+          <p class="text-cast text-sm leading-relaxed">What was funded under FETF 2026 and how to prepare for the next round.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-16 text-center">
+    <h2 class="font-display text-display-lg mb-4">Talk to the yard.</h2>
+    <p class="text-cast-700 text-lg max-w-xl mx-auto mb-8">
+      Same-day callback Monday to Friday. We'll talk you through the layout before you commit a penny.
+    </p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+      <a href="/quote" class="btn-primary">Configure a quote</a>
+    </div>
+  </section>
+</BaseLayout>

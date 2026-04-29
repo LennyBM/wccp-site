@@ -1,0 +1,266 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import { site } from '@/config/site';
+
+const systems = [
+  { href: '/products/king-post-walls', label: 'King Post Walls', meta: 'UB/UC posts · panel infill', desc: 'Fast-build retaining using prestressed panels slotted between steel king posts. Heights 1m to 6m.' },
+  { href: '/products/l-blocks', label: 'L-Block Retaining', meta: '1m–6m · interlocking', desc: 'L-shaped precast blocks for silage, grain and bulk storage bays. Stack like Lego, no foundation needed.' },
+  { href: '/products/cantilever-walls', label: 'Cantilever Walls', meta: 'Free-standing · 50-yr life', desc: 'Engineered free-standing cantilever walls to BS EN 1992-1-1. Heavy civils retention.' },
+  { href: '/products/prestressed-panels', label: 'Prestressed Panels', meta: 'BS EN 14992 · UKCA', desc: 'Catalogue panels for any of the three systems above, or for direct fix to existing structures.' },
+];
+
+const specs = [
+  { system: 'King Post', height: '1.0–6.0m', surcharge: 'Up to 60 kN/m²', foundation: 'Strip + post pockets', use: 'Civils, road schemes, basement props' },
+  { system: 'L-Block', height: '1.0–6.0m', surcharge: 'Up to 30 kN/m²', foundation: 'Compacted hardcore', use: 'Silage, grain, aggregate, biomass bays' },
+  { system: 'Cantilever', height: '1.5–6.0m', surcharge: 'Up to 50 kN/m²', foundation: 'Cast-in-situ heel', use: 'Free-standing civils retention' },
+  { system: 'Panel + post', height: '1.0–4.5m', surcharge: 'Up to 40 kN/m²', foundation: 'Strip + UB/UC posts', use: 'Boundary walls, push walls' },
+];
+
+const applications = [
+  'Highway and rail civils retention up to 6m',
+  'Silage clamp side and end walls — agricultural',
+  'Bulk-storage bay divisions for grain, biomass, aggregate',
+  'Slurry and effluent containment with sulphate-resisting mix',
+  'Residential and commercial level-change retention',
+  'Flood-defence and bund walls for fuel and process plant',
+  'Reinforced earth retaining for embankments',
+];
+
+const related = [
+  { href: '/products/king-post-walls', label: 'King Post Walls', meta: 'Steel post + panel infill' },
+  { href: '/products/l-blocks', label: 'L-Blocks', meta: '1m–6m interlocking' },
+  { href: '/products/cantilever-walls', label: 'Cantilever Walls', meta: 'Free-standing precast' },
+  { href: '/products/prestressed-panels', label: 'Prestressed Panels', meta: 'BS EN 14992' },
+];
+
+const faqs = [
+  { q: 'Which retaining system do I want?', a: 'For agricultural bay storage, L-blocks every time — quick to set, no footing. For civils retention up to 6m with surcharge, king post is usually the cheapest. For free-standing engineered retention to road or rail loadings, cantilever. We will design the cheapest right answer for your loadings — send us the section and we will spec it.' },
+  { q: 'What heights can you go to?', a: 'All three systems run from 1m up to 6m as catalogue. Above 6m we get into bespoke engineering and tied-back solutions — talk to the yard.' },
+  { q: 'What surcharge ratings do you support?', a: 'Up to 60 kN/m² on king-post systems with the right post and footing, 50 kN/m² on cantilever, 30 kN/m² on free-standing L-blocks. Site-specific design always to BS EN 1992-1-1.' },
+  { q: 'Do you do the install?', a: 'King post and cantilever installs we project-manage end to end. L-blocks are designed for the customer\'s teleporter or loader. We supply the install drawing, the bedding spec and the lift points either way.' },
+  { q: 'How are designs certified?', a: 'Every wall ships with structural calcs to BS EN 1992-1-1 (Eurocode 2), CE/UKCA marking under BS EN 14992 or BS EN 13369, and a designer\'s sign-off. Grant-funded jobs we supply the SSAFO 2018 paperwork too where slurry contact is involved.' },
+];
+
+const productSchema = {
+  name: 'Precast Retaining Walls',
+  description: 'Family of precast retaining wall systems: king post, L-block, cantilever and panel-and-post. Heights 1m to 6m, surcharge ratings to 60 kN/m². Engineered to BS EN 1992-1-1 with 50-year design life.',
+  brand: { '@type': 'Brand', name: site.name },
+  manufacturer: { '@type': 'Organization', name: site.name },
+  category: 'Precast retaining wall system',
+  material: 'Prestressed reinforced concrete, C40/50 (BS 8500-1:2023)',
+  weight: { '@type': 'QuantitativeValue', minValue: 240, maxValue: 4320, unitCode: 'KGM', unitText: 'kilogram per linear metre (system dependent)' },
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 14992 / BS EN 13369' },
+    { '@type': 'PropertyValue', name: 'Structural design', value: 'BS EN 1992-1-1 (Eurocode 2)' },
+    { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
+    { '@type': 'PropertyValue', name: 'Height range', value: '1.0 m – 6.0 m' },
+    { '@type': 'PropertyValue', name: 'Maximum surcharge', value: '60 kN/m² (king post)' },
+    { '@type': 'PropertyValue', name: 'Design life', value: '50 years' },
+    { '@type': 'PropertyValue', name: 'Systems available', value: 'King post, L-block, cantilever, panel + post' },
+    { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
+  ],
+  offers: { '@type': 'Offer', priceCurrency: 'GBP', availability: 'https://schema.org/InStock', seller: { '@type': 'Organization', name: site.name } },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+
+<BaseLayout
+  title="Retaining Walls — King Post · L-Block · Cantilever · Panel"
+  description="Precast retaining walls 1m to 6m. King post, L-block, cantilever and panel-and-post systems. Surcharge to 60 kN/m². BS EN 1992-1-1. Cast in North Devon."
+  image="/images/products/retaining-walls.jpg"
+  schema="Product"
+  schemaData={productSchema}
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <TrustStrip />
+
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow text-yellow mb-4">Civils · agricultural · bulk storage</p>
+          <h1 class="font-display text-display-xl text-white mb-4">Retaining Walls.</h1>
+          <p class="text-lg text-white/90 leading-relaxed mb-6">
+            Four precast retaining systems, one yard. King post, L-block, cantilever and
+            panel-and-post — heights 1m to 6m, surcharge ratings up to 60 kN/m². Engineered
+            to BS EN 1992-1-1, 50-year design life.
+          </p>
+          <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
+            <li class="flex gap-2"><span class="text-yellow">·</span> Heights 1m–6m</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Up to 60 kN/m²</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Eurocode 2 design</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 50-year design life</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Four systems</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 2–6 week lead</li>
+          </ul>
+          <div class="flex flex-wrap gap-3">
+            <a href="/quote?product=Retaining+Walls" class="btn-primary">Configure a quote</a>
+            <a href="/spec-sheets/retaining-walls.pdf" class="btn-yellow">Download spec sheet</a>
+            <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">Call {site.contact.phone}</a>
+          </div>
+        </div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
+          <div class="w-full h-full bg-gradient-to-br from-cast-300 via-cast to-navy"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Family hub -->
+  <section class="container-wccp py-20">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Pick a system</p>
+      <h2 class="font-display text-display-lg mb-4">Four ways to retain ground.</h2>
+      <p class="text-cast-700 text-lg">Same yard, same paperwork — different shapes for different jobs. Click through to the system page for full specs.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {systems.map((s) => (
+        <a href={s.href} class="card p-6 group">
+          <div class="aspect-[16/10] bg-cast-100 mb-5 rounded overflow-hidden">
+            <div class="w-full h-full bg-gradient-to-br from-navy to-navy-700 group-hover:scale-105 transition-transform duration-500"></div>
+          </div>
+          <h3 class="font-display text-lg font-bold text-navy mb-1 group-hover:text-ember">{s.label}</h3>
+          <p class="text-cast text-xs mb-3">{s.meta}</p>
+          <p class="text-cast text-sm leading-relaxed">{s.desc}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-10">
+        <p class="eyebrow text-cast mb-3">Specification at a glance</p>
+        <h2 class="font-display text-display-lg mb-4">Heights, surcharge and foundations.</h2>
+        <p class="text-cast-700 text-lg">Indicative ratings across the four systems. Site-specific design always carried out to BS EN 1992-1-1.</p>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="spec-table w-full text-left border-collapse">
+          <thead class="bg-navy text-white">
+            <tr>
+              <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">System</th>
+              <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Height range</th>
+              <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Max surcharge</th>
+              <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Foundation</th>
+              <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
+            </tr>
+          </thead>
+          <tbody>
+            {specs.map((s, i) => (
+              <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
+                <td class="px-4 py-3 font-bold text-navy">{s.system}</td>
+                <td class="px-4 py-3">{s.height}</td>
+                <td class="px-4 py-3">{s.surcharge}</td>
+                <td class="px-4 py-3">{s.foundation}</td>
+                <td class="px-4 py-3 text-cast">{s.use}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-20">
+    <div class="grid lg:grid-cols-2 gap-12">
+      <div>
+        <p class="eyebrow text-cast mb-3">Where they go</p>
+        <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
+        <p class="text-cast-700 text-lg leading-relaxed mb-6">From a 60-cow silage clamp to a 6m highway retention scheme — same range, sized for the loading.</p>
+        <ul class="space-y-3">
+          {applications.map((a) => (
+            <li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">·</span><span>{a}</span></li>
+          ))}
+        </ul>
+      </div>
+      <div class="card p-8">
+        <p class="eyebrow text-cast mb-3">Standards & certification</p>
+        <h3 class="font-display text-2xl font-bold text-navy mb-4">Engineered, certified, marked.</h3>
+        <dl class="space-y-4 text-sm">
+          <div><dt class="font-bold text-navy">BS EN 1992-1-1 (Eurocode 2)</dt><dd class="text-cast">Structural design of concrete — every wall calculated by our in-house design team.</dd></div>
+          <div><dt class="font-bold text-navy">BS EN 14992</dt><dd class="text-cast">Precast wall elements — UKCA marked, factory production control.</dd></div>
+          <div><dt class="font-bold text-navy">BS 8500-1:2023</dt><dd class="text-cast">Concrete spec — designated mixes including DC-3 / DC-4 for aggressive ground.</dd></div>
+          <div><dt class="font-bold text-navy">BS EN 13369</dt><dd class="text-cast">Common rules for precast — factory production control framework.</dd></div>
+          <div><dt class="font-bold text-navy">BS 5502-22:2003</dt><dd class="text-cast">Agricultural buildings and structures — for farm retention applications.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-yellow text-navy py-16">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-navy mb-2">Configure your retaining wall</p>
+          <h2 class="font-display text-display-md">Send section, height and surcharge — we will spec the cheapest right answer.</h2>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href="/quote?product=Retaining+Walls" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
+          <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-20">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
+      <div>
+        <p class="eyebrow text-cast mb-3">Related products</p>
+        <h2 class="font-display text-display-lg">Often ordered alongside.</h2>
+      </div>
+      <a href="/products" class="text-ember font-bold hover:text-ember-700 inline-flex items-center gap-2">View full range
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" /><polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </a>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {related.map((r) => (
+        <a href={r.href} class="card p-5 group">
+          <div class="aspect-[16/10] bg-cast-100 mb-4 rounded overflow-hidden">
+            <div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100"></div>
+          </div>
+          <h3 class="font-display text-base font-bold text-navy mb-1 group-hover:text-ember">{r.label}</h3>
+          <p class="text-cast text-xs">{r.meta}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">Common questions</p>
+        <h2 class="font-display text-display-lg mb-4">What people ask about retaining walls.</h2>
+        <p class="text-cast-700 text-lg">Five questions we answer most weeks. If yours is not here, ring the yard.</p>
+      </div>
+      <div class="max-w-3xl space-y-4">
+        {faqs.map((f) => (
+          <details class="card p-6 group">
+            <summary class="font-display text-lg font-bold text-navy cursor-pointer list-none flex justify-between items-start gap-4">
+              <span>{f.q}</span>
+              <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-navy text-white py-20">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
+      <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">Send us a section, the height and the surcharge. Quote and lead-time same day.</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/quote?product=Retaining+Walls" class="btn-yellow">Configure a quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

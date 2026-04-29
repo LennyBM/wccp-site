@@ -1,0 +1,183 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const sections = [
+  {
+    title: 'Home',
+    links: [{ href: '/', label: 'Homepage' }],
+  },
+  {
+    title: 'Sectors',
+    links: [
+      { href: '/sectors/agricultural', label: 'Agricultural' },
+      { href: '/sectors/civils', label: 'Civils & infrastructure' },
+      { href: '/sectors/bespoke', label: 'Bespoke' },
+    ],
+  },
+  {
+    title: 'Products',
+    links: [
+      { href: '/products', label: 'Full product range (index)' },
+      { href: '/products/cattle-cubicles', label: 'Cattle cubicles' },
+      { href: '/products/cubicle-beds', label: 'Cubicle beds' },
+      { href: '/products/slurry-storage', label: 'Slurry storage panels' },
+      { href: '/products/silage-clamp-walls', label: 'Silage clamp walls' },
+      { href: '/products/feed-troughs', label: 'Feed troughs' },
+      { href: '/products/water-troughs', label: 'Water troughs' },
+      { href: '/products/footbaths', label: 'Footbaths' },
+      { href: '/products/milking-robot-bases', label: 'Milking robot bases' },
+      { href: '/products/prestressed-panels', label: 'Prestressed wall panels' },
+      { href: '/products/a-panels', label: 'A-panels' },
+      { href: '/products/l-blocks', label: 'L-blocks' },
+      { href: '/products/retaining-walls', label: 'Retaining walls' },
+      { href: '/products/culverts', label: 'Box culverts' },
+      { href: '/products/manhole-rings', label: 'Manhole rings' },
+      { href: '/products/drain-channels', label: 'Drain channels' },
+      { href: '/products/padstones', label: 'Padstones' },
+      { href: '/products/vehicle-pits', label: 'Vehicle inspection pits' },
+      { href: '/products/bespoke', label: 'Bespoke precast' },
+      { href: '/products/architectural', label: 'Architectural precast' },
+    ],
+  },
+  {
+    title: 'Resources & guides',
+    links: [
+      { href: '/guides', label: 'Guides index' },
+      { href: '/guides/slurry-sizing', label: 'Slurry sizing guide' },
+      { href: '/guides/cubicle-design', label: 'Cubicle design guide' },
+      { href: '/guides/silage-clamp-design', label: 'Silage clamp design' },
+      { href: '/guides/retaining-wall-design', label: 'Retaining wall design' },
+      { href: '/guides/ssafo-compliance', label: 'SSAFO 2018 compliance' },
+      { href: '/downloads', label: 'Downloads (datasheets, CAD, BIM)' },
+      { href: '/faqs', label: 'Frequently asked questions' },
+      { href: '/news', label: 'News & updates' },
+    ],
+  },
+  {
+    title: 'Case studies',
+    links: [
+      { href: '/case-studies', label: 'Case studies index' },
+      { href: '/case-studies/dairy-cubicle-build-devon', label: 'Devon dairy cubicle build' },
+      { href: '/case-studies/slurry-store-cornwall', label: 'Cornwall slurry store' },
+      { href: '/case-studies/silage-clamp-somerset', label: 'Somerset silage clamp' },
+      { href: '/case-studies/retaining-wall-civils', label: 'Civils retaining wall' },
+      { href: '/case-studies/robot-base-devon', label: 'Robot base, North Devon' },
+      { href: '/case-studies/bespoke-architectural', label: 'Bespoke architectural panels' },
+    ],
+  },
+  {
+    title: 'Areas served',
+    links: [
+      { href: '/areas/devon', label: 'Devon' },
+      { href: '/areas/cornwall', label: 'Cornwall' },
+      { href: '/areas/somerset', label: 'Somerset' },
+      { href: '/areas/dorset', label: 'Dorset' },
+      { href: '/areas/wiltshire', label: 'Wiltshire' },
+    ],
+  },
+  {
+    title: 'Grants & funding',
+    links: [
+      { href: '/grants', label: 'Grants overview' },
+      { href: '/grants/slurry-grant', label: 'Slurry Infrastructure Grant (SIG)' },
+      { href: '/grants/fetf', label: 'FETF 2026 / 2027' },
+    ],
+  },
+  {
+    title: 'Company',
+    links: [
+      { href: '/about', label: 'About us' },
+      { href: '/factory', label: 'The factory' },
+      { href: '/sustainability', label: 'Sustainability' },
+      { href: '/careers', label: 'Careers' },
+    ],
+  },
+  {
+    title: 'Get a quote',
+    links: [
+      { href: '/quote', label: 'Configure a quote' },
+      { href: '/contact', label: 'Contact us' },
+    ],
+  },
+  {
+    title: 'Legal & policies',
+    links: [
+      { href: '/privacy', label: 'Privacy policy' },
+      { href: '/cookies', label: 'Cookie policy' },
+      { href: '/terms', label: 'Terms & conditions' },
+      { href: '/accessibility', label: 'Accessibility statement' },
+      { href: '/complaints', label: 'Complaints procedure' },
+    ],
+  },
+  {
+    title: 'Utility',
+    links: [
+      { href: '/search', label: 'Search' },
+      { href: '/sitemap', label: 'HTML sitemap (this page)' },
+      { href: '/sitemap-index.xml', label: 'XML sitemap (for search engines)' },
+      { href: '/feed.xml', label: 'RSS feed' },
+    ],
+  },
+];
+
+const totalLinks = sections.reduce((sum, s) => sum + s.links.length, 0);
+---
+
+<BaseLayout
+  title="Sitemap — every page on the site"
+  description="Full HTML sitemap for West Country Concrete Products. Every page grouped by section: products, sectors, resources, areas, company, grants and legal."
+>
+  <!-- Hero -->
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="max-w-3xl">
+        <p class="eyebrow text-yellow mb-6">Sitemap</p>
+        <h1 class="font-display text-display-xl text-white mb-6">
+          Every page on the site.
+        </h1>
+        <p class="text-lg md:text-xl text-white/90 max-w-2xl leading-relaxed">
+          {totalLinks} pages, grouped by section. Useful if you'd rather browse than search — or if
+          you're a search engine. The XML sitemap lives at <a href="/sitemap-index.xml" class="text-yellow font-bold hover:underline">/sitemap-index.xml</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sections -->
+  <section class="container-wccp py-16">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+      {sections.map((section) => (
+        <div>
+          <h2 class="font-display text-xl font-bold text-navy mb-4 pb-2 border-b-2 border-yellow">
+            {section.title}
+          </h2>
+          <ul class="space-y-2">
+            {section.links.map((l) => (
+              <li>
+                <a href={l.href} class="text-cast hover:text-ember transition-colors text-sm leading-snug inline-block">
+                  {l.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-bone-200 py-12">
+    <div class="container-wccp text-center">
+      <p class="eyebrow text-cast mb-3">Still can't find it?</p>
+      <h2 class="font-display text-display-md mb-3">Ring the yard.</h2>
+      <p class="text-cast max-w-xl mx-auto mb-6">
+        Same-day callback Monday to Friday. We answer the phone — that's still the fastest way.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href="/contact" class="btn-primary">Send a message</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

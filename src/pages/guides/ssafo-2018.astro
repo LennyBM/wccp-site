@@ -1,0 +1,403 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const faqs = [
+  {
+    q: 'What is SSAFO 2018?',
+    a: 'SSAFO 2018 is the Water Resources (Control of Agricultural Pollution) (England) Regulations and the related Silage, Slurry and Agricultural Fuel Oil (England) Regulations 2018. They set minimum design, capacity, location and management standards for slurry stores, silage clamps and fuel oil tanks on farms in England.',
+  },
+  {
+    q: 'How much slurry storage do I need under SSAFO 2018?',
+    a: 'SSAFO requires storage adequate to comply with NVZ rules and prevent pollution. In NVZs that means at least 5 months for cattle slurry and 6 months for pig and poultry. The Slurry Infrastructure Grant 2026 sets 6 months as the funding threshold regardless of NVZ status.',
+  },
+  {
+    q: 'How far must a slurry store be from a watercourse?',
+    a: 'Minimum 10m from any inland or coastal water under SSAFO 2018. The Environment Agency can require greater separation on a site-specific basis if groundwater, springs or boreholes are nearby. Stores must also be sited to avoid contaminating land drains.',
+  },
+  {
+    q: 'What freeboard is required on a slurry store?',
+    a: 'SSAFO 2018 requires a minimum 750mm freeboard above maximum slurry depth on rectangular stores, and a designed freeboard for circular stores demonstrated to retain rainfall events. Lagoons require similar freeboard plus an inflow allowance.',
+  },
+  {
+    q: 'Do I have to notify the Environment Agency?',
+    a: 'Yes. You must give the Environment Agency at least 14 days written notice (form WQE1) before constructing, substantially enlarging or substantially reconstructing any slurry, silage or fuel oil installation. Failure to notify is a criminal offence.',
+  },
+  {
+    q: 'What is the design life under SSAFO 2018?',
+    a: 'A 20-year minimum design life is required for slurry stores and silage clamps, demonstrated by structural design to BS 5502-50 and BS EN 1992-3 (slurry) or BS 5502-22 (silage). Materials, joints and protective coatings must all be specified for the 20-year life.',
+  },
+  {
+    q: 'What are the penalties for non-compliance?',
+    a: 'Magistrates can issue fines up to £5,000 per offence; on indictment fines are unlimited and prosecutions can include jail terms up to 2 years for serious or repeat pollution. The EA can also issue enforcement notices, prohibition notices and recover clean-up costs.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="SSAFO 2018 compliance checklist for UK farms"
+  description="SSAFO 2018 explained: slurry storage capacity, BS 5502-50 design, 10m watercourse separation, 750mm freeboard, EA WQE1 notification and the full 14-point compliance checklist."
+  image="/images/guides/ssafo-2018.jpg"
+  schema="Article"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-14 md:py-16">
+      <nav class="text-sm text-white/90 mb-6" aria-label="Breadcrumb">
+        <a href="/guides" class="hover:text-yellow">Guides</a>
+        <span class="mx-2 text-cast">/</span>
+        <span class="text-white/90">SSAFO 2018 compliance</span>
+      </nav>
+      <p class="eyebrow text-yellow mb-4">Regulations · Pillar guide</p>
+      <h1 class="font-display text-display-xl text-white mb-6 max-w-4xl">
+        SSAFO 2018 compliance checklist for UK farms
+      </h1>
+
+      <div class="bg-navy-700 border-l-4 border-yellow p-6 max-w-3xl rounded-r">
+        <p class="text-white/90 text-lg leading-relaxed">
+          <strong class="text-white">Direct answer:</strong> SSAFO 2018 — the Silage, Slurry and
+          Agricultural Fuel Oil (England) Regulations 2018 — requires structural adequacy to BS 5502-50
+          and BS EN 1992-3, a 20-year design life, 10m minimum from watercourses, 750mm freeboard,
+          14 days' Environment Agency notice (form WQE1) and 5–6 months of slurry storage capacity.
+        </p>
+      </div>
+
+      <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/90">
+        <div>By <span class="text-white font-semibold">WCCP Engineering Team</span></div>
+        <div>Published <time datetime="2026-03-20">20 March 2026</time></div>
+        <div>Updated <time datetime="2026-04-26">26 April 2026</time></div>
+      </div>
+    </div>
+  </section>
+
+  <article class="container-wccp py-12 md:py-16">
+    <div class="grid lg:grid-cols-[1fr_18rem] gap-10 lg:gap-16">
+      <div class="max-w-3xl">
+
+        <details class="lg:hidden mb-10 border border-cast-100 rounded-lg p-5">
+          <summary class="font-display text-lg font-bold text-navy cursor-pointer">On this page</summary>
+          <ol class="mt-4 space-y-2 text-cast list-decimal list-inside">
+            <li><a href="#what" class="hover:text-ember">What SSAFO 2018 requires</a></li>
+            <li><a href="#capacity" class="hover:text-ember">Slurry storage capacity</a></li>
+            <li><a href="#standards" class="hover:text-ember">Structural standards (BS 5502-50)</a></li>
+            <li><a href="#distances" class="hover:text-ember">Distances from watercourses</a></li>
+            <li><a href="#freeboard" class="hover:text-ember">Freeboard requirements</a></li>
+            <li><a href="#notification" class="hover:text-ember">EA notification (WQE1)</a></li>
+            <li><a href="#penalties" class="hover:text-ember">Penalties</a></li>
+            <li><a href="#checklist" class="hover:text-ember">14-point checklist</a></li>
+            <li><a href="#faq" class="hover:text-ember">FAQ</a></li>
+          </ol>
+        </details>
+
+        <section id="what" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What does SSAFO 2018 actually require?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">SSAFO 2018 sets minimum standards for the construction, location and
+            management of silage clamps, slurry stores and agricultural fuel oil tanks in England.
+            New or substantially altered installations must be designed to a 20-year life, sited to
+            minimise pollution risk, notified in writing to the Environment Agency, and inspected
+            on demand.</strong>
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            The regulations are enforced by the Environment Agency under powers in the Water Resources
+            Act 1991. They sit alongside the Farming Rules for Water (2018) and, in NVZs, the Nitrate
+            Vulnerable Zone rules. Compliance is a condition of cross-compliance for SFI and other
+            payments.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            Older installations built before 1 March 1991 are partially grandfathered, but any
+            substantial alteration triggers SSAFO 2018 in full. "Substantial" includes changing the
+            footprint, increasing capacity by more than 10%, or replacing the structural elements.
+          </p>
+        </section>
+
+        <section id="capacity" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">How do I calculate slurry storage volume?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            <strong class="text-navy">Use the AHDB slurry calculator. Multiply daily slurry production per
+            head by livestock numbers by storage days required (5–6 months), then add rainwater inputs
+            and a safety factor. A 200-cow dairy in an NVZ typically needs around 3,500–4,500m³ of
+            storage to comply.</strong>
+          </p>
+
+          <div class="overflow-x-auto mb-4 -mx-4 sm:mx-0">
+            <table class="spec-table min-w-full px-4 sm:px-0">
+              <thead>
+                <tr>
+                  <th>Livestock type</th>
+                  <th>Slurry / day</th>
+                  <th>5-month storage</th>
+                  <th>6-month storage</th>
+                </tr>
+              </thead>
+              <tbody class="text-cast">
+                <tr>
+                  <td>Dairy cow (Holstein, housed)</td>
+                  <td><strong class="text-navy">53 litres</strong></td>
+                  <td>~8.0 m³/cow</td>
+                  <td>~9.7 m³/cow</td>
+                </tr>
+                <tr>
+                  <td>Dairy cow (Jersey, housed)</td>
+                  <td><strong class="text-navy">38 litres</strong></td>
+                  <td>~5.7 m³/cow</td>
+                  <td>~6.9 m³/cow</td>
+                </tr>
+                <tr>
+                  <td>Beef finisher (500kg)</td>
+                  <td><strong class="text-navy">40 litres</strong></td>
+                  <td>~6.0 m³/head</td>
+                  <td>~7.3 m³/head</td>
+                </tr>
+                <tr>
+                  <td>Suckler cow + calf</td>
+                  <td><strong class="text-navy">35 litres</strong></td>
+                  <td>~5.3 m³/head</td>
+                  <td>~6.4 m³/head</td>
+                </tr>
+                <tr>
+                  <td>Pig (finishing, 100kg)</td>
+                  <td><strong class="text-navy">7 litres</strong></td>
+                  <td>~1.05 m³/head</td>
+                  <td>~1.27 m³/head</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-sm text-cast italic">
+            Add rainfall capture from any open store: roughly 1m³ per m² of surface area per metre
+            of regional annual rainfall. Devon averages 1.0–1.2m/year.
+          </p>
+        </section>
+
+        <section id="standards" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What structural standards apply to SSAFO stores?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Slurry stores must be designed to BS 5502-50:1993 (buildings for livestock)
+            and BS EN 1992-3:2006 (Eurocode 2 — liquid retaining structures). Silage clamps follow
+            BS 5502-22:2003. Structural design must demonstrate the 20-year design life with reasonable
+            maintenance.</strong>
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            In practice that means a chartered structural engineer signs off on panel thickness,
+            reinforcement, post or buttress design, foundation design and joint detail. Concrete is
+            specified to BS 8500-1:2023 — typically C40/50 with sulphate-resisting cement (CEM III/B
+            or CEM IV) for slurry duty.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            The Environment Agency does not certify designs, but it can challenge any installation it
+            believes is non-compliant. Keeping the engineer's calcs and a copy of the WQE1 form on
+            file is worth doing — both are routinely requested at inspection.
+          </p>
+        </section>
+
+        <section id="distances" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">How far from a watercourse must a slurry store sit?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">SSAFO 2018 requires a minimum 10m separation between any slurry, silage
+            or fuel oil installation and any inland or coastal water. The EA may require additional
+            separation if groundwater, springs, boreholes or land drains are within the wider area.</strong>
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            "Inland water" includes rivers, streams, ditches, ponds, and any feature that drains to a
+            watercourse — even a dry ditch that flows in winter. Land drainage outfalls and field
+            drains within the catchment of the store are also considered.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            We recommend a desktop check (Magic Map for SSSIs and SPZs, plus a site walk for ditches
+            and land drains) before agreeing a store position. Moving a planned store 5m to clear a
+            ditch is far cheaper than building it and being told to remove it.
+          </p>
+        </section>
+
+        <section id="freeboard" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What freeboard is required?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">A minimum 750mm freeboard above maximum slurry depth is required on
+            rectangular precast stores. Lagoons must demonstrate freeboard adequate to contain the
+            highest expected rainfall event during peak storage. Silage clamps require an effluent
+            collection capacity equivalent to 20 litres per tonne of silage.</strong>
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            Freeboard is structural margin and a pollution buffer in one. It allows for agitator
+            disturbance, foam build-up, mistimed emptying and unexpected rainfall ingress. It also
+            keeps the slurry below any bolt-down equipment or mixer access points where joints are
+            often the first thing to fail.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            We design every WCCP slurry store with parapet height set 750mm above the calculated
+            maximum slurry level, and we mark a depth indicator at that level so the operator can
+            see at a glance whether emptying is overdue.
+          </p>
+        </section>
+
+        <section id="notification" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">How do I notify the Environment Agency (WQE1)?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Submit form WQE1 to the Environment Agency at least 14 days before any
+            construction, substantial enlargement or substantial reconstruction of a slurry, silage or
+            fuel oil installation. Include drawings, location plan, capacity calculations and the
+            engineer's design statement.</strong>
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            The 14-day window gives the EA time to comment, request changes or arrange an inspection.
+            Most submissions go through without challenge if the design is to BS 5502-50 and the
+            distances and freeboard meet SSAFO. The EA can extend the period or require modifications
+            if it identifies a pollution risk.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            Submit electronically via the gov.uk WQE1 portal. Keep the acknowledgement email on file —
+            it is your evidence of compliance with the notification obligation.
+          </p>
+        </section>
+
+        <section id="penalties" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What are the penalties for SSAFO non-compliance?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Summary conviction: fine up to £5,000 per offence. On indictment: unlimited
+            fines and up to 2 years imprisonment for serious or repeat pollution. The EA can also issue
+            enforcement notices, prohibition notices and recover clean-up costs from the operator.</strong>
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            In practice the most common enforcement path is an EA officer visit, a written advisory
+            letter, then an enforcement notice with a deadline. Prosecutions usually follow either a
+            pollution incident or repeated refusal to comply with an enforcement notice.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            Insurance cover for environmental liability is increasingly excluding non-compliant
+            installations. Lenders financing slurry infrastructure routinely require evidence of
+            SSAFO compliance as a drawdown condition.
+          </p>
+        </section>
+
+        <section id="checklist" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">SSAFO 2018 14-point compliance checklist</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            <strong class="text-navy">Tick all 14 before construction starts. If you can sign each one off, your
+            installation will pass SSAFO 2018, qualify for SIG 2026 and stay defensible against a future EA
+            inspection.</strong>
+          </p>
+          <div class="bg-bone-200 border-l-4 border-ember p-6 rounded-r">
+            <ol class="text-cast-700 text-base leading-relaxed space-y-3 list-decimal pl-5">
+              <li>Storage capacity calculated against AHDB livestock slurry production figures</li>
+              <li>5 months minimum (cattle) or 6 months (pig/poultry, NVZ, or SIG-funded)</li>
+              <li>Rainfall capture added to capacity calculation for open stores</li>
+              <li>Minimum 10m from any inland or coastal water</li>
+              <li>SSSI, SPZ and borehole desktop check completed (Magic Map)</li>
+              <li>Land drains and field drainage outfalls identified and isolated</li>
+              <li>Designed to BS 5502-50 and BS EN 1992-3 by a chartered structural engineer</li>
+              <li>20-year design life specified in writing</li>
+              <li>C40/50 sulphate-resisting concrete (CEM III/B or CEM IV) for slurry duty</li>
+              <li>Minimum 750mm freeboard above maximum slurry level</li>
+              <li>Hydrophilic waterstop and slurry-rated sealant at every joint</li>
+              <li>Form WQE1 submitted to Environment Agency at least 14 days before construction</li>
+              <li>EA acknowledgement email retained on file</li>
+              <li>Inspection and maintenance plan documented for the 20-year life</li>
+            </ol>
+          </div>
+        </section>
+
+        <section id="faq" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-6">Frequently asked questions</h2>
+          <div class="space-y-4">
+            {faqs.map((f) => (
+              <details class="card p-5 group">
+                <summary class="font-display text-lg font-bold text-navy cursor-pointer flex items-start justify-between gap-4">
+                  <span>{f.q}</span>
+                  <svg class="w-5 h-5 mt-1 flex-shrink-0 text-ember transition-transform group-open:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="12" y1="5" x2="12" y2="19" stroke-linecap="round"/>
+                    <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+                  </svg>
+                </summary>
+                <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section class="bg-navy text-white rounded-lg p-8 md:p-10">
+          <h2 class="font-display text-2xl md:text-3xl text-white mb-3">Building a SSAFO-compliant store?</h2>
+          <p class="text-white/90 mb-6 leading-relaxed">
+            We design, manufacture and deliver SSAFO 2018-compliant slurry stores, silage clamps
+            and effluent tanks across the South West. Send us your livestock numbers and we'll come
+            back with a capacity check, panel schedule and fixed price.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="/products/slurry-storage" class="btn-yellow">See slurry storage range</a>
+            <a href="/quote" class="btn bg-white text-navy hover:bg-bone">Start a quote</a>
+          </div>
+        </section>
+
+      </div>
+
+      <aside class="hidden lg:block">
+        <div class="sticky top-24">
+          <p class="eyebrow text-cast mb-4">On this page</p>
+          <ol class="space-y-3 text-sm border-l border-cast-100 pl-4">
+            <li><a href="#what" class="text-cast hover:text-ember">What SSAFO requires</a></li>
+            <li><a href="#capacity" class="text-cast hover:text-ember">Storage capacity</a></li>
+            <li><a href="#standards" class="text-cast hover:text-ember">Structural standards</a></li>
+            <li><a href="#distances" class="text-cast hover:text-ember">Watercourse distances</a></li>
+            <li><a href="#freeboard" class="text-cast hover:text-ember">Freeboard</a></li>
+            <li><a href="#notification" class="text-cast hover:text-ember">EA notification</a></li>
+            <li><a href="#penalties" class="text-cast hover:text-ember">Penalties</a></li>
+            <li><a href="#checklist" class="text-cast hover:text-ember">14-point checklist</a></li>
+            <li><a href="#faq" class="text-cast hover:text-ember">FAQ</a></li>
+          </ol>
+
+          <div class="mt-8 p-4 bg-yellow rounded-lg">
+            <p class="text-xs font-bold text-navy uppercase tracking-wide mb-2">SIG 2026 deadline</p>
+            <p class="text-sm text-navy mb-3 leading-snug">£74m fund · closes 30 September 2026</p>
+            <a href="/grants/slurry-grant" class="text-navy font-bold text-sm hover:underline">Read the SIG guide →</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+  <section class="bg-bone-200 py-16">
+    <div class="container-wccp">
+      <p class="eyebrow text-cast mb-3">Related guides</p>
+      <h2 class="font-display text-display-md mb-8">Keep reading.</h2>
+
+      <div class="grid md:grid-cols-3 gap-5">
+        <a href="/guides/slurry-wall-thickness" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Slurry storage</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">How thick should a slurry store wall be?</h3>
+          <p class="text-cast text-sm leading-relaxed">200mm vs 250mm vs 300mm precast panels by retained height, with cover and grade.</p>
+        </a>
+        <a href="/guides/concrete-grades" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Materials</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Concrete grades for agricultural use</h3>
+          <p class="text-cast text-sm leading-relaxed">C32/40 vs C40/50 SR explained — and which exposure class fits which job.</p>
+        </a>
+        <a href="/guides/fetf-2026-eligible-products" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Grants</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">FETF 2026 eligible products</h3>
+          <p class="text-cast text-sm leading-relaxed">What was funded under FETF 2026 and how to prepare for the next round.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-16 text-center">
+    <h2 class="font-display text-display-lg mb-4">Talk to the yard.</h2>
+    <p class="text-cast-700 text-lg max-w-xl mx-auto mb-8">
+      Same-day callback Monday to Friday. We'll talk you through SSAFO compliance before you commit a penny.
+    </p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+      <a href="/quote" class="btn-primary">Configure a quote</a>
+    </div>
+  </section>
+</BaseLayout>

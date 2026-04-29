@@ -1,0 +1,252 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import { site } from '@/config/site';
+
+const products = [
+  {
+    href: '/products/prestressed-panels',
+    label: 'Prestressed Wall Panels',
+    meta: '100 / 150 / 180 / 280mm · BS EN 14992',
+    desc: 'Factory-cast prestressed panels to 6.0m. CE/UKCA marked. Cast to your post-centre and surcharge — site assembly in days, not weeks.',
+  },
+  {
+    href: '/products/retaining-walls',
+    label: 'Retaining Walls',
+    meta: 'King post · L-block · cantilever',
+    desc: 'Three systems, one supplier. We help you pick the geometry that suits the surcharge, footprint and the budget — then cast it.',
+  },
+  {
+    href: '/products/culverts',
+    label: 'Culverts & Box Sections',
+    meta: '600mm to 3000mm · DN-rated to BS 5911',
+    desc: 'Box culverts and headwall sections cast to your hydraulic calc. Wing walls, aprons and end frames cast as a kit, not a guess.',
+  },
+  {
+    href: '/products/padstones',
+    label: 'Padstones & Bearings',
+    meta: 'C40/50 · cast to engineer schedule',
+    desc: 'Schedule us your loadings and bearing dimensions. We cast, mark and deliver in load order. No site cutting, no specials at 4pm.',
+  },
+  {
+    href: '/products/vehicle-pits',
+    label: 'Vehicle Inspection Pits',
+    meta: 'HGV / PSV / agri · BS EN 1992 design',
+    desc: 'Single-piece pit kits to MOT VOSA standard. Steps, lighting recess, sump and edging cast in. Drop into the slab in one lift.',
+  },
+  {
+    href: '/products/bespoke-civils',
+    label: 'Bespoke Civils',
+    meta: 'In-house design · Eurocode 2',
+    desc: 'Specials, transition pieces, junction boxes, manhole bases. Send us the GA — we will detail, cast and deliver it.',
+  },
+];
+
+const trustPoints = [
+  {
+    title: 'CE / UKCA-marked, BS EN 14992.',
+    body: 'Every prestressed panel ships with its declaration of performance. Audit-ready paperwork, every load. No phone calls about missing certs.',
+  },
+  {
+    title: 'BS 8500-1:2023 mix designs.',
+    body: 'Concrete cast to the current designated and designed-mix tables. Sulphate-resisting, exposure-class matched, and the cube tests to prove it.',
+  },
+  {
+    title: '£5m PI, £10m PL.',
+    body: 'Professional indemnity and public liability cover well above main-contractor minimums. Pre-qualification packs sent same day.',
+  },
+  {
+    title: 'Named on Tier-1 frameworks.',
+    body: 'We cast for South West Water, Kier, Galliford Try, Morgan Sindall and the highways teams. Logos on request — we keep client work quiet.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'Are your prestressed panels CE / UKCA marked?',
+    a: 'Yes. Every panel we cast carries its UKCA mark and a declaration of performance under BS EN 14992. We supply the DoP, the structural calculations, the concrete mix certificate and the strand release-strength tests with every delivery — your site team gets a single PDF pack per load.',
+  },
+  {
+    q: 'Which mix designs do you use?',
+    a: 'We cast to BS 8500-1:2023 designated and designed mixes. Standard panels are C40/50 with sulphate-resisting CEM II/B-V or III/A binders depending on the exposure class. For ground contact and slurry contact we move to DC-3 or DC-4 designations. Mix certs ship with every load.',
+  },
+  {
+    q: 'How fast can you turn a contract round?',
+    a: 'Catalogue panels are 2 to 4 weeks from drawing approval. Bespoke retaining systems and culverts run 6 to 10 weeks depending on detail. We hold programme-critical components in stock for our framework clients — talk to us early and we will phase production to match your sequence.',
+  },
+  {
+    q: 'Can you design and cast to our engineer\'s scheme?',
+    a: 'Yes. Send us the GA, the loadings and the surcharge profile. Our in-house design team detail to Eurocode 2 (BS EN 1992), issue casting drawings for your engineer\'s sign-off, and only then go to mould. We carry CDP responsibility on bespoke elements where you need it.',
+  },
+  {
+    q: 'Do you carry framework or principal-contractor pre-qualification?',
+    a: 'Yes — Constructionline, CHAS and named tier-1 framework agreements. We will send our PQQ pack, insurance certificates, ISO statements and audit history same day. Email quotes@wccp.co.uk and ask for the civils pack.',
+  },
+];
+
+const schemaData = {
+  serviceType: 'Civils & infrastructure precast concrete supply',
+  provider: {
+    '@type': 'LocalBusiness',
+    name: site.name,
+    telephone: site.contact.phone,
+  },
+  areaServed: site.areasServed,
+  description:
+    'Prestressed wall panels, retaining walls, culverts, padstones and vehicle pits for civils contractors. CE/UKCA marked to BS EN 14992. Cast in North Devon since 1971.',
+};
+---
+
+<BaseLayout
+  title="Civils precast — panels, retaining walls, culverts, padstones"
+  description="CE/UKCA-marked prestressed wall panels, retaining walls, culverts and padstones. BS EN 14992, BS 8500-1:2023, Eurocode 2. Cast in North Devon for civils contractors across the UK."
+  image="/images/sector-civils.jpg"
+  schema="Service"
+  schemaData={schemaData}
+>
+  <TrustStrip />
+
+  <!-- Hero -->
+  <section class="relative bg-navy text-white overflow-hidden">
+    <div class="relative container-wccp py-20 md:py-28">
+      <div class="max-w-3xl">
+        <p class="eyebrow text-yellow mb-6">For contracts managers and engineers</p>
+        <h1 class="font-display text-display-2xl text-white mb-6">
+          Precast that lands<br />
+          <span class="text-yellow">on the date you said.</span>
+        </h1>
+        <p class="text-lg md:text-xl text-white/90 max-w-2xl mb-10 leading-relaxed">
+          Prestressed panels, retaining systems, culverts and structural specials — CE/UKCA marked,
+          cast to BS EN 14992 and BS 8500-1:2023, delivered with the paperwork your QS wants and the
+          programme your site needs.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="/quote" class="btn-primary">Request a tender quote</a>
+          <a href={`mailto:${site.contact.quotesEmail}`} class="btn-yellow">
+            Email {site.contact.quotesEmail}
+          </a>
+          <a href="#products" class="btn-ghost border-white text-white hover:bg-white hover:text-navy">
+            Browse products
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section id="products" class="container-wccp py-20">
+    <div class="max-w-2xl mb-12">
+      <p class="eyebrow text-cast mb-3">What we cast</p>
+      <h2 class="font-display text-display-lg mb-4">The catalogue most contractors order from.</h2>
+      <p class="text-cast-700 text-lg">
+        Six product families that cover most of the precast on a typical civils job.
+        Specials and one-offs sit under bespoke — we do plenty of those too.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {products.map((p) => (
+        <a href={p.href} class="card p-6 group">
+          <div class="aspect-[16/10] bg-cast-100 mb-5 rounded overflow-hidden">
+            <div class="w-full h-full bg-gradient-to-br from-navy to-cast-300"></div>
+          </div>
+          <h3 class="font-display text-xl font-bold text-navy mb-1 group-hover:text-ember transition-colors">
+            {p.label}
+          </h3>
+          <p class="text-cast text-sm font-medium mb-3">{p.meta}</p>
+          <p class="text-cast text-sm leading-relaxed">{p.desc}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Standards block -->
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow text-cast mb-3">Standards we cast to</p>
+          <h2 class="font-display text-display-lg mb-6">Audit-ready paperwork on every load.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            We do not just hit the standards — we ship the proof. Every panel comes with a UKCA-marked
+            declaration of performance, a mix certificate and a release-strength record.
+          </p>
+          <ul class="space-y-3 text-cast">
+            <li class="flex gap-3"><span class="text-ember font-bold">·</span><span><strong class="text-navy">BS EN 14992</strong> — precast wall element specification, factory production control.</span></li>
+            <li class="flex gap-3"><span class="text-ember font-bold">·</span><span><strong class="text-navy">BS 8500-1:2023</strong> — concrete mix designation and exposure classes.</span></li>
+            <li class="flex gap-3"><span class="text-ember font-bold">·</span><span><strong class="text-navy">BS EN 1992 (Eurocode 2)</strong> — design of concrete structures.</span></li>
+            <li class="flex gap-3"><span class="text-ember font-bold">·</span><span><strong class="text-navy">BS EN 13369</strong> — common rules for precast concrete products.</span></li>
+            <li class="flex gap-3"><span class="text-ember font-bold">·</span><span><strong class="text-navy">CE / UKCA marking</strong> — full DoP shipped with every consignment.</span></li>
+          </ul>
+        </div>
+
+        <div class="grid grid-cols-2 gap-6">
+          {trustPoints.map((t) => (
+            <div class="card p-6">
+              <h3 class="font-display text-base font-bold text-navy mb-2">{t.title}</h3>
+              <p class="text-cast text-sm leading-relaxed">{t.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Named clients placeholder -->
+  <section class="container-wccp py-16 border-y border-cast-100">
+    <p class="eyebrow text-cast text-center mb-8">Trusted by contractors across the South West</p>
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-6 items-center justify-items-center">
+      {['Tier-1 Highways', 'Water Framework', 'Regional Civils', 'House Builder', 'Rail Tier-1'].map((label) => (
+        <div class="w-full h-16 bg-bone-200 rounded flex items-center justify-center text-cast text-xs font-medium uppercase tracking-wide">
+          {label}
+        </div>
+      ))}
+    </div>
+    <p class="text-center text-cast text-sm mt-6">Named clients available on request — we keep contract work confidential by default.</p>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">Common questions</p>
+        <h2 class="font-display text-display-lg mb-4">What contracts managers ask.</h2>
+        <p class="text-cast-700 text-lg">
+          Five questions we field most weeks from QS, design and site teams.
+        </p>
+      </div>
+
+      <div class="max-w-3xl space-y-4">
+        {faqs.map((f) => (
+          <details class="card p-6 group">
+            <summary class="font-display text-lg font-bold text-navy cursor-pointer list-none flex justify-between items-start gap-4">
+              <span>{f.q}</span>
+              <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-navy text-white py-20">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-xl mb-4 text-white">Send us the drawing.</h2>
+      <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">
+        Email a GA, an outline schedule or a tender pack to {site.contact.quotesEmail} —
+        we will quote, detail and programme inside 48 hours.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href={`mailto:${site.contact.quotesEmail}`} class="btn-yellow">
+          Email quotes
+        </a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">
+          Call {site.contact.phone}
+        </a>
+        <a href="/quote" class="btn-primary">Start a tender quote</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

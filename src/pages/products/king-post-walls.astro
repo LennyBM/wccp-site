@@ -1,0 +1,237 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import { site } from '@/config/site';
+
+const specs = [
+  { post: '203×133 UB30', spacing: '2.4m c/c', maxHeight: '2.5m', panel: '150mm prestressed', surcharge: '15 kN/m²', use: 'Light agricultural retention' },
+  { post: '254×146 UB37', spacing: '2.4m c/c', maxHeight: '3.5m', panel: '180mm prestressed', surcharge: '25 kN/m²', use: 'Bulk storage, silage, push walls' },
+  { post: '305×165 UB46', spacing: '2.4m c/c', maxHeight: '4.5m', panel: '180mm prestressed', surcharge: '40 kN/m²', use: 'Civils retention, road schemes' },
+  { post: '356×171 UB57', spacing: '2.4m c/c', maxHeight: '5.5m', panel: '280mm prestressed', surcharge: '50 kN/m²', use: 'Heavy civils, deep retention' },
+  { post: '203×203 UC60', spacing: '2.4m c/c', maxHeight: '6.0m', panel: '280mm prestressed', surcharge: '60 kN/m²', use: 'Maximum surcharge, surcharged backfill' },
+  { post: '254×254 UC73', spacing: '2.4m c/c', maxHeight: '6.0m', panel: '280mm prestressed', surcharge: '60 kN/m² + LM1', use: 'Highway surcharge, deep retention' },
+];
+
+const applications = [
+  'Highway retention with HA traffic surcharge (LM1)',
+  'Silage clamp side walls with vehicle loading on top',
+  'Bulk-storage and grain bay divisions',
+  'Recycling-yard push walls and waste-transfer bays',
+  'Boundary and security walls on commercial sites',
+  'Slurry-store walls on civils-grade post and panel',
+  'Cut-and-fill retaining on residential developments',
+];
+
+const related = [
+  { href: '/products/retaining-walls', label: 'All Retaining Walls', meta: 'Family hub · four systems' },
+  { href: '/products/prestressed-panels', label: 'Prestressed Panels', meta: 'BS EN 14992 · 100/150/180/280mm' },
+  { href: '/products/l-blocks', label: 'L-Block Retaining', meta: '1m–6m · interlocking' },
+  { href: '/products/cantilever-walls', label: 'Cantilever Walls', meta: 'Free-standing precast' },
+];
+
+const faqs = [
+  { q: 'How does a king-post wall work?', a: 'Steel UB or UC posts are set into pre-cast concrete pockets in a strip footing, typically 2.4m centres. Prestressed concrete panels slide down the post web from the top, locking into channel formed by the post flanges. The result is a fast-build, highly engineered retaining wall with the post taking the bending and the panels carrying the lateral pressure.' },
+  { q: 'What surcharge can I run?', a: 'Up to 60 kN/m² with a 254×254 UC73 post on a 1.2m strip footing — that covers HA traffic loading (LM1) and most civils applications. Lighter loadings use smaller posts; we size each scheme to the loading.' },
+  { q: 'How fast does it go up?', a: 'Once the footings are cured, a four-man crew with a 35-tonne crane will set 30–40 panels a day. A 50-metre run of 4.5m wall typically goes up in three days. Faster than cast-in-situ by a long way.' },
+  { q: 'Do you supply the posts?', a: 'Yes — supply-only or with the panels as a package. We cut, drill, paint and ship to site to the same lead time as the panels. Galvanised finish available.' },
+  { q: 'What about settlement and heave?', a: 'The strip footing is designed for the bearing of the host ground; on poor ground we will recommend a wider footing or a piled solution. Free advice on the foundation design from our in-house team — send us the soil report.' },
+];
+
+const productSchema = {
+  name: 'King Post Retaining Walls',
+  description: 'Engineered king-post retaining wall system using prestressed concrete panels with UB and UC steel posts. Heights to 6.0m, surcharge ratings to 60 kN/m² including HA traffic loading. BS EN 1992-1-1 design.',
+  brand: { '@type': 'Brand', name: site.name },
+  manufacturer: { '@type': 'Organization', name: site.name },
+  category: 'Precast retaining wall — king post system',
+  material: 'Prestressed reinforced concrete panels (C40/50) + S355 steel posts',
+  weight: { '@type': 'QuantitativeValue', minValue: 432, maxValue: 4032, unitCode: 'KGM', unitText: 'kilogram per linear metre (panel)' },
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 14992 (panels) / BS EN 1090 (posts)' },
+    { '@type': 'PropertyValue', name: 'Structural design', value: 'BS EN 1992-1-1 / BS EN 1993-1-1' },
+    { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
+    { '@type': 'PropertyValue', name: 'Steel grade', value: 'S355 to BS EN 10025' },
+    { '@type': 'PropertyValue', name: 'Maximum height', value: '6.0 m' },
+    { '@type': 'PropertyValue', name: 'Maximum surcharge', value: '60 kN/m² (incl. LM1 traffic)' },
+    { '@type': 'PropertyValue', name: 'Post spacing', value: '2.4 m centres standard' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '3–5 weeks supply, 6–8 weeks bespoke' },
+    { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
+  ],
+  offers: { '@type': 'Offer', priceCurrency: 'GBP', availability: 'https://schema.org/InStock', seller: { '@type': 'Organization', name: site.name } },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+
+<BaseLayout
+  title="King Post Walls — UB/UC posts + prestressed panels"
+  description="Engineered king-post retaining walls. UB/UC steel posts at 2.4m centres with prestressed concrete panels. Heights to 6.0m, surcharge to 60 kN/m². Cast in North Devon."
+  image="/images/products/king-post-walls.jpg"
+  schema="Product"
+  schemaData={productSchema}
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <TrustStrip />
+
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow text-yellow mb-4">Civils · agricultural · push walls</p>
+          <h1 class="font-display text-display-xl text-white mb-4">King Post Walls.</h1>
+          <p class="text-lg text-white/90 leading-relaxed mb-6">
+            UB and UC steel posts at 2.4m centres with prestressed concrete panels slotted between.
+            Heights to 6.0m, surcharge ratings to 60 kN/m² including HA traffic loading. The fastest-build
+            engineered retaining system on our books.
+          </p>
+          <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
+            <li class="flex gap-2"><span class="text-yellow">·</span> UB / UC posts</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 2.4m centres</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Heights to 6.0m</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Up to 60 kN/m²</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> LM1 traffic load</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 3–5 week lead</li>
+          </ul>
+          <div class="flex flex-wrap gap-3">
+            <a href="/quote?product=King+Post+Walls" class="btn-primary">Configure a quote</a>
+            <a href="/spec-sheets/king-post-walls.pdf" class="btn-yellow">Download spec sheet</a>
+            <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">Call {site.contact.phone}</a>
+          </div>
+        </div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-300 via-cast to-navy"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-20">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Specification</p>
+      <h2 class="font-display text-display-lg mb-4">Posts, panels and surcharge ratings.</h2>
+      <p class="text-cast-700 text-lg">Catalogue post sizes for typical surcharges. Site-specific design always to BS EN 1992-1-1 and BS EN 1993-1-1.</p>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="spec-table w-full text-left border-collapse">
+        <thead class="bg-navy text-white">
+          <tr>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Post section</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Spacing</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Max height</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Panel</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Surcharge</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
+          </tr>
+        </thead>
+        <tbody>
+          {specs.map((s, i) => (
+            <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
+              <td class="px-4 py-3 font-bold text-navy">{s.post}</td>
+              <td class="px-4 py-3">{s.spacing}</td>
+              <td class="px-4 py-3">{s.maxHeight}</td>
+              <td class="px-4 py-3">{s.panel}</td>
+              <td class="px-4 py-3">{s.surcharge}</td>
+              <td class="px-4 py-3 text-cast">{s.use}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow text-cast mb-3">Where they go</p>
+          <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">From a 2-metre silage clamp wall to a 6-metre highway retention scheme, the king-post system flexes by post and panel.</p>
+          <ul class="space-y-3">
+            {applications.map((a) => (<li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">·</span><span>{a}</span></li>))}
+          </ul>
+        </div>
+        <div class="card p-8">
+          <p class="eyebrow text-cast mb-3">Standards & certification</p>
+          <h3 class="font-display text-2xl font-bold text-navy mb-4">Engineered, marked, certified.</h3>
+          <dl class="space-y-4 text-sm">
+            <div><dt class="font-bold text-navy">BS EN 14992</dt><dd class="text-cast">Precast wall elements — panels UKCA marked.</dd></div>
+            <div><dt class="font-bold text-navy">BS EN 1992-1-1 (Eurocode 2)</dt><dd class="text-cast">Concrete structural design — panel and footing calculation.</dd></div>
+            <div><dt class="font-bold text-navy">BS EN 1993-1-1 (Eurocode 3)</dt><dd class="text-cast">Steel structural design — post sizing, bending and shear check.</dd></div>
+            <div><dt class="font-bold text-navy">BS EN 1090</dt><dd class="text-cast">Steel fabrication — execution class EXC2 standard.</dd></div>
+            <div><dt class="font-bold text-navy">BS 8500-1:2023</dt><dd class="text-cast">Concrete spec — DC-3/DC-4 mixes for aggressive ground.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-yellow text-navy py-16">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-navy mb-2">Configure your king-post wall</p>
+          <h2 class="font-display text-display-md">Send section and surcharge — we will spec posts, panels and footing.</h2>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href="/quote?product=King+Post+Walls" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
+          <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-20">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
+      <div>
+        <p class="eyebrow text-cast mb-3">Related products</p>
+        <h2 class="font-display text-display-lg">Often ordered alongside.</h2>
+      </div>
+      <a href="/products" class="text-ember font-bold hover:text-ember-700 inline-flex items-center gap-2">View full range
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" /><polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </a>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {related.map((r) => (
+        <a href={r.href} class="card p-5 group">
+          <div class="aspect-[16/10] bg-cast-100 mb-4 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100"></div></div>
+          <h3 class="font-display text-base font-bold text-navy mb-1 group-hover:text-ember">{r.label}</h3>
+          <p class="text-cast text-xs">{r.meta}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">Common questions</p>
+        <h2 class="font-display text-display-lg mb-4">What people ask about king-post walls.</h2>
+        <p class="text-cast-700 text-lg">Five questions we answer most weeks. If yours is not here, ring the yard.</p>
+      </div>
+      <div class="max-w-3xl space-y-4">
+        {faqs.map((f) => (
+          <details class="card p-6 group">
+            <summary class="font-display text-lg font-bold text-navy cursor-pointer list-none flex justify-between items-start gap-4">
+              <span>{f.q}</span>
+              <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-navy text-white py-20">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
+      <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">Send section, height and surcharge. Quote and lead-time same day.</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/quote?product=King+Post+Walls" class="btn-yellow">Configure a quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

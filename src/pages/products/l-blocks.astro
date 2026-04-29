@@ -1,0 +1,236 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import { site } from '@/config/site';
+
+const specs = [
+  { height: '1.0m', toe: '0.6m', length: '1.0m', weight: '720 kg', surcharge: '20 kN/m²', use: 'Bay divisions, light grain stores' },
+  { height: '2.0m', toe: '1.2m', length: '1.0m', weight: '1,920 kg', surcharge: '15 kN/m²', use: 'Silage clamps, biomass bays' },
+  { height: '3.0m', toe: '1.5m', length: '1.0m', weight: '3,600 kg', surcharge: '15 kN/m²', use: 'Aggregate and bulk storage' },
+  { height: '4.0m', toe: '2.0m', length: '1.0m', weight: '5,760 kg', surcharge: '15 kN/m²', use: 'Tall silage and grain bays' },
+  { height: '5.0m', toe: '2.5m', length: '1.0m', weight: '8,400 kg', surcharge: '12 kN/m²', use: 'Maximum-height free-standing storage' },
+  { height: '6.0m', toe: '3.0m', length: '1.0m', weight: '12,240 kg', surcharge: '10 kN/m²', use: 'Heavy bulk-material bays' },
+];
+
+const applications = [
+  'Silage clamp side and end walls',
+  'Grain and feed-store bay divisions',
+  'Bulk-aggregate storage at quarries and recycling yards',
+  'Biomass and woodchip bays for AD plant',
+  'Push walls for waste-transfer stations',
+  'Temporary site separation walls and security boundaries',
+  'Cattle yard divisions and feed-passage walls',
+];
+
+const related = [
+  { href: '/products/retaining-walls', label: 'All Retaining Walls', meta: 'Family hub · four systems' },
+  { href: '/products/silage-clamp-walls', label: 'Silage Clamp Walls', meta: 'C40/50 · sulphate-resisting' },
+  { href: '/products/interlocking-blocks', label: 'Interlocking Blocks', meta: 'Beton-style · 1485kg' },
+  { href: '/products/king-post-walls', label: 'King Post Walls', meta: 'Steel post + panel infill' },
+];
+
+const faqs = [
+  { q: 'Do L-blocks need a foundation?', a: 'Just a compacted hardcore base, typically 200mm of MOT Type 1 on a clean dig. The toe takes the overturning moment, so they are free-standing — no concrete strip needed for most heights. We will check the bearing on poor ground.' },
+  { q: 'How are they lifted?', a: 'Two cast-in lifting eyes per block, sized for a 12-tonne SWL chain. A 25-tonne crane or a 20-tonne teleporter handles the bigger blocks. We supply the lifting drawing and the test certificates.' },
+  { q: 'Can they be moved later?', a: 'Yes — that is half the appeal. Free-standing L-blocks lift out and re-set elsewhere. Tenanted units, contractors and quarries use them precisely because the wall is not a permanent fix to the land.' },
+  { q: 'What surcharge can I run on top?', a: 'Indicative ratings on our spec table are for level material against the wall. Vehicle loading on top — like a teleporter scraping silage in — needs site-specific design. Send the section and we will check it.' },
+  { q: 'Lead time and delivery?', a: 'Catalogue heights ship in 2 to 4 weeks. Delivery is on a HIAB lorry that can offload itself. The 5m and 6m blocks travel as wide loads — we will book the haulage and notify the police where required.' },
+];
+
+const productSchema = {
+  name: 'L-Shape Interlocking Precast Blocks',
+  description: 'L-shaped interlocking precast concrete blocks for free-standing retaining walls. Heights 1m, 2m, 3m, 4m, 5m and 6m. Silage, grain, bulk-material and aggregate storage bays. Lift in, lift out, rearrange.',
+  brand: { '@type': 'Brand', name: site.name },
+  manufacturer: { '@type': 'Organization', name: site.name },
+  category: 'Precast L-block retaining',
+  material: 'Reinforced concrete, C40/50 (BS 8500-1:2023)',
+  weight: { '@type': 'QuantitativeValue', minValue: 720, maxValue: 12240, unitCode: 'KGM', unitText: 'kilogram per block' },
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 13369 / BS EN 14992' },
+    { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
+    { '@type': 'PropertyValue', name: 'Heights', value: '1m, 2m, 3m, 4m, 5m, 6m' },
+    { '@type': 'PropertyValue', name: 'Standard length', value: '1.0 m' },
+    { '@type': 'PropertyValue', name: 'Maximum surcharge', value: '20 kN/m² (level material)' },
+    { '@type': 'PropertyValue', name: 'Foundation', value: 'Compacted MOT Type 1 (no concrete strip)' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '2–4 weeks' },
+    { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
+  ],
+  offers: { '@type': 'Offer', priceCurrency: 'GBP', availability: 'https://schema.org/InStock', seller: { '@type': 'Organization', name: site.name } },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+
+<BaseLayout
+  title="L-Blocks — 1m to 6m interlocking precast retaining"
+  description="L-shaped precast retaining blocks. Heights 1m, 2m, 3m, 4m, 5m, 6m. For silage, grain, biomass and bulk-material storage. Free-standing on hardcore base. Cast in North Devon."
+  image="/images/products/l-blocks.jpg"
+  schema="Product"
+  schemaData={productSchema}
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <TrustStrip />
+
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow text-yellow mb-4">Civils · agricultural · bulk storage</p>
+          <h1 class="font-display text-display-xl text-white mb-4">L-Blocks.</h1>
+          <p class="text-lg text-white/90 leading-relaxed mb-6">
+            L-shaped interlocking precast blocks for free-standing retention. Heights from 1m to 6m,
+            no concrete footing — just compacted hardcore. Lift in with a teleporter, lift out next year.
+            The most flexible bay-storage system on our range.
+          </p>
+          <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
+            <li class="flex gap-2"><span class="text-yellow">·</span> Heights 1–6m</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> No footing</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Free-standing</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Cast-in lifters</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Reusable</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 2–4 week lead</li>
+          </ul>
+          <div class="flex flex-wrap gap-3">
+            <a href="/quote?product=L-Blocks" class="btn-primary">Configure a quote</a>
+            <a href="/spec-sheets/l-blocks.pdf" class="btn-yellow">Download spec sheet</a>
+            <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">Call {site.contact.phone}</a>
+          </div>
+        </div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-300 via-cast to-navy"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-20">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Specification</p>
+      <h2 class="font-display text-display-lg mb-4">Heights, toe lengths and weights.</h2>
+      <p class="text-cast-700 text-lg">Catalogue blocks at 1m face length. Surcharge ratings indicative for level material; vehicle loading designed case-by-case.</p>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="spec-table w-full text-left border-collapse">
+        <thead class="bg-navy text-white">
+          <tr>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Height</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Toe</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Length</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Weight</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Surcharge</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
+          </tr>
+        </thead>
+        <tbody>
+          {specs.map((s, i) => (
+            <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
+              <td class="px-4 py-3 font-bold text-navy">{s.height}</td>
+              <td class="px-4 py-3">{s.toe}</td>
+              <td class="px-4 py-3">{s.length}</td>
+              <td class="px-4 py-3">{s.weight}</td>
+              <td class="px-4 py-3">{s.surcharge}</td>
+              <td class="px-4 py-3 text-cast">{s.use}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow text-cast mb-3">Where they go</p>
+          <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">From a 60-cow Devon silage clamp to a 6m woodchip bay at an AD plant — same block, scaled by height.</p>
+          <ul class="space-y-3">
+            {applications.map((a) => (<li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">·</span><span>{a}</span></li>))}
+          </ul>
+        </div>
+        <div class="card p-8">
+          <p class="eyebrow text-cast mb-3">Standards & certification</p>
+          <h3 class="font-display text-2xl font-bold text-navy mb-4">Cast and certified for free-standing retention.</h3>
+          <dl class="space-y-4 text-sm">
+            <div><dt class="font-bold text-navy">BS EN 13369</dt><dd class="text-cast">Common rules for precast concrete — factory production control.</dd></div>
+            <div><dt class="font-bold text-navy">BS EN 14992</dt><dd class="text-cast">Precast wall elements — UKCA marking.</dd></div>
+            <div><dt class="font-bold text-navy">BS EN 1992-1-1 (Eurocode 2)</dt><dd class="text-cast">Concrete structural design — overturning and bearing checks.</dd></div>
+            <div><dt class="font-bold text-navy">BS 8500-1:2023</dt><dd class="text-cast">Concrete spec — designated mixes for the storage environment.</dd></div>
+            <div><dt class="font-bold text-navy">BS 5502-22:2003</dt><dd class="text-cast">Agricultural buildings — silage and bulk-storage loadings.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-yellow text-navy py-16">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-navy mb-2">Configure your bay</p>
+          <h2 class="font-display text-display-md">Send block count, height and run length — we will quote inside 24 hours.</h2>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href="/quote?product=L-Blocks" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
+          <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-20">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
+      <div>
+        <p class="eyebrow text-cast mb-3">Related products</p>
+        <h2 class="font-display text-display-lg">Often ordered alongside.</h2>
+      </div>
+      <a href="/products" class="text-ember font-bold hover:text-ember-700 inline-flex items-center gap-2">View full range
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" /><polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </a>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {related.map((r) => (
+        <a href={r.href} class="card p-5 group">
+          <div class="aspect-[16/10] bg-cast-100 mb-4 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100"></div></div>
+          <h3 class="font-display text-base font-bold text-navy mb-1 group-hover:text-ember">{r.label}</h3>
+          <p class="text-cast text-xs">{r.meta}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">Common questions</p>
+        <h2 class="font-display text-display-lg mb-4">What people ask about L-blocks.</h2>
+        <p class="text-cast-700 text-lg">Five questions we answer most weeks. If yours is not here, ring the yard.</p>
+      </div>
+      <div class="max-w-3xl space-y-4">
+        {faqs.map((f) => (
+          <details class="card p-6 group">
+            <summary class="font-display text-lg font-bold text-navy cursor-pointer list-none flex justify-between items-start gap-4">
+              <span>{f.q}</span>
+              <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-navy text-white py-20">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
+      <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">Send us heights and run length. Quote and lead-time same day.</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/quote?product=L-Blocks" class="btn-yellow">Configure a quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

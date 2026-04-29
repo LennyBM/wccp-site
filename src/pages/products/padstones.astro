@@ -1,0 +1,227 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import { site } from '@/config/site';
+
+const specs = [
+  { size: '200 × 200 × 100mm', weight: '9.6 kg', strength: '20 N/mm²', use: 'Light timber and steel beam bearings' },
+  { size: '300 × 200 × 100mm', weight: '14.4 kg', strength: '20 N/mm²', use: 'Standard masonry beam bearings' },
+  { size: '300 × 300 × 150mm', weight: '32.4 kg', strength: '30 N/mm²', use: 'Concrete-frame beam bearings' },
+  { size: '450 × 300 × 150mm', weight: '48.6 kg', strength: '30 N/mm²', use: 'Heavier steel beam bearings' },
+  { size: '450 × 450 × 200mm', weight: '97.2 kg', strength: '40 N/mm²', use: 'Civils and industrial bearings' },
+  { size: '600 × 600 × 300mm', weight: '259 kg', strength: '50 N/mm²', use: 'Heavy industrial / portal frame bearings' },
+];
+
+const applications = [
+  'Steel beam bearings on masonry walls',
+  'Timber lintel and ridge beam supports',
+  'Concrete-frame beam-to-wall bearings',
+  'Portal-frame column base bearings',
+  'Domestic loft conversions and extensions',
+  'Industrial and warehouse roof support',
+  'Bridge deck bearing pads on civils schemes',
+];
+
+const related = [
+  { href: '/products/culverts', label: 'Box Culverts', meta: 'BS EN 1916 · 1.0–3.6m' },
+  { href: '/products/cantilever-walls', label: 'Cantilever Walls', meta: 'Free-standing precast' },
+  { href: '/products/king-post-walls', label: 'King Post Walls', meta: 'Steel post + panel infill' },
+  { href: '/products/bespoke', label: 'Bespoke Precast', meta: 'Custom moulds · 4–8 wk' },
+];
+
+const faqs = [
+  { q: 'How do I size a padstone?', a: 'Padstone sizing follows BS EN 1996 — characteristic compressive strength of the masonry wall divided into the beam reaction load gives the bearing area required. We hold a sizing table on the spec sheet for typical UB and UC beam reactions on Class B and Class M masonry. Send the beam reaction and we will spec it.' },
+  { q: 'What concrete grade do you cast in?', a: 'Standard padstones are 20 N/mm² compressive strength; heavier civils-grade up to 50 N/mm². All to BS EN 13369 with factory production control.' },
+  { q: 'Are they reinforced?', a: 'The 200×200 and 300×200 are unreinforced — the load distribution is by mass alone. From 300×300 upwards we add a basket of B500B fabric to prevent splitting under concentrated loads.' },
+  { q: 'Stock or made-to-order?', a: 'The five smallest sizes we hold in stock — usually shipping within a week. The 600×600 we cast to order, 2 to 3 weeks. Bespoke sizes — say a 750×500 for a portal frame — 3 to 4 weeks.' },
+  { q: 'Can I get them delivered with the rest of my order?', a: 'Yes — we ship padstones on the same lorry as cubicles, panels or troughs going to the same site. Saves a delivery and gets everything to you on the right day. Mention it when you order.' },
+];
+
+const productSchema = {
+  name: 'Precast Concrete Padstones',
+  description: 'Precast concrete padstones for steel beam bearings on masonry walls. Standard sizes 200×200×100mm to 600×600×300mm. Sized to BS EN 1996. Grades 20–50 N/mm².',
+  brand: { '@type': 'Brand', name: site.name },
+  manufacturer: { '@type': 'Organization', name: site.name },
+  category: 'Precast concrete padstone',
+  material: 'Reinforced concrete, 20–50 N/mm² (BS EN 13369)',
+  weight: { '@type': 'QuantitativeValue', minValue: 9.6, maxValue: 259, unitCode: 'KGM', unitText: 'kilogram per padstone' },
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 13369 (production) / BS EN 1996 (sizing)' },
+    { '@type': 'PropertyValue', name: 'Compressive strength', value: '20 / 30 / 40 / 50 N/mm²' },
+    { '@type': 'PropertyValue', name: 'Smallest size', value: '200 × 200 × 100 mm (9.6 kg)' },
+    { '@type': 'PropertyValue', name: 'Largest size', value: '600 × 600 × 300 mm (259 kg)' },
+    { '@type': 'PropertyValue', name: 'Reinforcement', value: 'B500B fabric on 300×300 and above' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '1 week stock, 2–4 weeks bespoke' },
+    { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
+  ],
+  offers: { '@type': 'Offer', priceCurrency: 'GBP', availability: 'https://schema.org/InStock', seller: { '@type': 'Organization', name: site.name } },
+};
+
+const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+---
+
+<BaseLayout
+  title="Padstones — 200×200 to 600×600 · BS EN 1996"
+  description="Precast concrete padstones for steel beam bearings. Sizes 200×200×100mm to 600×600×300mm. Sized to BS EN 1996. Stock for fast despatch. Cast in North Devon."
+  image="/images/products/padstones.jpg"
+  schema="Product"
+  schemaData={productSchema}
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <TrustStrip />
+
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow text-yellow mb-4">Civils · construction · structural</p>
+          <h1 class="font-display text-display-xl text-white mb-4">Padstones.</h1>
+          <p class="text-lg text-white/90 leading-relaxed mb-6">
+            Precast concrete padstones for steel beam bearings on masonry walls. Standard sizes from
+            200 × 200 × 100mm right up to 600 × 600 × 300mm. Sized to BS EN 1996, cast at 20 to 50 N/mm²,
+            stock available for fast despatch.
+          </p>
+          <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
+            <li class="flex gap-2"><span class="text-yellow">·</span> 200×200 to 600×600</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> BS EN 1996 sized</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 20–50 N/mm²</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Stock available</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Reinforced from 300×300</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 1-week despatch</li>
+          </ul>
+          <div class="flex flex-wrap gap-3">
+            <a href="/quote?product=Padstones" class="btn-primary">Order padstones</a>
+            <a href="/spec-sheets/padstones.pdf" class="btn-yellow">Download spec sheet</a>
+            <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">Call {site.contact.phone}</a>
+          </div>
+        </div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-300 via-cast to-navy"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-20">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Specification</p>
+      <h2 class="font-display text-display-lg mb-4">Sizes, weights and strengths.</h2>
+      <p class="text-cast-700 text-lg">Catalogue padstones for typical bearing applications. Bespoke sizes — chamfered edges, cast-in dowels, bridge bearing pads — quoted on application.</p>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="spec-table w-full text-left border-collapse">
+        <thead class="bg-navy text-white">
+          <tr>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Size (L×W×H)</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Weight</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Strength</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
+          </tr>
+        </thead>
+        <tbody>
+          {specs.map((s, i) => (
+            <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
+              <td class="px-4 py-3 font-bold text-navy">{s.size}</td>
+              <td class="px-4 py-3">{s.weight}</td>
+              <td class="px-4 py-3">{s.strength}</td>
+              <td class="px-4 py-3 text-cast">{s.use}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow text-cast mb-3">Where they go</p>
+          <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">Wherever a steel or timber beam meets a masonry wall, the padstone spreads the load. Domestic, commercial and civils — same product, sized for the load.</p>
+          <ul class="space-y-3">
+            {applications.map((a) => (<li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">·</span><span>{a}</span></li>))}
+          </ul>
+        </div>
+        <div class="card p-8">
+          <p class="eyebrow text-cast mb-3">Standards & references</p>
+          <h3 class="font-display text-2xl font-bold text-navy mb-4">Cast and sized to current standards.</h3>
+          <dl class="space-y-4 text-sm">
+            <div><dt class="font-bold text-navy">BS EN 1996</dt><dd class="text-cast">Eurocode 6 — design of masonry structures, including padstone bearing area calculation.</dd></div>
+            <div><dt class="font-bold text-navy">BS EN 13369</dt><dd class="text-cast">Common rules for precast concrete — factory production control.</dd></div>
+            <div><dt class="font-bold text-navy">BS 8500-1:2023</dt><dd class="text-cast">Concrete spec — designated mixes for compressive strength class.</dd></div>
+            <div><dt class="font-bold text-navy">BS EN 1992 (Eurocode 2)</dt><dd class="text-cast">Concrete structural design — reinforcement detailing on the larger sizes.</dd></div>
+            <div><dt class="font-bold text-navy">BS 4449</dt><dd class="text-cast">Reinforcement steel — B500B fabric in the reinforced units.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-yellow text-navy py-16">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-navy mb-2">Stock for fast despatch</p>
+          <h2 class="font-display text-display-md">Send the beam reaction — we will spec the padstone and ship it the same week.</h2>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href="/quote?product=Padstones" class="btn bg-navy text-white hover:bg-navy-700">Order now</a>
+          <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-20">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
+      <div>
+        <p class="eyebrow text-cast mb-3">Related products</p>
+        <h2 class="font-display text-display-lg">Often ordered alongside.</h2>
+      </div>
+      <a href="/products" class="text-ember font-bold hover:text-ember-700 inline-flex items-center gap-2">View full range
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" /><polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </a>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {related.map((r) => (
+        <a href={r.href} class="card p-5 group">
+          <div class="aspect-[16/10] bg-cast-100 mb-4 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100"></div></div>
+          <h3 class="font-display text-base font-bold text-navy mb-1 group-hover:text-ember">{r.label}</h3>
+          <p class="text-cast text-xs">{r.meta}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">Common questions</p>
+        <h2 class="font-display text-display-lg mb-4">What people ask about padstones.</h2>
+        <p class="text-cast-700 text-lg">Five questions we answer most weeks. If yours is not here, ring the yard.</p>
+      </div>
+      <div class="max-w-3xl space-y-4">
+        {faqs.map((f) => (
+          <details class="card p-6 group">
+            <summary class="font-display text-lg font-bold text-navy cursor-pointer list-none flex justify-between items-start gap-4">
+              <span>{f.q}</span>
+              <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-navy text-white py-20">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-xl mb-4 text-white">Ready to order?</h2>
+      <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">Send the beam reaction and the wall type. We will spec, supply and ship.</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/quote?product=Padstones" class="btn-yellow">Order padstones</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

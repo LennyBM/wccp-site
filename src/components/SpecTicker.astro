@@ -1,0 +1,56 @@
+---
+// SpecTicker.astro
+//
+// A small concrete-spec ribbon for under any hero. Signals technical
+// competence at a glance: "Today's mix: C40/50 SR · CEM III/A · Fines 22%
+// · Slump S3 · Last cast: 09:42". Mono font, navy background, yellow
+// accent dots between specs.
+//
+// Default specs are static and reasonable; pass overrides for the
+// homepage or factory page if you want to vary them.
+
+interface Props {
+  mix?: string;
+  cement?: string;
+  fines?: string;
+  slump?: string;
+  lastCast?: string;
+  class?: string;
+}
+
+const {
+  mix = 'C40/50 SR',
+  cement = 'CEM III/A',
+  fines = 'Fines 22%',
+  slump = 'Slump S3',
+  lastCast = '09:42',
+  class: className = '',
+} = Astro.props;
+
+const specs = [mix, cement, fines, slump, `Last cast: ${lastCast}`];
+---
+
+<div
+  class:list={[
+    'bg-navy-700 text-white border-y border-navy-800',
+    className,
+  ]}
+  role="status"
+  aria-label="Today's concrete mix specification"
+>
+  <div class="container-wccp py-2.5 overflow-x-auto">
+    <div class="flex items-center gap-3 sm:gap-4 whitespace-nowrap font-mono text-[11px] sm:text-xs tracking-wide">
+      <span class="text-yellow font-bold uppercase tracking-widest text-[10px] sm:text-[11px] shrink-0">
+        Today's mix
+      </span>
+      {specs.map((spec, i) => (
+        <>
+          {i > 0 && (
+            <span aria-hidden="true" class="inline-block w-1 h-1 rounded-full bg-yellow shrink-0"></span>
+          )}
+          <span class="text-white/90 shrink-0">{spec}</span>
+        </>
+      ))}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,189 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const directory = [
+  {
+    heading: 'Sectors',
+    links: [
+      { href: '/sectors/agricultural', label: 'Agricultural' },
+      { href: '/sectors/civils', label: 'Civils & infrastructure' },
+      { href: '/sectors/bespoke', label: 'Bespoke' },
+    ],
+  },
+  {
+    heading: 'Flagship products',
+    links: [
+      { href: '/products/cattle-cubicles', label: 'Cattle cubicles' },
+      { href: '/products/slurry-storage', label: 'Slurry storage' },
+      { href: '/products/prestressed-panels', label: 'Prestressed wall panels' },
+      { href: '/products/milking-robot-bases', label: 'Milking robot bases' },
+      { href: '/products/retaining-walls', label: 'Retaining walls' },
+      { href: '/products/silage-clamp-walls', label: 'Silage clamp walls' },
+      { href: '/products/feed-troughs', label: 'Feed troughs' },
+      { href: '/products/water-troughs', label: 'Water troughs' },
+    ],
+  },
+  {
+    heading: 'More products',
+    links: [
+      { href: '/products/l-blocks', label: 'L-blocks' },
+      { href: '/products/a-panels', label: 'A-panels' },
+      { href: '/products/culverts', label: 'Box culverts' },
+      { href: '/products/padstones', label: 'Padstones' },
+      { href: '/products/vehicle-pits', label: 'Vehicle inspection pits' },
+      { href: '/products/footbaths', label: 'Footbaths' },
+      { href: '/products', label: 'Full product range' },
+    ],
+  },
+  {
+    heading: 'Resources & guides',
+    links: [
+      { href: '/guides/slurry-sizing', label: 'Slurry sizing guide' },
+      { href: '/guides/cubicle-design', label: 'Cubicle design guide' },
+      { href: '/guides/silage-clamp-design', label: 'Silage clamp design' },
+      { href: '/guides/retaining-wall-design', label: 'Retaining wall design' },
+      { href: '/downloads', label: 'Downloads — datasheets, CAD, BIM' },
+      { href: '/faqs', label: 'Frequently asked questions' },
+      { href: '/news', label: 'News & updates' },
+      { href: '/case-studies', label: 'Case studies' },
+    ],
+  },
+  {
+    heading: 'Grants & funding',
+    links: [
+      { href: '/grants/slurry-grant', label: 'Slurry Infrastructure Grant (SIG)' },
+      { href: '/grants/fetf', label: 'FETF 2026 grant' },
+      { href: '/grants', label: 'All grants & funding' },
+    ],
+  },
+  {
+    heading: 'Areas served',
+    links: [
+      { href: '/areas/devon', label: 'Devon' },
+      { href: '/areas/cornwall', label: 'Cornwall' },
+      { href: '/areas/somerset', label: 'Somerset' },
+      { href: '/areas/dorset', label: 'Dorset' },
+      { href: '/areas/wiltshire', label: 'Wiltshire' },
+    ],
+  },
+  {
+    heading: 'Company',
+    links: [
+      { href: '/about', label: 'About us' },
+      { href: '/factory', label: 'The factory' },
+      { href: '/sustainability', label: 'Sustainability' },
+      { href: '/careers', label: 'Careers' },
+      { href: '/news', label: 'News' },
+      { href: '/contact', label: 'Contact' },
+    ],
+  },
+  {
+    heading: 'Get a quote',
+    links: [
+      { href: '/quote', label: 'Configure a quote' },
+      { href: '/contact', label: 'Send a message' },
+      { href: `tel:${site.contact.phoneIntl}`, label: `Call ${site.contact.phone}` },
+    ],
+  },
+  {
+    heading: 'Legal',
+    links: [
+      { href: '/privacy', label: 'Privacy policy' },
+      { href: '/cookies', label: 'Cookie policy' },
+      { href: '/terms', label: 'Terms & conditions' },
+      { href: '/accessibility', label: 'Accessibility' },
+      { href: '/complaints', label: 'Complaints' },
+      { href: '/sitemap', label: 'Sitemap' },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Search"
+  description="Search West Country Concrete Products. Site search is coming soon — in the meantime, browse the directory of every page."
+  noindex={true}
+>
+  <!-- Hero -->
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-20 md:py-24">
+      <div class="max-w-3xl">
+        <p class="eyebrow text-yellow mb-6">Search</p>
+        <h1 class="font-display text-display-2xl text-white mb-6">
+          Site search<br />
+          <span class="text-yellow">coming soon.</span>
+        </h1>
+        <p class="text-lg md:text-xl text-white/90 max-w-2xl mb-8 leading-relaxed">
+          We're building a proper search index. Until it's ready, the directory below covers every
+          page on the site — or just ring the yard on {site.contact.phone} and we'll point you at it.
+        </p>
+
+        <form action="/search" method="GET" class="flex flex-col sm:flex-row gap-3 max-w-2xl">
+          <label for="q" class="sr-only">Search</label>
+          <input
+            id="q"
+            type="search"
+            name="q"
+            placeholder="Try 'slurry' or 'cubicles' or 'SIG'…"
+            class="input flex-1"
+            autocomplete="off"
+          />
+          <button type="submit" class="btn-yellow">Search</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Notice -->
+  <section class="bg-yellow text-navy py-8">
+    <div class="container-wccp">
+      <p class="text-navy text-center">
+        <strong>In the meantime…</strong> browse the directory below — or jump to
+        <a href="/faqs" class="underline font-bold hover:text-ember">FAQs</a>,
+        <a href="/products" class="underline font-bold hover:text-ember">products</a>,
+        or <a href="/contact" class="underline font-bold hover:text-ember">contact</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Directory -->
+  <section class="container-wccp py-20">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Site directory</p>
+      <h2 class="font-display text-display-lg">Every page on the site.</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {directory.map((group) => (
+        <div>
+          <h3 class="font-display text-lg font-bold text-navy mb-3 pb-2 border-b border-cast-200">
+            {group.heading}
+          </h3>
+          <ul class="space-y-2">
+            {group.links.map((l) => (
+              <li>
+                <a href={l.href} class="text-cast hover:text-ember transition-colors text-sm">{l.label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-bone-200 py-12">
+    <div class="container-wccp text-center">
+      <p class="eyebrow text-cast mb-3">Can't find it?</p>
+      <h2 class="font-display text-display-md mb-3">Ring the yard.</h2>
+      <p class="text-cast-700 text-lg max-w-xl mx-auto mb-6">
+        Same-day callback, Monday to Friday. We'll point you at the right page or just answer your question.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href="/contact" class="btn-primary">Send a message</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

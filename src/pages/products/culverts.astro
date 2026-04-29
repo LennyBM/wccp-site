@@ -1,0 +1,232 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import { site } from '@/config/site';
+
+const specs = [
+  { size: '1.0 × 1.0 m', wall: '150mm', length: '2.0 m', weight: '2,250 kg', loading: 'HA / 30 LU', use: 'Watercourse crossings, drainage' },
+  { size: '1.5 × 1.0 m', wall: '180mm', length: '2.0 m', weight: '3,150 kg', loading: 'HA / 30 LU', use: 'Field accommodation underpasses' },
+  { size: '2.0 × 1.5 m', wall: '200mm', length: '2.0 m', weight: '4,650 kg', loading: 'HA / 45 LU', use: 'Stock underpasses, larger drainage' },
+  { size: '2.4 × 2.4 m', wall: '225mm', length: '2.0 m', weight: '6,800 kg', loading: 'HB30 / HA', use: 'Pedestrian / livestock underpasses' },
+  { size: '3.0 × 2.4 m', wall: '250mm', length: '2.0 m', weight: '8,400 kg', loading: 'HB30 / HA', use: 'Vehicle accommodation underpasses' },
+  { size: '3.6 × 3.0 m', wall: '300mm', length: '2.0 m', weight: '11,500 kg', loading: 'HB45 / HA', use: 'Bridge sections, large culverts' },
+];
+
+const applications = [
+  'Watercourse and stream crossings under farm tracks',
+  'Highway and rail drainage culverts',
+  'Livestock and stock-grazing underpasses',
+  'Pedestrian and cycle underpasses',
+  'Bridge deck sections on accommodation crossings',
+  'Service tunnels for utilities and cable runs',
+  'Surface-water attenuation tank sections',
+];
+
+const related = [
+  { href: '/products/cantilever-walls', label: 'Cantilever Walls', meta: 'Free-standing precast' },
+  { href: '/products/king-post-walls', label: 'King Post Walls', meta: 'Steel post + panel infill' },
+  { href: '/products/padstones', label: 'Padstones', meta: '200×200 to 600×600' },
+  { href: '/products/vehicle-pits', label: 'Vehicle Pits', meta: '6.5m / 8m · MOT-compliant' },
+];
+
+const faqs = [
+  { q: 'What standard do your culverts meet?', a: 'BS EN 1916 — precast concrete pipes and fittings, including box culverts. UKCA marked, factory production control to BS EN 13369. Structural design to BS EN 1992 (Eurocode 2). HB30 and HB45 traffic loadings catalogue.' },
+  { q: 'How are joints sealed?', a: 'Spigot and socket with a Class 2 elastomeric gasket as standard, water-tight to head pressure. We can also supply rebated joints with bedding mortar for stock underpasses where waterproofing is less critical.' },
+  { q: 'What is the maximum cover and live load?', a: 'Catalogue range covers up to 6m of fill with HB45 traffic loading on the 3.6 × 3.0m units. Larger spans and bespoke loadings — including rail loadings to RU/SW — quoted on application.' },
+  { q: 'Can you supply headwalls and wingwalls?', a: 'Yes — apron, headwall and wingwall sets sized to the culvert opening. Cast as matched sets, supplied with the install drawing and the bedding spec. Typical lead time 6 to 8 weeks for the matched set.' },
+  { q: 'Lead time?', a: 'Catalogue box culverts ship in 4 to 6 weeks. Bespoke sizes and bridge sections run 8 to 12 weeks depending on complexity. Talk to us early on a programmed scheme.' },
+];
+
+const productSchema = {
+  name: 'Precast Box Culverts',
+  description: 'Box culverts to BS EN 1916. Internal sizes 1.0×1.0m up to 3.6×3.0m, lengths 2m as standard. HA, HB30 and HB45 traffic loadings. For watercourses, underpasses, drainage and bridge sections.',
+  brand: { '@type': 'Brand', name: site.name },
+  manufacturer: { '@type': 'Organization', name: site.name },
+  category: 'Precast box culvert',
+  material: 'Reinforced concrete, C40/50 (BS 8500-1:2023)',
+  weight: { '@type': 'QuantitativeValue', minValue: 2250, maxValue: 11500, unitCode: 'KGM', unitText: 'kilogram per 2m unit' },
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 1916 / BS EN 13369' },
+    { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
+    { '@type': 'PropertyValue', name: 'Internal sizes', value: '1.0×1.0 m up to 3.6×3.0 m' },
+    { '@type': 'PropertyValue', name: 'Section length', value: '2.0 m standard' },
+    { '@type': 'PropertyValue', name: 'Loadings', value: 'HA, HB30, HB45 (BS 5400)' },
+    { '@type': 'PropertyValue', name: 'Joint type', value: 'Spigot/socket with Class 2 elastomeric gasket' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '4–6 weeks catalogue, 8–12 weeks bespoke' },
+    { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
+  ],
+  offers: { '@type': 'Offer', priceCurrency: 'GBP', availability: 'https://schema.org/InStock', seller: { '@type': 'Organization', name: site.name } },
+};
+
+const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+---
+
+<BaseLayout
+  title="Box Culverts — BS EN 1916 · 1.0m to 3.6m internal"
+  description="Precast box culverts to BS EN 1916. Internal sizes 1.0×1.0m to 3.6×3.0m. HA, HB30, HB45 loadings. Watercourses, underpasses, bridge sections. Cast in North Devon."
+  image="/images/products/culverts.jpg"
+  schema="Product"
+  schemaData={productSchema}
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <TrustStrip />
+
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow text-yellow mb-4">Civils · drainage · highways</p>
+          <h1 class="font-display text-display-xl text-white mb-4">Box Culverts.</h1>
+          <p class="text-lg text-white/90 leading-relaxed mb-6">
+            Precast box culverts to BS EN 1916. Internal sizes from 1.0 × 1.0m up to 3.6 × 3.0m,
+            standard 2-metre section length. HA, HB30 and HB45 traffic loadings. For watercourses,
+            stock and pedestrian underpasses, drainage and bridge sections.
+          </p>
+          <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
+            <li class="flex gap-2"><span class="text-yellow">·</span> BS EN 1916</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 1.0–3.6m internal</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 2m sections</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> HA / HB30 / HB45</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Class 2 gaskets</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 4–6 week lead</li>
+          </ul>
+          <div class="flex flex-wrap gap-3">
+            <a href="/quote?product=Culverts" class="btn-primary">Configure a quote</a>
+            <a href="/spec-sheets/culverts.pdf" class="btn-yellow">Download spec sheet</a>
+            <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">Call {site.contact.phone}</a>
+          </div>
+        </div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-300 via-cast to-navy"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-20">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Specification</p>
+      <h2 class="font-display text-display-lg mb-4">Sizes, walls and loadings.</h2>
+      <p class="text-cast-700 text-lg">Catalogue box culvert sizes for typical schemes. Bespoke spans, skews and loadings on application.</p>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="spec-table w-full text-left border-collapse">
+        <thead class="bg-navy text-white">
+          <tr>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Internal size</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Wall</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Length</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Weight</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Loading</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
+          </tr>
+        </thead>
+        <tbody>
+          {specs.map((s, i) => (
+            <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
+              <td class="px-4 py-3 font-bold text-navy">{s.size}</td>
+              <td class="px-4 py-3">{s.wall}</td>
+              <td class="px-4 py-3">{s.length}</td>
+              <td class="px-4 py-3">{s.weight}</td>
+              <td class="px-4 py-3">{s.loading}</td>
+              <td class="px-4 py-3 text-cast">{s.use}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow text-cast mb-3">Where they go</p>
+          <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">From a 1m drainage culvert under a farm track to a 3.6m bridge section on a road scheme — same yard, same paperwork.</p>
+          <ul class="space-y-3">
+            {applications.map((a) => (<li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">·</span><span>{a}</span></li>))}
+          </ul>
+        </div>
+        <div class="card p-8">
+          <p class="eyebrow text-cast mb-3">Standards & certification</p>
+          <h3 class="font-display text-2xl font-bold text-navy mb-4">Engineered, marked, certified.</h3>
+          <dl class="space-y-4 text-sm">
+            <div><dt class="font-bold text-navy">BS EN 1916</dt><dd class="text-cast">Precast concrete pipes and fittings — including box culverts.</dd></div>
+            <div><dt class="font-bold text-navy">BS EN 13369</dt><dd class="text-cast">Common rules for precast — factory production control.</dd></div>
+            <div><dt class="font-bold text-navy">BS EN 1992 (Eurocode 2)</dt><dd class="text-cast">Concrete structural design — section, joint and bearing checks.</dd></div>
+            <div><dt class="font-bold text-navy">BS 5400 / BS EN 1991-2</dt><dd class="text-cast">Highway loadings — HA, HB30, HB45 traffic loads.</dd></div>
+            <div><dt class="font-bold text-navy">BS 8500-1:2023</dt><dd class="text-cast">Concrete spec — designated mixes for the exposure class.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-yellow text-navy py-16">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-navy mb-2">Configure your culvert</p>
+          <h2 class="font-display text-display-md">Send section, fill height and loading — we will quote inside 24 hours.</h2>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href="/quote?product=Culverts" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
+          <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-20">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
+      <div>
+        <p class="eyebrow text-cast mb-3">Related products</p>
+        <h2 class="font-display text-display-lg">Often ordered alongside.</h2>
+      </div>
+      <a href="/products" class="text-ember font-bold hover:text-ember-700 inline-flex items-center gap-2">View full range
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" /><polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </a>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {related.map((r) => (
+        <a href={r.href} class="card p-5 group">
+          <div class="aspect-[16/10] bg-cast-100 mb-4 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100"></div></div>
+          <h3 class="font-display text-base font-bold text-navy mb-1 group-hover:text-ember">{r.label}</h3>
+          <p class="text-cast text-xs">{r.meta}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">Common questions</p>
+        <h2 class="font-display text-display-lg mb-4">What people ask about culverts.</h2>
+        <p class="text-cast-700 text-lg">Five questions we answer most weeks. If yours is not here, ring the yard.</p>
+      </div>
+      <div class="max-w-3xl space-y-4">
+        {faqs.map((f) => (
+          <details class="card p-6 group">
+            <summary class="font-display text-lg font-bold text-navy cursor-pointer list-none flex justify-between items-start gap-4">
+              <span>{f.q}</span>
+              <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-navy text-white py-20">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
+      <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">Send section, fill height, loading and headwall details. Quote and lead-time same day.</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/quote?product=Culverts" class="btn-yellow">Configure a quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

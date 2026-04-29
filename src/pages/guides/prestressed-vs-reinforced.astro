@@ -1,0 +1,359 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const faqs = [
+  {
+    q: 'What is prestressed concrete?',
+    a: 'Prestressed concrete has high-tensile steel strands tensioned before or after the concrete is cast, putting the concrete into permanent compression. That compression cancels out the tensile stresses caused by service loads, allowing thinner sections to span further than reinforced concrete of the same depth.',
+  },
+  {
+    q: 'When is prestressed better than reinforced?',
+    a: 'Prestressed wins when you need long spans (over 4m), thin sections, high load capacity, or controlled deflection. Wall panels above 6m height, floor planks beyond 5m span and bridge beams are typical applications. Reinforced is better for complex shapes, low loads and short spans.',
+  },
+  {
+    q: 'How long do prestressed panels last?',
+    a: 'A correctly designed and cast prestressed panel to BS EN 14992 has a 50-year design life as standard, often 100 years with controlled exposure. The high-tensile strands are protected by 30–50mm of dense, low-permeability concrete and any cracking under service load is closed by the prestress.',
+  },
+  {
+    q: 'What standards govern prestressed wall panels?',
+    a: 'BS EN 14992:2007+A1:2012 covers precast concrete wall elements. BS EN 1992-1-1 (Eurocode 2) governs structural design including prestressing. Manufacturing follows BS EN 13369 (common rules for precast). CE/UKCA marking is mandatory for structural use.',
+  },
+  {
+    q: 'Are prestressed panels more expensive?',
+    a: 'Per panel, yes — typically 25–40% more than equivalent reinforced. Per square metre of wall covered, often less, because prestressed panels are thinner and longer (covering more area per panel). Including handling, transport and crane time, prestressed often comes out cheaper on tall walls.',
+  },
+  {
+    q: 'Can prestressed panels be used for slurry?',
+    a: 'Yes, but only with the right cement blend. WCCP slurry-rated prestressed panels use C50/60 with sulphate-resisting cement (CEM III/A or CEM IV) and 50mm cover. The prestress actually helps in slurry duty by keeping the concrete in compression and preventing the cracking that would expose strands.',
+  },
+  {
+    q: 'What thickness do prestressed wall panels come in?',
+    a: 'WCCP standard prestressed wall panels: 100mm, 150mm, 180mm and 280mm. 100mm covers light cladding and partition walls; 150mm and 180mm suit silage and feed walls; 280mm handles tall retaining walls and slurry stores. All to BS EN 14992 with UKCA marking.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="Prestressed vs reinforced concrete panels — what's the difference?"
+  description="Prestressed vs reinforced concrete wall panels: how prestressing works, span and load advantages, BS EN 14992, longevity, cost comparison and selection guide."
+  image="/images/guides/prestressed-vs-reinforced.jpg"
+  schema="Article"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-14 md:py-16">
+      <nav class="text-sm text-white/90 mb-6" aria-label="Breadcrumb">
+        <a href="/guides" class="hover:text-yellow">Guides</a>
+        <span class="mx-2 text-cast">/</span>
+        <span class="text-white/90">Prestressed vs reinforced</span>
+      </nav>
+      <p class="eyebrow text-yellow mb-4">Materials · Pillar guide</p>
+      <h1 class="font-display text-display-xl text-white mb-6 max-w-4xl">
+        Prestressed vs reinforced concrete panels — what's the difference?
+      </h1>
+
+      <div class="bg-navy-700 border-l-4 border-yellow p-6 max-w-3xl rounded-r">
+        <p class="text-white/90 text-lg leading-relaxed">
+          <strong class="text-white">Direct answer:</strong> Reinforced concrete uses passive steel
+          rebar to resist tension; prestressed concrete uses pre-tensioned high-tensile strands to put
+          the concrete into permanent compression. Prestressed panels span further, take higher loads
+          and resist cracking — ideal for tall walls (5m+) and long spans. Designed to BS EN 14992 and
+          BS EN 1992-1-1 (Eurocode 2).
+        </p>
+      </div>
+
+      <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/90">
+        <div>By <span class="text-white font-semibold">WCCP Engineering Team</span></div>
+        <div>Published <time datetime="2026-03-26">26 March 2026</time></div>
+        <div>Updated <time datetime="2026-04-28">28 April 2026</time></div>
+      </div>
+    </div>
+  </section>
+
+  <article class="container-wccp py-12 md:py-16">
+    <div class="grid lg:grid-cols-[1fr_18rem] gap-10 lg:gap-16">
+      <div class="max-w-3xl">
+
+        <details class="lg:hidden mb-10 border border-cast-100 rounded-lg p-5">
+          <summary class="font-display text-lg font-bold text-navy cursor-pointer">On this page</summary>
+          <ol class="mt-4 space-y-2 text-cast list-decimal list-inside">
+            <li><a href="#how" class="hover:text-ember">How prestressing works</a></li>
+            <li><a href="#advantages" class="hover:text-ember">Span and load advantages</a></li>
+            <li><a href="#standards" class="hover:text-ember">BS EN 14992 standards</a></li>
+            <li><a href="#longevity" class="hover:text-ember">Longevity</a></li>
+            <li><a href="#cost" class="hover:text-ember">Cost comparison</a></li>
+            <li><a href="#applications" class="hover:text-ember">When to use which</a></li>
+            <li><a href="#checklist" class="hover:text-ember">Selection guide</a></li>
+            <li><a href="#faq" class="hover:text-ember">FAQ</a></li>
+          </ol>
+        </details>
+
+        <section id="how" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">How does prestressing actually work?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Prestressing tensions high-strength steel strands (typically 1,860 MPa
+            ultimate) before or after the concrete is cast. When the strands are released, they
+            squeeze the concrete into compression — typically 5–8 MPa across the full section. Service
+            loads have to overcome that compression before the concrete sees any tension at all.</strong>
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            In a pre-tensioned panel (the standard WCCP method), 12.5mm or 15.7mm seven-wire strands
+            are stretched along a 60–120m casting bed, the concrete is poured around them, and once
+            the concrete reaches transfer strength (typically C30/37) the strands are released. The
+            bond between strand and concrete locks the prestress in.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            Reinforced concrete works differently. Passive rebar only carries load when the concrete
+            cracks under tension. The crack widths are limited (typically 0.2–0.3mm) but they exist.
+            In prestressed concrete the section is designed to never crack under service loads —
+            durability and stiffness both improve.
+          </p>
+        </section>
+
+        <section id="advantages" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What span and load advantages do prestressed panels have?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            <strong class="text-navy">A 180mm prestressed wall panel spans up to 6m vertically as a simple wall
+            element. The reinforced equivalent would need to be 250–300mm thick. For floor planks,
+            prestressed hollowcore at 200mm depth spans 7–8m, where reinforced solid would need 300–350mm
+            depth. The differences scale with load — heavier loads, bigger advantage.</strong>
+          </p>
+
+          <div class="overflow-x-auto mb-4 -mx-4 sm:mx-0">
+            <table class="spec-table min-w-full px-4 sm:px-0">
+              <thead>
+                <tr>
+                  <th>Element</th>
+                  <th>Prestressed thickness</th>
+                  <th>Reinforced equivalent</th>
+                  <th>Span advantage</th>
+                </tr>
+              </thead>
+              <tbody class="text-cast">
+                <tr>
+                  <td>Wall panel, 4m high</td>
+                  <td><strong class="text-navy">100mm</strong></td>
+                  <td>180mm</td>
+                  <td>40% thinner</td>
+                </tr>
+                <tr>
+                  <td>Wall panel, 6m high</td>
+                  <td><strong class="text-navy">180mm</strong></td>
+                  <td>280mm</td>
+                  <td>35% thinner</td>
+                </tr>
+                <tr>
+                  <td>Wall panel, 8m high</td>
+                  <td><strong class="text-navy">280mm</strong></td>
+                  <td>400mm+</td>
+                  <td>30% thinner</td>
+                </tr>
+                <tr>
+                  <td>Floor plank, 5m span</td>
+                  <td><strong class="text-navy">150mm</strong></td>
+                  <td>225mm</td>
+                  <td>33% shallower</td>
+                </tr>
+                <tr>
+                  <td>Floor plank, 7m span</td>
+                  <td><strong class="text-navy">200mm</strong></td>
+                  <td>325mm</td>
+                  <td>38% shallower</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="standards" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What standards apply to prestressed wall panels?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">BS EN 14992:2007+A1:2012 is the product standard for precast wall elements,
+            covering both reinforced and prestressed. Structural design follows BS EN 1992-1-1 (Eurocode 2)
+            with prestressing detailed in section 5.10. Manufacturing follows BS EN 13369 (common rules
+            for precast). UKCA marking is mandatory for structural elements placed on the UK market.</strong>
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            BS EN 14992 specifies tolerances, surface finish classes, declared performance characteristics
+            and testing regimes. A panel manufactured to BS EN 14992 carries a Declaration of Performance
+            stating its characteristic compressive strength, fire resistance class, water permeability,
+            durability and dimensional tolerances.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            Every WCCP prestressed wall panel ships with its DoP and UKCA mark. We hold factory production
+            control certification under BS EN 13369 and panels are batch-traceable for 10 years from cast date.
+          </p>
+        </section>
+
+        <section id="longevity" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">How long do prestressed panels last vs reinforced?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Both are designed for 50 years to BS EN 1990, but prestressed panels often
+            outlast reinforced equivalents because the concrete stays in compression under service loads —
+            no cracking, no chloride or sulphate ingress along crack faces. Properly cast prestressed panels
+            from the 1960s remain in service today, often beyond their original 60-year design life.</strong>
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            The durability mechanism: reinforced concrete cracks under service load, allowing chlorides,
+            CO2 and water to reach the rebar. Once the rebar corrodes, it expands and pops the cover off.
+            Prestressed concrete is designed to remain uncracked, so the strands stay sealed in dense, dry
+            concrete with no diffusion path.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            The trade-off: if a prestressed panel is overloaded beyond its design and cracks form, the
+            consequences are more severe — strand corrosion is harder to detect and repair than rebar
+            corrosion. Designing within the elastic envelope is essential.
+          </p>
+        </section>
+
+        <section id="cost" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">How does cost compare?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Per panel, prestressed is typically 25–40% more expensive than reinforced
+            of equivalent function. Per square metre of wall, prestressed often comes out 5–15% cheaper
+            because panels are thinner and longer (more area per panel, fewer joints, less crane time).
+            On tall walls (5m+) prestressed wins decisively on installed cost.</strong>
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            Other cost factors favour prestressed: lower transport cost per m² (more m² per truck because
+            panels are thinner), faster install (longer panels mean fewer lifts), lower foundation loads
+            (lighter walls put less load on footings), and lower lifetime maintenance (uncracked sections
+            need less repair).
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            For short, low walls (under 3m), reinforced is usually cheaper. For walls over 4m or where
+            the same wall is repeated many times, prestressed pays back.
+          </p>
+        </section>
+
+        <section id="applications" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">When should I use prestressed vs reinforced?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Use prestressed for tall walls (over 4m), long-span floors, slurry stores
+            above 2,500m³, tall silage clamps, and high-load structural panels. Use reinforced for short
+            walls (under 3m), complex shapes, low-load partitions, and where panel uniqueness rules out
+            casting on a long-line bed.</strong>
+          </p>
+          <ul class="text-cast-700 text-lg leading-relaxed space-y-3 list-disc pl-6 mb-4">
+            <li><strong class="text-navy">Prestressed wins:</strong> Tall slurry walls, tall silage walls, retaining walls 5m+, multi-storey crop store walls, agricultural building elevations.</li>
+            <li><strong class="text-navy">Reinforced wins:</strong> Cubicle bases, short retaining walls (under 3m), bespoke complex shapes, padstones, stairs and any one-off element.</li>
+            <li><strong class="text-navy">Either works:</strong> Standard 3–4m walls, where the spec is driven by other factors (transport, finish, programme) rather than structure.</li>
+          </ul>
+        </section>
+
+        <section id="checklist" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Prestressed vs reinforced — 5-point selection guide</h2>
+          <div class="bg-bone-200 border-l-4 border-ember p-6 rounded-r">
+            <ol class="text-cast-700 text-base leading-relaxed space-y-3 list-decimal pl-5">
+              <li><strong class="text-navy">Height or span?</strong> Over 4m wall or over 5m floor span — prestressed wins.</li>
+              <li><strong class="text-navy">Repetition?</strong> Same panel cast many times — prestressed wins (long-line economy).</li>
+              <li><strong class="text-navy">Surcharge or load case?</strong> Heavy loads or vehicle surcharge — prestressed handles it in thinner sections.</li>
+              <li><strong class="text-navy">Crack control critical?</strong> Slurry, silage, water-retaining — prestressed stays uncracked under service loads.</li>
+              <li><strong class="text-navy">Bespoke shape?</strong> One-offs and complex geometry — reinforced wins.</li>
+            </ol>
+          </div>
+        </section>
+
+        <section id="faq" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-6">Frequently asked questions</h2>
+          <div class="space-y-4">
+            {faqs.map((f) => (
+              <details class="card p-5 group">
+                <summary class="font-display text-lg font-bold text-navy cursor-pointer flex items-start justify-between gap-4">
+                  <span>{f.q}</span>
+                  <svg class="w-5 h-5 mt-1 flex-shrink-0 text-ember transition-transform group-open:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="12" y1="5" x2="12" y2="19" stroke-linecap="round"/>
+                    <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+                  </svg>
+                </summary>
+                <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section class="bg-navy text-white rounded-lg p-8 md:p-10">
+          <h2 class="font-display text-2xl md:text-3xl text-white mb-3">Need a panel schedule priced?</h2>
+          <p class="text-white/90 mb-6 leading-relaxed">
+            Send us your wall heights, lengths and loads. We'll compare prestressed and reinforced
+            options for your job and come back with a fixed price within 24 hours.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="/products/prestressed-panels" class="btn-yellow">See prestressed panel range</a>
+            <a href="/quote" class="btn bg-white text-navy hover:bg-bone">Start a quote</a>
+          </div>
+        </section>
+
+      </div>
+
+      <aside class="hidden lg:block">
+        <div class="sticky top-24">
+          <p class="eyebrow text-cast mb-4">On this page</p>
+          <ol class="space-y-3 text-sm border-l border-cast-100 pl-4">
+            <li><a href="#how" class="text-cast hover:text-ember">How prestressing works</a></li>
+            <li><a href="#advantages" class="text-cast hover:text-ember">Span and load</a></li>
+            <li><a href="#standards" class="text-cast hover:text-ember">BS EN 14992</a></li>
+            <li><a href="#longevity" class="text-cast hover:text-ember">Longevity</a></li>
+            <li><a href="#cost" class="text-cast hover:text-ember">Cost comparison</a></li>
+            <li><a href="#applications" class="text-cast hover:text-ember">When to use which</a></li>
+            <li><a href="#checklist" class="text-cast hover:text-ember">Selection guide</a></li>
+            <li><a href="#faq" class="text-cast hover:text-ember">FAQ</a></li>
+          </ol>
+
+          <div class="mt-8 p-4 bg-yellow rounded-lg">
+            <p class="text-xs font-bold text-navy uppercase tracking-wide mb-2">Sizes in stock</p>
+            <p class="text-sm text-navy mb-3 leading-snug">100 / 150 / 180 / 280mm prestressed wall panels — UKCA marked.</p>
+            <a href="/products/prestressed-panels" class="text-navy font-bold text-sm hover:underline">See range →</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+  <section class="bg-bone-200 py-16">
+    <div class="container-wccp">
+      <p class="eyebrow text-cast mb-3">Related guides</p>
+      <h2 class="font-display text-display-md mb-8">Keep reading.</h2>
+
+      <div class="grid md:grid-cols-3 gap-5">
+        <a href="/guides/slurry-wall-thickness" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Slurry storage</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">How thick should a slurry store wall be?</h3>
+          <p class="text-cast text-sm leading-relaxed">200mm vs 250mm vs 300mm panels by retained height.</p>
+        </a>
+        <a href="/guides/concrete-grades" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Materials</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Concrete grades for agricultural use</h3>
+          <p class="text-cast text-sm leading-relaxed">C32/40 vs C40/50 SR explained, exposure classes and cover.</p>
+        </a>
+        <a href="/guides/retaining-wall-types" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Civils</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">King post vs L-block vs cantilever</h3>
+          <p class="text-cast text-sm leading-relaxed">Cost per linear metre, height limits and selection guide.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-16 text-center">
+    <h2 class="font-display text-display-lg mb-4">Talk to the yard.</h2>
+    <p class="text-cast-700 text-lg max-w-xl mx-auto mb-8">
+      Same-day callback Monday to Friday. We'll talk you through the design before you commit a penny.
+    </p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+      <a href="/quote" class="btn-primary">Configure a quote</a>
+    </div>
+  </section>
+</BaseLayout>

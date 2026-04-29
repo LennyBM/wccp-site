@@ -1,0 +1,52 @@
+---
+// CapacityIndicator.astro
+//
+// A small horizontal pill that signals current production capacity to
+// prospective buyers ("Currently quoting jobs starting 4 weeks out").
+// Updated manually — pass `weeks` as needed and `updated` as a JS Date
+// or ISO string.
+//
+// Defaults to 4 weeks out and "today" so the team can ship-and-edit.
+
+interface Props {
+  weeks?: number;
+  updated?: string | Date;
+  class?: string;
+}
+
+const { weeks = 4, updated = new Date(), class: className = '' } = Astro.props;
+
+const updatedDate = typeof updated === 'string' ? new Date(updated) : updated;
+const updatedLabel = updatedDate.toLocaleDateString('en-GB', {
+  day: 'numeric',
+  month: 'short',
+  year: 'numeric',
+});
+const updatedISO = updatedDate.toISOString();
+---
+
+<div
+  class:list={[
+    'inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full',
+    'bg-white border border-cast-100 shadow-soft',
+    'text-xs sm:text-sm text-cast-700',
+    className,
+  ]}
+  role="status"
+  aria-label={`Currently quoting jobs starting ${weeks} weeks out`}
+>
+  <span class="relative inline-flex w-2 h-2" aria-hidden="true">
+    <span class="absolute inset-0 rounded-full bg-yellow animate-pulse-soft"></span>
+    <span class="absolute inset-0 rounded-full bg-yellow opacity-60"></span>
+  </span>
+  <span>
+    <span class="font-semibold text-navy-700">Currently quoting</span>
+    <span class="text-cast">jobs starting</span>
+    <span class="font-semibold text-navy-700">{weeks} weeks</span>
+    <span class="text-cast">out</span>
+  </span>
+  <span aria-hidden="true" class="hidden sm:inline-block w-px h-3 bg-cast-200"></span>
+  <span class="hidden sm:inline text-cast text-[11px]">
+    Updated <time datetime={updatedISO}>{updatedLabel}</time>
+  </span>
+</div>

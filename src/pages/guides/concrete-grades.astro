@@ -1,0 +1,491 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const faqs = [
+  {
+    q: 'What does C32/40 mean?',
+    a: 'C32/40 is a concrete strength class to BS 8500-1:2023. The first number (32) is the characteristic cylinder compressive strength in MPa at 28 days; the second (40) is the cube compressive strength in MPa. Both are minimums. C32/40 is a common general-purpose agricultural mix.',
+  },
+  {
+    q: 'When do I need C40/50 instead of C32/40?',
+    a: 'Use C40/50 wherever the concrete is in contact with slurry, silage effluent, or aggressive ground (XA2/XA3 exposure), or where the structure must last 50+ years (XC4 + XF4). Slurry stores, silage clamp walls, retaining walls in groundwater and highway structures all routinely specify C40/50.',
+  },
+  {
+    q: 'What is sulphate-resisting cement?',
+    a: 'Sulphate-resisting cement is a blend with low tricalcium aluminate (C3A) content. CEM III/A or CEM III/B (ground granulated blastfurnace slag) and CEM IV (pozzolanic) blends are the modern alternatives to dedicated SRPC. They resist ettringite formation in sulphate-rich environments such as slurry and some groundwater.',
+  },
+  {
+    q: 'What is GGBS and why use it?',
+    a: 'GGBS — ground granulated blastfurnace slag — is a cement replacement at 30–80% by mass. It improves sulphate resistance, lowers heat of hydration, increases long-term strength and cuts embodied carbon by around 0.7 tCO2 per tonne replaced. Standard for slurry storage and used widely in civils.',
+  },
+  {
+    q: 'What cover do I need over reinforcement?',
+    a: 'Cover depends on exposure class. Typical values: XC1 (dry) 20mm; XC2 (wet, rare dry) 25mm; XC3/XC4 (moderate humidity) 30–35mm; XD3 (chlorides) 45mm; XS3 (marine) 50mm; XA2/XA3 (slurry, aggressive) 50mm. All to BS EN 1992-1-1 with a 10mm tolerance allowance on top.',
+  },
+  {
+    q: 'Can I use PFA instead of GGBS?',
+    a: 'Yes. PFA (pulverised fuel ash) is a cement replacement at 25–40% by mass. It improves long-term durability and workability and cuts embodied carbon. PFA is less effective than GGBS at sulphate resistance but cheaper and more widely available. Many modern blends use PFA + OPC for general structural use.',
+  },
+  {
+    q: 'What grade for yard slabs?',
+    a: 'C32/40 with air-entrainment is standard for external yard slabs (XF2/XF3 exposure for freeze-thaw with de-icing salts unlikely on farm). Specify a 4–6% entrained air content, 200mm depth and A393 or A252 mesh in two layers. Saw-cut joints at 4–5m centres prevent random cracking.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="What concrete grade for agricultural use? C32/40 vs C40/50 explained"
+  description="UK concrete grades for agricultural and civils use. BS 8500-1:2023 exposure classes (XC, XD, XS, XF, XA), C32/40 vs C40/50, sulphate-resisting cement, GGBS and cover requirements."
+  image="/images/guides/concrete-grades.jpg"
+  schema="Article"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-14 md:py-16">
+      <nav class="text-sm text-white/90 mb-6" aria-label="Breadcrumb">
+        <a href="/guides" class="hover:text-yellow">Guides</a>
+        <span class="mx-2 text-cast">/</span>
+        <span class="text-white/90">Concrete grades</span>
+      </nav>
+      <p class="eyebrow text-yellow mb-4">Materials · Pillar guide</p>
+      <h1 class="font-display text-display-xl text-white mb-6 max-w-4xl">
+        What concrete grade for agricultural use? C32/40 vs C40/50 explained
+      </h1>
+
+      <div class="bg-navy-700 border-l-4 border-yellow p-6 max-w-3xl rounded-r">
+        <p class="text-white/90 text-lg leading-relaxed">
+          <strong class="text-white">Direct answer:</strong> Use C32/40 for general agricultural slabs,
+          foundations and walls in dry or moderate exposure (XC1–XC3). Use C40/50 with sulphate-resisting
+          cement (CEM III/A, CEM III/B or CEM IV) for slurry stores, silage clamp walls, retaining walls
+          in groundwater and any XA2/XA3 aggressive ground, all to BS 8500-1:2023.
+        </p>
+      </div>
+
+      <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/90">
+        <div>By <span class="text-white font-semibold">WCCP Engineering Team</span></div>
+        <div>Published <time datetime="2026-03-25">25 March 2026</time></div>
+        <div>Updated <time datetime="2026-04-27">27 April 2026</time></div>
+      </div>
+    </div>
+  </section>
+
+  <article class="container-wccp py-12 md:py-16">
+    <div class="grid lg:grid-cols-[1fr_18rem] gap-10 lg:gap-16">
+      <div class="max-w-3xl">
+
+        <details class="lg:hidden mb-10 border border-cast-100 rounded-lg p-5">
+          <summary class="font-display text-lg font-bold text-navy cursor-pointer">On this page</summary>
+          <ol class="mt-4 space-y-2 text-cast list-decimal list-inside">
+            <li><a href="#exposure" class="hover:text-ember">BS 8500-1:2023 exposure classes</a></li>
+            <li><a href="#grades" class="hover:text-ember">Grade vs strength</a></li>
+            <li><a href="#sulphate" class="hover:text-ember">Sulphate-resisting cement</a></li>
+            <li><a href="#ggbs-pfa" class="hover:text-ember">GGBS and PFA mixes</a></li>
+            <li><a href="#cover" class="hover:text-ember">Cover requirements</a></li>
+            <li><a href="#applications" class="hover:text-ember">Grade by application</a></li>
+            <li><a href="#mistakes" class="hover:text-ember">Common specification mistakes</a></li>
+            <li><a href="#checklist" class="hover:text-ember">Specification checklist</a></li>
+            <li><a href="#faq" class="hover:text-ember">FAQ</a></li>
+          </ol>
+        </details>
+
+        <section id="exposure" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What are the BS 8500-1:2023 exposure classes?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">BS 8500-1:2023 defines five exposure-class groups: XC (carbonation),
+            XD (chlorides not from sea), XS (sea-water chlorides), XF (freeze-thaw) and XA (chemical
+            attack). Each class has sub-categories (e.g. XC1 dry through XC4 cyclic wet/dry). The class
+            drives the minimum grade, cement type, cover and water/cement ratio.</strong>
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            For agricultural and civils work in the UK the common classes are XC1–XC4 (most internal
+            and external concrete), XF2–XF4 (yard slabs, exterior elements with freeze-thaw),
+            XA2–XA3 (slurry, silage effluent, aggressive groundwater) and XD3 (highway de-icing salts).
+            Marine (XS) classes only apply within ~1 km of the coast.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            A single element can have multiple exposure classes — a slurry wall is XA3 on the inside,
+            XC4 + XF2 on the outside. The mix design must satisfy the worst case for each face,
+            usually with cover dimensions different on each face.
+          </p>
+        </section>
+
+        <section id="grades" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What does each concrete grade actually mean?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            <strong class="text-navy">Grades are written as C(cylinder)/(cube) — both characteristic 28-day
+            strengths in MPa. C32/40 means 32 MPa cylinder, 40 MPa cube. C40/50 means 40 MPa cylinder,
+            50 MPa cube. Higher grade isn't automatically better — the right grade is the one that
+            meets the exposure class, durability and structural demand.</strong>
+          </p>
+
+          <div class="overflow-x-auto mb-4 -mx-4 sm:mx-0">
+            <table class="spec-table min-w-full px-4 sm:px-0">
+              <thead>
+                <tr>
+                  <th>Grade</th>
+                  <th>Cylinder MPa</th>
+                  <th>Cube MPa</th>
+                  <th>Typical use</th>
+                </tr>
+              </thead>
+              <tbody class="text-cast">
+                <tr>
+                  <td>C20/25</td>
+                  <td>20</td>
+                  <td>25</td>
+                  <td>Mass fill, blinding, kerbs</td>
+                </tr>
+                <tr>
+                  <td>C25/30</td>
+                  <td>25</td>
+                  <td>30</td>
+                  <td>Light foundations, internal slabs</td>
+                </tr>
+                <tr>
+                  <td><strong class="text-navy">C32/40</strong></td>
+                  <td>32</td>
+                  <td>40</td>
+                  <td>General agricultural, yard slabs, foundations, walls</td>
+                </tr>
+                <tr>
+                  <td><strong class="text-navy">C40/50</strong></td>
+                  <td>40</td>
+                  <td>50</td>
+                  <td>Slurry stores, silage walls, retaining walls in water</td>
+                </tr>
+                <tr>
+                  <td>C50/60</td>
+                  <td>50</td>
+                  <td>60</td>
+                  <td>Prestressed panels, highway structures</td>
+                </tr>
+                <tr>
+                  <td>C60/75</td>
+                  <td>60</td>
+                  <td>75</td>
+                  <td>High-performance prestressed and seismic</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="sulphate" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">When do I need sulphate-resisting cement?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Whenever the concrete sees sulphate ions in concentration — that's slurry
+            (XA3), silage effluent (XA3), groundwater above 600 mg/l SO4 (XA2), and anywhere acidic
+            attack is expected. The standard answer is CEM III/A or CEM III/B (GGBS blends) or CEM IV
+            (pozzolanic), specified with a low water/cement ratio.</strong>
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            Sulphates attack ordinary Portland cement (CEM I) by reacting with C3A — tricalcium
+            aluminate — to form ettringite, an expansive crystalline phase that cracks the matrix.
+            CEM III blends substitute up to 80% of the OPC with GGBS, dramatically reducing C3A and
+            providing sulphate resistance comparable to historical SRPC.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            Combined sulphate and acid attack — typical of slurry — also benefits from the denser
+            pore structure of GGBS concrete, which slows diffusion of aggressive ions to the
+            reinforcement. Every WCCP slurry panel uses a CEM III/B blend in C40/50 as standard.
+          </p>
+        </section>
+
+        <section id="ggbs-pfa" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Why use GGBS or PFA mixes?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">GGBS (ground granulated blastfurnace slag) and PFA (pulverised fuel ash)
+            are cement replacement materials that improve durability, lower embodied carbon and reduce
+            heat of hydration. Standard substitution rates: GGBS 30–80%, PFA 25–40%. CEM I (pure
+            Portland) is increasingly rare in modern UK precast.</strong>
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            Carbon savings are significant. CEM I has an embodied carbon of around 0.95 tCO2/t. GGBS
+            sits at 0.07 tCO2/t (it's a steel industry by-product). Replacing 60% of CEM I with GGBS
+            in a C40/50 mix cuts the concrete's embodied carbon by around 55%. PFA is similar.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            Practical trade-offs: GGBS mixes gain strength more slowly (28-day compliance is met but
+            7-day strength is lower), so casting cycles in a precast yard need adjusting. PFA mixes
+            improve workability, useful for complex moulds.
+          </p>
+        </section>
+
+        <section id="cover" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">How much cover should I specify?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Cover is set by exposure class, design life and quality control. For a
+            50-year design life: XC1 20mm; XC2 25mm; XC3 30mm; XC4 35mm; XD3 45mm; XS3 50mm; XF4 40mm;
+            XA2 45mm; XA3 50mm. Add 10mm allowance for tolerance to BS EN 1992-1-1.</strong>
+          </p>
+
+          <div class="overflow-x-auto mb-4 -mx-4 sm:mx-0">
+            <table class="spec-table min-w-full px-4 sm:px-0">
+              <thead>
+                <tr>
+                  <th>Exposure class</th>
+                  <th>Description</th>
+                  <th>Min cover (50yr)</th>
+                  <th>Min grade</th>
+                </tr>
+              </thead>
+              <tbody class="text-cast">
+                <tr>
+                  <td>XC1</td>
+                  <td>Dry, indoor</td>
+                  <td>20mm</td>
+                  <td>C20/25</td>
+                </tr>
+                <tr>
+                  <td>XC3</td>
+                  <td>Moderate humidity</td>
+                  <td>30mm</td>
+                  <td>C28/35</td>
+                </tr>
+                <tr>
+                  <td>XC4</td>
+                  <td>Cyclic wet/dry, exterior</td>
+                  <td>35mm</td>
+                  <td>C32/40</td>
+                </tr>
+                <tr>
+                  <td>XF2</td>
+                  <td>Freeze-thaw, no salts</td>
+                  <td>35mm</td>
+                  <td>C32/40 air-entrained</td>
+                </tr>
+                <tr>
+                  <td>XF4</td>
+                  <td>Freeze-thaw with salts</td>
+                  <td>40mm</td>
+                  <td>C40/50 air-entrained</td>
+                </tr>
+                <tr>
+                  <td>XA2</td>
+                  <td>Moderate aggressive (groundwater)</td>
+                  <td>45mm</td>
+                  <td>C32/40 SR</td>
+                </tr>
+                <tr>
+                  <td>XA3</td>
+                  <td>Highly aggressive (slurry, silage)</td>
+                  <td>50mm</td>
+                  <td>C40/50 SR (CEM III/B)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="applications" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Which grade for which job?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            <strong class="text-navy">Slurry store walls: C40/50 SR (CEM III/B). Silage clamp walls: C40/50 SR.
+            Cattle cubicle bases: C32/40. Yard slabs: C32/40 air-entrained. Retaining walls in
+            groundwater: C40/50 SR. Foundations: C25/30 to C32/40. Prestressed panels: C50/60. Padstones:
+            C40/50.</strong>
+          </p>
+
+          <div class="overflow-x-auto mb-4 -mx-4 sm:mx-0">
+            <table class="spec-table min-w-full px-4 sm:px-0">
+              <thead>
+                <tr>
+                  <th>Application</th>
+                  <th>Grade</th>
+                  <th>Cement</th>
+                  <th>Exposure</th>
+                </tr>
+              </thead>
+              <tbody class="text-cast">
+                <tr>
+                  <td>Slurry store walls</td>
+                  <td><strong class="text-navy">C40/50</strong></td>
+                  <td>CEM III/B (GGBS)</td>
+                  <td>XA3</td>
+                </tr>
+                <tr>
+                  <td>Silage clamp walls</td>
+                  <td><strong class="text-navy">C40/50</strong></td>
+                  <td>CEM III/A or B</td>
+                  <td>XA3 + XF2</td>
+                </tr>
+                <tr>
+                  <td>Cattle cubicle bases</td>
+                  <td><strong class="text-navy">C32/40</strong></td>
+                  <td>CEM II/A-LL</td>
+                  <td>XC4 + XF1</td>
+                </tr>
+                <tr>
+                  <td>External yard slabs</td>
+                  <td><strong class="text-navy">C32/40</strong></td>
+                  <td>CEM II/A-LL air-entrained</td>
+                  <td>XC4 + XF2</td>
+                </tr>
+                <tr>
+                  <td>Retaining walls (above water table)</td>
+                  <td><strong class="text-navy">C32/40</strong></td>
+                  <td>CEM II/A-LL</td>
+                  <td>XC4</td>
+                </tr>
+                <tr>
+                  <td>Retaining walls (in groundwater)</td>
+                  <td><strong class="text-navy">C40/50</strong></td>
+                  <td>CEM III/A</td>
+                  <td>XA2 + XC4</td>
+                </tr>
+                <tr>
+                  <td>Prestressed wall panels</td>
+                  <td><strong class="text-navy">C50/60</strong></td>
+                  <td>CEM I or II/A-LL</td>
+                  <td>XC3/XC4</td>
+                </tr>
+                <tr>
+                  <td>Padstones / lintels</td>
+                  <td><strong class="text-navy">C40/50</strong></td>
+                  <td>CEM I or II/A-LL</td>
+                  <td>XC1/XC3</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="mistakes" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What are the common specification mistakes?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Specifying C32/40 for slurry duty (no sulphate resistance), under-covering
+            reinforcement, ignoring freeze-thaw on yard slabs (no air entrainment), and confusing
+            "C40" alone (which is ambiguous in modern BS 8500 — always write C(cylinder)/(cube))
+            are the four specification errors we see most often.</strong>
+          </p>
+          <ul class="text-cast-700 text-lg leading-relaxed space-y-3 list-disc pl-6 mb-4">
+            <li><strong class="text-navy">"C40" without slash.</strong> BS 8500 grades have two numbers. Specify C40/50, not "C40 concrete" — the latter is genuinely ambiguous.</li>
+            <li><strong class="text-navy">Forgetting sulphate resistance.</strong> A C40/50 mix without SR cement will fail in slurry. The grade alone doesn't fix the chemistry.</li>
+            <li><strong class="text-navy">No air entrainment on yard slabs.</strong> Freeze-thaw without entrained air spalls slabs in 5–10 years. Specify 4–6%.</li>
+            <li><strong class="text-navy">Cover too thin.</strong> Most reinforcement durability failures are cover failures, not strength failures. Don't shave cover to save concrete.</li>
+            <li><strong class="text-navy">No design life stated.</strong> 50-year design life is the default. State it explicitly so cover and grade align.</li>
+          </ul>
+        </section>
+
+        <section id="checklist" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Concrete specification checklist (10 points)</h2>
+          <div class="bg-bone-200 border-l-4 border-ember p-6 rounded-r">
+            <ol class="text-cast-700 text-base leading-relaxed space-y-3 list-decimal pl-5">
+              <li>Exposure class identified for each face of each element (BS 8500-1:2023)</li>
+              <li>Grade specified as C(cylinder)/(cube) — e.g. C40/50, never just "C40"</li>
+              <li>Cement type specified by reference (CEM I, CEM II/A-LL, CEM III/A, etc.)</li>
+              <li>Sulphate resistance required where in contact with slurry, silage or aggressive ground</li>
+              <li>Cover dimensions stated for each face, with 10mm tolerance allowance</li>
+              <li>Air entrainment specified for freeze-thaw exposure (4–6%)</li>
+              <li>Maximum water/cement ratio stated</li>
+              <li>Maximum aggregate size stated (typically 20mm)</li>
+              <li>Design life stated (50 or 100 years)</li>
+              <li>Compliance certification required from supplier (BS EN 206 + BS 8500-2)</li>
+            </ol>
+          </div>
+        </section>
+
+        <section id="faq" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-6">Frequently asked questions</h2>
+          <div class="space-y-4">
+            {faqs.map((f) => (
+              <details class="card p-5 group">
+                <summary class="font-display text-lg font-bold text-navy cursor-pointer flex items-start justify-between gap-4">
+                  <span>{f.q}</span>
+                  <svg class="w-5 h-5 mt-1 flex-shrink-0 text-ember transition-transform group-open:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="12" y1="5" x2="12" y2="19" stroke-linecap="round"/>
+                    <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+                  </svg>
+                </summary>
+                <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section class="bg-navy text-white rounded-lg p-8 md:p-10">
+          <h2 class="font-display text-2xl md:text-3xl text-white mb-3">Need a panel, slab or wall priced?</h2>
+          <p class="text-white/90 mb-6 leading-relaxed">
+            Tell us what you're building and the exposure conditions. We'll specify the grade,
+            cement and cover and come back with a fixed price for precast or in-situ supply.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="/products" class="btn-yellow">See product range</a>
+            <a href="/quote" class="btn bg-white text-navy hover:bg-bone">Start a quote</a>
+          </div>
+        </section>
+
+      </div>
+
+      <aside class="hidden lg:block">
+        <div class="sticky top-24">
+          <p class="eyebrow text-cast mb-4">On this page</p>
+          <ol class="space-y-3 text-sm border-l border-cast-100 pl-4">
+            <li><a href="#exposure" class="text-cast hover:text-ember">Exposure classes</a></li>
+            <li><a href="#grades" class="text-cast hover:text-ember">Grade vs strength</a></li>
+            <li><a href="#sulphate" class="text-cast hover:text-ember">Sulphate-resisting</a></li>
+            <li><a href="#ggbs-pfa" class="text-cast hover:text-ember">GGBS and PFA</a></li>
+            <li><a href="#cover" class="text-cast hover:text-ember">Cover requirements</a></li>
+            <li><a href="#applications" class="text-cast hover:text-ember">Grade by application</a></li>
+            <li><a href="#mistakes" class="text-cast hover:text-ember">Common mistakes</a></li>
+            <li><a href="#checklist" class="text-cast hover:text-ember">Specification checklist</a></li>
+            <li><a href="#faq" class="text-cast hover:text-ember">FAQ</a></li>
+          </ol>
+
+          <div class="mt-8 p-4 bg-yellow rounded-lg">
+            <p class="text-xs font-bold text-navy uppercase tracking-wide mb-2">Need spec help?</p>
+            <p class="text-sm text-navy mb-3 leading-snug">Send your application — we'll write the spec line for you.</p>
+            <a href="/quote" class="text-navy font-bold text-sm hover:underline">Ask the engineer →</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+  <section class="bg-bone-200 py-16">
+    <div class="container-wccp">
+      <p class="eyebrow text-cast mb-3">Related guides</p>
+      <h2 class="font-display text-display-md mb-8">Keep reading.</h2>
+
+      <div class="grid md:grid-cols-3 gap-5">
+        <a href="/guides/slurry-wall-thickness" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Slurry storage</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">How thick should a slurry store wall be?</h3>
+          <p class="text-cast text-sm leading-relaxed">200mm vs 250mm vs 300mm precast panels by retained height.</p>
+        </a>
+        <a href="/guides/prestressed-vs-reinforced" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Materials</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Prestressed vs reinforced panels</h3>
+          <p class="text-cast text-sm leading-relaxed">When prestressing pays back, span and load advantages, BS EN 14992.</p>
+        </a>
+        <a href="/guides/ssafo-2018" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Regulations</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">SSAFO 2018 compliance checklist</h3>
+          <p class="text-cast text-sm leading-relaxed">14-point checklist, EA notification and freeboard rules.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-16 text-center">
+    <h2 class="font-display text-display-lg mb-4">Talk to the yard.</h2>
+    <p class="text-cast-700 text-lg max-w-xl mx-auto mb-8">
+      Same-day callback Monday to Friday. We'll talk you through the spec before you commit a penny.
+    </p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+      <a href="/quote" class="btn-primary">Configure a quote</a>
+    </div>
+  </section>
+</BaseLayout>

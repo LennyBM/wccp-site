@@ -1,0 +1,188 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const facts = [
+  { label: 'Client', value: 'Ashford Estate (placeholder name)' },
+  { label: 'Location', value: 'Near Tavistock, Devon' },
+  { label: 'Sector', value: 'Agricultural — estate / mixed' },
+  { label: 'Acreage', value: '4,000 acres, three tenant farms' },
+  { label: 'Products', value: 'L-blocks, bunker walls, cattle cubicles' },
+  { label: 'Concrete', value: '920 tonnes total' },
+  { label: 'Lead time', value: '22 days on site (phased)' },
+  { label: 'Project value', value: '£680,000 programme' },
+  { label: 'Completed', value: 'November 2025' },
+];
+
+const articleSchema = {
+  author: {
+    '@type': 'Person',
+    name: 'WCCP engineering team',
+    description: 'Family-run precast concrete manufacturer in Holsworthy, North Devon, casting since 1971.',
+  },
+  datePublished: '2025-12-02',
+  mainEntityOfPage: 'https://westcountryconcreteproducts.co.uk/case-studies/ashford-estate-civils',
+};
+---
+
+<BaseLayout
+  title="Ashford Estate — three-farm modernisation, near Tavistock"
+  description="WCCP supplied 920 tonnes of precast L-blocks, bunker walls and cattle cubicles across three tenant farms on a 4,000-acre Devon estate. £680k programme, phased over 22 days."
+  image="/images/case-studies/ashford-estate-civils.jpg"
+  schema="Article"
+  schemaData={articleSchema}
+>
+  <!-- Hero -->
+  <section class="relative bg-navy text-white">
+    <div class="aspect-[16/7] md:aspect-[16/6] bg-gradient-to-br from-navy via-navy-700 to-cast-700 relative">
+      <div class="absolute inset-0 hero-gradient"></div>
+      <div class="absolute bottom-0 left-0 right-0 container-wccp pb-10 md:pb-14">
+        <nav class="text-sm text-white/90 mb-4" aria-label="Breadcrumb">
+          <a href="/case-studies" class="hover:text-yellow">Case studies</a>
+          <span class="mx-2 text-cast-300">/</span>
+          <span class="text-white/90">Ashford Estate</span>
+        </nav>
+        <p class="eyebrow text-yellow mb-3">Agricultural · Devon · 2025</p>
+        <h1 class="font-display text-display-xl text-white mb-3 max-w-3xl">Ashford Estate — three-farm modernisation</h1>
+        <p class="text-white/90 text-lg max-w-2xl">
+          A 4,000-acre Devon estate, three tenant farms, six new silage clamps and a cubicle refit — phased
+          across one calendar year and one supplier.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stat block -->
+  <section class="bg-bone-200 border-b border-cast-100">
+    <div class="container-wccp py-8">
+      <div class="grid grid-cols-3 gap-6 max-w-3xl mx-auto text-center">
+        <div>
+          <div class="font-display font-bold text-display-lg text-navy leading-none">920t</div>
+          <div class="text-cast text-sm uppercase tracking-wide mt-2">Concrete delivered</div>
+        </div>
+        <div>
+          <div class="font-display font-bold text-display-lg text-navy leading-none">22</div>
+          <div class="text-cast text-sm uppercase tracking-wide mt-2">Days on site</div>
+        </div>
+        <div>
+          <div class="font-display font-bold text-display-lg text-navy leading-none">£680k</div>
+          <div class="text-cast text-sm uppercase tracking-wide mt-2">Programme value</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Body grid -->
+  <section class="container-wccp py-12 md:py-16">
+    <div class="grid lg:grid-cols-[1fr_18rem] gap-10 lg:gap-16">
+      <div class="max-w-3xl">
+
+        <p class="text-2xl font-display text-navy leading-snug mb-10 border-l-4 border-yellow pl-5">
+          One estate, three tenants, three farms. The estate office wanted a single supplier and a single
+          design language across all of it. We delivered every panel, block and cubicle from Holsworthy.
+        </p>
+
+        <h2 class="font-display text-2xl text-navy mb-3">The challenge</h2>
+        <p class="text-cast-700 text-lg leading-relaxed mb-8">
+          The estate's land agent had three tenant farms approaching contract renewal, each needing
+          modernised forage storage and updated cubicle housing. They wanted one specification, one set of
+          drawings and one supplier across all three sites — but the farms were ten miles apart, on
+          different harvest calendars, and one was actively calving when we mobilised.
+        </p>
+
+        <h2 class="font-display text-2xl text-navy mb-3">The solution</h2>
+        <p class="text-cast-700 text-lg leading-relaxed mb-4">
+          We designed a single L-block clamp standard at 3.6 metre height, suitable for all three farms,
+          built to BS EN 1992-1-1 with C40/50 sulphate-resisting concrete. Six clamps in total — two per
+          farm — sharing one panel schedule, which kept the casting yard efficient and the unit price down.
+          450 tonnes of L-blocks left Holsworthy across the spring run.
+        </p>
+        <p class="text-cast-700 text-lg leading-relaxed mb-4">
+          Bunker walls for grain and root crops were specified on a separate run, again standardised to two
+          panel sizes so off-cuts and replacements would be interchangeable across the estate. The cattle
+          cubicle refurb covered 180 beds across two of the farms — Holstein-sized cantilever divisions on
+          precast plinths, all to BS 5502-40 livestock building guidance.
+        </p>
+        <p class="text-cast-700 text-lg leading-relaxed mb-8">
+          We ran the programme as three concurrent mini-projects with one site manager from our end. The
+          land agent had a single weekly call, single set of drawings and single invoice schedule. Each
+          tenant got their own delivery slot and on-site engineer. None of the harvests were missed.
+        </p>
+
+        <h2 class="font-display text-2xl text-navy mb-4">From the yard to the field</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-10">
+          {[1,2,3,4,5,6].map(() => (
+            <div class="aspect-square bg-gradient-to-br from-cast-200 to-cast-100 rounded"></div>
+          ))}
+        </div>
+
+        <blockquote class="bg-navy text-white p-8 md:p-10 rounded-lg mb-10">
+          <svg class="w-10 h-10 text-yellow mb-4" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 7H5a2 2 0 00-2 2v4a2 2 0 002 2h2v2a2 2 0 01-2 2H4v2h1a4 4 0 004-4V7zm10 0h-4a2 2 0 00-2 2v4a2 2 0 002 2h2v2a2 2 0 01-2 2h-1v2h1a4 4 0 004-4V7z"/>
+          </svg>
+          <p class="font-display text-xl md:text-2xl text-white leading-snug mb-4">
+            One contract, one supplier, three farms — exactly what we asked for. The tenants got a
+            consistent finish, the estate got a single point of accountability, and the books balanced.
+          </p>
+          <footer class="text-white/90">
+            <span class="font-bold text-white">Charlotte (placeholder)</span> · Land agent, estate office near Tavistock
+          </footer>
+        </blockquote>
+
+        <h2 class="font-display text-2xl text-navy mb-3">The result</h2>
+        <p class="text-cast-700 text-lg leading-relaxed mb-10">
+          Six new silage clamps, 180 refitted cubicle beds and grain storage across three farms — delivered
+          on programme and on budget. The estate has signed us up for a phase-two programme covering two
+          further holdings in 2026, plus a slurry store at the home farm.
+        </p>
+
+        <section class="bg-bone-200 border border-cast-100 rounded-lg p-8">
+          <h2 class="font-display text-2xl text-navy mb-3">Estate or multi-site programme?</h2>
+          <p class="text-cast-700 leading-relaxed mb-6">
+            We work with land agents, estates and multi-farm operations across the South West. One
+            specification, one delivery schedule, one supplier. Talk to us.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="/quote" class="btn-primary">Start a quote</a>
+            <a href="/products/retaining-walls" class="btn-ghost">See L-block range</a>
+          </div>
+        </section>
+      </div>
+
+      <aside>
+        <div class="sticky top-24 card p-6">
+          <p class="eyebrow text-cast mb-4">Project facts</p>
+          <dl class="space-y-3 text-sm">
+            {facts.map((f) => (
+              <div>
+                <dt class="text-cast text-xs uppercase tracking-wide font-bold">{f.label}</dt>
+                <dd class="text-navy font-medium mt-0.5">{f.value}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <hr class="my-6 border-cast-100" />
+
+          <a href="/case-studies" class="text-ember font-bold text-sm hover:text-ember-700 inline-flex items-center gap-2">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="19" y1="12" x2="5" y2="12" stroke-linecap="round"/>
+              <polyline points="12 19 5 12 12 5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Back to all case studies
+          </a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="container-wccp py-16 text-center">
+    <h2 class="font-display text-display-lg mb-4">Talk to the yard.</h2>
+    <p class="text-cast-700 text-lg max-w-xl mx-auto mb-8">
+      Same-day callback Monday to Friday. We work with what you've got — sketches, photos or full plans.
+    </p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+      <a href="/quote" class="btn-primary">Configure a quote</a>
+    </div>
+  </section>
+</BaseLayout>

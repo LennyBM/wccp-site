@@ -1,0 +1,156 @@
+---
+import { site } from '@/config/site';
+
+interface Props {
+  type:
+    | 'Organization'
+    | 'LocalBusiness'
+    | 'Product'
+    | 'Article'
+    | 'FAQPage'
+    | 'HowTo'
+    | 'BreadcrumbList'
+    | 'Service';
+  data?: Record<string, unknown>;
+}
+
+const { type, data = {} } = Astro.props;
+
+// Always include Organization on every page; add the page-specific schema on top.
+const orgSchema = {
+  '@type': 'Organization',
+  '@id': `${site.url}/#organization`,
+  name: site.name,
+  alternateName: site.shortName,
+  legalName: site.legalName,
+  url: site.url,
+  logo: `${site.url}/logo.png`,
+  foundingDate: site.founded,
+  description: site.description,
+  sameAs: Object.values(site.socials).filter(Boolean),
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: site.contact.phoneIntl,
+    contactType: 'sales',
+    areaServed: 'GB',
+    availableLanguage: 'English',
+  },
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.address.street,
+    addressLocality: site.address.town,
+    addressRegion: site.address.region,
+    postalCode: site.address.postcode,
+    addressCountry: site.address.country,
+  },
+  identifier: site.companyNumber,
+};
+
+const localBusinessSchema = {
+  '@type': 'LocalBusiness',
+  '@id': `${site.url}/#localbusiness`,
+  name: site.name,
+  image: `${site.url}/og-default.jpg`,
+  url: site.url,
+  telephone: site.contact.phoneIntl,
+  address: orgSchema.address,
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: site.address.geo.latitude,
+    longitude: site.address.geo.longitude,
+  },
+  openingHoursSpecification: site.hours.openingHoursSpec,
+  areaServed: site.areasServed.map((name) => ({ '@type': 'AdministrativeArea', name })),
+  priceRange: '££',
+};
+
+// Build a Service schema with provider auto-filled from Organization.
+function buildServiceSchema(d: Record<string, unknown>) {
+  const provider = d.provider ?? {
+    '@type': 'Organization',
+    '@id': `${site.url}/#organization`,
+    name: site.name,
+    url: site.url,
+    telephone: site.contact.phoneIntl,
+  };
+
+  const areaServedRaw = (d.areaServed ?? site.areasServed) as unknown;
+  const areaServed = Array.isArray(areaServedRaw)
+    ? areaServedRaw.map((a) =>
+        typeof a === 'string' ? { '@type': 'AdministrativeArea', name: a } : a,
+      )
+    : areaServedRaw;
+
+  const { provider: _p, areaServed: _a, ...rest } = d;
+  return {
+    '@type': 'Service',
+    provider,
+    areaServed,
+    ...rest,
+  };
+}
+
+// Build a Product schema with Offer auto-completed (priceCurrency, availability, seller, priceValidUntil).
+function buildProductSchema(d: Record<string, unknown>) {
+  // Default priceValidUntil: end of next calendar year.
+  const now = new Date();
+  const defaultPriceValidUntil = `${now.getUTCFullYear() + 1}-12-31`;
+
+  const seller = {
+    '@type': 'Organization',
+    '@id': `${site.url}/#organization`,
+    name: site.name,
+    url: site.url,
+  };
+
+  let offers: unknown = d.offers;
+  if (offers) {
+    const normaliseOffer = (o: Record<string, unknown>) => ({
+      '@type': 'Offer',
+      priceCurrency: 'GBP',
+      availability: 'https://schema.org/InStock',
+      priceValidUntil: defaultPriceValidUntil,
+      seller,
+      ...o,
+    });
+
+    if (Array.isArray(offers)) {
+      offers = offers.map((o) => normaliseOffer(o as Record<string, unknown>));
+    } else {
+      offers = normaliseOffer(offers as Record<string, unknown>);
+    }
+  }
+
+  const { offers: _o, ...rest } = d;
+  return {
+    '@type': 'Product',
+    ...rest,
+    ...(offers ? { offers } : {}),
+  };
+}
+
+const pageSchema = (() => {
+  switch (type) {
+    case 'LocalBusiness':
+      return localBusinessSchema;
+    case 'Organization':
+      return orgSchema;
+    case 'Service':
+      return buildServiceSchema(data);
+    case 'Product':
+      return buildProductSchema(data);
+    default:
+      return { '@type': type, ...data };
+  }
+})();
+
+const graph =
+  type === 'LocalBusiness' || type === 'Organization' ? [pageSchema] : [orgSchema, pageSchema];
+
+const ldjson = {
+  '@context': 'https://schema.org',
+  '@graph': graph,
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(ldjson)} />

@@ -1,0 +1,277 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const faqs = [
+  {
+    q: 'How much can I claim under the Slurry Infrastructure Grant Round 4?',
+    a: 'Between £25,000 and £250,000 per agricultural holding, at a 50% intervention rate. The remainder is funded by the farm business.',
+  },
+  {
+    q: 'When does the SIG Round 4 window close?',
+    a: 'The application window closes at midnight on 30 September 2026. Defra has confirmed £74m of total funding is available for this round.',
+  },
+  {
+    q: 'Which WCCP products are eligible under the grant?',
+    a: 'Above-ground precast slurry stores, lagoon walls, prestressed panel slurry stores, slurry channel sections, separator bases and rainwater diversion infrastructure are all eligible. We can supply a quotation referenced to the Defra eligible-items list.',
+  },
+  {
+    q: 'Do I need planning permission first?',
+    a: 'You do not need planning permission to apply, but the grant agreement requires you to obtain it before construction. Most slurry stores fall under permitted development for agricultural buildings, but check with your local planning authority — we can support your application with drawings and capacity calculations.',
+  },
+  {
+    q: 'Can WCCP help with the application paperwork?',
+    a: 'Yes. We supply itemised quotations on Defra-recognised templates, capacity calculations to demonstrate the required 6 months of storage, and SSAFO 2018-compliant specification sheets. We do not submit the application on your behalf — that is between you and the RPA.',
+  },
+  {
+    q: 'How long after grant approval do I have to complete the work?',
+    a: 'Round 4 grant agreements typically allow 18 months from offer to completion. We recommend ordering precast within 2 months of grant offer to secure manufacturing slots.',
+  },
+];
+
+const schemaData = {
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="Slurry Infrastructure Grant 2026 — application guide"
+  description="SIG Round 4 opens with £74m available. £25k–£250k per holding at 50% intervention. WCCP-supplied slurry stores, lagoon walls and channels are eligible. Closes 30 September 2026."
+  image="/images/grants/slurry-grant.jpg"
+  schema="FAQPage"
+  schemaData={schemaData}
+>
+  <!-- Hero -->
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-24">
+      <p class="eyebrow text-yellow mb-4">Defra · Slurry Infrastructure Grant Round 4</p>
+      <h1 class="font-display text-display-2xl text-white mb-6">
+        £74m for slurry storage. <span class="text-yellow">Closes 30 Sept 2026.</span>
+      </h1>
+      <p class="text-white/90 text-lg max-w-2xl mb-8 leading-relaxed">
+        Round 4 of the Slurry Infrastructure Grant offers between £25,000 and £250,000 per agricultural holding at a
+        50% intervention rate. We'll spec the precast, supply the paperwork and slot you into the manufacturing queue.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="/quote?product=slurry-storage&grant=sig-r4" class="btn-primary">Start a grant-ready quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-yellow">Call {site.contact.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key facts strip -->
+  <section class="bg-yellow text-navy py-10">
+    <div class="container-wccp">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div>
+          <div class="font-display font-bold text-display-lg">£74m</div>
+          <div class="text-sm font-medium uppercase tracking-wide">Total fund</div>
+        </div>
+        <div>
+          <div class="font-display font-bold text-display-lg">50%</div>
+          <div class="text-sm font-medium uppercase tracking-wide">Intervention rate</div>
+        </div>
+        <div>
+          <div class="font-display font-bold text-display-lg">£25k–£250k</div>
+          <div class="text-sm font-medium uppercase tracking-wide">Per holding</div>
+        </div>
+        <div>
+          <div class="font-display font-bold text-display-lg">30 Sept</div>
+          <div class="text-sm font-medium uppercase tracking-wide">Closes 2026</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's available -->
+  <section class="container-wccp py-16">
+    <div class="grid lg:grid-cols-2 gap-12">
+      <div>
+        <p class="eyebrow text-cast mb-3">What's on offer</p>
+        <h2 class="font-display text-display-lg mb-4">A 50% capital grant for above-ground slurry storage and supporting infrastructure.</h2>
+        <p class="text-cast-700 text-lg leading-relaxed mb-4">
+          Round 4 is the largest SIG round to date. Defra has earmarked <strong class="text-navy">£74m</strong> for English farms looking to
+          upgrade slurry storage to meet the 6-month storage target embedded in the SSAFO 2018 regulations and the
+          forthcoming Farming Rules for Water enforcement timeline.
+        </p>
+        <p class="text-cast-700 text-lg leading-relaxed">
+          The grant covers <strong class="text-navy">50%</strong> of eligible capital costs between a minimum of £25,000 and a maximum of £250,000 per
+          agricultural holding. You can apply once per holding in Round 4.
+        </p>
+      </div>
+      <div class="card p-8 bg-bone-100">
+        <p class="eyebrow text-cast mb-3">Eligible WCCP products</p>
+        <h3 class="font-display text-2xl text-navy mb-4">What we make that qualifies</h3>
+        <ul class="space-y-3 text-cast">
+          <li class="flex gap-3"><span class="text-ember font-bold">→</span> Prestressed concrete panel slurry stores (above-ground circular and rectangular)</li>
+          <li class="flex gap-3"><span class="text-ember font-bold">→</span> Reinforced cast slurry walls and lagoon containment</li>
+          <li class="flex gap-3"><span class="text-ember font-bold">→</span> Precast slurry channels, transfer chambers and reception pits</li>
+          <li class="flex gap-3"><span class="text-ember font-bold">→</span> Separator and weeping-wall bases</li>
+          <li class="flex gap-3"><span class="text-ember font-bold">→</span> Rainwater diversion concrete works (clean / dirty separation)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who qualifies -->
+  <section class="bg-bone-200 py-16">
+    <div class="container-wccp">
+      <p class="eyebrow text-cast mb-3">Who qualifies</p>
+      <h2 class="font-display text-display-lg mb-8">SIG Round 4 eligibility in plain English.</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="card p-6">
+          <h3 class="font-display text-xl text-navy mb-3">You qualify if</h3>
+          <ul class="space-y-2 text-cast text-sm">
+            <li>You're a registered agricultural business in England with an SBI and CPH.</li>
+            <li>You produce slurry, digestate or anaerobic-digestion separated liquids.</li>
+            <li>Your existing storage is below the 6-month requirement (or you're expanding the herd).</li>
+            <li>You can fund the remaining 50% (own funds, bank lending or AHDB-backed).</li>
+            <li>The work hasn't started — the grant cannot be retro-applied.</li>
+          </ul>
+        </div>
+        <div class="card p-6">
+          <h3 class="font-display text-xl text-navy mb-3">You don't qualify if</h3>
+          <ul class="space-y-2 text-cast text-sm">
+            <li>You've already taken SIG funding for the same holding in a previous round.</li>
+            <li>The proposed works are below the £25k floor or above the £250k ceiling.</li>
+            <li>Construction has already begun before the grant offer is made.</li>
+            <li>The land is in Wales, Scotland or Northern Ireland (separate schemes apply).</li>
+            <li>You can't demonstrate compliance with planning and SSAFO at completion.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Application process -->
+  <section class="container-wccp py-16">
+    <p class="eyebrow text-cast mb-3">How to apply</p>
+    <h2 class="font-display text-display-lg mb-10">Six steps from "thinking about it" to slurry-in-the-tank.</h2>
+
+    <ol class="space-y-6">
+      {[
+        {
+          n: '01',
+          title: 'Online eligibility checker',
+          body: 'Use the RPA online checker to confirm your holding is eligible. Takes 10 minutes.',
+        },
+        {
+          n: '02',
+          title: 'Get a WCCP quote',
+          body: 'Send us the herd size, current storage and any drawings. We return a Defra-formatted itemised quotation with capacity calculations within 5 working days.',
+        },
+        {
+          n: '03',
+          title: 'Submit a full application',
+          body: 'Attach our quote, planning information and supporting evidence to the RPA portal. The portal opens for Round 4 in spring 2026.',
+        },
+        {
+          n: '04',
+          title: 'Grant agreement',
+          body: 'If approved, you sign a grant agreement setting out the maximum claim, completion date and reporting requirements.',
+        },
+        {
+          n: '05',
+          title: 'We manufacture and deliver',
+          body: 'Order with us within 2 months of grant offer to secure a manufacturing slot. We supply, deliver and (if specified) install.',
+        },
+        {
+          n: '06',
+          title: 'Submit the claim',
+          body: 'Once installed and commissioned, submit photographic evidence and our final invoice to the RPA. Payment lands in 4–8 weeks.',
+        },
+      ].map((step) => (
+        <li class="card p-6 md:p-8 flex gap-6 items-start">
+          <div class="font-display font-bold text-display-md text-ember shrink-0">{step.n}</div>
+          <div>
+            <h3 class="font-display text-xl text-navy mb-2">{step.title}</h3>
+            <p class="text-cast-700 leading-relaxed">{step.body}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <!-- Common mistakes -->
+  <section class="bg-bone-200 py-16">
+    <div class="container-wccp">
+      <p class="eyebrow text-cast mb-3">Avoid these</p>
+      <h2 class="font-display text-display-lg mb-8">Five mistakes that cost farmers grant funding in Rounds 1–3.</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {[
+          { t: 'Starting work too early', d: 'Pouring concrete before the grant offer is signed makes the project ineligible. Wait for the offer letter.' },
+          { t: 'Under-specified capacity', d: 'Six months of storage is the minimum. Round up — herd expansion plans bite later.' },
+          { t: 'No planning trail', d: 'Even where permitted development applies, get a written confirmation from your LPA. The RPA asks for it.' },
+          { t: 'DIY pricing', d: 'Hand-written estimates from local contractors aren\'t accepted. Use itemised manufacturer quotes.' },
+          { t: 'Missing the rainwater plan', d: 'Clean-water separation must be specified, not assumed. We design it in from the start.' },
+          { t: 'Late ordering', d: 'Manufacturing lead times stretch in summer. Order within 8 weeks of grant offer.' },
+        ].map((m) => (
+          <div class="card p-6">
+            <h3 class="font-display text-lg text-navy mb-2">{m.t}</h3>
+            <p class="text-cast text-sm leading-relaxed">{m.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Eligibility checklist -->
+  <section class="container-wccp py-16">
+    <div class="max-w-prose-wide mx-auto">
+      <p class="eyebrow text-cast mb-3">Quick check</p>
+      <h2 class="font-display text-display-lg mb-6">Eligibility checklist</h2>
+      <p class="text-cast mb-6">Tick five and you're almost certainly eligible. Print it, tick it, send it back with your enquiry.</p>
+      <ul class="space-y-3">
+        {[
+          'I farm in England and have an SBI / CPH.',
+          'My current storage is under 6 months — or I\'m expanding.',
+          'I haven\'t started construction.',
+          'I can fund the remaining 50% myself or via lending.',
+          'I haven\'t claimed SIG on this holding before.',
+        ].map((c) => (
+          <li class="flex gap-3 items-start card p-4">
+            <input type="checkbox" class="mt-1 h-5 w-5 rounded border-2 border-cast-200 accent-ember" />
+            <span class="text-cast">{c}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQ (visible) -->
+  <section class="bg-bone-200 py-16">
+    <div class="container-wccp">
+      <p class="eyebrow text-cast mb-3">Common questions</p>
+      <h2 class="font-display text-display-lg mb-8">FAQ</h2>
+      <div class="max-w-prose-wide space-y-3">
+        {faqs.map((f) => (
+          <details class="card p-5 group">
+            <summary class="font-display text-lg text-navy cursor-pointer list-none flex justify-between items-center gap-4">
+              <span>{f.q}</span>
+              <span class="text-ember text-2xl group-open:rotate-45 transition-transform">+</span>
+            </summary>
+            <p class="text-cast mt-3 leading-relaxed">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-navy text-white py-16">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-xl text-white mb-4">Talk to us about a grant-ready quote.</h2>
+      <p class="text-white/90 text-lg mb-8 max-w-xl mx-auto">
+        Five-minute call. We'll tell you whether your job fits Round 4 and what we'd recommend speccing.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-yellow">Call {site.contact.phone}</a>
+        <a href="/quote?product=slurry-storage&grant=sig-r4" class="btn-primary">Start a quote</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

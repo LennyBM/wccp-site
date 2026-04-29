@@ -1,0 +1,182 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const posts = [
+  {
+    slug: 'example-post',
+    category: 'Company news',
+    date: '12 March 2026',
+    iso: '2026-03-12',
+    title: 'New 46-job yard opens at Holsworthy.',
+    excerpt:
+      'After two years of planning and a winter of fit-out, the new yard near Chilsworthy is open. Better moulds, better cranes, more capacity — and 46 new jobs for North Devon.',
+  },
+  {
+    slug: '#',
+    category: 'Trade show',
+    date: '04 March 2026',
+    iso: '2026-03-04',
+    title: 'Dairy-Tech 2026 — what we saw and showed.',
+    excerpt:
+      'Three days at the NAEC Stoneleigh. Highlights: more interest than ever in slurry covers, plenty of robot-base questions, and a steady queue at the cubicle stand.',
+  },
+  {
+    slug: '#',
+    category: 'Industry update',
+    date: '20 February 2026',
+    iso: '2026-02-20',
+    title: 'SIG Round 4 confirmed — £74m, closes 30 September.',
+    excerpt:
+      'DEFRA have confirmed the Slurry Infrastructure Grant Round 4 details. We\'ve updated our guide and our calculator to match the new eligibility rules.',
+  },
+  {
+    slug: '#',
+    category: 'Trade show',
+    date: '15 January 2026',
+    iso: '2026-01-15',
+    title: 'LAMMA 2026 — see us on Stand 4.730.',
+    excerpt:
+      'We\'re back at LAMMA at the NEC. Cubicles, troughs, and the full slurry range on display. Bring your drawings and we\'ll quote on the stand.',
+  },
+  {
+    slug: '#',
+    category: 'Product launch',
+    date: '08 January 2026',
+    iso: '2026-01-08',
+    title: 'New 280mm prestressed panel — proven for deep slurry.',
+    excerpt:
+      'Our new 280mm prestressed panel is now in stock. Engineered for slurry depths to 4.5m, with the same lifting and joint detail as the rest of the range.',
+  },
+  {
+    slug: '#',
+    category: 'Trade show',
+    date: '02 December 2025',
+    iso: '2025-12-02',
+    title: 'Royal Cornwall, Devon County, Bath & West — 2026 dates.',
+    excerpt:
+      'Show season is back. Here\'s where you\'ll find us: Royal Cornwall, Devon County, Bath & West, North Devon, Great Yorkshire and the Royal Welsh.',
+  },
+  {
+    slug: '#',
+    category: 'Industry update',
+    date: '14 November 2025',
+    iso: '2025-11-14',
+    title: 'FETF 2026 — the items we expect to be eligible.',
+    excerpt:
+      'DEFRA hasn\'t published the FETF 2026 list yet, but here\'s our read on which of our products are likely to qualify based on the 2024 and 2025 rounds.',
+  },
+  {
+    slug: '#',
+    category: 'Company news',
+    date: '28 October 2025',
+    iso: '2025-10-28',
+    title: 'Jake passed his C+E — and other yard wins.',
+    excerpt:
+      'Driver Jake passed his C+E ticket this month. We sponsored the training because he\'s the right person and the right person is worth investing in.',
+  },
+];
+
+const categoryColors: Record<string, string> = {
+  'Company news': 'text-ember',
+  'Trade show': 'text-navy',
+  'Industry update': 'text-yellow-700',
+  'Product launch': 'text-ember',
+};
+---
+
+<BaseLayout
+  title="News & updates — from the yard"
+  description="Latest news from the West Country Concrete yard: new products, grant updates, trade show recaps and company news. Plain-English updates from North Devon."
+>
+  <!-- Hero -->
+  <section class="relative bg-navy text-white overflow-hidden">
+    <div class="relative container-wccp py-20 md:py-24">
+      <div class="max-w-3xl">
+        <p class="eyebrow text-yellow mb-6">News & updates</p>
+        <h1 class="font-display text-display-2xl text-white mb-6">
+          From the yard.<br />
+          <span class="text-yellow">News, shows, grants, kit.</span>
+        </h1>
+        <p class="text-lg md:text-xl text-white/90 max-w-2xl leading-relaxed">
+          What we're making, where we're showing it, and what's changing in the grants and
+          regulations that matter to our customers. Updated when there's something to say.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter strip -->
+  <section class="bg-bone-200 py-6 border-b border-cast-200">
+    <div class="container-wccp flex flex-wrap items-center gap-3">
+      <span class="eyebrow text-cast mr-2">Filter:</span>
+      <button class="btn-ghost text-xs px-3 py-1.5">All</button>
+      <button class="btn-ghost text-xs px-3 py-1.5">Company news</button>
+      <button class="btn-ghost text-xs px-3 py-1.5">Trade shows</button>
+      <button class="btn-ghost text-xs px-3 py-1.5">Industry updates</button>
+      <button class="btn-ghost text-xs px-3 py-1.5">Product launches</button>
+    </div>
+  </section>
+
+  <!-- Posts grid -->
+  <section class="container-wccp py-20">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {posts.map((p) => (
+        <a href={`/news/${p.slug}`} class="card group flex flex-col overflow-hidden">
+          <div class="aspect-[16/10] bg-cast-100 overflow-hidden">
+            <div class="w-full h-full bg-gradient-to-br from-navy to-navy-700 group-hover:scale-105 transition-transform duration-500"></div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col">
+            <div class="flex items-center gap-3 mb-3">
+              <span class={`eyebrow ${categoryColors[p.category] || 'text-ember'}`}>{p.category}</span>
+              <time datetime={p.iso} class="text-cast text-xs">{p.date}</time>
+            </div>
+            <h2 class="font-display text-xl font-bold text-navy mb-3 group-hover:text-ember leading-snug">
+              {p.title}
+            </h2>
+            <p class="text-cast text-sm leading-relaxed flex-1">{p.excerpt}</p>
+            <span class="mt-4 text-ember font-semibold text-sm inline-flex items-center gap-2">
+              Read more
+              <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+                <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Newsletter strip -->
+  <section class="bg-yellow text-navy py-12">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-navy mb-2">Don't miss the next one</p>
+          <h2 class="font-display text-display-md">Newsletter — quarterly, no fluff.</h2>
+          <p class="text-navy mt-2">Grant deadlines, new kit, show dates. Four times a year.</p>
+        </div>
+        <form
+          name="newsletter"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="flex flex-col sm:flex-row gap-3 w-full md:w-auto md:min-w-[400px]"
+        >
+          <input type="hidden" name="form-name" value="newsletter" />
+          <p class="hidden"><label>Don't fill: <input name="bot-field" /></label></p>
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="your@email.co.uk"
+            class="input flex-1"
+            autocomplete="email"
+          />
+          <button type="submit" class="btn bg-navy text-white hover:bg-navy-700">Sign me up</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

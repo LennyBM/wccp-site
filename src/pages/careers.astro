@@ -1,0 +1,239 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const vacancies = [
+  {
+    slug: 'concrete-production-operative',
+    title: 'Concrete Production Operative',
+    type: 'Full-time · Permanent',
+    location: 'Holsworthy yard',
+    summary:
+      'Hands-on role casting, finishing and quality-checking precast products. Training provided — concrete experience welcome but not essential.',
+  },
+  {
+    slug: 'yard-hand',
+    title: 'Yard Hand',
+    type: 'Full-time · Permanent',
+    location: 'Holsworthy yard',
+    summary:
+      'Loading wagons, moving stock, keeping the yard tidy. Telehandler / forklift ticket an advantage. Strong physical role, friendly team.',
+  },
+  {
+    slug: 'office-admin',
+    title: 'Office / Admin Support',
+    type: 'Full-time · Permanent',
+    location: 'Holsworthy yard',
+    summary:
+      'Front-of-house for the yard office. Phones, quotes, scheduling, email. Sage 50 experience welcome. Family-business pace.',
+  },
+];
+
+const benefits = [
+  {
+    title: 'Pension',
+    desc: 'Auto-enrolment workplace pension with employer contributions above statutory minimum.',
+  },
+  {
+    title: 'Training & development',
+    desc: 'We invest in tickets and qualifications. We recently put one of our drivers through their C+E.',
+  },
+  {
+    title: 'Holiday',
+    desc: '28 days including bank holidays. Long-service additions on top.',
+  },
+  {
+    title: 'Location',
+    desc: 'Purpose-built yard near Holsworthy. Free parking, decent canteen, no rush-hour commute.',
+  },
+];
+---
+
+<BaseLayout
+  title="Careers — work at the yard"
+  description="We're hiring at the yard. Concrete production, yard hands, office support — full-time roles at our Holsworthy site. 46 jobs at the new yard. Apply with the form."
+>
+  <!-- Hero -->
+  <section class="relative bg-navy text-white overflow-hidden">
+    <div class="relative container-wccp py-20 md:py-28">
+      <div class="max-w-3xl">
+        <p class="eyebrow text-yellow mb-6">We're hiring</p>
+        <h1 class="font-display text-display-2xl text-white mb-6">
+          We're hiring at the yard.<br />
+          <span class="text-yellow">Come and cast with us.</span>
+        </h1>
+        <p class="text-lg md:text-xl text-white/90 max-w-2xl mb-10 leading-relaxed">
+          Forty-six jobs at the new yard near Holsworthy. Family-led for three generations. Proper
+          training, proper kit, proper pay. If you want to learn a trade that lasts, talk to us.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="#vacancies" class="btn-yellow">See current vacancies</a>
+          <a href="#apply" class="btn-ghost border-white text-white hover:bg-white hover:text-navy">Apply now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Working at WCCP narrative -->
+  <section class="container-wccp py-20">
+    <div class="grid lg:grid-cols-2 gap-12 items-start">
+      <div>
+        <p class="eyebrow text-cast mb-3">Working at WCCP</p>
+        <h2 class="font-display text-display-lg mb-6">
+          North Devon, family-led, fifty-five years in.
+        </h2>
+        <p class="text-cast-700 text-lg leading-relaxed mb-4">
+          We've been casting concrete in this corner of Devon since 1971. Three generations of the
+          same family, now in a purpose-built yard near Holsworthy. The kit's better than ever —
+          but the people are still what makes it work.
+        </p>
+        <p class="text-cast-700 text-lg leading-relaxed mb-4">
+          We invest in our team. We recently put one of our drivers, Jake, through his C+E ticket
+          because the right person was worth the time and money. That's how we do it.
+        </p>
+        <p class="text-cast-700 text-lg leading-relaxed">
+          If you want a steady job with a family business that knows your name and pays you fairly,
+          we'd like to hear from you.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div class="card p-6 text-center">
+          <div class="font-display font-bold text-display-xl text-navy mb-1">46</div>
+          <div class="text-cast text-sm font-medium uppercase tracking-wide">Jobs at the new yard</div>
+        </div>
+        <div class="card p-6 text-center">
+          <div class="font-display font-bold text-display-xl text-navy mb-1">55</div>
+          <div class="text-cast text-sm font-medium uppercase tracking-wide">Years in North Devon</div>
+        </div>
+        <div class="card p-6 text-center">
+          <div class="font-display font-bold text-display-xl text-navy mb-1">3</div>
+          <div class="text-cast text-sm font-medium uppercase tracking-wide">Generations of the same family</div>
+        </div>
+        <div class="card p-6 text-center">
+          <div class="font-display font-bold text-display-xl text-navy mb-1">100%</div>
+          <div class="text-cast text-sm font-medium uppercase tracking-wide">UK manufactured</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vacancies -->
+  <section id="vacancies" class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-10">
+        <p class="eyebrow text-cast mb-3">Currently hiring · {vacancies.length} roles</p>
+        <h2 class="font-display text-display-lg">Current vacancies.</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {vacancies.map((v) => (
+          <article class="card p-6 flex flex-col">
+            <p class="eyebrow text-ember mb-2">{v.type}</p>
+            <h3 class="font-display text-xl font-bold text-navy mb-2">{v.title}</h3>
+            <p class="text-cast text-sm uppercase tracking-wide mb-3">{v.location}</p>
+            <p class="text-cast-700 leading-relaxed mb-6 flex-1">{v.summary}</p>
+            <a href="#apply" class="btn-primary justify-center">Apply for this role</a>
+          </article>
+        ))}
+      </div>
+
+      <p class="text-cast text-sm mt-8 max-w-2xl">
+        Don't see your trade? We always have an ear out for HGV drivers, telehandler operators and
+        good production hands. Send a CV anyway — we'll keep it on file.
+      </p>
+    </div>
+  </section>
+
+  <!-- What we offer -->
+  <section class="container-wccp py-20">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">What we offer</p>
+      <h2 class="font-display text-display-lg">Pay, training, holiday and a yard you'll like.</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+      {benefits.map((b) => (
+        <div class="card p-6">
+          <h3 class="font-display text-lg font-bold text-navy mb-2">{b.title}</h3>
+          <p class="text-cast text-sm leading-relaxed">{b.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Application form -->
+  <section id="apply" class="bg-navy text-white py-20">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-[1fr_2fr] gap-12">
+        <div>
+          <p class="eyebrow text-yellow mb-3">Apply now</p>
+          <h2 class="font-display text-display-lg mb-6">Send us a CV.</h2>
+          <p class="text-white/90 text-lg leading-relaxed mb-4">
+            Fill in what you can. Attach a CV if you've got one — if not, tell us about your work
+            history in the message and we'll pick it up from there.
+          </p>
+          <p class="text-white/90 leading-relaxed">
+            Or just ring the yard on <a href={`tel:${site.contact.phoneIntl}`} class="text-yellow font-bold hover:underline">{site.contact.phone}</a>
+            and ask for the office.
+          </p>
+        </div>
+
+        <form
+          name="careers"
+          method="POST"
+          enctype="multipart/form-data"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="card p-6 bg-bone-100 text-navy space-y-4"
+        >
+          <input type="hidden" name="form-name" value="careers" />
+          <p class="hidden">
+            <label>Don't fill this out: <input name="bot-field" /></label>
+          </p>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="c-name" class="block text-sm font-semibold text-navy mb-1">Name *</label>
+              <input id="c-name" name="name" type="text" required class="input" autocomplete="name" />
+            </div>
+            <div>
+              <label for="c-phone" class="block text-sm font-semibold text-navy mb-1">Phone *</label>
+              <input id="c-phone" name="phone" type="tel" required class="input" autocomplete="tel" />
+            </div>
+          </div>
+
+          <div>
+            <label for="c-email" class="block text-sm font-semibold text-navy mb-1">Email *</label>
+            <input id="c-email" name="email" type="email" required class="input" autocomplete="email" />
+          </div>
+
+          <div>
+            <label for="c-role" class="block text-sm font-semibold text-navy mb-1">Role applying for *</label>
+            <select id="c-role" name="role" required class="input">
+              <option value="">— Select —</option>
+              {vacancies.map((v) => <option value={v.title}>{v.title}</option>)}
+              <option value="Speculative">Speculative — none of the above</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="c-cv" class="block text-sm font-semibold text-navy mb-1">CV (PDF or Word)</label>
+            <input id="c-cv" name="cv" type="file" accept=".pdf,.doc,.docx" class="input" />
+            <p class="text-cast text-xs mt-1">Optional. Max 10MB.</p>
+          </div>
+
+          <div>
+            <label for="c-message" class="block text-sm font-semibold text-navy mb-1">Why do you want to work with us? *</label>
+            <textarea id="c-message" name="message" rows="5" required class="input" placeholder="A few lines about your work history and why you'd like to join the yard."></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary w-full justify-center">Send application</button>
+          <p class="text-cast text-xs text-center">
+            Your application stays with us — we don't share CVs with third parties.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

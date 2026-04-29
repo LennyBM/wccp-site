@@ -1,0 +1,60 @@
+---
+import { site } from '@/config/site';
+
+interface Crumb {
+  href?: string;
+  label: string;
+}
+
+interface Props {
+  items: Crumb[];
+  /** Background variant — `bone` for use over light surfaces, `navy` for use inside dark hero blocks */
+  variant?: 'bone' | 'navy';
+}
+
+const { items, variant = 'bone' } = Astro.props;
+
+const fullCrumbs: Crumb[] = [{ href: '/', label: 'Home' }, ...items];
+
+// JSON-LD BreadcrumbList — schema.org-compliant
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: fullCrumbs.map((c, idx) => ({
+    '@type': 'ListItem',
+    position: idx + 1,
+    name: c.label,
+    ...(c.href ? { item: new URL(c.href, site.url).toString() } : {}),
+  })),
+};
+
+const baseClass = variant === 'navy'
+  ? 'text-white/90 hover:text-yellow'
+  : 'text-cast hover:text-ember';
+const currentClass = variant === 'navy' ? 'text-yellow' : 'text-navy';
+const sepClass    = variant === 'navy' ? 'text-white/30' : 'text-cast-300';
+---
+
+<nav aria-label="Breadcrumb" class="text-sm">
+  <ol class="flex flex-wrap items-center gap-x-2 gap-y-1">
+    {fullCrumbs.map((c, idx) => {
+      const isLast = idx === fullCrumbs.length - 1;
+      return (
+        <li class="flex items-center gap-2">
+          {idx > 0 && (
+            <svg class={`w-3 h-3 ${sepClass} shrink-0`} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          )}
+          {isLast || !c.href ? (
+            <span class={`font-semibold ${currentClass}`} aria-current="page">{c.label}</span>
+          ) : (
+            <a href={c.href} class={`transition-colors duration-150 ${baseClass}`}>{c.label}</a>
+          )}
+        </li>
+      );
+    })}
+  </ol>
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />

@@ -1,0 +1,347 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import ProductIllustration from '@/components/ProductIllustration.astro';
+import SpecTicker from '@/components/SpecTicker.astro';
+import CapacityIndicator from '@/components/CapacityIndicator.astro';
+import { Image } from 'astro:assets';
+import yardHero from '@/assets/images/yard-hero.jpg';
+import agriculturalCard from '@/assets/images/cards/agricultural-card.jpg';
+import { site } from '@/config/site';
+
+// Map flagship product hrefs to illustration slugs
+const flagshipSlugMap: Record<string, string> = {
+  '/products/cattle-cubicles':     'cattle-cubicles',
+  '/products/slurry-storage':      'slurry-storage',
+  '/products/prestressed-panels':  'prestressed-panels',
+  '/products/milking-robot-bases': 'milking-robot-bases',
+  '/products/retaining-walls':     'retaining-walls',
+  '/products/silage-clamp-walls':  'silage-clamp-walls',
+};
+
+const sectors = [
+  {
+    href: '/sectors/agricultural',
+    label: 'Agricultural',
+    desc: 'Slurry, cubicles, troughs, silage clamps, milking robot bases.',
+    icon: 'M3 21h18M5 21V8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v13M9 21V11M15 21V11',
+  },
+  {
+    href: '/sectors/civils',
+    label: 'Civils & Infrastructure',
+    desc: 'Retaining walls, culverts, padstones, vehicle pits.',
+    icon: 'M2 22h20M3 22V8l9-6 9 6v14M9 22V12h6v10',
+  },
+  {
+    href: '/sectors/bespoke',
+    label: 'Bespoke',
+    desc: "If it's precast and it can be delivered, we can make it.",
+    icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5',
+  },
+];
+
+const flagshipProducts = [
+  { href: '/products/cattle-cubicles',        label: 'Cattle Cubicles',         meta: 'Holstein / Jersey / beef' },
+  { href: '/products/slurry-storage',         label: 'Slurry Storage',          meta: 'SSAFO 2018 · 6-month capacity' },
+  { href: '/products/prestressed-panels',     label: 'Prestressed Wall Panels', meta: '100/150/180/280mm · BS EN 14992' },
+  { href: '/products/milking-robot-bases',    label: 'Milking Robot Bases',     meta: 'DeLaval VMS · Lely Astronaut' },
+  { href: '/products/retaining-walls',        label: 'Retaining Walls',         meta: 'King Post · L-Block · Cantilever' },
+  { href: '/products/silage-clamp-walls',     label: 'Silage Clamp Walls',      meta: 'C40/50 · sulphate-resisting' },
+];
+
+const stats = [
+  { value: '55', suffix: 'yr', label: 'In North Devon' },
+  { value: '46', suffix: '',   label: 'On the team' },
+  { value: '500', suffix: '+', label: 'Farms supplied' },
+];
+
+const trustLogos = ['CE / UKCA', 'BS EN 14992', 'BS 8500-1:2023', 'Eurocode 2', 'SSAFO 2018', 'BS 5502-22'];
+---
+
+<BaseLayout
+  title="Precast concrete, cast in North Devon"
+  description={site.description}
+  schema="LocalBusiness"
+>
+  <TrustStrip />
+
+  <!-- ====== Hero ====== -->
+  <section class="relative bg-navy-700 text-white overflow-hidden">
+    <!-- Real drone photograph of the Chilsworthy yard -->
+    <div aria-hidden="true" class="absolute inset-0">
+      <Image
+        src={yardHero}
+        alt=""
+        widths={[640, 960, 1280, 1600, 1920]}
+        sizes="100vw"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+        class="w-full h-full object-cover scale-105 animate-fade-in"
+        style="object-position: center 35%;"
+      />
+      <!-- Refined navy gradient overlay (#0A1A4F) so headline pops without the harsh #0000FE wash -->
+      <div class="absolute inset-0" style="background: linear-gradient(105deg, rgba(10, 26, 79, 0.92) 0%, rgba(10, 26, 79, 0.78) 45%, rgba(10, 26, 79, 0.55) 100%);"></div>
+      <!-- Subtle vignette top-bottom -->
+      <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(10, 26, 79, 0.45) 0%, transparent 30%, transparent 70%, rgba(10, 26, 79, 0.55) 100%);"></div>
+    </div>
+
+    <div class="relative container-wccp py-20 md:py-28 lg:py-36">
+      <div class="max-w-3xl">
+        <p class="eyebrow text-yellow mb-6">
+          <span class="inline-block w-8 h-px bg-yellow align-middle mr-3"></span>
+          Manufacturing since 1971
+        </p>
+
+        <h1 class="font-display text-display-2xl text-white mb-6 animate-fade-in-up">
+          Precast concrete,<br />
+          cast in <span class="relative inline-block">
+            <span class="relative z-10">North Devon</span>
+            <span aria-hidden="true" class="absolute inset-x-0 bottom-1 h-3 bg-yellow/30 -z-0"></span>
+          </span>.<br />
+          <span class="text-yellow">Made to last.</span>
+        </h1>
+
+        <p class="text-lg md:text-xl text-white/90 max-w-2xl mb-10 leading-relaxed">
+          Specialists in precast and prestressed concrete products for over 50 years.
+          We design, cast and deliver across Devon, Cornwall, Somerset, Dorset and nationwide —
+          for the farms, contractors and architects who'd rather it lasted.
+        </p>
+
+        <div class="flex flex-wrap gap-3">
+          <a href="/quote" class="btn-primary group">
+            <span>Get a quote in 24h</span>
+            <svg class="w-4 h-4 arrow-float" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+              <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href={`tel:${site.contact.phoneIntl}`} class="btn-yellow">
+            Call {site.contact.phone}
+          </a>
+          <a href="/products" class="btn-ghost border-white text-white hover:bg-white hover:text-navy-logo">
+            See products
+          </a>
+        </div>
+
+        <!-- Standards strip — subtle credibility under the CTA -->
+        <div class="mt-12 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs text-white/85">
+          <span class="text-yellow font-bold tracking-wide">MANUFACTURED TO</span>
+          {trustLogos.slice(0, 4).map((s) => (
+            <span class="font-mono">{s}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll cue (mobile only — desktop users know how to scroll) -->
+    <div aria-hidden="true" class="lg:hidden absolute bottom-6 left-1/2 -translate-x-1/2 animate-pulse-soft">
+      <svg class="w-6 h-6 text-yellow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="12" y1="5" x2="12" y2="19" stroke-linecap="round"/>
+        <polyline points="19 12 12 19 5 12" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ====== Concrete spec ticker — today's mix, signals competence ====== -->
+  <SpecTicker />
+
+  <!-- ====== Standards marquee — moving trust strip ====== -->
+  <section class="bg-white border-y border-cast-100 py-6 overflow-hidden mask-fade-x">
+    <div class="marquee-track text-cast-500 font-display font-bold text-sm uppercase tracking-widest">
+      {[...Array(2)].flatMap((_, dup) => trustLogos.map((logo) => (
+        <span class="flex items-center gap-12">
+          <span>{logo}</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-yellow"></span>
+        </span>
+      )))}
+    </div>
+  </section>
+
+  <!-- ====== Sectors (subtle separator from white marquee section) ====== -->
+  <section class="border-t border-cast-100 container-wccp section-rhythm reveal">
+    <div class="max-w-2xl mb-12">
+      <p class="eyebrow text-cast mb-3">What we make</p>
+      <h2 class="font-display text-display-lg mb-4">For the farms, civils and bespoke jobs of the West Country.</h2>
+      <p class="text-cast text-lg">
+        Three sectors, one yard. Browse by what you're building, or talk to us about something custom.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 reveal-stagger">
+      {sectors.map((s) => (
+        <a href={s.href} class="card overflow-hidden group block">
+          <!-- Image area — real photo for agricultural, gradient placeholders otherwise -->
+          <div class="aspect-[4/3] bg-navy-700 relative overflow-hidden">
+            {s.href === '/sectors/agricultural' ? (
+              <>
+                <Image
+                  src={agriculturalCard}
+                  alt=""
+                  widths={[400, 600, 800, 1200]}
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  loading="lazy"
+                  decoding="async"
+                  class="card-image absolute inset-0 w-full h-full object-cover"
+                />
+                <!-- Subtle navy fade for text legibility on hover labels -->
+                <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-navy-700/40 via-transparent to-transparent"></div>
+              </>
+            ) : (
+              <>
+                <div
+                  class="card-image absolute inset-0"
+                  style="background: radial-gradient(circle at 30% 20%, #1530E2 0%, #0024D6 50%, #0000FE 100%);"
+                ></div>
+                <div
+                  aria-hidden="true"
+                  class="absolute inset-0 opacity-15"
+                  style="background-image: repeating-linear-gradient(45deg, #FBF547 0, #FBF547 1px, transparent 1px, transparent 18px);"
+                ></div>
+                <svg class="absolute inset-0 m-auto w-20 h-20 text-yellow opacity-90 transition-transform duration-700 group-hover:scale-110 group-hover:rotate-3"
+                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d={s.icon} stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </>
+            )}
+          </div>
+          <div class="p-6">
+            <h3 class="font-display text-2xl font-bold text-navy mb-2 transition-colors duration-200 group-hover:text-ember">
+              {s.label}
+            </h3>
+            <p class="text-cast text-sm leading-relaxed">{s.desc}</p>
+            <div class="mt-4 flex items-center gap-2 text-ember font-semibold text-sm">
+              <span>Explore</span>
+              <svg class="w-4 h-4 arrow-float" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+                <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- ====== Flagship products (subtle separator on bone-200 transition) ====== -->
+  <section class="border-t border-cast-100 bg-bone-200 section-rhythm reveal">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-12 gap-4">
+        <div>
+          <p class="eyebrow text-cast mb-3">Most-asked-for</p>
+          <h2 class="font-display text-display-lg">Flagship products</h2>
+        </div>
+        <a href="/products" class="text-ember font-bold inline-flex items-center gap-2 link-underline group">
+          <span>View full range</span>
+          <svg class="w-4 h-4 arrow-float" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+            <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 reveal-stagger">
+        {flagshipProducts.map((p) => (
+          <a href={p.href} class="card p-6 group block">
+            <div class="mb-5 relative">
+              <ProductIllustration product={flagshipSlugMap[p.href] as any} variant="card" />
+              <div aria-hidden="true" class="absolute top-2 right-2 w-2 h-2 bg-ember rounded-full transition-all duration-400 group-hover:scale-150 group-hover:shadow-glow-ember pointer-events-none"></div>
+            </div>
+            <h3 class="font-display text-lg font-bold text-navy mb-1 transition-colors duration-200 group-hover:text-ember">
+              {p.label}
+            </h3>
+            <p class="text-cast text-sm">{p.meta}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Trust + stats block ====== -->
+  <section class="container-wccp section-rhythm border-t border-cast-100 reveal">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <p class="eyebrow text-cast mb-3">Family-run, North Devon</p>
+        <h2 class="font-display text-display-lg mb-6">Fifty-five years of casting concrete that lasts.</h2>
+        <p class="text-cast text-lg leading-relaxed mb-6">
+          We started casting in 1971 in a yard outside South Molton. We're now in a purpose-built site
+          near Holsworthy. The kit's better, the team's bigger, the concrete's the same answer to the
+          same question: <strong class="text-navy">what'll outlast the job?</strong>
+        </p>
+        <p class="text-cast text-lg leading-relaxed mb-8">
+          Bespoke or catalogue. Farm or civils. We design, manufacture, deliver — and increasingly install.
+          Talk to the yard.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="/about" class="btn-secondary">Our story</a>
+          <a href="/case-studies" class="btn-ghost">See our work</a>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 reveal-stagger">
+        {stats.map((s) => (
+          <div class="card p-6 text-center group">
+            <div class="stat-counter text-display-xl mb-1 tabular-nums" data-count={s.value}>
+              <span class="counter-value">{s.value}</span><span class="text-ember">{s.suffix}</span>
+            </div>
+            <div class="text-cast text-xs sm:text-sm font-bold uppercase tracking-wider">{s.label}</div>
+            <div aria-hidden="true" class="mt-3 mx-auto w-8 h-0.5 bg-cast-200 group-hover:bg-yellow scale-x-0 group-hover:scale-x-100 transition-all duration-400 origin-center"></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Live capacity indicator (sits between stats and grants strip) ====== -->
+  <section class="container-wccp pb-6 -mt-6 flex justify-center">
+    <CapacityIndicator weeks={4} />
+  </section>
+
+  <!-- ====== Funding / grants strip ====== -->
+  <section class="relative bg-yellow text-navy py-12 overflow-hidden">
+    <!-- Subtle diagonal heritage pattern -->
+    <div
+      aria-hidden="true"
+      class="absolute inset-0 opacity-10"
+      style="background-image: repeating-linear-gradient(-45deg, #0000FE 0, #0000FE 1px, transparent 1px, transparent 16px);"
+    ></div>
+    <div class="relative container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-navy mb-2 inline-flex items-center gap-2">
+            <span class="inline-flex items-center justify-center w-2 h-2 bg-ember rounded-full animate-pulse-soft"></span>
+            <span>£74m available · closes 30 Sept 2026</span>
+          </p>
+          <h2 class="font-display text-display-md">Slurry Infrastructure Grant 2026 — we'll help you spec it.</h2>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a href="/grants/slurry-grant" class="btn-secondary">Read the guide</a>
+          <a href="/quote" class="btn bg-navy text-white hover:bg-navy-700">Start a quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Final CTA ====== -->
+  <section class="container-wccp section-rhythm text-center reveal">
+    <p class="eyebrow text-cast mb-4">No call centre. No menu options.</p>
+    <h2 class="font-display text-display-xl mb-4">Talk to the yard.</h2>
+    <p class="text-cast text-lg max-w-xl mx-auto mb-10">
+      Same-day callback Monday to Friday. Or send a WhatsApp with photos and rough sizes — we work with what you've got.
+    </p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">
+        Call {site.contact.phone}
+      </a>
+      <a href={`https://wa.me/${site.contact.whatsapp.replace('+', '')}`} class="btn-yellow">
+        WhatsApp us
+      </a>
+      <a href="/quote" class="btn-primary">Configure a quote</a>
+    </div>
+  </section>
+
+  <!-- ====== Stat counter animation — bundled, auto-discovers [data-count] ====== -->
+  <script>
+    import '@/scripts/count-up';
+  </script>
+</BaseLayout>

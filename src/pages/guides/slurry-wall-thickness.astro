@@ -1,0 +1,475 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PillarConversionAside from '@/components/PillarConversionAside.astro';
+import { site } from '@/config/site';
+
+const faqs = [
+  {
+    q: 'What is the minimum legal wall thickness for a UK slurry store?',
+    a: 'There is no single minimum thickness in law. SSAFO 2018 requires a 20-year design life and structural adequacy to BS 5502-50 and BS EN 1992-3. In practice that means 200mm precast panels for retained heights up to about 2.4m, 250mm for 3m, and 300mm for 3.5m and above.',
+  },
+  {
+    q: 'Do I need to notify the Environment Agency before building a new slurry store?',
+    a: 'Yes. Under SSAFO 2018 you must give the Environment Agency at least 14 days written notice before constructing, substantially enlarging or substantially reconstructing a slurry store. Use form WQE1. The EA can inspect during and after the build.',
+  },
+  {
+    q: 'What concrete grade should slurry store walls be?',
+    a: 'C40/50 with sulphate-resisting cement (typically CEM III/B or CEM IV with low C3A) is the standard. Slurry contains hydrogen sulphide and ammonia which attack ordinary Portland cement. Cover to reinforcement should be 50mm minimum on the slurry-facing side.',
+  },
+  {
+    q: 'How long should a slurry store last?',
+    a: 'SSAFO 2018 specifies a 20-year minimum design life with reasonable maintenance. Properly cast precast panels with adequate cover and a sulphate-resisting mix routinely outlast that — we have stores from the 1980s still in service across Devon and Cornwall.',
+  },
+  {
+    q: 'Can I build a circular concrete slurry store?',
+    a: 'Yes. Circular stores in hoop-tensioned precast or in-situ slip-formed concrete are common above 2,000m³ capacity because the geometry resists hydrostatic pressure efficiently. Below that capacity, rectangular precast panel stores are usually cheaper and quicker to install.',
+  },
+  {
+    q: 'What capacity do I need for the Slurry Infrastructure Grant 2026?',
+    a: 'The Slurry Infrastructure Grant Round 4 (closing 30 September 2026, £74m fund) requires you to demonstrate at least 6 months of slurry storage capacity post-build. Capacity is calculated against your livestock numbers using the AHDB slurry calculator.',
+  },
+  {
+    q: 'Do precast slurry walls need an internal liner or coating?',
+    a: 'Not if the concrete is correctly specified. A C40/50 sulphate-resisting mix with 50mm cover does not need an internal coating for slurry duty. Coatings are sometimes used at the slurry/air interface where carbonation accelerates wear, but they are optional.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="How thick should a UK slurry store wall be?"
+  description="UK slurry store wall thickness explained: SSAFO 2018 rules, 200mm vs 250mm vs 300mm precast panels by retained height, C40/50 sulphate-resisting concrete and reinforcement cover."
+  image="/images/guides/slurry-wall-thickness.jpg"
+  schema="Article"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <!-- Hero -->
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-14 md:py-16">
+      <nav class="text-sm text-white/90 mb-6" aria-label="Breadcrumb">
+        <a href="/guides" class="hover:text-yellow">Guides</a>
+        <span class="mx-2 text-cast">/</span>
+        <span class="text-white/90">Slurry wall thickness</span>
+      </nav>
+      <p class="eyebrow text-yellow mb-4">Slurry storage · Pillar guide</p>
+      <h1 class="font-display text-display-xl text-white mb-6 max-w-4xl">
+        How thick should a UK slurry store wall be?
+      </h1>
+
+      <!-- Direct answer for AI engines -->
+      <div class="bg-navy-700 border-l-4 border-yellow p-6 max-w-3xl rounded-r">
+        <p class="text-white/90 text-lg leading-relaxed">
+          <strong class="text-white">Direct answer:</strong> UK slurry store walls are typically 200mm
+          thick precast panels for retained slurry up to 2.4m deep, 250mm for up to 3m, and 300mm
+          for 3.5m and above. SSAFO 2018 requires structural adequacy to BS 5502-50 and BS EN 1992-3
+          with a 20-year minimum design life. C40/50 sulphate-resisting concrete is standard.
+        </p>
+      </div>
+
+      <!-- Byline -->
+      <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/90">
+        <div>
+          By <span class="text-white font-semibold">WCCP Engineering Team</span>
+        </div>
+        <div>
+          Published <time datetime="2026-03-12">12 March 2026</time>
+        </div>
+        <div>
+          Updated <time datetime="2026-04-22">22 April 2026</time>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Body -->
+  <article class="container-wccp py-12 md:py-16">
+    <div class="grid lg:grid-cols-[1fr_18rem] gap-10 lg:gap-16">
+      <!-- Main content -->
+      <div class="max-w-3xl">
+
+        <!-- TOC (mobile) -->
+        <details class="lg:hidden mb-10 border border-cast-100 rounded-lg p-5">
+          <summary class="font-display text-lg font-bold text-navy cursor-pointer">On this page</summary>
+          <ol class="mt-4 space-y-2 text-cast list-decimal list-inside">
+            <li><a href="#ssafo" class="hover:text-ember">What SSAFO 2018 requires</a></li>
+            <li><a href="#thickness-by-height" class="hover:text-ember">Wall thickness by retained height</a></li>
+            <li><a href="#comparison" class="hover:text-ember">200mm vs 250mm vs 300mm panels</a></li>
+            <li><a href="#concrete-grade" class="hover:text-ember">Concrete grade and sulphate resistance</a></li>
+            <li><a href="#reinforcement" class="hover:text-ember">Reinforcement and cover</a></li>
+            <li><a href="#mistakes" class="hover:text-ember">Common mistakes</a></li>
+            <li><a href="#checklist" class="hover:text-ember">Compliance checklist</a></li>
+            <li><a href="#faq" class="hover:text-ember">FAQ</a></li>
+          </ol>
+        </details>
+
+        <!-- Section 1 -->
+        <section id="ssafo" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What does SSAFO 2018 require for slurry store walls?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">SSAFO 2018 — the Silage, Slurry and Agricultural Fuel Oil (England) Regulations 2018 —
+            requires every new or substantially altered slurry store to have a 20-year minimum design life,
+            be structurally adequate to BS 5502-50 and BS EN 1992-3, and be impermeable to slurry.</strong>
+            You must also give the Environment Agency 14 days' written notice before construction.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            The regulations don't prescribe a wall thickness. They prescribe the outcome: the wall has to
+            stand up to 20 years of hydrostatic pressure, agitator loads, vehicle impact at the parapet,
+            freeze-thaw cycles and the chemistry of the slurry itself, without leaking. Thickness is the
+            engineer's answer to those forces.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            In practice, every precast panel we supply for slurry duty is designed by a structural engineer
+            against the specific retained height, the soil and groundwater conditions, and the post or
+            buttress spacing. The numbers in the table below are typical — your job will be designed to
+            match.
+          </p>
+        </section>
+
+        <!-- Section 2 -->
+        <section id="thickness-by-height" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What wall thickness do I need for a given slurry depth?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            <strong class="text-navy">For retained slurry depths up to 2.4m, 200mm precast panels are standard.
+            For 2.4m to 3m, step up to 250mm. For 3m to 3.5m, 300mm panels with closer post spacing or
+            increased reinforcement. Above 3.5m, design becomes site-specific and a structural review is
+            required.</strong> These figures assume a slurry density of 1,020 kg/m³ and standard post-and-panel
+            construction with 1.8m post centres.
+          </p>
+
+          <div class="overflow-x-auto mb-4 -mx-4 sm:mx-0">
+            <table class="spec-table min-w-full px-4 sm:px-0">
+              <thead>
+                <tr>
+                  <th>Retained height</th>
+                  <th>Panel thickness</th>
+                  <th>Typical post centres</th>
+                  <th>Concrete grade</th>
+                </tr>
+              </thead>
+              <tbody class="text-cast">
+                <tr>
+                  <td>Up to 1.8m</td>
+                  <td><strong class="text-navy">180mm</strong></td>
+                  <td>2.0m</td>
+                  <td>C40/50 SR</td>
+                </tr>
+                <tr>
+                  <td>1.8m – 2.4m</td>
+                  <td><strong class="text-navy">200mm</strong></td>
+                  <td>1.8m</td>
+                  <td>C40/50 SR</td>
+                </tr>
+                <tr>
+                  <td>2.4m – 3.0m</td>
+                  <td><strong class="text-navy">250mm</strong></td>
+                  <td>1.8m</td>
+                  <td>C40/50 SR</td>
+                </tr>
+                <tr>
+                  <td>3.0m – 3.5m</td>
+                  <td><strong class="text-navy">280–300mm</strong></td>
+                  <td>1.5m</td>
+                  <td>C40/50 SR</td>
+                </tr>
+                <tr>
+                  <td>Above 3.5m</td>
+                  <td><strong class="text-navy">Bespoke design</strong></td>
+                  <td>Bespoke</td>
+                  <td>C40/50 SR</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-sm text-cast italic">
+            Based on WCCP standard panel range, BS EN 1992-3 design assumptions, slurry density 1,020 kg/m³,
+            no surcharge from vehicles within 1.5m of parapet.
+          </p>
+        </section>
+
+        <!-- Section 3: Comparison -->
+        <section id="comparison" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">200mm vs 250mm vs 300mm — which panel for which job?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            <strong class="text-navy">200mm panels suit smaller dairy and beef stores up to about 1,500m³.
+            250mm covers most modern dairy units up to 3,000m³. 300mm is for high-capacity stores,
+            deep below-grade tanks and any job where vehicle access runs close to the parapet.</strong>
+            The decision is rarely just about depth — it's about installed cost, agitator size and how
+            close the tractor will get.
+          </p>
+
+          <div class="overflow-x-auto mb-4 -mx-4 sm:mx-0">
+            <table class="spec-table min-w-full px-4 sm:px-0">
+              <thead>
+                <tr>
+                  <th>Spec</th>
+                  <th>200mm panel</th>
+                  <th>250mm panel</th>
+                  <th>300mm panel</th>
+                </tr>
+              </thead>
+              <tbody class="text-cast">
+                <tr>
+                  <td><strong class="text-navy">Max retained height</strong></td>
+                  <td>2.4m</td>
+                  <td>3.0m</td>
+                  <td>3.5m</td>
+                </tr>
+                <tr>
+                  <td><strong class="text-navy">Weight per m²</strong></td>
+                  <td>~480 kg</td>
+                  <td>~600 kg</td>
+                  <td>~720 kg</td>
+                </tr>
+                <tr>
+                  <td><strong class="text-navy">Typical store capacity</strong></td>
+                  <td>Up to 1,500m³</td>
+                  <td>1,500–3,000m³</td>
+                  <td>3,000m³+</td>
+                </tr>
+                <tr>
+                  <td><strong class="text-navy">Vehicle surcharge tolerance</strong></td>
+                  <td>Limited</td>
+                  <td>Standard tractor</td>
+                  <td>HGV / heavy plant</td>
+                </tr>
+                <tr>
+                  <td><strong class="text-navy">Relative cost (per m run)</strong></td>
+                  <td>Baseline</td>
+                  <td>+18%</td>
+                  <td>+35%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Inline mid-article CTA — pillar guide → quote conversion bridge -->
+        <aside class="not-prose my-12 reveal">
+          <a
+            href="/quote?product=slurry-storage"
+            class="group block bg-navy-700 text-white rounded-lg p-6 md:p-7 hover:bg-navy-600 transition-colors duration-300 ease-out-quart shadow-soft hover:shadow-lifted no-underline"
+          >
+            <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
+              <div class="flex-1">
+                <p class="eyebrow text-yellow mb-2">Need this for your farm?</p>
+                <p class="font-display text-xl md:text-2xl text-white font-semibold leading-snug">
+                  Configure a quote in 90 seconds
+                </p>
+                <p class="text-white/85 text-sm mt-2 leading-relaxed">
+                  Pre-filled for slurry storage — five questions, fixed price back within 24 hours.
+                </p>
+              </div>
+              <div class="flex items-center gap-2 text-yellow font-bold whitespace-nowrap">
+                <span>Start the quote</span>
+                <svg class="w-5 h-5 arrow-float" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+                  <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+          </a>
+        </aside>
+
+        <!-- Section 4 -->
+        <section id="concrete-grade" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What concrete grade and cement should slurry walls use?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">C40/50 sulphate-resisting concrete is the standard for UK slurry storage.
+            That means a characteristic cylinder strength of 40 MPa, cube strength of 50 MPa, and a cement
+            blend with low tricalcium aluminate — typically CEM III/B (ground granulated blastfurnace slag) or
+            CEM IV (pozzolanic).</strong> It's specified to BS 8500-1 exposure class XA2 or XA3.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            Slurry attacks ordinary Portland cement through two mechanisms. Hydrogen sulphide produced by
+            anaerobic digestion oxidises to sulphuric acid at the slurry-air interface and dissolves the
+            cement paste. Sulphate ions in the slurry react with C3A in the cement to form ettringite,
+            which expands and cracks the matrix. Sulphate-resisting blends defeat both.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            We cast every slurry panel in C40/50 SR as standard. Grades below C40/50 are not appropriate for
+            slurry duty regardless of how thick the wall is — thickness compensates for structural load,
+            not chemistry.
+          </p>
+        </section>
+
+        <!-- Section 5 -->
+        <section id="reinforcement" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">How much reinforcement and cover do slurry walls need?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Slurry walls need 50mm minimum cover on the slurry-facing face and 40mm
+            on the air face, with reinforcement designed to BS EN 1992-1-1 and BS EN 1992-3.</strong>
+            For a 200mm panel that typically means a single mat of B500B mesh at A393 or heavier; for 250mm
+            and above, twin mats with bar diameter and spacing tuned to the design moment.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            Cover matters more than people think. The Environment Agency's most common reason for failing
+            inspection on a slurry tank isn't structural — it's spalling caused by carbonation and chloride
+            ingress on under-covered rebar. Once the bar starts to rust, it expands seven-fold and pops the
+            cover off. Sufficient cover, properly compacted concrete and a tight crack-width limit (we
+            design to 0.2mm) keep the matrix sound.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            Joints between panels are sealed with hydrophilic waterstop and a polysulphide or polyurethane
+            sealant rated for slurry exposure. The waterstop swells on contact with moisture and
+            self-heals minor movement.
+          </p>
+        </section>
+
+        <!-- Section 6 -->
+        <section id="mistakes" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What are the most common mistakes on slurry store builds?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">The four mistakes we see most often: under-spec'd concrete (using C32/40 or
+            non-sulphate-resisting), inadequate cover at joints, no allowance for vehicle surcharge at the parapet,
+            and skipping the 14-day Environment Agency notice.</strong> Any one of those can fail an inspection or
+            shorten the life of the asset by a decade.
+          </p>
+          <ul class="text-cast-700 text-lg leading-relaxed space-y-3 list-disc pl-6 mb-4">
+            <li><strong class="text-navy">Wrong concrete grade.</strong> C32/40 is fine for a yard slab, not for slurry. Specify C40/50 SR every time.</li>
+            <li><strong class="text-navy">Joint leakage.</strong> Panels are only as good as the waterstop between them. Skipping or skimping on joint detail is the most common source of leaks.</li>
+            <li><strong class="text-navy">Surcharge at the parapet.</strong> If a tractor or muck spreader will run within 1.5m of the wall, the design has to account for it. Tell us at design stage, not after pour.</li>
+            <li><strong class="text-navy">No EA notice.</strong> WQE1 needs 14 days. Submit it before you break ground or you risk a stop notice.</li>
+            <li><strong class="text-navy">Insufficient capacity.</strong> SIG 2026 requires 6 months' storage. Design to capacity, not to budget.</li>
+          </ul>
+        </section>
+
+        <!-- Section 7 -->
+        <section id="checklist" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">SSAFO 2018 compliance checklist</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            <strong class="text-navy">Run through this list before you sign off design and again before you pour.
+            If you can tick all twelve items, your store will pass SSAFO 2018 and qualify for the Slurry
+            Infrastructure Grant 2026.</strong>
+          </p>
+          <div class="bg-bone-200 border-l-4 border-ember p-6 rounded-r">
+            <ol class="text-cast-700 text-base leading-relaxed space-y-3 list-decimal pl-5">
+              <li>Environment Agency notified (form WQE1) at least 14 days before construction</li>
+              <li>Designed to BS 5502-50 and BS EN 1992-3 by a chartered structural engineer</li>
+              <li>Minimum 20-year design life specified in writing</li>
+              <li>Concrete grade C40/50 with sulphate-resisting cement (CEM III/B or CEM IV)</li>
+              <li>Cover to reinforcement: 50mm slurry face, 40mm air face</li>
+              <li>Crack width limited to 0.2mm under quasi-permanent loading</li>
+              <li>Storage capacity meets or exceeds 6 months of livestock output (AHDB calculator)</li>
+              <li>Hydrophilic waterstop and slurry-rated sealant at every joint</li>
+              <li>Parapet height minimum 750mm above maximum slurry level</li>
+              <li>Vehicle surcharge accounted for if access within 1.5m of wall</li>
+              <li>Drainage isolated from clean water (no roof or yard runoff entering store)</li>
+              <li>Filling and emptying points designed to prevent overflow</li>
+            </ol>
+          </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-6">Frequently asked questions</h2>
+          <div class="space-y-4">
+            {faqs.map((f) => (
+              <details class="card p-5 group">
+                <summary class="font-display text-lg font-bold text-navy cursor-pointer flex items-start justify-between gap-4">
+                  <span>{f.q}</span>
+                  <svg class="w-5 h-5 mt-1 flex-shrink-0 text-ember transition-transform group-open:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="12" y1="5" x2="12" y2="19" stroke-linecap="round"/>
+                    <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+                  </svg>
+                </summary>
+                <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <!-- CTA inline -->
+        <section class="bg-navy text-white rounded-lg p-8 md:p-10">
+          <h2 class="font-display text-2xl md:text-3xl text-white mb-3">Designing a slurry store?</h2>
+          <p class="text-white/90 mb-6 leading-relaxed">
+            Send us your livestock numbers and a sketch — we'll come back with a panel schedule,
+            capacity check and a fixed price within 24 hours.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="/products/slurry-storage" class="btn-yellow">See slurry storage range</a>
+            <a href="/quote" class="btn bg-white text-navy hover:bg-bone">Start a quote</a>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Right column: pillar → quote conversion bridge + TOC + SIG nudge -->
+      <div class="space-y-8">
+        <PillarConversionAside
+          product="Slurry Storage"
+          productHref="/products/slurry-storage"
+          productImage="/images/products/slurry-storage.jpg"
+          productSpec="200/250/300mm precast panels · C40/50 SR · SSAFO 2018"
+          productSlug="slurry-storage"
+        />
+        <!-- Sticky TOC (desktop) -->
+        <aside class="hidden lg:block">
+          <p class="eyebrow text-cast mb-4">On this page</p>
+          <ol class="space-y-3 text-sm border-l border-cast-100 pl-4">
+            <li><a href="#ssafo" class="text-cast hover:text-ember">What SSAFO 2018 requires</a></li>
+            <li><a href="#thickness-by-height" class="text-cast hover:text-ember">Thickness by retained height</a></li>
+            <li><a href="#comparison" class="text-cast hover:text-ember">200mm vs 250mm vs 300mm</a></li>
+            <li><a href="#concrete-grade" class="text-cast hover:text-ember">Concrete grade</a></li>
+            <li><a href="#reinforcement" class="text-cast hover:text-ember">Reinforcement and cover</a></li>
+            <li><a href="#mistakes" class="text-cast hover:text-ember">Common mistakes</a></li>
+            <li><a href="#checklist" class="text-cast hover:text-ember">Compliance checklist</a></li>
+            <li><a href="#faq" class="text-cast hover:text-ember">FAQ</a></li>
+          </ol>
+
+          <div class="mt-8 p-4 bg-yellow rounded-lg">
+            <p class="text-xs font-bold text-navy uppercase tracking-wide mb-2">SIG 2026 deadline</p>
+            <p class="text-sm text-navy mb-3 leading-snug">£74m fund · closes 30 September 2026</p>
+            <a href="/grants/slurry-grant" class="text-navy font-bold text-sm hover:underline">Read the SIG guide &rarr;</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </article>
+
+  <!-- Related guides -->
+  <section class="bg-bone-200 py-16">
+    <div class="container-wccp">
+      <p class="eyebrow text-cast mb-3">Related guides</p>
+      <h2 class="font-display text-display-md mb-8">Keep reading.</h2>
+
+      <div class="grid md:grid-cols-3 gap-5">
+        <a href="/guides/ssafo-2018-compliance" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Regulations</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">SSAFO 2018 compliance checklist</h3>
+          <p class="text-cast text-sm leading-relaxed">14-day notice, BS 5502-50 design life, drainage rules and EA inspection rights.</p>
+        </a>
+        <a href="/guides/concrete-grades-agriculture" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Materials</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Concrete grades for agricultural use</h3>
+          <p class="text-cast text-sm leading-relaxed">Why slurry stores need C40/50 SR and silage clamps need acid-resistant mixes.</p>
+        </a>
+        <a href="/guides/slurry-infrastructure-grant-2026" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Grants</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Slurry Infrastructure Grant 2026</h3>
+          <p class="text-cast text-sm leading-relaxed">£74m, capacity bands, eligibility and the 30 September 2026 deadline.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="container-wccp py-16 text-center">
+    <h2 class="font-display text-display-lg mb-4">Talk to the yard.</h2>
+    <p class="text-cast-700 text-lg max-w-xl mx-auto mb-8">
+      Same-day callback Monday to Friday. We'll talk you through the design before you commit a penny.
+    </p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+      <a href="/quote" class="btn-primary">Configure a quote</a>
+    </div>
+  </section>
+</BaseLayout>

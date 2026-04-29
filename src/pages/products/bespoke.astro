@@ -1,0 +1,228 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import { site } from '@/config/site';
+
+const process = [
+  { step: '1', title: 'Drawing', desc: 'You send a sketch, photo or full GA. We send back our take, with a fixed price and lead-time.' },
+  { step: '2', title: 'Mould', desc: 'We build the mould in our pattern shop — timber, steel or polyurethane depending on cast count and finish.' },
+  { step: '3', title: 'Cast', desc: 'Cast in C40/50 to BS EN 13369 with full QC and certification. Bespoke finishes — board-marked, exposed-aggregate, polished.' },
+  { step: '4', title: 'Deliver', desc: 'Onto your site, on the day. HIAB, articulated low-loader or escort vehicle as needed.' },
+];
+
+const examples = [
+  { title: 'Stadium step risers', desc: 'Curved precast risers for a Devon football ground.' },
+  { title: 'Heritage coping stones', desc: 'Listed-building replacement copings, board-marked finish.' },
+  { title: 'AD-plant feed hoppers', desc: 'Hopper-shaped tanks for biomass digester feed.' },
+  { title: 'Custom slurry tanks', desc: 'Non-rectangular slurry stores around existing buildings.' },
+  { title: 'Cattle grids', desc: 'Highway-grade cattle grids to local-authority spec.' },
+  { title: 'Architectural copings', desc: 'Boundary wall copings — chamfered, weathered, polished.' },
+];
+
+const applications = [
+  'Architectural and heritage replacement components',
+  'AD-plant tanks, hoppers and pre-treatment vessels',
+  'Sports stadium risers, treads and boundary panels',
+  'Custom retaining walls around obstructions',
+  'Specialist agricultural housing and tanks',
+  'Civils components for road and rail schemes',
+  'Decorative landscape features and seating',
+];
+
+const related = [
+  { href: '/products/prestressed-panels', label: 'Prestressed Panels', meta: 'BS EN 14992 · UKCA' },
+  { href: '/products/interlocking-blocks', label: 'Interlocking Blocks', meta: 'Beton-style · 1485kg' },
+  { href: '/products/culverts', label: 'Box Culverts', meta: 'BS EN 1916' },
+  { href: '/products/padstones', label: 'Padstones', meta: '200×200 to 600×600' },
+];
+
+const faqs = [
+  { q: 'What can you cast?', a: 'If it is precast and it can be delivered, we can make it. We have cast everything from 5kg architectural copings to 14-tonne hoppers. The limits are mould-build cost (one-off jobs need amortising over the cast count) and what fits on a lorry — for the West Country that is roughly 4m wide × 22m long × 3.5m high.' },
+  { q: 'How does the process work?', a: 'You send a drawing or sketch. We give a fixed price and lead-time within 3–5 working days, including the mould cost. We build the mould in our pattern shop, cast, cure, certify and deliver. Most bespoke jobs are 4 to 8 weeks from order; complex moulds 8 to 12.' },
+  { q: 'What about mould cost on a one-off?', a: 'Timber moulds for a single cast are cheaper but limited to simple geometry. Polyurethane moulds for repeat casts cost more upfront but the per-unit price drops fast. We will tell you the breakeven count when we quote — sometimes a 6-cast batch is cheaper than 3 separate one-offs.' },
+  { q: 'Can you match an existing concrete?', a: 'Yes — we sample finishes for architectural and heritage work before committing to the cast. Local aggregate, white cement, board-marked timber pattern, sandblast or acid-etch finishes — whatever the heritage officer wants signed off, we will get there before we cast the panel.' },
+  { q: 'Do you do design work?', a: 'Yes — our in-house design team will take a sketch and turn it into a structurally sound precast unit, with calcs to BS EN 1992. Free for jobs that go ahead; chargeable for design-only work.' },
+];
+
+const productSchema = {
+  name: 'Bespoke Precast Concrete Components',
+  description: 'Custom precast concrete moulds and components. From architectural copings to AD-plant tanks. Drawing to mould to cast to delivery in 4 to 8 weeks. C40/50 concrete to BS EN 13369.',
+  brand: { '@type': 'Brand', name: site.name },
+  manufacturer: { '@type': 'Organization', name: site.name },
+  category: 'Bespoke precast concrete',
+  material: 'Reinforced concrete, C40/50 (BS 8500-1:2023) or to spec',
+  weight: { '@type': 'QuantitativeValue', minValue: 5, maxValue: 14000, unitCode: 'KGM', unitText: 'kilogram per unit (typical range)' },
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 13369 (production)' },
+    { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 standard, others on request' },
+    { '@type': 'PropertyValue', name: 'Process', value: 'Drawing > mould > cast > deliver' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '4–8 weeks typical, 8–12 weeks complex moulds' },
+    { '@type': 'PropertyValue', name: 'Maximum dimensions', value: '~22m × 4m × 3.5m (transport-limited)' },
+    { '@type': 'PropertyValue', name: 'Finishes available', value: 'Smooth, board-marked, exposed-aggregate, acid-etched, polished' },
+    { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
+  ],
+  offers: { '@type': 'Offer', priceCurrency: 'GBP', availability: 'https://schema.org/PreOrder', seller: { '@type': 'Organization', name: site.name } },
+};
+
+const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+---
+
+<BaseLayout
+  title="Bespoke Precast — custom moulds, cast in North Devon"
+  description="Bespoke precast concrete. If it's precast and it can be delivered, we can make it. Drawing to mould to cast to delivery in 4 to 8 weeks. Cast in North Devon."
+  image="/images/products/bespoke.jpg"
+  schema="Product"
+  schemaData={productSchema}
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <TrustStrip />
+
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow text-yellow mb-4">Custom · architectural · civils · agricultural</p>
+          <h1 class="font-display text-display-xl text-white mb-4">Bespoke Precast.</h1>
+          <p class="text-lg text-white/90 leading-relaxed mb-6">
+            <strong class="text-white">If it is precast and it can be delivered, we can make it.</strong>
+            From a 5kg listed-building coping to a 14-tonne biomass hopper. Drawing in,
+            cast unit out, 4 to 8 weeks typical lead. Pattern shop in-house, design team in-house,
+            yard in North Devon.
+          </p>
+          <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
+            <li class="flex gap-2"><span class="text-yellow">·</span> 4–8 week lead</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> In-house moulds</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> In-house design</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Heritage finishes</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> BS EN 13369</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Free quoting</li>
+          </ul>
+          <div class="flex flex-wrap gap-3">
+            <a href="/quote?product=Bespoke" class="btn-primary">Send us a drawing</a>
+            <a href={`mailto:${site.contact.quotesEmail}`} class="btn-yellow">Email quotes</a>
+            <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">Call {site.contact.phone}</a>
+          </div>
+        </div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-300 via-cast to-navy"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-20">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Process</p>
+      <h2 class="font-display text-display-lg mb-4">Four steps from sketch to site.</h2>
+      <p class="text-cast-700 text-lg">No mystery. No design fees on jobs that go ahead. Fixed price within a week of receiving a drawing.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {process.map((p) => (
+        <div class="card p-6">
+          <div class="font-display font-bold text-display-xl text-yellow mb-2">{p.step}</div>
+          <h3 class="font-display text-lg font-bold text-navy mb-2">{p.title}</h3>
+          <p class="text-cast text-sm leading-relaxed">{p.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow text-cast mb-3">Examples</p>
+          <h2 class="font-display text-display-lg mb-6">Some of what we have cast.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">A snapshot of bespoke jobs through the yard. If your job sounds like one of these — or nothing like any of them — talk to us.</p>
+          <ul class="grid sm:grid-cols-2 gap-4">
+            {examples.map((e) => (
+              <li class="card p-4">
+                <h3 class="font-display text-base font-bold text-navy mb-1">{e.title}</h3>
+                <p class="text-cast text-sm leading-relaxed">{e.desc}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="card p-8">
+          <p class="eyebrow text-cast mb-3">Applications & standards</p>
+          <h3 class="font-display text-2xl font-bold text-navy mb-4">Common applications.</h3>
+          <ul class="space-y-3 mb-6">
+            {applications.map((a) => (<li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">·</span><span>{a}</span></li>))}
+          </ul>
+          <dl class="space-y-3 text-sm border-t border-bone-200 pt-6">
+            <div><dt class="font-bold text-navy">BS EN 13369</dt><dd class="text-cast">Common rules for precast concrete — factory production control framework.</dd></div>
+            <div><dt class="font-bold text-navy">BS EN 1992 (Eurocode 2)</dt><dd class="text-cast">Concrete structural design — every bespoke unit calculated by our team.</dd></div>
+            <div><dt class="font-bold text-navy">BS 8500-1:2023</dt><dd class="text-cast">Concrete spec — designated mixes for the application exposure.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-yellow text-navy py-16">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-navy mb-2">Send us a drawing</p>
+          <h2 class="font-display text-display-md">Sketch, photo, full GA — we will quote within a week.</h2>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href="/quote?product=Bespoke" class="btn bg-navy text-white hover:bg-navy-700">Send a drawing</a>
+          <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-20">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
+      <div>
+        <p class="eyebrow text-cast mb-3">Catalogue products</p>
+        <h2 class="font-display text-display-lg">Or pick from the catalogue.</h2>
+      </div>
+      <a href="/products" class="text-ember font-bold hover:text-ember-700 inline-flex items-center gap-2">View full range
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" /><polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </a>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {related.map((r) => (
+        <a href={r.href} class="card p-5 group">
+          <div class="aspect-[16/10] bg-cast-100 mb-4 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100"></div></div>
+          <h3 class="font-display text-base font-bold text-navy mb-1 group-hover:text-ember">{r.label}</h3>
+          <p class="text-cast text-xs">{r.meta}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">Common questions</p>
+        <h2 class="font-display text-display-lg mb-4">What people ask about bespoke jobs.</h2>
+        <p class="text-cast-700 text-lg">Five questions we answer most weeks. If yours is not here, ring the yard.</p>
+      </div>
+      <div class="max-w-3xl space-y-4">
+        {faqs.map((f) => (
+          <details class="card p-6 group">
+            <summary class="font-display text-lg font-bold text-navy cursor-pointer list-none flex justify-between items-start gap-4">
+              <span>{f.q}</span>
+              <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-navy text-white py-20">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-xl mb-4 text-white">If you can draw it, we can probably cast it.</h2>
+      <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">Send us a sketch. Fixed price and lead-time within five working days.</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/quote?product=Bespoke" class="btn-yellow">Send a drawing</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

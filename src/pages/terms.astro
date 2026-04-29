@@ -1,0 +1,172 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const lastUpdated = '29 April 2026';
+---
+
+<BaseLayout
+  title="Terms & Conditions of Sale"
+  description={`Standard B2B terms and conditions of sale for ${site.legalName} — precast and prestressed concrete products.`}
+  schema="Article"
+>
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <p class="eyebrow text-yellow mb-4">Legal</p>
+      <h1 class="font-display text-display-xl text-white mb-4">Terms &amp; Conditions of Sale</h1>
+      <p class="text-white/90 text-lg max-w-2xl">
+        These terms apply to all orders placed with {site.legalName}. They are written for business buyers under English law.
+      </p>
+      <p class="text-cast-200 text-sm mt-6">Last updated: {lastUpdated}</p>
+    </div>
+  </section>
+
+  <section class="container-wccp py-16">
+    <div class="max-w-prose-wide mx-auto space-y-8 text-cast-700 text-base leading-relaxed">
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">1. Definitions</h2>
+        <p>
+          "<strong class="text-navy">Seller</strong>" means {site.legalName}, company number {site.companyNumber},
+          registered at {site.address.street}, {site.address.town}, {site.address.postcode}.
+          "<strong class="text-navy">Buyer</strong>" means the business or organisation placing the order.
+          "<strong class="text-navy">Goods</strong>" means the precast or prestressed concrete products to be supplied.
+          "<strong class="text-navy">Contract</strong>" means the order accepted by the Seller subject to these terms.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">2. Application of these terms</h2>
+        <p>
+          These terms govern every Contract between Seller and Buyer to the exclusion of any other terms the Buyer
+          seeks to impose, including any terms on the Buyer's purchase order. Variations are only binding if agreed
+          in writing by a director of the Seller. These terms are supplied to business customers; nothing in them
+          affects the statutory rights of consumers under the Consumer Rights Act 2015.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">3. Quotations and acceptance</h2>
+        <p>
+          Quotations are valid for 30 days from issue unless stated otherwise and may be withdrawn at any time before
+          acceptance. An order is accepted only when the Seller issues a written acknowledgement or commences
+          manufacture, whichever is sooner. The Seller reserves the right to decline any order.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">4. Specifications and drawings</h2>
+        <p>
+          Where the Buyer supplies drawings, specifications or measurements, the Buyer is responsible for their
+          accuracy. The Seller may rely on them without independent verification. Standard catalogue dimensions are
+          subject to manufacturing tolerances in line with BS EN 13369 and the relevant product standards.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">5. Prices and payment</h2>
+        <p>
+          Prices are exclusive of VAT and, unless stated, exclusive of delivery and offload. The Seller may revise
+          prices for orders not despatched within 90 days of acceptance, on notice to the Buyer.
+        </p>
+        <p class="mt-3">
+          Payment terms for approved trade accounts are <strong class="text-navy">strictly 30 days from date of invoice</strong>.
+          New customers without a credit account pay on a pro-forma basis before despatch. The Seller may suspend
+          deliveries on any account in arrears. Late payment carries statutory interest at 8% above the Bank of
+          England base rate under the Late Payment of Commercial Debts (Interest) Act 1998.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">6. Delivery</h2>
+        <p>
+          Delivery dates are estimates and not of the essence. The Seller will not be liable for delays caused by
+          weather, transport disruption, or events outside its reasonable control. The Buyer is responsible for
+          providing safe access for HGVs and (where applicable) HIAB offload, and for ensuring the site is ready to
+          receive the Goods at the agreed time. Standing time may be charged where a vehicle is delayed beyond
+          30 minutes through no fault of the Seller.
+        </p>
+        <p class="mt-3">
+          Risk passes to the Buyer on offload; title passes only when the Seller has received cleared payment in full
+          for the Goods and any other sums owed (retention of title).
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">7. Inspection and returns</h2>
+        <p>
+          The Buyer must inspect the Goods on delivery and notify the Seller in writing of any shortage, damage or
+          defect within 5 working days. Bespoke or made-to-order Goods are non-returnable. Catalogue Goods may be
+          returned within 14 days subject to a restocking charge, where they are unused, undamaged and on original
+          pallets.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">8. Warranty</h2>
+        <p>
+          The Seller warrants that Goods will, at the time of delivery, conform to the agreed specification and be
+          free from defects in materials and workmanship. The Seller's sole liability under this warranty is, at its
+          option, to replace defective Goods or refund the price. This warranty does not cover damage caused by
+          incorrect installation, ground movement, chemical attack outside specified resistance, overloading, or
+          ordinary wear and tear.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">9. Limitation of liability</h2>
+        <p>
+          Nothing in these terms limits or excludes liability for death or personal injury caused by negligence,
+          fraud, fraudulent misrepresentation, or any other liability that cannot lawfully be limited.
+        </p>
+        <p class="mt-3">
+          Subject to that, the Seller's total liability under or in connection with the Contract — whether in contract,
+          tort (including negligence), under statute or otherwise — is capped at the price paid for the Goods giving
+          rise to the claim. The Seller is not liable for indirect or consequential losses, loss of profit, loss of
+          revenue, loss of contracts, or loss of opportunity.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">10. Force majeure</h2>
+        <p>
+          Neither party is liable for any failure or delay caused by events outside their reasonable control,
+          including but not limited to acts of God, war, terrorism, civil unrest, fire, flood, severe weather,
+          pandemic, industrial action, or interruption of utilities, transport or raw-material supply.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">11. Intellectual property</h2>
+        <p>
+          All drawings, designs and technical literature supplied by the Seller remain the Seller's property and
+          must not be copied, reused or shared with third parties without written consent.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">12. Data protection</h2>
+        <p>
+          Each party will comply with the UK GDPR and the Data Protection Act 2018 in respect of any personal data
+          shared under the Contract. See our <a href="/privacy" class="text-ember font-semibold hover:underline">Privacy Policy</a> for detail.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">13. Governing law and jurisdiction</h2>
+        <p>
+          The Contract is governed by the laws of England and Wales. Each party submits to the exclusive jurisdiction
+          of the English courts.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-display-md text-navy mb-3">14. Contact</h2>
+        <p>
+          Questions on these terms: <a href={`mailto:${site.contact.email}`} class="text-ember font-semibold hover:underline">{site.contact.email}</a> ·
+          <a href={`tel:${site.contact.phoneIntl}`} class="text-ember font-semibold hover:underline ml-1">{site.contact.phone}</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

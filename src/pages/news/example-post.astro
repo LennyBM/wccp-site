@@ -1,0 +1,245 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const post = {
+  title: 'New 46-job yard opens at Holsworthy.',
+  description:
+    'After two years of planning and a winter of fit-out, our new precast yard near Chilsworthy is open. Better moulds, more capacity, and 46 new jobs for North Devon.',
+  date: '12 March 2026',
+  iso: '2026-03-12',
+  author: 'Claire Millard',
+  category: 'Company news',
+  url: `${site.url}/news/example-post`,
+};
+
+const schemaData = {
+  headline: post.title,
+  description: post.description,
+  datePublished: post.iso,
+  dateModified: post.iso,
+  author: {
+    '@type': 'Person',
+    name: post.author,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: site.name,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${site.url}/logo.png`,
+    },
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': post.url,
+  },
+  image: `${site.url}/og-default.jpg`,
+};
+
+const shareUrl = encodeURIComponent(post.url);
+const shareTitle = encodeURIComponent(post.title);
+
+const related = [
+  {
+    slug: '#',
+    category: 'Company news',
+    date: '28 October 2025',
+    title: 'Jake passed his C+E — and other yard wins.',
+  },
+  {
+    slug: '#',
+    category: 'Product launch',
+    date: '08 January 2026',
+    title: 'New 280mm prestressed panel — proven for deep slurry.',
+  },
+  {
+    slug: '#',
+    category: 'Industry update',
+    date: '20 February 2026',
+    title: 'SIG Round 4 confirmed — £74m, closes 30 September.',
+  },
+];
+---
+
+<BaseLayout
+  title={post.title}
+  description={post.description}
+  schema="Article"
+  schemaData={schemaData}
+>
+  <!-- Hero / header -->
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-4 mb-6">
+          <span class="eyebrow text-yellow">{post.category}</span>
+          <time datetime={post.iso} class="text-white/90 text-sm">{post.date}</time>
+        </div>
+        <h1 class="font-display text-display-xl text-white mb-6 leading-tight">
+          {post.title}
+        </h1>
+        <p class="text-lg md:text-xl text-white/90 leading-relaxed">
+          {post.description}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hero image placeholder -->
+  <section class="container-wccp pt-12">
+    <div class="aspect-[21/9] bg-cast-100 rounded-lg overflow-hidden max-w-5xl mx-auto">
+      <div class="w-full h-full bg-gradient-to-br from-cast-200 via-navy-700 to-navy flex items-center justify-center text-white/90 font-display text-sm uppercase tracking-wide">
+        Hero image · the new yard at Chilsworthy
+      </div>
+    </div>
+  </section>
+
+  <!-- Body + sidebar -->
+  <section class="container-wccp py-16">
+    <div class="grid lg:grid-cols-[1fr_320px] gap-12 max-w-5xl mx-auto">
+      <article class="prose-content">
+        <p class="text-cast-700 text-lg leading-relaxed mb-6">
+          It's taken two years of planning, twelve months of groundwork, and a winter of fit-out —
+          but the new yard is open. We poured the first production run last week and the wagons
+          have been moving steadily ever since.
+        </p>
+
+        <h2 class="font-display text-2xl font-bold text-navy mt-10 mb-4">Why we moved</h2>
+        <p class="text-cast-700 leading-relaxed mb-4">
+          The old site outside South Molton served us well for fifty years. But it grew up around
+          the business rather than for it — and by 2023 we were running out of room to make the
+          panels people were asking for. The new prestressed line alone needs sixty metres of
+          casting bed. The old yard didn't have that to spare.
+        </p>
+        <p class="text-cast-700 leading-relaxed mb-4">
+          The new site sits off Andigestion Lane in Chilsworthy, beside the Severn Trent biogas
+          plant. It's eight acres, purpose-built, with the right power supply, the right craneage
+          and proper hard standing for HGVs. Sat-nav to EX22 7HH puts you in the right field.
+        </p>
+
+        <h2 class="font-display text-2xl font-bold text-navy mt-10 mb-4">What's new</h2>
+        <p class="text-cast-700 leading-relaxed mb-4">
+          Two new prestressing beds, a covered casting hall (no more rain delays), a dedicated
+          bespoke bay, and our first full-time concrete laboratory. We've doubled our cement
+          silo capacity and brought in a new batching plant that lets us mix to a tenth of a
+          percent on water content.
+        </p>
+        <p class="text-cast-700 leading-relaxed mb-4">
+          For customers, the practical wins are these: shorter lead times on standard products,
+          more capacity for bespoke work, and a longer working day because we're not waiting on
+          the weather.
+        </p>
+
+        <h2 class="font-display text-2xl font-bold text-navy mt-10 mb-4">Forty-six jobs</h2>
+        <p class="text-cast-700 leading-relaxed mb-4">
+          Most importantly: forty-six full-time jobs at the new site. We've kept everyone from
+          the old yard and added another fifteen on top. Concrete production operatives, drivers,
+          yard hands and office staff. We're still hiring — see our <a href="/careers" class="text-ember font-semibold hover:underline">careers page</a>
+          for current vacancies.
+        </p>
+        <p class="text-cast-700 leading-relaxed mb-4">
+          We invest in our people. We recently put one of our drivers, Jake, through his C+E
+          ticket because he was the right person and the right person is worth the investment.
+          That's how we've always done it and that's how we'll keep doing it.
+        </p>
+
+        <h2 class="font-display text-2xl font-bold text-navy mt-10 mb-4">Come and see</h2>
+        <p class="text-cast-700 leading-relaxed mb-4">
+          Visitors are welcome by appointment. Bring your drawings, bring your questions, bring
+          a hi-vis. Ring the office on {site.contact.phone} and we'll set up a tour.
+        </p>
+        <p class="text-cast-700 leading-relaxed mb-4">
+          Same business, same family, same answer to the same question: what'll outlast the job?
+          Just from a much better yard.
+        </p>
+
+        <!-- Author byline -->
+        <div class="mt-12 pt-8 border-t border-cast-200 flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full bg-navy text-white flex items-center justify-center font-display font-bold">
+            CM
+          </div>
+          <div>
+            <p class="font-semibold text-navy">Posted by {post.author} — {post.date}</p>
+            <p class="text-cast text-sm">Office, West Country Concrete Products</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Sidebar: share -->
+      <aside class="space-y-6">
+        <div class="card p-6 sticky top-24">
+          <p class="eyebrow text-cast mb-4">Share this</p>
+          <div class="grid grid-cols-2 gap-2">
+            <a
+              href={`https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareTitle}`}
+              target="_blank"
+              rel="noopener"
+              class="btn-ghost text-sm justify-center"
+            >
+              X / Twitter
+            </a>
+            <a
+              href={`https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`}
+              target="_blank"
+              rel="noopener"
+              class="btn-ghost text-sm justify-center"
+            >
+              LinkedIn
+            </a>
+            <a
+              href={`mailto:?subject=${shareTitle}&body=${shareUrl}`}
+              class="btn-ghost text-sm justify-center"
+            >
+              Email
+            </a>
+            <a
+              href={`https://wa.me/?text=${shareTitle}%20${shareUrl}`}
+              target="_blank"
+              rel="noopener"
+              class="btn-ghost text-sm justify-center"
+            >
+              WhatsApp
+            </a>
+          </div>
+
+          <div class="mt-6 pt-6 border-t border-cast-200">
+            <p class="eyebrow text-cast mb-3">Visit the yard</p>
+            <a href="/contact" class="btn-primary w-full justify-center">Book a visit</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Related articles -->
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-10">
+        <p class="eyebrow text-cast mb-3">Read next</p>
+        <h2 class="font-display text-display-lg">Related articles.</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {related.map((r) => (
+          <a href={`/news/${r.slug}`} class="card group flex flex-col overflow-hidden">
+            <div class="aspect-[16/10] bg-cast-100 overflow-hidden">
+              <div class="w-full h-full bg-gradient-to-br from-navy to-navy-700 group-hover:scale-105 transition-transform duration-500"></div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <p class="eyebrow text-ember mb-2">{r.category}</p>
+              <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember leading-snug">
+                {r.title}
+              </h3>
+              <p class="text-cast text-xs">{r.date}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div class="mt-10 text-center">
+        <a href="/news" class="btn-secondary">All news</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

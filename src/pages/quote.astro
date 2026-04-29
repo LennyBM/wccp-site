@@ -1,0 +1,682 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CapacityIndicator from '@/components/CapacityIndicator.astro';
+import { site } from '@/config/site';
+
+const productTiles = [
+  { value: 'slurry-storage',     label: 'Slurry storage',      desc: 'Above-ground panel stores, lagoon walls, channels.' },
+  { value: 'retaining-wall',     label: 'Retaining wall',      desc: 'King post, L-block, cantilever — to spec.' },
+  { value: 'cattle-cubicles',    label: 'Cattle cubicles',     desc: 'Holstein, Jersey or beef. Heads-in or heads-out.' },
+  { value: 'prestressed-panels', label: 'Prestressed panels',  desc: '100/150/180/280mm · BS EN 14992.' },
+  { value: 'feed-troughs',       label: 'Feed troughs',        desc: 'Single, twin or barrier-rail trough lines.' },
+  { value: 'silage-clamp',       label: 'Silage clamp',        desc: 'C40/50 sulphate-resisting walls and aprons.' },
+  { value: 'bespoke',            label: 'Bespoke',             desc: "Drawing? Sketch? Photo on a fag packet?" },
+  { value: 'other',              label: 'Other / not sure',    desc: "Tell us what you're doing and we'll guide it." },
+];
+
+const steps = [
+  { n: 1, t: 'Product',   d: 'What are you making?' },
+  { n: 2, t: 'Sizing',    d: 'Roughly how big?' },
+  { n: 3, t: 'Site',      d: 'Conditions on the ground.' },
+  { n: 4, t: 'Delivery',  d: 'Where and when?' },
+  { n: 5, t: 'Contact',   d: 'How do we reach you?' },
+];
+
+const howItWorks = [
+  { n: '01', t: 'You tell us what you need',     d: 'A few clicks, or a photo on WhatsApp. We work with rough — full drawings come later.' },
+  { n: '02', t: 'We come back within 24 hours',  d: 'A real person, by phone or email. We confirm we can do it, ask any blockers, and book a costing slot.' },
+  { n: '03', t: 'You get a written quote',       d: 'Itemised, with capacity calcs and lead time. Grant-formatted if you need it.' },
+  { n: '04', t: 'We make it. You get it.',       d: 'Manufactured at the Holsworthy yard. Delivered on our own fleet across the South West, hauliered nationwide.' },
+];
+
+const trust = [
+  { v: '24h',    l: 'Reply window' },
+  { v: '500+',   l: 'Farms quoted' },
+  { v: '55 yr',  l: 'In the trade' },
+  { v: '100%',   l: 'UK manufactured' },
+];
+
+const timeframes = [
+  { v: 'urgent',    l: 'Under 2 weeks' },
+  { v: '2-6wk',     l: '2 – 6 weeks' },
+  { v: '6wk-plus',  l: '6 weeks +' },
+  { v: 'planning',  l: 'Just planning' },
+];
+---
+
+<BaseLayout
+  title="Get a quote in 24 hours"
+  description="Configure a precast concrete quote with WCCP. Slurry storage, retaining walls, cubicles, prestressed panels, bespoke. Same-day callback Mon–Fri."
+  schema="Article"
+>
+  <!-- Hero -->
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <p class="eyebrow text-yellow mb-4">Quote configurator</p>
+      <h1 class="font-display text-display-2xl text-white mb-5">
+        Get a quote in <span class="text-yellow">24 hours.</span>
+      </h1>
+      <p class="text-white/90 text-lg max-w-2xl leading-relaxed">
+        Five short steps. No login. No call-centre script. A real person at the yard reads what you send and comes back to you.
+      </p>
+    </div>
+  </section>
+
+  <!-- Live capacity indicator — sits above the form so prospects see lead-time up front -->
+  <section class="container-wccp pt-6 pb-2">
+    <CapacityIndicator weeks={4} />
+  </section>
+
+  <!-- Step indicator -->
+  <section class="border-b border-cast-100 bg-bone-50 sticky top-0 z-30 backdrop-blur" id="step-indicator">
+    <div class="container-wccp py-5">
+      <ol class="flex items-stretch gap-2 md:gap-3" data-step-list>
+        {steps.map((s, i) => (
+          <li class="flex-1 flex items-center gap-3" data-step-item={s.n}>
+            <div class="step-dot w-9 h-9 md:w-10 md:h-10 rounded-full flex items-center justify-center font-display font-bold text-base shrink-0 bg-cast-100 text-cast-500 transition-colors">
+              <span class="step-num">{s.n}</span>
+              <svg class="step-tick w-5 h-5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="hidden md:block">
+              <div class="step-title font-display font-bold text-sm text-cast">{s.t}</div>
+              <div class="text-xs text-cast">{s.d}</div>
+            </div>
+            {i < steps.length - 1 && <div class="flex-1 h-px bg-cast-100"></div>}
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Wizard -->
+  <div id="wizard" class="container-wccp py-12" data-wizard hidden>
+    <form
+      method="POST"
+      name="quote"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      data-quote-form
+      novalidate
+    >
+      <p class="hidden">
+        <label>Don't fill this out: <input name="bot-field" /></label>
+      </p>
+      <input type="hidden" name="form-name" value="quote" />
+
+      <!-- STEP 1 -->
+      <section data-step="1" class="step">
+        <div class="mb-8">
+          <p class="eyebrow text-ember mb-3">Step 1 of 5</p>
+          <h2 id="quote-step1-heading" class="font-display text-display-lg mb-3">What are you looking to build?</h2>
+          <p class="text-cast-700 text-lg max-w-2xl">Pick the closest match. We can refine later — this is just to point us at the right team.</p>
+        </div>
+
+        <p class="text-sm font-semibold text-ember mb-3 hidden" id="error-product" role="alert" data-error="product">Please pick a product type to continue.</p>
+
+        <div role="radiogroup" aria-labelledby="quote-step1-heading" aria-describedby="error-product" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {productTiles.map((p) => (
+            <label class="card p-5 cursor-pointer group has-[:checked]:border-ember has-[:checked]:border-2 has-[:checked]:bg-ember-50 transition-colors">
+              <input type="radio" name="product" value={p.value} class="sr-only peer" data-field="product" />
+              <div class="flex items-start justify-between mb-3">
+                <div class="w-10 h-10 rounded-md bg-bone-200 flex items-center justify-center group-has-[:checked]:bg-ember group-has-[:checked]:text-white transition-colors">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="4" y="6" width="16" height="12" rx="1" />
+                    <line x1="4" y1="10" x2="20" y2="10" />
+                  </svg>
+                </div>
+                <div class="w-5 h-5 rounded-full border-2 border-cast-200 peer-checked:border-ember peer-checked:bg-ember relative shrink-0 mt-1"></div>
+              </div>
+              <div class="font-display font-bold text-navy text-base mb-1">{p.label}</div>
+              <div class="text-cast text-sm leading-snug">{p.desc}</div>
+            </label>
+          ))}
+        </div>
+      </section>
+
+      <!-- STEP 2 -->
+      <section data-step="2" class="step" hidden>
+        <div class="mb-8">
+          <p class="eyebrow text-ember mb-3">Step 2 of 5</p>
+          <h2 class="font-display text-display-lg mb-3">Rough sizing</h2>
+          <p class="text-cast-700 text-lg max-w-2xl">Best guesses are fine. We work with rough.</p>
+        </div>
+
+        <!-- Walls / panels -->
+        <div data-product="retaining-wall prestressed-panels silage-clamp" class="grid md:grid-cols-3 gap-5">
+          <label class="block">
+            <span class="block text-sm font-bold text-navy mb-2">Wall / panel height (m)</span>
+            <input type="number" step="0.1" min="0" name="wall_height" class="input" placeholder="e.g. 3.0" data-field="wall_height" />
+          </label>
+          <label class="block">
+            <span class="block text-sm font-bold text-navy mb-2">Run length (m)</span>
+            <input type="number" step="0.1" min="0" name="wall_length" class="input" placeholder="e.g. 24" data-field="wall_length" />
+          </label>
+          <label class="block">
+            <span class="block text-sm font-bold text-navy mb-2">Panel thickness</span>
+            <select name="wall_thickness" class="input" data-field="wall_thickness">
+              <option value="">Select thickness</option>
+              <option value="100mm">100mm</option>
+              <option value="150mm">150mm</option>
+              <option value="180mm">180mm</option>
+              <option value="280mm">280mm</option>
+              <option value="unsure">Not sure — please advise</option>
+            </select>
+          </label>
+        </div>
+
+        <!-- Cubicles -->
+        <div data-product="cattle-cubicles" class="grid md:grid-cols-2 gap-5" hidden>
+          <label class="block">
+            <span class="block text-sm font-bold text-navy mb-2">Number of cubicles</span>
+            <input type="number" min="1" name="cubicle_count" class="input" placeholder="e.g. 120" data-field="cubicle_count" />
+          </label>
+          <label class="block">
+            <span class="block text-sm font-bold text-navy mb-2">Breed</span>
+            <select name="cubicle_breed" class="input" data-field="cubicle_breed">
+              <option value="">Select breed</option>
+              <option value="holstein">Holstein / Friesian</option>
+              <option value="jersey">Jersey</option>
+              <option value="beef">Beef / suckler</option>
+              <option value="mixed">Mixed herd</option>
+            </select>
+          </label>
+        </div>
+
+        <!-- Slurry -->
+        <div data-product="slurry-storage" class="grid md:grid-cols-2 gap-5" hidden>
+          <label class="block">
+            <span class="block text-sm font-bold text-navy mb-2">Required capacity (m³)</span>
+            <input type="number" min="0" name="slurry_capacity" class="input" placeholder="e.g. 2,400" data-field="slurry_capacity" />
+          </label>
+          <label class="block">
+            <span class="block text-sm font-bold text-navy mb-2">Retained height (m)</span>
+            <input type="number" step="0.1" min="0" name="slurry_height" class="input" placeholder="e.g. 3.6" data-field="slurry_height" />
+          </label>
+        </div>
+
+        <!-- Feed troughs -->
+        <div data-product="feed-troughs" class="grid md:grid-cols-2 gap-5" hidden>
+          <label class="block">
+            <span class="block text-sm font-bold text-navy mb-2">Run length (m)</span>
+            <input type="number" step="0.1" min="0" name="trough_length" class="input" placeholder="e.g. 30" data-field="trough_length" />
+          </label>
+          <label class="block">
+            <span class="block text-sm font-bold text-navy mb-2">Trough type</span>
+            <select name="trough_type" class="input" data-field="trough_type">
+              <option value="">Select type</option>
+              <option value="single">Single-sided</option>
+              <option value="twin">Twin / double-sided</option>
+              <option value="barrier">Barrier-rail trough line</option>
+            </select>
+          </label>
+        </div>
+
+        <!-- Bespoke / other -->
+        <div data-product="bespoke other" hidden>
+          <label class="block">
+            <span class="block text-sm font-bold text-navy mb-2">Tell us what you need</span>
+            <textarea name="bespoke_brief" rows="5" class="input" placeholder="Rough dimensions, drawings if you have them, what it's doing on site…" data-field="bespoke_brief"></textarea>
+          </label>
+        </div>
+      </section>
+
+      <!-- STEP 3 -->
+      <section data-step="3" class="step" hidden>
+        <div class="mb-8">
+          <p class="eyebrow text-ember mb-3">Step 3 of 5</p>
+          <h2 class="font-display text-display-lg mb-3">Site conditions</h2>
+          <p class="text-cast-700 text-lg max-w-2xl">A few quick questions about the ground and what it'll hold. If you're not sure, leave it blank.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-5">
+          <label class="block">
+            <span class="block text-sm font-bold text-navy mb-2">Soil / load type</span>
+            <select name="load_type" class="input" data-field="load_type">
+              <option value="">Select load type</option>
+              <option value="light-agri">Light agricultural</option>
+              <option value="heavy-plant">Heavy plant / vehicles</option>
+              <option value="liquid">Liquid retention (slurry, water)</option>
+              <option value="bulk">Bulk material (silage, aggregate)</option>
+            </select>
+          </label>
+          <label class="block">
+            <span class="block text-sm font-bold text-navy mb-2">
+              Exposure class
+              <span class="text-cast font-normal block text-xs mt-1">We'll suggest XC/XA per BS 8500-1:2023.</span>
+            </span>
+            <select name="exposure" class="input" data-field="exposure">
+              <option value="">Auto-suggest from product</option>
+              <option value="XC2">XC2 — wet, rarely dry</option>
+              <option value="XC4">XC4 — cyclic wet/dry</option>
+              <option value="XA2">XA2 — moderate chemical (slurry)</option>
+              <option value="XA3">XA3 — high chemical attack</option>
+              <option value="XF3">XF3 — freeze/thaw, no de-icer</option>
+            </select>
+          </label>
+          <label class="block">
+            <span class="block text-sm font-bold text-navy mb-2">Foundation already in place?</span>
+            <select name="foundation" class="input" data-field="foundation">
+              <option value="">Select</option>
+              <option value="yes">Yes — foundation cast</option>
+              <option value="no">No — need to design or install</option>
+              <option value="partial">Partial / under design</option>
+            </select>
+          </label>
+          <label class="block">
+            <span class="block text-sm font-bold text-navy mb-2">Site access (HIAB / crane / forklift?)</span>
+            <input type="text" name="access" class="input" placeholder="e.g. HIAB OK, no crane access" data-field="access" />
+          </label>
+        </div>
+      </section>
+
+      <!-- STEP 4 -->
+      <section data-step="4" class="step" hidden>
+        <div class="mb-8">
+          <p class="eyebrow text-ember mb-3">Step 4 of 5</p>
+          <h2 class="font-display text-display-lg mb-3">Delivery and timing</h2>
+          <p class="text-cast-700 text-lg max-w-2xl">Where it's going and roughly when you need it.</p>
+        </div>
+
+        <label class="block max-w-md mb-8">
+          <span class="block text-sm font-bold text-navy mb-2">Site postcode <span class="text-ember">*</span></span>
+          <input type="text" name="site_postcode" class="input" placeholder="e.g. EX23 9PH" autocomplete="postal-code" data-field="site_postcode" data-validate="postcode" aria-describedby="error-site_postcode" />
+          <span id="error-site_postcode" class="text-xs text-danger font-semibold mt-1 hidden block" role="alert" data-error="site_postcode">Please enter a valid UK postcode.</span>
+        </label>
+
+        <fieldset>
+          <legend id="quote-timeframe-legend" class="block text-sm font-bold text-navy mb-3">When do you need it?</legend>
+          <div role="radiogroup" aria-labelledby="quote-timeframe-legend" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {timeframes.map((t) => (
+              <label class="card p-4 cursor-pointer flex items-center gap-3 has-[:checked]:border-ember has-[:checked]:border-2 has-[:checked]:bg-ember-50">
+                <input type="radio" name="timeframe" value={t.v} class="h-5 w-5 accent-ember" data-field="timeframe" />
+                <span class="font-semibold text-navy">{t.l}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      </section>
+
+      <!-- STEP 5 -->
+      <section data-step="5" class="step" hidden>
+        <div class="mb-8">
+          <p class="eyebrow text-ember mb-3">Step 5 of 5</p>
+          <h2 class="font-display text-display-lg mb-3">Your contact details</h2>
+          <p class="text-cast-700 text-lg max-w-2xl">So we can get back to you within a working day.</p>
+        </div>
+
+        <div class="card p-6 mb-8 bg-bone-50 border-yellow border-l-4" data-summary>
+          <p class="eyebrow text-cast mb-2">Your enquiry, in a nutshell</p>
+          <p class="text-navy text-lg leading-relaxed" data-summary-text>—</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-5">
+          <label class="block">
+            <span class="block text-sm font-bold text-navy mb-2">Your name <span class="text-ember">*</span></span>
+            <input type="text" name="name" required autocomplete="name" class="input" data-field="name" aria-describedby="error-name" />
+            <span id="error-name" class="text-xs text-danger font-semibold mt-1 hidden block" role="alert" data-error="name">Please enter your name.</span>
+          </label>
+          <label class="block">
+            <span class="block text-sm font-bold text-navy mb-2">Farm / company</span>
+            <input type="text" name="company" autocomplete="organization" class="input" data-field="company" />
+          </label>
+          <label class="block">
+            <span class="block text-sm font-bold text-navy mb-2">Email <span class="text-ember">*</span></span>
+            <input type="email" name="email" required autocomplete="email" class="input" data-field="email" data-validate="email" aria-describedby="error-email" />
+            <span id="error-email" class="text-xs text-danger font-semibold mt-1 hidden block" role="alert" data-error="email">Please enter a valid email.</span>
+          </label>
+          <label class="block">
+            <span class="block text-sm font-bold text-navy mb-2">Phone <span class="text-ember">*</span></span>
+            <input type="tel" name="phone" required autocomplete="tel" class="input" data-field="phone" data-validate="phone" aria-describedby="error-phone" />
+            <span id="error-phone" class="text-xs text-danger font-semibold mt-1 hidden block" role="alert" data-error="phone">Please enter a valid UK phone number.</span>
+          </label>
+          <label class="block md:col-span-2">
+            <span class="block text-sm font-bold text-navy mb-2">Notes — anything we should know</span>
+            <textarea name="notes" rows="4" class="input" placeholder="Drawings, special requirements, deadlines, who recommended us…" data-field="notes"></textarea>
+          </label>
+        </div>
+
+        <div class="mt-5 p-4 rounded-md bg-bone-200 text-cast text-sm leading-relaxed">
+          <strong class="text-navy">Got drawings?</strong> No need to attach them now — once you submit, you'll get an email with our quotes address. Send PDFs, photos, even a phone snap of a sketch. We'll work with whatever you've got.
+        </div>
+      </section>
+
+      <!-- Navigation -->
+      <div class="flex flex-wrap items-center justify-between gap-4 mt-10 pt-8 border-t border-cast-100">
+        <button type="button" class="btn-ghost" data-back hidden>← Back</button>
+        <div class="ml-auto flex items-center gap-4">
+          <button type="button" class="text-cast text-sm font-semibold hover:text-ember underline" data-reset>Start over</button>
+          <button type="button" class="btn-primary" data-next>Continue →</button>
+          <button type="submit" class="btn-primary text-lg px-10" data-submit hidden>Get my quote</button>
+        </div>
+      </div>
+    </form>
+
+    <!-- Confirmation -->
+    <div data-confirmation hidden class="card p-10 md:p-14 text-center bg-bone-50 border-yellow border-2">
+      <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-ember text-white flex items-center justify-center">
+        <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+          <polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <p class="eyebrow text-ember mb-3">Enquiry received</p>
+      <h2 class="font-display text-display-lg text-navy mb-4">Thanks — we'll be in touch within 1 working day.</h2>
+      <p class="text-cast-700 text-lg max-w-xl mx-auto leading-relaxed mb-8">
+        In the meantime, you can continue browsing or call us on <a href={`tel:${site.contact.phoneIntl}`} class="text-ember font-bold hover:underline">{site.contact.phone}</a>.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/products" class="btn-secondary">Browse products</a>
+        <a href="/case-studies" class="btn-ghost">See our work</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Noscript fallback -->
+  <noscript>
+    <form method="POST" name="quote" data-netlify="true" netlify-honeypot="bot-field" class="container-wccp py-12 space-y-8">
+      <p class="hidden"><label>Don't fill this out: <input name="bot-field" /></label></p>
+      <input type="hidden" name="form-name" value="quote" />
+
+      <div class="card p-6 md:p-8">
+        <p class="eyebrow text-ember mb-3">All-in-one form</p>
+        <h2 class="font-display text-display-md text-navy mb-2">JavaScript disabled — full form below</h2>
+        <p class="text-cast">Fill in what you can. Skip what doesn't apply.</p>
+      </div>
+
+      <fieldset class="card p-6 md:p-8">
+        <legend class="font-display text-display-sm text-navy mb-4">1. Product</legend>
+        <div class="grid sm:grid-cols-2 gap-3">
+          {productTiles.map((p) => (
+            <label class="flex items-start gap-3"><input type="radio" name="product" value={p.value} class="mt-1 accent-ember" /><span><strong class="text-navy">{p.label}</strong> — <span class="text-cast text-sm">{p.desc}</span></span></label>
+          ))}
+        </div>
+      </fieldset>
+
+      <fieldset class="card p-6 md:p-8 grid md:grid-cols-2 gap-5">
+        <legend class="font-display text-display-sm text-navy mb-4">2. Sizing</legend>
+        <label class="block"><span class="block text-sm font-bold text-navy mb-2">Wall height (m)</span><input type="text" name="wall_height" class="input" /></label>
+        <label class="block"><span class="block text-sm font-bold text-navy mb-2">Run length (m)</span><input type="text" name="wall_length" class="input" /></label>
+        <label class="block"><span class="block text-sm font-bold text-navy mb-2">Number of cubicles</span><input type="text" name="cubicle_count" class="input" /></label>
+        <label class="block"><span class="block text-sm font-bold text-navy mb-2">Slurry capacity (m³)</span><input type="text" name="slurry_capacity" class="input" /></label>
+        <label class="block md:col-span-2"><span class="block text-sm font-bold text-navy mb-2">Bespoke brief</span><textarea name="bespoke_brief" rows="3" class="input"></textarea></label>
+      </fieldset>
+
+      <fieldset class="card p-6 md:p-8 grid md:grid-cols-2 gap-5">
+        <legend class="font-display text-display-sm text-navy mb-4">3. Site</legend>
+        <label class="block"><span class="block text-sm font-bold text-navy mb-2">Load type</span><input type="text" name="load_type" class="input" /></label>
+        <label class="block"><span class="block text-sm font-bold text-navy mb-2">Foundation in place?</span><input type="text" name="foundation" class="input" /></label>
+      </fieldset>
+
+      <fieldset class="card p-6 md:p-8 grid md:grid-cols-2 gap-5">
+        <legend class="font-display text-display-sm text-navy mb-4">4. Delivery</legend>
+        <label class="block"><span class="block text-sm font-bold text-navy mb-2">Site postcode</span><input type="text" name="site_postcode" class="input" /></label>
+        <label class="block"><span class="block text-sm font-bold text-navy mb-2">Timeframe</span><input type="text" name="timeframe" class="input" /></label>
+      </fieldset>
+
+      <fieldset class="card p-6 md:p-8 grid md:grid-cols-2 gap-5">
+        <legend class="font-display text-display-sm text-navy mb-4">5. Contact</legend>
+        <label class="block"><span class="block text-sm font-bold text-navy mb-2">Name *</span><input type="text" name="name" required class="input" /></label>
+        <label class="block"><span class="block text-sm font-bold text-navy mb-2">Company</span><input type="text" name="company" class="input" /></label>
+        <label class="block"><span class="block text-sm font-bold text-navy mb-2">Email *</span><input type="email" name="email" required class="input" /></label>
+        <label class="block"><span class="block text-sm font-bold text-navy mb-2">Phone *</span><input type="tel" name="phone" required class="input" /></label>
+        <label class="block md:col-span-2"><span class="block text-sm font-bold text-navy mb-2">Notes</span><textarea name="notes" rows="4" class="input"></textarea></label>
+      </fieldset>
+
+      <div class="text-center">
+        <button type="submit" class="btn-primary text-lg px-10">Send my enquiry</button>
+      </div>
+    </form>
+  </noscript>
+
+  <!-- How it works -->
+  <section class="bg-bone-200 py-16">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-10">
+        <p class="eyebrow text-cast mb-3">How it works</p>
+        <h2 class="font-display text-display-lg">Quote → call → cast → delivered.</h2>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {howItWorks.map((s) => (
+          <div class="card p-6">
+            <div class="font-display font-bold text-display-md text-ember mb-2">{s.n}</div>
+            <h3 class="font-display text-lg text-navy mb-2">{s.t}</h3>
+            <p class="text-cast text-sm leading-relaxed">{s.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- What to expect -->
+  <section class="container-wccp py-16">
+    <div class="grid lg:grid-cols-2 gap-12 items-start">
+      <div>
+        <p class="eyebrow text-cast mb-3">What to expect</p>
+        <h2 class="font-display text-display-lg mb-4">Honest, dated, written.</h2>
+        <p class="text-cast-700 text-lg leading-relaxed mb-4">
+          We won't quote a price we can't hold. Lead times are real, in writing, with the manufacturing slot reserved.
+          If something on site changes the spec, we'll re-quote — but we don't sneak charges in at delivery.
+        </p>
+        <p class="text-cast-700 text-lg leading-relaxed">
+          Grant-funded jobs come on Defra-friendly templates with capacity calcs attached. If you're applying for
+          SIG Round 4 or anticipating FETF 2027, mention it on the form and we'll format accordingly.
+        </p>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        {trust.map((s) => (
+          <div class="card p-6 text-center">
+            <div class="font-display font-bold text-display-xl text-navy mb-1">{s.v}</div>
+            <div class="text-cast text-sm font-medium uppercase tracking-wide">{s.l}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final fall-back CTA -->
+  <section class="bg-navy text-white py-12">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <h2 class="font-display text-display-md text-white mb-2">Rather just talk to a person?</h2>
+          <p class="text-white/90">Same-day callback Mon–Fri. Or send a WhatsApp with photos.</p>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a href={`tel:${site.contact.phoneIntl}`} class="btn-yellow">Call {site.contact.phone}</a>
+          <a href={`https://wa.me/${site.contact.whatsapp.replace('+', '')}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    (() => {
+      const wizard = document.getElementById('wizard');
+      if (!wizard) return;
+      wizard.removeAttribute('hidden');
+      const form = wizard.querySelector('[data-quote-form]');
+      const confirmation = wizard.querySelector('[data-confirmation]');
+      const stepEls = [...form.querySelectorAll('[data-step]')];
+      const indicator = document.getElementById('step-indicator');
+      const dots = [...indicator.querySelectorAll('[data-step-item]')];
+      const backBtn = form.querySelector('[data-back]');
+      const nextBtn = form.querySelector('[data-next]');
+      const submitBtn = form.querySelector('[data-submit]');
+      const resetBtn = form.querySelector('[data-reset]');
+      const summaryText = form.querySelector('[data-summary-text]');
+      const STORAGE_KEY = 'wccp-quote-v1';
+      const TOTAL = stepEls.length;
+      const POSTCODE_RE = /^[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}$/i;
+      const PHONE_RE = /^(?:(?:\+44\s?|0)(?:\d\s?){9,10})$/;
+      const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      const state = { current: 1, data: {} };
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+        if (saved.data) state.data = saved.data;
+        if (saved.current && !confirmation.hidden === false) state.current = Math.min(saved.current, TOTAL);
+      } catch { /* ignore */ }
+
+      const labels = {
+        product: Object.fromEntries([...form.querySelectorAll('input[name="product"]')].map(r => [r.value, r.closest('label').querySelector('.font-display').textContent.trim()])),
+        timeframe: { 'urgent': 'within 2 weeks', '2-6wk': 'in 2–6 weeks', '6wk-plus': 'in 6+ weeks', 'planning': '— still planning' },
+        load_type: { 'light-agri': 'light agricultural load', 'heavy-plant': 'heavy plant load', 'liquid': 'liquid retention', 'bulk': 'bulk material retention' },
+      };
+
+      const restore = () => {
+        for (const [k, v] of Object.entries(state.data)) {
+          const el = form.querySelector(`[data-field="${k}"]`);
+          if (!el) continue;
+          if (el.type === 'radio') {
+            const r = form.querySelector(`[data-field="${k}"][value="${v}"]`);
+            if (r) r.checked = true;
+          } else {
+            el.value = v;
+          }
+        }
+      };
+
+      const collect = () => {
+        const data = {};
+        form.querySelectorAll('[data-field]').forEach((el) => {
+          const k = el.dataset.field;
+          if (el.type === 'radio') { if (el.checked) data[k] = el.value; }
+          else if (el.value) data[k] = el.value;
+        });
+        return data;
+      };
+
+      const persist = () => {
+        state.data = collect();
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({ current: state.current, data: state.data }));
+      };
+
+      const updateStep2Visibility = () => {
+        const product = state.data.product || '';
+        form.querySelectorAll('[data-step="2"] [data-product]').forEach((g) => {
+          g.hidden = !g.dataset.product.split(' ').includes(product);
+        });
+      };
+
+      const buildSummary = () => {
+        const d = state.data;
+        const parts = [];
+        if (d.product) parts.push(`You said you need ${labels.product[d.product] || d.product}`);
+        const sizing = [];
+        if (d.wall_height && d.wall_length) sizing.push(`${d.wall_height}m × ${d.wall_length}m${d.wall_thickness ? `, ${d.wall_thickness}` : ''}`);
+        if (d.cubicle_count) sizing.push(`${d.cubicle_count} cubicles${d.cubicle_breed ? ` (${d.cubicle_breed})` : ''}`);
+        if (d.slurry_capacity) sizing.push(`${d.slurry_capacity}m³ capacity${d.slurry_height ? ` at ${d.slurry_height}m retained` : ''}`);
+        if (d.trough_length) sizing.push(`${d.trough_length}m of ${d.trough_type || 'trough'}`);
+        if (sizing.length) parts.push(`(${sizing.join(', ')})`);
+        if (d.load_type) parts.push(`for ${labels.load_type[d.load_type]}`);
+        if (d.site_postcode) parts.push(`at ${d.site_postcode.toUpperCase()}`);
+        if (d.timeframe) parts.push(labels.timeframe[d.timeframe]);
+        return parts.length ? parts.join(' ') + '.' : 'Fill in the steps above and we\'ll summarise your enquiry here.';
+      };
+
+      const setInvalid = (fieldName, invalid) => {
+        const input = form.querySelector(`[data-field="${fieldName}"]`);
+        const err = form.querySelector(`[data-error="${fieldName}"]`);
+        if (input) {
+          if (invalid) input.setAttribute('aria-invalid', 'true');
+          else input.removeAttribute('aria-invalid');
+        }
+        if (err) {
+          if (invalid) err.classList.remove('hidden');
+          else err.classList.add('hidden');
+        }
+      };
+
+      const focusFirstInvalid = (fields) => {
+        for (const f of fields) {
+          const input = form.querySelector(`[data-field="${f}"]:not([type="hidden"])`);
+          if (input && input.getAttribute('aria-invalid') === 'true' && typeof input.focus === 'function') {
+            input.focus();
+            return;
+          }
+        }
+      };
+
+      const validateStep = (n) => {
+        if (n === 1) {
+          if (!state.data.product) {
+            setInvalid('product', true);
+            return false;
+          }
+          setInvalid('product', false);
+          return true;
+        }
+        if (n === 4) {
+          if (!state.data.site_postcode || !POSTCODE_RE.test(state.data.site_postcode.trim())) {
+            setInvalid('site_postcode', true);
+            focusFirstInvalid(['site_postcode']);
+            return false;
+          }
+          setInvalid('site_postcode', false);
+        }
+        if (n === 5) {
+          let ok = true;
+          const invalidFields = [];
+          if (!state.data.name) { setInvalid('name', true); invalidFields.push('name'); ok = false; } else setInvalid('name', false);
+          if (!state.data.email || !EMAIL_RE.test(state.data.email)) { setInvalid('email', true); invalidFields.push('email'); ok = false; } else setInvalid('email', false);
+          if (!state.data.phone || !PHONE_RE.test(state.data.phone.replace(/\s/g, ''))) { setInvalid('phone', true); invalidFields.push('phone'); ok = false; } else setInvalid('phone', false);
+          if (!ok) focusFirstInvalid(invalidFields);
+          return ok;
+        }
+        return true;
+      };
+
+      const render = () => {
+        stepEls.forEach((s) => { s.hidden = +s.dataset.step !== state.current; });
+        dots.forEach((li) => {
+          const n = +li.dataset.stepItem;
+          const dot = li.querySelector('.step-dot');
+          const num = li.querySelector('.step-num');
+          const tick = li.querySelector('.step-tick');
+          const title = li.querySelector('.step-title');
+          dot.classList.remove('bg-cast-100', 'text-cast-500', 'bg-ember', 'bg-yellow', 'text-white', 'text-navy');
+          if (n < state.current) { dot.classList.add('bg-yellow', 'text-navy'); num.classList.add('hidden'); tick.classList.remove('hidden'); title?.classList.replace('text-cast', 'text-navy'); }
+          else if (n === state.current) { dot.classList.add('bg-ember', 'text-white'); num.classList.remove('hidden'); tick.classList.add('hidden'); title?.classList.replace('text-cast', 'text-navy'); }
+          else { dot.classList.add('bg-cast-100', 'text-cast-500'); num.classList.remove('hidden'); tick.classList.add('hidden'); title?.classList.replace('text-navy', 'text-cast'); }
+        });
+        backBtn.hidden = state.current === 1;
+        nextBtn.hidden = state.current === TOTAL;
+        submitBtn.hidden = state.current !== TOTAL;
+        if (state.current === 2) updateStep2Visibility();
+        if (state.current === TOTAL) summaryText.textContent = buildSummary();
+        window.scrollTo({ top: indicator.offsetTop - 10, behavior: 'smooth' });
+      };
+
+      form.addEventListener('input', (e) => { if (e.target.dataset.field) { persist(); setInvalid(e.target.dataset.field, false); } });
+      form.addEventListener('change', (e) => { if (e.target.dataset.field === 'product') updateStep2Visibility(); persist(); });
+      nextBtn.addEventListener('click', () => { persist(); if (validateStep(state.current)) { state.current = Math.min(state.current + 1, TOTAL); persist(); render(); } });
+      backBtn.addEventListener('click', () => { state.current = Math.max(state.current - 1, 1); persist(); render(); });
+      resetBtn.addEventListener('click', () => { if (confirm('Clear all answers and start over?')) { localStorage.removeItem(STORAGE_KEY); form.reset(); state.current = 1; state.data = {}; render(); } });
+
+      const submitErr = document.getElementById('quote-submit-error');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        persist();
+        if (!validateStep(5)) return;
+        try {
+          const body = new URLSearchParams(new FormData(form));
+          await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body });
+          form.hidden = true;
+          confirmation.hidden = false;
+          localStorage.removeItem(STORAGE_KEY);
+          window.scrollTo({ top: indicator.offsetTop - 10, behavior: 'smooth' });
+        } catch {
+          if (submitErr) {
+            submitErr.textContent = 'Something went wrong sending your enquiry. Please try again, or call us on 01409 281437.';
+            submitErr.classList.remove('hidden');
+            submitErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }
+      });
+
+      restore();
+      render();
+    })();
+  </script>
+</BaseLayout>

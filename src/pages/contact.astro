@@ -1,0 +1,587 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import SocialIcon from '@/components/SocialIcon.astro';
+import { site } from '@/config/site';
+
+const projectTypes = [
+  'Slurry storage',
+  'Cattle cubicles',
+  'Retaining wall (king post / L-block / cantilever)',
+  'Prestressed wall panels',
+  'Silage clamp walls',
+  'Feed / water troughs / footbaths',
+  'Milking robot bases',
+  'Box culverts / civils',
+  'Padstones / lintels',
+  'Bespoke / custom precast',
+  'Something else',
+];
+
+const timeframes = [
+  { value: 'urgent',  label: 'Under 2 weeks',  desc: 'Stock items only' },
+  { value: '2-6w',    label: '2 – 6 weeks',    desc: 'Most jobs' },
+  { value: '6w-plus', label: '6+ weeks',       desc: 'Bespoke or large' },
+  { value: 'planning',label: 'Just planning',  desc: 'No fixed date yet' },
+];
+
+const reasons = [
+  { value: 'farm',     label: 'Farmer / estate',         icon: 'M3 21h18M5 21V8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v13M9 21V11M15 21V11' },
+  { value: 'civils',   label: 'Civils contractor / QS',  icon: 'M3 21h18M3 7l9-4 9 4M5 21V10M19 21V10M9 9v12M15 9v12' },
+  { value: 'architect',label: 'Architect / engineer',    icon: 'M3 3h18v18H3zM12 3v18M3 12h18' },
+  { value: 'self',     label: 'Self-build / DIY',        icon: 'M3 9.5L12 3l9 6.5V21H3z' },
+  { value: 'other',    label: 'Something else',          icon: 'M12 8v4M12 16h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z' },
+];
+
+const mapQuery = encodeURIComponent('West Country Concrete Products, Holsworthy, Devon, EX22 7HH');
+const mapEmbedUrl = `https://www.google.com/maps?q=${mapQuery}&output=embed&z=14`;
+const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${mapQuery}`;
+---
+
+<BaseLayout
+  title="Contact"
+  description="Talk to the yard at WCCP — Off Andigestion Lane, Holsworthy, Devon EX22 7HH. Phone, email, WhatsApp, or use the multi-step quote form. Same-day callback Mon–Fri."
+  schema="LocalBusiness"
+>
+  <!-- Hero -->
+  <section class="relative bg-navy-700 text-white overflow-hidden">
+    <div aria-hidden="true" class="absolute inset-0 grid-pattern opacity-30"></div>
+    <div aria-hidden="true" class="absolute -top-1/2 -right-1/4 w-[120%] h-[200%] opacity-[0.04]" style="background-image: repeating-linear-gradient(45deg, #FBF547 0, #FBF547 2px, transparent 2px, transparent 24px); transform: rotate(-12deg);"></div>
+
+    <div class="relative container-wccp py-12 lg:py-16">
+      <div class="mb-8">
+        <Breadcrumbs items={[{ label: 'Contact' }]} variant="navy" />
+      </div>
+
+      <div class="max-w-3xl">
+        <p class="eyebrow text-yellow mb-6 animate-fade-in-down">
+          <span class="inline-block w-8 h-px bg-yellow align-middle mr-3"></span>
+          Talk to the yard
+        </p>
+        <h1 class="font-display text-display-2xl text-white mb-6 animate-fade-in-up" style="animation-delay: 100ms;">
+          No call centres.<br/>
+          <span class="text-yellow">Same-day callback</span> Mon–Fri.
+        </h1>
+        <p class="text-lg lg:text-xl text-white/90 max-w-2xl leading-relaxed animate-fade-in-up" style="animation-delay: 220ms;">
+          The quickest way to reach us is the phone — it rings on a desk and one of the team picks up. The form below is the next-best thing — five quick steps, takes about 90 seconds.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact tiles + map -->
+  <section class="container-wccp py-16 lg:py-20">
+    <div class="grid lg:grid-cols-12 gap-8">
+      <div class="lg:col-span-5 space-y-3">
+        <p class="eyebrow text-cast mb-4">Quickest first</p>
+
+        <a href={`tel:${site.contact.phoneIntl}`} class="card p-5 flex items-center gap-4 group">
+          <div class="icon-chip-navy shrink-0">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <p class="text-eyebrow text-cast">Office</p>
+            <p class="font-display text-display-sm text-navy-700 group-hover:text-ember transition-colors">{site.contact.phone}</p>
+          </div>
+          <svg class="w-4 h-4 text-cast arrow-float" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+            <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+
+        <a href={`https://wa.me/${site.contact.whatsapp.replace('+', '')}?text=${encodeURIComponent('Hi WCCP — ')}`} target="_blank" rel="noopener noreferrer" class="card p-5 flex items-center gap-4 group">
+          <div class="icon-chip-whatsapp shrink-0">
+            <SocialIcon network="whatsapp" size={20} />
+          </div>
+          <div class="flex-1">
+            <p class="text-eyebrow text-cast">WhatsApp</p>
+            <p class="font-display text-lg font-semibold text-navy-700 group-hover:text-ember transition-colors">Send photos & rough sizes</p>
+          </div>
+          <svg class="w-4 h-4 text-cast arrow-float" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+            <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+
+        <a href={`mailto:${site.contact.quotesEmail}`} class="card p-5 flex items-center gap-4 group">
+          <div class="icon-chip-light shrink-0">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <polyline points="2,7 12,13 22,7"/>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <p class="text-eyebrow text-cast">Email quotes</p>
+            <p class="font-display text-lg font-semibold text-navy-700 group-hover:text-ember transition-colors">{site.contact.quotesEmail}</p>
+          </div>
+          <svg class="w-4 h-4 text-cast arrow-float" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+            <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+
+        <div class="card p-5">
+          <p class="text-eyebrow text-cast mb-3">Yard hours</p>
+          <ul class="space-y-1.5 text-sm">
+            <li class="flex justify-between"><span class="text-cast">Mon–Fri</span> <span class="font-semibold text-navy-700">07:30–17:00</span></li>
+            <li class="flex justify-between"><span class="text-cast">Saturday</span> <span class="font-semibold text-cast-700">By appointment</span></li>
+            <li class="flex justify-between"><span class="text-cast">Sunday</span> <span class="font-semibold text-cast-300">Closed</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Address + Google Maps embed -->
+      <div class="lg:col-span-7">
+        <div class="card overflow-hidden">
+          <div class="aspect-[16/10] lg:aspect-[16/11] relative bg-cast-100">
+            <iframe
+              title="WCCP yard location on Google Maps"
+              src={mapEmbedUrl}
+              width="100%"
+              height="100%"
+              style="border:0; position: absolute; inset: 0;"
+              allowfullscreen
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+            <div aria-hidden="true" class="absolute top-0 left-0 right-0 heritage-stripe pointer-events-none"></div>
+          </div>
+
+          <div class="p-6 lg:p-8 grid sm:grid-cols-2 gap-6">
+            <div>
+              <p class="text-eyebrow text-cast mb-3">Find us</p>
+              <address class="not-italic text-base text-navy-700 leading-relaxed font-semibold">
+                {site.legalName}<br/>
+                <span class="font-normal text-cast">
+                  {site.address.street}<br/>
+                  {site.address.locality}<br/>
+                  {site.address.town}, {site.address.region}<br/>
+                  <span class="font-mono text-navy-700">{site.address.postcode}</span>
+                </span>
+              </address>
+              <p class="mt-3 text-xs text-cast">Adjacent to the Severn Trent Holsworthy Biogas Plant.</p>
+            </div>
+
+            <div class="flex flex-col gap-3 justify-end">
+              <a href={directionsUrl} target="_blank" rel="noopener noreferrer" class="btn-primary">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polygon points="3 11 22 2 13 21 11 13 3 11" stroke-linejoin="round"/>
+                </svg>
+                <span>Directions</span>
+              </a>
+              <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost btn-sm">
+                <span>Call ahead</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Multi-step form -->
+  <section id="form" class="bg-bone-200 py-16 lg:py-24">
+    <div class="container-wccp">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <p class="eyebrow text-cast mb-3">5 quick steps · about 90 seconds</p>
+          <h2 class="font-display text-display-lg mb-4">Tell us about your project.</h2>
+          <p class="text-cast-700 text-lg max-w-2xl mx-auto">We'll come back to you with a quote inside one working day. No spam, no resale of your details, no following up forever.</p>
+        </div>
+
+        <div id="contact-progress" class="mb-10">
+          <ol class="flex items-center gap-2 max-w-2xl mx-auto">
+            {[1, 2, 3, 4, 5].map((step) => (
+              <li class="flex-1 flex items-center gap-2">
+                <div data-step-pill={step} class={`step-pill flex-1 h-1.5 rounded-full transition-all duration-500 ease-out-quart ${step === 1 ? 'bg-ember' : 'bg-cast-200'}`}></div>
+                <div data-step-num={step} class={`step-num shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 ${step === 1 ? 'bg-ember text-white' : 'bg-cast-100 text-cast-500'}`}>
+                  {step}
+                </div>
+              </li>
+            ))}
+          </ol>
+          <p class="mt-4 text-center text-sm text-cast">
+            Step <span id="step-current">1</span> of 5 ·
+            <span id="step-label" class="font-semibold text-navy-700">Who you are</span>
+          </p>
+        </div>
+
+        <form id="contact-form" name="contact" method="POST" action="/contact?submitted=true" data-netlify="true" netlify-honeypot="company-fax" class="card p-6 lg:p-10 space-y-8">
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="hidden"><label>Don't fill this out: <input name="company-fax" /></label></p>
+
+          <fieldset data-step="1" class="step-fieldset space-y-5">
+            <div>
+              <p class="text-eyebrow text-ember mb-2">Step 1 / 5</p>
+              <h3 id="contact-step1-heading" class="font-display text-display-md text-navy-700 mb-2">Who's getting in touch?</h3>
+              <p class="text-cast">Pick the best fit — it helps us route your enquiry to the right person on the team.</p>
+            </div>
+
+            <p id="error-reason" class="hidden text-sm text-danger font-semibold" role="alert">Please pick the best fit to continue.</p>
+
+            <div role="radiogroup" aria-labelledby="contact-step1-heading" aria-describedby="error-reason" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {reasons.map((r) => (
+                <label class="reason-tile cursor-pointer group/tile">
+                  <input type="radio" name="reason" value={r.value} class="peer sr-only" required />
+                  <div class="flex items-start gap-3 p-4 rounded-lg border-2 border-cast-200 bg-bone hover:border-navy-700 peer-checked:border-ember peer-checked:bg-ember-50 peer-checked:shadow-soft transition-all duration-200 ease-out-quart">
+                    <svg class="w-6 h-6 shrink-0 text-navy-700 peer-checked:text-ember transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25">
+                      <path d={r.icon} stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="font-semibold text-navy-700 leading-tight text-sm">{r.label}</span>
+                  </div>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+
+          <fieldset data-step="2" class="step-fieldset space-y-5 hidden">
+            <div>
+              <p class="text-eyebrow text-ember mb-2">Step 2 / 5</p>
+              <h3 class="font-display text-display-md text-navy-700 mb-2">What do you need?</h3>
+              <p class="text-cast">A rough idea is fine — we'll firm it up on the call.</p>
+            </div>
+
+            <div>
+              <label for="project-type" class="block text-sm font-bold text-navy-700 mb-2">Product type</label>
+              <select id="project-type" name="project-type" class="input">
+                <option value="">— Pick one —</option>
+                {projectTypes.map((t) => <option value={t}>{t}</option>)}
+              </select>
+            </div>
+
+            <div>
+              <label for="project-detail" class="block text-sm font-bold text-navy-700 mb-2">Tell us more <span class="font-normal text-cast">(rough sizes, what it's for, what you're replacing)</span></label>
+              <textarea id="project-detail" name="project-detail" rows="5" class="input" placeholder="e.g. New 800m³ slurry store for 200-cow dairy. EA inspector wants 6-month capacity. Need to be in by autumn 2026."></textarea>
+            </div>
+          </fieldset>
+
+          <fieldset data-step="3" class="step-fieldset space-y-5 hidden">
+            <div>
+              <p class="text-eyebrow text-ember mb-2">Step 3 / 5</p>
+              <h3 class="font-display text-display-md text-navy-700 mb-2">When and where?</h3>
+              <p class="text-cast">Postcode helps us calculate haulage. Timeframe shapes the quote.</p>
+            </div>
+
+            <div>
+              <span id="contact-timeframe-label" class="block text-sm font-bold text-navy-700 mb-3">When do you need it?</span>
+              <div role="radiogroup" aria-labelledby="contact-timeframe-label" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                {timeframes.map((t) => (
+                  <label class="cursor-pointer">
+                    <input type="radio" name="timeframe" value={t.value} class="peer sr-only" />
+                    <div class="p-4 rounded-lg border-2 border-cast-200 bg-bone hover:border-navy-700 peer-checked:border-ember peer-checked:bg-ember-50 peer-checked:shadow-soft transition-all duration-200">
+                      <p class="font-semibold text-navy-700 text-sm">{t.label}</p>
+                      <p class="text-xs text-cast mt-1">{t.desc}</p>
+                    </div>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label for="postcode" class="block text-sm font-bold text-navy-700 mb-2">Site postcode</label>
+                <input id="postcode" name="postcode" type="text" class="input font-mono uppercase" placeholder="EX22 7HH" maxlength="8" inputmode="text" autocomplete="postal-code"/>
+              </div>
+              <div>
+                <label for="county" class="block text-sm font-bold text-navy-700 mb-2">County <span class="font-normal text-cast">(optional)</span></label>
+                <input id="county" name="county" type="text" class="input" placeholder="Devon" autocomplete="address-level1"/>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset data-step="4" class="step-fieldset space-y-5 hidden">
+            <div>
+              <p class="text-eyebrow text-ember mb-2">Step 4 / 5</p>
+              <h3 class="font-display text-display-md text-navy-700 mb-2">How can we reach you?</h3>
+              <p class="text-cast">We'll come back to you within one working day. No marketing spam.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label for="name" class="block text-sm font-bold text-navy-700 mb-2">Your name</label>
+                <input id="name" name="name" type="text" class="input" required autocomplete="name" placeholder="Tom Hartley" aria-describedby="error-name"/>
+                <span id="error-name" class="hidden block text-xs text-danger font-semibold mt-1" role="alert">Please enter your name.</span>
+              </div>
+              <div>
+                <label for="company" class="block text-sm font-bold text-navy-700 mb-2">Company / farm <span class="font-normal text-cast">(optional)</span></label>
+                <input id="company" name="company" type="text" class="input" autocomplete="organization" placeholder="Higher Beara Farm"/>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label for="email" class="block text-sm font-bold text-navy-700 mb-2">Email</label>
+                <input id="email" name="email" type="email" class="input" required autocomplete="email" placeholder="tom@higherbearafarm.co.uk" aria-describedby="error-email"/>
+                <span id="error-email" class="hidden block text-xs text-danger font-semibold mt-1" role="alert">Please enter a valid email address.</span>
+              </div>
+              <div>
+                <label for="phone" class="block text-sm font-bold text-navy-700 mb-2">Phone</label>
+                <input id="phone" name="phone" type="tel" class="input" required autocomplete="tel" placeholder="07700 900123" inputmode="tel" aria-describedby="error-phone"/>
+                <span id="error-phone" class="hidden block text-xs text-danger font-semibold mt-1" role="alert">Please enter a phone number we can reach you on.</span>
+              </div>
+            </div>
+
+            <fieldset class="space-y-2">
+              <legend class="block text-sm font-bold text-navy-700 mb-2">How would you prefer we get back to you?</legend>
+              <div class="flex flex-wrap gap-3">
+                {['Phone call', 'WhatsApp', 'Email'].map((m) => (
+                  <label class="cursor-pointer">
+                    <input type="radio" name="contact-method" value={m} class="peer sr-only" />
+                    <span class="px-4 py-2 rounded-full border-2 border-cast-200 text-sm font-semibold text-cast-700 bg-bone hover:border-navy-700 peer-checked:bg-navy-700 peer-checked:text-white peer-checked:border-navy-700 transition-all duration-200 inline-block">{m}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+          </fieldset>
+
+          <fieldset data-step="5" class="step-fieldset space-y-5 hidden">
+            <div>
+              <p class="text-eyebrow text-ember mb-2">Step 5 / 5</p>
+              <h3 class="font-display text-display-md text-navy-700 mb-2">All set — quick review.</h3>
+              <p class="text-cast">Have a look over what we've got so far. Hit submit when you're happy.</p>
+            </div>
+
+            <div id="contact-summary" class="bg-bone-200 rounded-lg p-6 space-y-1 border-l-4 border-yellow"></div>
+
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" name="consent" required class="mt-1 w-5 h-5 rounded border-2 border-cast-300 text-ember focus:ring-ember"/>
+              <span class="text-sm text-cast-700 leading-relaxed">
+                I'm happy for WCCP to contact me about this enquiry. We won't sell your details, share them with anyone outside our team, or spam you with marketing.
+                See our <a href="/privacy" class="text-ember underline font-semibold hover:no-underline">privacy policy</a>.
+              </span>
+            </label>
+          </fieldset>
+
+          <div class="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-3 pt-4 border-t border-cast-100">
+            <button type="button" id="step-back" class="btn-ghost btn-sm hidden">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="19" y1="12" x2="5" y2="12" stroke-linecap="round"/>
+                <polyline points="12 19 5 12 12 5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>Back</span>
+            </button>
+            <div class="flex-1 hidden sm:block"></div>
+            <button type="button" id="step-next" class="btn-primary">
+              <span>Next</span>
+              <svg class="w-4 h-4 arrow-float" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+                <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button type="submit" id="step-submit" class="btn-primary hidden">
+              <span>Send to the yard</span>
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polygon points="3 11 22 2 13 21 11 13 3 11" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </form>
+
+        <div id="form-confirmation" class="hidden card p-10 text-center mt-8 border-l-4 border-success">
+          <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-success/10 text-success mb-6">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="font-display text-display-md text-navy-700 mb-2">Got it — thanks.</h3>
+          <p class="text-cast max-w-xl mx-auto mb-6">
+            One of the team will come back to you inside one working day, calling from <strong class="text-navy-700">{site.contact.phone}</strong>.
+            Faster yet — call us, or
+            <a href={`https://wa.me/${site.contact.whatsapp.replace('+', '')}`} class="text-ember font-semibold underline">WhatsApp</a> a photo and rough sizes.
+          </p>
+          <a href="/" class="btn-secondary">Back to the homepage</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function() {
+      const form = document.getElementById('contact-form');
+      if (!form) return;
+      const STEP_LABELS = ['Who you are', 'What you need', 'When & where', 'Your details', 'Review & submit'];
+      const TOTAL = 5;
+      let current = 1;
+      const fieldsets = form.querySelectorAll('.step-fieldset');
+      const pills = document.querySelectorAll('[data-step-pill]');
+      const nums = document.querySelectorAll('[data-step-num]');
+      const labelEl = document.getElementById('step-label');
+      const currentEl = document.getElementById('step-current');
+      const backBtn = document.getElementById('step-back');
+      const nextBtn = document.getElementById('step-next');
+      const submitBtn = document.getElementById('step-submit');
+      const confirmEl = document.getElementById('form-confirmation');
+      const summary = document.getElementById('contact-summary');
+
+      try {
+        const saved = JSON.parse(localStorage.getItem('wccp-contact-v1') || '{}');
+        if (saved.fields) {
+          for (const [k, v] of Object.entries(saved.fields)) {
+            const fields = form.querySelectorAll('[name="' + k + '"]');
+            fields.forEach(function(f) {
+              if (f.type === 'radio' || f.type === 'checkbox') {
+                if (f.value === v) f.checked = true;
+              } else {
+                f.value = v;
+              }
+            });
+          }
+        }
+      } catch (_) {}
+
+      function persist() {
+        const data = new FormData(form);
+        const obj = {};
+        for (const [k, v] of data.entries()) obj[k] = v;
+        try { localStorage.setItem('wccp-contact-v1', JSON.stringify({ fields: obj, step: current, t: Date.now() })); } catch (_) {}
+      }
+
+      function show(step) {
+        current = step;
+        fieldsets.forEach(function(f) {
+          const s = parseInt(f.dataset.step, 10);
+          if (s === step) {
+            f.classList.remove('hidden');
+            f.style.animation = 'fadeInUp 400ms cubic-bezier(0.16, 1, 0.3, 1) both';
+          } else {
+            f.classList.add('hidden');
+          }
+        });
+        pills.forEach(function(p) {
+          const s = parseInt(p.dataset.stepPill, 10);
+          p.classList.remove('bg-cast-200', 'bg-success', 'bg-ember');
+          if (s < step) p.classList.add('bg-success');
+          else if (s === step) p.classList.add('bg-ember');
+          else p.classList.add('bg-cast-200');
+        });
+        nums.forEach(function(n) {
+          const s = parseInt(n.dataset.stepNum, 10);
+          n.classList.remove('bg-ember', 'text-white', 'bg-success', 'bg-cast-100', 'text-cast-500');
+          if (s < step) {
+            n.classList.add('bg-success', 'text-white');
+            n.innerHTML = '<svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+          } else if (s === step) {
+            n.classList.add('bg-ember', 'text-white');
+            n.textContent = String(s);
+          } else {
+            n.classList.add('bg-cast-100', 'text-cast-500');
+            n.textContent = String(s);
+          }
+        });
+        labelEl.textContent = STEP_LABELS[step - 1];
+        currentEl.textContent = String(step);
+        backBtn.classList.toggle('hidden', step === 1);
+        nextBtn.classList.toggle('hidden', step === TOTAL);
+        submitBtn.classList.toggle('hidden', step !== TOTAL);
+        if (step === TOTAL) renderSummary();
+        if (window.innerWidth < 1024) form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function showFieldError(name, show) {
+        const err = document.getElementById('error-' + name);
+        if (err) err.classList.toggle('hidden', !show);
+      }
+
+      function validateStep() {
+        const fs = form.querySelector('.step-fieldset[data-step="' + current + '"]');
+        const required = fs.querySelectorAll('[required]');
+        let firstInvalid = null;
+        for (const el of required) {
+          if (el.type === 'radio') {
+            const group = form.querySelectorAll('[name="' + el.name + '"]');
+            const checked = [...group].some(function(r){ return r.checked; });
+            if (!checked) {
+              showFieldError(el.name, true);
+              if (!firstInvalid) firstInvalid = group[0];
+            } else {
+              showFieldError(el.name, false);
+            }
+          } else if (!el.value.trim()) {
+            el.classList.add('border-danger');
+            el.setAttribute('aria-invalid', 'true');
+            showFieldError(el.id || el.name, true);
+            if (!firstInvalid) firstInvalid = el;
+          } else {
+            el.classList.remove('border-danger');
+            el.removeAttribute('aria-invalid');
+            showFieldError(el.id || el.name, false);
+          }
+        }
+        if (firstInvalid) {
+          if (typeof firstInvalid.focus === 'function') firstInvalid.focus();
+          return false;
+        }
+        return true;
+      }
+
+      // Clear errors as the user fixes inputs
+      form.addEventListener('input', function(e) {
+        const t = e.target;
+        if (t && t.value && t.value.trim && t.value.trim() !== '') {
+          t.classList.remove('border-danger');
+          t.removeAttribute('aria-invalid');
+          showFieldError(t.id || t.name, false);
+        }
+      });
+      form.addEventListener('change', function(e) {
+        const t = e.target;
+        if (t && t.type === 'radio') showFieldError(t.name, false);
+      });
+
+      function escapeHtml(s) { return s.replace(/[&<>"']/g, function(c){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]); }); }
+
+      function renderSummary() {
+        const data = new FormData(form);
+        function get(k) { return data.get(k) || '—'; }
+        const items = [
+          { label: 'Reason', value: get('reason') },
+          { label: 'Product', value: get('project-type') },
+          { label: 'When', value: get('timeframe') },
+          { label: 'Postcode', value: get('postcode') },
+          { label: 'Name', value: get('name') },
+          { label: 'Company / farm', value: get('company') },
+          { label: 'Email', value: get('email') },
+          { label: 'Phone', value: get('phone') },
+          { label: 'Preferred contact', value: get('contact-method') },
+        ];
+        summary.innerHTML = items.map(function(i){
+          return '<div class="flex justify-between gap-4 py-1.5 border-b border-cast-100 last:border-0"><span class="text-sm font-bold text-cast uppercase tracking-wide">' + i.label + '</span><span class="text-sm text-navy-700 font-semibold text-right">' + escapeHtml(String(i.value)) + '</span></div>';
+        }).join('');
+      }
+
+      backBtn.addEventListener('click', function() { if (current > 1) show(current - 1); });
+      nextBtn.addEventListener('click', function() { if (!validateStep()) return; persist(); if (current < TOTAL) show(current + 1); });
+      form.addEventListener('input', persist);
+      form.addEventListener('change', persist);
+      form.addEventListener('submit', function(e) {
+        if (!validateStep()) { e.preventDefault(); return; }
+        try { localStorage.removeItem('wccp-contact-v1'); } catch (_) {}
+      });
+
+      if (window.location.search.indexOf('submitted=true') !== -1) {
+        form.classList.add('hidden');
+        document.getElementById('contact-progress').classList.add('hidden');
+        confirmEl.classList.remove('hidden');
+      }
+
+      show(1);
+    })();
+  </script>
+
+  <section class="bg-yellow text-navy-700 py-12">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-navy-700 mb-2">Or skip the form entirely</p>
+          <h2 class="font-display text-display-md">{site.contact.phone} rings on a desk in Holsworthy.</h2>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call now</a>
+          <a href={`https://wa.me/${site.contact.whatsapp.replace('+', '')}`} class="btn bg-navy-700 text-white hover:bg-navy-600">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

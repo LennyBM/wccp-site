@@ -1,0 +1,347 @@
+/* Self-hosted variable fonts (replaces Google Fonts request chain) */
+@import "@fontsource-variable/inter/index.css";
+@import "@fontsource-variable/bricolage-grotesque/index.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-navy:      #0A1A4F;
+    --color-navy-logo: #0000FE;
+    --color-navy-ink:  #040A1F;
+    --color-yellow:    #F5C518;
+    --color-yellow-logo: #FBF547;
+    --color-ember:     #E54D17;
+    --color-bone:      #FAFAF7;
+    --color-cast:      #5C6470;
+    --color-ink:       #0A0E1A;
+    --easing-out:      cubic-bezier(0.16, 1, 0.3, 1);
+    --easing-spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    /* Section rhythm tokens — one canonical vertical scale used by .section-rhythm
+       and .section-rhythm-sm so every section breathes on the same beat. */
+    --section-y:    clamp(64px, 8vw, 112px);
+    --section-y-sm: clamp(48px, 6vw, 80px);
+  }
+
+  html {
+    @apply bg-bone text-ink antialiased;
+    font-family: 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-feature-settings: 'kern', 'liga', 'calt', 'ss01', 'cv11';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Inter optical sizing */
+    font-optical-sizing: auto;
+  }
+
+  body {
+    @apply min-h-screen flex flex-col;
+  }
+
+  /* Reserve space at the bottom on mobile so the sticky bar doesn't overlap the final CTA */
+  @media (max-width: 1023px) {
+    body {
+      padding-bottom: calc(72px + env(safe-area-inset-bottom));
+    }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', 'Inter Variable', 'Inter', system-ui, -apple-system, sans-serif;
+    @apply tracking-tight text-navy-700;
+    text-wrap: balance;
+    /* Bricolage Grotesque variable axis */
+    font-variation-settings: "wdth" 95;
+  }
+  /* Use the optical-size axis for the largest display headings */
+  h1, h2 {
+    font-variation-settings: "wdth" 95, "opsz" 32;
+  }
+
+  p { text-wrap: pretty; }
+  ::selection { @apply bg-yellow text-navy-700; }
+  :focus-visible { @apply outline-2 outline-offset-2 outline-ember; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Save-Data / reduced-data: kill marquees, panning gradients, scroll-reveals and any
+     blanket transitions for users on metered or slow connections. */
+  @media (prefers-reduced-data: reduce) {
+    .reveal,
+    .reveal-stagger,
+    .reveal-stagger > *,
+    .animate-marquee,
+    .animate-marquee-slow,
+    .animate-gradient-pan,
+    .marquee-track {
+      animation: none !important;
+      transition: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    *, *::before, *::after {
+      transition: none !important;
+    }
+  }
+
+  ::-webkit-scrollbar { width: 12px; height: 12px; }
+  ::-webkit-scrollbar-track { background: theme('colors.bone.DEFAULT'); }
+  ::-webkit-scrollbar-thumb { background: theme('colors.cast.300'); border-radius: 6px; border: 3px solid theme('colors.bone.DEFAULT'); }
+  ::-webkit-scrollbar-thumb:hover { background: theme('colors.cast.500'); }
+}
+
+@layer components {
+  .container-wccp { @apply mx-auto max-w-screen-2xl px-page-x; }
+
+  /* === Buttons with rich micro-interactions === */
+  .btn {
+    @apply relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md font-semibold text-base min-h-[48px]
+           transition-all duration-300 ease-out-quart
+           focus-visible:outline-2 focus-visible:outline-offset-2
+           overflow-hidden;
+    will-change: transform, box-shadow;
+    letter-spacing: -0.005em;
+  }
+  .btn::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+    background: linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 100%);
+  }
+  .btn:hover::before { @apply opacity-100; }
+  .btn:active { transform: translateY(1px) scale(0.98); }
+
+  .btn-primary {
+    @apply btn bg-ember text-white shadow-soft;
+  }
+  .btn-primary:hover { @apply bg-ember-600 shadow-lifted -translate-y-0.5; }
+
+  .btn-secondary {
+    @apply btn bg-navy-700 text-white shadow-soft;
+  }
+  .btn-secondary:hover { @apply bg-navy-600 shadow-lifted -translate-y-0.5; }
+
+  .btn-yellow {
+    @apply btn bg-yellow text-navy-700 shadow-soft;
+  }
+  .btn-yellow:hover { @apply bg-yellow-400 shadow-glow -translate-y-0.5; }
+
+  .btn-ghost {
+    @apply btn border-2 border-navy-700 text-navy-700 bg-transparent;
+  }
+  .btn-ghost:hover { @apply bg-navy-700 text-white -translate-y-0.5; }
+
+  .btn-sm { @apply min-h-[40px] px-4 py-2 text-sm; }
+  .btn-icon { @apply min-h-[44px] min-w-[44px] p-0 px-3; }
+
+  /* Eyebrow label */
+  .eyebrow {
+    @apply relative inline-block text-eyebrow text-cast;
+  }
+
+  /* === Cards === */
+  .card {
+    @apply relative bg-white rounded-lg border border-cast-100 shadow-soft
+           transition-all duration-400 ease-out-quart overflow-hidden;
+    will-change: transform, box-shadow;
+  }
+  .card:hover {
+    @apply shadow-lifted -translate-y-1 border-cast-200;
+  }
+  .card-image {
+    @apply transition-transform duration-700 ease-out-quart;
+  }
+  .card:hover .card-image { @apply scale-105; }
+
+  /* === Trust badges === */
+  .trust-badge {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 rounded text-xs font-bold text-cast-700 bg-cast-50 border border-cast-100
+           transition-colors duration-200;
+  }
+  .trust-badge:hover { @apply bg-yellow-50 border-yellow-200 text-navy-700; }
+
+  /* === Inputs === */
+  .input {
+    @apply block w-full px-4 py-3 border-2 border-cast-200 rounded-md bg-white text-ink min-h-[48px]
+           transition-all duration-200 ease-out-quart
+           focus:border-navy-700 focus:ring-4 focus:ring-navy-700/10 focus:outline-none
+           placeholder:text-cast-300;
+  }
+
+  /* Spec table */
+  .spec-table { @apply w-full text-sm; }
+  .spec-table th { @apply text-left text-cast font-bold pb-2 uppercase tracking-wide text-xs; }
+  .spec-table td { @apply py-2 border-t border-cast-100 align-top tabular-nums; }
+  .spec-table tr { @apply transition-colors duration-150; }
+  .spec-table tbody tr:hover { @apply bg-yellow-50; }
+
+  /* Hero gradient overlay */
+  .hero-gradient {
+    background: linear-gradient(180deg, rgba(10,26,79,0) 40%, rgba(10,26,79,0.85) 100%);
+  }
+
+  /* Animated underline link */
+  .link-underline { @apply relative inline-block; }
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 right-0 h-0.5 bg-current
+           origin-left scale-x-0 transition-transform duration-400 ease-out-quart;
+  }
+  .link-underline:hover::after { @apply scale-x-100; }
+
+  /* Reveal-on-scroll wrapper */
+  .reveal {
+    @apply opacity-0 translate-y-6 transition-all duration-700 ease-out-quart;
+  }
+  .reveal.is-visible { @apply opacity-100 translate-y-0; }
+
+  .reveal-stagger > * { @apply opacity-0 translate-y-4; }
+  .reveal-stagger.is-visible > * {
+    animation: fadeInUp 700ms var(--easing-out) both;
+  }
+  .reveal-stagger.is-visible > *:nth-child(1) { animation-delay: 0ms; }
+  .reveal-stagger.is-visible > *:nth-child(2) { animation-delay: 80ms; }
+  .reveal-stagger.is-visible > *:nth-child(3) { animation-delay: 160ms; }
+  .reveal-stagger.is-visible > *:nth-child(4) { animation-delay: 240ms; }
+  .reveal-stagger.is-visible > *:nth-child(5) { animation-delay: 320ms; }
+  .reveal-stagger.is-visible > *:nth-child(6) { animation-delay: 400ms; }
+  .reveal-stagger.is-visible > *:nth-child(7) { animation-delay: 480ms; }
+  .reveal-stagger.is-visible > *:nth-child(8) { animation-delay: 560ms; }
+
+  /* Marquee track */
+  .marquee-track {
+    @apply flex gap-12 animate-marquee whitespace-nowrap;
+    width: max-content;
+  }
+
+  /* Shimmer placeholder */
+  .shimmer {
+    background: linear-gradient(90deg, theme('colors.cast.100') 0%, theme('colors.cast.50') 50%, theme('colors.cast.100') 100%);
+    background-size: 200% 100%;
+    @apply animate-shimmer;
+  }
+
+  /* Nav link with animated indicator */
+  .nav-link {
+    @apply relative px-3 py-2 text-sm font-semibold text-navy-700 transition-colors duration-200;
+    letter-spacing: -0.005em;
+  }
+  .nav-link::after {
+    content: '';
+    @apply absolute left-3 right-3 bottom-1 h-0.5 bg-ember
+           origin-left scale-x-0 transition-transform duration-300 ease-out-quart;
+  }
+  .nav-link:hover { @apply text-ember; }
+  .nav-link:hover::after, .nav-link[aria-current="page"]::after { @apply scale-x-100; }
+
+  .arrow-float {
+    @apply transition-transform duration-300 ease-out-quart;
+  }
+  .group:hover .arrow-float { @apply translate-x-1; }
+
+  .text-gradient-navy {
+    background: linear-gradient(135deg, theme('colors.navy.700') 0%, theme('colors.navy.500') 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Heritage trade-show stripe — kept as an alias of .heritage-stripe for
+     historical markup. The canonical token is the utility below; both render
+     identically (4px tall, 8px stripe pattern). */
+  .heritage-stripe-bar {
+    height: 4px;
+    background: repeating-linear-gradient(
+      90deg,
+      theme('colors.yellow.logo') 0,
+      theme('colors.yellow.logo') 8px,
+      theme('colors.navy.logo') 8px,
+      theme('colors.navy.logo') 16px
+    );
+  }
+
+  /* === Section rhythm utility ===
+     One canonical vertical scale for every <section>. Replaces the old mix
+     of `py-20 lg:py-28`, `py-16 lg:py-20`, `py-12 md:py-16`. */
+  .section-rhythm {
+    padding-top: var(--section-y);
+    padding-bottom: var(--section-y);
+  }
+  .section-rhythm-sm {
+    padding-top: var(--section-y-sm);
+    padding-bottom: var(--section-y-sm);
+  }
+
+  .stat-counter {
+    @apply font-display font-semibold text-navy-700;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.04em;
+  }
+
+  /* === Body text utility ===
+     Use on long-form <p> elements (running prose, ~50+ chars) instead of
+     bare `text-cast`. Bumps body copy to cast-700 for stronger "premium ink"
+     contrast on bone backgrounds. Card meta and short helper lines should
+     keep `text-cast`. */
+  .body-text {
+    @apply text-cast-700;
+  }
+
+  /* === Premium iconographic chip — used for social/brand icons === */
+  .icon-chip {
+    @apply inline-flex items-center justify-center w-10 h-10 rounded-full
+           transition-all duration-300 ease-out-quart;
+  }
+  .icon-chip-light {
+    @apply icon-chip bg-cast-50 text-cast-600 hover:bg-navy-700 hover:text-white hover:-translate-y-0.5 hover:shadow-soft;
+  }
+  .icon-chip-navy {
+    @apply icon-chip bg-navy-700 text-white hover:bg-navy-600 hover:-translate-y-0.5 hover:shadow-soft;
+  }
+  .icon-chip-whatsapp {
+    @apply icon-chip bg-[#25D366] text-white hover:-translate-y-0.5 hover:shadow-glow-ember;
+  }
+  .icon-chip-facebook {
+    @apply icon-chip bg-[#1877F2] text-white hover:-translate-y-0.5 hover:shadow-soft;
+  }
+}
+
+@layer utilities {
+  /* Canonical heritage trade-show stripe.
+     Single 4px height with consistent 8px stripe pattern across header,
+     footer, cookie banner and all pages. Elements that previously combined
+     `.heritage-stripe` with explicit `h-1`/`h-2` should drop the height
+     class — the utility now owns the rhythm. */
+  .heritage-stripe {
+    height: 4px;
+    background-image: repeating-linear-gradient(
+      90deg,
+      theme('colors.yellow.logo') 0,
+      theme('colors.yellow.logo') 8px,
+      theme('colors.navy.logo') 8px,
+      theme('colors.navy.logo') 16px
+    );
+  }
+
+  .text-balance { text-wrap: balance; }
+  .text-pretty  { text-wrap: pretty; }
+
+  .mask-fade-x {
+    mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+  }
+
+  .grid-pattern {
+    background-image:
+      linear-gradient(rgba(10, 26, 79, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(10, 26, 79, 0.04) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+}

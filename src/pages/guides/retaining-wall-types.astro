@@ -1,0 +1,387 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const faqs = [
+  {
+    q: 'What is the cheapest type of retaining wall?',
+    a: 'For heights up to about 2m, king post walls are usually the cheapest at £180–240 per linear metre supply-only. They use steel UC sections driven or set into concrete, infilled with horizontal precast panels. L-blocks are competitive on shorter runs (under 20m) where post-driving plant is uneconomic.',
+  },
+  {
+    q: 'How tall can a king post wall go?',
+    a: 'King post walls work up to about 6m retained height, with steel UC sizes scaling from 152×152 UC23 at 2m to 305×305 UC97 at 6m. Above 6m you typically move to in-situ cantilever or counterfort designs because steel weights and embedment depths become uneconomic.',
+  },
+  {
+    q: 'When should I use L-blocks?',
+    a: 'L-blocks suit short runs (under 30m), retained heights up to 4m, and applications where you want a quick install without driving posts. They sit on a compacted granular base, are gravity-stable, and can be relocated. Common uses: silage walls, bay dividers, push walls, bunker walls.',
+  },
+  {
+    q: 'What is a cantilever retaining wall?',
+    a: 'A cantilever retaining wall is a reinforced concrete structure with a vertical stem, a heel slab and a toe. The weight of retained earth on the heel resists overturning. They suit heights of 3–8m and are usually in-situ poured, though precast cantilever sections are available for modular schemes.',
+  },
+  {
+    q: 'How much surcharge can each system take?',
+    a: 'Standard king post walls are typically rated for 10 kN/m² surcharge (light vehicle access). L-blocks at 5–10 kN/m² depending on size. Cantilever walls can be designed for any surcharge — HGV loading at 30 kN/m² is normal in highway and yard applications.',
+  },
+  {
+    q: 'What foundation does each wall need?',
+    a: 'King post: 600–1,200mm diameter concrete-filled sockets every 1.5–2.5m, 1.5–3m deep depending on retained height. L-block: 200mm compacted Type 1 sub-base on undisturbed ground. Cantilever: a designed RC strip or pad foundation engineered to the specific soil bearing capacity.',
+  },
+  {
+    q: 'How long does each system take to install?',
+    a: 'A 50m run at 3m retained height: king post installed in 5–7 days including socket pours; L-block in 2–3 days for a gravity-stable run; cantilever 3–4 weeks for forming, reinforcement, pouring and curing. Precast cantilever cuts that to about 7–10 days.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="King post vs L-block vs cantilever retaining walls — which is right?"
+  description="UK retaining wall comparison: king post, L-block and cantilever systems. Cost per linear metre, height limits, foundations, install times and surcharge ratings."
+  image="/images/guides/retaining-wall-types.jpg"
+  schema="Article"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-14 md:py-16">
+      <nav class="text-sm text-white/90 mb-6" aria-label="Breadcrumb">
+        <a href="/guides" class="hover:text-yellow">Guides</a>
+        <span class="mx-2 text-cast">/</span>
+        <span class="text-white/90">Retaining wall types</span>
+      </nav>
+      <p class="eyebrow text-yellow mb-4">Civils · Pillar guide</p>
+      <h1 class="font-display text-display-xl text-white mb-6 max-w-4xl">
+        King post vs L-block vs cantilever retaining walls — which is right?
+      </h1>
+
+      <div class="bg-navy-700 border-l-4 border-yellow p-6 max-w-3xl rounded-r">
+        <p class="text-white/90 text-lg leading-relaxed">
+          <strong class="text-white">Direct answer:</strong> King post walls suit retained heights up
+          to 6m with the cheapest cost per linear metre on long runs. L-blocks suit short runs to 4m
+          where speed and gravity stability matter. Cantilever walls suit 3–8m with the highest
+          surcharge tolerance but the slowest install. Choose by height, surcharge and run length.
+        </p>
+      </div>
+
+      <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/90">
+        <div>By <span class="text-white font-semibold">WCCP Engineering Team</span></div>
+        <div>Published <time datetime="2026-03-22">22 March 2026</time></div>
+        <div>Updated <time datetime="2026-04-27">27 April 2026</time></div>
+      </div>
+    </div>
+  </section>
+
+  <article class="container-wccp py-12 md:py-16">
+    <div class="grid lg:grid-cols-[1fr_18rem] gap-10 lg:gap-16">
+      <div class="max-w-3xl">
+
+        <details class="lg:hidden mb-10 border border-cast-100 rounded-lg p-5">
+          <summary class="font-display text-lg font-bold text-navy cursor-pointer">On this page</summary>
+          <ol class="mt-4 space-y-2 text-cast list-decimal list-inside">
+            <li><a href="#systems" class="hover:text-ember">The three systems</a></li>
+            <li><a href="#cost" class="hover:text-ember">Cost per linear metre</a></li>
+            <li><a href="#height" class="hover:text-ember">Height limits</a></li>
+            <li><a href="#foundations" class="hover:text-ember">Foundation requirements</a></li>
+            <li><a href="#install" class="hover:text-ember">Install time</a></li>
+            <li><a href="#surcharge" class="hover:text-ember">Surcharge ratings</a></li>
+            <li><a href="#choosing" class="hover:text-ember">When to use each</a></li>
+            <li><a href="#checklist" class="hover:text-ember">Selection checklist</a></li>
+            <li><a href="#faq" class="hover:text-ember">FAQ</a></li>
+          </ol>
+        </details>
+
+        <section id="systems" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What are the three main retaining wall systems?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">King post (steel UC sections in concrete sockets, infilled with precast
+            panels), L-block (precast L-shaped gravity units sat on a granular base), and cantilever
+            (vertical stem with heel and toe, reinforced concrete, in-situ or precast). Each has a
+            sweet spot of height, run length and surcharge where it wins on cost.</strong>
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            All three are designed to BS EN 1997-1 (Eurocode 7) for geotechnical actions and BS EN 1992-1-1
+            (Eurocode 2) for the concrete elements. Steel posts are designed to BS EN 1993-1-1
+            (Eurocode 3). The choice between them is a cost-benefit calculation, not a structural one —
+            any of the three can be designed to meet the loads, the question is which is cheapest.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            Below we break down the cost, height limits, foundations, install time and surcharge
+            tolerance for each, then summarise when to use which.
+          </p>
+        </section>
+
+        <section id="cost" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What does each system cost per linear metre?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            <strong class="text-navy">At 3m retained height: king post £260–340/lm supply-only, £380–480/lm
+            installed; L-block £290–380/lm supply, £400–520/lm installed; cantilever £450–650/lm supply,
+            £700–950/lm installed. Prices are 2026 indicative for the South West and exclude excavation,
+            backfill and drainage.</strong>
+          </p>
+
+          <div class="overflow-x-auto mb-4 -mx-4 sm:mx-0">
+            <table class="spec-table min-w-full px-4 sm:px-0">
+              <thead>
+                <tr>
+                  <th>Retained height</th>
+                  <th>King post (£/lm)</th>
+                  <th>L-block (£/lm)</th>
+                  <th>Cantilever (£/lm)</th>
+                </tr>
+              </thead>
+              <tbody class="text-cast">
+                <tr>
+                  <td>1.0m</td>
+                  <td><strong class="text-navy">£140–180</strong></td>
+                  <td><strong class="text-navy">£150–200</strong></td>
+                  <td><strong class="text-navy">£280–360</strong></td>
+                </tr>
+                <tr>
+                  <td>2.0m</td>
+                  <td><strong class="text-navy">£200–260</strong></td>
+                  <td><strong class="text-navy">£220–290</strong></td>
+                  <td><strong class="text-navy">£380–500</strong></td>
+                </tr>
+                <tr>
+                  <td>3.0m</td>
+                  <td><strong class="text-navy">£260–340</strong></td>
+                  <td><strong class="text-navy">£290–380</strong></td>
+                  <td><strong class="text-navy">£450–650</strong></td>
+                </tr>
+                <tr>
+                  <td>4.0m</td>
+                  <td><strong class="text-navy">£340–440</strong></td>
+                  <td><strong class="text-navy">£400–520</strong></td>
+                  <td><strong class="text-navy">£600–820</strong></td>
+                </tr>
+                <tr>
+                  <td>5.0m</td>
+                  <td><strong class="text-navy">£440–580</strong></td>
+                  <td>Not viable</td>
+                  <td><strong class="text-navy">£780–1,100</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-sm text-cast italic">
+            Supply-only ex-yard, 2026 prices, excludes excavation, foundations beyond standard, drainage
+            and backfill. Installed prices include foundations, posts/blocks, panels and labour but
+            exclude excavation, backfill and drainage works.
+          </p>
+        </section>
+
+        <section id="height" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What is the maximum height for each system?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">King post: up to 6m (with 305×305 UC97 posts and 200mm panels). L-block:
+            up to 4m for a 5,000mm × 2,400mm × 250mm gravity unit, with anything taller requiring rear
+            tie-back or counterforts. Cantilever: 3–8m as standard, with counterfort designs going to
+            10m+ for highway and rail applications.</strong>
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            Above each system's headline limit, you can engineer a solution but you start losing the
+            cost advantage. A 7m king post wall would need 356×406 UC340 sections embedded 4m deep — at
+            that point a counterfort cantilever is cheaper and faster.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            For most farm and civils jobs, retained heights are 1.5–4m, which is exactly the band
+            where king post and L-block compete and cantilever is overkill.
+          </p>
+        </section>
+
+        <section id="foundations" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What foundation does each system need?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">King post: 600–1,200mm diameter sockets at 1.5–2.5m centres, depth typically
+            equal to retained height. L-block: 200mm Type 1 sub-base on undisturbed firm ground,
+            blinded with 50mm sharp sand. Cantilever: designed RC strip or pad to BS EN 1997-1, depth
+            and width sized to soil bearing capacity.</strong>
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            King post sockets are usually augered, with a steel UC dropped in and concrete poured
+            around it (C32/40 mass concrete is standard). The post acts as a vertical cantilever
+            embedded in the socket — the socket itself takes the moment.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            L-block foundations are deceptively simple but unforgiving. The base must be flat, level
+            and structurally competent — any soft spots will cause settlement and the block will lean.
+            We recommend a 200mm compacted Type 1 layer over a geotextile separation membrane.
+          </p>
+        </section>
+
+        <section id="install" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">How long does each system take to install?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">For a 50m run at 3m retained height: king post takes 5–7 working days
+            including socket pours and 7-day cure. L-block takes 2–3 days once the base is prepared.
+            In-situ cantilever takes 3–4 weeks for forming, reinforcement, pour and 28-day cure.
+            Precast cantilever drops cantilever time to 7–10 days.</strong>
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            L-blocks are the fastest because the units are gravity-stable on placement — there's no
+            cure time before backfill can start. King post installs are limited by socket cure (we
+            recommend 7 days before panel infilling for 3m+ heights). Cantilever is slowest because
+            of formwork, rebar fix and cure.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            Programme certainty matters when access is constrained or weather is tight. L-block is
+            the lowest-risk option for a fixed-window install.
+          </p>
+        </section>
+
+        <section id="surcharge" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What surcharge can each system take?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Standard king post: 10 kN/m² (light vehicles). Standard L-block: 5–10 kN/m²
+            depending on size. Cantilever: designed to spec, typically 30 kN/m² for HGV access, 60 kN/m²+
+            for highway and yard applications. Surcharge is live load on the retained material from
+            vehicles, stockpiles or buildings near the wall.</strong>
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            Surcharge is often the deciding factor. A king post wall holding back a bank with no
+            traffic above is straightforward. A king post wall holding back a yard with daily HGV
+            traffic at 30 kN/m² needs much heavier posts and panels — at which point a cantilever
+            becomes cost-competitive.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            Always tell us the surcharge case at design stage — vehicle type, frequency, distance from
+            wall, stockpile heights. Designing for actual loads is cheaper than rebuilding for them
+            later.
+          </p>
+        </section>
+
+        <section id="choosing" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">When should I use each system?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Use king post for runs over 30m at heights 1.5–6m with light to medium
+            surcharge. Use L-block for short runs (under 30m), where speed matters, or where the wall
+            may be relocated. Use cantilever for heavy surcharge, very tall walls, or where aesthetics
+            matter (smooth face, no visible posts).</strong>
+          </p>
+          <ul class="text-cast-700 text-lg leading-relaxed space-y-3 list-disc pl-6 mb-4">
+            <li><strong class="text-navy">King post wins:</strong> Long runs, agricultural cuttings, embankment retention, flood walls, where post-driving rig access is feasible.</li>
+            <li><strong class="text-navy">L-block wins:</strong> Silage clamp walls, push walls, bunker bays, temporary or relocatable walls, sites with no socket access.</li>
+            <li><strong class="text-navy">Cantilever wins:</strong> HGV-loaded yard walls, basement walls, highway retention, structures that double as building walls, very tall walls (5m+).</li>
+          </ul>
+        </section>
+
+        <section id="checklist" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">6-point retaining wall selection checklist</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            <strong class="text-navy">Run through these six questions before specifying. The answers narrow the
+            choice down to one or two systems and a quote becomes straightforward.</strong>
+          </p>
+          <div class="bg-bone-200 border-l-4 border-ember p-6 rounded-r">
+            <ol class="text-cast-700 text-base leading-relaxed space-y-3 list-decimal pl-5">
+              <li>Retained height (1m, 2m, 3m, 4m, 5m, 6m+?)</li>
+              <li>Run length in metres (under 30m, 30–100m, over 100m)</li>
+              <li>Surcharge: vehicles, stockpile, buildings — what loads, what distance from wall?</li>
+              <li>Soil type and groundwater (clay, sand, made ground, water table depth)</li>
+              <li>Access: can a piling or post-driving rig reach the line?</li>
+              <li>Programme: weeks available between handover and pour-back</li>
+            </ol>
+          </div>
+        </section>
+
+        <section id="faq" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-6">Frequently asked questions</h2>
+          <div class="space-y-4">
+            {faqs.map((f) => (
+              <details class="card p-5 group">
+                <summary class="font-display text-lg font-bold text-navy cursor-pointer flex items-start justify-between gap-4">
+                  <span>{f.q}</span>
+                  <svg class="w-5 h-5 mt-1 flex-shrink-0 text-ember transition-transform group-open:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="12" y1="5" x2="12" y2="19" stroke-linecap="round"/>
+                    <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+                  </svg>
+                </summary>
+                <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section class="bg-navy text-white rounded-lg p-8 md:p-10">
+          <h2 class="font-display text-2xl md:text-3xl text-white mb-3">Need a retaining wall priced?</h2>
+          <p class="text-white/90 mb-6 leading-relaxed">
+            Send us your retained height, run length and surcharge case. We'll come back with a
+            comparison of king post vs L-block vs cantilever for your job, with installed prices.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="/products/retaining-walls" class="btn-yellow">See retaining wall range</a>
+            <a href="/quote" class="btn bg-white text-navy hover:bg-bone">Start a quote</a>
+          </div>
+        </section>
+
+      </div>
+
+      <aside class="hidden lg:block">
+        <div class="sticky top-24">
+          <p class="eyebrow text-cast mb-4">On this page</p>
+          <ol class="space-y-3 text-sm border-l border-cast-100 pl-4">
+            <li><a href="#systems" class="text-cast hover:text-ember">The three systems</a></li>
+            <li><a href="#cost" class="text-cast hover:text-ember">Cost per linear metre</a></li>
+            <li><a href="#height" class="text-cast hover:text-ember">Height limits</a></li>
+            <li><a href="#foundations" class="text-cast hover:text-ember">Foundations</a></li>
+            <li><a href="#install" class="text-cast hover:text-ember">Install time</a></li>
+            <li><a href="#surcharge" class="text-cast hover:text-ember">Surcharge ratings</a></li>
+            <li><a href="#choosing" class="text-cast hover:text-ember">When to use each</a></li>
+            <li><a href="#checklist" class="text-cast hover:text-ember">Selection checklist</a></li>
+            <li><a href="#faq" class="text-cast hover:text-ember">FAQ</a></li>
+          </ol>
+
+          <div class="mt-8 p-4 bg-yellow rounded-lg">
+            <p class="text-xs font-bold text-navy uppercase tracking-wide mb-2">Same-day pricing</p>
+            <p class="text-sm text-navy mb-3 leading-snug">Send us heights and lengths — we'll cost it before you finish your tea.</p>
+            <a href="/quote" class="text-navy font-bold text-sm hover:underline">Start a quote →</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+  <section class="bg-bone-200 py-16">
+    <div class="container-wccp">
+      <p class="eyebrow text-cast mb-3">Related guides</p>
+      <h2 class="font-display text-display-md mb-8">Keep reading.</h2>
+
+      <div class="grid md:grid-cols-3 gap-5">
+        <a href="/guides/retaining-wall-cost-uk" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Pricing</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">King post wall cost per metre UK</h3>
+          <p class="text-cast text-sm leading-relaxed">£/lm at 1m, 2m, 3m, 4m and 5m heights with full cost breakdown.</p>
+        </a>
+        <a href="/guides/concrete-grades" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Materials</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Concrete grades for agricultural use</h3>
+          <p class="text-cast text-sm leading-relaxed">C32/40 vs C40/50 explained, exposure classes and retaining wall mix design.</p>
+        </a>
+        <a href="/guides/prestressed-vs-reinforced" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Materials</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Prestressed vs reinforced panels</h3>
+          <p class="text-cast text-sm leading-relaxed">When prestressing pays back, span and load advantages, BS EN 14992.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-16 text-center">
+    <h2 class="font-display text-display-lg mb-4">Talk to the yard.</h2>
+    <p class="text-cast-700 text-lg max-w-xl mx-auto mb-8">
+      Same-day callback Monday to Friday. We'll talk you through the design before you commit a penny.
+    </p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+      <a href="/quote" class="btn-primary">Configure a quote</a>
+    </div>
+  </section>
+</BaseLayout>

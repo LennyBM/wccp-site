@@ -1,0 +1,226 @@
+---
+import { site } from '@/config/site';
+import SocialIcon from './SocialIcon.astro';
+import AccreditationBadges from './AccreditationBadges.astro';
+import Logo from './Logo.astro';
+
+const productCols = [
+  {
+    title: 'Agricultural',
+    links: [
+      { href: '/products/cattle-cubicles', label: 'Cattle Cubicles' },
+      { href: '/products/slurry-storage', label: 'Slurry Storage' },
+      { href: '/products/feed-troughs', label: 'Feed & Water Troughs' },
+      { href: '/products/silage-clamp-walls', label: 'Silage Clamp Walls' },
+      { href: '/products/milking-robot-bases', label: 'Milking Robot Bases' },
+      { href: '/products/footbaths', label: 'Footbaths' },
+    ],
+  },
+  {
+    title: 'Civils',
+    links: [
+      { href: '/products/prestressed-panels', label: 'Prestressed Wall Panels' },
+      { href: '/products/retaining-walls', label: 'Retaining Walls' },
+      { href: '/products/king-post-walls', label: 'King Post Walls' },
+      { href: '/products/l-blocks', label: 'L-Blocks' },
+      { href: '/products/culverts', label: 'Box Culverts' },
+      { href: '/products/padstones', label: 'Padstones' },
+    ],
+  },
+  {
+    title: 'Resources',
+    links: [
+      { href: '/guides', label: 'Pillar Guides' },
+      { href: '/case-studies', label: 'Case Studies' },
+      { href: '/downloads', label: 'Datasheets & CAD' },
+      { href: '/grants/fetf-2026', label: 'FETF 2026 Guide' },
+      { href: '/grants/slurry-grant', label: 'Slurry Grant Guide' },
+      { href: '/faqs', label: 'FAQs' },
+    ],
+  },
+  {
+    title: 'Company',
+    links: [
+      { href: '/about', label: 'Our story (since 1971)' },
+      { href: '/factory', label: 'The factory' },
+      { href: '/sustainability', label: 'Sustainability & accreditations' },
+      { href: '/areas/devon', label: 'Areas we serve' },
+      { href: '/careers', label: 'Careers' },
+      { href: '/contact', label: 'Contact' },
+    ],
+  },
+];
+
+const legal = [
+  { href: '/privacy', label: 'Privacy' },
+  { href: '/cookies', label: 'Cookies' },
+  { href: '/terms', label: 'Terms' },
+  { href: '/accessibility', label: 'Accessibility' },
+  { href: '/complaints', label: 'Complaints' },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-navy-ink text-white mt-20 relative overflow-hidden">
+  <!-- Top heritage stripe -->
+  <div class="heritage-stripe" aria-hidden="true"></div>
+
+  <!-- Subtle background grid pattern -->
+  <div aria-hidden="true" class="absolute inset-0 opacity-[0.03] pointer-events-none grid-pattern"></div>
+
+  <div class="relative container-wccp py-16 lg:py-20">
+    <!-- Top: brand + product columns -->
+    <div class="grid lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+      <div class="lg:col-span-4">
+        <div class="mb-5">
+          <Logo size={56} />
+        </div>
+        <h2 class="font-display text-display-sm text-white mb-3">{site.name}</h2>
+        <p class="text-white/90 text-sm max-w-sm leading-relaxed">
+          {site.description}
+        </p>
+        <p class="mt-6 text-eyebrow text-white/90">Made in North Devon since {site.founded}</p>
+
+        <!-- Social row -->
+        <div class="mt-6 flex items-center gap-3">
+          <a
+            href={site.socials.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="icon-chip-facebook"
+            aria-label="WCCP on Facebook"
+            title="Follow us on Facebook"
+          >
+            <SocialIcon network="facebook" size={18} />
+          </a>
+          <a
+            href={`https://wa.me/${site.contact.whatsapp.replace('+', '')}?text=${encodeURIComponent('Hi WCCP — ')}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="icon-chip-whatsapp"
+            aria-label="Message us on WhatsApp"
+            title="WhatsApp us"
+          >
+            <SocialIcon network="whatsapp" size={18} />
+          </a>
+          <a
+            href={`tel:${site.contact.phoneIntl}`}
+            class="icon-chip-light bg-white/10 text-white hover:bg-yellow hover:text-navy-700"
+            aria-label={`Call ${site.contact.phone}`}
+            title="Call us"
+          >
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a
+            href={`mailto:${site.contact.email}`}
+            class="icon-chip-light bg-white/10 text-white hover:bg-yellow hover:text-navy-700"
+            aria-label={`Email ${site.contact.email}`}
+            title="Email us"
+          >
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <polyline points="2,7 12,13 22,7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {productCols.map((col) => (
+          <div>
+            <h3 class="text-eyebrow text-white/90 mb-4">{col.title}</h3>
+            <ul class="space-y-2">
+              {col.links.map((link) => (
+                <li>
+                  <a href={link.href} class="text-white/90 hover:text-yellow text-sm transition-colors duration-200 link-underline">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Middle: contact + accreditation -->
+    <div class="grid lg:grid-cols-3 gap-10 py-12 border-b border-white/10">
+      <div>
+        <h3 class="text-eyebrow text-white/90 mb-4">Talk to the yard</h3>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href={`tel:${site.contact.phoneIntl}`} class="text-white hover:text-yellow font-bold link-underline">{site.contact.phone}</a></li>
+          <li><a href={`tel:${site.contact.mobileIntl}`} class="text-white hover:text-yellow link-underline">{site.contact.mobile}</a> <span class="text-white/50 text-xs">(mobile / WhatsApp)</span></li>
+          <li><a href={`mailto:${site.contact.email}`} class="text-white hover:text-yellow link-underline">{site.contact.email}</a></li>
+          <li><a href={`mailto:${site.contact.quotesEmail}`} class="text-white hover:text-yellow link-underline">{site.contact.quotesEmail}</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-eyebrow text-white/90 mb-4">Find us</h3>
+        <address class="not-italic text-sm text-white/80 leading-relaxed">
+          {site.legalName}<br />
+          {site.address.street}<br />
+          {site.address.locality}<br />
+          {site.address.town}, {site.address.region}<br />
+          <span class="font-mono">{site.address.postcode}</span><br />
+          {site.address.countryName}
+        </address>
+        <p class="mt-3 text-xs text-white/85">
+          {site.hours.weekdays} · Mon–Fri · {site.hours.weekend} weekends
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-eyebrow text-white/90 mb-4">Manufactured to standard</h3>
+        <p class="text-sm text-white/80 mb-4 leading-relaxed">
+          Every product designed and cast to BS EN 14992, BS 8500-1:2023 and BS EN 1992 (Eurocode 2).
+        </p>
+        <a href="/sustainability" class="inline-flex items-center gap-1.5 text-sm font-bold text-yellow hover:text-white link-underline">
+          See all accreditations
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+            <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Accreditations strip -->
+    <div id="footer-accreditations" class="py-10 border-b border-white/10" tabindex="-1">
+      <div class="bg-white/5 rounded-lg p-6">
+        <AccreditationBadges layout="strip" filter="current" />
+      </div>
+    </div>
+
+    <!-- Legal bar -->
+    <div class="pt-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-xs text-white/50">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:flex-wrap gap-x-3 gap-y-1">
+        <span>
+          © {year} {site.legalName} · Company no. {site.companyNumber} · Registered in England & Wales
+        </span>
+        <a
+          href={`https://find-and-update.company-information.service.gov.uk/company/${site.companyNumber}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1 hover:text-yellow transition-colors duration-200"
+          title={`Verify ${site.legalName} at Companies House`}
+        >
+          <span>Verified at Companies House</span>
+          <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="15 3 21 3 21 9" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="10" y1="14" x2="21" y2="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+      <ul class="flex flex-wrap gap-x-4 gap-y-1">
+        {legal.map((l) => (
+          <li><a href={l.href} class="hover:text-yellow transition-colors duration-200">{l.label}</a></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</footer>
