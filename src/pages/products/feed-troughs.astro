@@ -1,15 +1,34 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
+import FittedVsSupply from '@/components/FittedVsSupply.astro';
+import SpecSheetButton from '@/components/SpecSheetButton.astro';
+import SpecDownloads from '@/components/SpecDownloads.astro';
+import ProductGallery from '@/components/ProductGallery.astro';
 import { site } from '@/config/site';
+import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
+import ProductPageTOC from '@/components/ProductPageTOC.astro';
+
+const tocSections = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'specifications', label: 'Specifications' },
+  { id: 'gallery', label: 'Gallery' },
+  { id: 'features', label: 'Features' },
+  { id: 'related', label: 'Related' },
+  { id: 'faq', label: 'FAQ' },
+  { id: 'downloads', label: 'Downloads' },
+];
 
 const specs = [
-  { type: 'L-trough (single side)', size: '2440 × 900 × 600mm', weight: '580 kg', anchor: 'Cast-in M16 sockets', use: 'Single-row feed-passage layout' },
-  { type: 'Single-sided straight', size: '2440 × 600 × 600mm', weight: '440 kg', anchor: 'Cast-in M16 sockets', use: 'Wall-mounted single feed line' },
-  { type: 'Double-sided straight', size: '2440 × 1200 × 600mm', weight: '760 kg', anchor: 'Cast-in M16 sockets', use: 'Centre-passage two-sided feeding' },
-  { type: 'Tombstone barrier-top', size: '2440 × 900 × 1100mm', weight: '780 kg', anchor: 'Bolt-down to slab', use: 'Self-locking yoke front' },
-  { type: 'Calf creep trough', size: '2000 × 600 × 450mm', weight: '320 kg', anchor: 'Free-standing', use: 'Calf creep and youngstock pens' },
-  { type: 'Heavy-duty drive-along', size: '3000 × 900 × 700mm', weight: '850 kg', anchor: 'Cast-in M20 sockets', use: 'TMR drive-along feeding systems' },
+  { type: "'J' Trough", size: '3658 × 1150 × 800mm', weight: '1,740 kg', use: 'Smooth curved internal surface; cast-in lifting eyes' },
+  { type: "Youngstock 'J' Trough", size: '3658 × 800 × 700mm', weight: '1,321 kg', use: 'Lower-height variant for youngstock pens' },
+  { type: 'Quad Run (largest)', size: '2440 × 1760 × 600mm', weight: '1,898 kg', use: 'Adjustable headrail and gated ends' },
+  { type: 'Double Sided', size: '2440 × 1180 × 600mm', weight: '1,476 kg', use: 'Centre-passage two-sided feeding; rapid fit rail system' },
+  { type: 'Single Sided', size: '2440 × 1180 × 1100mm', weight: '1,774 kg', use: 'Wall-mounted feed line; adjustable headrail' },
+  { type: "'L' Shaped", size: '2440 × 900 × 600mm', weight: '924 kg', use: 'End-of-passage corner unit' },
+  { type: 'Feedstop Walls', size: '3000 × 250 × 600mm', weight: '684 kg', use: 'Cast-in fork slots; quick repositioning' },
+  { type: "Round Top Feed Walls (15' × 500mm)", size: 'up to 21\' (6401mm); 500 or 600mm tall × 130mm thick', weight: "580 kg @ 15' × 500mm; 816 kg @ 15' × 600mm", use: '600mm round top front feed wall; eyes for steel-post panel brackets' },
 ];
 
 const applications = [
@@ -22,89 +41,121 @@ const applications = [
   'Sheep handling and feed yards',
 ];
 
+const features = [
+  "Cast-in lifting eyes on every section for safe HIAB / teleporter handling",
+  "Smooth curved internal surface on the 'J' Trough — easy to clean, no feed traps",
+  "600mm round top front feed wall on the Round Top range",
+  "Custom lengths and notch-outs available — give us the drawing",
+  "Rapid fit rail system on the Double Sided variant",
+  "Adjustable headrail on the Single Sided and Quad Run",
+  "Gated ends on the Quad Run for easy access during cleaning",
+  "Cast-in fork slots on the Feedstop Walls — re-position with the loader",
+  "Lifting eyes on the Round Top for steel-post panel brackets",
+];
+
 const related = [
-  { href: '/products/water-troughs', label: 'Water Troughs', meta: 'Single + double row · 1300×600' },
+  { href: '/products/water-troughs', label: 'Drinking Troughs', meta: '40 to 500 gallon range' },
   { href: '/products/cattle-cubicles', label: 'Cattle Cubicles', meta: 'AHDB 2024 sized' },
-  { href: '/products/cubicle-end-walls', label: 'Cubicle End Walls', meta: 'Integrated trough option' },
+  { href: '/products/cubicle-end-walls', label: 'Cubicle End Walls', meta: 'Trough + panel variants' },
   { href: '/products/interlocking-blocks', label: 'Interlocking Blocks', meta: 'Beton-style · 1485kg' },
 ];
 
 const faqs = [
-  { q: 'L-shape or straight — what do I need?', a: 'L-troughs sit at the end of a feed passage and turn the run — handy on most cubicle layouts. Straight troughs go between L-troughs in the middle of the passage. We supply both at 2440mm length so they line up. The L-trough at 2440 × 900 × 600mm weighs 580kg.' },
-  { q: 'How are they anchored?', a: 'Standard troughs come with M16 cast-in sockets at 1.2m centres — bolt down through your slab. Drive-along units use M20. We supply the resin-anchor spec or stainless bolts. Heavy-duty TMR systems also need anti-slide cleats; we will cast those in too on request.' },
-  { q: 'Will they last with TMR feed?', a: 'Yes — C40/50 mix with sulphate-resisting binder where the feed is acid-rich. The trough lip is the wear point on TMR systems, so we cast a thicker lip section as standard. Decades of service is normal.' },
-  { q: 'Can I get a tombstone or yoke front?', a: 'Yes — tombstone barrier tops, self-locking yoke fronts and full headlock systems all bolt to the trough back. Sized to the breed in line with AHDB feed-passage guidance.' },
-  { q: 'Lead time?', a: 'Catalogue sizes ship in 2 to 3 weeks. Bespoke trough lengths or integrated yoke-fronts run 4 to 6 weeks. Most farms want them in for the autumn housing — order by August.' },
+  { q: "What's the difference between the 'J' Trough and the Youngstock 'J'?", a: "The full 'J' Trough is 3658 × 1150 × 800mm at 1,740kg with a smooth curved internal surface for easy cleaning. The Youngstock 'J' is the same length but narrower and lower at 3658 × 800 × 700mm and 1,321kg — sized for youngstock pens." },
+  { q: 'How do the lifting eyes work?', a: 'Every trough section is cast with lifting eyes for safe handling on the HIAB or teleporter. Sections come in calibrated lengths so they line up — bespoke lengths and notch-outs are available where the drawing calls for it.' },
+  { q: 'Tell me about the Quad Run and the Double Sided.', a: 'The Quad Run (2440 × 1760 × 600mm, 1,898kg) is the largest trough with an adjustable headrail and gated ends. The Double Sided (2440 × 1180 × 600mm, 1,476kg) uses our rapid fit rail system for fast assembly on centre-passage two-sided runs.' },
+  { q: "What are the Feedstop Walls and Round Top Feed Walls?", a: "Feedstop Walls (3000 × 250 × 600mm, 684kg) have cast-in fork slots so you can re-position them with the loader. The Round Top Feed Walls run up to 21' (6401mm), 500 or 600mm tall, 130mm thick reinforced concrete. The 600mm round top is the front feed face. They have lifting eyes for steel-post panel brackets." },
+  { q: 'Lead time?', a: 'Catalogue sizes ship in 2 to 3 weeks. Bespoke lengths or non-standard notch-outs run 4 to 6 weeks. Most farms want them in for the autumn housing — order by August.' },
 ];
 
 const productSchema = {
   name: 'Precast Cattle Feed Troughs',
-  description: 'L-shaped, single-sided and double-sided precast feed troughs. Standard 2440×900×600mm L-trough at 580kg. Cast-in M16 anchor sockets. C40/50 concrete. For TMR, single-line and yoke-front feeding systems.',
+  description: "Full WCCP feed-trough range. 'J' Trough at 3658 × 1150 × 800mm and 1,740kg with smooth curved internal surface. Youngstock 'J', Quad Run, Double Sided (rapid fit rail system), Single Sided, 'L' Shaped, Feedstop Walls and Round Top Feed Walls up to 21'.",
   brand: { '@type': 'Brand', name: site.name },
   manufacturer: { '@type': 'Organization', name: site.name },
   category: 'Precast feed trough',
   material: 'Reinforced concrete, C40/50 (BS 8500-1:2023)',
-  weight: { '@type': 'QuantitativeValue', minValue: 320, maxValue: 850, unitCode: 'KGM', unitText: 'kilogram per trough' },
+  weight: { '@type': 'QuantitativeValue', minValue: 580, maxValue: 1898, unitCode: 'KGM', unitText: 'kilogram per trough' },
   additionalProperty: [
     { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 13369 / BS 5502-22:2003' },
     { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
-    { '@type': 'PropertyValue', name: 'Standard L-trough', value: '2440 × 900 × 600mm, 580 kg' },
-    { '@type': 'PropertyValue', name: 'Anchor', value: 'M16 cast-in sockets at 1.2m c/c' },
-    { '@type': 'PropertyValue', name: 'Variants', value: 'L-shape / single-sided / double-sided / tombstone / drive-along' },
+    { '@type': 'PropertyValue', name: "'J' Trough", value: '3658 × 1150 × 800mm, 1,740 kg' },
+    { '@type': 'PropertyValue', name: "Youngstock 'J' Trough", value: '3658 × 800 × 700mm, 1,321 kg' },
+    { '@type': 'PropertyValue', name: 'Quad Run', value: '2440 × 1760 × 600mm, 1,898 kg' },
+    { '@type': 'PropertyValue', name: 'Double Sided', value: '2440 × 1180 × 600mm, 1,476 kg (rapid fit rail system)' },
+    { '@type': 'PropertyValue', name: 'Single Sided', value: '2440 × 1180 × 1100mm, 1,774 kg (adjustable headrail)' },
+    { '@type': 'PropertyValue', name: "'L' Shaped", value: '2440 × 900 × 600mm, 924 kg' },
+    { '@type': 'PropertyValue', name: 'Feedstop Walls', value: '3000 × 250 × 600mm, 684 kg (cast-in fork slots)' },
+    { '@type': 'PropertyValue', name: 'Round Top Feed Walls', value: "Up to 21' (6401mm), 500 or 600mm tall, 130mm thick" },
+    { '@type': 'PropertyValue', name: 'Features', value: 'Cast-in lifting eyes; custom lengths and notch-outs available' },
     { '@type': 'PropertyValue', name: 'Lead time', value: '2–3 weeks catalogue' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
   ],
-  offers: { '@type': 'Offer', priceCurrency: 'GBP', availability: 'https://schema.org/InStock', seller: { '@type': 'Organization', name: site.name } },
+  offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
 };
 
 const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
 ---
 
 <BaseLayout
-  title="Feed Troughs — L-shape, single + double-sided · 2440×900×600"
-  description="Precast cattle feed troughs. L-shape, single + double-sided. Standard 2440×900×600mm L-trough at 580kg. M16 cast-in anchors. Cast in North Devon."
-  image="/images/products/feed-troughs.jpg"
+  title="Feed Troughs — 'J', Quad Run, Double + Single Sided, 'L', Feedstop & Round Top"
+  description="WCCP feed-trough range. 'J' Trough 3658×1150×800mm 1,740kg, Quad Run, Double Sided rapid fit rail, Single Sided 1100mm, 'L' Shaped, Feedstop Walls and Round Top Feed Walls. Cast in North Devon."
+  image="/og/feed-troughs.png"
   schema="Product"
   schemaData={productSchema}
+  whatsappContext="Feed Troughs"
 >
   <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
   <TrustStrip />
 
-  <section class="bg-navy text-white">
+  <ProductPageTOC sections={tocSections} />
+
+  <section id="overview" class="bg-navy text-white">
     <div class="container-wccp py-16 md:py-20">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
           <p class="eyebrow text-yellow mb-4">Agricultural · feeding · cattle</p>
           <h1 class="font-display text-display-xl text-white mb-4">Feed Troughs.</h1>
-          <p class="text-lg text-white/90 leading-relaxed mb-6">
-            L-shaped, single-sided and double-sided precast troughs for cattle feed passages.
-            Standard 2440 × 900 × 600mm L-trough at 580kg with M16 cast-in anchor sockets.
-            Tombstone tops, drive-along sizes and calf-creep variants on the catalogue.
+          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">
+            Cast as one piece. No joints to clean, no joints to fail.
+          </p>
+          <h2 class="sr-only">How long does a feed trough need to be per cow?</h2>
+          <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
+            <strong class="not-italic text-white">How long does a feed trough need to be per cow?</strong>
+            AHDB Dairy 2024 recommends 600&nbsp;mm of feed-face per cow on a TMR herd, 400&nbsp;mm
+            on ad-lib silage. Our 'J' Trough at 3,658&nbsp;mm feeds six TMR cows or eight on ad-lib.
+            Cast as one piece in C40/50 — no joints to clean and nothing to fail.
+          </blockquote>
+          <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
+            The full WCCP range — 'J' Trough, Quad Run, Double / Single Sided, 'L' Shaped,
+            Feedstop Walls and Round Top Feed Walls up to 21'. Every section cast with lifting eyes.
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
-            <li class="flex gap-2"><span class="text-yellow">·</span> L-trough 2440×900</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 580 kg standard</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> M16 anchors</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> TMR-rated</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Tombstone option</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 'J' Trough 3658×1150</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Quad Run 1,898kg</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Rapid fit rail system</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Adjustable headrail</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Round Top to 21'</li>
             <li class="flex gap-2"><span class="text-yellow">·</span> 2–3 week lead</li>
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Feed+Troughs" class="btn-primary">Configure a quote</a>
-            <a href="/spec-sheets/feed-troughs.pdf" class="btn-yellow">Download spec sheet</a>
+            <a href="/downloads/specs/feed-troughs/wccp-feed-troughs-feed-troughs.pdf" class="btn-yellow">Download spec sheet</a>
             <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">Call {site.contact.phone}</a>
           </div>
         </div>
-        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-300 via-cast to-navy"></div></div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
+          <img src="/images/products/feed-troughs/wccp-feed-troughs-j-shape-single-sided-concrete-feed-trough.jpg" alt="J-shape single-sided precast concrete cattle feed trough — West Country Concrete Products, Devon" class="w-full h-full object-cover" loading="eager" decoding="async" />
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="container-wccp py-20">
+  <section id="specifications" class="container-wccp py-20 section-reveal">
     <div class="max-w-2xl mb-10">
       <p class="eyebrow text-cast mb-3">Specification</p>
       <h2 class="font-display text-display-lg mb-4">Variants, sizes and weights.</h2>
-      <p class="text-cast-700 text-lg">Catalogue troughs at 2440mm length so units line up. Bespoke lengths and integrated yoke-fronts on application.</p>
+      <p class="text-cast-700 text-lg">The full range from the November 2021 brochure. Cast-in lifting eyes throughout; custom lengths and notch-outs cast on application.</p>
     </div>
     <div class="overflow-x-auto">
       <table class="spec-table w-full text-left border-collapse">
@@ -113,8 +164,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Type</th>
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Size (L×W×H)</th>
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Weight</th>
-            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Anchor</th>
-            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Notes</th>
           </tr>
         </thead>
         <tbody>
@@ -123,7 +173,6 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
               <td class="px-4 py-3 font-bold text-navy">{s.type}</td>
               <td class="px-4 py-3">{s.size}</td>
               <td class="px-4 py-3">{s.weight}</td>
-              <td class="px-4 py-3">{s.anchor}</td>
               <td class="px-4 py-3 text-cast">{s.use}</td>
             </tr>
           ))}
@@ -132,27 +181,41 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
     </div>
   </section>
 
-  <section class="bg-bone-200 py-20">
+  <div id="gallery" class="section-reveal">
+  <ProductGallery
+    eyebrow="The range"
+    heading="Every trough we cast."
+    background="bone"
+    cols={4}
+    images={[
+      { src: '/images/products/feed-troughs/wccp-feed-troughs-double-sided-feed-trough.jpg', alt: 'Double-sided precast concrete cattle feed trough with galvanised top frame by West Country Concrete Products, Devon', caption: 'Double-sided feed trough' },
+      { src: '/images/products/feed-troughs/wccp-feed-troughs-single-sided-feed-trough.jpg', alt: 'Single-sided precast concrete J-shape cattle feed trough cast by WCCP Devon', caption: 'Single-sided J-shape trough' },
+      { src: '/images/products/feed-troughs/wccp-feed-troughs-youngstock-j-shape-single-sided-feed-trough.jpg', alt: 'Young-stock J-shape single-sided precast concrete feed trough section by WCCP Devon', caption: 'Young-stock J-shape section' },
+      { src: '/images/products/feed-troughs/wccp-feed-troughs-quad-trough-with-gate.jpg', alt: 'Precast concrete cattle feed trough with galvanised feed-rail gate frame by WCCP Devon', caption: 'Trough with feed-rail gate' },
+      { src: '/images/products/feed-troughs/wccp-feed-troughs-l-shape-feed-wall.jpg', alt: 'L-shape precast concrete feed wall section by WCCP Devon', caption: 'L-shape feed wall' },
+      { src: '/images/products/feed-troughs/wccp-feed-troughs-feed-stop-walling.jpg', alt: 'Precast concrete feed-stop walling section by WCCP Devon', caption: 'Feed-stop walling' },
+      { src: '/images/products/feed-troughs/wccp-feed-troughs-cropped-img-20180907-153348-300x194.jpg', alt: 'Black cattle feeding from a precast concrete feed wall on-farm, supplied by WCCP Devon', caption: 'On-farm in use' },
+    ]}
+  />
+  </div>
+
+  <section id="features" class="bg-white py-20 section-reveal">
     <div class="container-wccp">
       <div class="grid lg:grid-cols-2 gap-12">
         <div>
-          <p class="eyebrow text-cast mb-3">Where they go</p>
-          <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
-          <p class="text-cast-700 text-lg leading-relaxed mb-6">From a 60-cow cubicle shed to a 400-cow TMR drive-along — same trough family, sized for the breed and feed system.</p>
+          <p class="eyebrow text-cast mb-3">Built-in features</p>
+          <h2 class="font-display text-display-lg mb-6">What you get out of the box.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">Every WCCP feed-trough variant is engineered for fast install, easy cleaning and easy re-positioning where the layout calls for it.</p>
           <ul class="space-y-3">
-            {applications.map((a) => (<li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">·</span><span>{a}</span></li>))}
+            {features.map((f) => (<li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">·</span><span>{f}</span></li>))}
           </ul>
         </div>
         <div class="card p-8">
-          <p class="eyebrow text-cast mb-3">Standards & references</p>
-          <h3 class="font-display text-2xl font-bold text-navy mb-4">Cast and sized to current best practice.</h3>
-          <dl class="space-y-4 text-sm">
-            <div><dt class="font-bold text-navy">BS EN 13369</dt><dd class="text-cast">Common rules for precast concrete — factory production control.</dd></div>
-            <div><dt class="font-bold text-navy">BS 5502-22:2003</dt><dd class="text-cast">Agricultural buildings — feed-passage detailing and loadings.</dd></div>
-            <div><dt class="font-bold text-navy">BS 8500-1:2023</dt><dd class="text-cast">Concrete spec — C40/50 designed mix for the feeding environment.</dd></div>
-            <div><dt class="font-bold text-navy">AHDB Dairy</dt><dd class="text-cast">Feed-passage and trough-front sizing guidance for cattle.</dd></div>
-            <div><dt class="font-bold text-navy">BS EN 1992 (Eurocode 2)</dt><dd class="text-cast">Concrete structural design — anchor and lifting calculation.</dd></div>
-          </dl>
+          <p class="eyebrow text-cast mb-3">Where they go</p>
+          <h3 class="font-display text-2xl font-bold text-navy mb-4">Common applications.</h3>
+          <ul class="space-y-3">
+            {applications.map((a) => (<li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">·</span><span>{a}</span></li>))}
+          </ul>
         </div>
       </div>
     </div>
@@ -173,7 +236,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
     </div>
   </section>
 
-  <section class="container-wccp py-20">
+  <section id="related" class="container-wccp py-20 section-reveal">
     <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
       <div>
         <p class="eyebrow text-cast mb-3">Related products</p>
@@ -183,18 +246,10 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" /><polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" /></svg>
       </a>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      {related.map((r) => (
-        <a href={r.href} class="card p-5 group">
-          <div class="aspect-[16/10] bg-cast-100 mb-4 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100"></div></div>
-          <h3 class="font-display text-base font-bold text-navy mb-1 group-hover:text-ember">{r.label}</h3>
-          <p class="text-cast text-xs">{r.meta}</p>
-        </a>
-      ))}
-    </div>
+    <RelatedProductGrid items={related} />
   </section>
 
-  <section class="bg-bone-200 py-20">
+  <section id="faq" class="bg-bone-200 py-20 section-reveal">
     <div class="container-wccp">
       <div class="max-w-2xl mb-12">
         <p class="eyebrow text-cast mb-3">Common questions</p>
@@ -215,6 +270,45 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
     </div>
   </section>
 
+  <div id="downloads" class="section-reveal">
+  <SpecDownloads
+    intro="Every feed-trough section we cast — pick the variant for your feed passage and download the PDF."
+    downloads={[
+      { href: '/downloads/specs/feed-troughs/wccp-feed-troughs-feed-troughs.pdf', title: 'Feed troughs — full range', meta: 'PDF · 76 KB' },
+      { href: '/downloads/specs/feed-troughs/wccp-feed-troughs-quad-trough.pdf', title: 'Quad Run trough', meta: 'PDF · 799 KB' },
+      { href: '/downloads/specs/feed-troughs/wccp-feed-troughs-pre-cast-concrete-l-shape-feed-wall.pdf', title: "L-shape feed wall", meta: 'PDF · 470 KB' },
+      { href: '/downloads/specs/feed-troughs/wccp-feed-troughs-new-half-round-feed-wall.pdf', title: 'Half-round feed wall', meta: 'PDF · 919 KB' },
+      { href: '/downloads/specs/feed-troughs/wccp-feed-troughs-new-12ft-single-sided-j-shape-feed-trough.pdf', title: "12ft single-sided J-shape trough", meta: 'PDF · 628 KB' },
+      { href: '/downloads/specs/feed-troughs/wccp-feed-troughs-j-shape-youngstock-single-sided-feed-trough.pdf', title: "Youngstock single-sided J-shape trough", meta: 'PDF · 255 KB' },
+      { href: '/downloads/specs/feed-troughs/wccp-feed-troughs-3m-feedstop-wall-units.pdf', title: '3m Feedstop wall units', meta: 'PDF · 115 KB' },
+    ]}
+  />
+  </div>
+
+  <!-- Supply-only vs Fitted -->
+  <section class="container-wccp section-rhythm border-t border-cast-100">
+    <FittedVsSupply
+      productName="Feed Troughs"
+      defaultMode="supply"
+      supply={{
+        price: 'from £180 per linear metre',
+        leadTime: '2–3 weeks',
+        includes: [
+          "'J', Quad Run, Double Sided, Single Sided, 'L' Shaped or Feedstop sections",
+          'Cast-in lifting eyes on every section',
+          'BS EN 13369 / BS 5502-22 documentation',
+          'Delivery on our HIAB to your shed',
+        ],
+        excludes: [
+          'On-site setting and bedding mortar',
+          'Slab preparation and resin anchors',
+          'Custom notch-outs (priced separately)',
+        ],
+      }}
+      note="Indicative 2026 pricing per linear metre on the standard 'L' Shaped trough. 'J', Quad Run, Single Sided, Round Top and bespoke notch-outs priced individually. Install handled by our partner ag-fit-out crews — ask for a referral."
+    />
+  </section>
+
   <section class="bg-navy text-white py-20">
     <div class="container-wccp text-center">
       <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
@@ -226,4 +320,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
       </div>
     </div>
   </section>
+
+  <SpecSheetButton productSlug="feed-troughs" productName="Feed Troughs" href="/downloads/specs/feed-troughs/wccp-feed-troughs-feed-troughs.pdf" />
+  <ProductWarrantyLine />
 </BaseLayout>

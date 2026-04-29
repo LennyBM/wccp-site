@@ -27,14 +27,14 @@ const {
 } = Astro.props;
 
 const variantClasses = {
-  navy:   'bg-navy-logo text-white',
-  bone:   'bg-bone text-ink',
-  yellow: 'bg-yellow text-navy',
+  navy:   'bg-forest-700 text-cream',
+  bone:   'bg-cream text-ink',
+  yellow: 'bg-cream text-forest',
 }[variant];
 
-const eyebrowColor = variant === 'navy' ? 'text-yellow' : 'text-cast';
-const titleColor   = variant === 'navy' ? 'text-white' : 'text-navy';
-const subtitleColor = variant === 'navy' ? 'text-white/90' : 'text-cast';
+const eyebrowColor = variant === 'navy' ? 'text-cream/80' : 'text-cast';
+const titleColor   = variant === 'navy' ? 'text-cream' : 'text-forest-700';
+const subtitleColor = variant === 'navy' ? 'text-cream/85' : 'text-cast-700';
 const alignClass = align === 'center' ? 'mx-auto text-center' : '';
 ---
 
@@ -47,29 +47,23 @@ const alignClass = align === 'center' ? 'mx-auto text-center' : '';
     </div>
   )}
 
-  {/* Decorative gradient pan for navy variant */}
+  {/* Quiet forest gradient for the navy variant when no image is supplied */}
   {variant === 'navy' && !imageUrl && (
     <div
       aria-hidden="true"
-      class="absolute inset-0 opacity-50 animate-gradient-pan"
-      style="background: linear-gradient(120deg, #0000FE 0%, #0024D6 35%, #1530E2 60%, #0000FE 100%); background-size: 200% 200%;"
+      class="absolute inset-0 opacity-60"
+      style="background: linear-gradient(135deg, #3a5cb5 0%, #2e4796 60%, #1f2f6a 100%);"
     />
   )}
 
-  {/* Diagonal stripe accent */}
-  {variant === 'navy' && (
-    <div
-      aria-hidden="true"
-      class="absolute -top-1/2 -right-1/4 w-[120%] h-[200%] opacity-[0.06]"
-      style="background-image: repeating-linear-gradient(45deg, #FBF547 0, #FBF547 2px, transparent 2px, transparent 24px); transform: rotate(-12deg);"
-    />
-  )}
+  {/* Subtle grain — replaces the old diagonal yellow-stripe motif */}
+  {variant === 'navy' && <div aria-hidden="true" class="grain-overlay"></div>}
 
   <div class="relative container-wccp py-20 md:py-24 lg:py-28">
     <div class={`max-w-3xl ${alignClass}`}>
       {eyebrow && (
         <p class={`eyebrow mb-6 ${eyebrowColor} animate-fade-in-down`}>
-          <span class={`inline-block w-8 h-px align-middle mr-3 ${variant === 'navy' ? 'bg-yellow' : 'bg-cast'}`}></span>
+          <span class={`inline-block w-8 h-px align-middle mr-3 ${variant === 'navy' ? 'bg-terracotta' : 'bg-terracotta'}`}></span>
           {eyebrow}
         </p>
       )}
@@ -99,7 +93,7 @@ const alignClass = align === 'center' ? 'mx-auto text-center' : '';
             </a>
           )}
           {tertiaryCta && (
-            <a href={tertiaryCta.href} class={variant === 'navy' ? 'btn-ghost border-white text-white hover:bg-white hover:text-navy-logo' : 'btn-ghost'}>
+            <a href={tertiaryCta.href} class={variant === 'navy' ? 'btn-ghost border-cream text-cream hover:bg-cream hover:text-forest-700' : 'btn-ghost'}>
               {tertiaryCta.label}
             </a>
           )}

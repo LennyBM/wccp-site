@@ -1,0 +1,296 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const faqs = [
+  { q: 'What is a king post retaining wall?', a: 'A king post retaining wall is a steel-and-concrete retaining system. Steel universal columns (UCs — the "king posts") are set into a row of bored concrete pile foundations. Precast concrete panels then drop into the flanges of each UC to form the wall face. The system is fast to install, modular and well suited to retained heights up to about 4m.' },
+  { q: 'What size UC do I need for a 3m king post wall?', a: 'For a 3m retained height in cohesive soil with no surcharge, a UC203×203×46 at 1.8m centres is a typical starting point — but the actual section is sized by the structural engineer against soil parameters, surcharge, groundwater and embedment depth. We design every WCCP king-post job to BS EN 1992 and BS EN 1993.' },
+  { q: 'How thick should the infill panels be?', a: 'Panel thickness is driven by retained height and surcharge between the posts. For typical 1.8m post centres, 140mm panels work to 2.4m, 180mm to 3.0m and 200–230mm above 3m. Heavy surcharge from vehicles or stockpiles steps the thickness up.' },
+  { q: 'How much drainage does a king post wall need?', a: 'Drainage is non-negotiable. We specify a 150mm perforated land drain wrapped in geotextile at the base of the retained face, surrounded by 200mm of clean 20mm aggregate, with weep holes through every third panel at low level. Hydrostatic pressure behind a blocked wall doubles the design load.' },
+  { q: 'What is the lead time on a king post wall?', a: 'Catalogue panels and stock UC sections, four to five weeks from approved drawing. Bespoke heights, dished panels or non-standard post centres add a fortnight for design and mould prep. Bored piles are usually the critical path — book the piling rig early.' },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="Complete guide to king post retaining walls (UK)"
+  description="UK king post retaining walls explained: when to use, UC sizing, panel thickness, drainage, design to BS EN 1992 and BS EN 1993, install sequence, lead times and common mistakes."
+  schema="Article"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-14 md:py-16">
+      <nav class="text-sm text-white/90 mb-6" aria-label="Breadcrumb">
+        <a href="/guides" class="hover:text-yellow">Guides</a>
+        <span class="mx-2 text-cast">/</span>
+        <span class="text-white/90">King post retaining walls</span>
+      </nav>
+      <p class="eyebrow text-yellow mb-4">Retaining walls · Pillar guide</p>
+      <h1 class="font-display text-display-xl text-white mb-6 max-w-4xl">
+        Complete guide to king post retaining walls (UK).
+      </h1>
+
+      <div class="bg-navy-700 border-l-4 border-yellow p-6 max-w-3xl rounded-r">
+        <p class="text-white/90 text-lg leading-relaxed">
+          <strong class="text-white">Direct answer:</strong> A king post retaining wall uses steel UC
+          posts set into bored concrete piles, with precast concrete panels infilled between the
+          flanges. It is fast to install, modular, suits retained heights to 4m, and is designed to
+          BS EN 1992 (concrete) and BS EN 1993 (steel) with embedment per BS 8002.
+        </p>
+      </div>
+
+      <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/90">
+        <div>By <span class="text-white font-semibold">WCCP Engineering Team</span> <!-- CLIENT: confirm individual reviewer name + CEng status --></div>
+        <div>Published <time datetime="2026-04-29">29 April 2026</time></div>
+        <div>Updated <time datetime="2026-04-29">29 April 2026</time></div>
+      </div>
+    </div>
+  </section>
+
+  <article class="container-wccp py-12 md:py-16">
+    <div class="grid lg:grid-cols-[1fr_18rem] gap-10 lg:gap-16">
+      <div class="max-w-3xl">
+
+        <details class="lg:hidden mb-10 border border-cast-100 rounded-lg p-5">
+          <summary class="font-display text-lg font-bold text-navy cursor-pointer">On this page</summary>
+          <ol class="mt-4 space-y-2 text-cast list-decimal list-inside">
+            <li><a href="#when" class="hover:text-ember">When to use king post</a></li>
+            <li><a href="#uc-sizing" class="hover:text-ember">UC post sizing</a></li>
+            <li><a href="#panels" class="hover:text-ember">Infill panel thickness</a></li>
+            <li><a href="#drainage" class="hover:text-ember">Drainage</a></li>
+            <li><a href="#design" class="hover:text-ember">Design to BS EN 1992</a></li>
+            <li><a href="#install" class="hover:text-ember">Install sequence</a></li>
+            <li><a href="#mistakes" class="hover:text-ember">Common mistakes</a></li>
+            <li><a href="#faq" class="hover:text-ember">FAQ</a></li>
+          </ol>
+        </details>
+
+        <section id="when" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">When should you choose a king post wall?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">King post walls win where retained height is between 1.8m and
+            4m, where the toe is constrained, and where speed of install matters more than absolute
+            material economy.</strong> They are routine on highway widening, basement perimeters,
+            farm-track cuttings and any job where an
+            <a href="/products/l-blocks" class="text-ember underline">L-block</a> would need too much
+            footprint.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            Compared with a cast in-situ
+            <a href="/products/cantilever-walls" class="text-ember underline">cantilever wall</a>,
+            king post is faster — once the piles are in, the panels drop in over a few days. Compared
+            with sheet piling, it is more permanent and reads as a finished wall. Compared with
+            gabions, it has the structural and visual properties that planners prefer in a
+            development setting.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            Where it loses: in very tall retained heights (above 4m, contiguous bored pile or
+            anchored designs typically dominate) or where the ground will not take a piled
+            foundation (running sand, deep soft alluvium). Talk to us early on borderline jobs.
+          </p>
+        </section>
+
+        <section id="uc-sizing" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">How are king post UC sections sized?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">UC sizing is an engineer's calculation against retained height,
+            soil shear strength, surcharge, groundwater and embedment depth — typically 1.5× the
+            retained height for cohesive soils and 1.7× for granular.</strong> A typical 3m retained
+            height with no vehicle surcharge in a stiff clay sites at UC203×203×46 at 1.8m centres,
+            embedded 4.5m into a 600mm bored pile.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            The maths is straightforward but unforgiving. The post is designed as a propped or
+            free-standing cantilever depending on whether there is a top capping beam or anchor.
+            Bending moment scales with the cube of retained height; shear with the square. Doubling
+            the height does not double the section — it roughly multiplies it sevenfold.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            We design every WCCP king-post job in-house to BS EN 1993-1-1 (steel) and BS EN 1992-1-1
+            (concrete piles and panels), with the geotechnical input from your site investigation.
+          </p>
+        </section>
+
+        <section id="panels" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What thickness should the infill panels be?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">For 1.8m post centres, 140mm panels suit retained heights to
+            2.4m, 180mm to 3.0m, 200–230mm to 3.6m, and above 3.6m the design becomes site-specific.</strong>
+            Wider post centres demand thicker panels — span between posts and panel thickness scale
+            roughly together.
+          </p>
+          <div class="overflow-x-auto mb-4 -mx-4 sm:mx-0">
+            <table class="spec-table min-w-full px-4 sm:px-0">
+              <thead>
+                <tr><th>Retained height</th><th>Panel thickness</th><th>Post centres</th><th>Concrete grade</th></tr>
+              </thead>
+              <tbody class="text-cast">
+                <tr><td>To 1.8m</td><td><strong class="text-navy">120mm</strong></td><td>1.8m</td><td>C40/50</td></tr>
+                <tr><td>1.8m – 2.4m</td><td><strong class="text-navy">140mm</strong></td><td>1.8m</td><td>C40/50</td></tr>
+                <tr><td>2.4m – 3.0m</td><td><strong class="text-navy">180mm</strong></td><td>1.8m</td><td>C40/50</td></tr>
+                <tr><td>3.0m – 3.6m</td><td><strong class="text-navy">200–230mm</strong></td><td>1.5m</td><td>C40/50</td></tr>
+                <tr><td>Above 3.6m</td><td><strong class="text-navy">Bespoke</strong></td><td>Bespoke</td><td>C40/50</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-sm text-cast italic">
+            WCCP standard range. Surcharge from vehicles within 1.5m of the wall steps thickness up.
+          </p>
+        </section>
+
+        <aside class="not-prose my-12 reveal">
+          <a href="/products/king-post-walls" class="group block bg-navy-700 text-white rounded-lg p-6 md:p-7 hover:bg-navy-600 transition-colors no-underline">
+            <p class="eyebrow text-yellow mb-2">Quote king-post panels</p>
+            <p class="font-display text-xl md:text-2xl text-white font-semibold leading-snug">See the WCCP king-post panel range</p>
+            <p class="text-white/85 text-sm mt-2">120, 140, 180, 200, 230mm — cast to your retained height and post centres.</p>
+          </a>
+        </aside>
+
+        <section id="drainage" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">How do you drain a king post wall?</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Every king post wall needs a 150mm perforated land drain at
+            the base of the retained face, wrapped in geotextile, surrounded by 200mm of clean 20mm
+            aggregate, with weep holes through every third panel at low level.</strong> Hydrostatic
+            pressure behind a blocked wall doubles the design earth pressure. Drainage is the
+            cheapest insurance you will ever buy.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            Above the drain we specify a clean granular backfill or no-fines concrete to within
+            300mm of finished level, with the granular cap topped by a low-permeability cohesive
+            layer to shed surface water away from the retained face.
+          </p>
+        </section>
+
+        <section id="design" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Design to BS EN 1992 and BS EN 1993.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            UK king-post walls are designed to <a href="/standards-explained#eurocode-2" class="text-ember underline">BS EN 1992-1-1 (Eurocode 2)</a>
+            for the concrete elements (piles, panels, capping beam) and BS EN 1993-1-1 (Eurocode 3)
+            for the steel UC. Earth pressures follow BS EN 1997-1 (Eurocode 7) and BS 8002.
+            <a href="/standards-explained#bs-8500" class="text-ember underline">BS 8500-1:2023</a>
+            governs concrete specification — typically C40/50 with exposure class XC2 / XC3.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            Every WCCP panel ships with a UKCA-marked declaration of performance to
+            <a href="/standards-explained#bs-en-14992" class="text-ember underline">BS EN 14992</a>,
+            and the structural calc, mix cert and cube tests follow as a single PDF pack.
+          </p>
+        </section>
+
+        <section id="install" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Install sequence — typical week.</h2>
+          <ol class="text-cast-700 text-lg leading-relaxed list-decimal pl-6 space-y-2 mb-4">
+            <li>Set out and bore piles to design depth (usually 1.5–1.7× retained height).</li>
+            <li>Drop UC king posts into wet pile concrete; brace plumb until the pile sets.</li>
+            <li>Excavate retained face down in 1m lifts, dropping panels as you go.</li>
+            <li>Land each panel into the UC flanges; spacers maintain joint width for the sealant.</li>
+            <li>Install drainage and granular backfill behind each lift before excavating the next.</li>
+            <li>Cast capping beam if the design calls for one; commission and snag.</li>
+          </ol>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            On a typical 30m run at 3m retained height, allow a week for piles, three days for posts
+            to cure and brace, and two to three days to drop the panels and backfill.
+          </p>
+        </section>
+
+        <section id="mistakes" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Common mistakes on king post jobs.</h2>
+          <ul class="text-cast-700 text-lg leading-relaxed list-disc pl-6 space-y-3">
+            <li><strong class="text-navy">Skipping the drainage.</strong> The single biggest cause of king-post failures. Hydrostatic load can double the design earth pressure overnight in heavy rain.</li>
+            <li><strong class="text-navy">Wrong embedment depth.</strong> Embedment is sized by the engineer, not by rule of thumb. Short piles overturn — usually within five years of build.</li>
+            <li><strong class="text-navy">Vehicle surcharge ignored.</strong> If a tractor or HGV will run within 1.5m of the top of wall, the design has to allow for it. Tell us at design stage.</li>
+            <li><strong class="text-navy">Joint sealant skipped.</strong> Sealant between panels is what stops fines piping out through the wall. It's a cheap line item — don't value-engineer it away.</li>
+            <li><strong class="text-navy">Wrong concrete grade.</strong> C32/40 is not appropriate for retained-earth duty in our climate. We cast every panel in C40/50 to BS 8500-1:2023.</li>
+          </ul>
+        </section>
+
+        <section id="faq" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-6">Frequently asked questions</h2>
+          <div class="space-y-4">
+            {faqs.map((f) => (
+              <details class="card p-5 group">
+                <summary class="font-display text-lg font-bold text-navy cursor-pointer flex items-start justify-between gap-4">
+                  <span>{f.q}</span>
+                  <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+                </summary>
+                <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section class="bg-navy text-white rounded-lg p-8 md:p-10">
+          <h2 class="font-display text-2xl md:text-3xl text-white mb-3">Designing a king post wall?</h2>
+          <p class="text-white/90 mb-6 leading-relaxed">
+            Send us your retained height, plan length, soil report and any surcharge — we will come
+            back with a panel and post schedule, a structural calc and a fixed price within 24 hours.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="/products/king-post-walls" class="btn-yellow">See king-post wall range</a>
+            <a href="/quote" class="btn bg-white text-navy hover:bg-bone">Start a quote</a>
+          </div>
+        </section>
+      </div>
+
+      <aside class="hidden lg:block">
+        <div class="sticky top-24">
+          <p class="eyebrow text-cast mb-4">On this page</p>
+          <ol class="space-y-3 text-sm border-l border-cast-100 pl-4">
+            <li><a href="#when" class="text-cast hover:text-ember">When to use king post</a></li>
+            <li><a href="#uc-sizing" class="text-cast hover:text-ember">UC post sizing</a></li>
+            <li><a href="#panels" class="text-cast hover:text-ember">Infill panel thickness</a></li>
+            <li><a href="#drainage" class="text-cast hover:text-ember">Drainage</a></li>
+            <li><a href="#design" class="text-cast hover:text-ember">Design to BS EN 1992</a></li>
+            <li><a href="#install" class="text-cast hover:text-ember">Install sequence</a></li>
+            <li><a href="#mistakes" class="text-cast hover:text-ember">Common mistakes</a></li>
+            <li><a href="#faq" class="text-cast hover:text-ember">FAQ</a></li>
+          </ol>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+  <section class="bg-bone-200 py-16">
+    <div class="container-wccp">
+      <p class="eyebrow text-cast mb-3">Related guides</p>
+      <h2 class="font-display text-display-md mb-8">Keep reading.</h2>
+      <div class="grid md:grid-cols-3 gap-5">
+        <a href="/guides/l-block-vs-cantilever" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Retaining</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">L-block vs cantilever</h3>
+          <p class="text-cast text-sm">Which retaining system wins on speed, height and footprint.</p>
+        </a>
+        <a href="/guides/retaining-wall-types" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Engineering</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Retaining wall types compared</h3>
+          <p class="text-cast text-sm">King post, L-block, cantilever, gravity and reinforced earth.</p>
+        </a>
+        <a href="/sectors/civils" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Sector</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Civils &amp; infrastructure</h3>
+          <p class="text-cast text-sm">How WCCP supplies the South West civils chain.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-16 text-center">
+    <h2 class="font-display text-display-lg mb-4">Talk to the yard.</h2>
+    <p class="text-cast-700 text-lg max-w-xl mx-auto mb-8">Same-day callback Monday to Friday.</p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+      <a href="/quote" class="btn-primary">Configure a quote</a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,7 +1,24 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
+import CADDownloads from '@/components/CADDownloads.astro';
+import FittedVsSupply from '@/components/FittedVsSupply.astro';
+import SpecSheetButton from '@/components/SpecSheetButton.astro';
+import SpecDownloads from '@/components/SpecDownloads.astro';
+import ProductGallery from '@/components/ProductGallery.astro';
 import { site } from '@/config/site';
+import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
+import ProductPageTOC from '@/components/ProductPageTOC.astro';
+
+const tocSections = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'specifications', label: 'Specifications' },
+  { id: 'gallery', label: 'Gallery' },
+  { id: 'related', label: 'Related' },
+  { id: 'faq', label: 'FAQ' },
+  { id: 'downloads', label: 'Downloads' },
+];
 
 const systems = [
   { href: '/products/king-post-walls', label: 'King Post Walls', meta: 'UB/UC posts · panel infill', desc: 'Fast-build retaining using prestressed panels slotted between steel king posts. Heights 1m to 6m.' },
@@ -42,9 +59,18 @@ const faqs = [
   { q: 'How are designs certified?', a: 'Every wall ships with structural calcs to BS EN 1992-1-1 (Eurocode 2), CE/UKCA marking under BS EN 14992 or BS EN 13369, and a designer\'s sign-off. Grant-funded jobs we supply the SSAFO 2018 paperwork too where slurry contact is involved.' },
 ];
 
+const rapidFitSpecs = [
+  'Face: 900 × 1500mm',
+  'Depth: 1200mm',
+  'Weight: 2,120 kg per unit',
+  "'L' shaped top units available at 885 kg",
+  'Shape permits convex and concave wall faces',
+  'Engineered to BS EN 1992-1-1 (Eurocode 2)',
+];
+
 const productSchema = {
   name: 'Precast Retaining Walls',
-  description: 'Family of precast retaining wall systems: king post, L-block, cantilever and panel-and-post. Heights 1m to 6m, surcharge ratings to 60 kN/m². Engineered to BS EN 1992-1-1 with 50-year design life.',
+  description: "Family of precast retaining wall systems including the named WCCP Rapid Fit Retaining Wall System (face 900×1500mm, depth 1200mm, 2,120kg, with 'L' shaped top units at 885kg permitting convex and concave wall faces) plus king post, L-block, cantilever and panel-and-post. Engineered to BS EN 1992-1-1.",
   brand: { '@type': 'Brand', name: site.name },
   manufacturer: { '@type': 'Organization', name: site.name },
   category: 'Precast retaining wall system',
@@ -54,13 +80,16 @@ const productSchema = {
     { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 14992 / BS EN 13369' },
     { '@type': 'PropertyValue', name: 'Structural design', value: 'BS EN 1992-1-1 (Eurocode 2)' },
     { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
+    { '@type': 'PropertyValue', name: 'Named system', value: 'Rapid Fit Retaining Wall System — face 900×1500mm, depth 1200mm, 2,120kg' },
+    { '@type': 'PropertyValue', name: 'Rapid Fit top units', value: "'L' shaped top units, 885 kg" },
+    { '@type': 'PropertyValue', name: 'Rapid Fit face capability', value: 'Convex and concave wall faces' },
     { '@type': 'PropertyValue', name: 'Height range', value: '1.0 m – 6.0 m' },
     { '@type': 'PropertyValue', name: 'Maximum surcharge', value: '60 kN/m² (king post)' },
     { '@type': 'PropertyValue', name: 'Design life', value: '50 years' },
-    { '@type': 'PropertyValue', name: 'Systems available', value: 'King post, L-block, cantilever, panel + post' },
+    { '@type': 'PropertyValue', name: 'Systems available', value: 'Rapid Fit Retaining Wall System, king post, L-block, cantilever, panel + post' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
   ],
-  offers: { '@type': 'Offer', priceCurrency: 'GBP', availability: 'https://schema.org/InStock', seller: { '@type': 'Organization', name: site.name } },
+  offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
 };
 
 const faqSchema = {
@@ -73,12 +102,14 @@ const faqSchema = {
 <BaseLayout
   title="Retaining Walls — King Post · L-Block · Cantilever · Panel"
   description="Precast retaining walls 1m to 6m. King post, L-block, cantilever and panel-and-post systems. Surcharge to 60 kN/m². BS EN 1992-1-1. Cast in North Devon."
-  image="/images/products/retaining-walls.jpg"
+  image="/og/retaining-walls.png"
   schema="Product"
   schemaData={productSchema}
+  whatsappContext="Retaining Walls"
 >
   <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
   <TrustStrip />
+  <ProductPageTOC sections={tocSections} />
 
   <section class="bg-navy text-white">
     <div class="container-wccp py-16 md:py-20">
@@ -86,7 +117,15 @@ const faqSchema = {
         <div>
           <p class="eyebrow text-yellow mb-4">Civils · agricultural · bulk storage</p>
           <h1 class="font-display text-display-xl text-white mb-4">Retaining Walls.</h1>
-          <p class="text-lg text-white/90 leading-relaxed mb-6">
+          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">Engineered to Eurocode 2. Lifted in by lunchtime.</p>
+          <h2 class="sr-only">What's the difference between a retaining wall and a king post wall?</h2>
+          <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
+            <strong class="not-italic text-white">What's the difference between a retaining wall and a king post wall?</strong>
+            "Retaining wall" is the family — any structure holding back earth. A king post wall is
+            one type, with steel UC posts in piles and precast infill panels. Cantilever, L-block
+            and gravity walls are other types in the same family. WCCP supplies all four.
+          </blockquote>
+          <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
             Four precast retaining systems, one yard. King post, L-block, cantilever and
             panel-and-post — heights 1m to 6m, surcharge ratings up to 60 kN/m². Engineered
             to BS EN 1992-1-1, 50-year design life.
@@ -101,12 +140,12 @@ const faqSchema = {
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Retaining+Walls" class="btn-primary">Configure a quote</a>
-            <a href="/spec-sheets/retaining-walls.pdf" class="btn-yellow">Download spec sheet</a>
+            <a href="/downloads/specs/retaining-walls.pdf" class="btn-yellow">Download spec sheet</a>
             <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">Call {site.contact.phone}</a>
           </div>
         </div>
         <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
-          <div class="w-full h-full bg-gradient-to-br from-cast-300 via-cast to-navy"></div>
+          <img src="/images/products/retaining-walls/wccp-retaining-walls-l-t-wall-1024x732.jpg" alt="Precast concrete L and T retaining walls on farm — West Country Concrete Products, Devon" class="w-full h-full object-cover" loading="eager" decoding="async" />
         </div>
       </div>
     </div>
@@ -132,6 +171,49 @@ const faqSchema = {
       ))}
     </div>
   </section>
+
+  <!-- Rapid Fit Retaining Wall System (named WCCP system) -->
+  <section class="container-wccp pb-20">
+    <div class="card p-8 md:p-12 border-2 border-ember/30 bg-bone">
+      <div class="grid lg:grid-cols-2 gap-10 items-start">
+        <div>
+          <p class="eyebrow text-ember mb-3">Named system</p>
+          <h2 class="font-display text-display-lg text-navy mb-4">Rapid Fit Retaining Wall System&trade;</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            WCCP's named retaining-wall system. A 900&nbsp;&times;&nbsp;1500mm face on a 1200mm depth at
+            2,120kg per unit, with <strong class="text-navy">'L' shaped top units</strong> available at 885kg.
+          </p>
+          <p class="text-cast-700 text-base leading-relaxed">
+            The unit shape <strong class="text-navy">permits both convex and concave wall faces</strong> — a
+            single system cope with curved retention runs, civils retention bends and the gentle
+            sweeps that L-blocks and cantilever panels can't follow. Engineered to BS&nbsp;EN&nbsp;1992-1-1
+            with 50-year design life.
+          </p>
+        </div>
+        <div>
+          <p class="eyebrow text-cast mb-3">Specification</p>
+          <ul class="space-y-3">
+            {rapidFitSpecs.map((s) => (<li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">·</span><span>{s}</span></li>))}
+          </ul>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="/quote?product=Rapid+Fit+Retaining+Wall+System" class="btn-primary">Quote Rapid Fit</a>
+            <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ProductGallery
+    eyebrow="Wall types"
+    heading="Wall types."
+    background="white"
+    cols={2}
+    images={[
+      { src: '/images/products/retaining-walls/wccp-retaining-walls-a-wall-732x1024.jpg', alt: 'Free-standing precast concrete A-wall retaining unit cast by West Country Concrete Products, Devon', caption: 'A-wall (free-standing)' },
+      { src: '/images/products/home/wccp-home-20140615-193135-1024x768.jpg', alt: 'Installed precast concrete king-post retaining wall with steel posts and panel infill on a UK site by WCCP Devon', caption: 'King-post wall installed' },
+    ]}
+  />
 
   <section class="bg-bone-200 py-20">
     <div class="container-wccp">
@@ -218,17 +300,7 @@ const faqSchema = {
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" /><polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" /></svg>
       </a>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      {related.map((r) => (
-        <a href={r.href} class="card p-5 group">
-          <div class="aspect-[16/10] bg-cast-100 mb-4 rounded overflow-hidden">
-            <div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100"></div>
-          </div>
-          <h3 class="font-display text-base font-bold text-navy mb-1 group-hover:text-ember">{r.label}</h3>
-          <p class="text-cast text-xs">{r.meta}</p>
-        </a>
-      ))}
-    </div>
+    <RelatedProductGrid items={related} />
   </section>
 
   <section class="bg-bone-200 py-20">
@@ -252,6 +324,56 @@ const faqSchema = {
     </div>
   </section>
 
+  <SpecDownloads
+    intro="A-Wall, L-and-T-Wall and Rapid-Fit retaining block PDFs — the geometry your engineer needs."
+    downloads={[
+      { href: '/downloads/specs/retaining-walls.pdf', title: 'Retaining walls — overview', meta: 'PDF' },
+      { href: '/downloads/specs/retaining-walls/wccp-retaining-walls-a-wall.pdf', title: 'A-Wall retaining wall', meta: 'PDF · 151 KB' },
+      { href: '/downloads/specs/retaining-walls/wccp-retaining-walls-l-and-t-wall.pdf', title: 'L-Wall and T-Wall', meta: 'PDF · 127 KB' },
+      { href: '/downloads/specs/rapid-fit-retaining-block/wccp-rapid-fit-retaining-block-system.pdf', title: 'Rapid-Fit retaining block system', meta: 'PDF · 1.9 MB' },
+    ]}
+  />
+
+  <!-- Supply-only vs Fitted -->
+  <section class="container-wccp section-rhythm border-t border-cast-100">
+    <FittedVsSupply
+      productName="Retaining Walls"
+      defaultMode="supply"
+      supply={{
+        price: 'from £350 per linear metre',
+        leadTime: '3–5 weeks',
+        includes: [
+          'Designer-stamped drawings to BS EN 1992',
+          'Panels, posts or L-blocks per the system',
+          'BS EN 14992 / BS EN 13369 documentation',
+          'Delivery on our HIAB to your site',
+        ],
+        excludes: [
+          'Strip-footing groundworks and excavation',
+          'On-site setting / fixing labour',
+          'Backfill, drainage and granular materials',
+        ],
+      }}
+      fitted={{
+        price: 'from £550 per linear metre',
+        leadTime: '6–8 weeks (incl. site slot)',
+        includes: [
+          'Everything in supply only',
+          'Two-man install crew with HIAB and 35t crane',
+          'Setting-out, levelling and joint detailing',
+          '12-month workmanship warranty',
+        ],
+        excludes: [
+          'Strip-footing concrete and reinforcement',
+          'Backfill, drainage and surfacing reinstatement',
+        ],
+      }}
+      note="Indicative 2026 pricing per linear metre at 3m wall height — taller walls and higher surcharge ratings priced individually. Send the section drawing and we will spec the cheapest right answer."
+    />
+  </section>
+
+  <CADDownloads productSlug="retaining-walls" productName="Retaining walls" />
+
   <section class="bg-navy text-white py-20">
     <div class="container-wccp text-center">
       <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
@@ -263,4 +385,7 @@ const faqSchema = {
       </div>
     </div>
   </section>
+
+  <SpecSheetButton productSlug="retaining-walls" productName="Retaining Walls" href="/downloads/specs/retaining-walls.pdf" />
+  <ProductWarrantyLine />
 </BaseLayout>

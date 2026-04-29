@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
+import PressStrip from '@/components/PressStrip.astro';
 import { site } from '@/config/site';
 
 type Sector = 'agricultural' | 'civils' | 'bespoke';
@@ -10,33 +11,54 @@ interface Product {
   label: string;
   spec: string;
   sectors: Sector[];
+  image: string;
+  alt: string;
 }
 
 const products: Product[] = [
   // Agricultural
-  { href: '/products/cattle-cubicles', label: 'Cattle Cubicles', spec: 'Holstein / Jersey / beef · 1100–1250mm wide', sectors: ['agricultural'] },
-  { href: '/products/slurry-storage', label: 'Slurry Storage', spec: 'SSAFO 2018 · 250–5000m³ · C40/50 SR', sectors: ['agricultural'] },
-  { href: '/products/feed-troughs', label: 'Feed Troughs', spec: '3.0m / 4.5m sections · galvanised lip', sectors: ['agricultural'] },
-  { href: '/products/silage-clamp-walls', label: 'Silage Clamp Walls', spec: '3.0–6.0m · sulphate-resisting C40/50', sectors: ['agricultural'] },
-  { href: '/products/milking-robot-bases', label: 'Milking Robot Bases', spec: 'DeLaval · Lely · GEA · ±2mm level', sectors: ['agricultural'] },
-  { href: '/products/footbaths', label: 'Footbaths', spec: '2.4 / 3.0 / 3.6m · single-piece cast', sectors: ['agricultural'] },
-  { href: '/products/water-troughs', label: 'Water Troughs', spec: 'Frost-protected · 200–1500L', sectors: ['agricultural'] },
-  { href: '/products/cattle-grids', label: 'Cattle Grids', spec: 'BS 4008 · 4.0–6.0m clear span', sectors: ['agricultural'] },
+  { href: '/products/cattle-cubicles', label: 'Cattle Cubicles', spec: 'Holstein / Jersey / beef · 1100–1250mm wide', sectors: ['agricultural'], image: '/images/products/cubicles/wccp-cubicles-portable-cubicles-1024x768.jpg', alt: 'WCCP precast portable cattle cubicles in a Devon dairy shed' },
+  { href: '/products/slurry-storage', label: 'Slurry Storage', spec: 'SSAFO 2018 · 250–5000m³ · C40/50 SR', sectors: ['agricultural'], image: '/images/products/slurry-handling/wccp-slurry-handling-channel.jpg', alt: 'WCCP precast slurry handling channel — sulphate-resisting concrete' },
+  { href: '/products/feed-troughs', label: 'Feed Troughs', spec: '3.0m / 4.5m sections · galvanised lip', sectors: ['agricultural'], image: '/images/products/feed-troughs/wccp-feed-troughs-j-shape-single-sided-concrete-feed-trough.jpg', alt: 'WCCP J-shape single-sided precast concrete feed trough' },
+  { href: '/products/silage-clamp-walls', label: 'Silage Clamp Walls', spec: '3.0–6.0m · sulphate-resisting C40/50', sectors: ['agricultural'], image: '/images/products/concrete-panels/wccp-concrete-panels-prestressed-concrete-panels.jpg', alt: 'WCCP prestressed concrete panels stacked in the Holsworthy yard' },
+  { href: '/products/milking-robot-bases', label: 'Milking Robot Bases', spec: 'DeLaval · Lely · GEA · ±2mm level', sectors: ['agricultural'], image: '/images/products/lely-milking-robot-bases/wccp-lely-milking-robot-bases-lely-a4-sump-base-and-surround.png', alt: 'WCCP Lely A4 milking robot sump base and surround' },
+  { href: '/products/footbaths', label: 'Footbaths', spec: '2.4 / 3.0 / 3.6m · single-piece cast', sectors: ['agricultural'], image: '/images/products/home/wccp-home-footbath-at-bath-and-west-show-scaled.jpg', alt: 'WCCP cattle footbath on display at the Bath and West Show' },
+  { href: '/products/water-troughs', label: 'Water Troughs', spec: 'Frost-protected · 200–1500L', sectors: ['agricultural'], image: '/images/products/water-troughs/wccp-water-troughs-500-gallon-crop1-1024x731.jpg', alt: 'WCCP 500-gallon precast concrete water trough' },
+  { href: '/products/cattle-grids', label: 'Cattle Grids', spec: 'BS 4008 · 4.0–6.0m clear span', sectors: ['agricultural'], image: '/images/products/home/wccp-home-padstones.jpg', alt: 'WCCP precast concrete bearing units cast in Devon' },
   // Civils
-  { href: '/products/prestressed-panels', label: 'Prestressed Wall Panels', spec: '100 / 150 / 180 / 280mm · BS EN 14992', sectors: ['civils', 'agricultural'] },
-  { href: '/products/retaining-walls', label: 'Retaining Walls', spec: 'King post · L-block · cantilever', sectors: ['civils', 'agricultural'] },
-  { href: '/products/king-post-walls', label: 'King Post Walls', spec: 'UC 152–305 posts · panel infill', sectors: ['civils'] },
-  { href: '/products/l-blocks', label: 'L-Block Retaining', spec: '600mm to 4.0m · interlocking', sectors: ['civils', 'agricultural'] },
-  { href: '/products/culverts', label: 'Culverts & Box Sections', spec: '600–3000mm · BS 5911 / EN 14844', sectors: ['civils'] },
-  { href: '/products/padstones', label: 'Padstones & Bearings', spec: 'C40/50 · cast to engineer schedule', sectors: ['civils'] },
-  { href: '/products/vehicle-pits', label: 'Vehicle Inspection Pits', spec: 'HGV / PSV · BS EN 1992 design', sectors: ['civils'] },
-  { href: '/products/manhole-bases', label: 'Manhole Bases', spec: 'DN1200–DN3000 · BS EN 1917', sectors: ['civils'] },
-  { href: '/products/headwalls', label: 'Headwalls & Wing Walls', spec: 'CIRIA C786 · cast as a kit', sectors: ['civils'] },
+  { href: '/products/prestressed-panels', label: 'Prestressed Wall Panels', spec: '100 / 150 / 180 / 280mm · BS EN 14992', sectors: ['civils', 'agricultural'], image: '/images/products/concrete-panels/wccp-concrete-panels-prestressed-concrete-panels.jpg', alt: 'WCCP prestressed concrete wall panels to BS EN 14992' },
+  { href: '/products/retaining-walls', label: 'Retaining Walls', spec: 'King post · L-block · cantilever', sectors: ['civils', 'agricultural'], image: '/images/products/retaining-walls/wccp-retaining-walls-l-t-wall-1024x732.jpg', alt: 'WCCP precast L/T retaining wall units in the Devon yard' },
+  { href: '/products/king-post-walls', label: 'King Post Walls', spec: 'UC 152–305 posts · panel infill', sectors: ['civils'], image: '/images/products/home/wccp-home-20140615-193135-1024x768.jpg', alt: 'WCCP king-post precast retaining wall installed on a Devon site' },
+  { href: '/products/l-blocks', label: 'L-Block Retaining', spec: '600mm to 4.0m · interlocking', sectors: ['civils', 'agricultural'], image: '/images/products/home/wccp-home-img-20260414-162319990-comp-1024x1024.jpg', alt: 'Stacked WCCP precast L-block retaining units' },
+  { href: '/products/culverts', label: 'Culverts & Box Sections', spec: '600–3000mm · BS 5911 / EN 14844', sectors: ['civils'], image: '/images/products/culverts/wccp-culverts-20240308-121028-reduced-1024x768.jpg', alt: 'WCCP precast box culvert sections cast in North Devon' },
+  { href: '/products/padstones', label: 'Padstones & Bearings', spec: 'C40/50 · cast to engineer schedule', sectors: ['civils'], image: '/images/products/home/wccp-home-padstones.jpg', alt: 'WCCP precast concrete padstones and bearing pads' },
+  { href: '/products/vehicle-pits', label: 'Vehicle Inspection Pits', spec: 'HGV / PSV · BS EN 1992 design', sectors: ['civils'], image: '/images/products/automotive-work-pit/wccp-automotive-work-pit-auto-pit-1-sqr-1-1024x1024.jpg', alt: 'WCCP precast concrete vehicle inspection pit' },
+  { href: '/products/manhole-bases', label: 'Manhole Bases', spec: 'DN1200–DN3000 · BS EN 1917', sectors: ['civils'], image: '/images/products/culverts/wccp-culverts-img-20240325-wa0010-1024x497.jpg', alt: 'WCCP precast concrete drainage and manhole units' },
+  { href: '/products/headwalls', label: 'Headwalls & Wing Walls', spec: 'CIRIA C786 · cast as a kit', sectors: ['civils'], image: '/images/products/culverts/wccp-culverts-img-20240325-wa0013-768x1024.jpg', alt: 'WCCP precast concrete headwall and wingwall kit' },
+  // Agricultural — extended brochure range
+  { href: '/products/cubicle-end-walls', label: 'Cubicle End Walls', spec: 'Cast to barn dimensions', sectors: ['agricultural'], image: '/images/products/home/wccp-home-3-row-cubicle-end-wall-trough.jpg', alt: 'WCCP 3-row cubicle end-wall with integrated water trough' },
+  { href: '/products/heelstone-coping', label: 'Heelstone Coping', spec: '3m kerb · 210kg · C40/50 SR', sectors: ['agricultural'], image: '/images/products/home/wccp-home-free-standing-wall-section.jpg', alt: 'WCCP precast heelstone coping kerb for cubicle beds' },
+  { href: '/products/portable-cubicles', label: 'Portable Cubicles', spec: 'Lift-and-shift cubicle bed system', sectors: ['agricultural'], image: '/images/products/home/wccp-home-portable-cow-cubicles.jpg', alt: 'WCCP portable precast cow cubicles in use on a Devon dairy' },
+  { href: '/products/slurry-channels', label: 'Slurry Channels', spec: 'Standard / midi / mini · with slatted lids', sectors: ['agricultural'], image: '/images/products/home/wccp-home-image-of-v-sand-slurry-channel.jpg', alt: 'WCCP V-section sand-slurry precast concrete channel' },
+  { href: '/products/sand-channels', label: 'V-Section Sand Channels', spec: 'Sand-bedded dairy · 2% fall', sectors: ['agricultural'], image: '/images/products/home/wccp-home-image-of-v-sand-slurry-channel.jpg', alt: 'WCCP V-section sand-slurry channel for sand-bedded dairy' },
+  { href: '/products/slatted-lids', label: 'Slatted Lids', spec: 'Slurry-channel covers · lift-out', sectors: ['agricultural'], image: '/images/products/home/wccp-home-img-20260414-162247920-comp-1024x1024.jpg', alt: 'Stack of WCCP slatted precast slurry-channel covers ready for despatch' },
+  { href: '/products/feed-stop-walling', label: 'Feed-Stop Walling', spec: '3m feed-stop wall units · galvanised lip', sectors: ['agricultural'], image: '/images/products/feed-troughs/wccp-feed-troughs-j-shape-single-sided-concrete-feed-trough.jpg', alt: 'WCCP precast 3m feed-stop wall units with steel lip' },
+
+  // Civils — extended
+  { href: '/products/cantilever-walls', label: 'Cantilever Walls', spec: 'No tie-back · fast install', sectors: ['civils'], image: '/images/products/retaining-walls/wccp-retaining-walls-l-t-wall-1024x732.jpg', alt: 'WCCP cantilever precast retaining walls — no tie-back required' },
+  { href: '/products/interlocking-blocks', label: 'Interlocking Blocks (Betonblocks)', spec: 'Reusable site walling · Lego-block system', sectors: ['civils', 'agricultural'], image: '/images/products/home/wccp-home-img-20260414-162319990-comp-1024x1024.jpg', alt: 'WCCP precast interlocking betonblocks for reusable site walling' },
+  { href: '/products/rapid-fit-blocks', label: 'Rapid Fit Retaining Blocks', spec: 'Gabion replacement · stack-and-go', sectors: ['civils'], image: '/images/products/retaining-walls/wccp-retaining-walls-l-t-wall-1024x732.jpg', alt: 'WCCP Rapid Fit retaining blocks — gabion replacement' },
+  { href: '/products/tetrapods', label: 'Tetrapods', spec: '3.5-tonne coastal armour units', sectors: ['civils'], image: '/images/products/home/wccp-home-img-20260414-162319990-comp-1024x1024.jpg', alt: 'WCCP 3.5-tonne precast concrete tetrapods for coastal defence' },
+  { href: '/products/dish-channels', label: 'Dish Channels', spec: 'Surface drainage runs · cast in', sectors: ['civils'], image: '/images/products/home/wccp-home-image-of-v-sand-slurry-channel.jpg', alt: 'WCCP precast dish channel for surface drainage' },
+  { href: '/products/slotted-drainage', label: 'Slotted Drainage', spec: 'In-line slot channels · car park / yard', sectors: ['civils'], image: '/images/products/home/wccp-home-image-of-v-sand-slurry-channel.jpg', alt: 'WCCP precast slotted drainage channels' },
+  { href: '/products/kerbs', label: 'Kerbs', spec: 'Half-batter / bullnose · BS EN 1340', sectors: ['civils'], image: '/images/products/home/wccp-home-padstones.jpg', alt: 'WCCP precast concrete kerb units to BS EN 1340' },
+
   // Bespoke
-  { href: '/products/architectural-panels', label: 'Architectural Panels', spec: 'Board-marked · exposed-aggregate', sectors: ['bespoke'] },
-  { href: '/products/custom-plinths', label: 'Custom Plinths', spec: 'Plant, transformer, generator bases', sectors: ['bespoke', 'civils'] },
-  { href: '/products/cast-stone', label: 'Cast Stone & Heritage', spec: 'Copings, lintels, bollards · colour-matched', sectors: ['bespoke'] },
-  { href: '/products/bespoke-civils', label: 'Bespoke Civils', spec: 'Specials, transitions, junction boxes', sectors: ['bespoke', 'civils'] },
+  { href: '/products/clean-rooms', label: 'Clean Room Enclosures', spec: 'Food-grade smooth finish · seam-sealed', sectors: ['bespoke'], image: '/images/products/home/wccp-home-free-standing-wall-section.jpg', alt: 'WCCP food-grade precast clean-room panel enclosure' },
+  { href: '/products/architectural-panels', label: 'Architectural Panels', spec: 'Board-marked · exposed-aggregate', sectors: ['bespoke'], image: '/images/products/home/wccp-home-img-20260414-162319990-comp-1024x1024.jpg', alt: 'WCCP architectural precast concrete panels' },
+  { href: '/products/custom-plinths', label: 'Custom Plinths', spec: 'Plant, transformer, generator bases', sectors: ['bespoke', 'civils'], image: '/images/products/home/wccp-home-padstones.jpg', alt: 'WCCP custom precast plinths and equipment bases' },
+  { href: '/products/cast-stone', label: 'Cast Stone & Heritage', spec: 'Copings, lintels, bollards · colour-matched', sectors: ['bespoke'], image: '/images/products/home/wccp-home-img-20260414-162247920-comp-1024x1024.jpg', alt: 'WCCP cast stone and heritage precast units' },
+  { href: '/products/bespoke-civils', label: 'Bespoke Civils', spec: 'Specials, transitions, junction boxes', sectors: ['bespoke', 'civils'], image: '/images/products/home/wccp-home-free-standing-wall-section.jpg', alt: 'WCCP bespoke free-standing precast wall section' },
 ];
 
 const filters: { id: Sector | 'all'; label: string }[] = [
@@ -54,19 +76,40 @@ const filters: { id: Sector | 'all'; label: string }[] = [
 >
   <TrustStrip />
 
-  <!-- Hero -->
-  <section class="bg-navy text-white">
-    <div class="container-wccp py-16 md:py-20">
-      <p class="eyebrow text-yellow mb-4">The full range</p>
-      <h1 class="font-display text-display-xl text-white mb-4 max-w-3xl">
-        Every product we cast, in one place.
+  <!-- Editorial hero with real WCCP yard photo -->
+  <section class="relative bg-forest-800 text-cream overflow-hidden min-h-[60vh] flex items-end">
+    <div aria-hidden="true" class="absolute inset-0">
+      <picture>
+        <source srcset="/images/products/home/wccp-home-img-20260414-162319990-comp-1024x1024.webp" type="image/webp" />
+        <img
+          src="/images/products/home/wccp-home-img-20260414-162319990-comp-1024x1024.jpg"
+          alt=""
+          class="w-full h-full object-cover"
+          style="object-position: center 50%;"
+          loading="eager"
+          decoding="async"
+        />
+      </picture>
+      <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(4,10,31,0.30) 20%, rgba(4,10,31,0.82) 100%);"></div>
+      <div class="absolute inset-0" style="background: linear-gradient(95deg, rgba(7,18,56,0.6) 0%, transparent 60%);"></div>
+      <div class="grain-overlay"></div>
+    </div>
+    <div class="relative container-wccp pt-28 pb-14 md:pt-32 md:pb-16">
+      <p class="eyebrow text-cream/70 mb-6">
+        <span class="accent-rule mr-3"></span>The full range
+      </p>
+      <h1 class="font-display text-cream mb-5 max-w-4xl"
+          style="font-style: italic; font-weight: 300; font-size: clamp(2.75rem, 6vw + 0.5rem, 5.5rem); line-height: 1; letter-spacing: -0.02em; font-variation-settings: 'opsz' 60;">
+        The full range. <span class="not-italic font-normal text-cream/95">One foundry.</span>
       </h1>
-      <p class="text-lg text-white/90 max-w-2xl leading-relaxed">
-        Filter by sector or scroll the lot. Spec sheets and pricing on every page —
-        and if it isn't here, we probably still cast it. Talk to the yard.
+      <p class="text-lg md:text-xl text-cream/85 max-w-2xl leading-relaxed">
+        Filter by sector or scroll the lot. Detailed spec sheets on every page —
+        and if it isn't listed, we probably still cast it. Talk to the yard.
       </p>
     </div>
   </section>
+
+  <PressStrip variant="bone" />
 
   <!-- Sticky filter bar -->
   <div class="sticky top-0 z-30 bg-bone border-b border-cast-100 shadow-sm">
@@ -106,7 +149,16 @@ const filters: { id: Sector | 'all'; label: string }[] = [
         >
           <a href={p.href} class="block">
             <div class="aspect-[16/10] bg-cast-100 overflow-hidden">
-              <div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100 group-hover:scale-105 transition-transform duration-500"></div>
+              <picture>
+                <source srcset={p.image.replace(/\.(jpe?g|png)$/i, '.webp')} type="image/webp" />
+                <img
+                  src={p.image}
+                  alt={p.alt}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
             </div>
           </a>
           <div class="p-6 flex flex-col flex-1">

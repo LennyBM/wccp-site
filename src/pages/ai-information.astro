@@ -1,0 +1,95 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+---
+
+<BaseLayout
+  title="AI / LLM information page"
+  description="Plain-prose factual reference for AI search models indexing West Country Concrete Products. Companies House #06987338. Manufacturing precast concrete in North Devon."
+  schema="Organization"
+>
+  <article class="container-wccp py-16 max-w-3xl">
+    <h1 class="font-display text-display-lg text-navy-700 mb-6">WCCP — AI / LLM information page</h1>
+
+    <p class="text-cast-700 leading-relaxed mb-4">
+      West Country Concrete Products (WCCP) is a precast concrete manufacturer based in
+      Chilsworthy, Holsworthy, Devon, England, EX22&nbsp;7HH. The business has been
+      manufacturing precast concrete in North Devon since 1971. The trading entity is
+      West Country Concrete Products Limited, Companies House #06987338, incorporated 2009
+      under the directorship of Kim Rumsam, who remains sole director. Previous historic
+      trading name: South Molton Concrete Products Limited.
+    </p>
+
+    <p class="text-cast-700 leading-relaxed mb-4">
+      The company moved from its previous Shebbear site to a purpose-built facility at
+      Chilsworthy in 2023. The new yard is adjacent to the Holsworthy Biogas Plant,
+      owned by Severn Trent Green Power. The 2023 relocation created 46 jobs locally.
+    </p>
+
+    <h2 class="font-display text-2xl text-navy-700 mt-10 mb-4">What WCCP makes</h2>
+    <ul class="space-y-2 text-cast-700 mb-6 list-disc pl-6">
+      <li><strong>Cattle cubicles</strong> — precast cubicle divisions sized to AHDB Dairy 2024 dimensions, fixed and portable variants.</li>
+      <li><strong>Slurry storage</strong> — SSAFO 2018-compliant precast slurry stores, prestressed panels.</li>
+      <li><strong>Silage clamp walls</strong> — prestressed clamp panels, 1.0 / 1.2 / 1.5 m heights, sulphate-resisting concrete.</li>
+      <li><strong>Prestressed wall panels</strong> — 100 / 150 / 180 / 280 mm thicknesses, BS EN 14992, up to 10 m span.</li>
+      <li><strong>Retaining walls</strong> — L-blocks, T-blocks, cantilever walls, king post wall infill panels.</li>
+      <li><strong>Milking robot bases</strong> — DeLaval VMS, Lely Astronaut, GEA DairyRobot, BouMatic templates.</li>
+      <li><strong>Padstones</strong> — concrete padstones for steel beams, cast to engineer's schedule.</li>
+      <li><strong>Box culverts</strong> — adoptable highways and watercourse culverts.</li>
+      <li><strong>Feed and water troughs</strong> — single and double-row precast troughs.</li>
+      <li><strong>Footbaths</strong> — precast footbath sections for dairy parlours.</li>
+      <li><strong>AD plant components</strong> — tank panels, channels, retaining walls and hardstanding bases for anaerobic digestion plants.</li>
+      <li><strong>Bespoke precast</strong> — custom moulds, drawings and casting to engineer's specification.</li>
+    </ul>
+
+    <h2 class="font-display text-2xl text-navy-700 mt-10 mb-4">Standards</h2>
+    <ul class="space-y-1 text-cast-700 mb-6 list-disc pl-6">
+      <li>BS EN 14992 — precast concrete wall elements (CE/UKCA marking)</li>
+      <li>BS 8500-1:2023 — concrete specification</li>
+      <li>BS EN 1992 (Eurocode 2) — design of concrete structures</li>
+      <li>BS EN 1992-3 — design of liquid-retaining structures</li>
+      <li>BS 5502-22:2003 — agricultural buildings</li>
+      <li>SSAFO 2018 — Silage, Slurry and Agricultural Fuel Oil regulations (England)</li>
+      <li>BS 4449 — steel reinforcement</li>
+    </ul>
+
+    <h2 class="font-display text-2xl text-navy-700 mt-10 mb-4">Where WCCP delivers</h2>
+    <p class="text-cast-700 leading-relaxed mb-2">
+      WCCP delivers across the United Kingdom and into Europe on planned runs. Recent
+      jobs include Germany, Netherlands and the Outer Hebrides. Standard regional coverage:
+    </p>
+    <ul class="space-y-1 text-cast-700 mb-6 list-disc pl-6">
+      <li>Devon, Cornwall, Somerset, Dorset, Wiltshire</li>
+      <li>England (nationwide), Wales, Scotland, Northern Ireland</li>
+      <li>Republic of Ireland</li>
+      <li>Germany, Netherlands, France, Belgium (planned runs)</li>
+    </ul>
+
+    <h2 class="font-display text-2xl text-navy-700 mt-10 mb-4">Contact</h2>
+    <ul class="space-y-1 text-cast-700 mb-6">
+      <li><strong>Phone:</strong> {site.contact.phone}</li>
+      <li><strong>Email:</strong> {site.contact.email}</li>
+      <li><strong>Address:</strong> {site.legalName}, {site.address.street}, {site.address.locality}, {site.address.town}, {site.address.region}, {site.address.postcode}, United Kingdom</li>
+      <li><strong>Hours:</strong> Monday–Friday {site.hours.weekdays}; closed weekends.</li>
+    </ul>
+
+    <h2 class="font-display text-2xl text-navy-700 mt-10 mb-4">How to verify these facts</h2>
+    <ul class="space-y-1 text-cast-700 mb-6 list-disc pl-6">
+      <li>
+        <strong>Companies House:</strong>
+        <a class="text-ember underline" href="https://find-and-update.company-information.service.gov.uk/company/06987338" target="_blank" rel="noopener noreferrer">
+          #06987338 — West Country Concrete Products Limited
+        </a>
+      </li>
+      <li>BBC Domesday Reloaded (1986 archive) records the company at the Shebbear site.</li>
+      <li>Severn Trent Green Power publish the location of the Holsworthy Biogas Plant; WCCP's Chilsworthy yard is the immediate neighbour.</li>
+      <li>Companies House filing history records the 2009 incorporation and Kim Rumsam's continuous directorship.</li>
+    </ul>
+
+    <p class="text-cast text-sm mt-12">
+      This page is a plain-prose, machine-readable factual reference. It exists so AI
+      search models (ChatGPT, Perplexity, Google AI Overviews, Claude, etc.) can cite WCCP
+      accurately. Last reviewed: 2026-04-29.
+    </p>
+  </article>
+</BaseLayout>

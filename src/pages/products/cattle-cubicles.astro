@@ -1,7 +1,22 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
+import FittedVsSupply from '@/components/FittedVsSupply.astro';
+import SpecSheetButton from '@/components/SpecSheetButton.astro';
+import ProductGallery from '@/components/ProductGallery.astro';
 import { site } from '@/config/site';
+import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
+import ProductPageTOC from '@/components/ProductPageTOC.astro';
+
+const tocSections = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'specifications', label: 'Specifications' },
+  { id: 'gallery', label: 'Gallery' },
+  { id: 'related', label: 'Related' },
+  { id: 'faq', label: 'FAQ' },
+  { id: 'downloads', label: 'Downloads' },
+];
 
 const specs = [
   { variant: 'Holstein standard', bed: '2.4m × 1.2m', neckRail: '1.15m', brisket: '1.7m', weight: '95 kg/division', use: 'Mature dairy cows up to 750kg' },
@@ -62,12 +77,7 @@ const productSchema = {
     { '@type': 'PropertyValue', name: 'Lead time', value: '2–3 weeks catalogue, 4–6 weeks bespoke' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
   ],
-  offers: {
-    '@type': 'Offer',
-    priceCurrency: 'GBP',
-    availability: 'https://schema.org/InStock',
-    seller: { '@type': 'Organization', name: site.name },
-  },
+  offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
 };
 
 const faqSchema = {
@@ -84,24 +94,33 @@ const faqSchema = {
 <BaseLayout
   title="Cattle Cubicles — Fixed & Portable · AHDB 2024 sizing"
   description="Precast cattle cubicles to AHDB 2024 dimensions. Holstein 2.4m × 1.2m bed, neck rail 1.15m, brisket 1.7m. Jersey, beef and portable variants. Cast in North Devon."
-  image="/images/products/cattle-cubicles.jpg"
+  image="/og/cattle-cubicles.png"
   schema="Product"
   schemaData={productSchema}
+  whatsappContext="Cattle Cubicles"
 >
   <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
   <TrustStrip />
+  <ProductPageTOC sections={tocSections} />
 
   <!-- Hero -->
-  <section class="bg-navy text-white">
+  <section id="overview" class="bg-navy text-white">
     <div class="container-wccp py-16 md:py-20">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
           <p class="eyebrow text-yellow mb-4">Agricultural · dairy · beef</p>
           <h1 class="font-display text-display-xl text-white mb-4">Cattle Cubicles.</h1>
-          <p class="text-lg text-white/90 leading-relaxed mb-6">
+          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">Sized to the breed. Built to outlive the shed.</p>
+          <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
+            A UK Holstein-Friesian cattle cubicle measures 2.4&nbsp;m long by 1.2&nbsp;m wide, with the
+            neck rail at 1.15&nbsp;m and the brisket board 1.7&nbsp;m from the kerb (per AHDB Dairy 2024
+            guidance). WCCP precast cubicle divisions are cast in C40/50 concrete and weigh
+            approximately 320&nbsp;kg each.
+          </blockquote>
+          <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
             Fixed and portable precast cubicle systems sized to AHDB 2024 dimensions.
             Holstein, Jersey, Friesian, beef-suckler and youngstock variants. We cast,
-            deliver and install across the South West.
+            deliver and install UK-wide — and into Europe on planned runs.
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
             <li class="flex gap-2"><span class="text-yellow">·</span> AHDB 2024 sized</li>
@@ -112,15 +131,15 @@ const faqSchema = {
             <li class="flex gap-2"><span class="text-yellow">·</span> 2–3 week lead</li>
           </ul>
           <div class="flex flex-wrap gap-3">
-            <a href="/quote?product=Cattle+Cubicles" class="btn-primary">Configure a quote</a>
-            <a href="/spec-sheets/cattle-cubicles.pdf" class="btn-yellow">Download spec sheet</a>
+            <a href="/quote?product=Cattle%20Cubicles" class="btn-primary">Configure a quote</a>
+            <a href="mailto:engineering@wccp.co.uk?subject=Spec%20sheet%20request%20%E2%80%94%20Cattle%20Cubicles&amp;body=Hi%20WCCP%20engineering%2C%0A%0APlease%20send%20the%20spec%20sheet%20for%20Cattle%20Cubicles.%0A%0AProject%20details%3A%0A%E2%80%A2%20Project%20name%3A%0A%E2%80%A2%20Site%20location%3A%0A%E2%80%A2%20Required%20spec%20%2F%20standard%3A%0A%0AThanks" class="btn-yellow">Request spec sheet</a>
             <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">
               Call {site.contact.phone}
             </a>
           </div>
         </div>
         <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
-          <div class="w-full h-full bg-gradient-to-br from-cast-300 via-cast to-navy"></div>
+          <img src="/images/products/cubicles/wccp-cubicles-portable-cubicles-1024x768.jpg" alt="Precast concrete portable cattle cubicles — West Country Concrete Products, Devon" class="w-full h-full object-cover" loading="eager" decoding="async" />
         </div>
       </div>
     </div>
@@ -170,8 +189,25 @@ const faqSchema = {
     </p>
   </section>
 
+  <ProductGallery
+    eyebrow="The range"
+    heading="The full cubicle range."
+    background="bone"
+    cols={4}
+    images={[
+      { src: '/images/products/cubicles/wccp-cubicles-portable-cow-cubicles.jpg', alt: 'Portable precast concrete cow cubicle bed with galvanised hoop frame and heel-step by West Country Concrete Products, Devon', caption: 'Portable cubicle bed · cast at Holsworthy' },
+      { src: '/images/products/cubicles/wccp-cubicles-cubicle-trough-slider-1-1024x438.jpg', alt: 'Long precast concrete cubicle bed with integrated end-of-row water trough cast by WCCP Devon', caption: 'Cubicle bed with end-of-row water trough' },
+      { src: '/images/products/cubicles/wccp-cubicles-young-stock-cubicle-300x228.jpg', alt: 'Single young-stock precast concrete cubicle bed with galvanised cubicle hoop by WCCP Devon', caption: 'Young-stock cubicle bed' },
+      { src: '/images/products/cubicles/wccp-cubicles-young-stock-portable-cubicle-300x212.jpg', alt: 'Dimensioned profile drawing of WCCP precast concrete young-stock portable cubicle, Devon', caption: 'Young-stock portable cubicle · profile drawing' },
+      { src: '/images/products/cubicles/wccp-cubicles-portable-cubicle-profile1-300x212.jpg', alt: 'Profile drawing of a WCCP precast concrete portable cattle cubicle, Devon', caption: 'Portable cubicle · profile drawing' },
+      { src: '/images/products/cubicles/wccp-cubicles-portable-cubicle-with-heel-head-rail-riser1-300x212.jpg', alt: 'Profile drawing of a WCCP portable cubicle with heel stone and headrail riser, Devon', caption: 'Cubicle + heelstone + headrail riser · drawing' },
+      { src: '/images/products/cubicles/wccp-cubicles-cubicle-row-with-head-rail-riser-300x225.jpg', alt: '3D rendering of a full row of precast concrete cattle cubicles with headrail riser by WCCP Devon', caption: 'Full cubicle row with headrail · 3D drawing' },
+      { src: '/images/products/cubicles/wccp-cubicles-headrail-riser-300x225.jpg', alt: 'Close-up of the galvanised headrail-riser bracket on a WCCP precast concrete cattle cubicle, Devon', caption: 'Galvanised headrail-riser bracket · detail' },
+    ]}
+  />
+
   <!-- Applications -->
-  <section class="bg-bone-200 py-20">
+  <section class="bg-white py-20">
     <div class="container-wccp">
       <div class="grid lg:grid-cols-2 gap-12">
         <div>
@@ -230,7 +266,7 @@ const faqSchema = {
           <h2 class="font-display text-display-md">Tell us herd size, breed and shed dimensions — we will quote inside 24 hours.</h2>
         </div>
         <div class="flex flex-wrap gap-3 shrink-0">
-          <a href="/quote?product=Cattle+Cubicles" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
+          <a href="/quote?product=Cattle%20Cubicles" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
           <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
         </div>
       </div>
@@ -252,17 +288,7 @@ const faqSchema = {
         </svg>
       </a>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      {related.map((r) => (
-        <a href={r.href} class="card p-5 group">
-          <div class="aspect-[16/10] bg-cast-100 mb-4 rounded overflow-hidden">
-            <div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100"></div>
-          </div>
-          <h3 class="font-display text-base font-bold text-navy mb-1 group-hover:text-ember">{r.label}</h3>
-          <p class="text-cast text-xs">{r.meta}</p>
-        </a>
-      ))}
-    </div>
+    <RelatedProductGrid items={related} />
   </section>
 
   <!-- FAQ -->
@@ -289,6 +315,43 @@ const faqSchema = {
     </div>
   </section>
 
+  <!-- Supply-only vs Fitted -->
+  <section class="container-wccp section-rhythm border-t border-cast-100">
+    <FittedVsSupply
+      productName="Cattle Cubicles"
+      defaultMode="fitted"
+      supply={{
+        price: 'from £210 per cubicle',
+        leadTime: '2–3 weeks',
+        includes: [
+          'Cast cubicle divisions to AHDB 2024 sizing',
+          'Bedding-mortar spec & install drawing',
+          'Delivery on our HIAB to your slab',
+          'Full BS 5502-22 / BS 8500-1 documentation',
+        ],
+        excludes: [
+          'Slab preparation and cast-in upstands',
+          'On-site setting / fixing labour',
+        ],
+      }}
+      fitted={{
+        price: 'from £290 per cubicle (incl. install)',
+        leadTime: '4–6 weeks (incl. site slot)',
+        includes: [
+          'Everything in supply only',
+          'Two-man install crew with HIAB',
+          'Survey + setting-out service',
+          '12-month workmanship warranty',
+        ],
+        excludes: [
+          'Concrete slab and base works',
+          'Mains electrical or scrape-system fit-out',
+        ],
+      }}
+      note="Indicative 2026 pricing per cubicle for 60+ unit runs. Smaller batches and bespoke bed sizes priced individually — send the shed dimensions and we'll come back within a working day."
+    />
+  </section>
+
   <!-- Final CTA -->
   <section class="bg-navy text-white py-20">
     <div class="container-wccp text-center">
@@ -297,10 +360,13 @@ const faqSchema = {
         Send us herd size, breed and a sketch of the shed. Quote and lead-time same day.
       </p>
       <div class="flex flex-wrap justify-center gap-3">
-        <a href="/quote?product=Cattle+Cubicles" class="btn-yellow">Configure a quote</a>
+        <a href="/quote?product=Cattle%20Cubicles" class="btn-yellow">Configure a quote</a>
         <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
         <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
       </div>
     </div>
   </section>
+
+  <SpecSheetButton productSlug="cattle-cubicles" productName="Cattle Cubicles" />
+  <ProductWarrantyLine />
 </BaseLayout>

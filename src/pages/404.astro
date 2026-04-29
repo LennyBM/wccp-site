@@ -2,74 +2,76 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { site } from '@/config/site';
 
-const helpfulLinks = [
-  { href: '/products', label: 'Products', desc: 'The full precast catalogue.' },
-  { href: '/sectors/agricultural', label: 'Agricultural', desc: 'Cubicles, slurry, silage, robot bases.' },
-  { href: '/sectors/civils', label: 'Civils & infrastructure', desc: 'Walls, culverts, padstones, pits.' },
-  { href: '/sectors/bespoke', label: 'Bespoke', desc: "If we can lift it, we can probably make it." },
-  { href: '/about', label: 'Our story', desc: 'Family-run in North Devon since 1971.' },
-  { href: '/contact', label: 'Contact', desc: 'Phone, WhatsApp, or the form.' },
+// Most-popular products — shown as cards on the 404 so visitors land on
+// something useful instead of a dead end.
+const products = [
+  { href: '/products/cattle-cubicles',     label: 'Cattle Cubicles',     spec: 'Holstein / Jersey / beef',     image: '/images/products/cubicles/wccp-cubicles-portable-cubicles-1024x768.jpg' },
+  { href: '/products/slurry-storage',      label: 'Slurry Storage',      spec: 'SSAFO 2018 · 6-month capacity', image: '/images/products/slurry-handling/wccp-slurry-handling-channel.jpg' },
+  { href: '/products/water-troughs',       label: 'Water Troughs',       spec: 'Frost-rated · 40–500 Gal',      image: '/images/products/water-troughs/wccp-water-troughs-500-gallon-crop1-1024x731.jpg' },
+  { href: '/products/feed-troughs',        label: 'Feed Troughs',        spec: 'J / Quad / Round-top',          image: '/images/products/feed-troughs/wccp-feed-troughs-j-shape-single-sided-concrete-feed-trough.jpg' },
+  { href: '/products/retaining-walls',     label: 'Retaining Walls',     spec: 'L / King-post / Cantilever',    image: '/images/products/retaining-walls/wccp-retaining-walls-l-t-wall-1024x732.jpg' },
+  { href: '/products/prestressed-panels',  label: 'Prestressed Panels',  spec: 'BS EN 14992 · 100–280mm',       image: '/images/products/concrete-panels/wccp-concrete-panels-prestressed-concrete-panels.jpg' },
+  { href: '/products/culverts',            label: 'Box Culverts',        spec: 'BS 5911 · 600–3000mm',          image: '/images/products/culverts/wccp-culverts-20240308-121028-reduced-1024x768.jpg' },
+  { href: '/products/milking-robot-bases', label: 'Milking Robot Bases', spec: 'Lely / DeLaval / GEA',          image: '/images/products/lely-milking-robot-bases/wccp-lely-milking-robot-bases-lely-a4-sump-base-and-surround.png' },
 ];
 ---
 
 <BaseLayout
-  title="Page not found"
-  description="That page isn't here. Try the products catalogue, the sectors, or give the yard a ring."
+  title="That page got cast in the wrong mould"
+  description="The page you're after isn't here. Browse the precast catalogue, or call the Holsworthy yard."
   noindex={true}
 >
-  <section class="container-wccp py-20 md:py-28">
-    <div class="max-w-2xl mb-16">
-      <p class="eyebrow text-ember mb-4">404 · Page not found</p>
-      <h1 class="font-display text-display-2xl text-navy mb-6">
-        This one must have<br />
-        <span class="text-ember">been delivered already.</span>
-      </h1>
-      <p class="text-cast text-lg leading-relaxed mb-8">
-        The page you're after isn't here. Maybe it's moved, maybe it never existed, maybe a panel
-        fell on the URL. Either way — here's where to head next.
-      </p>
-
-      <!-- Search placeholder -->
-      <form action="/search" method="get" class="flex gap-2 mb-2">
-        <label for="q" class="sr-only">Search the site</label>
-        <input
-          id="q"
-          name="q"
-          type="search"
-          placeholder="Search products, sectors, articles…"
-          class="input flex-1"
-        />
-        <button type="submit" class="btn-primary">Search</button>
-      </form>
-      <p class="text-cast text-sm">Or pick a destination below.</p>
+  <!-- Hero -->
+  <section class="bg-forest-700 text-cream">
+    <div class="container-wccp py-20 md:py-28">
+      <div class="max-w-3xl">
+        <p class="eyebrow text-cream/70 mb-4">404 · Page not found</p>
+        <h1 class="font-display text-display-2xl text-cream mb-6">
+          That page got cast<br />
+          <em class="text-terracotta not-italic font-display italic">in the wrong mould.</em>
+        </h1>
+        <p class="text-cream/85 text-lg leading-relaxed max-w-2xl">
+          The link you followed has either moved or was never poured. Try one of these instead —
+        </p>
+      </div>
     </div>
+  </section>
 
-    <!-- Helpful links -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
-      {helpfulLinks.map((l) => (
-        <a href={l.href} class="card p-6 group">
-          <h3 class="font-display text-xl font-bold text-navy mb-2 group-hover:text-ember transition-colors">
-            {l.label}
-          </h3>
-          <p class="text-cast text-sm leading-relaxed mb-4">{l.desc}</p>
-          <div class="flex items-center gap-2 text-ember font-semibold text-sm">
-            Go
-            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
-              <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+  <!-- Popular products grid -->
+  <section class="container-wccp py-16 md:py-20 section-reveal">
+    <div class="flex items-baseline justify-between mb-8 gap-4 flex-wrap">
+      <h2 class="font-display text-display-md text-forest-700">Most-cast products</h2>
+      <a href="/products" class="text-terracotta font-bold hover:text-terracotta-700 inline-flex items-center gap-1.5">
+        See full catalogue
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" />
+          <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {products.map((p) => (
+        <a href={p.href} class="card group block overflow-hidden">
+          <div class="aspect-[4/3] bg-cast-100 overflow-hidden">
+            <img src={p.image} alt={p.label} loading="lazy" decoding="async" class="card-image w-full h-full object-cover" />
+          </div>
+          <div class="p-5">
+            <h3 class="font-display text-lg font-bold text-forest-700 group-hover:text-terracotta transition-colors">{p.label}</h3>
+            <p class="text-cast text-xs mt-1">{p.spec}</p>
           </div>
         </a>
       ))}
     </div>
+  </section>
 
-    <!-- Friendly footer note -->
-    <div class="bg-bone-200 rounded p-8 text-center">
-      <p class="eyebrow text-cast mb-3">Or just ring up</p>
-      <h2 class="font-display text-display-md mb-3">We're at the yard, weekdays.</h2>
-      <p class="text-cast mb-6">It's quicker than clicking around.</p>
+  <!-- Or just call -->
+  <section class="bg-cream-200 py-16 section-reveal">
+    <div class="container-wccp text-center max-w-2xl mx-auto">
+      <p class="eyebrow text-cast mb-3">Or just ring the yard</p>
+      <h2 class="font-display text-display-md text-forest-700 mb-3">It's quicker than clicking around.</h2>
+      <p class="text-cast-700 mb-8">Mon–Fri {site.hours.weekdays}. Same-day callbacks.</p>
       <div class="flex flex-wrap justify-center gap-3">
-        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-primary">Call {site.contact.phone}</a>
         <a href={`https://wa.me/${site.contact.whatsapp.replace('+', '')}`} class="btn-yellow">WhatsApp</a>
         <a href="/" class="btn-ghost">Back to home</a>
       </div>

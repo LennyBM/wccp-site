@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
+import { Image } from 'astro:assets';
+import bespokeHero from '@/assets/images/sector-bespoke.jpg';
 import { site } from '@/config/site';
 
 const steps = [
@@ -22,7 +24,7 @@ const steps = [
   {
     n: '04',
     title: 'Deliver',
-    body: 'On our own Hiab lorry, with our driver. We unload to your slab, your shed, your site — not the gate. South West weekly, nationwide on planned runs. Install crew available on request.',
+    body: 'On our own Hiab lorry, with our driver. We unload to your slab, your shed, your site — not the gate. UK-wide on planned runs and into Europe — Germany, the Netherlands and the Outer Hebrides on the recent ledger. Install crew available on request.',
   },
 ];
 
@@ -31,31 +33,43 @@ const examples = [
     label: 'Architectural casts',
     meta: 'Board-marked & exposed-aggregate',
     desc: 'Feature panels for a Devon barn conversion — reclaimed-board pattern, lime-aggregate finish, lifted into place in five panels.',
+    image: '/images/products/home/wccp-home-img-20260414-162319990-comp-1024x1024.jpg',
+    alt: 'WCCP architectural precast concrete cast units in the Devon yard',
   },
   {
     label: 'Custom plinths',
     meta: 'Generator, transformer and plant bases',
     desc: 'Cable ducts cast in, holding-down bolts to template, levelled to within 2mm. Made for a substation upgrade in Cornwall.',
+    image: '/images/products/home/wccp-home-padstones.jpg',
+    alt: 'WCCP custom precast plinths and equipment bases',
   },
   {
     label: 'One-off retaining systems',
     meta: 'Curved L-blocks, transition sections',
     desc: 'A horseshoe retainer for a holiday-park terrace. Cast in three radial sections, faced in exposed flint aggregate.',
+    image: '/images/products/retaining-walls/wccp-retaining-walls-a-wall-732x1024.jpg',
+    alt: 'WCCP A-wall precast retaining unit cast in North Devon',
   },
   {
     label: 'Specialist agricultural',
     meta: 'Calf creeps, race walls, push-off ends',
     desc: 'Bespoke calf-rearing layout cast as a kit of parts. Drainage falls and feed-trough rebates cast in — no concrete on site.',
+    image: '/images/products/cubicles/wccp-cubicles-portable-cubicles-1024x768.jpg',
+    alt: 'WCCP precast portable cattle cubicles in a Devon shed',
   },
   {
     label: 'Drainage & water',
     meta: 'Tank lids, flow-control chambers',
     desc: 'A reinforced lid with cast-in covers and a step-iron recess for a private water company. Lifted in one piece by 50t crane.',
+    image: '/images/products/home/wccp-home-img-20260414-162247920-comp-1024x1024.jpg',
+    alt: 'WCCP slatted precast concrete slurry covers',
   },
   {
     label: 'Heritage & infill',
     meta: 'Cast-stone copings, bollards, lintels',
     desc: 'Replacement copings and bollards for a Grade-II listed walled garden — colour-matched to the original by sample.',
+    image: '/images/products/home/wccp-home-padstones.jpg',
+    alt: 'WCCP cast-stone heritage precast units',
   },
 ];
 ---
@@ -63,40 +77,55 @@ const examples = [
 <BaseLayout
   title="Bespoke precast — if it can be cast and delivered, we can make it"
   description="Custom and one-off precast concrete from our Holsworthy yard. In-house design to Eurocode 2, exposed-aggregate and board-marked finishes, delivered on our own Hiab. Tell us what you need."
-  image="/images/sector-bespoke.jpg"
+  image="/og/sectors-bespoke.png"
   schema="Service"
   schemaData={{
     serviceType: 'Bespoke precast concrete manufacture',
     provider: { '@type': 'LocalBusiness', name: site.name, telephone: site.contact.phone },
     areaServed: site.areasServed,
     description:
-      'Bespoke and one-off precast concrete: architectural panels, custom plinths, retaining specials, heritage cast-stone. In-house design to BS EN 1992. Cast in North Devon since 1971.',
+      'Bespoke and one-off precast concrete: architectural panels, custom plinths, retaining specials, heritage cast-stone. In-house design to BS EN 1992. Cast in North Devon.',
   }}
 >
   <TrustStrip />
 
   <!-- Hero -->
-  <section class="relative bg-navy text-white overflow-hidden">
-    <div class="relative container-wccp py-20 md:py-28">
+  <section class="relative bg-forest-800 text-cream overflow-hidden min-h-[68vh] flex items-end">
+    <div aria-hidden="true" class="absolute inset-0">
+      <Image
+        src={bespokeHero}
+        alt=""
+        widths={[768, 1280, 1920]}
+        sizes="100vw"
+        loading="eager"
+        fetchpriority="high"
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(4,10,31,0.15) 30%, rgba(4,10,31,0.78) 100%);"></div>
+      <div class="absolute inset-0" style="background: linear-gradient(95deg, rgba(7,18,56,0.55) 0%, transparent 55%);"></div>
+      <div class="grain-overlay"></div>
+    </div>
+    <div class="relative container-wccp pt-28 pb-16 md:pt-36 md:pb-20">
       <div class="max-w-3xl">
-        <p class="eyebrow text-yellow mb-6">Custom · one-off · architectural</p>
-        <h1 class="font-display text-display-2xl text-white mb-6">
-          If it's precast<br />
-          and it can be delivered,<br />
-          <span class="text-yellow">we can make it.</span>
+        <p class="eyebrow text-cream/70 mb-6">
+          <span class="accent-rule mr-3"></span>Custom · one-off · architectural
+        </p>
+        <h1 class="font-display text-cream mb-6"
+            style="font-style: italic; font-weight: 300; font-size: clamp(2.75rem, 6vw + 0.5rem, 5.75rem); line-height: 1; letter-spacing: -0.02em; font-variation-settings: 'opsz' 60;">
+          If it's precast<br/>
+          <span class="not-italic font-normal">and it can be delivered,</span><br/>
+          <span class="text-terracotta-300">we cast it.</span>
         </h1>
-        <p class="text-lg md:text-xl text-white/90 max-w-2xl mb-10 leading-relaxed">
+        <p class="text-lg md:text-xl text-cream/85 max-w-2xl mb-10 leading-relaxed">
           Fifty-five years of casting one-offs. Send a sketch, a photo or a half-finished drawing —
-          we will design, cast and deliver. In-house engineering, exposed-aggregate finishes,
+          we'll design, cast and deliver. In-house engineering, exposed-aggregate finishes,
           and a yard that says yes when others say specials are too much trouble.
         </p>
-        <div class="flex flex-wrap gap-3">
+        <div class="flex flex-wrap items-center gap-5">
           <a href="/quote" class="btn-primary">Tell us what you need</a>
-          <a href={`tel:${site.contact.phoneIntl}`} class="btn-yellow">
-            Call {site.contact.phone}
-          </a>
-          <a href="#examples" class="btn-ghost border-white text-white hover:bg-white hover:text-navy">
-            See examples
+          <a href="#examples" class="inline-flex items-center gap-2 text-cream font-medium link-underline">
+            <span>See examples</span>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/><polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
       </div>
@@ -185,7 +214,16 @@ const examples = [
       {examples.map((e) => (
         <div class="card p-6 group">
           <div class="aspect-[16/10] bg-cast-100 mb-5 rounded overflow-hidden">
-            <div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100"></div>
+            <picture>
+              <source srcset={e.image.replace(/\.(jpe?g|png)$/i, '.webp')} type="image/webp" />
+              <img
+                src={e.image}
+                alt={e.alt}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
           </div>
           <h3 class="font-display text-xl font-bold text-navy mb-1">{e.label}</h3>
           <p class="text-cast text-sm font-medium mb-3">{e.meta}</p>

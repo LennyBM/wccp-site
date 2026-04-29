@@ -31,6 +31,7 @@ const productCols = [
     title: 'Resources',
     links: [
       { href: '/guides', label: 'Pillar Guides' },
+      { href: '/news', label: 'News & updates' },
       { href: '/case-studies', label: 'Case Studies' },
       { href: '/downloads', label: 'Datasheets & CAD' },
       { href: '/grants/fetf-2026', label: 'FETF 2026 Guide' },
@@ -41,8 +42,11 @@ const productCols = [
   {
     title: 'Company',
     links: [
-      { href: '/about', label: 'Our story (since 1971)' },
+      { href: '/about', label: 'Our story' },
+      { href: '/team', label: 'Meet the team' },
       { href: '/factory', label: 'The factory' },
+      { href: '/our-safety', label: 'How we work safely' },
+      { href: '/community', label: 'Good neighbour' },
       { href: '/sustainability', label: 'Sustainability & accreditations' },
       { href: '/areas/devon', label: 'Areas we serve' },
       { href: '/careers', label: 'Careers' },
@@ -57,6 +61,7 @@ const legal = [
   { href: '/terms', label: 'Terms' },
   { href: '/accessibility', label: 'Accessibility' },
   { href: '/complaints', label: 'Complaints' },
+  { href: '/ai-information', label: 'AI / LLM info' },
 ];
 
 const year = new Date().getFullYear();
@@ -101,6 +106,7 @@ const year = new Date().getFullYear();
             class="icon-chip-whatsapp"
             aria-label="Message us on WhatsApp"
             title="WhatsApp us"
+            data-whatsapp-link
           >
             <SocialIcon network="whatsapp" size={18} />
           </a>
@@ -188,10 +194,50 @@ const year = new Date().getFullYear();
       </div>
     </div>
 
+    {/* Reviews strip removed — placeholder figures (4.9/5, 100+) were not
+        verified by the client. The live Google reviews widget will be
+        wired in once the Google Business Place ID is confirmed. */}
+
     <!-- Accreditations strip -->
     <div id="footer-accreditations" class="py-10 border-b border-white/10" tabindex="-1">
       <div class="bg-white/5 rounded-lg p-6">
-        <AccreditationBadges layout="strip" filter="current" />
+        <AccreditationBadges layout="strip" filter="current" tone="dark" />
+      </div>
+    </div>
+
+    <!-- Newsletter capture -->
+    <div class="py-10 border-b border-white/10">
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h3 class="font-display text-2xl text-white mb-2">Once a month, no fluff.</h3>
+          <p class="text-white/80 text-sm leading-relaxed">
+            New product launches, factory news, and grant deadlines worth knowing about.
+          </p>
+        </div>
+        <form
+          name="newsletter"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="flex flex-col sm:flex-row gap-2"
+          action="/?newsletter=ok"
+        >
+          <input type="hidden" name="form-name" value="newsletter" />
+          <p class="hidden">
+            <label>Don't fill this out: <input name="bot-field" /></label>
+          </p>
+          <label for="newsletter-email" class="sr-only">Email address</label>
+          <input
+            id="newsletter-email"
+            name="email"
+            type="email"
+            required
+            autocomplete="email"
+            placeholder="you@farm.co.uk"
+            class="flex-1 px-4 py-3 rounded-md bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:bg-white/15 focus:border-yellow focus:outline-none transition-colors"
+          />
+          <button type="submit" class="btn-primary whitespace-nowrap">Sign up</button>
+        </form>
       </div>
     </div>
 
@@ -199,7 +245,7 @@ const year = new Date().getFullYear();
     <div class="pt-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-xs text-white/50">
       <div class="flex flex-col sm:flex-row sm:items-center sm:flex-wrap gap-x-3 gap-y-1">
         <span>
-          © {year} {site.legalName} · Company no. {site.companyNumber} · Registered in England & Wales
+          © {year} {site.legalName} · Companies House #{site.companyNumber} · Manufacturing precast concrete in North Devon since 1971
         </span>
         <a
           href={`https://find-and-update.company-information.service.gov.uk/company/${site.companyNumber}`}

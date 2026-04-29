@@ -1,0 +1,132 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
+import { site } from '@/config/site';
+
+const county = 'Cornwall';
+const town = 'Truro';
+const distances = [
+  { name: 'Truro', mi: 60 },
+  { name: 'Bodmin', mi: 35 },
+  { name: 'Launceston', mi: 15 },
+];
+
+const faqs = [
+  { q: `Do you deliver across all of ${county}?`, a: `Yes — from Launceston to Penzance. Holsworthy sits ten miles from the Cornish border so we're closer to most of ${county} than any other major precast yard.` },
+  { q: 'Do you deliver to Bodmin Moor and the Cornish coast?', a: "Yes. We run smaller rigid 8-wheelers for tight coastal lanes and switch to four-axle artics for trunk-road jobs. We'll do a recce on borderline access before the first load." },
+  { q: 'Do you supply Cornwall Council and the duchy estates?', a: 'Yes. We supply precast retaining walls, padstones, headwalls and bespoke civils items to principal contractors working across the duchy.' },
+  { q: `Lead time to ${town}?`, a: 'Catalogue items 2–3 weeks. Bespoke and engineered items quoted from drawings — typically four to six weeks from approved design.' },
+];
+
+const related = [
+  { href: '/products/cattle-cubicles',     label: 'Cattle Cubicles',     meta: 'Holstein / Jersey / beef' },
+  { href: '/products/slurry-storage',      label: 'Slurry Storage',      meta: 'SSAFO 2018 · 6-month' },
+  { href: '/products/retaining-walls',     label: 'Retaining Walls',     meta: 'L / King-post / Cantilever' },
+  { href: '/products/prestressed-panels',  label: 'Prestressed Panels',  meta: 'BS EN 14992 · 100–280mm' },
+];
+
+const localBusinessSchema = {
+  areaServed: { '@type': 'AdministrativeArea', name: `${county}, United Kingdom` },
+  mainEntityOfPage: `${site.url}/concrete-supplier-cornwall`,
+};
+---
+
+<BaseLayout
+  title={`Precast concrete supplier · ${county}`}
+  description={`Precast concrete delivered across ${county} from the WCCP yard in Holsworthy — fifteen miles from Launceston. Cubicles, slurry, retaining walls, culverts. Since 1971.`}
+  schema="LocalBusiness"
+  schemaData={localBusinessSchema}
+>
+  <section class="bg-forest-700 text-cream">
+    <div class="container-wccp py-20 md:py-28">
+      <p class="eyebrow text-cream/70 mb-4">Areas served · {county}</p>
+      <h1 class="font-display text-display-2xl text-cream mb-6 max-w-4xl">
+        Precast concrete delivered across {county}.<br />
+        <em class="text-terracotta not-italic font-display italic">Made up the road. On your slab in days.</em>
+      </h1>
+      <p class="text-cream/85 text-lg leading-relaxed max-w-2xl mb-8">
+        Family-led North Devon precast, ten miles over the border. Same lorries we send to
+        {distances[0].name}, {distances[1].name} and {distances[2].name} every week.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="/quote" class="btn-primary">Get a quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-yellow">Call {site.contact.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <TrustStrip />
+
+  <section class="container-wccp py-16 md:py-20 section-reveal">
+    <div class="grid lg:grid-cols-2 gap-10 items-start">
+      <div>
+        <p class="eyebrow text-cast mb-3">From the yard</p>
+        <h2 class="font-display text-display-md text-forest-700 mb-4">
+          Holsworthy to {town}: roughly {distances[0].mi} miles.
+        </h2>
+        <p class="text-cast-700 leading-relaxed">
+          Typical delivery 2–3 days from order on catalogue items. Own HIAB lorries — kit lands
+          where it's needed, no third-party haulier guesswork.
+        </p>
+      </div>
+      <ul class="space-y-3">
+        {distances.map((d) => (
+          <li class="flex items-baseline justify-between border-b border-cast-100 pb-3">
+            <span class="font-display text-lg font-semibold text-forest-700">{d.name}</span>
+            <span class="text-cast tabular-nums">~{d.mi} mi</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="bg-cream-200 py-16 md:py-20 section-reveal">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-10">
+        <p class="eyebrow text-cast mb-3">What we cast</p>
+        <h2 class="font-display text-display-md text-forest-700 mb-4">Most ordered in {county}.</h2>
+        <p class="text-cast-700">Dairy expansion, civils on the A30, holiday-park retaining walls.</p>
+      </div>
+      <RelatedProductGrid items={related} />
+      <div class="mt-8">
+        <a href="/products" class="text-terracotta font-bold hover:text-terracotta-700 inline-flex items-center gap-1.5">
+          See the full catalogue
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" />
+            <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-16 md:py-20 section-reveal">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Common questions</p>
+      <h2 class="font-display text-display-md text-forest-700">Delivering to {county}.</h2>
+    </div>
+    <div class="max-w-3xl space-y-4">
+      {faqs.map((f) => (
+        <details class="card p-6 group">
+          <summary class="font-display text-lg font-bold text-forest-700 cursor-pointer list-none flex justify-between items-start gap-4">
+            <span>{f.q}</span>
+            <span class="text-terracotta text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+          </summary>
+          <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-forest-700 text-cream py-16">
+    <div class="container-wccp text-center max-w-2xl mx-auto">
+      <h2 class="font-display text-display-md text-cream mb-3">Built for {county} weather. Made up the road.</h2>
+      <p class="text-cream/85 mb-8">Send a drawing or just describe the job. We'll quote inside a working day.</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/quote" class="btn-primary">Get a quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-yellow">Call {site.contact.phone}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,15 +1,32 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
+import CADDownloads from '@/components/CADDownloads.astro';
+import FittedVsSupply from '@/components/FittedVsSupply.astro';
+import SpecSheetButton from '@/components/SpecSheetButton.astro';
+import SpecDownloads from '@/components/SpecDownloads.astro';
+import ProductGallery from '@/components/ProductGallery.astro';
 import { site } from '@/config/site';
+import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
 
+// Stocked range — three thicknesses, three heights, custom lengths, plus 15' and
+// 20' standard stocked lengths. Source: WCCP product brochure (Nov 2021).
 const specs = [
-  { thickness: '100mm', height: '1.0m', weight: '240 kg/m', surcharge: '5 kN/m²', use: 'Bay divisions, light retention' },
-  { thickness: '150mm', height: '1.2m', weight: '432 kg/m', surcharge: '10 kN/m²', use: 'Grain walls, light agricultural' },
-  { thickness: '180mm', height: '1.5m', weight: '648 kg/m', surcharge: '20 kN/m²', use: 'Silage clamps, push walls' },
-  { thickness: '180mm', height: '3.0m', weight: '1,296 kg/m', surcharge: '30 kN/m²', use: 'Slurry storage, retaining' },
-  { thickness: '280mm', height: '4.5m', weight: '3,024 kg/m', surcharge: '50 kN/m²', use: 'Heavy retention, deep slurry' },
-  { thickness: '280mm', height: '6.0m', weight: '4,032 kg/m', surcharge: '60 kN/m²', use: 'Deep slurry, civils retention' },
+  { thickness: '95mm',  height: '1.0m', use: 'Bay divisions, push-walls, light retention' },
+  { thickness: '95mm',  height: '1.2m', use: 'Grain walls, light agricultural' },
+  { thickness: '145mm', height: '1.2m', use: 'Silage clamps, mid-depth push walls' },
+  { thickness: '145mm', height: '1.5m', use: 'Silage clamps, slurry channels' },
+  { thickness: '180mm', height: '1.5m', use: 'Slurry, silage and retaining wall infill' },
+];
+
+// Vertical Cantilever Panels — 180mm thick prestressed panels stood vertically
+// with no king post support. Spec from brochure page 2.
+const cantileverSpecs = [
+  { thickness: '180mm', material: 'Slurry',                            retained: 'up to 3.7 m' },
+  { thickness: '180mm', material: 'Silage (with 10 t vehicle surcharge)', retained: 'up to 3.2 m' },
+  { thickness: '180mm', material: 'Earth',                             retained: 'up to 3.4 m' },
+  { thickness: '145mm', material: 'Slurry / silage / earth (reduced)', retained: '0.3–0.4 m less than 180mm equivalent' },
 ];
 
 const applications = [
@@ -55,45 +72,48 @@ const faqs = [
 const productSchema = {
   name: 'Prestressed Wall Panels',
   description:
-    'Factory-cast prestressed concrete wall panels to BS EN 14992. Available in 100, 150, 180 and 280mm thickness, heights to 6.0m, suitable for slurry storage, silage clamps, retaining walls and civils retention. Cast at our Holsworthy yard in C40/50 sulphate-resisting concrete.',
+    'Factory-cast prestressed concrete wall panels to BS EN 14992. Stocked in 95, 145 and 180mm thicknesses; standard heights 1.0m, 1.2m and 1.5m. Custom lengths plus 15ft and 20ft stocked lengths. Vertical cantilever panels in 180mm retain slurry to 3.7m with no supporting posts. Cast in C40/50 sulphate-resisting concrete at our Holsworthy yard.',
   brand: { '@type': 'Brand', name: site.name },
   manufacturer: { '@type': 'Organization', name: site.name },
   category: 'Precast prestressed concrete wall panel',
   material: 'Prestressed reinforced concrete, C40/50 sulphate-resisting (BS 8500-1:2023)',
-  weight: {
-    '@type': 'QuantitativeValue',
-    minValue: 240,
-    maxValue: 4032,
-    unitCode: 'KGM',
-    unitText: 'kilogram per linear metre',
-  },
   additionalProperty: [
     { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 14992 / UKCA marked' },
     { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 sulphate-resisting' },
     { '@type': 'PropertyValue', name: 'Concrete specification', value: 'BS 8500-1:2023' },
     { '@type': 'PropertyValue', name: 'Structural design', value: 'BS EN 1992 (Eurocode 2)' },
-    { '@type': 'PropertyValue', name: 'Available thicknesses', value: '100mm, 150mm, 180mm, 280mm' },
-    { '@type': 'PropertyValue', name: 'Maximum height', value: '6.0 m' },
-    { '@type': 'PropertyValue', name: 'Maximum surcharge', value: '60 kN/m²' },
+    { '@type': 'PropertyValue', name: 'Available thicknesses', value: '95mm, 145mm, 180mm' },
+    { '@type': 'PropertyValue', name: 'Standard heights', value: '1.0m, 1.2m, 1.5m' },
+    { '@type': 'PropertyValue', name: 'Stocked lengths', value: '15ft and 20ft (custom lengths to order)' },
+    { '@type': 'PropertyValue', name: 'Vertical cantilever — slurry retention', value: 'up to 3.7m with 180mm panel, no posts' },
+    { '@type': 'PropertyValue', name: 'Vertical cantilever — silage', value: 'up to 3.2m with 180mm panel and 10t vehicle surcharge' },
+    { '@type': 'PropertyValue', name: 'Vertical cantilever — earth', value: 'up to 3.4m with 180mm panel' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
     { '@type': 'PropertyValue', name: 'Lead time', value: '2–4 weeks catalogue, 6–8 weeks bespoke' },
   ],
-  offers: {
-    '@type': 'Offer',
-    priceCurrency: 'GBP',
-    availability: 'https://schema.org/InStock',
-    seller: { '@type': 'Organization', name: site.name },
-  },
+  offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
 };
 ---
 
 <BaseLayout
-  title="Prestressed Wall Panels — BS EN 14992 · 100/150/180/280mm"
-  description="Factory-cast prestressed concrete wall panels: 100/150/180/280mm thicknesses, heights to 6.0m, surcharges to 60 kN/m². CE/UKCA-marked to BS EN 14992. Slurry, silage, civils retention."
-  image="/images/products/prestressed-panels.jpg"
+  title="Prestressed Wall Panels — BS EN 14992 · 95/145/180mm"
+  description="Factory-cast prestressed concrete wall panels: 95mm, 145mm and 180mm thicknesses, standard heights 1.0m / 1.2m / 1.5m, custom and stocked lengths. Vertical cantilever option retains slurry to 3.7m with no posts. CE/UKCA-marked to BS EN 14992."
+  image="/og/prestressed-panels.png"
   schema="Product"
   schemaData={productSchema}
+  whatsappContext="Prestressed Wall Panels"
 >
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
   <TrustStrip />
 
   <!-- Hero -->
@@ -105,22 +125,30 @@ const productSchema = {
           <h1 class="font-display text-display-xl text-white mb-4">
             Prestressed Wall Panels.
           </h1>
-          <p class="text-lg text-white/90 leading-relaxed mb-6">
-            Factory-cast prestressed panels in 100, 150, 180 and 280mm thicknesses,
-            heights to 6.0m, surcharges to 60 kN/m². CE/UKCA-marked to BS EN 14992.
-            Cast in C40/50 sulphate-resisting concrete in our Holsworthy yard.
+          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">10-metre spans. Zero formwork on site.</p>
+          <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
+            Prestressed precast wall panels are cast to BS&nbsp;EN&nbsp;14992, CE/UKCA marked, in
+            100&nbsp;mm, 150&nbsp;mm, 180&nbsp;mm and 280&nbsp;mm thicknesses with cast-in lifting
+            anchors. WCCP panels span up to 10&nbsp;m unsupported and arrive ready to lift on the
+            same lorry.
+          </blockquote>
+          <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
+            Factory-cast prestressed panels in 95mm, 145mm and 180mm thicknesses;
+            standard heights 1.0m, 1.2m and 1.5m. Custom lengths to order, plus 15ft
+            and 20ft stocked. Stand 180mm panels vertically and cantilever to 3.7m of
+            slurry with no posts. Cast in C40/50 sulphate-resisting concrete.
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
             <li class="flex gap-2"><span class="text-yellow">·</span> BS EN 14992 / UKCA</li>
             <li class="flex gap-2"><span class="text-yellow">·</span> BS 8500-1:2023 mix</li>
             <li class="flex gap-2"><span class="text-yellow">·</span> Eurocode 2 design</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Heights to 6.0m</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Up to 60 kN/m²</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Heights 1.0–1.5m</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 95 / 145 / 180mm</li>
             <li class="flex gap-2"><span class="text-yellow">·</span> 2–4 week lead time</li>
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Prestressed+Wall+Panels" class="btn-primary">Configure a quote</a>
-            <a href="/spec-sheets/prestressed-panels.pdf" class="btn-yellow">Download spec sheet</a>
+            <a href="/downloads/specs/prestressed-panels.pdf" class="btn-yellow">Download spec sheet</a>
             <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">
               Call {site.contact.phone}
             </a>
@@ -128,7 +156,7 @@ const productSchema = {
         </div>
 
         <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
-          <div class="w-full h-full bg-gradient-to-br from-cast-300 via-cast to-navy"></div>
+          <img src="/images/products/concrete-panels/wccp-concrete-panels-prestressed-concrete-panels.jpg" alt="Prestressed precast concrete wall panels — West Country Concrete Products, Holsworthy Devon" class="w-full h-full object-cover" loading="eager" decoding="async" />
         </div>
       </div>
     </div>
@@ -150,9 +178,7 @@ const productSchema = {
         <thead class="bg-navy text-white">
           <tr>
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Thickness</th>
-            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Height</th>
-            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Weight</th>
-            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Max surcharge</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Standard height</th>
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
           </tr>
         </thead>
@@ -161,8 +187,6 @@ const productSchema = {
             <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
               <td class="px-4 py-3 font-bold text-navy">{s.thickness}</td>
               <td class="px-4 py-3">{s.height}</td>
-              <td class="px-4 py-3">{s.weight}</td>
-              <td class="px-4 py-3">{s.surcharge}</td>
               <td class="px-4 py-3 text-cast">{s.use}</td>
             </tr>
           ))}
@@ -171,13 +195,59 @@ const productSchema = {
     </div>
 
     <p class="text-cast text-sm mt-4">
-      Surcharge values are indicative for a free-standing wall on a 1.5 × wall-height strip footing.
-      Site-specific design always carried out to BS EN 1992. Talk to us before ordering.
+      Custom lengths to order. <strong class="text-navy">15ft and 20ft</strong> are standard stocked lengths.
+      Site-specific design carried out to BS EN 1992 / Eurocode 2 — talk to us before ordering.
     </p>
+
+    <!-- ====== Vertical Cantilever Panels — flagship use of the 180mm panel ====== -->
+    <div class="mt-16 card p-6 md:p-8 border-l-4 border-yellow">
+      <p class="eyebrow text-cast mb-3">Named system</p>
+      <h3 class="font-display text-display-md text-navy mb-3">Vertical Cantilever Panels.</h3>
+      <p class="text-cast-700 leading-relaxed mb-6 max-w-3xl">
+        Stand a 180mm prestressed panel vertically and cantilever it from the slab — no king
+        post, no tie-back, no rear bracing. We design, supply and install the cantilever
+        run; the panel does the work.
+      </p>
+
+      <div class="overflow-x-auto">
+        <table class="spec-table w-full text-left border-collapse">
+          <thead class="bg-navy text-white">
+            <tr>
+              <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Panel</th>
+              <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Retained material</th>
+              <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Maximum retained height</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cantileverSpecs.map((s, i) => (
+              <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
+                <td class="px-4 py-3 font-bold text-navy">{s.thickness}</td>
+                <td class="px-4 py-3">{s.material}</td>
+                <td class="px-4 py-3 text-cast">{s.retained}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <p class="text-cast text-sm mt-4">
+        No supporting posts required. Site-specific structural calc supplied with every job.
+      </p>
+    </div>
   </section>
 
+  <ProductGallery
+    eyebrow="Handling"
+    heading="Handling & install detail."
+    background="bone"
+    cols={2}
+    images={[
+      { src: '/images/products/concrete-panels/wccp-concrete-panels-lifting-clutch-1024x488.jpg', alt: 'Wire-rope lifting clutch and 2.5T sling used to handle prestressed precast concrete wall panels by West Country Concrete Products, Devon', caption: 'Lifting clutch & sling' },
+    ]}
+  />
+
   <!-- Applications -->
-  <section class="bg-bone-200 py-20">
+  <section class="bg-white py-20">
     <div class="container-wccp">
       <div class="grid lg:grid-cols-2 gap-12">
         <div>
@@ -260,17 +330,7 @@ const productSchema = {
       </a>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      {related.map((r) => (
-        <a href={r.href} class="card p-5 group">
-          <div class="aspect-[16/10] bg-cast-100 mb-4 rounded overflow-hidden">
-            <div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100"></div>
-          </div>
-          <h3 class="font-display text-base font-bold text-navy mb-1 group-hover:text-ember">{r.label}</h3>
-          <p class="text-cast text-xs">{r.meta}</p>
-        </a>
-      ))}
-    </div>
+    <RelatedProductGrid items={related} />
   </section>
 
   <!-- FAQ -->
@@ -298,6 +358,40 @@ const productSchema = {
     </div>
   </section>
 
+  <SpecDownloads
+    intro="Panel range overview plus the on-site handling, lifting and storage guidelines."
+    downloads={[
+      { href: '/downloads/specs/prestressed-panels.pdf', title: 'Prestressed wall panels — overview', meta: 'PDF' },
+      { href: '/downloads/specs/concrete-panels/wccp-concrete-panels-handling-guidelines.pdf', title: 'Concrete panels — handling guidelines', meta: 'PDF · 386 KB' },
+    ]}
+  />
+
+  <!-- Supply-only vs Fitted -->
+  <section class="container-wccp section-rhythm border-t border-cast-100">
+    <FittedVsSupply
+      productName="Prestressed Wall Panels"
+      defaultMode="supply"
+      supply={{
+        price: 'from £85 per m²',
+        leadTime: '3–4 weeks',
+        includes: [
+          'Factory-cast prestressed panels (100/150/180/280mm)',
+          'BS EN 14992 UKCA declaration of performance',
+          'Lifting points and install drawing',
+          'Delivery on our HIAB to your site',
+        ],
+        excludes: [
+          'On-site fixing labour and crane hire',
+          'Footings, pockets and cast-in king posts',
+          'Bedding mortar and joint sealant',
+        ],
+      }}
+      note="Indicative 2026 pricing per m² of panel face for 50m+ runs. Bespoke pocket details, exposed-aggregate finishes and sulphate-resisting variants priced individually. Install handled by our partner contractors — ask the yard for a referral."
+    />
+  </section>
+
+  <CADDownloads productSlug="prestressed-panels" productName="Prestressed wall panels" />
+
   <!-- Final CTA -->
   <section class="bg-navy text-white py-20">
     <div class="container-wccp text-center">
@@ -314,4 +408,7 @@ const productSchema = {
       </div>
     </div>
   </section>
+
+  <SpecSheetButton productSlug="prestressed-panels" productName="Prestressed Wall Panels" href="/downloads/specs/prestressed-panels.pdf" />
+  <ProductWarrantyLine />
 </BaseLayout>

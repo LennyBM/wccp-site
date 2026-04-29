@@ -1,7 +1,13 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
+import CADDownloads from '@/components/CADDownloads.astro';
+import FittedVsSupply from '@/components/FittedVsSupply.astro';
+import SpecSheetButton from '@/components/SpecSheetButton.astro';
+import ProductGallery from '@/components/ProductGallery.astro';
 import { site } from '@/config/site';
+import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
 
 const specs = [
   { size: '1.0 × 1.0 m', wall: '150mm', length: '2.0 m', weight: '2,250 kg', loading: 'HA / 30 LU', use: 'Watercourse crossings, drainage' },
@@ -55,7 +61,7 @@ const productSchema = {
     { '@type': 'PropertyValue', name: 'Lead time', value: '4–6 weeks catalogue, 8–12 weeks bespoke' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
   ],
-  offers: { '@type': 'Offer', priceCurrency: 'GBP', availability: 'https://schema.org/InStock', seller: { '@type': 'Organization', name: site.name } },
+  offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
 };
 
 const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
@@ -64,9 +70,10 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
 <BaseLayout
   title="Box Culverts — BS EN 1916 · 1.0m to 3.6m internal"
   description="Precast box culverts to BS EN 1916. Internal sizes 1.0×1.0m to 3.6×3.0m. HA, HB30, HB45 loadings. Watercourses, underpasses, bridge sections. Cast in North Devon."
-  image="/images/products/culverts.jpg"
+  image="/og/culverts.png"
   schema="Product"
   schemaData={productSchema}
+  whatsappContext="Box Culverts"
 >
   <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
   <TrustStrip />
@@ -77,7 +84,15 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
         <div>
           <p class="eyebrow text-yellow mb-4">Civils · drainage · highways</p>
           <h1 class="font-display text-display-xl text-white mb-4">Box Culverts.</h1>
-          <p class="text-lg text-white/90 leading-relaxed mb-6">
+          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">Watercourses, headwalls and wingwalls — to BS 5911.</p>
+          <h2 class="sr-only">What size box culvert do I need for a watercourse?</h2>
+          <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
+            <strong class="not-italic text-white">What size box culvert do I need for a watercourse?</strong>
+            Size to the 1-in-100-year peak flow plus a 20% climate-change uplift, with 300&nbsp;mm
+            freeboard at the soffit. WCCP's range runs 1.0&nbsp;×&nbsp;1.0&nbsp;m through to
+            3.6&nbsp;×&nbsp;3.0&nbsp;m, in 2&nbsp;m sections, to BS&nbsp;EN&nbsp;1916 / BS&nbsp;5911.
+          </blockquote>
+          <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
             Precast box culverts to BS EN 1916. Internal sizes from 1.0 × 1.0m up to 3.6 × 3.0m,
             standard 2-metre section length. HA, HB30 and HB45 traffic loadings. For watercourses,
             stock and pedestrian underpasses, drainage and bridge sections.
@@ -92,11 +107,13 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Culverts" class="btn-primary">Configure a quote</a>
-            <a href="/spec-sheets/culverts.pdf" class="btn-yellow">Download spec sheet</a>
+            <a href="/downloads/specs/culverts.pdf" class="btn-yellow">Download spec sheet</a>
             <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">Call {site.contact.phone}</a>
           </div>
         </div>
-        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-300 via-cast to-navy"></div></div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
+          <img src="/images/products/culverts/wccp-culverts-20240308-121028-reduced-1024x768.jpg" alt="Precast concrete box culverts being placed on site — West Country Concrete Products, Devon" class="w-full h-full object-cover" loading="eager" decoding="async" />
+        </div>
       </div>
     </div>
   </section>
@@ -135,7 +152,21 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
     </div>
   </section>
 
-  <section class="bg-bone-200 py-20">
+  <ProductGallery
+    eyebrow="On site"
+    heading="On-site installation."
+    background="bone"
+    cols={2}
+    images={[
+      { src: '/images/products/home/wccp-home-20130306-1249271-1024x768.jpg', alt: 'Stacked precast concrete box culvert sections in the WCCP yard at Holsworthy, Devon', caption: 'Box culverts in the yard' },
+      { src: '/images/products/culverts/wccp-culverts-whatsapp-image-2024-03-08-at-22-06-30-5b94be08-1024x768.jpg', alt: 'Two large precast concrete box culverts strapped to a flatbed lorry leaving the WCCP yard for delivery, Devon', caption: 'Box culverts on the lorry' },
+      { src: '/images/products/culverts/wccp-culverts-img-20240325-wa0013-768x1024.jpg', alt: 'Site team lowering a precast concrete box culvert section into a stream excavation by West Country Concrete Products, Devon', caption: 'Lowering into excavation' },
+      { src: '/images/products/culverts/wccp-culverts-img-20240325-wa0010-1024x497.jpg', alt: 'Installed precast concrete culvert with stone abutments and galvanised handrails forming a small footbridge by WCCP Devon', caption: 'Culvert with stone abutments' },
+      { src: '/images/products/culverts/wccp-culverts-img-20240325-wa0009-1024x497.jpg', alt: 'Finished precast concrete culvert deck with resin-bound surface and galvanised handrail crossing by WCCP Devon', caption: 'Finished culvert deck' },
+    ]}
+  />
+
+  <section class="bg-white py-20">
     <div class="container-wccp">
       <div class="grid lg:grid-cols-2 gap-12">
         <div>
@@ -186,15 +217,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" /><polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" /></svg>
       </a>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      {related.map((r) => (
-        <a href={r.href} class="card p-5 group">
-          <div class="aspect-[16/10] bg-cast-100 mb-4 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100"></div></div>
-          <h3 class="font-display text-base font-bold text-navy mb-1 group-hover:text-ember">{r.label}</h3>
-          <p class="text-cast text-xs">{r.meta}</p>
-        </a>
-      ))}
-    </div>
+    <RelatedProductGrid items={related} />
   </section>
 
   <section class="bg-bone-200 py-20">
@@ -218,6 +241,46 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
     </div>
   </section>
 
+  <!-- Supply-only vs Fitted -->
+  <section class="container-wccp section-rhythm border-t border-cast-100">
+    <FittedVsSupply
+      productName="Box Culverts"
+      defaultMode="supply"
+      supply={{
+        price: 'from £580 per linear metre',
+        leadTime: '4–6 weeks',
+        includes: [
+          'Box-culvert sections to BS EN 1916',
+          'Class 2 elastomeric joint gaskets',
+          'Designer-stamped Eurocode 2 calcs',
+          'Delivery on our HIAB / low-loader',
+        ],
+        excludes: [
+          'Excavation, blinding and bedding',
+          'On-site crane and setting labour',
+          'Headwall, wingwall and apron units',
+        ],
+      }}
+      fitted={{
+        price: 'from £950 per linear metre',
+        leadTime: '8–10 weeks (incl. site slot)',
+        includes: [
+          'Everything in supply only',
+          'Four-man install crew with 50t crane',
+          'Joint sealing and section levelling',
+          '12-month workmanship warranty',
+        ],
+        excludes: [
+          'Excavation, dewatering and bedding stone',
+          'Reinstatement, traffic management and surfacing',
+        ],
+      }}
+      note="Indicative 2026 pricing for a 1.5×1.0m box culvert. Larger spans, headwall sets and rail / highway loadings priced individually — send the section drawing."
+    />
+  </section>
+
+  <CADDownloads productSlug="culverts" productName="Box culverts" />
+
   <section class="bg-navy text-white py-20">
     <div class="container-wccp text-center">
       <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
@@ -229,4 +292,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
       </div>
     </div>
   </section>
+
+  <SpecSheetButton productSlug="culverts" productName="Box Culverts" href="/downloads/specs/culverts.pdf" />
+  <ProductWarrantyLine />
 </BaseLayout>

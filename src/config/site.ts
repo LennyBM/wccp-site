@@ -10,7 +10,7 @@ export const site = {
   url: 'https://westcountryconcreteproducts.co.uk',
   shortUrl: 'wccp.co.uk',
   description:
-    'UK precast concrete manufacturer in Holsworthy, North Devon. Cattle cubicles, slurry storage, retaining walls, prestressed panels, milking robot bases, bespoke precast — supplied across the South West and nationwide since 1971.',
+    'UK precast concrete manufacturer in Holsworthy, North Devon. Cattle cubicles, slurry storage, retaining walls, prestressed panels, milking robot bases, bespoke precast — delivered nationwide across the UK and into Europe.',
   tagline: 'Precast concrete, cast in North Devon. Made to last.',
   shortTagline: 'Made in North Devon since 1971',
 
@@ -56,8 +56,17 @@ export const site = {
     youtube: '',  // create at launch
   },
 
-  // Areas served — used in LocalBusiness schema and location-page generation
-  areasServed: ['Devon', 'Cornwall', 'Somerset', 'Dorset', 'Wiltshire', 'United Kingdom'],
+  // Areas served — used in LocalBusiness schema and location-page generation.
+  // WCCP delivers UK-wide and into Europe (recent jobs: Germany, Netherlands,
+  // the Outer Hebrides). Cast in North Devon, but the lorries don't stop at
+  // the Tamar.
+  areasServed: [
+    'United Kingdom',
+    'Devon', 'Cornwall', 'Somerset', 'Dorset', 'Wiltshire',
+    'Scotland', 'Wales', 'Northern Ireland',
+    'Republic of Ireland',
+    'Germany', 'Netherlands', 'France', 'Belgium',
+  ],
 
   // Accreditations to confirm at meeting
   accreditations: [

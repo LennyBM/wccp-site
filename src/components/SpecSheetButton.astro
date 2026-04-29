@@ -1,0 +1,95 @@
+---
+// SpecSheetButton.astro
+//
+// A floating, dismissible "Spec sheet" pill that pins to the bottom-right
+// of any product page. Architects and engineers tendering work want a one-click
+// PDF route — this surfaces it without cluttering the main flow.
+//
+// Behaviour:
+// - If `href` points to a real PDF (passed in by the page), the pill is a
+//   download link.
+// - If no real PDF is available for this product yet, the pill becomes a
+//   "Request spec sheet" mailto pre-filled with the product name. We deliberately
+//   never fall back to a 404 download.
+
+interface Props {
+  productSlug: string;
+  productName: string;
+  href?: string;
+}
+
+const { productName, href: hrefProp } = Astro.props;
+
+// Only treat the href as a real download if it was explicitly passed in by the
+// page. The previous default `/downloads/specs/{slug}.pdf` used to 404 for
+// products that never had a generated PDF — we now flip those to a mailto.
+const engineeringEmail = 'engineering@wccp.co.uk';
+
+const mailtoSubject = `Spec sheet request — ${productName}`;
+const mailtoBody = [
+  'Hi WCCP engineering,',
+  '',
+  `Please send the spec sheet for ${productName}.`,
+  '',
+  'Project details:',
+  '• Project name:',
+  '• Site location:',
+  '• Required spec / standard:',
+  '',
+  'Thanks',
+].join('\n');
+const mailtoHref =
+  `mailto:${engineeringEmail}` +
+  `?subject=${encodeURIComponent(mailtoSubject)}` +
+  `&body=${encodeURIComponent(mailtoBody)}`;
+
+const isDownload = !!hrefProp;
+const finalHref = hrefProp ?? mailtoHref;
+const label = isDownload ? 'Spec sheet (PDF)' : 'Request spec sheet';
+const ariaLabel = isDownload
+  ? `Download ${productName} spec sheet (PDF)`
+  : `Request ${productName} spec sheet by email`;
+---
+
+<a
+  href={finalHref}
+  download={isDownload ? true : undefined}
+  class="spec-sheet-pill hidden lg:inline-flex fixed bottom-6 right-6 z-30 items-center gap-2.5 bg-navy text-white px-5 py-3 rounded-full shadow-lifted hover:bg-terracotta hover:shadow-glow-ember transition-all duration-200 group"
+  aria-label={ariaLabel}
+  data-spec-sheet
+>
+  {isDownload ? (
+    <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="7 10 12 15 17 10" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="12" y1="15" x2="12" y2="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  ) : (
+    <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true">
+      <rect x="3" y="5" width="18" height="14" rx="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="3 7 12 13 21 7" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  )}
+  <span class="font-bold text-sm">{label}</span>
+</a>
+
+<script>
+  // Hide the spec-sheet pill once the user reaches the footer to avoid overlap.
+  // Uses IntersectionObserver on the footer accreditations anchor.
+  (() => {
+    const pill = document.querySelector<HTMLElement>('[data-spec-sheet]');
+    const footer = document.getElementById('footer-accreditations');
+    if (!pill || !footer || !('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        pill.classList.toggle('opacity-0', entry.isIntersecting);
+        pill.classList.toggle('pointer-events-none', entry.isIntersecting);
+      }
+    }, { rootMargin: '0px 0px -100px 0px' });
+    io.observe(footer);
+  })();
+</script>
+
+<style>
+  .spec-sheet-pill { transition: opacity 200ms, transform 200ms, background-color 200ms, box-shadow 200ms; }
+</style>

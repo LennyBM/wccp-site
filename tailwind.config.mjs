@@ -4,72 +4,118 @@ export default {
   theme: {
     extend: {
       colors: {
-        // === REFINED PREMIUM PALETTE ===
+        // === BRAND NAVY / YELLOW / WHITE PALETTE (2026) ===
         //
-        // The previous palette used the raw logo colours (#0000FE / #FBF547)
-        // across the entire UI, which read as "construction signage" rather
-        // than "premium industrial brand". This refinement keeps the exact
-        // logo colours for the LOGO LOCKUP only, and uses richer, more
-        // sophisticated digital UI tokens for everything else.
-        //
-        // Logo recognition is preserved. Premium feel is gained.
+        // Industrial trade-show brand colours. Deep navy surfaces + ink,
+        // off-white/white page backgrounds, raw electric blue reserved for
+        // the logo lockup, raw brand yellow as the sole CTA / accent.
+        // The legacy `forest`, `terracotta`, `cream`, `ember` tokens are
+        // remapped onto the new palette so existing class usage updates
+        // automatically across the site.
 
-        // Primary brand — digital UI primary
+        // === PRIMARY BRAND TOKENS (real client swatches, 2026) ===
+        // navy.700 (#3a5cb5)  — brand cobalt: surfaces, accents, base navy
+        // yellow.400 (#fff005) — vivid brand yellow: ONLY on dark surfaces
+        // navy.900 (#131e44)  — body text on white (13:1 AAA)
+        // navy.800 (#1f2f6a)  — headlines on white (7.5:1 AAA)
+        // navy.logo (#0000FE) — RAW electric blue: logo lockup only
         navy: {
-          DEFAULT: '#0A1A4F',     // Premium deep navy — primary UI
-          50:  '#E7EAF4',
-          100: '#C2C9E2',
-          200: '#9AA5CD',
-          300: '#7080B7',
-          400: '#4D5FA1',
-          500: '#2E4185',
-          600: '#1A2D6A',
-          700: '#0A1A4F',         // base — premium navy
-          800: '#06123A',
-          900: '#030823',
-          logo: '#0000FE',        // Exact logo colour — used ONLY on the logo lockup
-          ink:  '#040A1F',        // Deepest tone for highest-contrast text
+          DEFAULT: '#3a5cb5',
+          50:  '#EEF1FA',
+          100: '#D4DCF1',
+          200: '#A9B9E2',
+          300: '#7E96D3',
+          400: '#5374C4',
+          500: '#3a5cb5',
+          600: '#2e4796',         // hover/deeper
+          700: '#3a5cb5',         // base — text-navy / bg-navy-700 (brand cobalt)
+          800: '#1f2f6a',         // headlines on white (7.5:1)
+          900: '#131e44',         // body text on white (13:1 ✓ AAA)
+          logo: '#0000FE',        // PRESERVED — logo lockup only
+          ink:  '#0A1226',        // deepest text-black-equivalent
         },
-        // Brand accent yellow
         yellow: {
-          DEFAULT: '#F5C518',     // Refined warmer accent — more sophisticated than raw lemon
-          50:  '#FEF9E5',
-          100: '#FDF1BE',
-          200: '#FAE693',
-          300: '#F8DA68',
-          400: '#F6CD3F',
-          500: '#F5C518',         // base — refined warm yellow
-          600: '#D2A509',
-          700: '#9C7906',
-          800: '#664E04',
-          900: '#332702',
-          logo: '#FBF547',        // Exact logo colour — only on the logo lockup
+          DEFAULT: '#fff005',     // raw brand yellow — vivid pure
+          50:  '#FFFEF0',
+          100: '#FFFCC2',
+          200: '#FFF98A',
+          300: '#fff64a',         // softer for dot pulses
+          400: '#fff005',         // base — CTAs / eyebrows (DARK SURFACES ONLY)
+          500: '#f5e600',         // hover slight darker
+          600: '#D6C800',
+          700: '#A89C00',
+          800: '#6B6300',
+          900: '#3A3600',
+          logo: '#fff005',        // PRESERVED — logo lockup
         },
-        // CTA accent — refined ember
+
+        // === LEGACY TOKEN REWIRES ===
+        // Existing class usage (text-forest-700, bg-terracotta-600, etc.)
+        // automatically resolves to the new navy/yellow palette.
+        forest: {
+          DEFAULT: '#3a5cb5',
+          50:  '#EEF1FA',
+          100: '#D4DCF1',
+          200: '#A9B9E2',
+          300: '#7E96D3',
+          400: '#5374C4',
+          500: '#3a5cb5',
+          600: '#2e4796',
+          700: '#3a5cb5',
+          800: '#1f2f6a',
+          900: '#131e44',
+        },
+        terracotta: {
+          DEFAULT: '#fff005',
+          50:  '#FFFEF0',
+          100: '#FFFCC2',
+          200: '#FFF98A',
+          300: '#fff64a',
+          400: '#fff005',
+          500: '#fff005',
+          600: '#f5e600',
+          700: '#D6C800',
+          800: '#A89C00',
+          900: '#6B6300',
+        },
+        cream: {
+          DEFAULT: '#FFFFFF',
+          50:  '#FBFAF7',
+          100: '#FFFFFF',         // pure white card / surface
+          200: '#FBFAF7',
+          300: '#F5F3ED',
+          400: '#E8E5DC',
+          500: '#C9C5B8',
+          600: '#928E83',
+          700: '#5C5950',
+          800: '#2F2D27',
+          900: '#16140F',
+        },
         ember: {
-          DEFAULT: '#E54D17',     // More sophisticated than raw safety orange
-          50:  '#FBE7DD',
-          100: '#F4C0A8',
-          200: '#ED9874',
-          300: '#E66F40',
-          400: '#E55C26',
-          500: '#E54D17',         // base
-          600: '#B83C0F',
-          700: '#892C0A',
-          800: '#5C1D06',
-          900: '#2E0E03',
+          DEFAULT: '#fff005',
+          50:  '#FFFEF0',
+          100: '#FFFCC2',
+          200: '#FFF98A',
+          300: '#fff64a',
+          400: '#fff005',
+          500: '#fff005',
+          600: '#f5e600',
+          700: '#D6C800',
+          800: '#A89C00',
+          900: '#6B6300',
         },
-        // Surfaces — warm neutral
         bone: {
-          DEFAULT: '#FAFAF7',
-          50:  '#FCFCFA',
-          100: '#FAFAF7',         // base
-          200: '#F1F0EA',
-          300: '#E5E3DA',
-          400: '#CECBBE',
-          500: '#9C9888',
+          /* Page surface — soft off-white. Cards (pure #FFFFFF) sit visibly
+             above this so they read as elevated. */
+          DEFAULT: '#FBFAF7',
+          50:  '#FFFFFF',
+          100: '#FBFAF7',
+          200: '#F5F3ED',
+          300: '#E8E5DC',
+          400: '#C9C5B8',
+          500: '#928E83',
         },
-        // Mid-greys — slightly cool/bluish for premium industrial feel
+        // Mid-greys — slightly cool/bluish for industrial feel
         cast: {
           DEFAULT: '#5C6470',
           50:  '#F1F2F4',
@@ -77,26 +123,25 @@ export default {
           200: '#BCC1C9',
           300: '#9DA4AF',
           400: '#7E8693',
-          500: '#5C6470',         // base
+          500: '#5C6470',
           600: '#494F5A',
           700: '#363B43',
           800: '#23272D',
           900: '#101317',
         },
         ink: {
-          DEFAULT: '#0A0E1A',     // Premium near-black with subtle blue
+          DEFAULT: '#0A1226',     // deepest text-black-equivalent
         },
         // System
-        success: '#0E7A45',       // Refined trust green
-        danger:  '#C0322B',       // Refined alert red
+        success: '#0E7A45',
+        danger:  '#C0322B',
       },
       fontFamily: {
-        // === REFINED PREMIUM TYPOGRAPHY ===
-        // Bricolage Grotesque — modern industrial display, distinctive character,
-        // free via Google Fonts. Has variable-width and optical sizing built in.
-        // Inter — workhorse premium body font, ubiquitous quality, free via Google Fonts.
-        // Together: industrial heritage + modern editorial premium feel.
-        display: ['"Bricolage Grotesque Variable"', '"Bricolage Grotesque"', '"Inter Variable"', '"Inter"', 'system-ui', 'sans-serif'],
+        // === EDITORIAL TYPOGRAPHY ===
+        // Newsreader serif (NYT-coded, solid heritage-industrial) for display.
+        // Fraunces kept as transitional fallback while CDN warms.
+        // Inter for body text — unchanged.
+        display: ['"Newsreader"', '"Fraunces Variable"', '"Fraunces"', '"Times New Roman"', 'Georgia', 'serif'],
         body:    ['"Inter Variable"', '"Inter"', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
         mono:    ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
@@ -124,11 +169,11 @@ export default {
         'page-x': 'clamp(20px, 4vw, 64px)',
       },
       boxShadow: {
-        'soft':    '0 4px 12px rgba(10, 26, 79, 0.06)',
-        'pressed': '0 2px 4px rgba(10, 26, 79, 0.10)',
-        'lifted':  '0 16px 40px rgba(10, 26, 79, 0.12)',
-        'glow':    '0 0 32px rgba(245, 197, 24, 0.35)',
-        'glow-ember': '0 0 32px rgba(229, 77, 23, 0.30)',
+        'soft':    '0 4px 12px rgba(19, 30, 68, 0.10)',
+        'pressed': '0 2px 4px rgba(19, 30, 68, 0.14)',
+        'lifted':  '0 16px 40px rgba(19, 30, 68, 0.16)',
+        'glow':    '0 0 32px rgba(255, 240, 5, 0.32)',
+        'glow-ember': '0 0 32px rgba(255, 240, 5, 0.36)',
         'inset-soft': 'inset 0 2px 4px rgba(0, 0, 0, 0.05)',
       },
       maxWidth: {
@@ -158,8 +203,6 @@ export default {
         'marquee-slow':      'marquee 90s linear infinite',
         'pulse-soft':        'pulseSoft 2.5s ease-in-out infinite',
         'underline-grow':    'underlineGrow 400ms cubic-bezier(0.16, 1, 0.3, 1) forwards',
-        /* Hover-only arrow nudge — applied via .arrow-float on .group:hover. Removed
-           the previous infinite-alternate version which chewed battery on mobile. */
         'arrow-slide':       'arrowSlide 600ms cubic-bezier(0.16, 1, 0.3, 1) both',
         'reveal-y':          'revealY 800ms cubic-bezier(0.65, 0, 0.35, 1) both',
         'badge-pop':         'badgePop 600ms cubic-bezier(0.34, 1.56, 0.64, 1) both',

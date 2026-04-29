@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import CaseStudyIcon from '@/components/CaseStudyIcon.astro';
 import { site } from '@/config/site';
 
 const caseStudies = [
@@ -16,6 +17,7 @@ const caseStudies = [
     days: '11 days',
     quote: '"They turned up when they said they would. The yard was back in use the following week."',
     attribution: 'Mike, herd manager',
+    iconType: 'slurry-store' as const,
   },
   {
     slug: 'cornish-beef-cubicles',
@@ -30,6 +32,7 @@ const caseStudies = [
     days: '6 days',
     quote: '"Fitted right first time. The cattle settled in within forty-eight hours."',
     attribution: 'Andrew, farm owner',
+    iconType: 'cubicle-housing' as const,
   },
   {
     slug: 'somerset-grain-store',
@@ -44,6 +47,7 @@ const caseStudies = [
     days: '4 days',
     quote: '"Saved us a fortune over poured walls and we can move them when we need to."',
     attribution: 'James, partner',
+    iconType: 'retaining-wall' as const,
   },
   {
     slug: 'devon-retaining-wall-civils',
@@ -58,6 +62,7 @@ const caseStudies = [
     days: '14 days',
     quote: '"WCCP slotted into the programme and beat the schedule by three days."',
     attribution: 'Site agent, principal contractor',
+    iconType: 'civils-roundabout' as const,
   },
   {
     slug: 'cornish-anaerobic-digester',
@@ -72,6 +77,7 @@ const caseStudies = [
     days: '21 days',
     quote: '"They engineered around our digester geometry — no off-the-shelf option fitted."',
     attribution: 'Project engineer',
+    iconType: 'panel' as const,
   },
   {
     slug: 'somerset-robot-base',
@@ -86,13 +92,14 @@ const caseStudies = [
     days: '3 days',
     quote: '"Level to the millimetre. The Lely engineers commissioned without a single shim."',
     attribution: 'Sarah, dairy manager',
+    iconType: 'milking-robot' as const,
   },
 ];
 ---
 
 <BaseLayout
   title="Case studies — slurry stores, cubicles, retaining walls"
-  description="Real WCCP precast concrete projects across Devon, Cornwall and Somerset. Slurry stores, cubicle housing, retaining walls and bespoke jobs — with tonnage, install days and customer feedback."
+  description="Real WCCP precast concrete projects — Devon, Cornwall, Somerset, Dorset, Wiltshire, Wales, Scotland, the Outer Hebrides and into Europe. Slurry stores, cubicle housing, retaining walls, civils and bespoke jobs — with tonnage, install days and customer feedback."
 >
   <!-- Hero -->
   <section class="bg-navy text-white">
@@ -103,8 +110,8 @@ const caseStudies = [
           The jobs we've cast, delivered and stood behind.
         </h1>
         <p class="text-lg text-white/90 max-w-2xl leading-relaxed">
-          Five hundred-plus farms, civils contractors and architects across the South West. Pick a sector
-          or a county and see what good looks like.
+          Five hundred-plus farms, civils contractors and architects — Cornwall to the Outer Hebrides
+          and out into Europe. Pick a sector or a region and see what good looks like.
         </p>
       </div>
     </div>
@@ -123,7 +130,15 @@ const caseStudies = [
         <button data-filter="devon" class="filter-btn btn-sm border-2 border-cast-200 text-navy hover:bg-navy hover:text-white">Devon</button>
         <button data-filter="cornwall" class="filter-btn btn-sm border-2 border-cast-200 text-navy hover:bg-navy hover:text-white">Cornwall</button>
         <button data-filter="somerset" class="filter-btn btn-sm border-2 border-cast-200 text-navy hover:bg-navy hover:text-white">Somerset</button>
+        <button data-filter="dorset" class="filter-btn btn-sm border-2 border-cast-200 text-navy hover:bg-navy hover:text-white">Dorset</button>
+        <button data-filter="wiltshire" class="filter-btn btn-sm border-2 border-cast-200 text-navy hover:bg-navy hover:text-white">Wiltshire</button>
+        <button data-filter="wales" class="filter-btn btn-sm border-2 border-cast-200 text-navy hover:bg-navy hover:text-white">Wales</button>
+        <button data-filter="scotland" class="filter-btn btn-sm border-2 border-cast-200 text-navy hover:bg-navy hover:text-white">Scotland · Hebrides</button>
+        <button data-filter="europe" class="filter-btn btn-sm border-2 border-cast-200 text-navy hover:bg-navy hover:text-white">Europe</button>
       </div>
+      <p class="mt-3 text-xs text-forest-700">
+        We cast for projects across the UK and into Europe — Cornwall to the Outer Hebrides, Munich to Rotterdam.
+      </p>
     </div>
   </section>
 
@@ -137,12 +152,12 @@ const caseStudies = [
           data-sector={c.sectorTag}
           data-region={c.region}
         >
-          <!-- Hero image placeholder -->
-          <div class="aspect-[4/3] bg-cast-100 overflow-hidden relative">
-            <div class="w-full h-full bg-gradient-to-br from-navy via-navy-700 to-cast-700 group-hover:scale-105 transition-transform duration-500"></div>
-            <div class="absolute top-3 left-3 flex gap-2">
-              <span class="text-[11px] font-bold uppercase tracking-wide bg-yellow text-navy px-2 py-1 rounded">{c.sector}</span>
-              <span class="text-[11px] font-bold uppercase tracking-wide bg-white/90 text-navy px-2 py-1 rounded">{c.year}</span>
+          <!-- Editorial spot illustration -->
+          <div class="aspect-[4/3] overflow-hidden relative">
+            <CaseStudyIcon type={c.iconType} class="transition-transform duration-500 group-hover:scale-105" />
+            <div class="absolute top-3 left-3 flex gap-2 z-10">
+              <span class="text-[11px] font-bold uppercase tracking-wide bg-forest-700 text-cream px-2 py-1 rounded">{c.sector}</span>
+              <span class="text-[11px] font-bold uppercase tracking-wide bg-white/95 text-forest-800 px-2 py-1 rounded border border-cast-200">{c.year}</span>
             </div>
           </div>
 

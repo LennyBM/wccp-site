@@ -1,69 +1,116 @@
 ---
-// Reusable WCCP logo lockup.
-// A properly drawn SVG wordmark — square frame in raw logo navy,
-// "WCCP" in raw logo yellow, set in Bricolage Grotesque with
-// tighter optical kerning than the default.
+// =============================================================================
+// WCCP Masthead Lockup
+// -----------------------------------------------------------------------------
+// Two-piece lockup, executed with craft so the header reads like a proper
+// established-brand masthead (Cemex / FP McCann / Holcim territory).
 //
-// Brand discipline: this is the ONE place the raw logo colours
-// (#0000FE / #FBF547) are used. Everywhere else uses the refined
-// palette (navy-700 / yellow / ember).
+//   1. Brandmark — rounded cobalt-blue square (#3a5cb5) with the trade-show
+//      banner's stacked yellow text ("WEST / COUNTRY / CONCRETE / PRODUCTS")
+//      set in DM Sans 800 — heavy industrial sans, NOT body Inter. Includes
+//      a hairline yellow inner stroke and a fine rule between the two halves.
+//   2. Wordmark — "West Country / Concrete Products" set in Newsreader
+//      semibold italic, deep navy on white, with a small yellow accent rule
+//      that extends on hover.
+//
+// API:
+//   - `withWordmark` (default true) — when false, only the brandmark renders.
+//     Footer passes `withWordmark` truthy via existing call sites.
+//   - `size` is preserved for backwards compatibility but no longer drives
+//     layout (the lockup sizes itself from breakpoint utility classes).
+// =============================================================================
+
 interface Props {
   size?: number;
   class?: string;
   withWordmark?: boolean;
 }
 
-const { size = 50, class: className = '', withWordmark = false } = Astro.props;
+const {
+  class: className = '',
+  withWordmark = true,
+} = Astro.props;
 ---
 
-{withWordmark ? (
-  <span class={`inline-flex items-center gap-3 ${className}`}>
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 50 50"
-      role="img"
-      aria-label="WCCP logo"
-      class="block transition-transform duration-400 ease-spring group-hover:scale-105"
-    >
-      <rect width="50" height="50" rx="3" fill="#0000FE" />
-      <text
-        x="25"
-        y="25"
-        text-anchor="middle"
-        dominant-baseline="central"
-        font-family="'Bricolage Grotesque', 'Inter', system-ui, sans-serif"
-        font-weight="700"
-        font-size="14"
-        letter-spacing="-0.04em"
-        fill="#FBF547"
-      >WCCP</text>
-    </svg>
-    <span class="hidden sm:block leading-tight">
-      <span class="block font-display font-semibold text-navy-700 text-sm lg:text-base tracking-tight">West Country</span>
-      <span class="block font-display font-semibold text-navy-700 text-sm lg:text-base tracking-tight">Concrete Products</span>
+<span class={`wccp-lockup inline-flex items-center gap-3 ${className}`}>
+  {/* === Brandmark — cobalt square, yellow stacked text === */}
+  <span
+    class="wccp-mark relative inline-flex items-center justify-center
+           bg-navy-700 text-yellow-400
+           w-11 h-11 lg:w-14 lg:h-14
+           rounded-lg shadow-soft
+           transition-all duration-400 ease-out-quart
+           overflow-hidden flex-shrink-0"
+    aria-hidden="true"
+  >
+    {/* Hairline yellow inner stroke detail */}
+    <span class="absolute inset-[3px] rounded-md border border-yellow-400/35 pointer-events-none"></span>
+
+    {/* Stacked wordmark inside the square */}
+    <span class="relative flex flex-col items-center justify-center leading-[0.95] text-yellow-400 select-none">
+      <span class="wccp-mark-line block">WEST</span>
+      <span class="wccp-mark-line block">COUNTRY</span>
+      <span class="wccp-mark-line wccp-mark-line--rule block">CONCRETE</span>
+      <span class="wccp-mark-line block">PRODUCTS</span>
     </span>
   </span>
-) : (
-  <svg
-    width={size}
-    height={size}
-    viewBox="0 0 50 50"
-    role="img"
-    aria-label="WCCP logo"
-    class={`block ${className}`}
-  >
-    <rect width="50" height="50" rx="3" fill="#0000FE" />
-    <text
-      x="25"
-      y="25"
-      text-anchor="middle"
-      dominant-baseline="central"
-      font-family="'Bricolage Grotesque', 'Inter', system-ui, sans-serif"
-      font-weight="700"
-      font-size="14"
-      letter-spacing="-0.04em"
-      fill="#FBF547"
-    >WCCP</text>
-  </svg>
-)}
+
+  {withWordmark && (
+    <span class="wccp-wordmark hidden sm:inline-flex flex-col leading-[1.05]">
+      <span
+        class="font-display text-navy-900 text-[15px] lg:text-base tracking-tight"
+        style="font-style: italic; font-weight: 600; font-variation-settings: 'opsz' 36;"
+      >
+        West Country
+      </span>
+      <span
+        class="font-display text-navy-900 text-[15px] lg:text-base tracking-tight"
+        style="font-style: italic; font-weight: 600; font-variation-settings: 'opsz' 36;"
+      >
+        Concrete Products
+      </span>
+      <span class="wccp-wordmark-rule mt-1 block h-[2px] w-7 bg-yellow-400 transition-all duration-400 ease-out-quart"></span>
+    </span>
+  )}
+</span>
+
+<style>
+  /* DM Sans 800 — confident industrial sans for the brandmark stack.
+     Loaded via global.css. */
+  .wccp-lockup .wccp-mark-line {
+    font-family: 'DM Sans', 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-weight: 800;
+    font-size: 7px;
+    letter-spacing: 0.04em;
+    line-height: 1.05;
+  }
+  @media (min-width: 1024px) {
+    .wccp-lockup .wccp-mark-line {
+      font-size: 9px;
+    }
+  }
+  /* Hairline rule between WEST/COUNTRY and CONCRETE/PRODUCTS halves */
+  .wccp-lockup .wccp-mark-line--rule {
+    margin-top: 2px;
+    padding-top: 2px;
+    border-top: 0.5px solid rgba(255, 240, 5, 0.45);
+  }
+
+  /* === Hover state — subtle scale + soft shadow + wordmark rule extension.
+     Triggers from any ancestor <a> hover so the entire <a><Logo/></a>
+     is the hit-target. */
+  a:hover .wccp-mark,
+  .wccp-lockup:hover .wccp-mark {
+    transform: scale(1.03);
+    box-shadow: 0 6px 18px rgba(19, 30, 68, 0.22), 0 0 0 1px rgba(255, 240, 5, 0.18);
+  }
+  a:hover .wccp-wordmark-rule,
+  .wccp-lockup:hover .wccp-wordmark-rule {
+    width: 2.5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wccp-mark, .wccp-wordmark-rule { transition: none !important; }
+    a:hover .wccp-mark { transform: none !important; }
+  }
+</style>

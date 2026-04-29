@@ -14,11 +14,22 @@ const facts = [
   { label: 'Completed', value: 'November 2025' },
 ];
 
+const heroImage = '/images/products/home/wccp-home-20140615-193135-1024x768.jpg';
+const heroAlt = 'WCCP king-post precast retaining wall installed on a Devon estate';
+const gallery = [
+  { src: '/images/products/retaining-walls/wccp-retaining-walls-l-t-wall-1024x732.jpg', alt: 'WCCP L/T precast retaining wall units' },
+  { src: '/images/products/concrete-panels/wccp-concrete-panels-prestressed-concrete-panels.jpg', alt: 'WCCP prestressed concrete panels' },
+  { src: '/images/products/home/wccp-home-20140615-193135-1024x768.jpg', alt: 'WCCP king-post wall install' },
+  { src: '/images/products/cubicles/wccp-cubicles-portable-cubicles-1024x768.jpg', alt: 'WCCP precast cattle cubicles' },
+  { src: '/images/products/home/wccp-home-img-20260414-162319990-comp-1024x1024.jpg', alt: 'WCCP precast wall posts in the Holsworthy yard' },
+  { src: '/images/products/retaining-walls/wccp-retaining-walls-a-wall-732x1024.jpg', alt: 'WCCP A-wall precast retaining unit' },
+];
+
 const articleSchema = {
   author: {
     '@type': 'Person',
     name: 'WCCP engineering team',
-    description: 'Family-run precast concrete manufacturer in Holsworthy, North Devon, casting since 1971.',
+    description: 'Family-run precast concrete manufacturer in Holsworthy, North Devon.',
   },
   datePublished: '2025-12-02',
   mainEntityOfPage: 'https://westcountryconcreteproducts.co.uk/case-studies/ashford-estate-civils',
@@ -34,7 +45,12 @@ const articleSchema = {
 >
   <!-- Hero -->
   <section class="relative bg-navy text-white">
-    <div class="aspect-[16/7] md:aspect-[16/6] bg-gradient-to-br from-navy via-navy-700 to-cast-700 relative">
+    <div class="aspect-[16/7] md:aspect-[16/6] bg-navy relative overflow-hidden">
+      <picture>
+        <source srcset={heroImage.replace(/\.(jpe?g|png)$/i, '.webp')} type="image/webp" />
+        <img src={heroImage} alt={heroAlt} class="absolute inset-0 w-full h-full object-cover" loading="eager" decoding="async" />
+      </picture>
+      <div class="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/55 to-navy/20"></div>
       <div class="absolute inset-0 hero-gradient"></div>
       <div class="absolute bottom-0 left-0 right-0 container-wccp pb-10 md:pb-14">
         <nav class="text-sm text-white/90 mb-4" aria-label="Breadcrumb">
@@ -111,8 +127,13 @@ const articleSchema = {
 
         <h2 class="font-display text-2xl text-navy mb-4">From the yard to the field</h2>
         <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-10">
-          {[1,2,3,4,5,6].map(() => (
-            <div class="aspect-square bg-gradient-to-br from-cast-200 to-cast-100 rounded"></div>
+          {gallery.map((g) => (
+            <div class="aspect-square bg-cast-100 rounded overflow-hidden">
+              <picture>
+                <source srcset={g.src.replace(/\.(jpe?g|png)$/i, '.webp')} type="image/webp" />
+                <img src={g.src} alt={g.alt} class="w-full h-full object-cover" loading="lazy" decoding="async" />
+              </picture>
+            </div>
           ))}
         </div>
 

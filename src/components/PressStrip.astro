@@ -1,0 +1,38 @@
+---
+// PressStrip — "AS FEATURED IN" row of placeholder mastheads. Slots in waiting
+// for client to drop in real logo files. Cream-on-forest by default; pass
+// variant="bone" for a quiet light row.
+interface Props {
+  variant?: 'forest' | 'bone';
+}
+const { variant = 'forest' } = Astro.props;
+
+const outlets = [
+  { name: 'NFU' },
+  { name: 'Farmers Weekly' },
+  { name: 'Farmers Guardian' },
+  { name: 'CLA' },
+  { name: 'British Precast' },
+];
+
+const wrapperClass = variant === 'forest'
+  ? 'bg-forest-700 text-cream/90'
+  : 'bg-cream text-forest-700';
+const ruleClass = variant === 'forest' ? 'border-cream/15' : 'border-forest-700/10';
+const eyebrowClass = variant === 'forest' ? 'text-cream/70' : 'text-cast';
+---
+
+<section class={`${wrapperClass} border-y ${ruleClass}`} aria-label="As featured in">
+  <div class="container-wccp py-8 md:py-10">
+    <div class="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-12">
+      <p class={`eyebrow ${eyebrowClass} shrink-0`}>As featured in</p>
+      <ul class="flex flex-wrap items-center justify-start lg:justify-between gap-x-8 gap-y-3 lg:gap-x-12 flex-1">
+        {outlets.map((o) => (
+          <li class="font-display italic text-base md:text-lg lg:text-xl tracking-tight opacity-85 hover:opacity-100 transition-opacity">
+            {o.name}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,213 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const faqs = [
+  { q: 'What is the difference between an L-block and a cantilever retaining wall?', a: 'An L-block is a precast L-shaped concrete unit that sits on a prepared base — gravity holds it in place, the heel is loaded by the retained earth itself. A cantilever wall is a single reinforced concrete element (usually cast in-situ or as a large precast) where the stem cantilevers off a fixed footing. L-blocks are quick and relocatable; cantilevers are taller and permanent.' },
+  { q: 'Which is faster to install?', a: 'L-blocks. A two-person crew with a HIAB can land 25–30 metres of L-block in a day on a prepared slab. A site-cast cantilever needs formwork, rebar fixing, pour and a multi-day cure before it carries any load. Even precast cantilever sections take longer per metre because of the size and craneage involved.' },
+  { q: 'Which goes higher?', a: 'Cantilever. L-blocks top out at about 3m of retained earth in standard production; specials run to 4m. Cantilever walls are routine to 5m and beyond, sized by the structural calc. Above 4m retained, switch from L-block to a king post system or cantilever.' },
+  { q: 'Can L-blocks be relocated?', a: 'Yes. A standard L-block has lifting anchors cast in. Once the retained earth is cleared away, the unit lifts straight back onto the lorry — useful for temporary works, leased yards, push-walls and silage clamps that may be reconfigured. Cast cantilevers are permanent.' },
+  { q: 'How are foundations compared?', a: 'L-blocks need a level prepared base — typically a granular sub-base or a thin concrete blinding. Cantilever walls need a designed footing with reinforcement, often as wide as half the retained height. The cantilever footprint can dominate the total cost on tight sites.' },
+];
+
+const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+---
+
+<BaseLayout
+  title="L-block vs cantilever retaining wall — which to choose"
+  description="L-block vs cantilever retaining walls compared on speed, height, foundation, surcharge handling and relocatability. Plain-English UK guide for engineers, farmers and contractors."
+  schema="Article"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-14 md:py-16">
+      <nav class="text-sm text-white/90 mb-6" aria-label="Breadcrumb">
+        <a href="/guides" class="hover:text-yellow">Guides</a><span class="mx-2 text-cast">/</span>
+        <span class="text-white/90">L-block vs cantilever</span>
+      </nav>
+      <p class="eyebrow text-yellow mb-4">Retaining walls · Pillar guide</p>
+      <h1 class="font-display text-display-xl text-white mb-6 max-w-4xl">L-block vs cantilever retaining wall — which to choose.</h1>
+
+      <div class="bg-navy-700 border-l-4 border-yellow p-6 max-w-3xl rounded-r">
+        <p class="text-white/90 text-lg leading-relaxed">
+          <strong class="text-white">Direct answer:</strong> L-blocks are precast, gravity-retained,
+          fast to install and relocatable — the right answer to about 3m retained height. Cantilever
+          walls are reinforced concrete with a designed footing, slower to install but routine to 5m
+          and beyond. Speed and footprint pick L-block; height and permanence pick cantilever.
+        </p>
+      </div>
+
+      <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/90">
+        <div>By <span class="text-white font-semibold">WCCP Engineering Team</span> <!-- CLIENT: confirm individual reviewer name + CEng status --></div>
+        <div>Published <time datetime="2026-04-29">29 April 2026</time></div>
+        <div>Updated <time datetime="2026-04-29">29 April 2026</time></div>
+      </div>
+    </div>
+  </section>
+
+  <article class="container-wccp py-12 md:py-16">
+    <div class="grid lg:grid-cols-[1fr_18rem] gap-10 lg:gap-16">
+      <div class="max-w-3xl">
+
+        <section id="overview" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">The two systems, side by side.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">An <a href="/products/l-blocks" class="text-ember underline">L-block</a> is a single precast unit shaped like the letter L — a vertical stem and a horizontal base. The retained earth sits on the base, holding the unit in place by its own weight.</strong>
+            A <a href="/products/cantilever-walls" class="text-ember underline">cantilever wall</a> is a reinforced
+            concrete wall where the stem is structurally tied to a wide footing. Both work; they win at
+            different jobs.
+          </p>
+        </section>
+
+        <section id="speed" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Speed of install.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">L-blocks beat cantilever every time on speed.</strong> A
+            two-person crew with a HIAB can land 25–30m of L-block in a day on a prepared base. A
+            site-cast cantilever needs formwork, rebar fixing, pour and a multi-day cure. On a 60m
+            run, L-block is usually two days from delivery to handover; cantilever is two to three
+            weeks.
+          </p>
+        </section>
+
+        <section id="height" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Height range.</h2>
+          <div class="overflow-x-auto mb-4 -mx-4 sm:mx-0">
+            <table class="spec-table min-w-full px-4 sm:px-0">
+              <thead><tr><th>Retained height</th><th>L-block</th><th>Cantilever</th><th>King post</th></tr></thead>
+              <tbody class="text-cast">
+                <tr><td>To 1.5m</td><td><strong class="text-navy">Standard</strong></td><td>Overkill</td><td>Possible</td></tr>
+                <tr><td>1.5–3.0m</td><td><strong class="text-navy">Standard</strong></td><td>Standard</td><td>Standard</td></tr>
+                <tr><td>3.0–4.0m</td><td>Bespoke L</td><td><strong class="text-navy">Standard</strong></td><td>Standard</td></tr>
+                <tr><td>Above 4.0m</td><td>Not suitable</td><td><strong class="text-navy">Standard</strong></td><td>Standard / contiguous</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-sm text-cast italic">
+            Above 4m, see our <a href="/guides/king-post-retaining-walls" class="underline">king post guide</a> or talk to us about a contiguous bored pile design.
+          </p>
+        </section>
+
+        <section id="surcharge" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Surcharge handling.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Cantilever handles vehicle surcharge better than L-block in a
+            push-wall or silage-clamp setting.</strong> Where stockpiles, tractors or HGVs run within
+            1.5m of the retained face, the cantilever footing distributes the moment over a wider
+            base. L-blocks can take surcharge but design becomes site-specific quickly.
+          </p>
+        </section>
+
+        <section id="foundation" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Foundation and footprint.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">L-blocks sit on a prepared granular sub-base or a 100mm
+            concrete blinding.</strong> Cantilever footings are reinforced concrete, typically
+            half the retained height in width. On a 3m wall, that's a 1.5m footing — a real footprint
+            on a tight yard.
+          </p>
+        </section>
+
+        <aside class="not-prose my-12 reveal">
+          <a href="/products/retaining-walls" class="group block bg-navy-700 text-white rounded-lg p-6 md:p-7 hover:bg-navy-600 transition-colors no-underline">
+            <p class="eyebrow text-yellow mb-2">Quote retaining walls</p>
+            <p class="font-display text-xl md:text-2xl text-white font-semibold leading-snug">See the WCCP retaining-wall range</p>
+            <p class="text-white/85 text-sm mt-2">L-block, king-post, cantilever — designed and cast to your retained height.</p>
+          </a>
+        </aside>
+
+        <section id="when" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">When each one wins.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Pick L-block</strong> for silage-clamp walls, aggregate bays,
+            farm push-walls, temporary works, leased-yard splits, and any retained height under 3m
+            where speed and relocatability matter. The whole
+            <a href="/sectors/agricultural" class="text-ember underline">agricultural</a> sector
+            runs on L-block — same units shift between clamp, fertiliser bay and aggregate yard
+            across a season.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            <strong class="text-navy">Pick cantilever</strong> when the wall is permanent, retained
+            height is above 3m, vehicle surcharge is significant, or the wall is the boundary of a
+            development with planning conditions on long-term stability. Highway and
+            <a href="/sectors/civils" class="text-ember underline">civils</a> work tilts toward
+            cantilever for the same reasons.
+          </p>
+        </section>
+
+        <section id="faq" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-6">Frequently asked questions</h2>
+          <div class="space-y-4">
+            {faqs.map((f) => (
+              <details class="card p-5 group">
+                <summary class="font-display text-lg font-bold text-navy cursor-pointer flex items-start justify-between gap-4">
+                  <span>{f.q}</span>
+                  <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+                </summary>
+                <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section class="bg-navy text-white rounded-lg p-8 md:p-10">
+          <h2 class="font-display text-2xl md:text-3xl text-white mb-3">Not sure which?</h2>
+          <p class="text-white/90 mb-6 leading-relaxed">Send us your retained height, plan length and what's behind the wall. We'll recommend the system, design it and quote it within 24 hours.</p>
+          <div class="flex flex-wrap gap-3">
+            <a href="/products/retaining-walls" class="btn-yellow">See retaining range</a>
+            <a href="/quote" class="btn bg-white text-navy hover:bg-bone">Start a quote</a>
+          </div>
+        </section>
+      </div>
+
+      <aside class="hidden lg:block">
+        <div class="sticky top-24">
+          <p class="eyebrow text-cast mb-4">On this page</p>
+          <ol class="space-y-3 text-sm border-l border-cast-100 pl-4">
+            <li><a href="#overview" class="text-cast hover:text-ember">The two systems</a></li>
+            <li><a href="#speed" class="text-cast hover:text-ember">Speed of install</a></li>
+            <li><a href="#height" class="text-cast hover:text-ember">Height range</a></li>
+            <li><a href="#surcharge" class="text-cast hover:text-ember">Surcharge handling</a></li>
+            <li><a href="#foundation" class="text-cast hover:text-ember">Foundation</a></li>
+            <li><a href="#when" class="text-cast hover:text-ember">When each wins</a></li>
+            <li><a href="#faq" class="text-cast hover:text-ember">FAQ</a></li>
+          </ol>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+  <section class="bg-bone-200 py-16">
+    <div class="container-wccp">
+      <p class="eyebrow text-cast mb-3">Related guides</p>
+      <h2 class="font-display text-display-md mb-8">Keep reading.</h2>
+      <div class="grid md:grid-cols-3 gap-5">
+        <a href="/guides/king-post-retaining-walls" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Retaining</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">King post retaining walls</h3>
+          <p class="text-cast text-sm">UC sizing, panel thickness, drainage, install sequence.</p>
+        </a>
+        <a href="/guides/retaining-wall-types" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Engineering</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Retaining wall types compared</h3>
+          <p class="text-cast text-sm">Five UK retaining systems, side by side.</p>
+        </a>
+        <a href="/guides/retaining-wall-cost-uk" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Engineering</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Retaining wall cost (UK)</h3>
+          <p class="text-cast text-sm">What drives total installed cost on a UK retaining job.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-16 text-center">
+    <h2 class="font-display text-display-lg mb-4">Talk to the yard.</h2>
+    <p class="text-cast-700 text-lg max-w-xl mx-auto mb-8">Same-day callback Monday to Friday.</p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+      <a href="/quote" class="btn-primary">Configure a quote</a>
+    </div>
+  </section>
+</BaseLayout>

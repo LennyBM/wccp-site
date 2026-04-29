@@ -1,7 +1,11 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
+import FittedVsSupply from '@/components/FittedVsSupply.astro';
+import SpecSheetButton from '@/components/SpecSheetButton.astro';
 import { site } from '@/config/site';
+import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
 
 const specs = [
   { component: 'Cleanroom slab', size: '4.0m × 3.0m × 200mm', weight: '6,000 kg', feature: 'Tanked floor, 1:80 fall', use: 'DeLaval / Lely / GEA / BouMatic enclosure' },
@@ -55,7 +59,7 @@ const productSchema = {
     { '@type': 'PropertyValue', name: 'Lead time', value: '4–6 weeks from drawing sign-off' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
   ],
-  offers: { '@type': 'Offer', priceCurrency: 'GBP', availability: 'https://schema.org/InStock', seller: { '@type': 'Organization', name: site.name } },
+  offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
 };
 
 const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
@@ -64,9 +68,10 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
 <BaseLayout
   title="Clean Rooms — robot fit-out · DeLaval · Lely · GEA · BouMatic"
   description="Cleanroom slabs and machine-pit bases for robotic milking. Tanked floor gully, integrated drainage. Compatible with DeLaval, Lely, GEA and BouMatic. Cast in North Devon."
-  image="/images/products/clean-rooms.jpg"
+  image="/og/clean-rooms.png"
   schema="Product"
   schemaData={productSchema}
+  whatsappContext="Clean Rooms"
 >
   <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
   <TrustStrip />
@@ -77,10 +82,19 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
         <div>
           <p class="eyebrow text-yellow mb-4">Agricultural · robotic dairy · parlour fit-out</p>
           <h1 class="font-display text-display-xl text-white mb-4">Clean Rooms.</h1>
-          <p class="text-lg text-white/90 leading-relaxed mb-6">
-            Cleanroom slabs and machine-pit bases for robotic milking parlour fit-outs. Tanked floor
-            with a 3-metre stainless gully, integrated drainage, manufacturer-specific anchor patterns.
-            DeLaval, Lely, GEA and BouMatic compatible. Cast as matched sets with the robot base.
+          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">
+            Food-grade cast. Wash-down ready.
+          </p>
+          <h2 class="sr-only">What's a precast clean-room base?</h2>
+          <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
+            <strong class="not-italic text-white">What's a precast clean-room base?</strong>
+            A factory-cast tanked floor, robot-anchor matched, with a cast-in 3&nbsp;m stainless
+            gully and integrated drainage. DeLaval, Lely, GEA and BouMatic compatible. Ships in
+            matched sets with the milking-robot base — wash-down ready on day one.
+          </blockquote>
+          <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
+            Tanked floor with a 3-metre stainless gully, integrated drainage, manufacturer-specific anchor
+            patterns. DeLaval, Lely, GEA and BouMatic compatible. Cast as matched sets with the robot base.
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
             <li class="flex gap-2"><span class="text-yellow">·</span> Tanked floor</li>
@@ -91,12 +105,12 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
             <li class="flex gap-2"><span class="text-yellow">·</span> 4–6 week lead</li>
           </ul>
           <div class="flex flex-wrap gap-3">
-            <a href="/quote?product=Clean+Rooms" class="btn-primary">Configure a quote</a>
-            <a href="/spec-sheets/clean-rooms.pdf" class="btn-yellow">Download spec sheet</a>
+            <a href="/quote?product=Clean%20Rooms" class="btn-primary">Configure a quote</a>
+            <a href="mailto:engineering@wccp.co.uk?subject=Spec%20sheet%20request%20%E2%80%94%20Clean%20Rooms&amp;body=Hi%20WCCP%20engineering%2C%0A%0APlease%20send%20the%20spec%20sheet%20for%20Clean%20Rooms.%0A%0AProject%20details%3A%0A%E2%80%A2%20Project%20name%3A%0A%E2%80%A2%20Site%20location%3A%0A%E2%80%A2%20Required%20spec%20%2F%20standard%3A%0A%0AThanks" class="btn-yellow">Request spec sheet</a>
             <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">Call {site.contact.phone}</a>
           </div>
         </div>
-        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-300 via-cast to-navy"></div></div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden"><img src="/images/products/clean-rooms.jpg" alt="Precast concrete clean room slab for robotic milking parlour" class="w-full h-full object-cover" loading="eager" decoding="async" /></div>
       </div>
     </div>
   </section>
@@ -167,7 +181,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
           <h2 class="font-display text-display-md">Send robot brand, box count and shed drawing — we will quote inside 24 hours.</h2>
         </div>
         <div class="flex flex-wrap gap-3 shrink-0">
-          <a href="/quote?product=Clean+Rooms" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
+          <a href="/quote?product=Clean%20Rooms" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
           <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
         </div>
       </div>
@@ -184,15 +198,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" /><polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" /></svg>
       </a>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      {related.map((r) => (
-        <a href={r.href} class="card p-5 group">
-          <div class="aspect-[16/10] bg-cast-100 mb-4 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100"></div></div>
-          <h3 class="font-display text-base font-bold text-navy mb-1 group-hover:text-ember">{r.label}</h3>
-          <p class="text-cast text-xs">{r.meta}</p>
-        </a>
-      ))}
-    </div>
+    <RelatedProductGrid items={related} />
   </section>
 
   <section class="bg-bone-200 py-20">
@@ -216,15 +222,56 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
     </div>
   </section>
 
+  <!-- Supply-only vs Fitted -->
+  <section class="container-wccp section-rhythm border-t border-cast-100">
+    <FittedVsSupply
+      productName="Clean Rooms"
+      defaultMode="fitted"
+      supply={{
+        price: 'Bespoke quote (typical kits from £6,500)',
+        leadTime: '6–8 weeks from drawing sign-off',
+        includes: [
+          'Cleanroom slab with tanked floor and 1:80 fall',
+          '3m stainless-grated gully kit',
+          'Cast-in service ducts and conduits',
+          'Delivery on our HIAB to your shed',
+        ],
+        excludes: [
+          'Cast-in-situ joints and grouting on site',
+          'Robot supply, plumbing and electrical fit-out',
+          'Wall panels and external cladding',
+        ],
+      }}
+      fitted={{
+        price: 'Bespoke quote — incl. install (typical from £11,000)',
+        leadTime: '10–12 weeks (incl. site slot)',
+        includes: [
+          'Everything in supply only',
+          'Four-man install crew with HIAB and 35t crane',
+          'Setting to manufacturer install pack tolerance',
+          '12-month workmanship warranty',
+        ],
+        excludes: [
+          'Excavation and sub-base preparation',
+          'Mechanical, electrical and chiller plant',
+        ],
+      }}
+      note="Pricing is bespoke — every cleanroom is sized to the manufacturer's published install pack and your shed layout. We need the robot brand, box count and drawing before we quote — typically within a working day."
+    />
+  </section>
+
   <section class="bg-navy text-white py-20">
     <div class="container-wccp text-center">
       <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
       <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">Send the robot brand and box count and the shed drawing. Quote and lead-time same day.</p>
       <div class="flex flex-wrap justify-center gap-3">
-        <a href="/quote?product=Clean+Rooms" class="btn-yellow">Configure a quote</a>
+        <a href="/quote?product=Clean%20Rooms" class="btn-yellow">Configure a quote</a>
         <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
         <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
       </div>
     </div>
   </section>
+
+  <SpecSheetButton productSlug="clean-rooms" productName="Clean Rooms" />
+  <ProductWarrantyLine />
 </BaseLayout>

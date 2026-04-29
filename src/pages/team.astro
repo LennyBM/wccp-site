@@ -1,0 +1,319 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import CTAStrip from '@/components/CTAStrip.astro';
+import { site } from '@/config/site';
+
+// ============================================================
+// Team data — confirmed names + placeholder slots.
+// CLIENT: please confirm Matthew & Mark's surnames + exact roles,
+// and supply the missing yard names below (search "[Name to confirm]").
+// Once confirmed, replace the placeholder slots with real names + tag-lines.
+// ============================================================
+interface Member {
+  name: string;
+  role: string;
+  tagline?: string;
+  era?: string;
+  /** If true, render with a "to confirm" caption — flagged for client. */
+  placeholder?: boolean;
+  /** Optional real photo path (public/-served). When present, replaces the initials portrait. */
+  photo?: string;
+  photoAlt?: string;
+}
+
+const team: Member[] = [
+  {
+    name: 'Bill Yeo',
+    role: 'Founder',
+    era: '1971–2009',
+    tagline: 'Started the yard outside South Molton in 1971. Set the brief that still runs the place: cast it once, cast it to last.',
+  },
+  {
+    name: 'Kim Rumsam',
+    role: 'Owner & Director',
+    era: 'Since 2009',
+    tagline: 'Sole owner since 2009. Picks up the phone, walks the yard, signs the loadout sheets.',
+    photo: '/images/team/wccp-team-kim-claire-yorkshire-agricultural-show.jpg',
+    photoAlt: 'Kim Rumsam at the Great Yorkshire Show — WCCP exhibition stand',
+  },
+  {
+    // CLIENT: confirm surname + exact role
+    name: 'Matthew',
+    role: 'Co-director — Operations',
+    era: 'Family · second generation',
+    tagline: 'Production planning, scheduling and the daily floor walk.',
+    placeholder: true,
+  },
+  {
+    // CLIENT: confirm surname + exact role
+    name: 'Mark',
+    role: 'Co-director — Engineering',
+    era: 'Family · second generation',
+    tagline: 'Engineering, mould design and the bespoke jobs the catalogue can\'t cover.',
+    placeholder: true,
+  },
+  {
+    // CLIENT: confirm — known from /about as "Office & Operations"
+    name: 'Claire Mumford',
+    role: 'Office & Operations',
+    era: 'Front-line of the yard',
+    tagline: 'Quotes, dispatch, paperwork — the line between the yard and the customer.',
+    photo: '/images/team/wccp-team-claire-west-country-farming-machinery-show.jpg',
+    photoAlt: 'Claire Mumford on the WCCP stand at the West Country Farming & Machinery Show',
+  },
+  {
+    // CLIENT: confirm — known from /about
+    name: 'Paige',
+    role: 'Sales & Customer Liaison',
+    era: 'Quotes & dispatch',
+    tagline: 'First voice on the phone. Knows every product on the catalogue page.',
+  },
+  {
+    // PLACEHOLDER — need real name
+    name: '[Name to confirm]',
+    role: 'Yard Foreman',
+    era: 'Production floor',
+    tagline: 'Runs the casting bays, manages the moulds, keeps the pours on schedule.',
+    placeholder: true,
+  },
+  {
+    // PLACEHOLDER — need real name
+    name: '[Name to confirm]',
+    role: 'Production Manager',
+    era: 'Batching & QA',
+    tagline: 'Mix design, batching plant, every-load test cube.',
+    placeholder: true,
+  },
+  {
+    // CLIENT: confirm — Jake known from /about as Driver C+E
+    name: 'Jake',
+    role: 'HIAB Driver / Logistics Lead',
+    era: 'Recently passed C+E',
+    tagline: 'If it leaves the yard, he\'s the one who delivered it. Passed his C+E in 2026.',
+    photo: '/images/team/wccp-team-jake-c-e-hgv-license-pass.jpg',
+    photoAlt: 'Jake celebrating his Class C+E HGV licence pass — WCCP delivery team',
+  },
+  {
+    // PLACEHOLDER
+    name: '[Name to confirm]',
+    role: 'QS / Estimator',
+    era: 'Civils tenders',
+    tagline: 'Take-offs, schedules of rates, contractor liaison.',
+    placeholder: true,
+  },
+  {
+    // PLACEHOLDER
+    name: '[Name to confirm]',
+    role: 'Office Administrator',
+    era: 'Accounts & admin',
+    tagline: 'Invoicing, accounts, the desk that keeps the books straight.',
+    placeholder: true,
+  },
+];
+
+const initialsOf = (name: string) => {
+  if (name.startsWith('[')) return '?';
+  return name
+    .split(' ')
+    .map((n) => n[0])
+    .filter(Boolean)
+    .join('')
+    .slice(0, 2)
+    .toUpperCase();
+};
+---
+
+<BaseLayout
+  title="Meet the team"
+  description="Meet the West Country Concrete Products team — family-led precast specialists in North Devon. Founded by Bill Yeo in 1971, today at our purpose-built Chilsworthy yard."
+  schema="Organization"
+>
+  <!-- ====== Hero ====== -->
+  <section class="relative bg-forest-800 text-cream overflow-hidden">
+    <div aria-hidden="true" class="absolute inset-0 grid-pattern opacity-30"></div>
+    <div
+      aria-hidden="true"
+      class="absolute -top-1/2 -right-1/4 w-[120%] h-[200%] opacity-[0.06]"
+      style="background-image: repeating-linear-gradient(45deg, rgba(246,241,231,0.6) 0, rgba(246,241,231,0.6) 2px, transparent 2px, transparent 24px); transform: rotate(-12deg);"
+    ></div>
+
+    <div class="relative container-wccp py-12 lg:py-16">
+      <div class="mb-10">
+        <Breadcrumbs items={[{ label: 'Team' }]} variant="navy" />
+      </div>
+
+      <p class="eyebrow text-terracotta mb-6 animate-fade-in-down">
+        <span class="inline-block w-8 h-px bg-terracotta align-middle mr-3"></span>
+        The people who cast it
+      </p>
+      <h1
+        class="font-display text-cream mb-6 animate-fade-in-up"
+        style="font-style: italic; font-weight: 300; font-size: clamp(3rem, 7vw, 6rem); line-height: 0.98; letter-spacing: -0.025em; font-variation-settings: 'opsz' 60;"
+      >
+        Meet the yard.
+      </h1>
+      <p class="text-lg lg:text-xl text-cream/85 max-w-2xl leading-relaxed animate-fade-in-up" style="animation-delay: 120ms;">
+        Family-led since 1971. Founded by Bill Yeo outside South Molton, cast in
+        North Devon ever since — Shebbear, then today's purpose-built Chilsworthy
+        yard. Same phone answered, same standards, same loadout sheets signed off.
+        Below — the people you'll actually speak to.
+      </p>
+    </div>
+  </section>
+
+  <!-- ====== Team grid ====== -->
+  <section class="container-wccp section-rhythm">
+    <ul
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 reveal-stagger"
+      role="list"
+    >
+      {team.map((member) => {
+        const initials = initialsOf(member.name);
+        const isPlaceholderName = member.name.startsWith('[');
+        const webp = member.photo?.replace(/\.(jpe?g|png)$/i, '.webp');
+        return (
+          <li class="card p-6 flex flex-col items-start text-left">
+            {member.photo ? (
+              <div class="w-24 h-24 rounded-full overflow-hidden mb-5 ring-2 ring-yellow-400/40">
+                <picture>
+                  {webp && <source srcset={webp} type="image/webp" />}
+                  <img
+                    src={member.photo}
+                    alt={member.photoAlt ?? member.name}
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+            ) : (
+              <div
+                class="w-24 h-24 rounded-full bg-navy-700 text-yellow-400 flex items-center justify-center font-display italic font-medium text-3xl mb-5"
+                aria-hidden="true"
+                style="font-variation-settings: 'opsz' 60;"
+              >
+                {initials}
+              </div>
+            )}
+
+            <h2
+              class={`font-display text-xl text-navy-700 mb-1 leading-tight ${
+                isPlaceholderName ? 'italic text-cast' : ''
+              }`}
+            >
+              {member.name}
+            </h2>
+            <p class="text-[11px] font-bold text-cast uppercase tracking-widest mb-1">
+              {member.role}
+            </p>
+            {member.era && (
+              <p class="text-xs text-cast/90 mb-3">{member.era}</p>
+            )}
+            {member.tagline && (
+              <p class="text-sm text-cast-700 leading-relaxed border-l-2 border-terracotta-300 pl-3 mt-2">
+                {member.tagline}
+              </p>
+            )}
+            {member.placeholder && (
+              <p class="mt-3 text-[10px] text-cast/80 uppercase tracking-widest font-mono">
+                Detail to confirm
+              </p>
+            )}
+          </li>
+        );
+      })}
+    </ul>
+
+    <p class="mt-12 text-sm text-cast italic max-w-2xl">
+      Real photos for the rest of the team coming soon. Names and roles flagged
+      "to confirm" will be replaced once the office signs them off.
+    </p>
+  </section>
+
+  <!-- ====== Out and about (trade shows) ====== -->
+  <section class="bg-navy-700 text-white section-rhythm">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-10">
+        <p class="eyebrow text-yellow-400 mb-3">Out and about</p>
+        <h2 class="font-display text-display-lg text-white mb-4">
+          You'll find us at the shows.
+        </h2>
+        <p class="text-white/85 text-lg leading-relaxed">
+          Most summers we're on the agricultural-show circuit — the Royal Welsh,
+          the Great Yorkshire, the North Devon. Drop by the marquee for a brew
+          and a look at the catalogue.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[
+          {
+            src: '/images/team/wccp-team-kim-claire-yorkshire-agricultural-show.jpg',
+            alt: 'WCCP exhibition stand at the Great Yorkshire Show — Kim Rumsam and Claire Mumford',
+            caption: 'Great Yorkshire Show',
+          },
+          {
+            src: '/images/team/wccp-team-kim-claire-royal-welsh-show.jpg',
+            alt: 'WCCP marquee at the Royal Welsh Show with Kim and Claire',
+            caption: 'Royal Welsh Show',
+          },
+          {
+            src: '/images/team/wccp-team-kim-claire-north-devon-show.jpg',
+            alt: 'WCCP stand at the North Devon Show — Kim and Claire',
+            caption: 'North Devon Show',
+          },
+        ].map((s) => {
+          const webp = s.src.replace(/\.(jpe?g|png)$/i, '.webp');
+          return (
+            <figure class="group">
+              <div class="aspect-[4/3] overflow-hidden rounded">
+                <picture>
+                  <source srcset={webp} type="image/webp" />
+                  <img
+                    src={s.src}
+                    alt={s.alt}
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <figcaption class="mt-3 text-sm font-medium text-white/85">{s.caption}</figcaption>
+            </figure>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Join the team ====== -->
+  <section class="bg-cream border-t border-forest-700/10 section-rhythm">
+    <div class="container-wccp">
+      <div class="max-w-3xl">
+        <p class="eyebrow text-terracotta mb-3">Hiring</p>
+        <h2 class="font-display text-display-lg text-forest-800 mb-4">Want to join the team?</h2>
+        <p class="text-cast-700 text-lg leading-relaxed mb-8">
+          We're always interested in hearing from yard staff, drivers, machine
+          operators and apprentices who'd like to work with us. 46 jobs at the
+          new site, all of them North Devon.
+        </p>
+        <a href="/careers" class="btn-primary group">
+          <span>Working with us</span>
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+            <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTAStrip
+    eyebrow="Talk to the yard"
+    title="One number. Same six or seven of us, every time."
+    description="No call centres. The number rings on a desk, and the desk has someone at it Monday to Friday."
+    primaryCta={{ href: '/quote', label: 'Configure a quote' }}
+    secondaryCta={{ href: `tel:${site.contact.phoneIntl}`, label: `Call ${site.contact.phone}` }}
+    variant="navy"
+  />
+</BaseLayout>

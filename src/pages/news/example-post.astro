@@ -34,7 +34,7 @@ const schemaData = {
     '@type': 'WebPage',
     '@id': post.url,
   },
-  image: `${site.url}/og-default.jpg`,
+  image: `${site.url}/og-default.png`,
 };
 
 const shareUrl = encodeURIComponent(post.url);
@@ -59,6 +59,15 @@ const related = [
     date: '20 February 2026',
     title: 'SIG Round 4 confirmed — £74m, closes 30 September.',
   },
+];
+
+// Products and pages mentioned in this story — silo-busting rail that
+// turns a news visit into a product-page visit (the actual revenue page).
+const mentionedProducts = [
+  { href: '/products/slurry-storage',     label: 'Slurry Storage',          meta: 'New 280mm panel range cast on the new line' },
+  { href: '/products/prestressed-panels', label: 'Prestressed Wall Panels', meta: '60m casting bed — longer panels, fewer joints' },
+  { href: '/factory',                     label: 'The Factory',             meta: 'Walk through the new yard and lab' },
+  { href: '/careers',                     label: 'Careers',                 meta: 'Forty-six jobs — and more on the way' },
 ];
 ---
 
@@ -209,6 +218,28 @@ const related = [
           </div>
         </div>
       </aside>
+    </div>
+  </section>
+
+  <!-- Products & pages mentioned in this story — turns news into commerce -->
+  <section class="container-wccp py-12 border-y border-cast-100">
+    <div class="flex items-baseline justify-between mb-6 flex-wrap gap-3">
+      <div>
+        <p class="eyebrow text-cast mb-1">Mentioned in this story</p>
+        <h2 class="font-display text-display-md text-navy">Products & pages</h2>
+      </div>
+      <a href="/products" class="text-ember font-bold text-sm inline-flex items-center gap-1.5 hover:underline">
+        See full range
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/><polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+      {mentionedProducts.map((p) => (
+        <a href={p.href} class="card p-4 group block hover:border-ember">
+          <div class="font-display font-bold text-navy text-sm group-hover:text-ember">{p.label}</div>
+          <div class="text-cast text-xs mt-1">{p.meta}</div>
+        </a>
+      ))}
     </div>
   </section>
 

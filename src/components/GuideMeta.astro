@@ -1,0 +1,60 @@
+---
+// GuideMeta.astro
+//
+// Small inline metadata strip for guide / pillar pages: estimated reading
+// time + last-reviewed date. Builds trust with technical readers (the #1
+// signal that engineering content is maintained, not abandoned).
+//
+// Pass the date as ISO `YYYY-MM-DD`. Reading time is computed at build
+// time from the slot content if omitted, but for stability you can pass
+// it explicitly.
+
+interface Props {
+  /** ISO `YYYY-MM-DD` — last review date. */
+  updated: string;
+  /** Estimated reading time in minutes. */
+  minutes: number;
+  /** Reviewer / author display name (defaults to "WCCP engineering team"). */
+  author?: string;
+}
+
+const { updated, minutes, author = 'WCCP engineering team' } = Astro.props;
+
+const updatedDate = new Date(updated);
+const updatedDisplay = updatedDate.toLocaleDateString('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+const updatedISO = updatedDate.toISOString();
+---
+
+<div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-cast border-y border-cast-100 py-3 mb-8">
+  <span class="inline-flex items-center gap-2">
+    <svg aria-hidden="true" class="w-4 h-4 text-ember" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="10"/>
+      <polyline points="12 6 12 12 16 14" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span><strong class="text-navy">{minutes}-min read</strong></span>
+  </span>
+
+  <span class="inline-flex items-center gap-2">
+    <svg aria-hidden="true" class="w-4 h-4 text-ember" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+      <line x1="16" y1="2" x2="16" y2="6" stroke-linecap="round"/>
+      <line x1="8" y1="2" x2="8" y2="6" stroke-linecap="round"/>
+      <line x1="3" y1="10" x2="21" y2="10" />
+    </svg>
+    <span>
+      Last reviewed <time datetime={updatedISO} class="font-bold text-navy">{updatedDisplay}</time>
+    </span>
+  </span>
+
+  <span class="inline-flex items-center gap-2">
+    <svg aria-hidden="true" class="w-4 h-4 text-ember" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+      <circle cx="12" cy="7" r="4"/>
+    </svg>
+    <span class="text-cast">By <span class="font-bold text-navy">{author}</span></span>
+  </span>
+</div>

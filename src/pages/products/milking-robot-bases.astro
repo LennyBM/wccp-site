@@ -1,7 +1,22 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
+import FittedVsSupply from '@/components/FittedVsSupply.astro';
+import SpecSheetButton from '@/components/SpecSheetButton.astro';
+import ProductGallery from '@/components/ProductGallery.astro';
 import { site } from '@/config/site';
+import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
+import ProductPageTOC from '@/components/ProductPageTOC.astro';
+
+const tocSections = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'specifications', label: 'Specifications' },
+  { id: 'gallery', label: 'Gallery' },
+  { id: 'related', label: 'Related' },
+  { id: 'faq', label: 'FAQ' },
+  { id: 'downloads', label: 'Downloads' },
+];
 
 const specs = [
   { model: 'DeLaval VMS V300', size: '3.6m × 2.4m × 200mm', weight: '4,150 kg', drainage: '110mm centre fall', use: 'Single-box dairy, 60–70 cows/box' },
@@ -60,7 +75,7 @@ const productSchema = {
     { '@type': 'PropertyValue', name: 'Lead time', value: '3–4 weeks from drawing sign-off' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
   ],
-  offers: { '@type': 'Offer', priceCurrency: 'GBP', availability: 'https://schema.org/InStock', seller: { '@type': 'Organization', name: site.name } },
+  offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
 };
 
 const faqSchema = {
@@ -73,12 +88,14 @@ const faqSchema = {
 <BaseLayout
   title="Milking Robot Bases — DeLaval · Lely · GEA · BouMatic"
   description="Precast milking robot bases. DeLaval VMS V300/V310, Lely Astronaut A5/A5 Next, GEA R9500, BouMatic. Vibration isolation, cast-in drainage, C40/50."
-  image="/images/products/milking-robot-bases.jpg"
+  image="/og/milking-robot-bases.png"
   schema="Product"
   schemaData={productSchema}
+  whatsappContext="Milking Robot Bases"
 >
   <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
   <TrustStrip />
+  <ProductPageTOC sections={tocSections} />
 
   <section class="bg-navy text-white">
     <div class="container-wccp py-16 md:py-20">
@@ -86,7 +103,14 @@ const faqSchema = {
         <div>
           <p class="eyebrow text-yellow mb-4">Agricultural · robotic dairy</p>
           <h1 class="font-display text-display-xl text-white mb-4">Milking Robot Bases.</h1>
-          <p class="text-lg text-white/90 leading-relaxed mb-6">
+          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">DeLaval, Lely, GEA. Within 2mm. Robot lands and runs.</p>
+          <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
+            A milking robot base is typically cast in C32/40 concrete (BS&nbsp;8500 grade), 250&nbsp;mm
+            minimum depth, with rebar to BS&nbsp;4449. WCCP supplies bases drilled to manufacturer
+            template for DeLaval VMS V300 / V310 and Lely Astronaut A5 / A5 Next, levelled to within
+            2&nbsp;mm.
+          </blockquote>
+          <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
             Manufacturer-specific precast bases for DeLaval VMS, Lely Astronaut, GEA DairyRobot
             and BouMatic. Vibration isolation, cast-in drainage, anchor pattern poured to the
             millimetre. C40/50 concrete, cast in our Holsworthy yard.
@@ -100,13 +124,13 @@ const faqSchema = {
             <li class="flex gap-2"><span class="text-yellow">·</span> 3–4 week lead</li>
           </ul>
           <div class="flex flex-wrap gap-3">
-            <a href="/quote?product=Milking+Robot+Bases" class="btn-primary">Configure a quote</a>
-            <a href="/spec-sheets/milking-robot-bases.pdf" class="btn-yellow">Download spec sheet</a>
+            <a href="/quote?product=Milking%20Robot%20Bases" class="btn-primary">Configure a quote</a>
+            <a href="mailto:engineering@wccp.co.uk?subject=Spec%20sheet%20request%20%E2%80%94%20Milking%20Robot%20Bases&amp;body=Hi%20WCCP%20engineering%2C%0A%0APlease%20send%20the%20spec%20sheet%20for%20Milking%20Robot%20Bases.%0A%0AProject%20details%3A%0A%E2%80%A2%20Project%20name%3A%0A%E2%80%A2%20Site%20location%3A%0A%E2%80%A2%20Required%20spec%20%2F%20standard%3A%0A%0AThanks" class="btn-yellow">Request spec sheet</a>
             <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">Call {site.contact.phone}</a>
           </div>
         </div>
         <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
-          <div class="w-full h-full bg-gradient-to-br from-cast-300 via-cast to-navy"></div>
+          <img src="/images/products/lely-milking-robot-bases/wccp-lely-milking-robot-bases-lely-a4-sump-base-and-surround.png" alt="Lely milking robot precast concrete base and surround dimensions — West Country Concrete Products" class="w-full h-full object-cover" loading="eager" decoding="async" />
         </div>
       </div>
     </div>
@@ -144,7 +168,20 @@ const faqSchema = {
     </div>
   </section>
 
-  <section class="bg-bone-200 py-20">
+  <ProductGallery
+    eyebrow="Drawings & dimensions"
+    heading="Lely A4 base — drawings & dimensions."
+    background="bone"
+    cols={2}
+    images={[
+      { src: '/images/products/home/wccp-home-20130626-160926.jpg', alt: 'Two Lely Astronaut milking robots installed back-to-back on a precast concrete robot base supplied by West Country Concrete Products, Devon', caption: 'Lely Astronauts on WCCP base' },
+      { src: '/images/products/lely-milking-robot-bases/wccp-lely-milking-robot-bases-lely-a4-sump.png', alt: 'Precast concrete Lely A4 milking robot sump base cast by West Country Concrete Products, Devon', caption: 'Lely A4 sump (cast)' },
+      { src: '/images/products/lely-milking-robot-bases/wccp-lely-milking-robot-bases-a4-sump-base-and-surround-dims.png', alt: 'Dimensioned drawing of the Lely A4 precast concrete sump base and surround by WCCP Devon', caption: 'Base & surround dims' },
+      { src: '/images/products/lely-milking-robot-bases/wccp-lely-milking-robot-bases-a4-sump-dims.png', alt: 'Dimensioned drawing of the Lely A4 precast concrete milking-robot sump by WCCP Devon', caption: 'Sump dimensions' },
+    ]}
+  />
+
+  <section class="bg-white py-20">
     <div class="container-wccp">
       <div class="grid lg:grid-cols-2 gap-12">
         <div>
@@ -180,7 +217,7 @@ const faqSchema = {
           <h2 class="font-display text-display-md">Tell us robot model, box count and shed dimensions — we will quote inside 24 hours.</h2>
         </div>
         <div class="flex flex-wrap gap-3 shrink-0">
-          <a href="/quote?product=Milking+Robot+Bases" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
+          <a href="/quote?product=Milking%20Robot%20Bases" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
           <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
         </div>
       </div>
@@ -197,17 +234,7 @@ const faqSchema = {
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" /><polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" /></svg>
       </a>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      {related.map((r) => (
-        <a href={r.href} class="card p-5 group">
-          <div class="aspect-[16/10] bg-cast-100 mb-4 rounded overflow-hidden">
-            <div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100"></div>
-          </div>
-          <h3 class="font-display text-base font-bold text-navy mb-1 group-hover:text-ember">{r.label}</h3>
-          <p class="text-cast text-xs">{r.meta}</p>
-        </a>
-      ))}
-    </div>
+    <RelatedProductGrid items={related} />
   </section>
 
   <section class="bg-bone-200 py-20">
@@ -231,15 +258,56 @@ const faqSchema = {
     </div>
   </section>
 
+  <!-- Supply-only vs Fitted -->
+  <section class="container-wccp section-rhythm border-t border-cast-100">
+    <FittedVsSupply
+      productName="Milking Robot Bases"
+      defaultMode="fitted"
+      supply={{
+        price: 'from £1,400 each',
+        leadTime: '3–4 weeks from drawing sign-off',
+        includes: [
+          'Manufacturer-specific anchor pattern cast in',
+          'Cast-in 110mm uPVC drainage with correct fall',
+          'Vibration-isolation joint preformed',
+          'Delivery on our HIAB to your shed',
+        ],
+        excludes: [
+          'On-site setting, levelling and grouting',
+          'MOT Type 1 sub-base preparation',
+          'Robot commissioning by the manufacturer',
+        ],
+      }}
+      fitted={{
+        price: 'from £2,100 each fitted',
+        leadTime: '5–6 weeks (incl. site slot)',
+        includes: [
+          'Everything in supply only',
+          'Two-man install crew with HIAB and survey kit',
+          'Setting to the manufacturer tolerance',
+          '12-month workmanship warranty',
+        ],
+        excludes: [
+          'Robot supply and electrical commissioning',
+          'Cleanroom slab and machine pit (priced separately)',
+        ],
+      }}
+      note="Indicative 2026 pricing per box on a single-box DeLaval VMS V300 install. Multi-box and matched cleanroom packages priced individually — book the manufacturer engineer in early."
+    />
+  </section>
+
   <section class="bg-navy text-white py-20">
     <div class="container-wccp text-center">
       <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
       <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">Send us robot model, box count and the shed drawing. Quote and lead-time same day.</p>
       <div class="flex flex-wrap justify-center gap-3">
-        <a href="/quote?product=Milking+Robot+Bases" class="btn-yellow">Configure a quote</a>
+        <a href="/quote?product=Milking%20Robot%20Bases" class="btn-yellow">Configure a quote</a>
         <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
         <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
       </div>
     </div>
   </section>
+
+  <SpecSheetButton productSlug="milking-robot-bases" productName="Milking Robot Bases" />
+  <ProductWarrantyLine />
 </BaseLayout>

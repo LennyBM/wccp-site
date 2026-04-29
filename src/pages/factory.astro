@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SpecTicker from '@/components/SpecTicker.astro';
+import YardVideoBlock from '@/components/YardVideoBlock.astro';
 import { site } from '@/config/site';
 
 const stats = [
@@ -68,6 +69,84 @@ const capabilities = [
   <!-- Concrete spec ticker — today's mix straight off the factory floor -->
   <SpecTicker />
 
+  <!-- Walk the yard — video block -->
+  <section class="container-wccp section-rhythm">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Walk the yard</p>
+      <h2 class="font-display text-display-lg">Ninety seconds inside Holsworthy.</h2>
+    </div>
+    <YardVideoBlock caption="A 90-second walk through the Holsworthy yard — pour to delivery." />
+  </section>
+
+  <!-- Live from the yard — webcam still placeholder -->
+  <section class="container-wccp section-rhythm border-t border-cast-100">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Live from the yard</p>
+      <h2 class="font-display text-display-lg">A glance at panel bay 3.</h2>
+    </div>
+
+    <figure class="reveal">
+      <div
+        class="relative w-full aspect-video bg-navy-700 rounded-lg overflow-hidden shadow-soft ring-1 ring-cast-100"
+        role="img"
+        aria-label="Live still from the Holsworthy yard, panel bay 3"
+      >
+        <img
+          src="/images/factory-hero.jpg"
+          alt="Holsworthy yard, panel bay 3 — most recent still"
+          class="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+          decoding="async"
+        />
+
+        <!-- Timestamp badge -->
+        <div class="absolute top-4 right-4 z-10">
+          <span
+            id="yard-cam-timestamp"
+            class="inline-flex items-center gap-2 px-3 py-1.5 bg-navy-700/85 text-white text-xs font-bold uppercase tracking-wider rounded backdrop-blur-sm"
+            aria-live="polite"
+          >
+            <span aria-hidden="true" class="w-1.5 h-1.5 rounded-full bg-yellow animate-pulse-soft"></span>
+            <span class="sr-only">Last refreshed at </span>
+            <span data-yard-cam-label>Last refreshed: --:--</span>
+          </span>
+        </div>
+
+        <!-- Bottom navy gradient + caption overlay -->
+        <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-navy-700/95 via-navy-700/55 to-transparent"></div>
+        <figcaption class="absolute bottom-4 left-4 right-4 z-10 text-white">
+          <p class="text-sm font-bold uppercase tracking-wider">
+            Holsworthy yard <span aria-hidden="true">·</span> panel bay 3
+          </p>
+        </figcaption>
+      </div>
+
+      <p class="mt-4 text-sm text-cast">
+        Refreshed every 5 minutes during yard hours. Pulled from the yard's network camera (planned 2026).
+      </p>
+    </figure>
+  </section>
+
+  <script is:inline>
+    (function () {
+      const labelEl = document.querySelector('[data-yard-cam-label]');
+      if (!labelEl) return;
+
+      const formatter = new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Europe/London',
+        hour: '2-digit',
+        minute: '2-digit',
+      });
+
+      const render = function () {
+        labelEl.textContent = 'Last refreshed: ' + formatter.format(new Date());
+      };
+
+      render();
+      setInterval(render, 60000);
+    })();
+  </script>
+
   <!-- Stats strip -->
   <section class="bg-bone-200 py-12">
     <div class="container-wccp">
@@ -91,22 +170,40 @@ const capabilities = [
 
     <div class="grid grid-cols-2 lg:grid-cols-3 gap-3">
       <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden col-span-2 lg:col-span-2 lg:row-span-2">
-        <div class="w-full h-full bg-gradient-to-br from-navy to-navy-700"></div>
+        <picture>
+          <source srcset="/images/products/home/wccp-home-20130306-1249271-1024x768.webp" type="image/webp" />
+          <img src="/images/products/home/wccp-home-20130306-1249271-1024x768.jpg" alt="WCCP Holsworthy yard with stacked precast box culverts" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+        </picture>
       </div>
       <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
-        <div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100"></div>
+        <picture>
+          <source srcset="/images/products/home/wccp-home-img-20260414-162247920-comp-1024x1024.webp" type="image/webp" />
+          <img src="/images/products/home/wccp-home-img-20260414-162247920-comp-1024x1024.jpg" alt="WCCP slatted precast slurry covers in the Holsworthy yard" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+        </picture>
       </div>
       <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
-        <div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100"></div>
+        <picture>
+          <source srcset="/images/products/home/wccp-home-img-20260414-162319990-comp-1024x1024.webp" type="image/webp" />
+          <img src="/images/products/home/wccp-home-img-20260414-162319990-comp-1024x1024.jpg" alt="WCCP precast wall posts ready for dispatch from the Devon yard" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+        </picture>
       </div>
       <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
-        <div class="w-full h-full bg-gradient-to-br from-ember to-ember-700 opacity-80"></div>
+        <picture>
+          <source srcset="/images/products/home/wccp-home-concrete-panels-copy.webp" type="image/webp" />
+          <img src="/images/products/home/wccp-home-concrete-panels-copy.jpg" alt="WCCP precast concrete panels stacked at the Holsworthy yard" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+        </picture>
       </div>
       <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
-        <div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100"></div>
+        <picture>
+          <source srcset="/images/products/home/wccp-home-free-standing-wall-section.webp" type="image/webp" />
+          <img src="/images/products/home/wccp-home-free-standing-wall-section.jpg" alt="WCCP free-standing precast wall section in the yard" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+        </picture>
       </div>
       <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
-        <div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100"></div>
+        <picture>
+          <source srcset="/images/products/home/wccp-home-20140615-193135-1024x768.webp" type="image/webp" />
+          <img src="/images/products/home/wccp-home-20140615-193135-1024x768.jpg" alt="WCCP king-post precast retaining wall installed on a Devon site" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+        </picture>
       </div>
     </div>
   </section>
@@ -136,18 +233,43 @@ const capabilities = [
         <p class="eyebrow text-cast mb-3">Next door: Severn Trent biogas</p>
         <h2 class="font-display text-display-lg mb-6">Co-located with an anaerobic digestion plant.</h2>
         <p class="text-cast-700 text-lg leading-relaxed mb-5">
-          Our yard sits beside Severn Trent Green Power's Holsworthy AD plant — one of the largest
-          food-waste biogas plants in the UK. Heat, power and infrastructure links are part of the
-          long-term plan, and a circular-economy story we're proud to be part of.
+          The Chilsworthy yard sits adjacent to the Holsworthy Biogas Plant, owned by
+          <strong class="text-navy-700">Severn Trent Green Power</strong> — the FTSE-100 utility's
+          renewable arm, and one of the largest food-waste biogas plants in the UK. The neighbour
+          relationship is a circular-economy story: food-waste digestate one side of the fence,
+          precast concrete the other.
         </p>
         <p class="text-cast-700 text-lg leading-relaxed mb-8">
           Concrete is one of the most carbon-intensive materials in construction. Sitting next door
           to renewable energy isn't a fix on its own — but it's a real start, and a sensible one.
         </p>
+
+        {/* CLIENT: confirm exact silo / water-tower / workshop counts and concrete batching capacity figures. */}
+        <dl class="grid grid-cols-2 gap-4 mb-8 max-w-md">
+          <div class="border-l-2 border-ember pl-3">
+            <dt class="text-xs uppercase tracking-wider text-cast font-bold">Batching capacity</dt>
+            <dd class="font-display text-display-sm text-navy-700">{/* CLIENT: confirm */}~ m³/hr</dd>
+          </div>
+          <div class="border-l-2 border-ember pl-3">
+            <dt class="text-xs uppercase tracking-wider text-cast font-bold">Silos on site</dt>
+            <dd class="font-display text-display-sm text-navy-700">{/* CLIENT: confirm */}n</dd>
+          </div>
+          <div class="border-l-2 border-ember pl-3">
+            <dt class="text-xs uppercase tracking-wider text-cast font-bold">Water towers</dt>
+            <dd class="font-display text-display-sm text-navy-700">{/* CLIENT: confirm */}n</dd>
+          </div>
+          <div class="border-l-2 border-ember pl-3">
+            <dt class="text-xs uppercase tracking-wider text-cast font-bold">Workshops</dt>
+            <dd class="font-display text-display-sm text-navy-700">{/* CLIENT: confirm */}n</dd>
+          </div>
+        </dl>
         <a href="/sustainability" class="btn-secondary">Sustainability & accreditations</a>
       </div>
       <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
-        <div class="w-full h-full bg-gradient-to-br from-navy to-ember-700"></div>
+        <picture>
+          <source srcset="/images/products/home/wccp-home-20130306-1249271-1024x768.webp" type="image/webp" />
+          <img src="/images/products/home/wccp-home-20130306-1249271-1024x768.jpg" alt="WCCP Holsworthy yard, beside the Severn Trent biogas plant" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+        </picture>
       </div>
     </div>
   </section>

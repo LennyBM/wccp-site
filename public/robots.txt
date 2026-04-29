@@ -33,5 +33,7 @@ User-agent: Meta-ExternalAgent
 Allow: /
 User-agent: Bytespider
 Allow: /
+User-agent: cohere-ai
+Allow: /
 
 Sitemap: https://westcountryconcreteproducts.co.uk/sitemap-index.xml

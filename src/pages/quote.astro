@@ -26,7 +26,7 @@ const howItWorks = [
   { n: '01', t: 'You tell us what you need',     d: 'A few clicks, or a photo on WhatsApp. We work with rough — full drawings come later.' },
   { n: '02', t: 'We come back within 24 hours',  d: 'A real person, by phone or email. We confirm we can do it, ask any blockers, and book a costing slot.' },
   { n: '03', t: 'You get a written quote',       d: 'Itemised, with capacity calcs and lead time. Grant-formatted if you need it.' },
-  { n: '04', t: 'We make it. You get it.',       d: 'Manufactured at the Holsworthy yard. Delivered on our own fleet across the South West, hauliered nationwide.' },
+  { n: '04', t: 'We make it. You get it.',       d: 'Manufactured at the Holsworthy yard. Own fleet UK-wide, hauliered nationwide and into Europe — recent runs to Germany, the Netherlands and the Outer Hebrides.' },
 ];
 
 const trust = [
@@ -98,6 +98,7 @@ const timeframes = [
       data-netlify="true"
       netlify-honeypot="bot-field"
       data-quote-form
+      enctype="multipart/form-data"
       novalidate
     >
       <p class="hidden">
@@ -279,11 +280,34 @@ const timeframes = [
           <p class="text-cast-700 text-lg max-w-2xl">Where it's going and roughly when you need it.</p>
         </div>
 
-        <label class="block max-w-md mb-8">
-          <span class="block text-sm font-bold text-navy mb-2">Site postcode <span class="text-ember">*</span></span>
-          <input type="text" name="site_postcode" class="input" placeholder="e.g. EX23 9PH" autocomplete="postal-code" data-field="site_postcode" data-validate="postcode" aria-describedby="error-site_postcode" />
-          <span id="error-site_postcode" class="text-xs text-danger font-semibold mt-1 hidden block" role="alert" data-error="site_postcode">Please enter a valid UK postcode.</span>
-        </label>
+        <div class="max-w-md mb-8">
+          <label class="block">
+            <span class="block text-sm font-bold text-navy mb-2">Site postcode <span class="text-ember">*</span></span>
+            <input type="text" name="site_postcode" class="input" placeholder="e.g. EX23 9PH" autocomplete="postal-code" data-field="site_postcode" data-validate="postcode" aria-describedby="error-site_postcode delivery-zone-result" />
+            <span id="error-site_postcode" class="text-xs text-danger font-semibold mt-1 hidden block" role="alert" data-error="site_postcode">Please enter a valid UK postcode.</span>
+          </label>
+
+          <!-- Live delivery-zone indicator — populated by JS as the user types -->
+          <div
+            id="delivery-zone-result"
+            class="mt-3 p-3 rounded-md border text-sm hidden"
+            role="status"
+            aria-live="polite"
+            data-zone-result
+          >
+            <div class="flex items-start gap-2.5">
+              <span data-zone-icon aria-hidden="true" class="mt-0.5 inline-flex items-center justify-center w-5 h-5 rounded-full text-white shrink-0"></span>
+              <div class="flex-1">
+                <div class="font-bold" data-zone-title></div>
+                <div class="text-xs mt-0.5 text-cast-700" data-zone-detail></div>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-xs text-cast mt-2">
+            Outside the UK? <a href="/reach" class="text-ember font-semibold hover:underline">See our delivery footprint</a> — we ship to Europe on planned runs.
+          </p>
+        </div>
 
         <fieldset>
           <legend id="quote-timeframe-legend" class="block text-sm font-bold text-navy mb-3">When do you need it?</legend>
@@ -335,10 +359,28 @@ const timeframes = [
             <span class="block text-sm font-bold text-navy mb-2">Notes — anything we should know</span>
             <textarea name="notes" rows="4" class="input" placeholder="Drawings, special requirements, deadlines, who recommended us…" data-field="notes"></textarea>
           </label>
-        </div>
 
-        <div class="mt-5 p-4 rounded-md bg-bone-200 text-cast text-sm leading-relaxed">
-          <strong class="text-navy">Got drawings?</strong> No need to attach them now — once you submit, you'll get an email with our quotes address. Send PDFs, photos, even a phone snap of a sketch. We'll work with whatever you've got.
+          <label class="block md:col-span-2">
+            <span class="block text-sm font-bold text-navy mb-2">
+              Got drawings or a sketch? <span class="text-cast font-normal text-xs">(optional — PDF, JPG, PNG, DWG, up to 25 MB)</span>
+            </span>
+            <div class="card p-4 border-dashed bg-bone-50 hover:border-ember transition-colors" data-upload-zone>
+              <input
+                type="file"
+                name="drawings"
+                id="quote-drawings"
+                accept=".pdf,.jpg,.jpeg,.png,.heic,.dwg,.dxf,.ifc,image/*,application/pdf"
+                multiple
+                class="block w-full text-sm text-cast file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-ember file:text-white file:font-semibold file:cursor-pointer hover:file:bg-ember-600"
+                data-field="drawings"
+                data-drawings-input
+              />
+              <p class="text-xs text-cast mt-2">
+                We work with what you send — full architect's drawings, a phone snap of a sketch, or a measured-up site photo. Multiple files OK.
+              </p>
+              <ul class="mt-3 space-y-1 hidden" data-drawings-list></ul>
+            </div>
+          </label>
         </div>
       </section>
 
@@ -647,6 +689,136 @@ const timeframes = [
         if (state.current === TOTAL) summaryText.textContent = buildSummary();
         window.scrollTo({ top: indicator.offsetTop - 10, behavior: 'smooth' });
       };
+
+      // ---- Postcode delivery-zone picker ----
+      // Outward-code prefixes mapped to delivery zones. Order matters — we
+      // match longest-prefix first so e.g. "EX23" wins over "EX".
+      // Approximate driving distance from Holsworthy (EX22 7HH) to each
+      // postcode area centroid — a trust signal, not router precision.
+      const POSTCODE_MILES = {
+        EX: 35, PL: 45, TR: 95, TQ: 70, TA: 60, BS: 90, BA: 80, DT: 100, SP: 120,
+        SN: 130, GL: 130, OX: 170, RG: 180, SL: 200, GU: 200, PO: 170, SO: 140, BH: 130,
+        CF: 95, NP: 110, SA: 110, LD: 140, SY: 170, HR: 150, WR: 160,
+        LL: 230, CH: 230, CW: 230, ST: 220, TF: 200, WV: 200, DY: 195, B: 180, CV: 195,
+        NN: 210, LE: 210, DE: 215, NG: 230, LN: 260, MK: 200, LU: 210, HP: 210,
+        M: 250, L: 240, PR: 260, BB: 265, OL: 250, BL: 250, WA: 245, WN: 250, SK: 250,
+        BD: 270, LS: 275, HX: 270, HD: 270, WF: 275, S: 250, YO: 290, HU: 305, DN: 270,
+        TS: 320, DL: 305, SR: 330, NE: 335, DH: 320, CA: 290, LA: 270, DG: 305, TD: 360,
+        EH: 385, KY: 400, FK: 405, ML: 380, G: 385, PA: 400, KA: 390, DD: 425, PH: 430,
+        AB: 470, IV: 510,
+        HS: 600, KW: 590, ZE: 720, IM: 360, BT: 425,
+        E: 220, EC: 220, N: 220, NW: 220, SE: 220, SW: 215, W: 220, WC: 220,
+        BR: 225, CR: 220, DA: 230, EN: 225, HA: 215, IG: 230, KT: 215, RM: 235, SM: 215, TW: 210, UB: 210, WD: 215,
+        CM: 245, CO: 260, IP: 265, NR: 295, PE: 250, CB: 240, SG: 220, AL: 215,
+      };
+
+      const milesFromOutward = (raw) => {
+        const pc = (raw || '').toUpperCase().replace(/\s/g, '');
+        if (!POSTCODE_RE.test(pc)) return null;
+        const area = pc.match(/^[A-Z]{1,2}/)?.[0];
+        return area && POSTCODE_MILES[area] ? POSTCODE_MILES[area] : null;
+      };
+
+      const ZONE_RULES = [
+        // Yard radius — same-week, own fleet
+        { prefix: ['EX', 'PL', 'TR', 'TQ', 'TA', 'BS', 'BA', 'DT', 'SP'],
+          zone: 'core', label: 'Core delivery zone — own fleet, same-week.', detail: 'Holsworthy yard delivers across the South West weekly on its own HIAB fleet.' },
+        // Wider UK — planned runs, weekly
+        { prefix: ['SN', 'GL', 'OX', 'RG', 'SL', 'GU', 'PO', 'SO', 'BH', 'CF', 'NP', 'SA', 'LD', 'SY', 'HR', 'WR'],
+          zone: 'planned-uk', label: 'UK planned-run zone — typically 2 weeks.', detail: 'We schedule a delivery slot on the next outbound run from Holsworthy.' },
+        // Wales/midlands/north-west
+        { prefix: ['LL', 'CH', 'CW', 'ST', 'TF', 'WV', 'DY', 'B', 'CV', 'NN', 'LE', 'DE', 'NG', 'LN', 'MK', 'LU', 'HP'],
+          zone: 'planned-uk', label: 'UK planned-run zone — typically 2 weeks.', detail: 'We schedule a delivery slot on the next outbound run from Holsworthy.' },
+        // North England + Scotland mainland
+        { prefix: ['M', 'L', 'PR', 'BB', 'OL', 'BL', 'WA', 'WN', 'SK', 'BD', 'LS', 'HX', 'HD', 'WF', 'S', 'YO', 'HU', 'DN', 'TS', 'DL', 'SR', 'NE', 'DH', 'CA', 'LA', 'DG', 'TD', 'EH', 'KY', 'FK', 'ML', 'G', 'PA', 'KA', 'DD', 'PH', 'AB', 'IV'],
+          zone: 'planned-uk', label: 'Scotland / north England — planned run, 2–3 weeks.', detail: 'We batch loads for Scotland and the north every fortnight.' },
+        // Highlands + Islands — typically planned + ferry
+        { prefix: ['HS', 'KW', 'ZE', 'IM'],
+          zone: 'specialist', label: 'Highlands & Islands — planned bespoke load.', detail: 'Recent Outer Hebrides job, 2025. We co-ordinate ferry crossings end-to-end.' },
+        // Northern Ireland
+        { prefix: ['BT'],
+          zone: 'specialist', label: 'Northern Ireland — planned bespoke load.', detail: 'We deliver via Cairnryan / Liverpool routes on planned outbound runs.' },
+        // Greater London
+        { prefix: ['E', 'EC', 'N', 'NW', 'SE', 'SW', 'W', 'WC', 'BR', 'CR', 'DA', 'EN', 'HA', 'IG', 'KT', 'RM', 'SM', 'TW', 'UB', 'WD'],
+          zone: 'planned-uk', label: 'Greater London — planned-run zone, 2 weeks.', detail: 'Out-of-hours unloading available for restricted-access sites.' },
+        // East Anglia
+        { prefix: ['CM', 'CO', 'IP', 'NR', 'PE', 'CB', 'SG', 'AL', 'WD'],
+          zone: 'planned-uk', label: 'UK planned-run zone — typically 2 weeks.', detail: 'We schedule a delivery slot on the next outbound run from Holsworthy.' },
+      ];
+
+      const ZONE_STYLES = {
+        core:       { wrapper: 'bg-yellow/10 border-yellow', icon: 'bg-yellow text-navy',  iconChar: '✓' },
+        'planned-uk': { wrapper: 'bg-bone-200 border-cast-100', icon: 'bg-ember text-white', iconChar: '✓' },
+        specialist: { wrapper: 'bg-bone-200 border-ember',   icon: 'bg-navy text-white',   iconChar: '★' },
+        unknown:    { wrapper: 'bg-bone-50 border-cast-100', icon: 'bg-cast-500 text-white', iconChar: '?' },
+      };
+
+      const matchZone = (raw) => {
+        const pc = (raw || '').toUpperCase().replace(/\s/g, '');
+        if (!POSTCODE_RE.test(pc)) return null;
+        const outward = pc.replace(/\d[A-Z]{2}$/, '').replace(/\d$/, ''); // strip the unit/sector to get the area code (letters)
+        for (const rule of ZONE_RULES) {
+          // Try longest-first prefix
+          const sorted = [...rule.prefix].sort((a, b) => b.length - a.length);
+          if (sorted.some((p) => outward.startsWith(p))) return rule;
+        }
+        return null;
+      };
+
+      const zoneEl = form.querySelector('[data-zone-result]');
+      const zoneTitle = form.querySelector('[data-zone-title]');
+      const zoneDetail = form.querySelector('[data-zone-detail]');
+      const zoneIcon = form.querySelector('[data-zone-icon]');
+
+      const renderZone = (val) => {
+        if (!zoneEl) return;
+        const trimmed = (val || '').trim();
+        if (!trimmed) { zoneEl.classList.add('hidden'); return; }
+        const rule = matchZone(trimmed);
+        const key = rule ? rule.zone : (POSTCODE_RE.test(trimmed.toUpperCase().replace(/\s/g,'')) ? 'planned-uk' : 'unknown');
+        const style = ZONE_STYLES[key];
+
+        // Reset wrapper classes
+        zoneEl.className = `mt-3 p-3 rounded-md border text-sm ${style.wrapper}`;
+        zoneIcon.className = `mt-0.5 inline-flex items-center justify-center w-5 h-5 rounded-full text-xs font-bold shrink-0 ${style.icon}`;
+        zoneIcon.textContent = style.iconChar;
+
+        const miles = milesFromOutward(trimmed);
+        const milesNote = miles ? ` Approximately ${miles} miles from the WCCP yard.` : '';
+
+        if (rule) {
+          zoneTitle.textContent = rule.label;
+          zoneDetail.textContent = rule.detail + milesNote;
+        } else if (key === 'planned-uk') {
+          zoneTitle.textContent = 'UK planned-run zone.';
+          zoneDetail.textContent = 'We schedule outbound loads from Holsworthy. Typical lead-time 2–3 weeks.' + milesNote;
+        } else {
+          zoneTitle.textContent = 'Postcode not recognised.';
+          zoneDetail.textContent = 'Once we have the full postcode we can confirm the route — or send a WhatsApp and we\'ll check.';
+        }
+        zoneEl.classList.remove('hidden');
+      };
+
+      const postcodeInput = form.querySelector('[data-field="site_postcode"]');
+      postcodeInput?.addEventListener('input', (e) => renderZone(e.target.value));
+      // Restore on load if a value was persisted
+      if (postcodeInput?.value) renderZone(postcodeInput.value);
+
+      // ---- Drawings upload — show selected files inline ----
+      const drawingsInput = form.querySelector('[data-drawings-input]');
+      const drawingsList = form.querySelector('[data-drawings-list]');
+      const fmtBytes = (n) => n < 1024 ? `${n} B` : n < 1024*1024 ? `${(n/1024).toFixed(0)} KB` : `${(n/1048576).toFixed(1)} MB`;
+      drawingsInput?.addEventListener('change', () => {
+        const files = Array.from(drawingsInput.files || []);
+        if (!files.length) { drawingsList.classList.add('hidden'); drawingsList.innerHTML = ''; return; }
+        drawingsList.innerHTML = files.map(f => `
+          <li class="flex items-center justify-between text-xs text-navy bg-white rounded px-3 py-2 border border-cast-100">
+            <span class="truncate font-mono">${f.name.replace(/[<>&]/g, '')}</span>
+            <span class="text-cast shrink-0 ml-2">${fmtBytes(f.size)}</span>
+          </li>
+        `).join('');
+        drawingsList.classList.remove('hidden');
+      });
 
       form.addEventListener('input', (e) => { if (e.target.dataset.field) { persist(); setInvalid(e.target.dataset.field, false); } });
       form.addEventListener('change', (e) => { if (e.target.dataset.field === 'product') updateStep2Visibility(); persist(); });

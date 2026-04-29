@@ -32,7 +32,7 @@ const orgSchema = {
     '@type': 'ContactPoint',
     telephone: site.contact.phoneIntl,
     contactType: 'sales',
-    areaServed: 'GB',
+    areaServed: ['GB', 'IE', 'DE', 'NL', 'FR', 'BE'],
     availableLanguage: 'English',
   },
   address: {
@@ -50,7 +50,7 @@ const localBusinessSchema = {
   '@type': 'LocalBusiness',
   '@id': `${site.url}/#localbusiness`,
   name: site.name,
-  image: `${site.url}/og-default.jpg`,
+  image: `${site.url}/og-default.png`,
   url: site.url,
   telephone: site.contact.phoneIntl,
   address: orgSchema.address,
@@ -61,7 +61,6 @@ const localBusinessSchema = {
   },
   openingHoursSpecification: site.hours.openingHoursSpec,
   areaServed: site.areasServed.map((name) => ({ '@type': 'AdministrativeArea', name })),
-  priceRange: '££',
 };
 
 // Build a Service schema with provider auto-filled from Organization.
@@ -105,14 +104,17 @@ function buildProductSchema(d: Record<string, unknown>) {
 
   let offers: unknown = d.offers;
   if (offers) {
-    const normaliseOffer = (o: Record<string, unknown>) => ({
-      '@type': 'Offer',
-      priceCurrency: 'GBP',
-      availability: 'https://schema.org/InStock',
-      priceValidUntil: defaultPriceValidUntil,
-      seller,
-      ...o,
-    });
+    // Note: no price/priceCurrency/priceRange — client (Kim) does not want
+    // any pricing information surfaced on the site, including in JSON-LD.
+    const normaliseOffer = (o: Record<string, unknown>) => {
+      const { price: _p, priceCurrency: _pc, priceRange: _pr, lowPrice: _lp, highPrice: _hp, ...clean } = o;
+      return {
+        '@type': 'Offer',
+        availability: 'https://schema.org/InStock',
+        seller,
+        ...clean,
+      };
+    };
 
     if (Array.isArray(offers)) {
       offers = offers.map((o) => normaliseOffer(o as Record<string, unknown>));

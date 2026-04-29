@@ -1,0 +1,154 @@
+---
+// FittedVsSupply.astro
+//
+// A small, accessible toggle that switches between supply-only and fitted
+// pricing/lead-time bands for any product page. Two views, no client state
+// — just a `<details>` accordion-pair that can be expanded independently
+// or used as a radio toggle (CSS-only).
+//
+// Add a meaningful default in `defaultMode` if your product is biased one
+// way (e.g. cattle cubicles default to fitted; padstones default to supply).
+
+interface Band {
+  /** Legacy field — no longer rendered (client policy: no public prices). Kept
+   *  as optional so existing pages that pass it still type-check. */
+  price?: string;
+  /** "2–3 weeks", "8–12 weeks (incl. install)", etc. */
+  leadTime: string;
+  /** What's included */
+  includes: string[];
+  /** What's NOT included (so the customer doesn't get a surprise) */
+  excludes?: string[];
+}
+
+interface Props {
+  productName: string;
+  supply: Band;
+  fitted?: Band;
+  defaultMode?: 'supply' | 'fitted';
+  /** Optional one-line note shown beneath both bands. */
+  note?: string;
+}
+
+const {
+  productName,
+  supply,
+  fitted,
+  defaultMode = 'supply',
+  note,
+} = Astro.props;
+
+const supplyChecked = defaultMode === 'supply';
+const fittedAvailable = !!fitted;
+---
+
+<section class="card p-6 md:p-8" aria-labelledby="fvs-heading">
+  <div class="flex items-start justify-between gap-4 mb-5 flex-wrap">
+    <div>
+      <p class="eyebrow text-cast mb-2">How would you like it?</p>
+      <h3 id="fvs-heading" class="font-display text-display-sm text-navy">
+        Supply-only or fitted — {productName}
+      </h3>
+    </div>
+
+    {fittedAvailable && (
+      <div role="tablist" aria-label="Pricing & lead-time mode" class="inline-flex rounded-full bg-bone-200 p-1 text-sm font-bold">
+        <label class="cursor-pointer">
+          <input type="radio" name="fvs-mode" value="supply" class="sr-only peer" checked={supplyChecked} data-fvs="supply" />
+          <span role="tab" class="block px-4 py-1.5 rounded-full transition-colors duration-200 text-cast peer-checked:bg-navy peer-checked:text-white">
+            Supply only
+          </span>
+        </label>
+        <label class="cursor-pointer">
+          <input type="radio" name="fvs-mode" value="fitted" class="sr-only peer" checked={!supplyChecked} data-fvs="fitted" />
+          <span role="tab" class="block px-4 py-1.5 rounded-full transition-colors duration-200 text-cast peer-checked:bg-navy peer-checked:text-white">
+            Fitted
+          </span>
+        </label>
+      </div>
+    )}
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-5">
+    <!-- Supply panel -->
+    <div data-fvs-panel="supply" class={fittedAvailable && !supplyChecked ? 'hidden md:block opacity-50' : ''}>
+      <div class="border-l-4 border-yellow pl-4">
+        <p class="eyebrow text-cast mb-1">Supply only</p>
+        <p class="font-display font-bold text-navy text-display-sm leading-tight">Per-unit / per-metre supply</p>
+        <p class="text-sm text-cast-700 mt-1">Lead time: <span class="font-mono font-bold">{supply.leadTime}</span></p>
+      </div>
+      <ul class="mt-4 space-y-2 text-sm">
+        {supply.includes.map((i) => (
+          <li class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-yellow shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="text-navy">{i}</span>
+          </li>
+        ))}
+        {supply.excludes?.map((i) => (
+          <li class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-cast-500 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <line x1="6" y1="6" x2="18" y2="18" stroke-linecap="round" />
+              <line x1="18" y1="6" x2="6" y2="18" stroke-linecap="round" />
+            </svg>
+            <span class="text-cast">{i}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    {fitted && (
+      <!-- Fitted panel -->
+      <div data-fvs-panel="fitted" class={!supplyChecked ? '' : 'hidden md:block opacity-50'}>
+        <div class="border-l-4 border-ember pl-4">
+          <p class="eyebrow text-cast mb-1">Fitted (supply + install)</p>
+          <p class="font-display font-bold text-navy text-display-sm leading-tight">Supply + install crew</p>
+          <p class="text-sm text-cast-700 mt-1">Lead time: <span class="font-mono font-bold">{fitted.leadTime}</span></p>
+        </div>
+        <ul class="mt-4 space-y-2 text-sm">
+          {fitted.includes.map((i) => (
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-ember shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="text-navy">{i}</span>
+            </li>
+          ))}
+          {fitted.excludes?.map((i) => (
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-cast-500 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <line x1="6" y1="6" x2="18" y2="18" stroke-linecap="round" />
+                <line x1="18" y1="6" x2="6" y2="18" stroke-linecap="round" />
+              </svg>
+              <span class="text-cast">{i}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </div>
+
+  {note && (
+    <p class="mt-5 pt-5 border-t border-cast-100 text-xs text-cast leading-relaxed">{note}</p>
+  )}
+</section>
+
+<script>
+  // Tab switcher — desktop shows both columns side-by-side at half opacity for the
+  // non-active mode; on mobile we hide the inactive panel entirely.
+  document.querySelectorAll<HTMLInputElement>('[data-fvs]').forEach((input) => {
+    input.addEventListener('change', () => {
+      if (!input.checked) return;
+      const mode = input.dataset.fvs;
+      document.querySelectorAll<HTMLElement>('[data-fvs-panel]').forEach((panel) => {
+        const isActive = panel.dataset.fvsPanel === mode;
+        // Mobile: hide inactive
+        panel.classList.toggle('hidden', !isActive);
+        // Desktop: dim inactive
+        panel.classList.toggle('md:block', true);
+        panel.classList.toggle('opacity-50', !isActive);
+      });
+    });
+  });
+</script>

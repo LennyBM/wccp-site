@@ -1,0 +1,211 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const faqs = [
+  { q: 'How do I calculate padstone size for a steel beam?', a: 'Divide the bearing reaction (in kN) from your structural engineer by the allowable bearing pressure of the masonry beneath (typically 0.4–0.6 N/mm² for standard blockwork). The answer is the bearing area in mm². Choose a padstone whose plan dimensions exceed both the beam flange width and the calculated area.' },
+  { q: 'What is a typical padstone size for a domestic beam?', a: 'For a 152×152 UC carrying a single floor and roof in a domestic loft conversion, a 327×215×100mm or 440×215×140mm padstone is typical. Beams under bigger loads — say a UB203×133 carrying two floors — usually call for 440×215×215mm. Always check against the engineer\'s reaction.' },
+  { q: 'What concrete strength should a padstone be?', a: 'C40/50 to BS 8500-1:2023. Lower grades have been used historically but Eurocode 6 bearing checks assume a strong, low-permeability concrete. We cast every WCCP padstone in C40/50 as standard.' },
+  { q: 'Do padstones need reinforcement?', a: 'Standard sizes are unreinforced — the unit acts as a plain concrete spreader. Larger padstones (over 215mm thick or carrying very high reactions) are reinforced to a structural calc, with cover and bar spacing to BS EN 1992.' },
+  { q: 'What is the schedule for typical UK padstones?', a: 'WCCP standard sizes start at 215×215×100mm and run through 327×215×100, 327×215×140, 440×215×100, 440×215×140 and 440×215×215mm. Bespoke sizes — including beam-bearing pockets — are quoted from your beam schedule.' },
+];
+
+const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+---
+
+<BaseLayout
+  title="Concrete padstone sizing for steel beams (UK)"
+  description="UK concrete padstone sizing explained: how to calculate bearing area, schedule of typical sizes, BS 8500-1:2023 concrete grade, Eurocode 6 design checks and common mistakes."
+  schema="Article"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-14 md:py-16">
+      <nav class="text-sm text-white/90 mb-6" aria-label="Breadcrumb">
+        <a href="/guides" class="hover:text-yellow">Guides</a><span class="mx-2 text-cast">/</span>
+        <span class="text-white/90">Padstone sizing</span>
+      </nav>
+      <p class="eyebrow text-yellow mb-4">Padstones · Pillar guide</p>
+      <h1 class="font-display text-display-xl text-white mb-6 max-w-4xl">Concrete padstone sizing for steel beams (UK).</h1>
+
+      <div class="bg-navy-700 border-l-4 border-yellow p-6 max-w-3xl rounded-r">
+        <p class="text-white/90 text-lg leading-relaxed">
+          <strong class="text-white">Direct answer:</strong> Padstone size is the bearing reaction
+          divided by the masonry's allowable bearing pressure (typically 0.4–0.6 N/mm² for
+          blockwork). UK standard sizes run 215×215×100mm to 440×215×215mm in C40/50 concrete to
+          BS 8500-1:2023. Eurocode 6 (BS EN 1996) governs the bearing check.
+        </p>
+      </div>
+
+      <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/90">
+        <div>By <span class="text-white font-semibold">WCCP Engineering Team</span> <!-- CLIENT: confirm individual reviewer name + CEng status --></div>
+        <div>Published <time datetime="2026-04-29">29 April 2026</time></div>
+        <div>Updated <time datetime="2026-04-29">29 April 2026</time></div>
+      </div>
+    </div>
+  </section>
+
+  <article class="container-wccp py-12 md:py-16">
+    <div class="grid lg:grid-cols-[1fr_18rem] gap-10 lg:gap-16">
+      <div class="max-w-3xl">
+
+        <section id="bearing" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">How to calculate bearing area.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Bearing area = bearing reaction ÷ allowable bearing pressure.</strong>
+            The reaction comes from the structural engineer's beam schedule (in kN). The allowable
+            bearing pressure depends on the masonry — typically 0.4 N/mm² for 7N/mm² blockwork,
+            0.6 for 10N/mm², and higher for engineering brick. Eurocode 6 (BS EN 1996) is the
+            design route.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            Worked example: a 60kN reaction onto 7N blockwork (0.4 N/mm² allowable). 60,000 N ÷
+            0.4 N/mm² = 150,000mm² = 150 cm². A 327×215mm padstone gives 70,300mm² of bearing —
+            not enough. Step up to a 440×215mm: 94,600mm² — still not enough. Go to a 440×440mm
+            bespoke or specify higher-strength masonry.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            Once the bearing area is set, the padstone height is driven by load spread (1:2 from
+            the beam edge) and by Eurocode 6 limits on the masonry directly under the padstone.
+            We design every WCCP <a href="/products/padstones" class="text-ember underline">padstone</a> to that calc.
+          </p>
+        </section>
+
+        <section id="schedule" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Schedule of typical padstone sizes.</h2>
+          <div class="overflow-x-auto mb-4 -mx-4 sm:mx-0">
+            <table class="spec-table min-w-full px-4 sm:px-0">
+              <thead><tr><th>Size (LxWxH)</th><th>Bearing area</th><th>Typical use</th><th>Weight</th></tr></thead>
+              <tbody class="text-cast">
+                <tr><td>215×215×100mm</td><td>46,225 mm²</td><td>Lintel ends, light loads</td><td>~11 kg</td></tr>
+                <tr><td>327×215×100mm</td><td>70,305 mm²</td><td>Domestic UB / UC ends</td><td>~17 kg</td></tr>
+                <tr><td>327×215×140mm</td><td>70,305 mm²</td><td>Domestic UB ends, heavier load</td><td>~24 kg</td></tr>
+                <tr><td>440×215×100mm</td><td>94,600 mm²</td><td>Larger UB, two-storey loads</td><td>~23 kg</td></tr>
+                <tr><td>440×215×140mm</td><td>94,600 mm²</td><td>Two-storey loft conversions</td><td>~32 kg</td></tr>
+                <tr><td>440×215×215mm</td><td>94,600 mm²</td><td>Heavy commercial loads</td><td>~50 kg</td></tr>
+                <tr><td>Bespoke</td><td>Schedule</td><td>Engineer's spec</td><td>To order</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-sm text-cast italic">All WCCP padstones cast in C40/50 to BS 8500-1:2023; bespoke sizes to your engineer's drawing.</p>
+        </section>
+
+        <aside class="not-prose my-12 reveal">
+          <a href="/products/padstones" class="group block bg-navy-700 text-white rounded-lg p-6 md:p-7 hover:bg-navy-600 transition-colors no-underline">
+            <p class="eyebrow text-yellow mb-2">Order padstones</p>
+            <p class="font-display text-xl md:text-2xl text-white font-semibold leading-snug">See the WCCP padstone range</p>
+            <p class="text-white/85 text-sm mt-2">Standard sizes from stock; bespoke from your beam schedule.</p>
+          </a>
+        </aside>
+
+        <section id="drawings" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">What the engineer needs on the drawing.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">A clear padstone callout names the size, the concrete grade
+            and the bearing detail in one line.</strong> "440×215×140 padstone, C40/50, on 7N
+            blockwork, 100mm bearing on the beam each side" tells the bricklayer everything.
+            Where the load is high, add a Mortar Class M12 specification under the padstone.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            Pocket details — where the padstone is cast into a wall rather than bedded on top —
+            need a section drawing with dpc and movement-joint detail. We will cast pocket
+            padstones to the engineer's drawing.
+          </p>
+        </section>
+
+        <section id="standards" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Standards on the spec sheet.</h2>
+          <ul class="text-cast-700 text-lg leading-relaxed list-disc pl-6 space-y-2 mb-4">
+            <li><a href="/standards-explained#eurocode-6" class="text-ember underline">BS EN 1996 (Eurocode 6)</a> — bearing pressure and concentrated load checks.</li>
+            <li><a href="/standards-explained#eurocode-2" class="text-ember underline">BS EN 1992-1-1 (Eurocode 2)</a> — concrete design.</li>
+            <li><a href="/standards-explained#bs-8500" class="text-ember underline">BS 8500-1:2023</a> — concrete specification (C40/50 standard).</li>
+            <li><a href="/standards-explained#bs-en-13369" class="text-ember underline">BS EN 13369</a> — factory production control on every casting.</li>
+          </ul>
+        </section>
+
+        <section id="mistakes" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Common mistakes.</h2>
+          <ul class="text-cast-700 text-lg leading-relaxed list-disc pl-6 space-y-3 mb-4">
+            <li><strong class="text-navy">Under-spec'd size.</strong> Picking a padstone by what's on the lorry instead of by the bearing calc. Localised crushing of the masonry under-spreads the load and cracks the wall.</li>
+            <li><strong class="text-navy">Wrong concrete grade.</strong> A C25 padstone under a C40/50 calc is a real-world site error — and a notifiable defect.</li>
+            <li><strong class="text-navy">No movement joint.</strong> Padstones that span across a wall expansion joint need to be split. Don't bridge the joint.</li>
+            <li><strong class="text-navy">Padstone too short for the beam flange.</strong> The padstone must exceed the flange width by at least 25mm each side, or the bearing is offset.</li>
+            <li><strong class="text-navy">Bedding on weak mortar.</strong> Class M4 mortar under a heavy reaction will fail before the padstone does. Use M12 under loaded padstones.</li>
+          </ul>
+        </section>
+
+        <section id="faq" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-6">Frequently asked questions</h2>
+          <div class="space-y-4">
+            {faqs.map((f) => (
+              <details class="card p-5 group">
+                <summary class="font-display text-lg font-bold text-navy cursor-pointer flex items-start justify-between gap-4">
+                  <span>{f.q}</span>
+                  <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+                </summary>
+                <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section class="bg-navy text-white rounded-lg p-8 md:p-10">
+          <h2 class="font-display text-2xl md:text-3xl text-white mb-3">Need padstones to a beam schedule?</h2>
+          <p class="text-white/90 mb-6 leading-relaxed">Send the schedule. We will check the sizes against the reactions, cast in C40/50, and deliver in load order.</p>
+          <div class="flex flex-wrap gap-3">
+            <a href="/products/padstones" class="btn-yellow">See padstone range</a>
+            <a href="/quote" class="btn bg-white text-navy hover:bg-bone">Start a quote</a>
+          </div>
+        </section>
+      </div>
+
+      <aside class="hidden lg:block">
+        <div class="sticky top-24">
+          <p class="eyebrow text-cast mb-4">On this page</p>
+          <ol class="space-y-3 text-sm border-l border-cast-100 pl-4">
+            <li><a href="#bearing" class="text-cast hover:text-ember">Calculating bearing area</a></li>
+            <li><a href="#schedule" class="text-cast hover:text-ember">Schedule of sizes</a></li>
+            <li><a href="#drawings" class="text-cast hover:text-ember">Engineer's drawings</a></li>
+            <li><a href="#standards" class="text-cast hover:text-ember">Standards</a></li>
+            <li><a href="#mistakes" class="text-cast hover:text-ember">Common mistakes</a></li>
+            <li><a href="#faq" class="text-cast hover:text-ember">FAQ</a></li>
+          </ol>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+  <section class="bg-bone-200 py-16">
+    <div class="container-wccp">
+      <p class="eyebrow text-cast mb-3">Related guides</p>
+      <h2 class="font-display text-display-md mb-8">Keep reading.</h2>
+      <div class="grid md:grid-cols-3 gap-5">
+        <a href="/guides/concrete-grades" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Materials</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Concrete grades</h3>
+          <p class="text-cast text-sm">C32/40 vs C40/50, exposure classes, sulphate-resisting cements.</p>
+        </a>
+        <a href="/guides/prestressed-vs-reinforced" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Engineering</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Prestressed vs reinforced</h3>
+          <p class="text-cast text-sm">Where each system suits — span, surcharge, geometry.</p>
+        </a>
+        <a href="/standards-explained" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Reference</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Standards explained</h3>
+          <p class="text-cast text-sm">BS, BS EN and Eurocodes for UK precast.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-16 text-center">
+    <h2 class="font-display text-display-lg mb-4">Talk to the yard.</h2>
+    <p class="text-cast-700 text-lg max-w-xl mx-auto mb-8">Same-day callback Monday to Friday.</p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+      <a href="/quote" class="btn-primary">Configure a quote</a>
+    </div>
+  </section>
+</BaseLayout>

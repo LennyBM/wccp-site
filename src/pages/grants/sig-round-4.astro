@@ -1,0 +1,189 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import CTAStrip from '@/components/CTAStrip.astro';
+import { site } from '@/config/site';
+
+// Article schema — supports Google News indexing on grant-deadline content.
+const schemaData = {
+  '@type': 'Article',
+  headline: 'Slurry Infrastructure Grant Round 4 — closes 30 September 2026',
+  description:
+    "Defra's Slurry Infrastructure Grant Round 4 makes £74m available across England for on-farm slurry storage and handling. The application window closes at midnight on 30 September 2026.",
+  datePublished: '2026-04-01',
+  dateModified: '2026-04-29',
+  author: { '@type': 'Organization', name: site.name, url: site.url },
+  publisher: {
+    '@type': 'Organization',
+    name: site.name,
+    logo: { '@type': 'ImageObject', url: `${site.url}/og-default.png` },
+  },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': `${site.url}/grants/sig-round-4` },
+};
+
+const steps = [
+  {
+    n: '01',
+    title: 'Get your storage capacity right',
+    body: 'SIG Round 4 requires demonstration of at least 6 months of slurry storage. We supply capacity calculations and SSAFO 2018-compliant spec sheets with every quotation.',
+  },
+  {
+    n: '02',
+    title: 'Itemised quote on the Defra template',
+    body: 'We provide quotations on the Defra-recognised eligible-items format. Your RPA application picks up the figures verbatim — no re-keying, no version mismatch.',
+  },
+  {
+    n: '03',
+    title: 'Manufacturing slot held',
+    body: 'Quoted lead time is typically 4 weeks once a grant offer is confirmed. We hold a manufacturing slot at the yard against your offer letter.',
+  },
+  {
+    n: '04',
+    title: 'Delivered, installed if you want it',
+    body: 'We deliver UK-wide on our own HIAB fleet. We can also project-manage the install — slab, panels, fittings — for a turn-key job.',
+  },
+];
+---
+
+<BaseLayout
+  title="SIG Round 4 — Slurry Infrastructure Grant 2026 deadline"
+  description="The Slurry Infrastructure Grant Round 4 closes 30 September 2026. £74m available across England. WCCP supplies SSAFO 2018-compliant precast slurry stores on Defra-recognised quote templates."
+  schema="Article"
+  schemaData={schemaData}
+>
+  <!-- Hero -->
+  <section class="relative bg-navy-700 text-white overflow-hidden">
+    <div aria-hidden="true" class="absolute inset-0 grid-pattern opacity-30"></div>
+    <div class="relative container-wccp py-12 lg:py-16">
+      <div class="mb-10">
+        <Breadcrumbs items={[{ label: 'Grants', href: '/grants/slurry-grant' }, { label: 'SIG Round 4' }]} variant="navy" />
+      </div>
+      <div class="max-w-3xl">
+        <p class="eyebrow text-ember mb-6">
+          <span class="inline-block w-8 h-px bg-ember align-middle mr-3"></span>
+          Hard deadline · 30 September 2026
+        </p>
+        <h1 class="font-display text-display-2xl text-white mb-6">
+          SIG Round 4 closes <span class="text-yellow">30 September 2026</span>.
+        </h1>
+        <p class="text-lg lg:text-xl text-white/90 leading-relaxed mb-8">
+          Defra's Slurry Infrastructure Grant Round 4 makes
+          <strong class="text-white">£74&nbsp;million</strong> available across England for
+          on-farm slurry storage and handling. The application window closes at
+          <strong class="text-white">midnight on 30 September 2026</strong>. Talk to the yard before
+          you submit.
+        </p>
+
+        <!-- Countdown -->
+        <div class="grid grid-cols-4 gap-3 max-w-md mb-8" data-sig-countdown role="timer" aria-live="polite" aria-label="Time remaining until SIG Round 4 deadline">
+          {['days','hours','minutes','seconds'].map((unit) => (
+            <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-3 text-center">
+              <div class="font-display text-display-md text-yellow leading-none" data-countdown-unit={unit}>--</div>
+              <div class="text-xs uppercase tracking-wider text-white/70 mt-1">{unit}</div>
+            </div>
+          ))}
+        </div>
+
+        <div class="flex flex-wrap gap-3">
+          <a href="/quote?context=SIG%20Round%204" class="btn-primary">Get a quote before you submit</a>
+          <a href="/grants/slurry-grant" class="btn-ghost border-white text-white hover:bg-white hover:text-navy-700">Read the full grant guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- £74m callout -->
+  <section class="bg-yellow border-y-4 border-navy-700">
+    <div class="container-wccp py-8">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <p class="eyebrow text-navy-700 mb-1">Funding pot · England</p>
+          <p class="font-display text-display-lg text-navy-700 leading-none">£74 million available across England</p>
+        </div>
+        <p class="text-navy-700 text-sm md:text-right max-w-md">
+          50% intervention rate, between £25,000 and £250,000 per agricultural holding,
+          competitive scoring against farms in catchments of greatest environmental need.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How WCCP fits -->
+  <section class="container-wccp section-rhythm">
+    <div class="max-w-2xl mb-12">
+      <p class="eyebrow text-cast mb-3">How WCCP fits into your application</p>
+      <h2 class="font-display text-display-lg">Quote, slot, deliver.</h2>
+      <p class="text-cast-700 text-lg mt-4">
+        We're not the people who fill in the application — that's between you and the RPA.
+        What we do is the bit that makes the rest of the application solid:
+        documented capacity, SSAFO 2018 compliance, a manufacturing slot you can rely on.
+      </p>
+    </div>
+    <ol class="grid md:grid-cols-2 gap-4">
+      {steps.map((s) => (
+        <li class="card p-6">
+          <div class="font-display text-ember text-display-md mb-3 leading-none">{s.n}</div>
+          <h3 class="font-display text-lg font-bold text-navy-700 mb-2">{s.title}</h3>
+          <p class="text-cast-700 leading-relaxed text-sm">{s.body}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <!-- Cross-link -->
+  <section class="bg-bone-200 py-12">
+    <div class="container-wccp">
+      <div class="card p-8 max-w-3xl">
+        <p class="eyebrow text-cast mb-2">Read next</p>
+        <h2 class="font-display text-2xl font-bold text-navy-700 mb-3">
+          The full Slurry Grant guide.
+        </h2>
+        <p class="text-cast-700 mb-5">
+          Eligibility, paperwork, capacity calculations, planning permission, lead times.
+          Everything we tell every customer who rings up.
+        </p>
+        <a href="/grants/slurry-grant" class="btn-secondary">Read the Slurry Grant guide</a>
+      </div>
+    </div>
+  </section>
+
+  <CTAStrip
+    eyebrow="The countdown is on"
+    title="Talk to the yard before you submit."
+    description="Quotations on Defra-recognised templates. Capacity calculations included. Manufacturing slot held against your grant offer. Ring 01409 281437."
+    primaryCta={{ href: '/quote?context=SIG%20Round%204', label: 'Configure a quote' }}
+    secondaryCta={{ href: `tel:${site.contact.phoneIntl}`, label: `Call ${site.contact.phone}` }}
+    variant="navy"
+  />
+
+  <script is:inline>
+    (function () {
+      var deadline = new Date('2026-09-30T23:59:59+01:00').getTime();
+      var root = document.querySelector('[data-sig-countdown]');
+      if (!root) return;
+      var slots = {
+        days:    root.querySelector('[data-countdown-unit="days"]'),
+        hours:   root.querySelector('[data-countdown-unit="hours"]'),
+        minutes: root.querySelector('[data-countdown-unit="minutes"]'),
+        seconds: root.querySelector('[data-countdown-unit="seconds"]'),
+      };
+      function tick() {
+        var diff = deadline - Date.now();
+        if (diff <= 0) {
+          slots.days.textContent = slots.hours.textContent = slots.minutes.textContent = slots.seconds.textContent = '0';
+          return;
+        }
+        var d = Math.floor(diff / 86400000);
+        var h = Math.floor((diff % 86400000) / 3600000);
+        var m = Math.floor((diff % 3600000) / 60000);
+        var s = Math.floor((diff % 60000) / 1000);
+        slots.days.textContent    = String(d);
+        slots.hours.textContent   = String(h).padStart(2, '0');
+        slots.minutes.textContent = String(m).padStart(2, '0');
+        slots.seconds.textContent = String(s).padStart(2, '0');
+      }
+      tick();
+      setInterval(tick, 1000);
+    })();
+  </script>
+</BaseLayout>

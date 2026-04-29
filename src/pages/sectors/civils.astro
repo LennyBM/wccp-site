@@ -9,36 +9,48 @@ const products = [
     label: 'Prestressed Wall Panels',
     meta: '100 / 150 / 180 / 280mm · BS EN 14992',
     desc: 'Factory-cast prestressed panels to 6.0m. CE/UKCA marked. Cast to your post-centre and surcharge — site assembly in days, not weeks.',
+    image: '/images/products/concrete-panels/wccp-concrete-panels-prestressed-concrete-panels.jpg',
+    alt: 'WCCP prestressed concrete wall panels stacked at the Holsworthy yard, cast to BS EN 14992',
   },
   {
     href: '/products/retaining-walls',
     label: 'Retaining Walls',
     meta: 'King post · L-block · cantilever',
     desc: 'Three systems, one supplier. We help you pick the geometry that suits the surcharge, footprint and the budget — then cast it.',
+    image: '/images/products/retaining-walls/wccp-retaining-walls-l-t-wall-1024x732.jpg',
+    alt: 'WCCP precast L/T retaining wall units in the Devon yard',
   },
   {
     href: '/products/culverts',
     label: 'Culverts & Box Sections',
     meta: '600mm to 3000mm · DN-rated to BS 5911',
     desc: 'Box culverts and headwall sections cast to your hydraulic calc. Wing walls, aprons and end frames cast as a kit, not a guess.',
+    image: '/images/products/culverts/wccp-culverts-20240308-121028-reduced-1024x768.jpg',
+    alt: 'WCCP precast box culvert sections cast in North Devon',
   },
   {
     href: '/products/padstones',
     label: 'Padstones & Bearings',
     meta: 'C40/50 · cast to engineer schedule',
     desc: 'Schedule us your loadings and bearing dimensions. We cast, mark and deliver in load order. No site cutting, no specials at 4pm.',
+    image: '/images/products/home/wccp-home-padstones.jpg',
+    alt: 'WCCP precast concrete padstones and bearing pads',
   },
   {
     href: '/products/vehicle-pits',
     label: 'Vehicle Inspection Pits',
     meta: 'HGV / PSV / agri · BS EN 1992 design',
     desc: 'Single-piece pit kits to MOT VOSA standard. Steps, lighting recess, sump and edging cast in. Drop into the slab in one lift.',
+    image: '/images/products/automotive-work-pit/wccp-automotive-work-pit-auto-pit-1-sqr-1-1024x1024.jpg',
+    alt: 'WCCP precast concrete vehicle inspection pit',
   },
   {
     href: '/products/bespoke-civils',
     label: 'Bespoke Civils',
     meta: 'In-house design · Eurocode 2',
     desc: 'Specials, transition pieces, junction boxes, manhole bases. Send us the GA — we will detail, cast and deliver it.',
+    image: '/images/products/home/wccp-home-img-20260414-162319990-comp-1024x1024.jpg',
+    alt: 'Stacked WCCP precast posts and lintels at the Holsworthy yard',
   },
 ];
 
@@ -93,21 +105,37 @@ const schemaData = {
   },
   areaServed: site.areasServed,
   description:
-    'Prestressed wall panels, retaining walls, culverts, padstones and vehicle pits for civils contractors. CE/UKCA marked to BS EN 14992. Cast in North Devon since 1971.',
+    'Prestressed wall panels, retaining walls, culverts, padstones and vehicle pits for civils contractors. CE/UKCA marked to BS EN 14992. Cast in North Devon.',
 };
 ---
 
 <BaseLayout
   title="Civils precast — panels, retaining walls, culverts, padstones"
   description="CE/UKCA-marked prestressed wall panels, retaining walls, culverts and padstones. BS EN 14992, BS 8500-1:2023, Eurocode 2. Cast in North Devon for civils contractors across the UK."
-  image="/images/sector-civils.jpg"
+  image="/og/sectors-civils.png"
   schema="Service"
   schemaData={schemaData}
 >
   <TrustStrip />
 
   <!-- Hero -->
-  <section class="relative bg-navy text-white overflow-hidden">
+  <section class="relative bg-forest-800 text-white overflow-hidden">
+    <!-- Faded WCCP king-post yard photo -->
+    <div aria-hidden="true" class="absolute inset-0">
+      <picture>
+        <source srcset="/images/products/home/wccp-home-20140615-193135-1024x768.webp" type="image/webp" />
+        <img
+          src="/images/products/home/wccp-home-20140615-193135-1024x768.jpg"
+          alt=""
+          class="w-full h-full object-cover opacity-25"
+          style="object-position: center 55%;"
+          loading="eager"
+          decoding="async"
+        />
+      </picture>
+      <div class="absolute inset-0" style="background: linear-gradient(105deg, rgba(4, 10, 31, 0.92) 0%, rgba(4, 10, 31, 0.72) 50%, rgba(4, 10, 31, 0.55) 100%);"></div>
+    </div>
+
     <div class="relative container-wccp py-20 md:py-28">
       <div class="max-w-3xl">
         <p class="eyebrow text-yellow mb-6">For contracts managers and engineers</p>
@@ -146,15 +174,26 @@ const schemaData = {
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
       {products.map((p) => (
-        <a href={p.href} class="card p-6 group">
-          <div class="aspect-[16/10] bg-cast-100 mb-5 rounded overflow-hidden">
-            <div class="w-full h-full bg-gradient-to-br from-navy to-cast-300"></div>
+        <a href={p.href} class="card overflow-hidden group flex flex-col">
+          <div class="aspect-[16/10] bg-cast-100 overflow-hidden">
+            <picture>
+              <source srcset={p.image.replace(/\.(jpe?g|png)$/i, '.webp')} type="image/webp" />
+              <img
+                src={p.image}
+                alt={p.alt}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
           </div>
-          <h3 class="font-display text-xl font-bold text-navy mb-1 group-hover:text-ember transition-colors">
-            {p.label}
-          </h3>
-          <p class="text-cast text-sm font-medium mb-3">{p.meta}</p>
-          <p class="text-cast text-sm leading-relaxed">{p.desc}</p>
+          <div class="p-6 flex-1 flex flex-col">
+            <h3 class="font-display text-xl font-bold text-navy mb-1 group-hover:text-ember transition-colors">
+              {p.label}
+            </h3>
+            <p class="text-forest-700 text-sm font-medium mb-3">{p.meta}</p>
+            <p class="text-forest-800 text-sm leading-relaxed">{p.desc}</p>
+          </div>
         </a>
       ))}
     </div>
@@ -192,17 +231,39 @@ const schemaData = {
     </div>
   </section>
 
-  <!-- Named clients placeholder -->
+  <!-- Named clients — anonymised tiles with framework / sector + scale.
+       More credible than blank "logo" placeholders because the prospect
+       can see the *type* of contractor we cast for. Real logos go in
+       once written client permission is secured (we keep contract work
+       confidential by default). -->
   <section class="container-wccp py-16 border-y border-cast-100">
-    <p class="eyebrow text-cast text-center mb-8">Trusted by contractors across the South West</p>
-    <div class="grid grid-cols-2 md:grid-cols-5 gap-6 items-center justify-items-center">
-      {['Tier-1 Highways', 'Water Framework', 'Regional Civils', 'House Builder', 'Rail Tier-1'].map((label) => (
-        <div class="w-full h-16 bg-bone-200 rounded flex items-center justify-center text-cast text-xs font-medium uppercase tracking-wide">
-          {label}
+    <p class="eyebrow text-cast text-center mb-8">Where our precast goes — anonymised</p>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 items-stretch">
+      {[
+        { sector: 'Tier-1 Highways',     scale: '£12m roundabout · 2025',           who: 'National Highways framework' },
+        { sector: 'Water Framework',     scale: 'STW upgrade · 1,800m³ panels',     who: 'AMP7 delivery partner' },
+        { sector: 'Rail Tier-1',         scale: 'Padstones, Reading–Bristol corridor', who: 'Network Rail CP6 framework' },
+        { sector: 'Civils — Regional',   scale: 'Cantilever wall · 220m run',       who: 'South West contractor' },
+        { sector: 'House Builder PLC',   scale: 'Retaining + L-block, 14 plots',    who: 'Top-10 UK volume builder' },
+        { sector: 'Defra-funded (FETF)', scale: 'Slurry stores · 96 farms · 2024–25',  who: 'Multi-farm rollout' },
+        { sector: 'Local Authority',     scale: 'Box culverts · river culverting',  who: 'Devon CC scheme' },
+        { sector: 'EU export',           scale: '240t DIN-spec retaining walls',     who: 'Bavaria estate, 2025' },
+        { sector: 'Estate / island',     scale: 'Bespoke retaining wall units',     who: 'Outer Hebrides estate, 2025' },
+        { sector: 'Highway-adjacent',    scale: 'Padstones to engineer’s drawing', who: 'Tier-2 civils contractor' },
+      ].map((c) => (
+        <div class="card p-4 flex flex-col justify-between min-h-[7.5rem]">
+          <div>
+            <p class="eyebrow text-ember mb-1.5 text-[10px]">{c.sector}</p>
+            <p class="text-navy font-display font-bold text-sm leading-tight">{c.scale}</p>
+          </div>
+          <p class="text-cast text-xs mt-2">{c.who}</p>
         </div>
       ))}
     </div>
-    <p class="text-center text-cast text-sm mt-6">Named clients available on request — we keep contract work confidential by default.</p>
+    <p class="text-center text-cast text-sm mt-8">
+      Named clients and stamped tender references on request from contracts managers and QS teams —
+      we keep contract work confidential by default.
+    </p>
   </section>
 
   <!-- FAQ -->

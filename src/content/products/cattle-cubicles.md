@@ -2,7 +2,7 @@
 title: "Precast Cattle Cubicles"
 sector: "agricultural"
 summary: "Heavy-duty precast cubicle divisions and kerbs for dairy and beef herds, sized for Holstein, Jersey or beef breeds."
-image: "/images/products/cattle-cubicles.jpg"
+image: "/images/products/cubicles/wccp-cubicles-portable-cubicles-1024x768.jpg"
 leadTime: "2-3 weeks for stock items"
 standards:
   - "BS EN 14992"

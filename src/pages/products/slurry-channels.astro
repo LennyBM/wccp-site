@@ -1,0 +1,375 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import FittedVsSupply from '@/components/FittedVsSupply.astro';
+import SpecSheetButton from '@/components/SpecSheetButton.astro';
+import SpecDownloads from '@/components/SpecDownloads.astro';
+import ProductGallery from '@/components/ProductGallery.astro';
+import { site } from '@/config/site';
+import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
+import ProductPageTOC from '@/components/ProductPageTOC.astro';
+
+const tocSections = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'specifications', label: 'Specifications' },
+  { id: 'gallery', label: 'Gallery' },
+  { id: 'related', label: 'Related' },
+  { id: 'faq', label: 'FAQ' },
+  { id: 'downloads', label: 'Downloads' },
+];
+
+const specs = [
+  { product: "8' Diagonal Slats", dimensions: '203 × 1220 × 2440 mm', internal: '—', weight: '1000 kg', notes: 'Fits standard slurry channels; heavy-duty option available' },
+  { product: 'Standard Slurry Channels (shallow)', dimensions: '1100 × 1180 × 2440 mm', internal: '1000 × 1000 mm', weight: '1480 kg @ 600mm depth', notes: 'Fits diagonal slat above' },
+  { product: 'Standard Slurry Channels (deep)', dimensions: '1100 × 1180 × 2440 mm', internal: '1000 × 1000 mm', weight: '2880 kg @ 1605mm', notes: '—' },
+  { product: 'Midi Channels', dimensions: '780 × 875 × 2000 mm', internal: '700 × 700 mm', weight: '940 kg', notes: 'Solid & diagonal slat covers available' },
+  { product: 'Midi Channel Covers', dimensions: '125 × 875 × 2000 mm', internal: '—', weight: 'Slat 486 kg / solid 525 kg @125mm', notes: '—' },
+  { product: 'Mini Channels', dimensions: '370 × 480 × 2000 mm', internal: '300 × 300 mm', weight: '420 kg', notes: 'Solid or diagonal slat lids' },
+  { product: 'Mini Channel Covers', dimensions: '475 × 2000 × 90 or 140 mm', internal: '—', weight: 'Slat 180/280 kg · Solid 205/320 kg', notes: '—' },
+];
+
+const applications = [
+  'Cubicle housing scrape-channel and reception pits',
+  'Collecting yards under herringbone parlours',
+  'Sand-bedded dairy housing paired with V-section channels',
+  'Beef finishing sheds with under-slat collection',
+  'Calf housing with mini channels for low flow rates',
+  'Retro-fit slurry channel runs into existing concrete slabs',
+  'SSAFO 2018 upgrade works on legacy slurry stores',
+];
+
+const related = [
+  { href: '/products/sand-channels', label: 'V-Section Sand Channels', meta: 'Sand-bedded dairy · 3m diagonal slats' },
+  { href: '/products/slurry-storage', label: 'Slurry Storage', meta: 'SSAFO 2018-compliant tanks' },
+  { href: '/products/cattle-cubicles', label: 'Cattle Cubicles', meta: 'AHDB 2024 sized · fixed + portable' },
+  { href: '/products/culverts', label: 'Box Culverts', meta: 'BS EN 14844 · 600mm–3m span' },
+];
+
+const faqs = [
+  { q: "What's the difference between standard, midi and mini channels?", a: 'Standard slurry channels (1100×1180mm external, 1000×1000mm internal) sit under cubicle housing where the full herd scrapes through them — that is the workhorse size. Midi channels (780×875mm external, 700×700mm internal) suit smaller groups, calf housing or yard runs where flow is lower. Mini channels (370×480mm, 300×300mm internal) are for tight detailing or very-low-flow areas. All three accept matching slat or solid covers from the same family, so you can mix sizes along a run if the layout demands it.' },
+  { q: 'Can the slats take livestock weight?', a: "Yes. Our 8' diagonal slats are cast in C40/50 sulphate-resisting concrete to BS 8500-1:2023 and rated for cattle traffic — including the heavy-duty option for tractors and full-load loaders. The diagonal pattern self-cleans as cattle walk, the gaps are sized to AHDB recommendations to avoid hoof injury, and lifting eyes are pre-cast so they go in by HIAB without site cutting. We supply a heavy-duty variant if you want to drive a feeder wagon over them." },
+  { q: 'Are these compatible with sand-bedded systems?', a: 'The standard slurry channel range is designed for slurry-only flow — sand will silt up the bottom corners. For sand-bedded dairy, pair this product with our V-Section Sand Channels (the V profile narrows at the base to keep sand moving on a 2% fall). The slats interchange between the two systems, so you can run a mixed shed with sand under the lying area and standard slurry under the loafing area off the same slat stock.' },
+  { q: 'Lead time?', a: 'Standard channels and slats from catalogue ship in 2 to 3 weeks from order confirmation. Heavy-duty slat variants and mixed-size runs need 3 to 4 weeks. Spring and autumn are our busiest seasons — get the order in early if your shed is going up to a programme. We deliver on our own HIAB fleet across Devon, Cornwall, Somerset and Dorset same-week, and on planned runs to the rest of the UK in 2 to 3 weeks.' },
+  { q: 'Do you supply the slats and channels as a complete system?', a: 'Yes — that is the whole point of casting them at one yard. You order the slurry channels, the matching slats (diagonal or solid), the lifting eyes, and the conformity statement to BS EN 14844 culvert geometry as a single delivery. We will issue the install drawing showing chamber depth, fall, and how the slats sit on the channel rebate. We do not fit slurry channels — that is a wet trade for a groundworker — but we will talk your installer through the detail.' },
+];
+
+const productSchema = {
+  name: 'Precast Slurry Channels, Slats & Covers',
+  description: 'Precast slurry handling system: standard, midi and mini channels with diagonal slat or solid covers. Cast in C40/50 sulphate-resisting concrete to BS 8500-1:2023, geometry to BS EN 14844 culvert standard. Compatible with WCCP V-Section sand channels.',
+  brand: { '@type': 'Brand', name: site.name },
+  manufacturer: { '@type': 'Organization', name: site.name },
+  category: 'Precast concrete slurry channel',
+  material: 'Reinforced concrete, C40/50 sulphate-resisting (BS 8500-1:2023)',
+  weight: {
+    '@type': 'QuantitativeValue',
+    minValue: 180,
+    maxValue: 2880,
+    unitCode: 'KGM',
+    unitText: 'kilogram per unit',
+  },
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 14844 (precast culvert geometry)' },
+    { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 sulphate-resisting (BS 8500-1:2023)' },
+    { '@type': 'PropertyValue', name: 'Compliance', value: 'SSAFO 2018 (silage, slurry & agricultural fuel oil regs)' },
+    { '@type': 'PropertyValue', name: 'Standard channel internal', value: '1000 × 1000 mm' },
+    { '@type': 'PropertyValue', name: 'Midi channel internal', value: '700 × 700 mm' },
+    { '@type': 'PropertyValue', name: 'Mini channel internal', value: '300 × 300 mm' },
+    { '@type': 'PropertyValue', name: 'Slat type', value: '8 ft diagonal — heavy-duty option available' },
+    { '@type': 'PropertyValue', name: 'Compatible with', value: 'V-Section Sand Channels (3m diagonal slats)' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '2–3 weeks catalogue, 3–4 weeks heavy-duty' },
+    { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
+  ],
+  offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="Slurry Channels, Slats & Covers — UK precast"
+  description="Precast slurry handling system: standard, midi and mini channels with diagonal slat covers. Cast in C40/50 sulphate-resisting concrete to BS 8500-1:2023, BS EN 14844 culvert geometry."
+  image="/og/slurry-channels.png"
+  schema="Product"
+  schemaData={productSchema}
+  whatsappContext="Slurry Channels"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <TrustStrip />
+  <ProductPageTOC sections={tocSections} />
+
+  <!-- Hero -->
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow text-yellow mb-4">Agricultural · slurry · drainage</p>
+          <h1 class="font-display text-display-xl text-white mb-4">Slurry Channels, Slats & Covers.</h1>
+          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">Six-month capacity. Cast in a day.</p>
+          <h2 class="sr-only">What size slurry channel do I need?</h2>
+          <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
+            <strong class="not-italic text-white">What size slurry channel do I need?</strong>
+            Size for at least six months' herd output (SIG / SSAFO 2018 expectation), with a 2%
+            fall to the cross-channel and width sized to the slat span. Standard, midi and mini
+            depths to BS&nbsp;EN&nbsp;14844, cast in C40/50 sulphate-resisting concrete.
+          </blockquote>
+          <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
+            Cast-in-place slurry handling — channels, slats and covers, all from the same yard,
+            all to the same standard. SSAFO 2018-compliant, cast in C40/50 sulphate-resisting
+            concrete, geometry to BS EN 14844. Pairs with our V-Section Sand Channels range
+            for mixed-bedding sheds.
+          </p>
+          <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
+            <li class="flex gap-2"><span class="text-yellow">·</span> SSAFO 2018 compliant</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> C40/50 SR mix</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Standard / midi / mini</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Slat or solid covers</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> BS EN 14844 geometry</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 2–3 week lead</li>
+          </ul>
+          <div class="flex flex-wrap gap-3">
+            <a href="/quote?product=Slurry+Channels" class="btn-primary">Configure a quote</a>
+            <a href="/downloads/specs/slurry-channels.pdf" class="btn-yellow">Download spec sheet</a>
+            <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">
+              Call {site.contact.phone}
+            </a>
+          </div>
+        </div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
+          <img
+            src="/images/products/slurry-handling/wccp-slurry-handling-channel.jpg"
+            alt="Precast concrete slurry channel with diagonal slat covers — West Country Concrete Products, Devon"
+            class="w-full h-full object-cover"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spec table -->
+  <section class="container-wccp py-20">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Specification</p>
+      <h2 class="font-display text-display-lg mb-4">The full slurry handling family.</h2>
+      <p class="text-cast-700 text-lg">
+        Three channel sizes, two slat options, matching solid lids — all dimensioned and
+        weighed below. Heavy-duty slat upgrades for tractor traffic on application.
+      </p>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="spec-table w-full text-left border-collapse">
+        <thead class="bg-navy text-white">
+          <tr>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Product</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Dimensions (L×W×H)</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Internal</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Weight</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          {specs.map((s, i) => (
+            <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
+              <td class="px-4 py-3 font-bold text-navy">{s.product}</td>
+              <td class="px-4 py-3 font-mono text-sm">{s.dimensions}</td>
+              <td class="px-4 py-3 font-mono text-sm">{s.internal}</td>
+              <td class="px-4 py-3">{s.weight}</td>
+              <td class="px-4 py-3 text-cast">{s.notes}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-cast text-sm mt-4">
+      Cast-in lifting eyes on every unit; conformity statement to BS EN 14844 issued with
+      delivery. Bespoke depths and lengths available — drawing in Friday, quote Monday.
+    </p>
+  </section>
+
+  <ProductGallery
+    eyebrow="Channel types"
+    heading="Channel types we cast."
+    background="bone"
+    cols={4}
+    images={[
+      { src: '/images/products/slurry-handling/wccp-slurry-handling-image-of-v-sand-slurry-channel.jpg', alt: 'Heavy-duty precast concrete V-section sand-slurry channel cast by West Country Concrete Products, Devon', caption: 'V-section sand-slurry channel' },
+      { src: '/images/products/slurry-handling/wccp-slurry-handling-shallow-v-channel.jpg', alt: 'Shallow V-section precast concrete slurry channel section by WCCP Devon', caption: 'Shallow V-channel' },
+      { src: '/images/products/slurry-handling/wccp-slurry-handling-slat.jpg', alt: 'Precast concrete slatted slurry-channel cover with parallel slots by WCCP Devon', caption: 'Slatted slurry cover' },
+      { src: '/images/products/slurry-handling/wccp-slurry-handling-floating-sleeper-channel-edited.png', alt: '3D rendering of a precast concrete floating-sleeper slurry channel section by WCCP Devon', caption: 'Floating-sleeper channel' },
+    ]}
+  />
+
+  <!-- Applications -->
+  <section class="bg-white py-20">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow text-cast mb-3">Where they go</p>
+          <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            From a 60-cow Devon dairy retrofit to a 400-cow robot shed in Somerset, the same
+            slurry channel family handles the flow — sized to the shed, delivered to programme.
+          </p>
+          <ul class="space-y-3">
+            {applications.map((a) => (
+              <li class="flex gap-3 text-cast-700 leading-relaxed">
+                <span class="text-ember font-bold mt-1">·</span>
+                <span>{a}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="card p-8">
+          <p class="eyebrow text-cast mb-3">Standards & references</p>
+          <h3 class="font-display text-2xl font-bold text-navy mb-4">Cast to current best practice.</h3>
+          <dl class="space-y-4 text-sm">
+            <div>
+              <dt class="font-bold text-navy">SSAFO 2018</dt>
+              <dd class="text-cast">Silage, Slurry & Agricultural Fuel Oil Regulations — channel and storage requirements for England.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS EN 14844</dt>
+              <dd class="text-cast">Precast concrete products — box culverts. Geometry, tolerances and conformity testing.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS 8500-1:2023</dt>
+              <dd class="text-cast">Concrete specification — C40/50 sulphate-resisting mix designed for the slurry environment.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS EN 13369</dt>
+              <dd class="text-cast">Common rules for precast concrete products — factory production control.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">AHDB Dairy</dt>
+              <dd class="text-cast">Slat-gap recommendations for dairy and beef cattle — hoof safety and self-cleaning flow.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Configurator CTA -->
+  <section class="bg-yellow text-navy py-16">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-navy mb-2">Configure your slurry channel run</p>
+          <h2 class="font-display text-display-md">Send the shed dimensions and channel depth — we will quote inside 24 hours.</h2>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href="/quote?product=Slurry+Channels" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
+          <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="container-wccp py-20">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
+      <div>
+        <p class="eyebrow text-cast mb-3">Related products</p>
+        <h2 class="font-display text-display-lg">Often ordered alongside.</h2>
+      </div>
+      <a href="/products" class="text-ember font-bold hover:text-ember-700 inline-flex items-center gap-2">
+        View full range
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" />
+          <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+    <RelatedProductGrid items={related} />
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">Common questions</p>
+        <h2 class="font-display text-display-lg mb-4">What people ask about slurry channels.</h2>
+        <p class="text-cast-700 text-lg">
+          Five questions we answer most weeks. If yours is not here, ring the yard.
+        </p>
+      </div>
+      <div class="max-w-3xl space-y-4">
+        {faqs.map((f) => (
+          <details class="card p-6 group">
+            <summary class="font-display text-lg font-bold text-navy cursor-pointer list-none flex justify-between items-start gap-4">
+              <span>{f.q}</span>
+              <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <SpecDownloads
+    intro="Slurry-channel sections, slatted lids and the slotted drainage channel — every PDF you'll need to spec a run."
+    downloads={[
+      { href: '/downloads/specs/slurry-handling/wccp-slurry-handling-slurry-channel.pdf', title: 'Slurry channel — standard sections', meta: 'PDF · 115 KB' },
+      { href: '/downloads/specs/slurry-handling/wccp-slurry-handling-v-section-sand-slurry-channels.pdf', title: 'V-section sand & slurry channels', meta: 'PDF · 290 KB' },
+      { href: '/downloads/specs/slurry-handling/wccp-slurry-handling-shallow-v-section-sand-slurry-channels.pdf', title: 'Shallow V-section sand & slurry channels', meta: 'PDF · 356 KB' },
+      { href: '/downloads/specs/slurry-handling/wccp-slurry-handling-slatted-lid.pdf', title: 'Slatted channel lid', meta: 'PDF · 108 KB' },
+      { href: '/downloads/specs/home/wccp-home-slotted-drainage-channel.pdf', title: 'Slotted drainage channel', meta: 'PDF · 30 KB' },
+      { href: '/downloads/specs/slurry-channels.pdf', title: 'Slurry channels — overview', meta: 'PDF' },
+    ]}
+  />
+
+  <!-- Supply-only vs Fitted -->
+  <section class="container-wccp section-rhythm border-t border-cast-100">
+    <FittedVsSupply
+      productName="Slurry Channels"
+      defaultMode="supply"
+      supply={{
+        price: 'from £580/lm standard',
+        leadTime: '2–3 weeks',
+        includes: [
+          'Cast-in-place delivery on our HIAB',
+          'Lifting eyes pre-cast on every unit',
+          'Conformity statement to BS EN 14844',
+          'Compatible with WCCP V-Section sand channels',
+        ],
+        excludes: [
+          'Slab and chamber excavation works',
+          'On-site setting and bedding-mortar',
+        ],
+      }}
+      note="Indicative 2026 pricing per linear metre for standard channel + slat runs over 30m. Heavy-duty slat upgrades and bespoke depths quoted individually — send the shed dimensions and we'll come back within a working day."
+    />
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-navy text-white py-20">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
+      <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">
+        Send us shed dimensions, channel depth and the slat type you want. Quote and lead-time same day.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/quote?product=Slurry+Channels" class="btn-yellow">Configure a quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
+      </div>
+    </div>
+  </section>
+
+  <SpecSheetButton productSlug="slurry-channels" productName="Slurry Channels" href="/downloads/specs/slurry-channels.pdf" />
+  <ProductWarrantyLine />
+</BaseLayout>

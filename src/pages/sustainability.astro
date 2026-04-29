@@ -118,27 +118,38 @@ const principles = [
         </p>
         <a href="/contact" class="btn-secondary">Ask about a specific product</a>
       </div>
-      <div class="card p-8 bg-bone-200 border-dashed">
-        <p class="eyebrow text-ember mb-3">Coming soon</p>
-        <h3 class="font-display text-2xl font-bold text-navy mb-4">Carbon dashboard</h3>
-        <ul class="space-y-3 text-cast">
+      <div class="card p-8 border-2 border-yellow bg-yellow/5">
+        <p class="eyebrow text-ember mb-3">Disclosure published Q1 2026</p>
+        <h3 class="font-display text-2xl font-bold text-navy mb-4">Read the full carbon disclosure.</h3>
+        <p class="text-cast-700 leading-relaxed mb-5">
+          Embodied CO₂e per m³ for every standard WCCP mix — C32/40, C40/50 SR, C50/60 and the
+          C40/50 low-carbon mix. EPD-aligned A1–A3 figures, methodology open, reviewed quarterly.
+        </p>
+        <ul class="space-y-2 text-cast text-sm mb-6">
           <li class="flex items-start gap-3">
             <span class="text-ember font-bold">·</span>
-            <span>EPDs for flagship precast products</span>
+            <span>kgCO₂e/m³ for all 4 standard mixes</span>
           </li>
           <li class="flex items-start gap-3">
             <span class="text-ember font-bold">·</span>
-            <span>Embodied carbon (A1–A3) per m³ of concrete</span>
+            <span>Benchmarked against the UK industry average</span>
           </li>
           <li class="flex items-start gap-3">
             <span class="text-ember font-bold">·</span>
-            <span>Scope 1 & 2 emissions, Chilsworthy yard</span>
+            <span>Methodology: BS EN 15804+A2 (A1–A3)</span>
           </li>
           <li class="flex items-start gap-3">
             <span class="text-ember font-bold">·</span>
-            <span>Heat & power benefit from adjacent AD plant</span>
+            <span>Initiatives: GGBS, on-site solar, electric loader trial, UK aggregate</span>
           </li>
         </ul>
+        <a href="/sustainability/carbon" class="btn-yellow inline-flex items-center gap-2">
+          <span>Read the full carbon disclosure</span>
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+            <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
       </div>
     </div>
   </section>
@@ -150,17 +161,61 @@ const principles = [
         <p class="eyebrow text-yellow mb-3">Co-location</p>
         <h2 class="font-display text-display-lg mb-6">Next door to the biogas plant.</h2>
         <p class="text-white/90 text-lg leading-relaxed mb-5">
-          Our Chilsworthy yard is built beside Severn Trent Green Power's Holsworthy AD plant — one of
-          the UK's largest food-waste anaerobic digestion sites. The plant turns food waste into
-          renewable gas and electricity.
+          Our Chilsworthy yard is built adjacent to the Holsworthy Biogas Plant, owned by
+          <strong class="text-yellow">Severn Trent Green Power</strong> — the FTSE-100 utility's
+          renewable arm and one of the UK's largest food-waste AD sites. A circular-economy story
+          on the doorstep: digestate one side of the fence, precast concrete the other.
         </p>
         <p class="text-white/90 text-lg leading-relaxed">
           Sitting next door is a deliberate choice. Heat, power and infrastructure links are part of
           the long-term plan. It's not a silver bullet for concrete's carbon footprint — but it's a
           sensible bit of joined-up thinking, and a story we're proud of.
         </p>
+
+        {/* CLIENT: confirm GGBS / CEM III/A pricing premium and standard availability lead time. */}
+        <div class="mt-10 p-6 border border-white/20 rounded-lg bg-white/5">
+          <p class="eyebrow text-yellow mb-3">Low-carbon spec</p>
+          <p class="text-white/90 leading-relaxed">
+            <strong class="text-white">GGBS / CEM III/A mixes available on request</strong> — for
+            architects and consulting engineers writing low-carbon specifications. Replacement of
+            up to 50% Portland cement with ground granulated blast-furnace slag, designed to
+            BS 8500-1:2023 with the same exposure-class compliance. Ask at quote stage.
+          </p>
+        </div>
       </div>
     </div>
+  </section>
+
+  <!-- EPD-readiness roadmap -->
+  {/* CLIENT: confirm exact target dates for each EPD milestone below. */}
+  <section class="container-wccp py-20 border-t border-cast-100">
+    <div class="max-w-2xl mb-12">
+      <p class="eyebrow text-cast mb-3">EPD readiness</p>
+      <h2 class="font-display text-display-lg">Roadmap to a published EPD.</h2>
+      <p class="text-cast-700 text-lg mt-4">
+        Environmental Product Declarations are how architects and BREEAM assessors compare embodied
+        carbon between manufacturers. Here's where we are.
+      </p>
+    </div>
+    <ol class="space-y-4 max-w-3xl">
+      {[
+        { stage: 'Stage 1', title: 'Mix-design carbon figures (internal)', when: 'In progress', body: 'kgCO₂e/m³ calculated for C32/40, C40/50, C40/50 SR and C50/60 mixes against UK industry baselines.' },
+        { stage: 'Stage 2', title: 'Verified A1–A3 figures per BS EN 15804+A2', when: 'Target Q3 2026 — CLIENT: confirm', body: 'Independent verification of cradle-to-gate carbon for our standard product families.' },
+        { stage: 'Stage 3', title: 'Product-specific EPDs published', when: 'Target Q1 2027 — CLIENT: confirm', body: 'Cattle cubicles, prestressed wall panels and slurry storage panels first — these have the highest spec-driven demand.' },
+        { stage: 'Stage 4', title: 'Whole-range EPD coverage', when: 'Target 2028 — CLIENT: confirm', body: 'Bespoke and lower-volume products covered under family-EPD methodology.' },
+      ].map((item) => (
+        <li class="card p-6 flex flex-col md:flex-row gap-4 md:items-start">
+          <div class="md:w-32 shrink-0">
+            <p class="eyebrow text-ember">{item.stage}</p>
+            <p class="text-xs text-cast mt-1">{item.when}</p>
+          </div>
+          <div>
+            <h3 class="font-display text-lg font-bold text-navy-700 mb-2">{item.title}</h3>
+            <p class="text-cast-700 leading-relaxed">{item.body}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
   </section>
 
   <!-- CTA -->

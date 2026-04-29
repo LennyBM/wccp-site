@@ -18,7 +18,7 @@ const {
 } = Astro.props;
 
 const variantClasses = {
-  navy:   'bg-navy-logo text-white',
+  navy:   'bg-forest-700 text-white',
   yellow: 'bg-yellow text-navy',
   bone:   'bg-bone-200 text-ink',
 }[variant];
@@ -32,7 +32,7 @@ const descriptionColor = variant === 'navy' ? 'text-white/85' : 'text-cast';
     <div
       aria-hidden="true"
       class="absolute -top-24 -right-24 w-[80%] h-[200%] opacity-[0.05] pointer-events-none"
-      style="background-image: repeating-linear-gradient(45deg, #FBF547 0, #FBF547 2px, transparent 2px, transparent 22px); transform: rotate(-12deg);"
+      style="background-image: repeating-linear-gradient(45deg, #fff005 0, #fff005 2px, transparent 2px, transparent 22px); transform: rotate(-12deg);"
     />
   )}
   {variant === 'yellow' && (

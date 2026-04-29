@@ -1,7 +1,11 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
+import { Image } from 'astro:assets';
+import bespokeImg from '@/assets/images/products-bespoke.jpg';
 import { site } from '@/config/site';
+import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
 
 const process = [
   { step: '1', title: 'Drawing', desc: 'You send a sketch, photo or full GA. We send back our take, with a fixed price and lead-time.' },
@@ -61,7 +65,8 @@ const productSchema = {
     { '@type': 'PropertyValue', name: 'Finishes available', value: 'Smooth, board-marked, exposed-aggregate, acid-etched, polished' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
   ],
-  offers: { '@type': 'Offer', priceCurrency: 'GBP', availability: 'https://schema.org/PreOrder', seller: { '@type': 'Organization', name: site.name } },
+  offers: { '@type': 'Offer',
+ availability: 'https://schema.org/PreOrder', seller: { '@type': 'Organization', name: site.name } },
 };
 
 const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
@@ -83,11 +88,19 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
         <div>
           <p class="eyebrow text-yellow mb-4">Custom · architectural · civils · agricultural</p>
           <h1 class="font-display text-display-xl text-white mb-4">Bespoke Precast.</h1>
-          <p class="text-lg text-white/90 leading-relaxed mb-6">
-            <strong class="text-white">If it is precast and it can be delivered, we can make it.</strong>
-            From a 5kg listed-building coping to a 14-tonne biomass hopper. Drawing in,
-            cast unit out, 4 to 8 weeks typical lead. Pattern shop in-house, design team in-house,
-            yard in North Devon.
+          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">
+            Send a sketch. We'll cast it.
+          </p>
+          <h2 class="sr-only">What can WCCP cast bespoke?</h2>
+          <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
+            <strong class="not-italic text-white">What can WCCP cast bespoke?</strong>
+            Anything from a 5&nbsp;kg listed-building coping to a 14-tonne biomass hopper.
+            Drawing in Friday, quote and draft Monday, design to Eurocode&nbsp;2 inside the week,
+            mould fabrication 1–2 weeks. In-house pattern shop, in-house design — no outsourcing.
+          </blockquote>
+          <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
+            From a 5kg listed-building coping to a 14-tonne biomass hopper. Drawing in, cast unit out,
+            4 to 8 weeks typical lead. Pattern shop in-house, design team in-house, yard in North Devon.
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
             <li class="flex gap-2"><span class="text-yellow">·</span> 4–8 week lead</li>
@@ -103,7 +116,9 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
             <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">Call {site.contact.phone}</a>
           </div>
         </div>
-        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-300 via-cast to-navy"></div></div>
+        <div class="aspect-[4/3] rounded overflow-hidden">
+          <Image src={bespokeImg} alt="Finished precast concrete posts and lintels stacked on pallets at WCCP Holsworthy" widths={[400, 800, 1200]} sizes="(max-width: 1024px) 100vw, 50vw" class="w-full h-full object-cover" />
+        </div>
       </div>
     </div>
   </section>
@@ -182,15 +197,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" /><polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" /></svg>
       </a>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      {related.map((r) => (
-        <a href={r.href} class="card p-5 group">
-          <div class="aspect-[16/10] bg-cast-100 mb-4 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100"></div></div>
-          <h3 class="font-display text-base font-bold text-navy mb-1 group-hover:text-ember">{r.label}</h3>
-          <p class="text-cast text-xs">{r.meta}</p>
-        </a>
-      ))}
-    </div>
+    <RelatedProductGrid items={related} />
   </section>
 
   <section class="bg-bone-200 py-20">
@@ -225,4 +232,5 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
       </div>
     </div>
   </section>
+  <ProductWarrantyLine />
 </BaseLayout>

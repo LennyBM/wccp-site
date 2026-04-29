@@ -20,7 +20,7 @@ summary: "Our home county. Same-day callouts and own-fleet delivery across all o
 
 ## Devon — our home patch
 
-We've been casting concrete in North Devon since 1971. The Holsworthy yard sits ten miles from the Cornwall border and an hour from Exeter, which makes Devon our densest delivery and install territory.
+We've been casting concrete in North Devon for over 55 years. The Holsworthy yard sits ten miles from the Cornwall border and an hour from Exeter, which makes Devon our densest delivery and install territory.
 
 If you're farming in Devon, you've probably driven past one of our slurry stores already. We've cast for over 200 dairy and beef holdings across the county, from the Hartland coast through to the Blackdown Hills.
 

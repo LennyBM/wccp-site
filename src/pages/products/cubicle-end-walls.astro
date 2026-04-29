@@ -1,15 +1,34 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
+import FittedVsSupply from '@/components/FittedVsSupply.astro';
+import SpecSheetButton from '@/components/SpecSheetButton.astro';
 import { site } from '@/config/site';
+import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
 
-const specs = [
-  { type: 'Single-row end wall', size: '2280 × 1200 × 100mm', weight: '660 kg', water: 'Optional integrated trough', use: 'End of single cubicle row' },
-  { type: 'Double-row end wall', size: '4400 × 1200 × 100mm', weight: '1,265 kg', water: 'Optional integrated trough', use: 'End of double (back-to-back) row' },
-  { type: 'Single + integrated trough', size: '2280 × 1200 × 200mm', weight: '910 kg', water: '180 L cast-in trough', use: 'Single row with drinking facility' },
-  { type: 'Double + integrated trough', size: '4400 × 1200 × 200mm', weight: '1,750 kg', water: '360 L cast-in trough', use: 'Double row, both sides drink' },
-  { type: 'Tall end wall (heifer)', size: '2280 × 1500 × 100mm', weight: '825 kg', water: 'Optional', use: 'Heifer / youngstock pens' },
-  { type: 'Bespoke length', size: 'To drawing × 1200 × 100mm', weight: 'On application', water: 'Optional', use: 'Non-standard row lengths' },
+const troughSpecs = [
+  { type: 'Double Row Trough', size: '4400 × 785 × 800mm', weight: '2,250 kg', use: 'End of double (back-to-back) cubicle row' },
+  { type: 'Single Row Trough', size: '2420 × 785 × 800mm', weight: '1,440 kg', use: 'End of single cubicle row' },
+];
+
+const panelSpecs = [
+  { type: 'Double Row Panel', size: '4400 × 1200 × 100mm', weight: '1,230 kg', use: 'End of double (back-to-back) cubicle row' },
+  { type: 'Single Row Panel', size: '2280 × 1200 × 100mm', weight: '620 kg', use: 'End of single cubicle row' },
+];
+
+const troughFeatures = [
+  'Integrated fork slots — re-position with the loader',
+  'Fast draining',
+  'Easy to clean',
+  'Very quick to install',
+];
+
+const panelFeatures = [
+  'Chamfered edges',
+  'Supplied with galvanised channel fixing posts',
+  '100mm panel thickness',
+  'Single row 2280mm long; double row 4400mm long',
 ];
 
 const applications = [
@@ -24,49 +43,52 @@ const applications = [
 
 const related = [
   { href: '/products/cattle-cubicles', label: 'Cattle Cubicles', meta: 'AHDB 2024 sized' },
-  { href: '/products/water-troughs', label: 'Water Troughs', meta: 'Single + double row' },
-  { href: '/products/feed-troughs', label: 'Feed Troughs', meta: 'L-shape · 2440×900' },
+  { href: '/products/water-troughs', label: 'Drinking Troughs', meta: '40 to 500 Gallon range' },
+  { href: '/products/feed-troughs', label: 'Feed Troughs', meta: "'J' Trough · Quad Run · Round Top" },
   { href: '/products/milking-robot-bases', label: 'Robot Bases', meta: 'DeLaval · Lely · GEA' },
 ];
 
 const faqs = [
-  { q: 'Single or double row — what do I need?', a: 'Single-row end walls (2280 × 1200 × 100mm, 660kg) cap a single bank of cubicles. Double-row walls (4400 × 1200 × 100mm, 1,265kg) cap a back-to-back layout, the typical robot-shed configuration. We also do a tall version for heifer pens at 1500mm height.' },
-  { q: 'How does the integrated trough option work?', a: 'On the integrated-trough version, the bottom 400mm of the wall is cast as a 180L (single) or 360L (double) water trough. You get a cubicle-row terminator and a drink station in one unit. Plumbing comes in via a side entry to a side-mount float valve; the panel above doubles as the cow-side splash guard.' },
-  { q: 'How are they fixed?', a: 'M16 anchor sockets cast into the bottom edge bolt down to a 100mm slab kicker, or to your existing cubicle floor. We supply the install drawing and the bedding mortar spec. The 4.4m double-row wall comes off the lorry in a single lift on a 16-tonne HIAB.' },
-  { q: 'What about the lifting?', a: 'Two cast-in lifting eyes per unit. The 4.4m double at 1,265kg lifts comfortably on a 12-tonne SWL chain. We provide the lifting cert with the wall.' },
-  { q: 'Lead time?', a: 'Catalogue end walls run 2 to 3 weeks. Integrated-trough versions and tall heifer-grade walls run 3 to 4 weeks. Bespoke lengths to non-standard row drawings, 4 to 6 weeks.' },
+  { q: 'Trough or panel — what do I need?', a: 'The Cubicle Row End Wall Trough variant (Double Row 4400×785×800mm at 2,250kg, Single Row 2420×785×800mm at 1,440kg) caps the row and gives you a drink station in one unit. It has integrated fork slots, drains fast and cleans easily. The Panel variant (Double 4400×1200×100mm at 1,230kg, Single 2280×1200×100mm at 620kg) is a slimmer, taller panel for when you only need the cubicle-row terminator — chamfered edges and supplied with galvanised channel fixing posts.' },
+  { q: 'How are the troughs installed?', a: 'Cast-in fork slots let you set the troughs straight from the loader — very quick install. Levelled on a 100mm bedding screed; fast-drain detailing on the underside means the slab stays clean. Plumbing in is via your usual side-mount float valve.' },
+  { q: 'How are the panel walls fixed?', a: 'The Panel variant ships with galvanised channel fixing posts. Posts are concrete-set into your existing slab kicker; the panels then drop into the channels. Chamfered edges keep cows away from sharp arrises.' },
+  { q: 'Can I run a row of troughs and a row of panels side by side?', a: 'Yes — both share the same cubicle-row geometry so a four-row shed can have trough variants where you need water, panel variants on the dry rows. Same paperwork, same yard, same delivery.' },
+  { q: 'Lead time?', a: 'Catalogue end walls (both variants) run 2 to 3 weeks. Bespoke lengths and integrated trough variants run 3 to 4 weeks.' },
 ];
 
 const productSchema = {
-  name: 'Cubicle Row End Walls',
-  description: 'Precast end-wall panels for cubicle row terminations. Single 2280×1200×100mm at 660kg, double 4400×1200×100mm at 1265kg. Integrated water trough option (180L / 360L). For dairy cubicle and robot sheds.',
+  name: 'Cubicle Row End Walls — Trough & Panel Variants',
+  description: 'Two variants. Cubicle Row End Wall Troughs: Double 4400×785×800mm at 2,250kg, Single 2420×785×800mm at 1,440kg with integrated fork slots, fast draining and easy clean. Cubicle Row End Wall Panels: Double 4400×1200×100mm at 1,230kg, Single 2280×1200×100mm at 620kg with chamfered edges and galvanised channel fixing posts.',
   brand: { '@type': 'Brand', name: site.name },
   manufacturer: { '@type': 'Organization', name: site.name },
   category: 'Precast cubicle end wall',
   material: 'Reinforced concrete, C40/50 (BS 8500-1:2023)',
-  weight: { '@type': 'QuantitativeValue', minValue: 660, maxValue: 1750, unitCode: 'KGM', unitText: 'kilogram per panel' },
+  weight: { '@type': 'QuantitativeValue', minValue: 620, maxValue: 2250, unitCode: 'KGM', unitText: 'kilogram per panel' },
   additionalProperty: [
     { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 13369 / BS 5502-22:2003' },
     { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
-    { '@type': 'PropertyValue', name: 'Single-row size', value: '2280 × 1200 × 100 mm, 660 kg' },
-    { '@type': 'PropertyValue', name: 'Double-row size', value: '4400 × 1200 × 100 mm, 1265 kg' },
-    { '@type': 'PropertyValue', name: 'Integrated trough option', value: '180 L (single) / 360 L (double)' },
-    { '@type': 'PropertyValue', name: 'Anchor', value: 'M16 cast-in sockets' },
-    { '@type': 'PropertyValue', name: 'Lead time', value: '2–3 weeks catalogue, 3–4 weeks with trough' },
+    { '@type': 'PropertyValue', name: 'Cubicle Row End Wall Trough — Double Row', value: '4400 × 785 × 800mm, 2,250 kg' },
+    { '@type': 'PropertyValue', name: 'Cubicle Row End Wall Trough — Single Row', value: '2420 × 785 × 800mm, 1,440 kg' },
+    { '@type': 'PropertyValue', name: 'Cubicle Row End Wall Panel — Double Row', value: '4400 × 1200 × 100mm, 1,230 kg' },
+    { '@type': 'PropertyValue', name: 'Cubicle Row End Wall Panel — Single Row', value: '2280 × 1200 × 100mm, 620 kg' },
+    { '@type': 'PropertyValue', name: 'Trough features', value: 'Integrated fork slots; fast draining; easy clean; quick install' },
+    { '@type': 'PropertyValue', name: 'Panel features', value: 'Chamfered edges; supplied with galvanised channel fixing posts' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '2–3 weeks catalogue' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
   ],
-  offers: { '@type': 'Offer', priceCurrency: 'GBP', availability: 'https://schema.org/InStock', seller: { '@type': 'Organization', name: site.name } },
+  offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
 };
 
 const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
 ---
 
 <BaseLayout
-  title="Cubicle End Walls — single 2280×1200 + double 4400×1200"
-  description="Precast cubicle row end walls. Single 2280×1200×100mm at 660kg, double 4400×1200×100mm at 1265kg. Integrated water trough option. Cast in North Devon."
-  image="/images/products/cubicle-end-walls.jpg"
+  title="Cubicle Row End Walls — Trough + Panel variants"
+  description="Two variants. Trough variant: Double 4400×785×800mm 2,250kg, Single 2420×785×800mm 1,440kg, integrated fork slots. Panel variant: Double 4400×1200×100mm 1,230kg, Single 2280×1200×100mm 620kg, chamfered edges, galvanised channel fixing posts. Cast in North Devon."
+  image="/og/cubicle-end-walls.png"
   schema="Product"
   schemaData={productSchema}
+  whatsappContext="Cubicle End Walls"
 >
   <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
   <TrustStrip />
@@ -76,85 +98,141 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
           <p class="eyebrow text-yellow mb-4">Agricultural · dairy · cubicle housing</p>
-          <h1 class="font-display text-display-xl text-white mb-4">Cubicle End Walls.</h1>
-          <p class="text-lg text-white/90 leading-relaxed mb-6">
-            Single-row (2280 × 1200 × 100mm, 660kg) and double-row (4400 × 1200 × 100mm, 1,265kg)
-            end-wall panels for cubicle terminations. Optional integrated water trough (180L single,
-            360L double) — cubicle-row cap and drink station in one unit.
+          <h1 class="font-display text-display-xl text-white mb-4">Cubicle Row End Walls.</h1>
+          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">
+            Cast to your shed dimensions. Lifted in by lunchtime.
+          </p>
+          <h2 class="sr-only">What size cubicle end wall do I need?</h2>
+          <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
+            <strong class="not-italic text-white">What size cubicle end wall do I need?</strong>
+            WCCP standards: Trough Double 4400&nbsp;×&nbsp;785&nbsp;×&nbsp;800&nbsp;mm at 2,250&nbsp;kg
+            and Trough Single 2420&nbsp;×&nbsp;785&nbsp;×&nbsp;800&nbsp;mm at 1,440&nbsp;kg, or Panel
+            variants at 1,230 / 620&nbsp;kg with galvanised channel posts. Bespoke widths cast to
+            your shed bay width.
+          </blockquote>
+          <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
+            Two variants. <strong class="text-white">Trough</strong> — Double 4400×785×800mm at 2,250kg or
+            Single 2420×785×800mm at 1,440kg, with integrated drink station and cast-in fork slots.
+            <strong class="text-white">Panel</strong> — Double 4400×1200×100mm at 1,230kg or Single
+            2280×1200×100mm at 620kg, with galvanised channel fixing posts.
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
-            <li class="flex gap-2"><span class="text-yellow">·</span> Single 2280×1200</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Double 4400×1200</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 660 / 1,265 kg</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Trough option</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> M16 anchors</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Trough or Panel</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Single + Double row</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Fork slots (Trough)</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Galv channel posts (Panel)</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Chamfered edges</li>
             <li class="flex gap-2"><span class="text-yellow">·</span> 2–3 week lead</li>
           </ul>
           <div class="flex flex-wrap gap-3">
-            <a href="/quote?product=Cubicle+End+Walls" class="btn-primary">Configure a quote</a>
-            <a href="/spec-sheets/cubicle-end-walls.pdf" class="btn-yellow">Download spec sheet</a>
+            <a href="/quote?product=Cubicle%20End%20Walls" class="btn-primary">Configure a quote</a>
+            <a href="mailto:engineering@wccp.co.uk?subject=Spec%20sheet%20request%20%E2%80%94%20Cubicle%20End%20Walls&amp;body=Hi%20WCCP%20engineering%2C%0A%0APlease%20send%20the%20spec%20sheet%20for%20Cubicle%20End%20Walls.%0A%0AProject%20details%3A%0A%E2%80%A2%20Project%20name%3A%0A%E2%80%A2%20Site%20location%3A%0A%E2%80%A2%20Required%20spec%20%2F%20standard%3A%0A%0AThanks" class="btn-yellow">Request spec sheet</a>
             <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">Call {site.contact.phone}</a>
           </div>
         </div>
-        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-300 via-cast to-navy"></div></div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
+          <img src="/images/products/cubicles/wccp-cubicles-cubicle-trough-slider-1-1024x438.jpg" alt="Precast concrete cubicle end wall with integrated trough — West Country Concrete Products, Devon" class="w-full h-full object-cover" loading="eager" decoding="async" />
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- Trough variant -->
   <section class="container-wccp py-20">
     <div class="max-w-2xl mb-10">
-      <p class="eyebrow text-cast mb-3">Specification</p>
-      <h2 class="font-display text-display-lg mb-4">Variants and integrated options.</h2>
-      <p class="text-cast-700 text-lg">Catalogue panels at standard cubicle-row dimensions. Bespoke lengths cast to drawing.</p>
+      <p class="eyebrow text-cast mb-3">Variant 1</p>
+      <h2 class="font-display text-display-lg mb-4">Cubicle Row End Wall Troughs.</h2>
+      <p class="text-cast-700 text-lg">Cubicle-row terminator and drink station in one unit. Integrated fork slots make installation very quick — set them straight from the loader.</p>
     </div>
-    <div class="overflow-x-auto">
+    <div class="overflow-x-auto mb-8">
       <table class="spec-table w-full text-left border-collapse">
         <thead class="bg-navy text-white">
           <tr>
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Type</th>
-            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Size (L×H×T)</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Size (L×W×H)</th>
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Weight</th>
-            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Water</th>
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
           </tr>
         </thead>
         <tbody>
-          {specs.map((s, i) => (
+          {troughSpecs.map((s, i) => (
             <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
               <td class="px-4 py-3 font-bold text-navy">{s.type}</td>
               <td class="px-4 py-3">{s.size}</td>
               <td class="px-4 py-3">{s.weight}</td>
-              <td class="px-4 py-3">{s.water}</td>
               <td class="px-4 py-3 text-cast">{s.use}</td>
             </tr>
           ))}
         </tbody>
       </table>
     </div>
+    <div class="card p-6 max-w-3xl">
+      <p class="eyebrow text-cast mb-2">Trough features</p>
+      <ul class="grid sm:grid-cols-2 gap-2 text-sm">
+        {troughFeatures.map((f) => (<li class="flex gap-2 text-cast-700"><span class="text-ember font-bold">·</span><span>{f}</span></li>))}
+      </ul>
+    </div>
   </section>
 
+  <!-- Panel variant -->
   <section class="bg-bone-200 py-20">
     <div class="container-wccp">
-      <div class="grid lg:grid-cols-2 gap-12">
-        <div>
-          <p class="eyebrow text-cast mb-3">Where they go</p>
-          <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
-          <p class="text-cast-700 text-lg leading-relaxed mb-6">From a 60-cubicle single bank to a 240-cubicle robot shed — same panel range, with the integrated trough option for tighter cow flow.</p>
-          <ul class="space-y-3">
-            {applications.map((a) => (<li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">·</span><span>{a}</span></li>))}
-          </ul>
-        </div>
-        <div class="card p-8">
-          <p class="eyebrow text-cast mb-3">Standards & references</p>
-          <h3 class="font-display text-2xl font-bold text-navy mb-4">Cast and sized to current best practice.</h3>
-          <dl class="space-y-4 text-sm">
-            <div><dt class="font-bold text-navy">BS EN 13369</dt><dd class="text-cast">Common rules for precast concrete — factory production control.</dd></div>
-            <div><dt class="font-bold text-navy">BS 5502-22:2003</dt><dd class="text-cast">Agricultural buildings — cattle housing layouts and loadings.</dd></div>
-            <div><dt class="font-bold text-navy">BS 8500-1:2023</dt><dd class="text-cast">Concrete spec — C40/50 designed mix.</dd></div>
-            <div><dt class="font-bold text-navy">AHDB Dairy</dt><dd class="text-cast">Cow-flow guidance for cubicle end-of-row layouts.</dd></div>
-            <div><dt class="font-bold text-navy">BS EN 1992 (Eurocode 2)</dt><dd class="text-cast">Concrete structural design — anchor and lifting calculation.</dd></div>
-          </dl>
-        </div>
+      <div class="max-w-2xl mb-10">
+        <p class="eyebrow text-cast mb-3">Variant 2</p>
+        <h2 class="font-display text-display-lg mb-4">Cubicle Row End Wall Panels.</h2>
+        <p class="text-cast-700 text-lg">Slimmer 100mm panel for when you only need the cubicle-row terminator without an integrated trough. Chamfered edges and supplied with galvanised channel fixing posts.</p>
+      </div>
+      <div class="overflow-x-auto mb-8">
+        <table class="spec-table w-full text-left border-collapse">
+          <thead class="bg-navy text-white">
+            <tr>
+              <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Type</th>
+              <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Size (L×H×T)</th>
+              <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Weight</th>
+              <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
+            </tr>
+          </thead>
+          <tbody>
+            {panelSpecs.map((s, i) => (
+              <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
+                <td class="px-4 py-3 font-bold text-navy">{s.type}</td>
+                <td class="px-4 py-3">{s.size}</td>
+                <td class="px-4 py-3">{s.weight}</td>
+                <td class="px-4 py-3 text-cast">{s.use}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div class="card p-6 max-w-3xl">
+        <p class="eyebrow text-cast mb-2">Panel features</p>
+        <ul class="grid sm:grid-cols-2 gap-2 text-sm">
+          {panelFeatures.map((f) => (<li class="flex gap-2 text-cast-700"><span class="text-ember font-bold">·</span><span>{f}</span></li>))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-20">
+    <div class="grid lg:grid-cols-2 gap-12">
+      <div>
+        <p class="eyebrow text-cast mb-3">Where they go</p>
+        <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
+        <p class="text-cast-700 text-lg leading-relaxed mb-6">From a 60-cubicle single bank to a 240-cubicle robot shed — pick Trough where you need water, Panel where you only need the row cap.</p>
+        <ul class="space-y-3">
+          {applications.map((a) => (<li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">·</span><span>{a}</span></li>))}
+        </ul>
+      </div>
+      <div class="card p-8">
+        <p class="eyebrow text-cast mb-3">Standards & references</p>
+        <h3 class="font-display text-2xl font-bold text-navy mb-4">Cast and sized to current best practice.</h3>
+        <dl class="space-y-4 text-sm">
+          <div><dt class="font-bold text-navy">BS EN 13369</dt><dd class="text-cast">Common rules for precast concrete — factory production control.</dd></div>
+          <div><dt class="font-bold text-navy">BS 5502-22:2003</dt><dd class="text-cast">Agricultural buildings — cattle housing layouts and loadings.</dd></div>
+          <div><dt class="font-bold text-navy">BS 8500-1:2023</dt><dd class="text-cast">Concrete spec — C40/50 designed mix.</dd></div>
+          <div><dt class="font-bold text-navy">AHDB Dairy</dt><dd class="text-cast">Cow-flow guidance for cubicle end-of-row layouts.</dd></div>
+          <div><dt class="font-bold text-navy">BS EN 1992 (Eurocode 2)</dt><dd class="text-cast">Concrete structural design — anchor and lifting calculation.</dd></div>
+        </dl>
       </div>
     </div>
   </section>
@@ -164,10 +242,10 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
           <p class="eyebrow text-navy mb-2">Configure your end-wall set</p>
-          <h2 class="font-display text-display-md">Send row count, layout and trough preference — we will quote inside 24 hours.</h2>
+          <h2 class="font-display text-display-md">Send row count, layout and trough/panel preference — we will quote inside 24 hours.</h2>
         </div>
         <div class="flex flex-wrap gap-3 shrink-0">
-          <a href="/quote?product=Cubicle+End+Walls" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
+          <a href="/quote?product=Cubicle%20End%20Walls" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
           <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
         </div>
       </div>
@@ -184,15 +262,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" /><polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" /></svg>
       </a>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      {related.map((r) => (
-        <a href={r.href} class="card p-5 group">
-          <div class="aspect-[16/10] bg-cast-100 mb-4 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100"></div></div>
-          <h3 class="font-display text-base font-bold text-navy mb-1 group-hover:text-ember">{r.label}</h3>
-          <p class="text-cast text-xs">{r.meta}</p>
-        </a>
-      ))}
-    </div>
+    <RelatedProductGrid items={related} />
   </section>
 
   <section class="bg-bone-200 py-20">
@@ -216,15 +286,56 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
     </div>
   </section>
 
+  <!-- Supply-only vs Fitted -->
+  <section class="container-wccp section-rhythm border-t border-cast-100">
+    <FittedVsSupply
+      productName="Cubicle End Walls"
+      defaultMode="supply"
+      supply={{
+        price: 'from £180 per linear metre',
+        leadTime: '2–3 weeks',
+        includes: [
+          'Trough or Panel variant per drawing (Single or Double Row)',
+          'Cast-in fork slots (Trough) or galvanised channel fixing posts (Panel)',
+          'BS EN 13369 / BS 5502-22 documentation',
+          'Delivery on our HIAB to your shed',
+        ],
+        excludes: [
+          'On-site setting and bedding mortar',
+          'Slab kicker preparation',
+          'Plumbing in for the Trough variant',
+        ],
+      }}
+      fitted={{
+        price: 'from £260 per linear metre fitted',
+        leadTime: '4–6 weeks (incl. site slot)',
+        includes: [
+          'Everything in supply only',
+          'Two-man install crew with HIAB',
+          'Setting-out and bolt-down to slab',
+          '12-month workmanship warranty',
+        ],
+        excludes: [
+          'Concrete slab and base works',
+          'Mains plumbing for the Trough variant',
+        ],
+      }}
+      note="Indicative 2026 pricing per linear metre on the Single Row Panel. Trough variants and bespoke lengths priced individually — give us the row layout and we will quote within a working day."
+    />
+  </section>
+
   <section class="bg-navy text-white py-20">
     <div class="container-wccp text-center">
       <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
       <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">Send the row layout and herd size. Quote and lead-time same day.</p>
       <div class="flex flex-wrap justify-center gap-3">
-        <a href="/quote?product=Cubicle+End+Walls" class="btn-yellow">Configure a quote</a>
+        <a href="/quote?product=Cubicle%20End%20Walls" class="btn-yellow">Configure a quote</a>
         <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
         <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
       </div>
     </div>
   </section>
+
+  <SpecSheetButton productSlug="cubicle-end-walls" productName="Cubicle End Walls" />
+  <ProductWarrantyLine />
 </BaseLayout>

@@ -1,0 +1,218 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const faqs = [
+  { q: 'How long does a bespoke precast unit take to make?', a: 'From approved drawing, typically 4–6 weeks for a single bespoke unit. Mould fabrication is the variable — a flat-faced panel reuses standard formwork, where a curved or pocketed unit needs a one-off mould that takes a week or more to build. Stock catalogue items are 2–3 weeks.' },
+  { q: 'Can WCCP design a unit from a sketch?', a: 'Yes. Drop us a sketch, an existing photo, or a written description on Friday and we usually have a quote and a draft drawing back by Monday. We design every bespoke unit in-house to BS EN 1992 (Eurocode 2) and BS EN 1992-3 where liquid retention applies.' },
+  { q: 'What is the smallest bespoke order WCCP will take?', a: 'A single unit if the geometry justifies it — we have cast one-offs for vintage tractor displays and conservation jobs alongside thousand-unit precast runs. Smaller orders carry a higher per-unit cost because mould fabrication is fixed; that is one reason we ask early what else you might need.' },
+  { q: 'Do you supply structural calculations with bespoke units?', a: 'Yes. Every bespoke structural element ships with the calc, the mix certificate, the cube-test record and the declaration of performance — as a single PDF pack for the engineer of record. Non-structural decorative items ship with the mix cert and a dimensional record.' },
+  { q: 'Where can WCCP deliver a bespoke unit?', a: 'Anywhere in mainland Britain on our own lorries. We have planned runs into Wales, the Midlands and the home counties from Holsworthy. Larger units go on a low-loader; tall items on planned wide-load routes.' },
+];
+
+const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+---
+
+<BaseLayout
+  title="How bespoke precast concrete is made — sketch to delivery (WCCP)"
+  description="The WCCP bespoke precast process — from Friday sketch to Monday quote, in-house design to Eurocode 2, mould fabrication, pour, demould and delivery. Cast in North Devon."
+  schema="Article"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-14 md:py-16">
+      <nav class="text-sm text-white/90 mb-6" aria-label="Breadcrumb">
+        <a href="/guides" class="hover:text-yellow">Guides</a><span class="mx-2 text-cast">/</span>
+        <span class="text-white/90">Bespoke precast process</span>
+      </nav>
+      <p class="eyebrow text-yellow mb-4">Process · Pillar guide</p>
+      <h1 class="font-display text-display-xl text-white mb-6 max-w-4xl">How bespoke precast concrete is made — sketch to delivery.</h1>
+
+      <div class="bg-navy-700 border-l-4 border-yellow p-6 max-w-3xl rounded-r">
+        <p class="text-white/90 text-lg leading-relaxed">
+          <strong class="text-white">Direct answer:</strong> A bespoke precast unit goes from sketch
+          to delivery in roughly six to eight weeks. The pattern is consistent: drawing in Friday,
+          quote and draft Monday, design to Eurocode 2 inside a week, mould fabrication 1–2 weeks,
+          rebar fix and pour the following week, demould and cure 7–14 days, then delivery on our
+          own lorry.
+        </p>
+      </div>
+
+      <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/90">
+        <div>By <span class="text-white font-semibold">WCCP Engineering Team</span> <!-- CLIENT: confirm individual reviewer name + CEng status --></div>
+        <div>Published <time datetime="2026-04-29">29 April 2026</time></div>
+        <div>Updated <time datetime="2026-04-29">29 April 2026</time></div>
+      </div>
+    </div>
+  </section>
+
+  <article class="container-wccp py-12 md:py-16">
+    <div class="grid lg:grid-cols-[1fr_18rem] gap-10 lg:gap-16">
+      <div class="max-w-3xl">
+
+        <section id="why" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Cast for the job, not pulled off a shelf.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            We have been casting concrete in North Devon for over 55 years. Long-serving yard
+            crew know what an awkward farm slab looks like, what a tight civils retaining job needs,
+            and what a one-off conservation piece is worth taking on. Roughly a third of what we
+            ship is bespoke — the rest is the
+            <a href="/products/cattle-cubicles" class="text-ember underline">catalogue</a>,
+            but the bespoke runs are why customers keep coming back.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            <a href="/products/bespoke" class="text-ember underline">Bespoke precast</a> wins where
+            the job has an oddity: a non-standard retained height, a beam-bearing pocket, a curved
+            face, an opening, a finish to match a listed building, or a service void that has to
+            land in millimetre-tolerance.
+          </p>
+        </section>
+
+        <section id="step-1" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Step 1 — Drawing in Friday, quote Monday.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Send us a sketch, a photo of an existing unit, an
+            engineer's drawing, or just a description on the phone.</strong> We do the rest. Most
+            quotes go back inside a working day; bespoke geometry that needs a structural calc
+            usually comes back inside the week.
+          </p>
+        </section>
+
+        <section id="step-2" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Step 2 — Design to Eurocode 2.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            Every bespoke structural unit is designed in-house to
+            <a href="/standards-explained#eurocode-2" class="text-ember underline">BS EN 1992-1-1
+            (Eurocode 2)</a>, with crack-width control to BS EN 1992-3 where liquid retention
+            applies (slurry tanks, water tanks, push-walls). Concrete specification follows
+            <a href="/standards-explained#bs-8500" class="text-ember underline">BS 8500-1:2023</a>
+            with the right exposure class for the duty.
+          </p>
+        </section>
+
+        <aside class="not-prose my-12 reveal">
+          <a href="/products/bespoke" class="group block bg-navy-700 text-white rounded-lg p-6 md:p-7 hover:bg-navy-600 transition-colors no-underline">
+            <p class="eyebrow text-yellow mb-2">Bespoke precast</p>
+            <p class="font-display text-xl md:text-2xl text-white font-semibold leading-snug">See examples and start a brief</p>
+            <p class="text-white/85 text-sm mt-2">From a single conservation piece to a 200-unit project run.</p>
+          </a>
+        </aside>
+
+        <section id="step-3" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Step 3 — Mould fabrication.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">A bespoke mould is built in our yard from steel, plywood or
+            GRP — whichever holds the form best at the volume.</strong> A simple flat-faced panel
+            reuses standard formwork. A curved or pocketed unit takes a week to fabricate; very
+            complex moulds run two to three weeks.
+          </p>
+        </section>
+
+        <section id="step-4" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Step 4 — Rebar fix and pour.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            Reinforcement cages are tied off-mould and lifted in once the mould is dressed and
+            release agent applied. The pour follows our
+            <a href="/standards-explained#bs-en-13369" class="text-ember underline">BS EN 13369</a>
+            factory production control: cube tests every batch, slump tested at the mixer, cover
+            checked before pour, dimensional record at demould.
+          </p>
+        </section>
+
+        <section id="step-5" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Step 5 — Demould and cure.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Strip the mould at 18–24 hours, then cure for 7–14 days
+            depending on duty.</strong> Slurry-spec units cure for the full 14 days before they
+            see any load. Each unit is marked with a casting reference that ties back to the
+            cube-test record and the declaration of performance.
+          </p>
+        </section>
+
+        <section id="step-6" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Step 6 — Transport.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            Loaded onto our own HIAB-equipped lorries (or a low-loader for tall items) and run
+            to your slab. We do most of the South West weekly and run planned routes into the
+            Midlands and home counties. The unit comes off the lorry into position on the day —
+            no third-party haulier, no transhipment damage.
+          </p>
+        </section>
+
+        <section id="faq" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-6">Frequently asked questions</h2>
+          <div class="space-y-4">
+            {faqs.map((f) => (
+              <details class="card p-5 group">
+                <summary class="font-display text-lg font-bold text-navy cursor-pointer flex items-start justify-between gap-4">
+                  <span>{f.q}</span>
+                  <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+                </summary>
+                <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section class="bg-navy text-white rounded-lg p-8 md:p-10">
+          <h2 class="font-display text-2xl md:text-3xl text-white mb-3">Have a bespoke job in mind?</h2>
+          <p class="text-white/90 mb-6 leading-relaxed">Send the sketch — we'll quote inside a working day.</p>
+          <div class="flex flex-wrap gap-3">
+            <a href="/products/bespoke" class="btn-yellow">See bespoke examples</a>
+            <a href="/quote" class="btn bg-white text-navy hover:bg-bone">Start a quote</a>
+          </div>
+        </section>
+      </div>
+
+      <aside class="hidden lg:block">
+        <div class="sticky top-24">
+          <p class="eyebrow text-cast mb-4">On this page</p>
+          <ol class="space-y-3 text-sm border-l border-cast-100 pl-4">
+            <li><a href="#why" class="text-cast hover:text-ember">Why bespoke</a></li>
+            <li><a href="#step-1" class="text-cast hover:text-ember">1 — Sketch to quote</a></li>
+            <li><a href="#step-2" class="text-cast hover:text-ember">2 — Design</a></li>
+            <li><a href="#step-3" class="text-cast hover:text-ember">3 — Mould</a></li>
+            <li><a href="#step-4" class="text-cast hover:text-ember">4 — Pour</a></li>
+            <li><a href="#step-5" class="text-cast hover:text-ember">5 — Demould</a></li>
+            <li><a href="#step-6" class="text-cast hover:text-ember">6 — Transport</a></li>
+            <li><a href="#faq" class="text-cast hover:text-ember">FAQ</a></li>
+          </ol>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+  <section class="bg-bone-200 py-16">
+    <div class="container-wccp">
+      <p class="eyebrow text-cast mb-3">Related guides</p>
+      <h2 class="font-display text-display-md mb-8">Keep reading.</h2>
+      <div class="grid md:grid-cols-3 gap-5">
+        <a href="/guides/prestressed-vs-reinforced" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Engineering</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Prestressed vs reinforced</h3>
+          <p class="text-cast text-sm">When each system suits.</p>
+        </a>
+        <a href="/standards-explained" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Reference</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Standards explained</h3>
+          <p class="text-cast text-sm">BS, BS EN and Eurocodes for UK precast.</p>
+        </a>
+        <a href="/sectors/bespoke" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Sector</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Bespoke precast sector</h3>
+          <p class="text-cast text-sm">Examples and how to brief us.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-16 text-center">
+    <h2 class="font-display text-display-lg mb-4">Talk to the yard.</h2>
+    <p class="text-cast-700 text-lg max-w-xl mx-auto mb-8">Same-day callback Monday to Friday.</p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+      <a href="/quote" class="btn-primary">Configure a quote</a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,206 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import { site } from '@/config/site';
+
+// NOTE: PDFs at /downloads/conformity/*.pdf are intentionally empty placeholder
+// files at present. Real declaration-of-performance documents are dropped in
+// pre-launch by the engineering team. File sizes ("·· KB") are placeholders.
+
+const standards = [
+  {
+    code: 'BS EN 14992:2007+A1:2012',
+    title: 'Precast concrete products: wall elements',
+    blurb: 'Harmonised European standard for precast wall elements — basis for UKCA marking on every WCCP panel.',
+    pdf: '/downloads/conformity/bs-en-14992.pdf',
+    size: '·· KB',
+  },
+  {
+    code: 'BS 8500-1:2023',
+    title: 'Concrete: complementary British Standard to BS EN 206',
+    blurb: 'UK specification for concrete mixes by exposure class, strength and cement content.',
+    pdf: '/downloads/conformity/bs-8500-1.pdf',
+    size: '·· KB',
+  },
+  {
+    code: 'BS EN 13369:2018',
+    title: 'Common rules for precast concrete products',
+    blurb: 'Factory production control framework underpinning every product-specific precast standard.',
+    pdf: '/downloads/conformity/bs-en-13369.pdf',
+    size: '·· KB',
+  },
+  {
+    code: 'Eurocode 2 (BS EN 1992-1-1)',
+    title: 'Design of concrete structures',
+    blurb: 'Structural design code for concrete in the UK and EU — every WCCP calc is to Eurocode 2.',
+    pdf: '/downloads/conformity/eurocode-2.pdf',
+    size: '·· KB',
+  },
+  {
+    code: 'SSAFO 2018',
+    title: 'Silage, Slurry and Agricultural Fuel Oil Regulations',
+    blurb: 'Statutory standard for slurry, silage and fuel-oil storage in England — 20-year design life minimum.',
+    pdf: '/downloads/conformity/ssafo-2018.pdf',
+    size: '·· KB',
+  },
+  {
+    code: 'BS 5502-22:2003',
+    title: 'Buildings and structures for agriculture',
+    blurb: 'Code of practice for cattle housing — cubicles, kerbs, gates, livestock loadings.',
+    pdf: '/downloads/conformity/bs-5502-22.pdf',
+    size: '·· KB',
+  },
+  {
+    code: 'CE / UKCA marking',
+    title: 'Construction Products Regulation',
+    blurb: 'Conformity-mark declarations of performance for every product covered by a harmonised standard.',
+    pdf: '/downloads/conformity/ce-ukca-declaration.pdf',
+    size: '·· KB',
+  },
+];
+
+const serviceSchema = {
+  name: 'Standards conformity documentation',
+  description:
+    'Downloadable conformity statements for every standard WCCP precast concrete is declared to — BS EN 14992, BS 8500-1, BS EN 13369, Eurocode 2, SSAFO 2018, BS 5502-22 and UKCA marking.',
+  provider: { '@type': 'Organization', name: site.name },
+  areaServed: site.areasServed,
+  serviceType: 'Construction products conformity documentation',
+};
+---
+
+<BaseLayout
+  title="Standards & conformity statements — downloadable PDF documentation"
+  description="Download conformity statements for every standard WCCP precast is declared to: BS EN 14992, BS 8500-1:2023, BS EN 13369, Eurocode 2, SSAFO 2018, BS 5502-22 and UKCA / CE marking. PDFs verified Q1 2026."
+  schema="Service"
+  schemaData={serviceSchema}
+>
+  <!-- Hero -->
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-14 md:py-16">
+      <Breadcrumbs
+        variant="navy"
+        items={[
+          { href: '/standards', label: 'Standards' },
+          { label: 'Conformity statements' },
+        ]}
+      />
+      <p class="eyebrow text-yellow mt-6 mb-4">Standards &amp; conformity statements</p>
+      <h1 class="font-display text-display-xl text-white mb-6 max-w-4xl">
+        Documentation. On demand.
+      </h1>
+      <p class="text-lg md:text-xl text-white/90 max-w-3xl leading-relaxed">
+        Every panel WCCP casts is declared to a standard. This page lists each one with a
+        downloadable conformity statement — the same paperwork that ships in the engineer's
+        pack with every load.
+      </p>
+    </div>
+  </section>
+
+  <!-- Conformity grid -->
+  <section class="container-wccp py-16 md:py-20">
+    <div class="max-w-3xl mb-10">
+      <p class="eyebrow text-cast mb-3">Conformity register · {standards.length} statements</p>
+      <h2 class="font-display text-display-lg mb-4">Every standard, one click away.</h2>
+      <p class="text-cast-700 text-lg leading-relaxed">
+        Statements below are kept current to the latest published edition of each standard and
+        re-verified at the start of every quarter.
+      </p>
+    </div>
+
+    <div class="grid gap-3 reveal-stagger" role="list">
+      {standards.map((s) => (
+        <article class="card p-5 md:p-6" role="listitem">
+          <div class="grid md:grid-cols-[18rem_1fr_auto] gap-4 md:gap-6 items-start md:items-center">
+            <!-- Code + title -->
+            <div>
+              <p class="font-mono text-sm font-bold text-navy tracking-tight">{s.code}</p>
+              <p class="font-display text-base font-bold text-navy mt-1 leading-snug">{s.title}</p>
+            </div>
+
+            <!-- Plain English blurb + verified stamp -->
+            <div>
+              <p class="text-cast-700 text-sm leading-relaxed">{s.blurb}</p>
+              <p class="text-xs text-cast mt-2 font-mono">Last verified: 2026-Q1</p>
+            </div>
+
+            <!-- Download CTA -->
+            <div class="md:text-right">
+              <a
+                href={s.pdf}
+                class="btn-secondary btn-sm inline-flex"
+                download
+                aria-label={`Download conformity statement for ${s.code} (PDF, ${s.size})`}
+              >
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke-linecap="round" stroke-linejoin="round"/>
+                  <polyline points="7 10 12 15 17 10" stroke-linecap="round" stroke-linejoin="round"/>
+                  <line x1="12" y1="15" x2="12" y2="3" stroke-linecap="round"/>
+                </svg>
+                <span>Download PDF ({s.size})</span>
+              </a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Email fallback note -->
+    <div class="mt-10 card p-6 md:p-8 bg-bone-200 border-dashed">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <p class="eyebrow text-ember mb-2">Don't see what you need?</p>
+          <p class="text-cast-700 leading-relaxed">
+            Email <a href="mailto:standards@wccp.co.uk" class="text-navy font-bold hover:text-ember underline underline-offset-4">standards@wccp.co.uk</a> — we'll send the spec sheet within one working day.
+          </p>
+        </div>
+        <a href="mailto:standards@wccp.co.uk" class="btn-primary shrink-0">Email standards@wccp.co.uk</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How the paperwork pack works -->
+  <section class="bg-bone-200 py-16 md:py-20">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-[1fr_18rem] gap-10 items-start">
+        <div class="max-w-3xl">
+          <p class="eyebrow text-cast mb-3">How it ships</p>
+          <h2 class="font-display text-display-md mb-5">One PDF per load.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            Every WCCP delivery arrives with a single PDF pack referencing the relevant statements
+            above. Inside: the declaration of performance, the structural calc, the BS 8500 mix
+            certificate, the cube-test record and the dimensional check. Stamped, dated, signed.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            Records are kept for ten years and available for notified-body audit. Building Control,
+            QS or main-contractor procurement: ask for the load reference and the pack drops in
+            your inbox.
+          </p>
+        </div>
+        <aside class="card p-6 bg-yellow rounded-lg lg:sticky lg:top-24">
+          <p class="eyebrow text-navy mb-2">Need a sample?</p>
+          <p class="text-sm text-navy mb-4 leading-relaxed">
+            We'll send a redacted sample paperwork pack so your QS can review the format before you order.
+          </p>
+          <a href={`mailto:${site.contact.quotesEmail}`} class="text-navy font-bold text-sm hover:underline">
+            Request a sample pack →
+          </a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="container-wccp py-16 text-center">
+    <h2 class="font-display text-display-lg mb-4">Specifying for a tender?</h2>
+    <p class="text-cast-700 text-lg max-w-xl mx-auto mb-8">
+      Every WCCP product covered by a harmonised standard ships with a declaration of performance.
+      Engineers, QSs and procurement officers — ring up and we'll talk you through the pack.
+    </p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+      <a href="/standards" class="btn-ghost">Read the standards explainer</a>
+      <a href="/quote" class="btn-primary">Configure a quote</a>
+    </div>
+  </section>
+</BaseLayout>

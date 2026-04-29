@@ -1,0 +1,90 @@
+---
+// Responsive image gallery for product pages.
+// Renders a captioned grid of variant / installation / detail photos.
+//
+// Usage:
+//   <ProductGallery
+//     eyebrow="Variants"
+//     heading="Every shape we cast."
+//     intro="Optional intro paragraph."
+//     images={[
+//       { src: '/images/products/foo/bar.jpg', alt: 'Long alt for SEO', caption: 'Short label' },
+//     ]}
+//   />
+
+interface ImageItem {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  intro?: string;
+  images: ImageItem[];
+  cols?: 2 | 3 | 4;
+  background?: 'white' | 'bone' | 'navy';
+}
+
+const { eyebrow = 'Gallery', heading, intro, images, cols = 3, background = 'white' } = Astro.props as Props;
+
+// Each gallery image lives under public/images/... — for every JPG / PNG we
+// generate a WebP sibling at build time via scripts/generate-webp.mjs.
+// Build a <picture> with the WebP source first, falling back to the original
+// for browsers that can't render WebP (vanishingly rare in 2026, but cheap).
+function toWebp(src: string): string | null {
+  const m = src.match(/^(.*?)(\.(?:jpe?g|png))$/i);
+  return m ? `${m[1]}.webp` : null;
+}
+
+const bgClass = {
+  white: 'bg-white',
+  bone: 'bg-bone-200',
+  navy: 'bg-navy text-white',
+}[background];
+
+const headingClass = background === 'navy' ? 'text-white' : 'text-navy';
+const introClass = background === 'navy' ? 'text-white/80' : 'text-cast-700';
+const captionClass = background === 'navy' ? 'text-white/70' : 'text-cast';
+
+const colClass = {
+  2: 'sm:grid-cols-2',
+  3: 'sm:grid-cols-2 lg:grid-cols-3',
+  4: 'sm:grid-cols-2 lg:grid-cols-4',
+}[cols];
+---
+
+<section class={`${bgClass} py-20`}>
+  <div class="container-wccp">
+    <div class="max-w-2xl mb-10">
+      {eyebrow && <p class={`eyebrow ${captionClass} mb-3`}>{eyebrow}</p>}
+      <h2 class={`font-display text-display-lg mb-4 ${headingClass}`}>{heading}</h2>
+      {intro && <p class={`text-lg ${introClass}`}>{intro}</p>}
+    </div>
+    <div class={`grid grid-cols-1 ${colClass} gap-6`}>
+      {images.map((img) => {
+        const webp = toWebp(img.src);
+        return (
+          <figure class="group">
+            <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
+              <picture>
+                {webp && <source srcset={webp} type="image/webp" />}
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+            </div>
+            {img.caption && (
+              <figcaption class={`mt-3 text-sm font-medium ${captionClass}`}>{img.caption}</figcaption>
+            )}
+          </figure>
+        );
+      })}
+    </div>
+  </div>
+</section>

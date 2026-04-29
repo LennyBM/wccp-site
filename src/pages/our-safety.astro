@@ -1,0 +1,167 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import CTAStrip from '@/components/CTAStrip.astro';
+import { site } from '@/config/site';
+
+// CLIENT: confirm — every accreditation status, named H&S lead, near-miss
+// reporting cadence, and ISO 45001 progress below is a placeholder.
+// This page exists to make safety a stated, visible priority. It is deliberately
+// restrained. We do not list specific incidents or response narratives here.
+
+const credentials = [
+  {
+    name: 'ISO 45001 — Occupational Health & Safety',
+    body: 'Implementation underway at the new Chilsworthy facility. External certification scheduled — CLIENT: confirm target date.',
+    status: 'in-progress',
+  },
+  {
+    name: 'CHAS accreditation',
+    body: 'Contractor health-and-safety assessment scheme. CLIENT: confirm current status / renewal date.',
+    status: 'in-progress',
+  },
+  {
+    name: 'Constructionline',
+    body: 'Pre-qualification supplier database used by main contractors and public-sector clients. CLIENT: confirm Bronze / Silver / Gold tier.',
+    status: 'in-progress',
+  },
+  {
+    name: 'CE / UKCA marking',
+    body: 'All structural precast products carry CE/UKCA marking with declarations of performance. Quality and dimensional control documented per BS EN 14992.',
+    status: 'current',
+  },
+];
+
+const principles = [
+  {
+    eyebrow: '01',
+    title: 'A purpose-built modern facility',
+    body: 'Our Chilsworthy yard was opened in 2023 — purpose-built, with modern plant, dedicated walkways, segregated yard traffic and fixed lifting gantries. 46 jobs in a part of Devon that needed them, on a site designed for the work that gets done on it.',
+  },
+  {
+    eyebrow: '02',
+    title: 'Clear ownership',
+    body: "Health and safety is led by a named member of the management team — CLIENT: confirm name and title. Site briefings, near-miss reporting and toolbox talks are part of how the yard runs, not a paperwork exercise. Cadence: CLIENT: confirm.",
+  },
+  {
+    eyebrow: '03',
+    title: 'Standards, audited',
+    body: 'Every product cast at WCCP is made to British and European standards (BS EN 14992, BS 8500-1:2023, BS EN 1992). Cube testing on every pour. Records kept on file for ten years and available with delivery on request.',
+  },
+  {
+    eyebrow: '04',
+    title: 'Visitors, contractors and drivers',
+    body: 'All site visitors sign in, are inducted to current PPE and traffic-management requirements, and are escorted in production areas. Drivers collecting from the yard have a documented loading plan.',
+  },
+];
+---
+
+<BaseLayout
+  title="How we work safely"
+  description="WCCP's approach to safety at the Chilsworthy precast facility. Modern purpose-built yard, accreditation programme, named ownership, audited standards."
+  schema="Organization"
+>
+  <!-- Hero -->
+  <section class="relative bg-navy-700 text-white overflow-hidden">
+    <div aria-hidden="true" class="absolute inset-0 grid-pattern opacity-30"></div>
+    <div class="relative container-wccp py-12 lg:py-16">
+      <div class="mb-10">
+        <Breadcrumbs items={[{ label: 'How we work safely' }]} variant="navy" />
+      </div>
+      <div class="max-w-3xl">
+        <p class="eyebrow text-ember mb-6">
+          <span class="inline-block w-8 h-px bg-ember align-middle mr-3"></span>
+          A stated priority
+        </p>
+        <h1 class="font-display text-display-2xl text-white mb-6">
+          How we work safely.
+        </h1>
+        <p class="text-lg lg:text-xl text-white/90 leading-relaxed">
+          A modern, purpose-built yard. Clear ownership. Standards that are audited.
+          We take safety seriously — for our team, our visitors, and the drivers
+          who pick up from us every week.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modernisation lead -->
+  <section class="container-wccp section-rhythm">
+    <div class="grid lg:grid-cols-12 gap-10 items-start">
+      <div class="lg:col-span-5">
+        <p class="eyebrow text-ember mb-3">2023 onwards</p>
+        <h2 class="font-display text-display-lg text-navy-700 mb-5">
+          A modern facility, designed for the work.
+        </h2>
+      </div>
+      <div class="lg:col-span-7 max-w-prose-wide">
+        <p class="text-cast-700 text-lg leading-relaxed mb-5">
+          In 2023 we moved into a purpose-built precast facility at Chilsworthy, Holsworthy.
+          Production buildings, batching plant, silos, water tower, workshops, offices —
+          and 46 jobs created on a site engineered for modern precast manufacture.
+        </p>
+        <p class="text-cast-700 text-lg leading-relaxed">
+          The new yard separates pedestrian and vehicle routes, has fixed lifting points
+          and gantries on the main casting beds, and modernised mould-handling. It's the
+          single largest investment in safer working that WCCP has made — and it's the
+          baseline on which everything else here sits.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Principles -->
+  <section class="bg-bone-200 section-rhythm">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">How it works on the floor</p>
+        <h2 class="font-display text-display-lg">Four things, everyday.</h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        {principles.map((p) => (
+          <div class="card p-8">
+            <div class="font-display font-semibold text-ember text-display-md mb-3 leading-none" style="font-variation-settings: 'wdth' 75;">{p.eyebrow}</div>
+            <h3 class="font-display text-display-sm text-navy-700 mb-3">{p.title}</h3>
+            <p class="text-cast-700 leading-relaxed">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Credentials -->
+  <section class="container-wccp section-rhythm">
+    <div class="max-w-2xl mb-12">
+      <p class="eyebrow text-cast mb-3">Accreditations &amp; pathway</p>
+      <h2 class="font-display text-display-lg">What we hold, and what's on the way.</h2>
+      <p class="text-cast-700 text-lg mt-4">
+        Some accreditations are current; others are in progress and we'll update this
+        page as each lands. All status notes below are placeholders pending confirmation.
+      </p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-4">
+      {credentials.map((c) => (
+        <div class={`card p-6 ${c.status === 'in-progress' ? 'border-dashed' : ''}`}>
+          <div class="flex items-start justify-between gap-3 mb-3">
+            <h3 class="font-display text-lg font-bold text-navy-700">{c.name}</h3>
+            {c.status === 'current' ? (
+              <span class="trust-badge bg-navy-700 text-white text-xs flex-shrink-0">Current</span>
+            ) : (
+              <span class="trust-badge bg-yellow text-navy-700 text-xs flex-shrink-0">In progress</span>
+            )}
+          </div>
+          <p class="text-cast-700 text-sm leading-relaxed">{c.body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <CTAStrip
+    eyebrow="Talk to the yard"
+    title="Drawings on Friday, panels Monday."
+    description="Specifying for a project that needs documented compliance? Ring the yard and we'll talk through what's on file."
+    primaryCta={{ href: '/quote', label: 'Configure a quote' }}
+    secondaryCta={{ href: `tel:${site.contact.phoneIntl}`, label: `Call ${site.contact.phone}` }}
+    variant="navy"
+  />
+</BaseLayout>

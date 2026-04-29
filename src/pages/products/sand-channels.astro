@@ -1,0 +1,350 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import FittedVsSupply from '@/components/FittedVsSupply.astro';
+import SpecSheetButton from '@/components/SpecSheetButton.astro';
+import SpecDownloads from '@/components/SpecDownloads.astro';
+import { site } from '@/config/site';
+import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
+
+const specs = [
+  { product: '3 Metre Diagonal Slats', dimensions: '203 × 1220 × 3000 mm', weight: '1215 kg', notes: 'Covers 3m V-section channels; heavy-duty option' },
+  { product: "'V' Section Sand Channels", dimensions: '1180 × 1180 × 2950 mm', weight: '2310 kg', notes: 'Interlocking lip & rebate; narrow base for sand flow' },
+  { product: "Shallow 'V' Section", dimensions: '600 × 1180 × 2950 mm', weight: '1815 kg', notes: 'Interlocking lip & rebate' },
+  { product: "Straight Slats — 13'", dimensions: '3950 × 1200 × 180 mm', weight: '1380 kg', notes: '—' },
+  { product: 'Straight Slats — 12\'6"', dimensions: '3195 × 1200 × 180 mm', weight: '1330 kg', notes: '—' },
+  { product: 'Straight Slats — 10\'6"', dimensions: '3200 × 1160 × 200 mm', weight: '1485 kg', notes: '—' },
+  { product: 'Straight Slats — 8\'10"', dimensions: '2685 × 1200 × 180 mm', weight: '960 kg', notes: '—' },
+  { product: 'Straight Slats — 8\'6"', dimensions: '2585 × 1200 × 180 mm', weight: '924 kg', notes: '—' },
+  { product: 'Single Rib Hammer-Head Slats', dimensions: 'up to 10\'6" (3195mm) · 150mm thick · 130mm rib · 210mm head', weight: '~16 kg first ft + 13 kg/ft', notes: '40mm gaps between heads' },
+];
+
+const applications = [
+  'Sand-bedded dairy housing — high-yielding herds',
+  'Robotic milking sheds where cow comfort drives lying time',
+  'Cubicle housing retro-fits switching from mat to sand',
+  'Mixed-bedding sheds (sand under cubicles, slurry under loafing)',
+  'New-build steel-frame dairy units to AHDB lying-comfort spec',
+  'Beef finishing pens with deep-bedded lying areas',
+  'Bull pens and isolation boxes needing high-flow drainage',
+];
+
+const related = [
+  { href: '/products/slurry-channels', label: 'Slurry Channels', meta: 'Standard / midi / mini · 8ft slats' },
+  { href: '/products/cattle-cubicles', label: 'Cattle Cubicles', meta: 'AHDB 2024 · sand-bedding ready' },
+  { href: '/products/cubicle-end-walls', label: 'Cubicle End Walls', meta: 'Single + double row option' },
+  { href: '/products/slurry-storage', label: 'Slurry Storage', meta: 'SSAFO 2018-compliant tanks' },
+];
+
+const faqs = [
+  { q: 'Why a V section instead of a flat-bottomed channel?', a: 'Sand is the enemy of a flat-bottomed slurry channel — it settles in the corners, the slurry crusts on top, and within a season you have a silt problem that needs digging out. The V profile narrows at the base so the cross-sectional flow stays high even at low volumes, sand is carried along by the slurry instead of dropping out, and self-cleaning continues. It is the standard recommendation for sand-bedded dairy housing across the UK industry — AHDB and the AFBI in Northern Ireland have both published on this.' },
+  { q: "What's the recommended fall?", a: 'A 2% fall (1 in 50) along the run is the standard recommendation — enough to keep sand moving, gentle enough that the channel floor does not need stepping. On longer runs we will sometimes go to 1.5% over the first third and 2.5% over the last two thirds to compensate for the higher solids load near the reception pit. The install drawing we issue with delivery shows the falls for your specific shed layout.' },
+  { q: 'How does it pair with the diagonal slats?', a: "The 3 Metre Diagonal Slats are cast specifically to span the V-Section channels — same 1180mm width on the channel, same lifting-eye locations, same C40/50 SR mix. The diagonal pattern self-cleans as cattle walk and the gaps are sized to AHDB recommendations. Heavy-duty slats are available if you want to drive a feeder wagon over them. The slats from this range are interchangeable with our 8' diagonal slats from the standard slurry channel range, so you can run a mixed shed off common slat stock." },
+  { q: 'Lead time?', a: 'Standard V-section channels and matching 3m slats from catalogue ship in 3 to 5 weeks from order confirmation. The longer lead vs standard slurry channels is because the V-mould sees less use — we cast to order rather than from stock. Spring and autumn are our busiest seasons, so plan accordingly. We deliver on our own HIAB fleet across the South West same-week, and on planned UK runs in 2 to 3 weeks once the units are cast.' },
+  { q: 'Can you fit this around an existing parlour layout?', a: 'Yes — that is the bulk of our work. Send us a sketch or a survey of the existing slab, parlour pit, return passage and feed face, and we will set out the channel run and slat geometry to suit. The channels come in 1180×1180×2950mm units, and the shallow variant (600mm height) is useful where a 2950mm full-depth channel will not clear an existing foundation. Bespoke channel depths quoted on request.' },
+];
+
+const productSchema = {
+  name: "Precast V-Section Sand Channels & Slats",
+  description: "Precast V-section sand-channel system for sand-bedded cubicle housing. Narrow base improves flow rate, prevents settlement, 2% fall recommended. Compatible with 3m diagonal slats and straight slat covers in multiple lengths.",
+  brand: { '@type': 'Brand', name: site.name },
+  manufacturer: { '@type': 'Organization', name: site.name },
+  category: 'Precast concrete sand channel',
+  material: 'Reinforced concrete, C40/50 sulphate-resisting (BS 8500-1:2023)',
+  weight: {
+    '@type': 'QuantitativeValue',
+    minValue: 924,
+    maxValue: 2310,
+    unitCode: 'KGM',
+    unitText: 'kilogram per unit',
+  },
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 14844 (precast culvert geometry)' },
+    { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 sulphate-resisting (BS 8500-1:2023)' },
+    { '@type': 'PropertyValue', name: 'Profile', value: 'V-section, narrow base for sand flow' },
+    { '@type': 'PropertyValue', name: 'Recommended fall', value: '2% (1 in 50) along the run' },
+    { '@type': 'PropertyValue', name: 'Standard channel size', value: '1180 × 1180 × 2950 mm' },
+    { '@type': 'PropertyValue', name: 'Shallow variant', value: '600 × 1180 × 2950 mm' },
+    { '@type': 'PropertyValue', name: 'Slat span', value: '3000 mm diagonal slats matched to channel width' },
+    { '@type': 'PropertyValue', name: 'Straight slat lengths', value: "8'6\" / 8'10\" / 10'6\" / 12'6\" / 13'" },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '3–5 weeks' },
+    { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
+  ],
+  offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="V-Section Sand Channels & Slats — for sand-bedded dairy"
+  description="Precast V-section sand-channel system for sand-bedded cubicle housing. Narrow base improves flow rate, prevents settlement, 2% fall recommended. Compatible with 3m diagonal slats and straight slat covers."
+  image="/og/sand-channels.png"
+  schema="Product"
+  schemaData={productSchema}
+  whatsappContext="V-Section Sand Channels"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <TrustStrip />
+
+  <!-- Hero -->
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow text-yellow mb-4">Agricultural · sand-bedded dairy</p>
+          <h1 class="font-display text-display-xl text-white mb-4">V-Section Sand Channels & Slats.</h1>
+          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">
+            Narrow at the base. Sand never sits.
+          </p>
+          <h2 class="sr-only">What's a V-section sand-slurry channel?</h2>
+          <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
+            <strong class="not-italic text-white">What's a V-section sand-slurry channel?</strong>
+            A precast slurry channel with a "V" cross-section — wide at the top, narrow at the
+            base. The geometry keeps flow moving so sand bedding never settles out and blocks the
+            channel. WCCP's range pairs with 3&nbsp;m diagonal slats and runs at 2% fall.
+          </blockquote>
+          <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
+            'V' section channels narrow at the base to keep flow moving — 2% fall recommended.
+            Paired with 3m diagonal slats and a straight-slat range from 8'6" to 13'.
+          </p>
+          <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
+            <li class="flex gap-2"><span class="text-yellow">·</span> V profile, narrow base</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 2% fall recommended</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 3m diagonal slats</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 8'6"–13' straight slats</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Interlocking lip & rebate</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 3–5 week lead</li>
+          </ul>
+          <div class="flex flex-wrap gap-3">
+            <a href="/quote?product=V-Section+Sand+Channels" class="btn-primary">Configure a quote</a>
+            <a href="/downloads/specs/sand-channels.pdf" class="btn-yellow">Download spec sheet</a>
+            <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">
+              Call {site.contact.phone}
+            </a>
+          </div>
+        </div>
+        {/* TODO: replace placeholder with a V-section sand channel photo when available */}
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
+          <img
+            src="/images/products/silage-clamp-walls.jpg"
+            alt="Precast V-section sand channels — placeholder image"
+            class="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spec table -->
+  <section class="container-wccp py-20">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Specification</p>
+      <h2 class="font-display text-display-lg mb-4">Channels, slats, dimensions and weights.</h2>
+      <p class="text-cast-700 text-lg">
+        Two V-section depths, 3m diagonal slats, a five-length straight-slat range, plus the
+        single-rib hammer-head profile for narrow-gap applications. Heavy-duty slats on application.
+      </p>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="spec-table w-full text-left border-collapse">
+        <thead class="bg-navy text-white">
+          <tr>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Product</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Dimensions (L×W×H)</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Weight</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          {specs.map((s, i) => (
+            <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
+              <td class="px-4 py-3 font-bold text-navy">{s.product}</td>
+              <td class="px-4 py-3 font-mono text-sm">{s.dimensions}</td>
+              <td class="px-4 py-3">{s.weight}</td>
+              <td class="px-4 py-3 text-cast">{s.notes}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-cast text-sm mt-4">
+      All units cast in C40/50 sulphate-resisting concrete with cast-in lifting eyes.
+      Conformity statement to BS EN 14844 issued with delivery. Bespoke lengths quoted on application.
+    </p>
+  </section>
+
+  <!-- Applications -->
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow text-cast mb-3">Where they go</p>
+          <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            Sand bedding is the gold standard for cow comfort, lying time and lameness reduction —
+            but only if the slurry-and-sand handling underneath does its job. That is what this system is for.
+          </p>
+          <ul class="space-y-3">
+            {applications.map((a) => (
+              <li class="flex gap-3 text-cast-700 leading-relaxed">
+                <span class="text-ember font-bold mt-1">·</span>
+                <span>{a}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="card p-8">
+          <p class="eyebrow text-cast mb-3">Standards & references</p>
+          <h3 class="font-display text-2xl font-bold text-navy mb-4">Cast and detailed to current best practice.</h3>
+          <dl class="space-y-4 text-sm">
+            <div>
+              <dt class="font-bold text-navy">SSAFO 2018</dt>
+              <dd class="text-cast">Silage, Slurry & Agricultural Fuel Oil Regulations — channel and storage requirements for England.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS EN 14844</dt>
+              <dd class="text-cast">Precast concrete products — box culverts. Geometry, tolerances and conformity testing.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS 8500-1:2023</dt>
+              <dd class="text-cast">Concrete specification — C40/50 sulphate-resisting mix designed for the slurry environment.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">AHDB Dairy</dt>
+              <dd class="text-cast">Sand-bedding lying-comfort guide — recommended channel falls and slat-gap dimensions.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">AFBI Hillsborough</dt>
+              <dd class="text-cast">Sand-recovery research — V-section profile recommendations for high-flow sand handling.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Configurator CTA -->
+  <section class="bg-yellow text-navy py-16">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-navy mb-2">Configure your sand channel run</p>
+          <h2 class="font-display text-display-md">Send shed dimensions and herd size — we will quote inside 24 hours.</h2>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href="/quote?product=V-Section+Sand+Channels" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
+          <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="container-wccp py-20">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
+      <div>
+        <p class="eyebrow text-cast mb-3">Related products</p>
+        <h2 class="font-display text-display-lg">Often ordered alongside.</h2>
+      </div>
+      <a href="/products" class="text-ember font-bold hover:text-ember-700 inline-flex items-center gap-2">
+        View full range
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" />
+          <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+    <RelatedProductGrid items={related} />
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">Common questions</p>
+        <h2 class="font-display text-display-lg mb-4">What people ask about V-section sand channels.</h2>
+        <p class="text-cast-700 text-lg">
+          Five questions we answer most weeks. If yours is not here, ring the yard.
+        </p>
+      </div>
+      <div class="max-w-3xl space-y-4">
+        {faqs.map((f) => (
+          <details class="card p-6 group">
+            <summary class="font-display text-lg font-bold text-navy cursor-pointer list-none flex justify-between items-start gap-4">
+              <span>{f.q}</span>
+              <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <SpecDownloads
+    intro="Sand-channel sections plus the dish-channel technical reference for adjacent yard drainage."
+    downloads={[
+      { href: '/downloads/specs/sand-channels.pdf', title: 'Sand channels — overview', meta: 'PDF' },
+      { href: '/downloads/specs/slurry-handling/wccp-slurry-handling-v-section-sand-slurry-channels.pdf', title: 'V-section sand & slurry channels', meta: 'PDF · 290 KB' },
+      { href: '/downloads/specs/slurry-handling/wccp-slurry-handling-shallow-v-section-sand-slurry-channels.pdf', title: 'Shallow V-section sand & slurry channels', meta: 'PDF · 356 KB' },
+      { href: '/downloads/specs/home/wccp-home-dish-channel-tech.pdf', title: 'Dish channel — technical', meta: 'PDF · 27 KB' },
+    ]}
+  />
+
+  <!-- Supply-only vs Fitted -->
+  <section class="container-wccp section-rhythm border-t border-cast-100">
+    <FittedVsSupply
+      productName="V-Section Sand Channels"
+      defaultMode="supply"
+      supply={{
+        price: 'from £640/lm complete system',
+        leadTime: '3–5 weeks',
+        includes: [
+          'V-section channels + matching 3m diagonal slats',
+          'Cast-in-place delivery on our HIAB',
+          'Lifting eyes pre-cast on every unit',
+          'Conformity statement to BS EN 14844',
+          'Install drawing showing falls and slat layout',
+        ],
+        excludes: [
+          'Slab and chamber excavation works',
+          'On-site setting and bedding-mortar',
+        ],
+      }}
+      note="Indicative 2026 pricing per linear metre for V-section + slat runs over 30m. Heavy-duty slat upgrades, mixed straight-slat lengths and bespoke channel depths quoted individually — send the shed sketch and we'll come back within a working day."
+    />
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-navy text-white py-20">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
+      <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">
+        Send us shed dimensions, herd size and the bedding type. Quote and lead-time same day.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/quote?product=V-Section+Sand+Channels" class="btn-yellow">Configure a quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
+      </div>
+    </div>
+  </section>
+
+  <SpecSheetButton productSlug="sand-channels" productName="V-Section Sand Channels" href="/downloads/specs/sand-channels.pdf" />
+  <ProductWarrantyLine />
+</BaseLayout>

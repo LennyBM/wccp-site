@@ -1,6 +1,14 @@
 /* Self-hosted variable fonts (replaces Google Fonts request chain) */
 @import "@fontsource-variable/inter/index.css";
-@import "@fontsource-variable/bricolage-grotesque/index.css";
+
+/* Newsreader — solid editorial serif (NYT-coded). Heritage-industrial fit
+   for a 55-year precast concrete brand. Fraunces remains in the stack as a
+   transitional fallback while the CDN warms. */
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap');
+
+/* DM Sans 700/800 — heavy industrial sans used inside the brandmark lockup
+   (Logo.astro). Confident, geometric, NOT generic body sans. */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -8,15 +16,19 @@
 
 @layer base {
   :root {
-    --color-navy:      #0A1A4F;
+    --color-navy:      #3a5cb5;
     --color-navy-logo: #0000FE;
-    --color-navy-ink:  #040A1F;
-    --color-yellow:    #F5C518;
-    --color-yellow-logo: #FBF547;
-    --color-ember:     #E54D17;
-    --color-bone:      #FAFAF7;
+    --color-navy-ink:  #0A1226;
+    --color-yellow:    #fff005;
+    --color-yellow-logo: #fff005;
+    /* Legacy aliases — rewired to brand cobalt/yellow palette */
+    --color-forest:    #3a5cb5;
+    --color-terracotta:#fff005;
+    --color-cream:     #FFFFFF;
+    --color-ember:     #fff005;
+    --color-bone:      #FBFAF7;
     --color-cast:      #5C6470;
-    --color-ink:       #0A0E1A;
+    --color-ink:       #0A1226;
     --easing-out:      cubic-bezier(0.16, 1, 0.3, 1);
     --easing-spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
 
@@ -27,12 +39,12 @@
   }
 
   html {
-    @apply bg-bone text-ink antialiased;
+    /* Body text is deep navy (#131e44) on off-white — WCAG AAA at 13:1 */
+    @apply bg-bone text-navy-900 antialiased;
     font-family: 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
     font-feature-settings: 'kern', 'liga', 'calt', 'ss01', 'cv11';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* Inter optical sizing */
     font-optical-sizing: auto;
   }
 
@@ -48,20 +60,23 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', 'Inter Variable', 'Inter', system-ui, -apple-system, sans-serif;
-    @apply tracking-tight text-navy-700;
+    font-family: 'Newsreader', 'Fraunces Variable', 'Fraunces', 'Times New Roman', Georgia, serif;
+    @apply tracking-tight text-navy-800;
     text-wrap: balance;
-    /* Bricolage Grotesque variable axis */
-    font-variation-settings: "wdth" 95;
+    font-feature-settings: 'kern', 'liga';
+    font-variation-settings: "opsz" 36;
   }
-  /* Use the optical-size axis for the largest display headings */
   h1, h2 {
-    font-variation-settings: "wdth" 95, "opsz" 32;
+    font-variation-settings: "opsz" 60;
+    letter-spacing: -0.02em;
+  }
+  h3, h4 {
+    font-variation-settings: "opsz" 30;
   }
 
   p { text-wrap: pretty; }
-  ::selection { @apply bg-yellow text-navy-700; }
-  :focus-visible { @apply outline-2 outline-offset-2 outline-ember; }
+  ::selection { @apply bg-yellow-400 text-navy-ink; }
+  :focus-visible { @apply outline-2 outline-offset-2 outline-yellow-500; }
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
@@ -70,10 +85,10 @@
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+    .scroll-progress, .grain-overlay { display: none !important; }
+    .section-reveal { opacity: 1 !important; transform: none !important; }
   }
 
-  /* Save-Data / reduced-data: kill marquees, panning gradients, scroll-reveals and any
-     blanket transitions for users on metered or slow connections. */
   @media (prefers-reduced-data: reduce) {
     .reveal,
     .reveal-stagger,
@@ -118,10 +133,11 @@
   .btn:hover::before { @apply opacity-100; }
   .btn:active { transform: translateY(1px) scale(0.98); }
 
+  /* Primary CTA — yellow on navy. The high-contrast brand combo. */
   .btn-primary {
-    @apply btn bg-ember text-white shadow-soft;
+    @apply btn bg-yellow-400 text-navy-ink shadow-soft;
   }
-  .btn-primary:hover { @apply bg-ember-600 shadow-lifted -translate-y-0.5; }
+  .btn-primary:hover { @apply bg-yellow-500 shadow-lifted -translate-y-0.5; }
 
   .btn-secondary {
     @apply btn bg-navy-700 text-white shadow-soft;
@@ -129,9 +145,9 @@
   .btn-secondary:hover { @apply bg-navy-600 shadow-lifted -translate-y-0.5; }
 
   .btn-yellow {
-    @apply btn bg-yellow text-navy-700 shadow-soft;
+    @apply btn bg-yellow-400 text-navy-ink shadow-soft;
   }
-  .btn-yellow:hover { @apply bg-yellow-400 shadow-glow -translate-y-0.5; }
+  .btn-yellow:hover { @apply bg-yellow-500 -translate-y-0.5 shadow-lifted; }
 
   .btn-ghost {
     @apply btn border-2 border-navy-700 text-navy-700 bg-transparent;
@@ -141,14 +157,15 @@
   .btn-sm { @apply min-h-[40px] px-4 py-2 text-sm; }
   .btn-icon { @apply min-h-[44px] min-w-[44px] p-0 px-3; }
 
-  /* Eyebrow label */
+  /* Eyebrow label — yellow accent on dark surfaces, deeper yellow on light */
   .eyebrow {
-    @apply relative inline-block text-eyebrow text-cast;
+    @apply relative inline-block text-eyebrow text-yellow-700;
   }
+  /* On dark hero/footer surfaces, explicit text-yellow utility wins */
 
   /* === Cards === */
   .card {
-    @apply relative bg-white rounded-lg border border-cast-100 shadow-soft
+    @apply relative bg-white rounded-lg border border-cast-200 shadow-soft
            transition-all duration-400 ease-out-quart overflow-hidden;
     will-change: transform, box-shadow;
   }
@@ -182,9 +199,17 @@
   .spec-table tr { @apply transition-colors duration-150; }
   .spec-table tbody tr:hover { @apply bg-yellow-50; }
 
-  /* Hero gradient overlay */
+  /* Hero gradient overlay — deep navy wash for white headline + yellow CTA. */
   .hero-gradient {
-    background: linear-gradient(180deg, rgba(10,26,79,0) 40%, rgba(10,26,79,0.85) 100%);
+    background:
+      linear-gradient(180deg, rgba(31, 47, 106, 0.55) 0%, rgba(31, 47, 106, 0.35) 35%, rgba(31, 47, 106, 0.65) 75%, rgba(10, 18, 38, 0.88) 100%),
+      linear-gradient(90deg, rgba(31, 47, 106, 0.5) 0%, rgba(31, 47, 106, 0.18) 55%, rgba(31, 47, 106, 0) 100%);
+  }
+  @media (max-width: 768px) {
+    .hero-gradient {
+      background:
+        linear-gradient(180deg, rgba(31, 47, 106, 0.7) 0%, rgba(31, 47, 106, 0.5) 40%, rgba(31, 47, 106, 0.72) 80%, rgba(10, 18, 38, 0.9) 100%);
+    }
   }
 
   /* Animated underline link */
@@ -235,10 +260,10 @@
   }
   .nav-link::after {
     content: '';
-    @apply absolute left-3 right-3 bottom-1 h-0.5 bg-ember
+    @apply absolute left-3 right-3 bottom-1 h-0.5 bg-yellow-400
            origin-left scale-x-0 transition-transform duration-300 ease-out-quart;
   }
-  .nav-link:hover { @apply text-ember; }
+  .nav-link:hover { @apply text-navy-800; }
   .nav-link:hover::after, .nav-link[aria-current="page"]::after { @apply scale-x-100; }
 
   .arrow-float {
@@ -253,23 +278,20 @@
     color: transparent;
   }
 
-  /* Heritage trade-show stripe — kept as an alias of .heritage-stripe for
-     historical markup. The canonical token is the utility below; both render
-     identically (4px tall, 8px stripe pattern). */
+  /* Accent rule — the eyebrow's yellow hairline. */
   .heritage-stripe-bar {
-    height: 4px;
-    background: repeating-linear-gradient(
-      90deg,
-      theme('colors.yellow.logo') 0,
-      theme('colors.yellow.logo') 8px,
-      theme('colors.navy.logo') 8px,
-      theme('colors.navy.logo') 16px
-    );
+    height: 1px;
+    background: theme('colors.yellow.400');
+    opacity: 0.9;
   }
 
-  /* === Section rhythm utility ===
-     One canonical vertical scale for every <section>. Replaces the old mix
-     of `py-20 lg:py-28`, `py-16 lg:py-20`, `py-12 md:py-16`. */
+  /* Yellow accent rule — 32px wide bar under or beside eyebrow labels. */
+  .accent-rule {
+    @apply inline-block w-8 h-px align-middle;
+    background: theme('colors.yellow.400');
+  }
+
+  /* === Section rhythm utility === */
   .section-rhythm {
     padding-top: var(--section-y);
     padding-bottom: var(--section-y);
@@ -280,21 +302,123 @@
   }
 
   .stat-counter {
-    @apply font-display font-semibold text-navy-700;
+    @apply font-display text-navy-800;
+    font-weight: 500;
     font-variant-numeric: tabular-nums;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.03em;
+    font-style: italic;
+    font-variation-settings: "opsz" 60;
   }
 
-  /* === Body text utility ===
-     Use on long-form <p> elements (running prose, ~50+ chars) instead of
-     bare `text-cast`. Bumps body copy to cast-700 for stronger "premium ink"
-     contrast on bone backgrounds. Card meta and short helper lines should
-     keep `text-cast`. */
+  /* === Body text utility === */
   .body-text {
-    @apply text-cast-700;
+    @apply text-navy-800;
   }
 
-  /* === Premium iconographic chip — used for social/brand icons === */
+  /* === Global contrast bump on bone/white surfaces === */
+  .text-cast {
+    color: theme('colors.navy.800');
+  }
+  .text-cast-700 {
+    color: theme('colors.navy.800');
+  }
+  .text-cast-500,
+  .text-cast-600 {
+    color: theme('colors.navy.700');
+  }
+  .text-cast-400 {
+    color: theme('colors.navy.600');
+  }
+  /* Inside dark surfaces, reset text back to white-ish. */
+  .bg-navy .text-cast,
+  .bg-navy-700 .text-cast,
+  .bg-navy-800 .text-cast,
+  .bg-navy-900 .text-cast,
+  .bg-navy-ink .text-cast,
+  .bg-forest .text-cast,
+  .bg-forest-700 .text-cast,
+  .bg-forest-800 .text-cast,
+  .bg-forest-900 .text-cast,
+  footer .text-cast,
+  .bg-navy .text-cast-700,
+  .bg-navy-700 .text-cast-700,
+  .bg-navy-800 .text-cast-700,
+  .bg-navy-ink .text-cast-700,
+  .bg-forest .text-cast-700,
+  .bg-forest-700 .text-cast-700,
+  .bg-forest-800 .text-cast-700,
+  footer .text-cast-700 {
+    color: rgba(255, 255, 255, 0.88);
+  }
+  .bg-navy .text-cast-500,
+  .bg-navy-700 .text-cast-500,
+  .bg-navy-800 .text-cast-500,
+  .bg-forest .text-cast-500,
+  .bg-forest-700 .text-cast-500,
+  footer .text-cast-500,
+  .bg-navy .text-cast-600,
+  .bg-navy-700 .text-cast-600,
+  .bg-forest .text-cast-600,
+  .bg-forest-700 .text-cast-600,
+  footer .text-cast-600,
+  .bg-navy .text-cast-400,
+  .bg-navy-700 .text-cast-400,
+  .bg-forest .text-cast-400,
+  .bg-forest-700 .text-cast-400,
+  footer .text-cast-400 {
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  /* === Card border contrast === */
+  .border-cast-100,
+  .border-y.border-cast-100,
+  .border-t.border-cast-100,
+  .border-b.border-cast-100,
+  .border-l.border-cast-100,
+  .border-r.border-cast-100,
+  .divide-cast-100 > * + *,
+  hr.border-cast-100 {
+    border-color: theme('colors.cast.200');
+  }
+  .bg-navy .border-cast-100,
+  .bg-navy-700 .border-cast-100,
+  .bg-navy-800 .border-cast-100,
+  .bg-navy-900 .border-cast-100,
+  .bg-forest .border-cast-100,
+  .bg-forest-700 .border-cast-100,
+  .bg-forest-800 .border-cast-100,
+  .bg-forest-900 .border-cast-100,
+  footer .border-cast-100 {
+    border-color: rgba(255, 255, 255, 0.18);
+  }
+
+  /* === White/40-50-60 inside dark surfaces === */
+  footer .text-white\/40,
+  footer .text-white\/50,
+  .bg-navy .text-white\/40,
+  .bg-navy .text-white\/50,
+  .bg-navy-700 .text-white\/40,
+  .bg-navy-700 .text-white\/50,
+  .bg-forest .text-white\/40,
+  .bg-forest .text-white\/50,
+  .bg-forest-700 .text-white\/40,
+  .bg-forest-700 .text-white\/50,
+  header .text-white\/40,
+  header .text-white\/50,
+  .text-white\/40,
+  .text-white\/50 {
+    color: rgba(255, 255, 255, 0.72);
+  }
+  footer .text-white\/60,
+  .bg-navy .text-white\/60,
+  .bg-navy-700 .text-white\/60,
+  .bg-forest .text-white\/60,
+  .bg-forest-700 .text-white\/60,
+  .text-white\/60 {
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  /* === Premium iconographic chip === */
   .icon-chip {
     @apply inline-flex items-center justify-center w-10 h-10 rounded-full
            transition-all duration-300 ease-out-quart;
@@ -314,20 +438,70 @@
 }
 
 @layer utilities {
-  /* Canonical heritage trade-show stripe.
-     Single 4px height with consistent 8px stripe pattern across header,
-     footer, cookie banner and all pages. Elements that previously combined
-     `.heritage-stripe` with explicit `h-1`/`h-2` should drop the height
-     class — the utility now owns the rhythm. */
+  /* Yellow accent hairline. */
   .heritage-stripe {
-    height: 4px;
-    background-image: repeating-linear-gradient(
-      90deg,
-      theme('colors.yellow.logo') 0,
-      theme('colors.yellow.logo') 8px,
-      theme('colors.navy.logo') 8px,
-      theme('colors.navy.logo') 16px
-    );
+    height: 1px;
+    background-image: none;
+    background-color: theme('colors.yellow.400');
+    opacity: 0.85;
+  }
+
+  /* Subtle SVG noise overlay. */
+  .grain-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.08;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 240px 240px;
+  }
+
+  /* Heritage stamp — yellow on navy, slowly rotates on hover. */
+  .heritage-stamp {
+    @apply relative inline-flex items-center justify-center rounded-full;
+    width: 120px;
+    height: 120px;
+    border: 1.5px solid theme('colors.yellow.400');
+    color: theme('colors.yellow.400');
+    background: rgba(31, 47, 106, 0.94);
+    transition: transform 1200ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .heritage-stamp:hover { transform: rotate(18deg); }
+  .heritage-stamp::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border-radius: 9999px;
+    border: 1px dashed theme('colors.yellow.400');
+    opacity: 0.6;
+  }
+
+  /* Section reveal on scroll. */
+  .section-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1),
+                transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .section-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Top scroll-progress bar — yellow hairline that fills as the user scrolls. */
+  .scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    transform-origin: 0 50%;
+    transform: scaleX(var(--scroll-progress, 0));
+    background: theme('colors.yellow.400');
+    z-index: 100;
+    pointer-events: none;
+    will-change: transform;
   }
 
   .text-balance { text-wrap: balance; }
@@ -340,8 +514,8 @@
 
   .grid-pattern {
     background-image:
-      linear-gradient(rgba(10, 26, 79, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(10, 26, 79, 0.04) 1px, transparent 1px);
+      linear-gradient(rgba(58, 92, 181, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(58, 92, 181, 0.06) 1px, transparent 1px);
     background-size: 24px 24px;
   }
 }

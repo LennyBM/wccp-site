@@ -1,0 +1,108 @@
+---
+// SlurryQuickCalc.astro
+//
+// Inline single-row teaser calculator: herd size in → recommended slurry
+// volume out. Sits on the homepage between testimonials and the capacity
+// indicator. Links through to the full calculator on the slurry-storage
+// product page.
+//
+// Compute matches the full calculator: dairy default at 53 L/day, 6-month
+// SSAFO storage, 10% washings dilution, 600 m² rainfall — so the teaser
+// number tracks what they will see when they click through.
+
+import { site } from '@/config/site';
+---
+
+<section
+  role="form"
+  aria-label="Quick slurry storage estimate"
+  class="container-wccp pt-2 pb-2"
+  data-slurry-quick
+>
+  <div class="card p-5 md:p-6 bg-bone-200 border border-cast-100">
+    <form
+      id="sqc-form"
+      novalidate
+      class="flex flex-col md:flex-row md:items-center gap-4 md:gap-6"
+    >
+      <div class="shrink-0">
+        <p class="eyebrow text-cast mb-1">Quick maths</p>
+        <p class="font-display font-bold text-navy text-base leading-tight">
+          How much slurry storage do you need?
+        </p>
+      </div>
+
+      <div class="flex items-center gap-3 md:ml-2">
+        <label for="sqc-herd" class="text-sm font-display font-bold text-navy">
+          Dairy herd
+        </label>
+        <input
+          id="sqc-herd"
+          name="herd"
+          type="number"
+          min="10"
+          max="5000"
+          step="1"
+          value="150"
+          inputmode="numeric"
+          aria-label="Herd size"
+          class="w-24 px-3 py-2 rounded border border-cast-100 bg-white text-navy font-mono tabular-nums text-center focus:outline-none focus:ring-2 focus:ring-yellow focus:border-navy"
+        />
+        <span class="text-sm text-cast">cows</span>
+      </div>
+
+      <div class="hidden md:block w-px h-10 bg-cast-100" aria-hidden="true"></div>
+
+      <div class="flex items-baseline gap-2 md:ml-1">
+        <span class="text-sm text-cast">≈</span>
+        <span
+          id="sqc-volume"
+          class="font-display text-2xl md:text-3xl font-bold text-navy tabular-nums leading-none"
+        >0</span>
+        <span class="font-display text-base text-navy/80">m³</span>
+        <span class="text-sm text-cast hidden sm:inline">over 6 months</span>
+      </div>
+
+      <a
+        href="/products/slurry-storage#sizing-tool"
+        class="md:ml-auto btn-secondary shrink-0"
+      >
+        Full calculator
+      </a>
+    </form>
+  </div>
+</section>
+
+<script>
+  // Quick calc — herd in, volume out. Locked to dairy / 6mo / yard washings on
+  // / 600 m² rainfall to match the typical case. Click-through gives the user
+  // full controls on the product page.
+  const root = document.querySelector<HTMLElement>('[data-slurry-quick]');
+  if (root) {
+    const herd = root.querySelector<HTMLInputElement>('#sqc-herd')!;
+    const out  = root.querySelector<HTMLElement>('#sqc-volume')!;
+    const form = root.querySelector<HTMLFormElement>('#sqc-form')!;
+
+    form.addEventListener('submit', (e) => e.preventDefault());
+
+    function compute(): number {
+      const herdN = Math.max(0, Number(herd.value) || 0);
+      const lpd = 53;       // dairy
+      const months = 6;     // SSAFO dairy standard
+      const days = months * 30.44;
+      const dilution = 1.10; // washings on
+      const rainfallM3 = 600 * 0.65 * (months / 12);
+      const animalM3 = (herdN * lpd * days * dilution) / 1000;
+      const total = animalM3 + rainfallM3;
+      return Math.round(total / 5) * 5;
+    }
+
+    function render() {
+      out.textContent = compute().toLocaleString('en-GB');
+    }
+
+    herd.addEventListener('input', render);
+    herd.addEventListener('change', render);
+    render();
+  }
+</script>

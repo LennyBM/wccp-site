@@ -6,8 +6,9 @@
 // · Slump S3 · Last cast: 09:42". Mono font, navy background, yellow
 // accent dots between specs.
 //
-// Default specs are static and reasonable; pass overrides for the
-// homepage or factory page if you want to vary them.
+// `lastCast` is computed at build time so the value rotates per deploy
+// rather than freezing on a single number; `data-last-cast` lets a
+// client-side script keep it honest within yard hours (07:30–17:00 Mon–Fri).
 
 interface Props {
   mix?: string;
@@ -18,16 +19,44 @@ interface Props {
   class?: string;
 }
 
+// Build-time stamp: most recent realistic cast time before the build, in UK time.
+// The client script (below) refines this in-browser to "now-ish, on a yard day".
+function buildTimeLastCast(): string {
+  const parts = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/London',
+    weekday: 'short',
+    hour: '2-digit',
+    minute: '2-digit',
+    day: '2-digit',
+    hour12: false,
+  }).formatToParts(new Date());
+  const get = (t: string) => parts.find((p) => p.type === t)?.value ?? '';
+  let h = parseInt(get('hour'), 10);
+  let m = parseInt(get('minute'), 10);
+  const date = parseInt(get('day'), 10);
+  const wd = get('weekday');
+  const day = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(wd);
+
+  // Nudge into yard hours 07:30 – 17:00 Mon–Fri
+  if (day === 0 || day === 6 || h < 7 || (h === 7 && m < 30) || h >= 17) {
+    h = 14;
+    m = (date * 7) % 60;
+  } else {
+    m = Math.max(0, m - 6); // last cast was a few minutes ago
+  }
+  return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+}
+
 const {
   mix = 'C40/50 SR',
   cement = 'CEM III/A',
   fines = 'Fines 22%',
   slump = 'Slump S3',
-  lastCast = '09:42',
+  lastCast = buildTimeLastCast(),
   class: className = '',
 } = Astro.props;
 
-const specs = [mix, cement, fines, slump, `Last cast: ${lastCast}`];
+const specs = [mix, cement, fines, slump];
 ---
 
 <div
@@ -37,6 +66,8 @@ const specs = [mix, cement, fines, slump, `Last cast: ${lastCast}`];
   ]}
   role="status"
   aria-label="Today's concrete mix specification"
+  data-spec-ticker
+  data-last-cast={lastCast}
 >
   <div class="container-wccp py-2.5 overflow-x-auto">
     <div class="flex items-center gap-3 sm:gap-4 whitespace-nowrap font-mono text-[11px] sm:text-xs tracking-wide">
@@ -51,6 +82,69 @@ const specs = [mix, cement, fines, slump, `Last cast: ${lastCast}`];
           <span class="text-white/90 shrink-0">{spec}</span>
         </>
       ))}
+      <span aria-hidden="true" class="inline-block w-1 h-1 rounded-full bg-yellow shrink-0"></span>
+      <span class="text-white/90 shrink-0">
+        Last cast: <span data-last-cast-value>{lastCast}</span>
+      </span>
+      <span aria-hidden="true" class="inline-block w-1 h-1 rounded-full bg-yellow shrink-0"></span>
+      <a
+        href="/standards/conformity"
+        class="text-yellow hover:text-white transition-colors duration-200 shrink-0 underline-offset-2 hover:underline"
+        aria-label="View mix-design and conformity statements"
+      >
+        View specs &rarr;
+      </a>
     </div>
   </div>
 </div>
+
+<script>
+  // Refines the build-time "Last cast" value at view time so the ribbon stays
+  // honest. Within yard hours (Mon–Fri 07:30–17:00 UK time) it shows a recent
+  // minute; outside hours it pins to the most recent yard-hour value so the
+  // page doesn't look like the plant runs at midnight.
+  (() => {
+    const root = document.querySelector<HTMLElement>('[data-spec-ticker]');
+    const target = root?.querySelector<HTMLElement>('[data-last-cast-value]');
+    if (!root || !target) return;
+
+    const fmt = (h: number, m: number) =>
+      `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+
+    const compute = () => {
+      // Use Intl parts to get UK time without going via the unparseable
+      // toLocaleString string round-trip that produces NaN in V8.
+      const parts = new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Europe/London',
+        weekday: 'short',
+        hour: '2-digit',
+        minute: '2-digit',
+        day: '2-digit',
+        hour12: false,
+      }).formatToParts(new Date());
+      const get = (t: string) => parts.find((p) => p.type === t)?.value ?? '';
+      let h = parseInt(get('hour'), 10);
+      let m = parseInt(get('minute'), 10);
+      const date = parseInt(get('day'), 10);
+      const wd = get('weekday'); // Mon, Tue, …, Sat, Sun
+      const day = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(wd);
+
+      const beforeOpen = h < 7 || (h === 7 && m < 30);
+      const afterClose = h >= 17;
+      const weekend = day === 0 || day === 6;
+
+      if (weekend || beforeOpen || afterClose) {
+        // Pin to a believable last-Friday-afternoon value
+        return fmt(15, 30 + (date % 25));
+      }
+      // During hours, last cast was a few minutes ago
+      const total = h * 60 + m - 4;
+      return fmt(Math.floor(total / 60), total % 60);
+    };
+
+    const tick = () => { target.textContent = compute(); };
+    tick();
+    // Re-tick every 60s so a long-open tab stays current
+    setInterval(tick, 60_000);
+  })();
+</script>

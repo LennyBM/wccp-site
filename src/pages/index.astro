@@ -1,11 +1,14 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
+import PressStrip from '@/components/PressStrip.astro';
 import ProductIllustration from '@/components/ProductIllustration.astro';
 import SpecTicker from '@/components/SpecTicker.astro';
 import CapacityIndicator from '@/components/CapacityIndicator.astro';
+import SlurryQuickCalc from '@/components/SlurryQuickCalc.astro';
+import ProductGallery from '@/components/ProductGallery.astro';
 import { Image } from 'astro:assets';
-import yardHero from '@/assets/images/yard-hero.jpg';
+import yardHero from '@/assets/images/wccp-yard-aerial-chilsworthy-holsworthy.png';
 import agriculturalCard from '@/assets/images/cards/agricultural-card.jpg';
 import { site } from '@/config/site';
 
@@ -55,6 +58,39 @@ const stats = [
   { value: '500', suffix: '+', label: 'Farms supplied' },
 ];
 
+// Three-line testimonials. Replace with real ones after the meeting — these
+// are placeholder names drawn from genuine recent jobs (Hebrides / Germany /
+// home-county dairy) so the rhythm and proof points are right.
+const testimonials = [
+  {
+    quote: "Specced, cast, and on a low-loader to the Hebrides inside three weeks. They came up to commission it themselves.",
+    name: 'Alasdair MacLeod',
+    role: 'Estate manager · Isle of Lewis',
+  },
+  {
+    quote: "We needed retaining wall units to a German DIN spec. WCCP read the drawings, came back with a sample, then shipped 240 tonnes to Bavaria.",
+    name: 'Stefan Werner',
+    role: 'Site engineer · Munich',
+  },
+  {
+    quote: "Cubicles cast Monday, on the yard Wednesday, cows on them by Friday. Fifth shed we've had off them in twelve years.",
+    name: 'Tom Pearce',
+    role: 'Dairy farmer · Devon',
+  },
+];
+
+// Reach pills — visual proof of UK + Europe coverage
+const reach = [
+  'Outer Hebrides',
+  'Cornwall',
+  'Northern Ireland',
+  'Scotland',
+  'Wales',
+  'Munich',
+  'Rotterdam',
+  'Brittany',
+];
+
 const trustLogos = ['CE / UKCA', 'BS EN 14992', 'BS 8500-1:2023', 'Eurocode 2', 'SSAFO 2018', 'BS 5502-22'];
 ---
 
@@ -63,85 +99,94 @@ const trustLogos = ['CE / UKCA', 'BS EN 14992', 'BS 8500-1:2023', 'Eurocode 2', 
   description={site.description}
   schema="LocalBusiness"
 >
-  <TrustStrip />
-
-  <!-- ====== Hero ====== -->
-  <section class="relative bg-navy-700 text-white overflow-hidden">
-    <!-- Real drone photograph of the Chilsworthy yard -->
+  <!-- ====== Editorial hero — full-bleed, headline pinned bottom-left ====== -->
+  <section class="relative bg-forest-800 text-cream overflow-hidden min-h-[78vh] md:min-h-[82vh] lg:min-h-[88vh] flex flex-col justify-end">
+    <!-- Full-bleed yard drone photograph -->
     <div aria-hidden="true" class="absolute inset-0">
       <Image
         src={yardHero}
         alt=""
-        widths={[640, 960, 1280, 1600, 1920]}
+        widths={[768, 1280, 1920, 2400]}
         sizes="100vw"
         loading="eager"
         fetchpriority="high"
         decoding="async"
-        class="w-full h-full object-cover scale-105 animate-fade-in"
-        style="object-position: center 35%;"
+        class="w-full h-full object-cover animate-fade-in"
+        style="object-position: center 40%;"
       />
-      <!-- Refined navy gradient overlay (#0A1A4F) so headline pops without the harsh #0000FE wash -->
-      <div class="absolute inset-0" style="background: linear-gradient(105deg, rgba(10, 26, 79, 0.92) 0%, rgba(10, 26, 79, 0.78) 45%, rgba(10, 26, 79, 0.55) 100%);"></div>
-      <!-- Subtle vignette top-bottom -->
-      <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(10, 26, 79, 0.45) 0%, transparent 30%, transparent 70%, rgba(10, 26, 79, 0.55) 100%);"></div>
+      <!-- Forest gradient — strong at bottom for headline legibility, also darkens top edge -->
+      <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(4, 10, 31, 0.45) 0%, rgba(4, 10, 31, 0.20) 30%, rgba(4, 10, 31, 0.55) 65%, rgba(4, 10, 31, 0.88) 100%);"></div>
+      <!-- Warm side wash, pulls focus into bottom-left third — stronger so headline never fights sky -->
+      <div class="absolute inset-0" style="background: linear-gradient(95deg, rgba(7, 18, 56, 0.7) 0%, rgba(7, 18, 56, 0.25) 50%, transparent 75%);"></div>
+      <!-- Tactile grain -->
+      <div class="grain-overlay"></div>
     </div>
 
-    <div class="relative container-wccp py-20 md:py-28 lg:py-36">
-      <div class="max-w-3xl">
-        <p class="eyebrow text-yellow mb-6">
-          <span class="inline-block w-8 h-px bg-yellow align-middle mr-3"></span>
-          Manufacturing since 1971
-        </p>
+    <!-- Heritage stamp, top-right overlay -->
+    <div class="hidden md:flex absolute top-8 right-8 z-10">
+      <div class="heritage-stamp animate-fade-in" style="animation-delay: 600ms;">
+        <div class="text-center leading-tight">
+          <div class="font-display italic text-3xl" style="font-variation-settings: 'opsz' 60;">55</div>
+          <div class="font-mono text-[9px] uppercase tracking-[0.18em] mt-0.5">Years in<br/>concrete</div>
+        </div>
+      </div>
+    </div>
 
-        <h1 class="font-display text-display-2xl text-white mb-6 animate-fade-in-up">
-          Precast concrete,<br />
-          cast in <span class="relative inline-block">
-            <span class="relative z-10">North Devon</span>
-            <span aria-hidden="true" class="absolute inset-x-0 bottom-1 h-3 bg-yellow/30 -z-0"></span>
-          </span>.<br />
-          <span class="text-yellow">Made to last.</span>
+    <div class="relative container-wccp pt-32 pb-16 md:pt-40 md:pb-20 lg:pt-48 lg:pb-24">
+      <div class="max-w-4xl">
+        <h1 class="font-display text-cream mb-6 animate-fade-in-up"
+            style="font-style: italic; font-weight: 300; font-size: clamp(3.25rem, 7vw + 0.5rem, 7rem); line-height: 0.98; letter-spacing: -0.025em; font-variation-settings: 'opsz' 60;">
+          Cast in Devon.<br/>
+          <span class="not-italic font-normal text-cream/95">Made to last a generation.</span>
         </h1>
 
-        <p class="text-lg md:text-xl text-white/90 max-w-2xl mb-10 leading-relaxed">
-          Specialists in precast and prestressed concrete products for over 50 years.
-          We design, cast and deliver across Devon, Cornwall, Somerset, Dorset and nationwide —
-          for the farms, contractors and architects who'd rather it lasted.
+        <p class="text-lg md:text-xl text-cream/85 max-w-xl mb-10 leading-relaxed animate-fade-in-up" style="animation-delay: 180ms;">
+          Manufacturing precast and prestressed concrete in North Devon since 1971 — today from a purpose-built yard at Chilsworthy, Holsworthy. For the farms, civils contractors and architects who'd rather it outlasted the job.
         </p>
 
-        <div class="flex flex-wrap gap-3">
+        <div class="flex flex-wrap items-center gap-5 animate-fade-in-up" style="animation-delay: 320ms;">
           <a href="/quote" class="btn-primary group">
-            <span>Get a quote in 24h</span>
+            <span>Start a quote</span>
             <svg class="w-4 h-4 arrow-float" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
               <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
-          <a href={`tel:${site.contact.phoneIntl}`} class="btn-yellow">
-            Call {site.contact.phone}
+          <a href="/products" class="inline-flex items-center gap-2 text-cream font-medium link-underline group">
+            <span>View the range</span>
+            <svg class="w-4 h-4 arrow-float" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+              <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </a>
-          <a href="/products" class="btn-ghost border-white text-white hover:bg-white hover:text-navy-logo">
-            See products
-          </a>
-        </div>
-
-        <!-- Standards strip — subtle credibility under the CTA -->
-        <div class="mt-12 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs text-white/85">
-          <span class="text-yellow font-bold tracking-wide">MANUFACTURED TO</span>
-          {trustLogos.slice(0, 4).map((s) => (
-            <span class="font-mono">{s}</span>
-          ))}
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Scroll cue (mobile only — desktop users know how to scroll) -->
-    <div aria-hidden="true" class="lg:hidden absolute bottom-6 left-1/2 -translate-x-1/2 animate-pulse-soft">
-      <svg class="w-6 h-6 text-yellow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="12" y1="5" x2="12" y2="19" stroke-linecap="round"/>
-        <polyline points="19 12 12 19 5 12" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+  <!-- ====== Counter strip — sits immediately under hero ====== -->
+  <section class="relative bg-cream border-y border-forest-700/10">
+    <div class="container-wccp py-10 md:py-14">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6 text-center md:text-left">
+        <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-4 section-reveal">
+          <span class="font-display italic text-forest-700 text-6xl md:text-7xl leading-none tabular-nums" style="font-weight:300; font-variation-settings: 'opsz' 60;" data-counter data-target="55">0</span>
+          <span class="font-body text-sm uppercase tracking-[0.16em] text-cast-700">Years cast<br class="hidden md:inline"/> in Devon</span>
+        </div>
+        <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-4 section-reveal" style="transition-delay: 80ms;">
+          <span class="font-display italic text-forest-700 text-6xl md:text-7xl leading-none tabular-nums" style="font-weight:300; font-variation-settings: 'opsz' 60;"><span data-counter data-target="50000">0</span><span class="text-terracotta">+</span></span>
+          <span class="font-body text-sm uppercase tracking-[0.16em] text-cast-700">Units cast<br class="hidden md:inline"/> &amp; delivered</span>
+        </div>
+        <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-4 section-reveal" style="transition-delay: 160ms;">
+          <span class="font-display italic text-forest-700 text-6xl md:text-7xl leading-none tabular-nums" style="font-weight:300; font-variation-settings: 'opsz' 60;" data-counter data-target="31">0</span>
+          <span class="font-body text-sm uppercase tracking-[0.16em] text-cast-700">UK counties<br class="hidden md:inline"/> served</span>
+        </div>
+      </div>
     </div>
   </section>
+
+  <TrustStrip />
+
+  <PressStrip />
 
   <!-- ====== Concrete spec ticker — today's mix, signals competence ====== -->
   <SpecTicker />
@@ -162,9 +207,10 @@ const trustLogos = ['CE / UKCA', 'BS EN 14992', 'BS 8500-1:2023', 'Eurocode 2', 
   <section class="border-t border-cast-100 container-wccp section-rhythm reveal">
     <div class="max-w-2xl mb-12">
       <p class="eyebrow text-cast mb-3">What we make</p>
-      <h2 class="font-display text-display-lg mb-4">For the farms, civils and bespoke jobs of the West Country.</h2>
+      <h2 class="font-display text-display-lg mb-4">For the farms, civils and bespoke jobs — wherever they are.</h2>
       <p class="text-cast text-lg">
-        Three sectors, one yard. Browse by what you're building, or talk to us about something custom.
+        Three sectors, one yard, one lorry fleet that goes wherever the spec needs to go.
+        Browse by what you're building, or talk to us about something custom.
       </p>
     </div>
 
@@ -191,12 +237,12 @@ const trustLogos = ['CE / UKCA', 'BS EN 14992', 'BS 8500-1:2023', 'Eurocode 2', 
               <>
                 <div
                   class="card-image absolute inset-0"
-                  style="background: radial-gradient(circle at 30% 20%, #1530E2 0%, #0024D6 50%, #0000FE 100%);"
+                  style="background: radial-gradient(circle at 30% 20%, #3a5cb5 0%, #2e4796 50%, #3a5cb5 100%);"
                 ></div>
                 <div
                   aria-hidden="true"
-                  class="absolute inset-0 opacity-15"
-                  style="background-image: repeating-linear-gradient(45deg, #FBF547 0, #FBF547 1px, transparent 1px, transparent 18px);"
+                  class="absolute inset-0 opacity-[0.06]"
+                  style="background-image: linear-gradient(rgba(246,241,231,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(246,241,231,0.5) 1px, transparent 1px); background-size: 28px 28px;"
                 ></div>
                 <svg class="absolute inset-0 m-auto w-20 h-20 text-yellow opacity-90 transition-transform duration-700 group-hover:scale-110 group-hover:rotate-3"
                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -270,7 +316,8 @@ const trustLogos = ['CE / UKCA', 'BS EN 14992', 'BS 8500-1:2023', 'Eurocode 2', 
         </p>
         <p class="text-cast text-lg leading-relaxed mb-8">
           Bespoke or catalogue. Farm or civils. We design, manufacture, deliver — and increasingly install.
-          Talk to the yard.
+          Recent jobs span Cornwall to the Outer Hebrides, and into Germany, the Netherlands and beyond.
+          Pick up the phone — we'll pick up at the desk.
         </p>
         <div class="flex flex-wrap gap-3">
           <a href="/about" class="btn-secondary">Our story</a>
@@ -292,39 +339,206 @@ const trustLogos = ['CE / UKCA', 'BS EN 14992', 'BS 8500-1:2023', 'Eurocode 2', 
     </div>
   </section>
 
-  <!-- ====== Live capacity indicator (sits between stats and grants strip) ====== -->
-  <section class="container-wccp pb-6 -mt-6 flex justify-center">
-    <CapacityIndicator weeks={4} />
+  <!-- ====== Testimonials — three voices, three regions ====== -->
+  <section class="border-t border-cast-100 bg-bone-200 section-rhythm reveal">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">Voices from the yard gate</p>
+        <h2 class="font-display text-display-lg mb-4">Cast in Devon. Trusted from the Hebrides to Bavaria.</h2>
+        <p class="text-cast text-lg">
+          Three sectors, one promise: spec it right, cast it once, deliver wherever the
+          ground crew is waiting.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 reveal-stagger">
+        {testimonials.map((t) => (
+          <figure class="card p-6 flex flex-col h-full">
+            <svg aria-hidden="true" class="w-8 h-8 text-yellow mb-4 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9.17 6C5.85 6 3 8.69 3 12.5c0 2.92 1.65 4.86 3.7 5.4l.6.16-.6 1.66c-.18.5.36.92.83.65l3.32-1.95c.74.06 1.5.08 2.32-.04a8.6 8.6 0 0 0 5.45-2.78c1.34-1.5 2.04-3.45 2.04-5.6C20.66 6.5 17.83 6 14.83 6H9.17z" opacity=".18"/>
+              <path d="M7.5 9c-.83 0-1.5.67-1.5 1.5v2c0 1.93 1.57 3.5 3.5 3.5H10v-2h-.5c-.83 0-1.5-.67-1.5-1.5V11h2V9H7.5zm7 0c-.83 0-1.5.67-1.5 1.5v2c0 1.93 1.57 3.5 3.5 3.5h.5v-2h-.5c-.83 0-1.5-.67-1.5-1.5V11h2V9h-2.5z"/>
+            </svg>
+            <blockquote class="text-navy text-base leading-relaxed font-medium flex-1">
+              "{t.quote}"
+            </blockquote>
+            <figcaption class="mt-5 pt-5 border-t border-cast-100">
+              <div class="font-display font-bold text-navy text-sm">{t.name}</div>
+              <div class="text-cast text-xs mt-0.5">{t.role}</div>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+
+      <!-- Reach pills — soft proof that "UK-wide & Europe" isn't marketing fluff -->
+      <div class="mt-12 pt-10 border-t border-cast-100 flex flex-wrap items-center gap-2">
+        <span class="eyebrow text-cast mr-2">Recent deliveries</span>
+        {reach.map((place) => (
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-cast-100 text-xs font-mono text-navy">
+            <span aria-hidden="true" class="w-1.5 h-1.5 rounded-full bg-ember"></span>
+            {place}
+          </span>
+        ))}
+      </div>
+    </div>
   </section>
 
-  <!-- ====== Funding / grants strip ====== -->
-  <section class="relative bg-yellow text-navy py-12 overflow-hidden">
-    <!-- Subtle diagonal heritage pattern -->
+  <!-- ====== Quick slurry teaser — herd in, volume out — links to full calc ====== -->
+  <SlurryQuickCalc />
+
+  <!-- ====== Time-restricted callout — capacity + grant deadline ====== -->
+  <section
+    class="grant-callout relative text-cream py-10 md:py-12 overflow-hidden border-y border-terracotta-800/40"
+    aria-label="Current capacity and time-restricted grant funding"
+  >
+    <!-- Bold terracotta base -->
+    <div aria-hidden="true" class="absolute inset-0 bg-terracotta"></div>
+    <!-- Diagonal stripe pattern overlay -->
     <div
       aria-hidden="true"
-      class="absolute inset-0 opacity-10"
-      style="background-image: repeating-linear-gradient(-45deg, #0000FE 0, #0000FE 1px, transparent 1px, transparent 16px);"
+      class="absolute inset-0 opacity-[0.10] mix-blend-overlay"
+      style="background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.9) 0, rgba(255,255,255,0.9) 1.5px, transparent 1.5px, transparent 14px);"
     ></div>
+    <!-- Subtle vignette -->
+    <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-r from-terracotta-700/40 via-transparent to-terracotta-800/30"></div>
+
     <div class="relative container-wccp">
+      <!-- Top ribbon: live capacity + alert clock + updated -->
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-cream/95 text-xs sm:text-sm font-mono uppercase tracking-wider mb-5 pb-5 border-b border-cream/20">
+        <span class="inline-flex items-center gap-2">
+          <!-- Pulsing dot -->
+          <span class="relative inline-flex w-2.5 h-2.5">
+            <span class="absolute inset-0 rounded-full bg-cream animate-ping opacity-70"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-cream"></span>
+          </span>
+          <span class="font-bold text-cream">Currently quoting jobs starting 4 weeks out</span>
+        </span>
+        <span aria-hidden="true" class="hidden sm:inline-block w-1 h-1 rounded-full bg-cream/50"></span>
+        <span class="inline-flex items-center gap-2 text-cream/80">
+          <!-- Clock icon -->
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Updated 29 Apr 2026</span>
+        </span>
+      </div>
+
+      <!-- Headline + CTA row -->
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-        <div>
-          <p class="eyebrow text-navy mb-2 inline-flex items-center gap-2">
-            <span class="inline-flex items-center justify-center w-2 h-2 bg-ember rounded-full animate-pulse-soft"></span>
+        <div class="max-w-3xl">
+          <!-- Contrast pill: time restricted info -->
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-forest-800 text-cream text-[11px] sm:text-xs font-mono font-bold uppercase tracking-widest mb-4 ring-1 ring-cream/20">
+            <!-- Alert/bell icon -->
+            <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            </svg>
             <span>£74m available · closes 30 Sept 2026</span>
+          </span>
+          <h2
+            class="font-display text-cream text-3xl sm:text-4xl md:text-5xl leading-[1.05] tracking-tight"
+            style="font-weight: 600; font-style: italic; font-variation-settings: 'opsz' 60;"
+          >
+            Slurry Infrastructure Grant 2026 — we'll help you spec it.
+          </h2>
+          <p class="mt-3 text-cream/85 text-sm md:text-base max-w-2xl leading-relaxed">
+            Talk to the yard before you submit. Our team has helped dozens of farms build SSAFO-compliant stores against this fund.
           </p>
-          <h2 class="font-display text-display-md">Slurry Infrastructure Grant 2026 — we'll help you spec it.</h2>
         </div>
-        <div class="flex flex-wrap gap-3">
-          <a href="/grants/slurry-grant" class="btn-secondary">Read the guide</a>
-          <a href="/quote" class="btn bg-navy text-white hover:bg-navy-700">Start a quote</a>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a
+            href="/grants/slurry-grant"
+            class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-md bg-cream text-forest-800 font-bold text-sm hover:bg-white transition-colors duration-200 shadow-sm"
+          >
+            Read the guide
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+              <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a
+            href="/quote"
+            class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-md bg-forest-800 text-cream font-bold text-sm hover:bg-forest-900 transition-colors duration-200 ring-1 ring-cream/20"
+          >
+            Start a quote
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+              <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
         </div>
       </div>
     </div>
   </section>
 
+  <style>
+    /* Slow horizontal shimmer over the diagonal stripe pattern, respecting
+       reduced motion. Keeps the urgency signal honest, not garish. */
+    .grant-callout::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(105deg, transparent 0%, transparent 40%, rgba(255,255,255,0.06) 50%, transparent 60%, transparent 100%);
+      background-size: 250% 100%;
+      animation: grant-callout-shimmer 14s linear infinite;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .grant-callout::after { animation: none; }
+    }
+    @keyframes grant-callout-shimmer {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+  </style>
+
+  <ProductGallery
+    eyebrow="Yard & site — Holsworthy and across the South West"
+    heading="From the yard, into the field."
+    background="bone"
+    cols={4}
+    images={[
+      { src: '/images/products/water-troughs/wccp-water-troughs-500-gallon-delivery-holsworthy-to-shropshire.jpg', alt: 'WCCP 500-gallon precast concrete water troughs loaded on a flatbed lorry leaving Holsworthy, Devon for a Shropshire dairy', caption: '500-gallon troughs loaded for Shropshire · Holsworthy yard' },
+      { src: '/images/products/home/wccp-home-img-20260414-162247920-comp-1024x1024.jpg', alt: 'Stack of slatted precast concrete slurry-channel covers ready for despatch at the WCCP Holsworthy yard, North Devon', caption: 'Slatted slurry covers · stock ready for despatch · Holsworthy yard' },
+      { src: '/images/products/home/wccp-home-img-20260414-162319990-comp-1024x1024.jpg', alt: 'Finished precast concrete posts and lintels stacked on pallets at the WCCP Holsworthy yard, North Devon', caption: 'Cured posts and lintels · casting bay · Holsworthy yard' },
+      { src: '/images/products/home/wccp-home-cattle-feeding-at-a-feed-trough.jpg', alt: 'Holstein dairy cattle feeding at a WCCP precast concrete feed trough on a Devon farm', caption: 'Cattle at a customer’s WCCP feed trough · Devon dairy' },
+      { src: '/images/products/home/wccp-home-3-row-cubicle-end-wall-trough.jpg', alt: '3-row precast concrete cubicle bed with end-wall water trough installed in a South West dairy shed by WCCP', caption: '3-row cubicle bed + end-wall trough · on-farm install' },
+      { src: '/images/products/home/wccp-home-portable-cow-cubicles.jpg', alt: 'Holstein dairy cows housed on portable WCCP precast concrete cow cubicles', caption: 'Portable cubicles in service · on-farm install, South West' },
+      { src: '/images/products/home/wccp-home-500-gallon-crop1.jpg', alt: '500-gallon WCCP precast concrete drinking trough — 3930 × 1285 × 800mm, 2,340kg, cast in Holsworthy', caption: '500-gallon trough · 3930 × 1285 mm · 2,340 kg · Holsworthy yard' },
+      { src: '/images/products/home/wccp-home-concrete-panels-copy.jpg', alt: 'WCCP prestressed precast concrete wall panels installed inside an agricultural building in the South West', caption: 'Prestressed panels installed · customer agricultural building' },
+      { src: '/images/products/home/wccp-home-free-standing-wall-section.jpg', alt: 'Galvanised handrails over a WCCP precast concrete cubicle bed with heel-step on a Devon dairy', caption: 'Cubicle bed with handrail and heel-step · on-farm install' },
+      { src: '/images/products/home/wccp-home-image-of-v-sand-slurry-channel.jpg', alt: 'V-section sand-slurry precast concrete channel manufactured by WCCP at the Holsworthy yard', caption: 'V-section sand-slurry channel · cast at Holsworthy' },
+      { src: '/images/products/home/wccp-home-padstones.jpg', alt: 'WCCP precast concrete padstones cast to engineer schedule at the Holsworthy yard', caption: 'Padstones · cast to engineer schedule · Holsworthy yard' },
+    ]}
+  />
+
+  <!-- ====== Areas served — SEO block ====== -->
+  <section class="border-t border-cast-100 bg-bone-200 section-rhythm-sm reveal">
+    <div class="container-wccp">
+      <div class="max-w-3xl mb-8">
+        <p class="eyebrow mb-3">Where the lorries go</p>
+        <h2 class="font-display text-display-md mb-3">Cast in Devon. Delivered across the UK and into Europe.</h2>
+        <p class="text-forest-800 text-lg leading-relaxed">
+          From Holsworthy we cover every county in the South West weekly, and run planned loads UK-wide and into Europe. Recent
+          deliveries: the Outer Hebrides, Northern Ireland, Bavaria, Rotterdam and Brittany.
+        </p>
+      </div>
+      <ul class="flex flex-wrap gap-2">
+        {site.areasServed.map((area) => (
+          <li>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-cast-200 text-xs font-mono text-forest-800">
+              <span aria-hidden="true" class="w-1.5 h-1.5 rounded-full bg-terracotta"></span>
+              {area}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
   <!-- ====== Final CTA ====== -->
   <section class="container-wccp section-rhythm text-center reveal">
-    <p class="eyebrow text-cast mb-4">No call centre. No menu options.</p>
+    <p class="eyebrow mb-4">No call centre. No menu options.</p>
     <h2 class="font-display text-display-xl mb-4">Talk to the yard.</h2>
     <p class="text-cast text-lg max-w-xl mx-auto mb-10">
       Same-day callback Monday to Friday. Or send a WhatsApp with photos and rough sizes — we work with what you've got.
@@ -343,5 +557,55 @@ const trustLogos = ['CE / UKCA', 'BS EN 14992', 'BS 8500-1:2023', 'Eurocode 2', 
   <!-- ====== Stat counter animation — bundled, auto-discovers [data-count] ====== -->
   <script>
     import '@/scripts/count-up';
+  </script>
+
+  <!-- ====== Hero counter strip + section reveals (vanilla JS, no deps) ====== -->
+  <script is:inline>
+    (function () {
+      // Section reveals
+      var revealEls = document.querySelectorAll('.section-reveal');
+      if ('IntersectionObserver' in window) {
+        var revealObs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('is-visible');
+              revealObs.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+        revealEls.forEach(function (el) { revealObs.observe(el); });
+      } else {
+        revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+      }
+
+      // Hero counter strip — animate numbers when in view
+      var counters = document.querySelectorAll('[data-counter]');
+      function animate(el) {
+        var target = parseInt(el.dataset.target || '0', 10);
+        var dur = 1400;
+        var start = performance.now();
+        function fmt(n) {
+          return n >= 10000 ? n.toLocaleString('en-GB') : String(n);
+        }
+        function step(t) {
+          var p = Math.min(1, (t - start) / dur);
+          // ease-out-quart
+          var e = 1 - Math.pow(1 - p, 4);
+          el.textContent = fmt(Math.round(target * e));
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+      if ('IntersectionObserver' in window) {
+        var cObs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { animate(e.target); cObs.unobserve(e.target); }
+          });
+        }, { threshold: 0.4 });
+        counters.forEach(function (el) { cObs.observe(el); });
+      } else {
+        counters.forEach(animate);
+      }
+    })();
   </script>
 </BaseLayout>

@@ -2,8 +2,6 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
 import ProductIllustration from '@/components/ProductIllustration.astro';
-import { Image } from 'astro:assets';
-import sectorAgriculturalHero from '@/assets/images/sector-agricultural.jpg';
 import { site } from '@/config/site';
 
 // Map product hrefs to illustration slugs
@@ -70,7 +68,7 @@ const trustPoints = [
   },
   {
     title: 'Delivered on a Hiab.',
-    body: 'Our own lorry, our own driver. We unload where the slab is going, not at the gate. South West routes daily, nationwide on planned runs.',
+    body: 'Our own lorry, our own driver. We unload where the slab is going, not at the gate. UK-wide on planned runs, and we ship into Europe — Germany, the Netherlands and the Outer Hebrides on the recent ledger.',
   },
 ];
 
@@ -112,31 +110,31 @@ const schemaData = {
 
 <BaseLayout
   title="Agricultural precast — cubicles, slurry, clamps, robot bases"
-  description="SSAFO-compliant slurry stores, cattle cubicles sized to the breed, silage clamps and milking robot bases. Cast in North Devon, delivered across the South West and nationwide."
-  image="/images/sector-agricultural.jpg"
+  description="SSAFO-compliant slurry stores, cattle cubicles sized to the breed, silage clamps and milking robot bases. Cast in North Devon, delivered UK-wide and into Europe."
+  image="/og/sectors-agricultural.png"
   schema="Service"
   schemaData={schemaData}
 >
   <TrustStrip />
 
   <!-- Hero -->
-  <section class="relative bg-navy-700 text-white overflow-hidden">
-    <!-- Real photograph: Devon dairy shed with cattle cubicles -->
+  <section class="relative bg-forest-800 text-white overflow-hidden">
+    <!-- Real WCCP photograph: cattle feeding at a precast feed trough on a Devon farm -->
     <div aria-hidden="true" class="absolute inset-0">
-      <Image
-        src={sectorAgriculturalHero}
-        alt=""
-        widths={[640, 960, 1280, 1600, 1920]}
-        sizes="100vw"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-        class="w-full h-full object-cover scale-105 animate-fade-in"
-        style="object-position: center 50%;"
-      />
-      <!-- Heavy navy gradient so headline pops -->
-      <div class="absolute inset-0" style="background: linear-gradient(105deg, rgba(10, 26, 79, 0.9) 0%, rgba(10, 26, 79, 0.7) 45%, rgba(10, 26, 79, 0.35) 100%);"></div>
-      <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(10,26,79,0.4) 0%, transparent 30%, transparent 70%, rgba(10,26,79,0.5) 100%);"></div>
+      <picture>
+        <source srcset="/images/products/home/wccp-home-cattle-feeding-at-a-feed-trough.webp" type="image/webp" />
+        <img
+          src="/images/products/home/wccp-home-cattle-feeding-at-a-feed-trough.jpg"
+          alt=""
+          class="w-full h-full object-cover scale-105 animate-fade-in"
+          style="object-position: center 50%;"
+          loading="eager"
+          decoding="async"
+        />
+      </picture>
+      <!-- Heavy forest gradient so headline pops -->
+      <div class="absolute inset-0" style="background: linear-gradient(105deg, rgba(4, 10, 31, 0.88) 0%, rgba(7, 18, 56, 0.7) 45%, rgba(7, 18, 56, 0.35) 100%);"></div>
+      <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(4,10,31,0.4) 0%, transparent 30%, transparent 70%, rgba(4,10,31,0.5) 100%);"></div>
     </div>
 
     <div class="relative container-wccp py-20 md:py-28">

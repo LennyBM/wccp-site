@@ -1,7 +1,12 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
+import CADDownloads from '@/components/CADDownloads.astro';
+import FittedVsSupply from '@/components/FittedVsSupply.astro';
+import SpecSheetButton from '@/components/SpecSheetButton.astro';
 import { site } from '@/config/site';
+import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
 
 const specs = [
   { size: '200 × 200 × 100mm', weight: '9.6 kg', strength: '20 N/mm²', use: 'Light timber and steel beam bearings' },
@@ -54,7 +59,7 @@ const productSchema = {
     { '@type': 'PropertyValue', name: 'Lead time', value: '1 week stock, 2–4 weeks bespoke' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
   ],
-  offers: { '@type': 'Offer', priceCurrency: 'GBP', availability: 'https://schema.org/InStock', seller: { '@type': 'Organization', name: site.name } },
+  offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
 };
 
 const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
@@ -63,9 +68,10 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
 <BaseLayout
   title="Padstones — 200×200 to 600×600 · BS EN 1996"
   description="Precast concrete padstones for steel beam bearings. Sizes 200×200×100mm to 600×600×300mm. Sized to BS EN 1996. Stock for fast despatch. Cast in North Devon."
-  image="/images/products/padstones.jpg"
+  image="/og/padstones.png"
   schema="Product"
   schemaData={productSchema}
+  whatsappContext="Padstones"
 >
   <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
   <TrustStrip />
@@ -75,11 +81,18 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
           <p class="eyebrow text-yellow mb-4">Civils · construction · structural</p>
-          <h1 class="font-display text-display-xl text-white mb-4">Padstones.</h1>
-          <p class="text-lg text-white/90 leading-relaxed mb-6">
-            Precast concrete padstones for steel beam bearings on masonry walls. Standard sizes from
-            200 × 200 × 100mm right up to 600 × 600 × 300mm. Sized to BS EN 1996, cast at 20 to 50 N/mm²,
-            stock available for fast despatch.
+          <h1 class="font-display text-display-xl text-white mb-4">Concrete Padstones for Steel Beams.</h1>
+          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">
+            Cast to the engineer's schedule. Stamped before despatch.
+          </p>
+          <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
+            A concrete padstone spreads point loads from steel beams to masonry or precast walls.
+            WCCP cast padstones to engineer's schedule in C40/50 — bearing area, stamped drawings
+            and dimensional tolerance to BS&nbsp;EN&nbsp;1992.
+          </blockquote>
+          <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
+            Standard sizes 200 × 200 × 100mm to 600 × 600 × 300mm. Sized to BS EN 1996, cast at 20 to 50 N/mm²,
+            stock for the smaller five.
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
             <li class="flex gap-2"><span class="text-yellow">·</span> 200×200 to 600×600</li>
@@ -91,11 +104,13 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Padstones" class="btn-primary">Order padstones</a>
-            <a href="/spec-sheets/padstones.pdf" class="btn-yellow">Download spec sheet</a>
+            <a href="/downloads/specs/padstones.pdf" class="btn-yellow">Download spec sheet</a>
             <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">Call {site.contact.phone}</a>
           </div>
         </div>
-        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-300 via-cast to-navy"></div></div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
+          <img src="/images/products/home/wccp-home-padstones.jpg" alt="Precast concrete padstones for steel beam bearings — West Country Concrete Products, Devon" class="w-full h-full object-cover" loading="eager" decoding="async" />
+        </div>
       </div>
     </div>
   </section>
@@ -181,15 +196,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" /><polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" /></svg>
       </a>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      {related.map((r) => (
-        <a href={r.href} class="card p-5 group">
-          <div class="aspect-[16/10] bg-cast-100 mb-4 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100"></div></div>
-          <h3 class="font-display text-base font-bold text-navy mb-1 group-hover:text-ember">{r.label}</h3>
-          <p class="text-cast text-xs">{r.meta}</p>
-        </a>
-      ))}
-    </div>
+    <RelatedProductGrid items={related} />
   </section>
 
   <section class="bg-bone-200 py-20">
@@ -213,6 +220,31 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
     </div>
   </section>
 
+  <!-- Supply-only vs Fitted -->
+  <section class="container-wccp section-rhythm border-t border-cast-100">
+    <FittedVsSupply
+      productName="Padstones"
+      defaultMode="supply"
+      supply={{
+        price: 'from £45 each',
+        leadTime: '2–3 weeks (stock often available)',
+        includes: [
+          'Padstone cast to BS EN 13369 / BS EN 1996',
+          'Compressive strength test certificate',
+          'B500B fabric reinforcement on 300×300+ sizes',
+          'Delivery on our HIAB or pallet courier',
+        ],
+        excludes: [
+          'On-site setting and bedding mortar',
+          'Beam reaction calculation (we will check, free of charge)',
+        ],
+      }}
+      note="Indicative 2026 pricing for the 300×200×100 standard size. The smaller five sizes ship from stock — 600×600 cast to order in 2–3 weeks. Bulk pallets discounted; ring the yard for trade rates."
+    />
+  </section>
+
+  <CADDownloads productSlug="padstones" productName="Padstones" />
+
   <section class="bg-navy text-white py-20">
     <div class="container-wccp text-center">
       <h2 class="font-display text-display-xl mb-4 text-white">Ready to order?</h2>
@@ -224,4 +256,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
       </div>
     </div>
   </section>
+
+  <SpecSheetButton productSlug="padstones" productName="Padstones" href="/downloads/specs/padstones.pdf" />
+  <ProductWarrantyLine />
 </BaseLayout>

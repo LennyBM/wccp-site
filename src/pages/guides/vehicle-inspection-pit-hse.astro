@@ -1,0 +1,228 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+
+const faqs = [
+  { q: 'How deep should a vehicle inspection pit be?', a: 'For a standard car or LCV pit, 1.5m clear depth between finished floor and pit floor is typical. HGV and agri pits run 1.7–1.9m for adequate working clearance under a tractor or 44-tonne lorry. The HSE expects working depth to be set to the user, not the average.' },
+  { q: 'What HSE regulations apply to inspection pits?', a: 'Workplace (Health, Safety and Welfare) Regulations 1992, Provision and Use of Work Equipment Regulations 1998 (PUWER) and the Workplace Transport ACoP. HSE INDG293 and HSG261 are the practical guidance documents — covering edge protection, ventilation, lighting and access.' },
+  { q: 'Does a vehicle pit need ventilation?', a: 'Yes. Inspection pits are confined spaces. HSE expects mechanical extract ventilation sized for the work — typically 6–10 air changes per hour as a baseline, more where running engines or solvents are involved. A gas detector for LPG/CNG fuelled vehicles is recommended.' },
+  { q: 'What edge protection do you need?', a: 'A continuous trip-rail or removable steel edge guard around any open pit, plus a rigid cover (typically aluminium plank or steel mesh) when the pit is not in use. Falling-into-pit is the single most common pit injury — designed-in edge protection is not optional.' },
+  { q: 'Are precast pits compliant with HSE?', a: 'A precast pit is the structure — compliance depends on how it is installed and operated. WCCP precast pits are designed to BS EN 1992 with a slip-resistant floor, integrated services voids, kerb upstand and prepared ladder pockets. The operator builds the rest of the safety system around it.' },
+];
+
+const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+---
+
+<BaseLayout
+  title="Vehicle inspection pit HSE compliance (UK)"
+  description="UK vehicle inspection pit HSE compliance: Workplace (HSW) Regulations 1992, PUWER 1998, ventilation, lighting, edge protection, gas detection and HSE INDG293 / HSG261 guidance. Plain-English guide for fleet, agri and commercial garages."
+  schema="Article"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-14 md:py-16">
+      <nav class="text-sm text-white/90 mb-6" aria-label="Breadcrumb">
+        <a href="/guides" class="hover:text-yellow">Guides</a><span class="mx-2 text-cast">/</span>
+        <span class="text-white/90">Vehicle inspection pit HSE</span>
+      </nav>
+      <p class="eyebrow text-yellow mb-4">Vehicle pits · Pillar guide</p>
+      <h1 class="font-display text-display-xl text-white mb-6 max-w-4xl">Vehicle inspection pit HSE compliance (UK).</h1>
+
+      <div class="bg-navy-700 border-l-4 border-yellow p-6 max-w-3xl rounded-r">
+        <p class="text-white/90 text-lg leading-relaxed">
+          <strong class="text-white">Direct answer:</strong> UK vehicle inspection pits are governed
+          by the Workplace (Health, Safety and Welfare) Regulations 1992, PUWER 1998 and HSE
+          guidance HSG261 / INDG293. Compliance covers ventilation (6–10 air changes/hour),
+          lighting (low-voltage, IP-rated), edge protection, gas detection and a working depth
+          set to the user.
+        </p>
+      </div>
+
+      <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/90">
+        <div>By <span class="text-white font-semibold">WCCP Engineering Team</span> <!-- CLIENT: confirm individual reviewer name + CEng status --></div>
+        <div>Published <time datetime="2026-04-29">29 April 2026</time></div>
+        <div>Updated <time datetime="2026-04-29">29 April 2026</time></div>
+      </div>
+    </div>
+  </section>
+
+  <article class="container-wccp py-12 md:py-16">
+    <div class="grid lg:grid-cols-[1fr_18rem] gap-10 lg:gap-16">
+      <div class="max-w-3xl">
+
+        <section id="regs" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">The regulations that apply.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Three pieces of law sit on top of every UK inspection pit:
+            the Workplace (Health, Safety and Welfare) Regulations 1992, PUWER 1998 and the
+            Health and Safety at Work etc. Act 1974.</strong> HSE guidance HSG261 ("Health and
+            safety in motor vehicle repair") and INDG293 (vehicle pits leaflet) are the
+            practical compliance documents.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            The pit itself is a workplace; the act of getting into and out of it is governed by
+            falls-from-height risk assessment; the work done in it triggers PUWER on lifting
+            equipment, electrical safety regs on lighting and DSEAR on flammable vapours.
+          </p>
+        </section>
+
+        <section id="ventilation" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Ventilation.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Inspection pits are confined spaces under the Confined
+            Spaces Regulations 1997.</strong> Heavier-than-air vapours — diesel, LPG, petrol,
+            engine exhaust — collect at the floor of the pit. Mechanical extract sized for 6–10
+            air changes per hour is the practical baseline; running-engine work needs more.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            For LPG / CNG fuelled vehicles a fixed gas detector at the pit floor is strongly
+            recommended. WCCP precast pits ship with cast-in service ducts for the extract,
+            lighting and gas-detector cabling.
+          </p>
+        </section>
+
+        <section id="lighting" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Lighting.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Pit lighting is normally 110V or 24V SELV, IP65 rated, with
+            a minimum 200 lux at the working level (HSE recommends 500 lux for detailed
+            inspection work).</strong> Floods at 230V mains-voltage are not appropriate in a
+            confined-space environment. Hand-lamps must be low-voltage and intrinsically safe
+            where flammables are stored.
+          </p>
+        </section>
+
+        <aside class="not-prose my-12 reveal">
+          <a href="/products/vehicle-pits" class="group block bg-navy-700 text-white rounded-lg p-6 md:p-7 hover:bg-navy-600 transition-colors no-underline">
+            <p class="eyebrow text-yellow mb-2">Quote a vehicle pit</p>
+            <p class="font-display text-xl md:text-2xl text-white font-semibold leading-snug">See the WCCP precast pit range</p>
+            <p class="text-white/85 text-sm mt-2">Car, LCV, HGV and tractor pits. Cast-in service voids and ladder pockets.</p>
+          </a>
+        </aside>
+
+        <section id="edge" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Edge protection and covers.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Every open pit needs a continuous trip-rail or steel edge
+            guard. When the pit is out of use, a rigid cover (aluminium plank or steel mesh) is
+            mandatory.</strong> Falling-into-pit is the single most common injury — designed-in
+            edge protection is not optional.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            WCCP precast pits include a 75mm kerb upstand at the perimeter, sized to take a
+            standard cover plank without site cutting.
+          </p>
+        </section>
+
+        <section id="access" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Access ladders.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Permanent access at both ends of every pit, by ladder or
+            stair to BS 4211, is HSE expected practice on any pit longer than 2.5m.</strong>
+            Ladder pockets are cast into our pit walls so the ladder is recessed and does not
+            foul the working zone.
+          </p>
+        </section>
+
+        <section id="puwer" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">PUWER and lifting equipment.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            <strong class="text-navy">Beam jacks, transmission jacks and overhead lifts used in or
+            over the pit are work equipment under PUWER 1998 and lifting equipment under
+            LOLER 1998.</strong> They must be CE/UKCA marked, suitable for the load, and
+            thorough-examined every 6 or 12 months depending on duty.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed">
+            We design our pits with rebated kerbs to take standard pit jacks without rocking, and
+            with cast-in inserts for fixed equipment. Tell us at design stage what is going in
+            the pit.
+          </p>
+        </section>
+
+        <section id="standards" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-4">Standards on a precast pit.</h2>
+          <ul class="text-cast-700 text-lg leading-relaxed list-disc pl-6 space-y-2 mb-4">
+            <li><a href="/standards-explained#eurocode-2" class="text-ember underline">BS EN 1992-1-1 (Eurocode 2)</a> — structural design.</li>
+            <li><a href="/standards-explained#bs-8500" class="text-ember underline">BS 8500-1:2023</a> — concrete specification (C40/50, exposure XC4).</li>
+            <li><a href="/standards-explained#bs-en-13369" class="text-ember underline">BS EN 13369</a> — factory production control.</li>
+            <li>HSE HSG261 / INDG293 — operational guidance.</li>
+          </ul>
+        </section>
+
+        <section id="faq" class="mb-12 scroll-mt-24">
+          <h2 class="font-display text-3xl text-navy mb-6">Frequently asked questions</h2>
+          <div class="space-y-4">
+            {faqs.map((f) => (
+              <details class="card p-5 group">
+                <summary class="font-display text-lg font-bold text-navy cursor-pointer flex items-start justify-between gap-4">
+                  <span>{f.q}</span>
+                  <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+                </summary>
+                <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section class="bg-navy text-white rounded-lg p-8 md:p-10">
+          <h2 class="font-display text-2xl md:text-3xl text-white mb-3">Designing a vehicle pit?</h2>
+          <p class="text-white/90 mb-6 leading-relaxed">Tell us the longest vehicle, the working depth you need, and any fixed equipment. We will quote the precast and design the service voids around it.</p>
+          <div class="flex flex-wrap gap-3">
+            <a href="/products/vehicle-pits" class="btn-yellow">See vehicle pit range</a>
+            <a href="/quote" class="btn bg-white text-navy hover:bg-bone">Start a quote</a>
+          </div>
+        </section>
+      </div>
+
+      <aside class="hidden lg:block">
+        <div class="sticky top-24">
+          <p class="eyebrow text-cast mb-4">On this page</p>
+          <ol class="space-y-3 text-sm border-l border-cast-100 pl-4">
+            <li><a href="#regs" class="text-cast hover:text-ember">Regulations</a></li>
+            <li><a href="#ventilation" class="text-cast hover:text-ember">Ventilation</a></li>
+            <li><a href="#lighting" class="text-cast hover:text-ember">Lighting</a></li>
+            <li><a href="#edge" class="text-cast hover:text-ember">Edge protection</a></li>
+            <li><a href="#access" class="text-cast hover:text-ember">Access</a></li>
+            <li><a href="#puwer" class="text-cast hover:text-ember">PUWER & lifting</a></li>
+            <li><a href="#standards" class="text-cast hover:text-ember">Standards</a></li>
+            <li><a href="#faq" class="text-cast hover:text-ember">FAQ</a></li>
+          </ol>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+  <section class="bg-bone-200 py-16">
+    <div class="container-wccp">
+      <p class="eyebrow text-cast mb-3">Related guides</p>
+      <h2 class="font-display text-display-md mb-8">Keep reading.</h2>
+      <div class="grid md:grid-cols-3 gap-5">
+        <a href="/guides/bespoke-precast-process" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Process</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">How bespoke precast is made</h3>
+          <p class="text-cast text-sm">From sketch to delivery.</p>
+        </a>
+        <a href="/standards-explained" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Reference</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Standards explained</h3>
+          <p class="text-cast text-sm">BS, BS EN and Eurocodes for UK precast.</p>
+        </a>
+        <a href="/sectors/civils" class="card p-6 group">
+          <span class="eyebrow text-ember mb-3 block">Sector</span>
+          <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Civils &amp; commercial</h3>
+          <p class="text-cast text-sm">How WCCP supplies the South West.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-16 text-center">
+    <h2 class="font-display text-display-lg mb-4">Talk to the yard.</h2>
+    <p class="text-cast-700 text-lg max-w-xl mx-auto mb-8">Same-day callback Monday to Friday.</p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+      <a href="/quote" class="btn-primary">Configure a quote</a>
+    </div>
+  </section>
+</BaseLayout>

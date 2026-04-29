@@ -1,0 +1,151 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
+import { site } from '@/config/site';
+
+const city = 'Salisbury';
+const county = 'Wiltshire';
+const distanceMi = 140;
+
+const surroundingAreas = [
+  'Wilton', 'Amesbury', 'Tisbury', 'Mere', 'Shaftesbury',
+  'Andover', 'Warminster', 'Downton', 'Fordingbridge', 'Romsey',
+];
+
+const distances = [
+  { name: 'Salisbury city centre', mi: 140 },
+  { name: 'Mere', mi: 105 },
+  { name: 'Shaftesbury', mi: 95 },
+  { name: 'Warminster', mi: 120 },
+];
+
+const faqs = [
+  { q: `Do you deliver to Salisbury and Wiltshire?`, a: `Yes — Salisbury is roughly 140 miles from Holsworthy via the A303. Catalogue loads typically arrive within 3 working days, on our own HIAB-equipped lorries. We run loads east into Wiltshire, Dorset and West Hampshire on a planned weekly route.` },
+  { q: 'Is it worth ordering precast from Devon for a Salisbury job?', a: 'Yes — for engineered and bespoke precast it usually is. We have customers across Wiltshire who order with us specifically because the lead time, the design service and the paperwork pack are tighter than with their nearest yard. Catalogue items at distance we will be straight about — sometimes a closer supplier wins on freight.' },
+  { q: 'Lead time for Salisbury jobs?', a: 'Catalogue items 3 weeks; bespoke and engineered items quoted from drawings, typically 4–6 weeks from approved design. We plan deliveries in batches into Wiltshire so part-loads can share haulage.' },
+  { q: 'Do you supply Wiltshire main contractors?', a: 'Yes. We supply precast retaining walls, padstones, headwalls and bespoke civils items into Wiltshire, Hampshire and Dorset principal contractors — particularly on agricultural framework jobs and A303 corridor schemes.' },
+];
+
+const related = [
+  { href: '/products/cattle-cubicles',     label: 'Cattle Cubicles',     meta: 'AHDB 2024 sized' },
+  { href: '/products/silage-clamp-walls',  label: 'Silage Clamp Walls',  meta: 'BS EN 1992' },
+  { href: '/products/retaining-walls',     label: 'Retaining Walls',     meta: 'L / King-post / Cantilever' },
+  { href: '/products/padstones',           label: 'Padstones',           meta: 'Eurocode 6 sized' },
+];
+
+const localBusinessSchema = {
+  areaServed: { '@type': 'City', name: `${city}, ${county}, United Kingdom` },
+  mainEntityOfPage: `${site.url}/concrete-supplier-salisbury`,
+};
+---
+
+<BaseLayout
+  title={`Precast concrete supplier · ${city}`}
+  description={`Precast concrete delivered to ${city} and Wiltshire from the WCCP yard in Holsworthy. Engineered cubicles, silage clamps, retaining walls, padstones. Cast in North Devon.`}
+  schema="LocalBusiness"
+  schemaData={localBusinessSchema}
+>
+  <section class="bg-forest-700 text-cream">
+    <div class="container-wccp py-20 md:py-28">
+      <p class="eyebrow text-cream/70 mb-4">Areas served · {city}</p>
+      <h1 class="font-display text-display-2xl text-cream mb-6 max-w-4xl">
+        Precast concrete delivered to {city} and {county}.<br />
+        <em class="text-terracotta not-italic font-display italic">Made in North Devon. Hauled to your slab.</em>
+      </h1>
+      <p class="text-cream/85 text-lg leading-relaxed max-w-2xl mb-8">
+        Family-led North Devon precast. {city} sits at the far end of our weekly East run — same lorries
+        we drop in Mere, Shaftesbury and Warminster.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="/quote" class="btn-primary">Get a quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-yellow">Call {site.contact.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <TrustStrip />
+
+  <section class="container-wccp py-16 md:py-20 section-reveal">
+    <div class="grid lg:grid-cols-2 gap-10 items-start">
+      <div>
+        <p class="eyebrow text-cast mb-3">From the yard</p>
+        <h2 class="font-display text-display-md text-forest-700 mb-4">
+          Holsworthy to {city}: roughly {distanceMi} miles.
+        </h2>
+        <p class="text-cast-700 leading-relaxed">
+          A30 / A303 east — across Somerset, into Wiltshire, on into the {city} plain. Typical
+          delivery 3 working days from order on catalogue items. Wiltshire is our furthest standard
+          drop and we run a planned weekly batch so part-loads can share the haul.
+        </p>
+      </div>
+      <ul class="space-y-3">
+        {distances.map((d) => (
+          <li class="flex items-baseline justify-between border-b border-cast-100 pb-3">
+            <span class="font-display text-lg font-semibold text-forest-700">{d.name}</span>
+            <span class="text-cast tabular-nums">~{d.mi} mi</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="bg-cream-200 py-16 md:py-20 section-reveal">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-10">
+        <p class="eyebrow text-cast mb-3">Areas covered</p>
+        <h2 class="font-display text-display-md text-forest-700 mb-4">{city} and {county}.</h2>
+        <p class="text-cast-700">From the cathedral city out to the Wiltshire / Dorset / Hampshire borders.</p>
+      </div>
+      <ul class="grid sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-2 max-w-3xl">
+        {surroundingAreas.map((a) => (
+          <li class="flex gap-2 text-cast-700"><span class="text-terracotta font-bold">·</span> {a}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="container-wccp py-16 md:py-20 section-reveal">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">What we cast</p>
+      <h2 class="font-display text-display-md text-forest-700 mb-4">Most ordered around {city}.</h2>
+      <p class="text-cast-700">Engineered precast for big arable / mixed estates and the A303 civils chain.</p>
+    </div>
+    <RelatedProductGrid items={related} />
+    <div class="mt-8 flex flex-wrap gap-6 text-sm">
+      <a href="/products" class="text-terracotta font-bold hover:text-terracotta-700">See the full catalogue →</a>
+      <a href="/case-studies" class="text-terracotta font-bold hover:text-terracotta-700">Recent case studies →</a>
+    </div>
+  </section>
+
+  <section class="bg-cream-200 py-16 md:py-20 section-reveal">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-10">
+        <p class="eyebrow text-cast mb-3">Common questions</p>
+        <h2 class="font-display text-display-md text-forest-700">Delivering to {city}.</h2>
+      </div>
+      <div class="max-w-3xl space-y-4">
+        {faqs.map((f) => (
+          <details class="card p-6 group">
+            <summary class="font-display text-lg font-bold text-forest-700 cursor-pointer list-none flex justify-between items-start gap-4">
+              <span>{f.q}</span>
+              <span class="text-terracotta text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-forest-700 text-cream py-16">
+    <div class="container-wccp text-center max-w-2xl mx-auto">
+      <h2 class="font-display text-display-md text-cream mb-3">Engineered precast, hauled east from North Devon.</h2>
+      <p class="text-cream/85 mb-8">Send a drawing or just describe the job. We'll quote inside a working day.</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/quote" class="btn-primary">Get a quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-yellow">Call {site.contact.phone}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

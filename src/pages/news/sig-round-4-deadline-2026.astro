@@ -1,0 +1,93 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+---
+
+<BaseLayout
+  title="SIG Round 4 — what farmers need to know before 30 September 2026"
+  description="Slurry Infrastructure Grant Round 4 explained — £74m fund, eligible items, application timeline, and how WCCP supports SIG-ready precast deliveries before the 30 September 2026 deadline."
+  schema="Article"
+>
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-14 md:py-16">
+      <nav class="text-sm text-white/90 mb-6" aria-label="Breadcrumb">
+        <a href="/news" class="hover:text-yellow">News</a><span class="mx-2 text-cast">/</span>
+        <span class="text-white/90">SIG Round 4</span>
+      </nav>
+      <p class="eyebrow text-yellow mb-4">Industry update · 15 April 2026</p>
+      <h1 class="font-display text-display-xl text-white mb-6 max-w-4xl">
+        SIG Round 4 — what farmers need to know before 30 September 2026.
+      </h1>
+      <p class="text-white/85 text-lg max-w-3xl leading-relaxed">
+        The Slurry Infrastructure Grant Round 4 is open — £74 million on the table, deadline
+        30 September 2026. Here is what to look at first if you might apply.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/90">
+        <div>By <span class="text-white font-semibold">WCCP Engineering Team</span></div>
+        <div>Published <time datetime="2026-04-15">15 April 2026</time></div>
+      </div>
+    </div>
+  </section>
+
+  <article class="container-wccp py-12 md:py-16">
+    <div class="max-w-3xl">
+      <h2 class="font-display text-3xl text-navy mb-4">What is SIG Round 4?</h2>
+      <p class="text-cast-700 text-lg leading-relaxed mb-6">
+        The Slurry Infrastructure Grant is a DEFRA capital grant for English livestock farmers to
+        upgrade slurry storage and handling. Round 4, confirmed in early 2026, runs to a £74m
+        fund with applications closing 30 September 2026. It funds new and replacement slurry
+        stores, covers, agitation kit and slurry separators.
+      </p>
+
+      <h2 class="font-display text-3xl text-navy mb-4">Key eligibility points.</h2>
+      <ul class="list-disc pl-6 space-y-2 text-cast-700 text-lg mb-6">
+        <li>Demonstrate at least 6 months' slurry storage capacity post-build, against your
+          herd numbers (use the AHDB slurry calculator).</li>
+        <li>Concrete stores designed and built to <a href="/standards-explained#ssafo-2018" class="text-ember underline">SSAFO 2018</a>,
+          BS 5502-50 and BS EN 1992-3 with a minimum 20-year design life.</li>
+        <li>Environment Agency notified at least 14 days before construction (form WQE1).</li>
+        <li>Match-funding component — DEFRA contributes a share of eligible cost; the rest is
+          on you or your bank.</li>
+      </ul>
+
+      <h2 class="font-display text-3xl text-navy mb-4">The application timeline.</h2>
+      <p class="text-cast-700 text-lg leading-relaxed mb-6">
+        DEFRA usually invites Expressions of Interest, then full applications, with conditional
+        offers issued in tranches. Build typically has to complete inside 12–18 months of offer.
+        Don't leave the supplier conversation to the back of that window — concrete lead times
+        compress as everyone hits the same deadline.
+      </p>
+
+      <h2 class="font-display text-3xl text-navy mb-4">How WCCP can help.</h2>
+      <p class="text-cast-700 text-lg leading-relaxed mb-4">
+        We have been casting <a href="/products/slurry-storage" class="text-ember underline">slurry
+        storage panels</a> in North Devon for 55 years. For SIG Round 4 we are running a
+        priority production schedule for grant-eligible jobs, with the paperwork pack already
+        formatted to RPA expectations: structural calc, mix certificate, cube tests, declaration
+        of performance, capacity statement.
+      </p>
+      <p class="text-cast-700 text-lg leading-relaxed mb-6">
+        Read our full <a href="/grants/sig-round-4" class="text-ember underline">SIG Round 4 guide</a>
+        for the deeper breakdown, or our pillar guide on
+        <a href="/guides/slurry-wall-thickness" class="text-ember underline">slurry wall thickness</a>
+        for the design detail.
+      </p>
+
+      <section class="bg-yellow/15 border-l-4 border-yellow p-6 rounded-r mb-10">
+        <p class="font-bold text-navy mb-2">Deadline — 30 September 2026.</p>
+        <p class="text-cast-700">If you might apply, talk to us before the summer. Q3 2026 will be the busy quarter and we are batching grant orders by the week.</p>
+      </section>
+
+      <div class="flex flex-wrap gap-3">
+        <a href="/grants/sig-round-4" class="btn-primary">Read the SIG guide</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-yellow">Call {site.contact.phone}</a>
+      </div>
+    </div>
+  </article>
+
+  <section class="bg-bone-200 py-12">
+    <div class="container-wccp">
+      <a href="/news" class="text-ember font-bold">← Back to news</a>
+    </div>
+  </section>
+</BaseLayout>

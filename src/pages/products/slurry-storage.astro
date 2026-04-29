@@ -1,15 +1,24 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
+import SlurryCalculator from '@/components/SlurryCalculator.astro';
+import FittedVsSupply from '@/components/FittedVsSupply.astro';
+import SpecSheetButton from '@/components/SpecSheetButton.astro';
+import SpecDownloads from '@/components/SpecDownloads.astro';
 import { site } from '@/config/site';
+import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
 
-const specs = [
-  { thickness: '200mm', height: '2.4m', weight: '1,152 kg/m', capacity: '~250 m³ store', use: 'Smaller dairy units, weeping walls' },
-  { thickness: '200mm', height: '3.0m', weight: '1,440 kg/m', capacity: '~500 m³ store', use: 'Mid-size dairy slurry stores' },
-  { thickness: '250mm', height: '3.6m', weight: '2,160 kg/m', capacity: '~1,000 m³ store', use: 'Larger dairy and beef slurry' },
-  { thickness: '250mm', height: '4.5m', weight: '2,700 kg/m', capacity: '~2,000 m³ store', use: 'High-capacity 6-month stores' },
-  { thickness: '300mm', height: '5.0m', weight: '3,600 kg/m', capacity: '~3,500 m³ store', use: 'Grant-funded SSAFO upgrades' },
-  { thickness: '300mm', height: '6.0m', weight: '4,320 kg/m', capacity: '~5,000 m³ store', use: 'Maximum-capacity strategic stores' },
+const prestressedSpecs = [
+  { thickness: '95mm', heights: '1.0m, 1.2m, 1.5m', lengths: 'Custom + 15\' & 20\' standard stocked', use: 'Bund walls, transition panels, lower-load applications' },
+  { thickness: '145mm', heights: '1.0m, 1.2m, 1.5m', lengths: 'Custom + 15\' & 20\' standard stocked', use: 'Mid-size stores; cantilever heights reduced 0.3–0.4m vs 180mm' },
+  { thickness: '180mm', heights: '1.0m, 1.2m, 1.5m', lengths: 'Custom + 15\' & 20\' standard stocked', use: 'Slurry stores; vertical cantilever rated to 3.7m slurry retained' },
+];
+
+const cantileverSpecs = [
+  { service: 'Slurry retention', height: '3.7m', notes: 'Maximum cantilever retained height (180mm)' },
+  { service: 'Silage with 10t vehicle surcharge', height: '3.2m', notes: 'For combined silage / slurry yards' },
+  { service: 'Earth retention', height: '3.4m', notes: 'No surcharge above retained level' },
 ];
 
 const applications = [
@@ -23,7 +32,7 @@ const applications = [
 ];
 
 const related = [
-  { href: '/products/prestressed-panels', label: 'Prestressed Wall Panels', meta: 'BS EN 14992 · 100/150/180/280mm' },
+  { href: '/products/prestressed-panels', label: 'Prestressed Wall Panels', meta: '95 / 145 / 180mm thick' },
   { href: '/products/silage-clamp-walls', label: 'Silage Clamp Walls', meta: 'C40/50 · sulphate-resisting' },
   { href: '/products/cattle-cubicles', label: 'Cattle Cubicles', meta: 'AHDB 2024 sized' },
   { href: '/grants/slurry-grant', label: 'Slurry Grant 2026', meta: '£74m available · close 30 Sept 2026' },
@@ -32,22 +41,22 @@ const related = [
 const faqs = [
   { q: 'Are your stores SSAFO 2018 compliant?', a: 'Yes — every slurry store we ship comes with the SSAFO 2018 capacity statement, structural calcs to BS EN 1992 and the BS 8500 mix certificate. The minimum 6-month storage requirement is the design driver, with freeboard and rainfall load added per the regs.' },
   { q: 'What concrete grade do you use?', a: 'C40/50 to BS 8500-1:2023, with sulphate-resisting CEM III/A or CEM II/B-V binder for aggressive-chemical class XA3 (DC-3 / DC-4 designation). Slurry pH and ammonium are nasty on standard cement — the SR mix is what gives the 50-year design life.' },
-  { q: 'How thick a wall do I need?', a: 'For a free-standing rectangular store, 200mm at 2.4–3.0m, 250mm at 3.0–4.5m and 300mm at 4.5–6.0m is the catalogue. We always do a site-specific design — surcharge from earth or vehicles, and the corner detail, can change the answer. Read our wall-thickness guide for the long version.' },
+  { q: 'How thick a panel and how high can I go?', a: 'Our prestressed panel range is 95mm, 145mm or 180mm thick at heights of 1.0m, 1.2m and 1.5m, in custom or 15\' / 20\' standard stocked lengths. The 180mm Vertical Cantilever Panels retain slurry up to 3.7m with no supporting posts required. The 145mm panels can be used in cantilever with retained heights reduced by 0.3–0.4m. Final design always to BS EN 1992.' },
   { q: 'Can you supply for the Slurry Infrastructure Grant?', a: 'Yes — we have shipped panels for dozens of grant-funded stores already. We supply the capacity calc and SSAFO statement that goes with the grant claim, and we can recommend a contractor if you need install too.' },
-  { q: 'What is the lead time?', a: 'Catalogue thicknesses run 3 to 5 weeks. The grant rush in spring and autumn lengthens that — get the order in by early summer if you are claiming this round. Bespoke pocket details and corner units run 6 to 8 weeks.' },
+  { q: 'What is the lead time?', a: 'Catalogue thicknesses run 3 to 5 weeks. The 15\' and 20\' standard stocked lengths often despatch from stock. The grant rush in spring and autumn lengthens that — get the order in by early summer if you are claiming this round.' },
 ];
 
 const productSchema = {
   name: 'Precast Slurry Storage Walls & Tanks',
-  description: 'SSAFO 2018-compliant precast slurry storage walls and tanks. 200mm, 250mm and 300mm thicknesses, heights to 6.0m, designed for 6-month storage. C40/50 sulphate-resisting concrete cast in Holsworthy.',
+  description: 'SSAFO 2018-compliant precast slurry storage. WCCP prestressed panel range at 95mm, 145mm or 180mm thicknesses, heights of 1.0m, 1.2m and 1.5m, with custom or 15\' & 20\' standard stocked lengths. 180mm Vertical Cantilever Panels retain slurry to 3.7m with no supporting posts required. C40/50 sulphate-resisting concrete cast in Devon.',
   brand: { '@type': 'Brand', name: site.name },
   manufacturer: { '@type': 'Organization', name: site.name },
   category: 'Precast slurry storage',
   material: 'Prestressed reinforced concrete, C40/50 sulphate-resisting (BS 8500-1:2023, XA3)',
   weight: {
     '@type': 'QuantitativeValue',
-    minValue: 1152,
-    maxValue: 4320,
+    minValue: 200,
+    maxValue: 1100,
     unitCode: 'KGM',
     unitText: 'kilogram per linear metre',
   },
@@ -56,18 +65,19 @@ const productSchema = {
     { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 sulphate-resisting (XA3)' },
     { '@type': 'PropertyValue', name: 'Concrete specification', value: 'BS 8500-1:2023' },
     { '@type': 'PropertyValue', name: 'Storage capacity', value: '6-month minimum (SSAFO 2018)' },
-    { '@type': 'PropertyValue', name: 'Wall thicknesses', value: '200mm / 250mm / 300mm' },
-    { '@type': 'PropertyValue', name: 'Maximum height', value: '6.0 m' },
+    { '@type': 'PropertyValue', name: 'Panel heights', value: '1.0 m, 1.2 m, 1.5 m' },
+    { '@type': 'PropertyValue', name: 'Panel thicknesses', value: '95 mm, 145 mm, 180 mm' },
+    { '@type': 'PropertyValue', name: 'Standard stocked lengths', value: "15' & 20' (custom lengths available)" },
+    { '@type': 'PropertyValue', name: 'Vertical Cantilever — slurry', value: '3.7 m retained height (180mm)' },
+    { '@type': 'PropertyValue', name: 'Vertical Cantilever — silage + 10t surcharge', value: '3.2 m retained height (180mm)' },
+    { '@type': 'PropertyValue', name: 'Vertical Cantilever — earth', value: '3.4 m retained height (180mm)' },
+    { '@type': 'PropertyValue', name: 'Cantilever supporting posts', value: 'None required' },
+    { '@type': 'PropertyValue', name: '145mm cantilever', value: 'Reduce retained heights by 0.3–0.4m' },
     { '@type': 'PropertyValue', name: 'Design life', value: '50 years' },
-    { '@type': 'PropertyValue', name: 'Lead time', value: '3–5 weeks catalogue, 6–8 weeks bespoke' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '3–5 weeks catalogue' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
   ],
-  offers: {
-    '@type': 'Offer',
-    priceCurrency: 'GBP',
-    availability: 'https://schema.org/InStock',
-    seller: { '@type': 'Organization', name: site.name },
-  },
+  offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
 };
 
 const faqSchema = {
@@ -82,11 +92,12 @@ const faqSchema = {
 ---
 
 <BaseLayout
-  title="Slurry Storage — SSAFO 2018-compliant precast walls & tanks"
-  description="SSAFO 2018-compliant precast slurry storage. 200/250/300mm walls to 6.0m, C40/50 sulphate-resisting, 6-month capacity. Grant-ready. Cast in North Devon."
-  image="/images/products/slurry-storage.jpg"
+  title="Slurry Storage — SSAFO 2018 · 95/145/180mm panels · cantilever to 3.7m"
+  description="SSAFO 2018-compliant precast slurry storage. WCCP prestressed panels at 95mm, 145mm or 180mm thick, 1.0m, 1.2m or 1.5m high. 180mm Vertical Cantilever retains slurry to 3.7m with no supporting posts required. Cast in North Devon."
+  image="/og/slurry-storage.png"
   schema="Product"
   schemaData={productSchema}
+  whatsappContext="Slurry Storage"
 >
   <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
   <TrustStrip />
@@ -97,58 +108,64 @@ const faqSchema = {
         <div>
           <p class="eyebrow text-yellow mb-4">Agricultural · slurry · grant-ready</p>
           <h1 class="font-display text-display-xl text-white mb-4">Slurry Storage.</h1>
-          <p class="text-lg text-white/90 leading-relaxed mb-6">
-            SSAFO 2018-compliant precast walls and tanks. 200, 250 and 300mm thicknesses,
-            heights to 6.0m, six-month storage as standard. Cast in C40/50 sulphate-resisting
-            concrete. Grant-ready paperwork supplied with every store.
+          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">SSAFO 2018-ready. Six-month capacity, grant-friendly.</p>
+          <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
+            Precast slurry store walls in the UK are typically 200&nbsp;mm thick up to 3&nbsp;m retained
+            height and 250&nbsp;mm above that, designed to BS&nbsp;EN&nbsp;1992-3 and SSAFO&nbsp;2018.
+            Walls must be impermeable (k&nbsp;&le;&nbsp;1&times;10&#8315;&#8313;&nbsp;m/s) with a 20-year
+            minimum design life.
+          </blockquote>
+          <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
+            SSAFO 2018-compliant precast slurry storage. WCCP prestressed panels at <strong class="text-white">95mm,
+            145mm or 180mm</strong> thick at heights of <strong class="text-white">1.0m, 1.2m and 1.5m</strong>,
+            with custom or 15' and 20' standard stocked lengths. The 180mm Vertical Cantilever
+            Panels retain slurry to 3.7m with no supporting posts required. Cast in C40/50
+            sulphate-resisting concrete. Grant-ready paperwork supplied with every store.
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
             <li class="flex gap-2"><span class="text-yellow">·</span> SSAFO 2018 compliant</li>
             <li class="flex gap-2"><span class="text-yellow">·</span> 6-month capacity</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> C40/50 SR mix</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Heights to 6.0m</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 50-year design life</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 3–5 week lead</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 95 / 145 / 180mm thick</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 1.0 / 1.2 / 1.5m high</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Cantilever to 3.7m</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> No supporting posts</li>
           </ul>
           <div class="flex flex-wrap gap-3">
-            <a href="/quote?product=Slurry+Storage" class="btn-primary">Configure a quote</a>
-            <a href="/spec-sheets/slurry-storage.pdf" class="btn-yellow">Download spec sheet</a>
+            <a href="/quote?product=Slurry%20Storage" class="btn-primary">Configure a quote</a>
+            <a href="mailto:engineering@wccp.co.uk?subject=Spec%20sheet%20request%20%E2%80%94%20Slurry%20Storage&amp;body=Hi%20WCCP%20engineering%2C%0A%0APlease%20send%20the%20spec%20sheet%20for%20Slurry%20Storage.%0A%0AProject%20details%3A%0A%E2%80%A2%20Project%20name%3A%0A%E2%80%A2%20Site%20location%3A%0A%E2%80%A2%20Required%20spec%20%2F%20standard%3A%0A%0AThanks" class="btn-yellow">Request spec sheet</a>
             <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">Call {site.contact.phone}</a>
           </div>
         </div>
         <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
-          <div class="w-full h-full bg-gradient-to-br from-cast-300 via-cast to-navy"></div>
+          <img src="/images/products/slurry-handling/wccp-slurry-handling-shallow-v-channel.jpg" alt="Precast concrete slurry channel — SSAFO 2018 compliant, West Country Concrete Products, Devon" class="w-full h-full object-cover" loading="eager" decoding="async" />
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Prestressed panels -->
   <section class="container-wccp py-20">
     <div class="max-w-2xl mb-10">
-      <p class="eyebrow text-cast mb-3">Specification</p>
-      <h2 class="font-display text-display-lg mb-4">Wall thicknesses, heights and capacities.</h2>
-      <p class="text-cast-700 text-lg">
-        Catalogue panel sizes for typical store dimensions. Site-specific design always to BS EN 1992.
-      </p>
+      <p class="eyebrow text-cast mb-3">Prestressed Panels</p>
+      <h2 class="font-display text-display-lg mb-4">Three thicknesses, three heights.</h2>
+      <p class="text-cast-700 text-lg">95mm, 145mm or 180mm thick at 1.0m, 1.2m and 1.5m heights. Custom lengths to order, plus 15' and 20' standard stocked lengths.</p>
     </div>
     <div class="overflow-x-auto">
       <table class="spec-table w-full text-left border-collapse">
         <thead class="bg-navy text-white">
           <tr>
-            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Wall thickness</th>
-            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Height</th>
-            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Weight</th>
-            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Indicative store</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Thickness</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Heights available</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Lengths</th>
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
           </tr>
         </thead>
         <tbody>
-          {specs.map((s, i) => (
+          {prestressedSpecs.map((s, i) => (
             <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
               <td class="px-4 py-3 font-bold text-navy">{s.thickness}</td>
-              <td class="px-4 py-3">{s.height}</td>
-              <td class="px-4 py-3">{s.weight}</td>
-              <td class="px-4 py-3">{s.capacity}</td>
+              <td class="px-4 py-3">{s.heights}</td>
+              <td class="px-4 py-3">{s.lengths}</td>
               <td class="px-4 py-3 text-cast">{s.use}</td>
             </tr>
           ))}
@@ -156,41 +173,69 @@ const faqSchema = {
       </table>
     </div>
     <p class="text-cast text-sm mt-4">
-      Capacities are indicative for a rectangular plan. Final structural design and capacity statement
-      issued with the order pack.
+      Final structural design and SSAFO 2018 capacity statement issued in the order pack.
     </p>
   </section>
 
+  <!-- Vertical Cantilever Panels -->
   <section class="bg-bone-200 py-20">
     <div class="container-wccp">
-      <div class="grid lg:grid-cols-2 gap-12">
-        <div>
-          <p class="eyebrow text-cast mb-3">Where they go</p>
-          <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
-          <p class="text-cast-700 text-lg leading-relaxed mb-6">
-            From a small Devon dairy adding 300m³ of capacity to a strategic 5,000m³ AD-feed store —
-            same panels, same paperwork, same yard.
-          </p>
-          <ul class="space-y-3">
-            {applications.map((a) => (
-              <li class="flex gap-3 text-cast-700 leading-relaxed">
-                <span class="text-ember font-bold mt-1">·</span>
-                <span>{a}</span>
-              </li>
+      <div class="max-w-2xl mb-10">
+        <p class="eyebrow text-cast mb-3">Vertical Cantilever Panels</p>
+        <h2 class="font-display text-display-lg mb-4">No supporting posts required.</h2>
+        <p class="text-cast-700 text-lg">The 180mm panels retain to the heights below in cantilever — no supporting posts in the wall run. 145mm panels can be used in cantilever with retained heights reduced by 0.3–0.4m.</p>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="spec-table w-full text-left border-collapse">
+          <thead class="bg-navy text-white">
+            <tr>
+              <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Service</th>
+              <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Retained height (180mm)</th>
+              <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cantileverSpecs.map((s, i) => (
+              <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
+                <td class="px-4 py-3 font-bold text-navy">{s.service}</td>
+                <td class="px-4 py-3">{s.height}</td>
+                <td class="px-4 py-3 text-cast">{s.notes}</td>
+              </tr>
             ))}
-          </ul>
-        </div>
-        <div class="card p-8">
-          <p class="eyebrow text-cast mb-3">Standards & certification</p>
-          <h3 class="font-display text-2xl font-bold text-navy mb-4">SSAFO-compliant, factory-controlled.</h3>
-          <dl class="space-y-4 text-sm">
-            <div><dt class="font-bold text-navy">SSAFO 2018</dt><dd class="text-cast">Silage, Slurry and Agricultural Fuel Oil regs. Capacity statement supplied.</dd></div>
-            <div><dt class="font-bold text-navy">BS EN 14992</dt><dd class="text-cast">Precast wall elements — UKCA marked, factory production control.</dd></div>
-            <div><dt class="font-bold text-navy">BS 8500-1:2023</dt><dd class="text-cast">Concrete spec — DC-3 / DC-4 designations for aggressive ground.</dd></div>
-            <div><dt class="font-bold text-navy">BS EN 1992 (Eurocode 2)</dt><dd class="text-cast">Structural design of concrete — site-specific calcs by our design team.</dd></div>
-            <div><dt class="font-bold text-navy">BS EN 13369</dt><dd class="text-cast">Common rules for precast — factory production control framework.</dd></div>
-          </dl>
-        </div>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-20">
+    <div class="grid lg:grid-cols-2 gap-12">
+      <div>
+        <p class="eyebrow text-cast mb-3">Where they go</p>
+        <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
+        <p class="text-cast-700 text-lg leading-relaxed mb-6">
+          From a small Devon dairy adding 300m³ of capacity to a strategic AD-feed store —
+          same panels, same paperwork, same yard.
+        </p>
+        <ul class="space-y-3">
+          {applications.map((a) => (
+            <li class="flex gap-3 text-cast-700 leading-relaxed">
+              <span class="text-ember font-bold mt-1">·</span>
+              <span>{a}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="card p-8">
+        <p class="eyebrow text-cast mb-3">Standards & certification</p>
+        <h3 class="font-display text-2xl font-bold text-navy mb-4">SSAFO-compliant, factory-controlled.</h3>
+        <dl class="space-y-4 text-sm">
+          <div><dt class="font-bold text-navy">SSAFO 2018</dt><dd class="text-cast">Silage, Slurry and Agricultural Fuel Oil regs. Capacity statement supplied.</dd></div>
+          <div><dt class="font-bold text-navy">BS EN 14992</dt><dd class="text-cast">Precast wall elements — UKCA marked, factory production control.</dd></div>
+          <div><dt class="font-bold text-navy">BS 8500-1:2023</dt><dd class="text-cast">Concrete spec — DC-3 / DC-4 designations for aggressive ground.</dd></div>
+          <div><dt class="font-bold text-navy">BS EN 1992 (Eurocode 2)</dt><dd class="text-cast">Structural design of concrete — site-specific calcs by our design team.</dd></div>
+          <div><dt class="font-bold text-navy">BS EN 13369</dt><dd class="text-cast">Common rules for precast — factory production control framework.</dd></div>
+        </dl>
       </div>
     </div>
   </section>
@@ -203,7 +248,7 @@ const faqSchema = {
           <h2 class="font-display text-display-md">Tell us herd size and store dimensions — we will quote inside 24 hours.</h2>
         </div>
         <div class="flex flex-wrap gap-3 shrink-0">
-          <a href="/quote?product=Slurry+Storage" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
+          <a href="/quote?product=Slurry%20Storage" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
           <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
         </div>
       </div>
@@ -220,17 +265,24 @@ const faqSchema = {
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" /><polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" /></svg>
       </a>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      {related.map((r) => (
-        <a href={r.href} class="card p-5 group">
-          <div class="aspect-[16/10] bg-cast-100 mb-4 rounded overflow-hidden">
-            <div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100"></div>
-          </div>
-          <h3 class="font-display text-base font-bold text-navy mb-1 group-hover:text-ember">{r.label}</h3>
-          <p class="text-cast text-xs">{r.meta}</p>
-        </a>
-      ))}
+    <RelatedProductGrid items={related} />
+  </section>
+
+  <section id="sizing-tool" class="section-rhythm container-wccp border-t border-cast-100">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Sizing tool</p>
+      <h2 class="font-display text-display-lg mb-4">How much slurry storage do you need?</h2>
+      <p class="text-cast-700 text-lg">
+        Plug in herd size, animal type and storage months — we will translate it into
+        an SSAFO-compliant volume, the WCCP panel system that fits, and a panel-count
+        estimate. All compute is on this page; nothing leaves your browser.
+      </p>
     </div>
+    <SlurryCalculator />
+    <p class="text-cast text-xs mt-6 max-w-3xl">
+      Indicative only. Final design is site-specific to BS EN 1992 (Eurocode 2) with
+      surcharge, freeboard and SSAFO 2018 capacity statement issued in the order pack.
+    </p>
   </section>
 
   <section class="bg-bone-200 py-20">
@@ -254,15 +306,63 @@ const faqSchema = {
     </div>
   </section>
 
+  <SpecDownloads
+    intro="Floating sleeper channel technical data and adjacent slurry-handling references."
+    downloads={[
+      { href: '/downloads/specs/slurry-handling/wccp-slurry-handling-floating-sleeper-channel-technical.pdf', title: 'Floating sleeper channel — technical', meta: 'PDF · 28 KB' },
+    ]}
+  />
+
+  <!-- Supply-only vs Fitted -->
+  <section class="container-wccp section-rhythm border-t border-cast-100">
+    <FittedVsSupply
+      productName="Slurry Storage"
+      defaultMode="fitted"
+      supply={{
+        price: 'from £180 per m² of panel',
+        leadTime: '4–6 weeks',
+        includes: [
+          'Prestressed panels in 95 / 145 / 180mm thicknesses',
+          'Heights 1.0m, 1.2m or 1.5m; custom or 15\' / 20\' lengths',
+          'C40/50 sulphate-resisting (XA3) for slurry service',
+          'SSAFO 2018 capacity statement & structural calcs',
+        ],
+        excludes: [
+          'Strip-footing groundworks and cast-in pockets',
+          'On-site setting / fixing labour',
+          'Pumps, mixers and ancillary fit-out',
+        ],
+      }}
+      fitted={{
+        price: 'from £260 per m² installed',
+        leadTime: '8–10 weeks (incl. site slot)',
+        includes: [
+          'Everything in supply only',
+          'Two-man install crew with HIAB and crane',
+          'Setting-out, levelling and joint sealing',
+          '12-month workmanship warranty',
+        ],
+        excludes: [
+          'Strip-footing concrete and steel reinforcement',
+          'Slurry-handling plant and electrical fit-out',
+        ],
+      }}
+      note="Indicative 2026 pricing per m² of wall face for 50m+ runs. Vertical Cantilever Panels (no supporting posts) and grant-tied delivery dates priced individually."
+    />
+  </section>
+
   <section class="bg-navy text-white py-20">
     <div class="container-wccp text-center">
       <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
       <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">Send us herd size, current capacity and a sketch. Quote and lead-time same day.</p>
       <div class="flex flex-wrap justify-center gap-3">
-        <a href="/quote?product=Slurry+Storage" class="btn-yellow">Configure a quote</a>
+        <a href="/quote?product=Slurry%20Storage" class="btn-yellow">Configure a quote</a>
         <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
         <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
       </div>
     </div>
   </section>
+
+  <SpecSheetButton productSlug="slurry-storage" productName="Slurry Storage" />
+  <ProductWarrantyLine />
 </BaseLayout>

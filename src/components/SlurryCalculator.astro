@@ -1,0 +1,348 @@
+---
+// SlurryCalculator.astro
+//
+// Computes recommended SSAFO-compliant slurry storage volume from herd size,
+// months of storage, animal type, yard washings and rainfall capture.
+// Translates the m³ result into a recommended WCCP precast panel system
+// (tower / in-channel / above-ground) and an estimated panel count.
+//
+// All compute is client-side vanilla TS — output updates live as inputs change.
+// The form never submits (event.preventDefault).
+
+import { site } from '@/config/site';
+
+const animalOptions = [
+  { value: 'dairy',      label: 'Dairy cow',  litresPerDay: 53 },
+  { value: 'beef',       label: 'Beef',       litresPerDay: 28 },
+  { value: 'pigs',       label: 'Pigs',       litresPerDay: 7  },
+  { value: 'youngstock', label: 'Youngstock', litresPerDay: 25 },
+];
+
+const monthOptions = [4, 5, 6, 8];
+
+// WhatsApp deeplink — pre-filled body is overwritten live by the script
+const waBase = `https://wa.me/${site.contact.whatsapp.replace('+', '')}`;
+---
+
+<section
+  role="form"
+  aria-label="Slurry storage volume calculator"
+  class="grid md:grid-cols-2 gap-8 lg:gap-10"
+  data-slurry-calc
+>
+  <!-- ============ INPUTS (left) ============ -->
+  <form
+    id="slurry-calc-form"
+    novalidate
+    aria-label="Slurry calculator inputs"
+    class="space-y-5"
+  >
+    <div>
+      <label for="sc-herd" class="block font-display font-bold text-navy text-sm mb-1.5">
+        Herd size
+      </label>
+      <input
+        id="sc-herd"
+        name="herd"
+        type="number"
+        min="10"
+        max="5000"
+        step="1"
+        value="150"
+        inputmode="numeric"
+        class="w-full px-4 py-2.5 rounded border border-cast-100 bg-white text-navy font-mono tabular-nums focus:outline-none focus:ring-2 focus:ring-yellow focus:border-navy"
+      />
+      <p class="text-xs text-cast mt-1">Number of animals on the unit.</p>
+    </div>
+
+    <div>
+      <label for="sc-animal" class="block font-display font-bold text-navy text-sm mb-1.5">
+        Animal type
+      </label>
+      <select
+        id="sc-animal"
+        name="animal"
+        class="w-full px-4 py-2.5 rounded border border-cast-100 bg-white text-navy focus:outline-none focus:ring-2 focus:ring-yellow focus:border-navy"
+      >
+        {animalOptions.map((a) => (
+          <option value={a.value} data-litres={a.litresPerDay} selected={a.value === 'dairy'}>
+            {a.label} — {a.litresPerDay} L/day
+          </option>
+        ))}
+      </select>
+    </div>
+
+    <div>
+      <label for="sc-months" class="block font-display font-bold text-navy text-sm mb-1.5">
+        Months of storage
+      </label>
+      <select
+        id="sc-months"
+        name="months"
+        class="w-full px-4 py-2.5 rounded border border-cast-100 bg-white text-navy focus:outline-none focus:ring-2 focus:ring-yellow focus:border-navy"
+      >
+        {monthOptions.map((m) => (
+          <option value={m} selected={m === 6}>
+            {m} months{m === 4 ? ' — SSAFO minimum' : ''}{m === 6 ? ' — dairy standard' : ''}
+          </option>
+        ))}
+      </select>
+      <p class="text-xs text-cast mt-1">SSAFO 2018 minimum is 4. Six is the dairy standard.</p>
+    </div>
+
+    <div>
+      <label for="sc-rainfall" class="block font-display font-bold text-navy text-sm mb-1.5">
+        Open-yard rainfall capture (m²)
+      </label>
+      <input
+        id="sc-rainfall"
+        name="rainfall"
+        type="number"
+        min="0"
+        max="20000"
+        step="10"
+        value="600"
+        inputmode="numeric"
+        class="w-full px-4 py-2.5 rounded border border-cast-100 bg-white text-navy font-mono tabular-nums focus:outline-none focus:ring-2 focus:ring-yellow focus:border-navy"
+      />
+      <p class="text-xs text-cast mt-1">Open yards collect ~0.65m of rainfall per year (UK avg).</p>
+    </div>
+
+    <div class="flex items-start gap-3 pt-1">
+      <input
+        id="sc-washings"
+        name="washings"
+        type="checkbox"
+        checked
+        class="mt-1 w-4 h-4 rounded border-cast-100 text-ember focus:ring-yellow"
+      />
+      <label for="sc-washings" class="text-sm text-navy">
+        <span class="font-display font-bold">Yard washings included</span>
+        <span class="block text-xs text-cast mt-0.5">Adds 10% dilution for parlour/yard wash-down.</span>
+      </label>
+    </div>
+  </form>
+
+  <!-- ============ OUTPUT (right) ============ -->
+  <aside
+    class="card bg-bone-200 p-6 md:p-8 self-start"
+    aria-live="polite"
+    aria-atomic="true"
+  >
+    <p class="eyebrow text-cast mb-3">Recommended capacity</p>
+
+    <div class="mb-6">
+      <div class="flex items-baseline gap-2">
+        <span
+          id="sc-volume"
+          class="font-display text-display-xl text-navy tabular-nums leading-none"
+        >0</span>
+        <span class="font-display text-2xl text-navy/80">m³</span>
+      </div>
+      <p class="text-cast text-sm mt-1">
+        ≈ <span id="sc-tonnage" class="font-mono tabular-nums text-navy font-bold">0</span> tonnes
+        <span class="text-cast/70">(slurry density 1.04 t/m³)</span>
+      </p>
+    </div>
+
+    <div class="border-t border-cast-100 pt-5 mb-5">
+      <p class="eyebrow text-cast mb-2">Recommended panel system</p>
+      <p id="sc-system" class="font-display text-lg font-bold text-navy">In-channel store</p>
+      <p id="sc-system-meta" class="text-cast text-sm mt-1">Rectangular footprint, 200–2,500 m³ range.</p>
+    </div>
+
+    <div class="border-t border-cast-100 pt-5 mb-5">
+      <p class="eyebrow text-cast mb-2">Estimated panel count</p>
+      <p class="text-navy">
+        <span id="sc-panels" class="font-display text-2xl font-bold tabular-nums">0</span>
+        <span id="sc-panels-spec" class="text-sm text-cast ml-2">× 2.4m × 4m × 200mm panels</span>
+      </p>
+    </div>
+
+    <div class="border-t border-cast-100 pt-5 mb-6">
+      <p class="text-sm text-cast">
+        <span class="inline-flex items-center gap-1.5">
+          <span aria-hidden="true" class="w-1.5 h-1.5 rounded-full bg-yellow"></span>
+          <span class="font-bold text-navy">Lead time:</span> 4–6 weeks
+        </span>
+      </p>
+    </div>
+
+    <div class="flex flex-col sm:flex-row gap-2.5">
+      <a
+        id="sc-cta-quote"
+        href="/quote?product=slurry-storage"
+        class="btn-primary flex-1 justify-center"
+      >
+        <span>Get a quote for <span id="sc-cta-volume" class="tabular-nums">0 m³</span></span>
+      </a>
+      <a
+        id="sc-cta-whatsapp"
+        href={waBase}
+        class="btn-yellow flex-1 justify-center"
+        target="_blank"
+        rel="noopener"
+      >
+        WhatsApp the spec
+      </a>
+    </div>
+  </aside>
+</section>
+
+<script>
+  // -------------------------------------------------------------------------
+  // Slurry storage calculator — client-side compute
+  // -------------------------------------------------------------------------
+  type SlurryInputs = {
+    herd: number;
+    litresPerDay: number;
+    months: number;
+    washings: boolean;
+    rainfallM2: number;
+  };
+
+  type SlurryOutput = {
+    volumeM3: number;        // rounded to nearest 5
+    tonnage: number;
+    system: 'tower' | 'in-channel' | 'above-ground';
+    systemLabel: string;
+    systemMeta: string;
+    panels: number;          // rounded to nearest whole
+    panelSpec: string;
+  };
+
+  const root = document.querySelector<HTMLElement>('[data-slurry-calc]');
+  if (root) {
+    const $ = <T extends HTMLElement = HTMLElement>(sel: string) =>
+      root.querySelector<T>(sel)!;
+
+    const herd     = $<HTMLInputElement>('#sc-herd');
+    const animal   = $<HTMLSelectElement>('#sc-animal');
+    const months   = $<HTMLSelectElement>('#sc-months');
+    const rainfall = $<HTMLInputElement>('#sc-rainfall');
+    const washings = $<HTMLInputElement>('#sc-washings');
+
+    const outVolume     = $('#sc-volume');
+    const outTonnage    = $('#sc-tonnage');
+    const outSystem     = $('#sc-system');
+    const outSystemMeta = $('#sc-system-meta');
+    const outPanels     = $('#sc-panels');
+    const outPanelsSpec = $('#sc-panels-spec');
+    const ctaQuote      = $<HTMLAnchorElement>('#sc-cta-quote');
+    const ctaWhatsApp   = $<HTMLAnchorElement>('#sc-cta-whatsapp');
+    const ctaVolume     = $('#sc-cta-volume');
+
+    const form = $<HTMLFormElement>('#slurry-calc-form');
+    form.addEventListener('submit', (e) => e.preventDefault());
+
+    function compute(): SlurryOutput {
+      const herdN     = Math.max(0, Number(herd.value) || 0);
+      const monthsN   = Math.max(1, Number(months.value) || 6);
+      const rainfallN = Math.max(0, Number(rainfall.value) || 0);
+      const opt       = animal.selectedOptions[0];
+      const lpd       = Number(opt?.dataset.litres) || 53;
+      const dilution  = washings.checked ? 1.10 : 1.0;
+
+      const days = monthsN * 30.44; // avg days/month
+
+      // Animal slurry: (animals × L/day × days × dilution) / 1000 → m³
+      const animalM3 = (herdN * lpd * days * dilution) / 1000;
+
+      // Rainfall: m² × 0.65m annual × (months/12) → m³
+      const rainfallM3 = rainfallN * 0.65 * (monthsN / 12);
+
+      const totalM3Raw = animalM3 + rainfallM3;
+      // Round to nearest 5 m³
+      const volumeM3 = Math.round(totalM3Raw / 5) * 5;
+      const tonnage  = Math.round(volumeM3 * 1.04);
+
+      // Pick system based on volume
+      let system: SlurryOutput['system'];
+      let systemLabel: string;
+      let systemMeta: string;
+      let panels: number;
+      let panelSpec: string;
+
+      if (volumeM3 >= 2500) {
+        system = 'tower';
+        systemLabel = 'Slurry tower (round)';
+        systemMeta = 'Round prestressed tower, 50–4,000 m³ range. Best footprint for high volume.';
+        // Tower: 2.4m height × 1.5m wide segments
+        // Approx wall area for a cylinder sized to volume at 4.5m fill height
+        const fillHeight = 4.5;
+        const radius = Math.sqrt(volumeM3 / (Math.PI * fillHeight));
+        const circumference = 2 * Math.PI * radius;
+        const ringsHigh = Math.ceil(fillHeight / 2.4);
+        const segmentsAround = Math.ceil(circumference / 1.5);
+        panels = Math.round(ringsHigh * segmentsAround);
+        panelSpec = '× 2.4m × 1.5m tower segments';
+      } else if (volumeM3 >= 200) {
+        system = 'in-channel';
+        systemLabel = 'In-channel store (rectangular)';
+        systemMeta = 'Rectangular below-ground store, 200–2,500 m³ range. Walls cast 200–300mm.';
+        // Rectangular at 3.6m wall height — perimeter sized to plan area
+        const wallHeight = 3.6;
+        const planArea = volumeM3 / wallHeight;
+        const side = Math.sqrt(planArea);
+        const perimeter = 4 * side;
+        const panelsAround = Math.ceil(perimeter / 4);
+        const ringsHigh = Math.ceil(wallHeight / 2.4);
+        panels = Math.round(panelsAround * ringsHigh);
+        panelSpec = '× 2.4m × 4m × 200mm panels';
+      } else {
+        system = 'above-ground';
+        systemLabel = 'Above-ground store';
+        systemMeta = 'Above-ground rectangular tank, 50–800 m³ range. Quickest install.';
+        const wallHeight = 3.0;
+        const planArea = Math.max(volumeM3, 50) / wallHeight;
+        const side = Math.sqrt(planArea);
+        const perimeter = 4 * side;
+        const panelsAround = Math.ceil(perimeter / 4);
+        const ringsHigh = Math.ceil(wallHeight / 2.4);
+        panels = Math.round(panelsAround * ringsHigh);
+        panelSpec = '× 2.4m × 4m × 200mm panels';
+      }
+
+      return { volumeM3, tonnage, system, systemLabel, systemMeta, panels, panelSpec };
+    }
+
+    function render(out: SlurryOutput) {
+      const vol = out.volumeM3.toLocaleString('en-GB');
+      outVolume.textContent     = vol;
+      outTonnage.textContent    = out.tonnage.toLocaleString('en-GB');
+      outSystem.textContent     = out.systemLabel;
+      outSystemMeta.textContent = out.systemMeta;
+      outPanels.textContent     = out.panels.toLocaleString('en-GB');
+      outPanelsSpec.textContent = out.panelSpec;
+      ctaVolume.textContent     = `${vol} m³`;
+
+      // Update CTA hrefs
+      const qs = new URLSearchParams({
+        product: 'slurry-storage',
+        volume: String(out.volumeM3),
+        system: out.system,
+      });
+      ctaQuote.href = `/quote?${qs.toString()}`;
+
+      const waBody =
+        `Hi WCCP — looking at a ${vol} m³ slurry store ` +
+        `(${out.systemLabel.toLowerCase()}), approx ${out.panels} panels. ` +
+        `Can you send a quote and lead time?`;
+      const waHref =
+        ctaWhatsApp.href.split('?')[0] + `?text=${encodeURIComponent(waBody)}`;
+      ctaWhatsApp.href = waHref;
+    }
+
+    function recompute() {
+      render(compute());
+    }
+
+    // Live update on every input change
+    [herd, animal, months, rainfall, washings].forEach((el) => {
+      el.addEventListener('input', recompute);
+      el.addEventListener('change', recompute);
+    });
+
+    recompute();
+  }
+</script>

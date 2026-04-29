@@ -12,6 +12,17 @@ const facts = [
   { label: 'Designer', value: 'WCCP engineering team' },
   { label: 'Funded by', value: 'Slurry Infrastructure Grant Round 3' },
 ];
+
+const heroImage = '/images/products/home/wccp-home-cattle-feeding-at-a-feed-trough.jpg';
+const heroAlt = 'Holstein cattle feeding at a WCCP precast concrete feed trough on a Devon dairy farm';
+const gallery = [
+  { src: '/images/products/concrete-panels/wccp-concrete-panels-prestressed-concrete-panels.jpg', alt: 'WCCP prestressed concrete slurry panels' },
+  { src: '/images/products/slurry-handling/wccp-slurry-handling-channel.jpg', alt: 'WCCP precast slurry channel' },
+  { src: '/images/products/home/wccp-home-cattle-feeding-at-a-feed-trough.jpg', alt: 'Cows at a WCCP feed trough' },
+  { src: '/images/products/home/wccp-home-image-of-v-sand-slurry-channel.jpg', alt: 'WCCP V-sand slurry channel' },
+  { src: '/images/products/home/wccp-home-img-20260414-162247920-comp-1024x1024.jpg', alt: 'WCCP slatted slurry covers' },
+  { src: '/images/products/home/wccp-home-concrete-panels-copy.jpg', alt: 'WCCP precast concrete panels' },
+];
 ---
 
 <BaseLayout
@@ -21,7 +32,12 @@ const facts = [
 >
   <!-- Hero with photo placeholder -->
   <section class="relative bg-navy text-white">
-    <div class="aspect-[16/7] md:aspect-[16/6] bg-gradient-to-br from-navy via-navy-700 to-cast-700 relative">
+    <div class="aspect-[16/7] md:aspect-[16/6] bg-navy relative overflow-hidden">
+      <picture>
+        <source srcset={heroImage.replace(/\.(jpe?g|png)$/i, '.webp')} type="image/webp" />
+        <img src={heroImage} alt={heroAlt} class="absolute inset-0 w-full h-full object-cover" loading="eager" decoding="async" />
+      </picture>
+      <div class="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/55 to-navy/20"></div>
       <div class="absolute inset-0 hero-gradient"></div>
       <div class="absolute bottom-0 left-0 right-0 container-wccp pb-10 md:pb-14">
         <nav class="text-sm text-white/90 mb-4" aria-label="Breadcrumb">
@@ -102,8 +118,13 @@ const facts = [
         <!-- Photo gallery placeholder -->
         <h2 class="font-display text-2xl text-navy mb-4">From the yard to the field</h2>
         <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-10">
-          {[1,2,3,4,5,6].map(() => (
-            <div class="aspect-square bg-gradient-to-br from-cast-200 to-cast-100 rounded"></div>
+          {gallery.map((g) => (
+            <div class="aspect-square bg-cast-100 rounded overflow-hidden">
+              <picture>
+                <source srcset={g.src.replace(/\.(jpe?g|png)$/i, '.webp')} type="image/webp" />
+                <img src={g.src} alt={g.alt} class="w-full h-full object-cover" loading="lazy" decoding="async" />
+              </picture>
+            </div>
           ))}
         </div>
 

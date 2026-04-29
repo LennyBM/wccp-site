@@ -1,0 +1,352 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import { site } from '@/config/site';
+
+const mixes = [
+  {
+    code: 'C32/40 standard',
+    kgco2e: 280,
+    cement: 'CEM I, no SCMs',
+    use: 'Padstones, light reinforced',
+    accent: 'cast',
+  },
+  {
+    code: 'C40/50 SR',
+    kgco2e: 245,
+    cement: 'CEM III/A (50% GGBS)',
+    use: 'Slurry, silage clamps, cubicles',
+    accent: 'navy',
+  },
+  {
+    code: 'C50/60 high-strength',
+    kgco2e: 295,
+    cement: 'CEM I',
+    use: 'Prestressed panels, robot bases',
+    accent: 'ember',
+  },
+  {
+    code: 'C40/50 low-carbon',
+    kgco2e: 165,
+    cement: 'CEM III/B (70% GGBS)',
+    use: 'Retaining walls (slow-cure tolerated)',
+    accent: 'yellow',
+  },
+];
+
+// Bar chart sizing — UK industry average is the upper bound the chart scales against
+const ukAverage = 320;
+const chartMax = 340; // small headroom above industry avg
+const chartHeight = 280; // px
+const chartLabelHeight = 60; // px reserved beneath bars for labels
+
+interface ChartItem {
+  label: string;
+  value: number;
+  fill: string;
+  stripe: boolean;
+}
+
+const chartData: ChartItem[] = [
+  ...mixes.map((m) => ({
+    label: m.code,
+    value: m.kgco2e,
+    fill: m.kgco2e <= 200 ? '#3a5cb5' : m.kgco2e <= 260 ? '#3a5cb5' : '#5C6470',
+    stripe: false,
+  })),
+  {
+    label: 'UK industry avg',
+    value: ukAverage,
+    fill: '#E54D17',
+    stripe: true,
+  },
+];
+
+const initiatives = [
+  {
+    title: 'GGBS substitution',
+    body: 'Ground granulated blast-furnace slag replaces up to 70% of the Portland cement in our low-carbon mix. Slower set, lower clinker, ~40% less embodied CO₂e per cubic metre.',
+  },
+  {
+    title: 'On-site solar at the yard',
+    body: 'Rooftop PV installed on the production sheds at Chilsworthy. Powers our oil-free compressor and the heated curing bay during daylight hours. Phase one live, phase two scoped.',
+  },
+  {
+    title: 'Electric loader trial',
+    body: 'Diesel teleporter on the yard replaced for a 90-day trial with an electric handler. Fuel data being logged against equivalent diesel duty cycles for the 2026 Q3 review.',
+  },
+  {
+    title: '100% UK-sourced aggregate',
+    body: 'Crushed stone from Devon and Cornwall quarries inside a 60-mile radius. No imported aggregate, no port-to-yard haulage. Cuts the transport (A2) component of the EPD.',
+  },
+];
+
+const serviceSchema = {
+  name: 'Embodied carbon disclosure — WCCP precast concrete',
+  description:
+    'Quarterly published embodied CO₂e per m³ for WCCP standard precast concrete mixes. EPD-aligned A1–A3 figures covering cement, aggregate, transport to plant and factory energy.',
+  provider: { '@type': 'Organization', name: site.name },
+  areaServed: site.areasServed,
+  serviceType: 'Embodied carbon disclosure',
+};
+---
+
+<BaseLayout
+  title="Carbon disclosure — embodied CO₂e per m³ of WCCP precast concrete"
+  description="WCCP publishes embodied carbon (kgCO₂e/m³) for every standard precast mix — C32/40, C40/50 SR, C50/60 and the C40/50 GGBS low-carbon mix. EPD-aligned, A1–A3 stages, reviewed quarterly."
+  schema="Service"
+  schemaData={serviceSchema}
+>
+  <!-- Hero -->
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-14 md:py-16">
+      <Breadcrumbs
+        variant="navy"
+        items={[
+          { href: '/sustainability', label: 'Sustainability' },
+          { label: 'Carbon disclosure' },
+        ]}
+      />
+      <p class="eyebrow text-yellow mt-6 mb-4">Carbon · embodied CO₂e per m³ of concrete</p>
+      <h1 class="font-display text-display-xl text-white mb-6 max-w-4xl">
+        We measure what we cast.
+      </h1>
+      <p class="text-lg md:text-xl text-white/90 max-w-3xl leading-relaxed">
+        Most precast yards don't disclose carbon. We do — by mix, every quarter. The numbers
+        below are the embodied CO₂e per cubic metre for every standard WCCP mix, on an
+        EPD-aligned A1–A3 basis. Independently verified figures pending; the methodology and
+        the workings are open.
+      </p>
+    </div>
+  </section>
+
+  <!-- Disclosure cards -->
+  <section class="container-wccp py-16 md:py-20">
+    <div class="max-w-3xl mb-10">
+      <p class="eyebrow text-cast mb-3">Disclosure · {mixes.length} mixes</p>
+      <h2 class="font-display text-display-lg mb-4">Every mix on the books, in kgCO₂e/m³.</h2>
+      <p class="text-cast-700 text-lg leading-relaxed">
+        Lower numbers are better. The C40/50 low-carbon mix (CEM III/B) sits roughly half the UK
+        industry average, at the cost of a slower cure — fine for retaining walls, not for
+        prestressed elements where strength gain matters in the bed.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 reveal-stagger">
+      {mixes.map((m) => (
+        <article class="card p-6 flex flex-col">
+          <p class="font-mono text-xs text-cast tracking-tight mb-3">{m.cement}</p>
+          <h3 class="font-display text-xl font-bold text-navy mb-4 leading-snug">{m.code}</h3>
+          <div class="mb-4 pb-4 border-b border-cast-100">
+            <div class="flex items-baseline gap-2">
+              <span class="font-display text-display-md text-navy tabular-nums">{m.kgco2e}</span>
+              <span class="text-sm text-cast">kgCO₂e/m³</span>
+            </div>
+          </div>
+          <p class="eyebrow text-cast mb-2">Use</p>
+          <p class="text-cast-700 text-sm leading-relaxed mt-auto">{m.use}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- Bar chart -->
+  <section class="bg-bone-200 py-16 md:py-20">
+    <div class="container-wccp">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow text-cast mb-3">Benchmark</p>
+        <h2 class="font-display text-display-lg mb-4">Versus the UK industry average.</h2>
+        <p class="text-cast-700 text-lg leading-relaxed">
+          The orange bar is the published UK precast industry average for a comparable structural
+          mix (320 kgCO₂e/m³). Three of our four mixes sit below it; the C40/50 low-carbon comes
+          in at roughly half.
+        </p>
+      </div>
+
+      <div class="card p-6 md:p-10">
+        <div class="overflow-x-auto">
+          <svg
+            viewBox={`0 0 720 ${chartHeight + chartLabelHeight + 30}`}
+            role="img"
+            aria-label="Bar chart comparing kgCO2e per cubic metre for WCCP mixes against UK industry average"
+            class="w-full h-auto min-w-[560px]"
+          >
+            <!-- Stripe pattern for industry average -->
+            <defs>
+              <pattern id="stripe" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                <rect width="8" height="8" fill="#E54D17" />
+                <rect width="4" height="8" fill="#3a5cb5" opacity="0.18" />
+              </pattern>
+            </defs>
+
+            <!-- Y-axis gridlines -->
+            {[0, 100, 200, 300].map((v) => {
+              const y = 20 + chartHeight - (v / chartMax) * chartHeight;
+              return (
+                <g>
+                  <line x1="60" x2="700" y1={y} y2={y} stroke="#D9DCE0" stroke-width="1" stroke-dasharray="2 4" />
+                  <text x="50" y={y + 4} text-anchor="end" font-family="Inter, sans-serif" font-size="11" fill="#5C6470" font-variant-numeric="tabular-nums">{v}</text>
+                </g>
+              );
+            })}
+
+            <!-- UK industry average reference line (dashed) -->
+            <line
+              x1="60"
+              x2="700"
+              y1={20 + chartHeight - (ukAverage / chartMax) * chartHeight}
+              y2={20 + chartHeight - (ukAverage / chartMax) * chartHeight}
+              stroke="#E54D17"
+              stroke-width="1.5"
+              stroke-dasharray="6 4"
+              opacity="0.6"
+            />
+
+            <!-- Bars -->
+            {chartData.map((d, i) => {
+              const barWidth = 90;
+              const gap = 28;
+              const x = 80 + i * (barWidth + gap);
+              const h = (d.value / chartMax) * chartHeight;
+              const y = 20 + chartHeight - h;
+              return (
+                <g>
+                  <rect
+                    x={x}
+                    y={y}
+                    width={barWidth}
+                    height={h}
+                    fill={d.stripe ? 'url(#stripe)' : d.fill}
+                    rx="2"
+                  />
+                  <text
+                    x={x + barWidth / 2}
+                    y={y - 8}
+                    text-anchor="middle"
+                    font-family="Bricolage Grotesque, Inter, sans-serif"
+                    font-size="14"
+                    font-weight="700"
+                    fill="#3a5cb5"
+                    font-variant-numeric="tabular-nums"
+                  >{d.value}</text>
+                  <foreignObject x={x - 14} y={chartHeight + 28} width={barWidth + 28} height={chartLabelHeight}>
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:Inter,sans-serif;font-size:11px;color:#5C6470;text-align:center;line-height:1.3;">
+                      {d.label}
+                    </div>
+                  </foreignObject>
+                </g>
+              );
+            })}
+
+            <!-- Y axis label -->
+            <text x="20" y="14" font-family="Inter, sans-serif" font-size="11" fill="#5C6470" font-weight="600">kgCO₂e/m³</text>
+          </svg>
+        </div>
+        <p class="text-xs text-cast text-center mt-6">
+          Sources: WCCP internal A1–A3 assessment Q1 2026 · UK industry average from MPA Precast
+          published precast EPD averages (illustrative).
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Methodology -->
+  <section class="container-wccp py-16 md:py-20">
+    <div class="grid lg:grid-cols-[1fr_18rem] gap-10 lg:gap-16">
+      <div class="max-w-3xl">
+        <p class="eyebrow text-cast mb-3">Methodology</p>
+        <h2 class="font-display text-display-md mb-5">How the figures are calculated.</h2>
+        <p class="text-cast-700 text-lg leading-relaxed mb-4">
+          The kgCO₂e/m³ values above are aligned to the EPD methodology in <strong class="text-navy">BS EN 15804+A2</strong>.
+          They cover the A1–A3 modules of the product life-cycle: raw-material extraction, transport
+          to the plant, and manufacturing energy. The four components priced in:
+        </p>
+        <ul class="space-y-3 text-cast-700 leading-relaxed mb-6">
+          <li class="flex gap-3"><span class="text-ember font-bold mt-1">·</span><span><strong class="text-navy">Cement (A1)</strong> — by far the heaviest contributor. CEM I at ~860 kgCO₂e/tonne, CEM III/A at ~480, CEM III/B at ~260. The cement choice is the lever.</span></li>
+          <li class="flex gap-3"><span class="text-ember font-bold mt-1">·</span><span><strong class="text-navy">Aggregate (A1)</strong> — crushed stone from quarries within 60 miles. ~5 kgCO₂e/tonne extracted, plus transport.</span></li>
+          <li class="flex gap-3"><span class="text-ember font-bold mt-1">·</span><span><strong class="text-navy">Transport to plant (A2)</strong> — diesel HGV calculated on actual quarry-to-yard distances and vehicle utilisation.</span></li>
+          <li class="flex gap-3"><span class="text-ember font-bold mt-1">·</span><span><strong class="text-navy">Factory energy (A3)</strong> — grid electricity for batching, casting and curing, with the on-site PV contribution deducted.</span></li>
+        </ul>
+        <p class="text-cast-700 text-lg leading-relaxed mb-4">
+          The figures exclude reinforcement steel (declared separately on the structural drawing),
+          A4 transport to site, A5 installation, and the use and end-of-life modules (B–D). Those
+          will be added when we publish full product-specific EPDs in the second half of 2026.
+        </p>
+        <div class="card p-5 bg-bone-200 border-dashed">
+          <p class="text-sm text-cast-700 leading-relaxed">
+            <strong class="text-navy">Note:</strong> Last reviewed Q1 2026 · next review Q3 2026 ·
+            independent verification by [TBC] pending. Until verified, treat the numbers as
+            disclosed-not-certified.
+          </p>
+        </div>
+      </div>
+
+      <aside class="lg:sticky lg:top-24 self-start">
+        <div class="card p-6 bg-yellow rounded-lg">
+          <p class="eyebrow text-navy mb-2">Quick reference</p>
+          <dl class="space-y-3 text-sm text-navy">
+            <div>
+              <dt class="font-bold">Lowest mix</dt>
+              <dd>165 kgCO₂e/m³ (C40/50 low-carbon)</dd>
+            </div>
+            <div>
+              <dt class="font-bold">UK industry avg</dt>
+              <dd>320 kgCO₂e/m³</dd>
+            </div>
+            <div>
+              <dt class="font-bold">Saving vs avg</dt>
+              <dd>up to 48% per m³</dd>
+            </div>
+            <div>
+              <dt class="font-bold">Standard</dt>
+              <dd>BS EN 15804+A2 (A1–A3)</dd>
+            </div>
+            <div>
+              <dt class="font-bold">Review cycle</dt>
+              <dd>Quarterly</dd>
+            </div>
+          </dl>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- What we're doing about it -->
+  <section class="bg-bone-200 py-16 md:py-20">
+    <div class="container-wccp">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow text-cast mb-3">Action</p>
+        <h2 class="font-display text-display-lg mb-4">What we're doing about it.</h2>
+        <p class="text-cast-700 text-lg leading-relaxed">
+          Disclosure on its own changes nothing. Four initiatives are live or in trial at the yard.
+          Each one is graded against the next quarterly disclosure.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 reveal-stagger">
+        {initiatives.map((i, idx) => (
+          <article class="card p-6 flex flex-col">
+            <div class="font-display text-display-md text-ember mb-3 leading-none">0{idx + 1}</div>
+            <h3 class="font-display text-lg font-bold text-navy mb-3 leading-snug">{i.title}</h3>
+            <p class="text-cast-700 text-sm leading-relaxed">{i.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-navy text-white py-16 md:py-20">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-lg mb-4 text-white">Specifying for BREEAM, NPS or net-zero?</h2>
+      <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">
+        Tell us the mix and the volume — we'll send the kgCO₂e/m³ on letterhead with the
+        methodology attached. Same-day callback Monday to Friday.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-yellow">Call {site.contact.phone}</a>
+        <a href={`mailto:${site.contact.email}`} class="btn-secondary">Email {site.contact.email}</a>
+        <a href="/sustainability" class="btn-ghost border-white text-white hover:bg-white hover:text-navy">Back to sustainability</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

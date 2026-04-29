@@ -1,111 +1,158 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
+import FittedVsSupply from '@/components/FittedVsSupply.astro';
+import SpecSheetButton from '@/components/SpecSheetButton.astro';
+import SpecDownloads from '@/components/SpecDownloads.astro';
+import ProductGallery from '@/components/ProductGallery.astro';
 import { site } from '@/config/site';
+import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
+import ProductPageTOC from '@/components/ProductPageTOC.astro';
+
+const tocSections = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'specifications', label: 'Specifications' },
+  { id: 'gallery', label: 'Gallery' },
+  { id: 'features', label: 'Features' },
+  { id: 'related', label: 'Related' },
+  { id: 'faq', label: 'FAQ' },
+  { id: 'downloads', label: 'Downloads' },
+];
 
 const specs = [
-  { type: 'Single-row standard', size: '1300 × 600 × 400mm', capacity: '180 L', weight: '210 kg', use: 'Single-row cubicle service, calf pens' },
-  { type: 'Double-row twin', size: '1300 × 1200 × 400mm', capacity: '360 L', weight: '380 kg', use: 'Cubicle row dividers, two-sided drink' },
-  { type: 'Frost-protected single', size: '1300 × 600 × 500mm', capacity: '180 L', weight: '260 kg', use: 'Outdoor handling yards, exposed sites' },
-  { type: 'Frost-protected double', size: '1300 × 1200 × 500mm', capacity: '360 L', weight: '470 kg', use: 'Outdoor wintering pads, dispersed cubicles' },
-  { type: 'Heavy-duty double', size: '1800 × 1200 × 450mm', capacity: '550 L', weight: '620 kg', use: 'Robotic herds, high-yield groups' },
-  { type: 'Tip-over (clean-out)', size: '1300 × 600 × 400mm', capacity: '180 L', weight: '230 kg', use: 'High-mastitis groups, easy-clean rotation' },
+  { type: '500 Gallon', size: '3930 × 1285 × 800mm', weight: '2,340 kg', use: 'Largest flagship trough — high-yield groups, robotic herds' },
+  { type: '400 Gallon', size: '3000 × 1250 × 800mm', weight: '1,837 kg', use: 'Main parlour cross-overs, large dairy groups' },
+  { type: '300 Gallon', size: '2450 × 1250 × 800mm', weight: '1,600 kg', use: 'Cubicle row dividers, two-sided drink' },
+  { type: '180 Gallon', size: '2200 × 1140 × 700mm', weight: '1,250 kg', use: 'Mid-size cubicle service' },
+  { type: '80 Gallon', size: '1500 × 820 × 600mm', weight: '635 kg', use: 'Calf pens, smaller groups' },
+  { type: '40 Gallon', size: '1200 × 800 × 420mm', weight: '398 kg', use: 'Field troughs, sheep and youngstock' },
+  { type: "30 Gallon Inline 'Cube'", size: '750 × 890 × 800mm (HxWxD)', weight: '597 kg', use: 'End-stop in line with feed troughs to increase water availability' },
+];
+
+const features = [
+  'Integrated service space and pipe void through to the base — extra protection from elements and livestock',
+  'Supplied with concrete lids',
+  'Large drain holes',
+  'Rubber bungs',
+  'Universal XtraFlow valve, or brass high/low pressure valves to fit',
+  "The 'Cube' Inline trough designed to fit in line with the standard and youngstock feed troughs as an end-stop and increase water availability",
 ];
 
 const applications = [
   'Cubicle-housed dairy parlour cross-overs',
   'Robotic-milking herd pre/post-robot drink stations',
   'Outdoor cattle handling yards and crushes',
-  'Dispersed wintering pads with frost protection',
+  'Dispersed wintering pads',
   'Beef finishing units and youngstock pens',
   'Sheep handling races and lambing yards',
   'Field troughs for grazed paddocks',
 ];
 
 const related = [
-  { href: '/products/feed-troughs', label: 'Feed Troughs', meta: 'L-shape · single + double-sided' },
+  { href: '/products/feed-troughs', label: 'Feed Troughs', meta: "'J' Trough · Quad Run · Round Top" },
   { href: '/products/cattle-cubicles', label: 'Cattle Cubicles', meta: 'AHDB 2024 sized' },
-  { href: '/products/cubicle-end-walls', label: 'Cubicle End Walls', meta: 'Integrated water trough option' },
-  { href: '/products/footbaths', label: 'Footbaths', meta: '4m kit · £1,425+VAT' },
+  { href: '/products/cubicle-end-walls', label: 'Cubicle End Walls', meta: 'Trough + panel variants' },
+  { href: '/products/footbaths', label: 'Footbaths', meta: '2.5–4m two-part kit' },
 ];
 
 const faqs = [
-  { q: 'How big a trough do I need?', a: 'AHDB recommends 100mm of trough perimeter per cow on a free-flow system. Our standard 1300×600 single gives drink for around 25 cows; the double 1300×1200 covers 50. For robot herds with tighter cow flow, double up — cows drink in waves around the robot.' },
-  { q: 'Do you do frost-protected versions?', a: 'Yes — the frost-protected variants have a deeper sump and an insulated jacket option. Coupled with a thermostatic immersion or trace heating, they will run through a Devon winter without freezing. Outdoor handling and dispersed wintering pads usually want them.' },
-  { q: 'How are they installed?', a: 'Standard troughs sit on a 100mm bedding screed and bolt down via M12 cast-in sockets. Plumbing is 22mm copper or MDPE to a side-mount float valve — we cast the inlet on whichever side suits your shed. Drain plug is a 50mm BSP brass.' },
-  { q: 'Can I get a tip-over for cleaning?', a: 'Yes — the tip-over variant pivots on a stainless pin so you can rotate the bowl out, scrub it and rotate back. High-mastitis herds and those on a very tight hygiene programme order them as standard.' },
-  { q: 'Lead time?', a: 'Catalogue troughs ship in 2 to 3 weeks. Frost-protected and tip-over variants run 3 to 4 weeks. Stock often available — ring the yard for current availability.' },
+  { q: 'Which size do I need?', a: 'AHDB recommends 100mm of trough perimeter per cow on a free-flow system. The 500 Gallon flagship at 3930×1285×800mm and 2,340kg is the biggest single drink station we offer; the 400 and 300 Gallon work for most parlour cross-overs. Smaller 80 and 40 Gallon units suit calf pens and field watering.' },
+  { q: "What is the 30 Gallon Inline 'Cube' for?", a: "The 'Cube' (750 × 890 × 800mm, 597kg) is designed to fit in line with the standard and youngstock feed troughs as an end-stop. It increases water availability at the feed face without adding a separate trough run — a neat trick for compact sheds." },
+  { q: 'How are they installed and plumbed?', a: 'All troughs include an integrated service space and pipe void running through to the base — extra protection for the plumbing from livestock and the elements. Each unit ships with concrete lids, a large drain hole and rubber bung, and either our universal XtraFlow valve or a brass high/low-pressure valve to fit your supply.' },
+  { q: 'Frost protection?', a: 'The pipe void through to the base is the first line of defence — supply pipes are sheltered from livestock and from wind chill. Add trace heating or an immersion in the void for exposed sites. Drain bungs let you empty the trough quickly when the forecast is sub-zero.' },
+  { q: 'Lead time?', a: 'Catalogue troughs ship in 2 to 3 weeks. Stock often available — ring the yard for current availability.' },
 ];
 
 const productSchema = {
-  name: 'Precast Cattle Water Troughs',
-  description: 'Single and double-row precast water troughs for dairy and beef cattle. Standard 1300×600mm at 180 L and 1300×1200mm at 360 L. Frost-protected and tip-over variants. C40/50 concrete.',
+  name: 'Precast Cattle Drinking Troughs',
+  description: "WCCP Drinking Troughs from 30 Gallon Inline 'Cube' to the 500 Gallon flagship. 500 Gallon at 3930×1285×800mm, 2,340kg. Integrated service space and pipe void through to the base. Concrete lids, large drain holes, rubber bungs and XtraFlow or brass valves supplied.",
   brand: { '@type': 'Brand', name: site.name },
   manufacturer: { '@type': 'Organization', name: site.name },
   category: 'Precast water trough',
   material: 'Reinforced concrete, C40/50 (BS 8500-1:2023)',
-  weight: { '@type': 'QuantitativeValue', minValue: 210, maxValue: 620, unitCode: 'KGM', unitText: 'kilogram per trough' },
+  weight: { '@type': 'QuantitativeValue', minValue: 398, maxValue: 2340, unitCode: 'KGM', unitText: 'kilogram per trough' },
   additionalProperty: [
     { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 13369 / BS 5502-22:2003' },
     { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
-    { '@type': 'PropertyValue', name: 'Standard size (single)', value: '1300 × 600 × 400 mm, 180 L' },
-    { '@type': 'PropertyValue', name: 'Standard size (double)', value: '1300 × 1200 × 400 mm, 360 L' },
-    { '@type': 'PropertyValue', name: 'Variants', value: 'Single / double / frost-protected / heavy-duty / tip-over' },
-    { '@type': 'PropertyValue', name: 'Anchor', value: 'M12 cast-in sockets' },
-    { '@type': 'PropertyValue', name: 'Lead time', value: '2–3 weeks catalogue' },
+    { '@type': 'PropertyValue', name: '500 Gallon', value: '3930 × 1285 × 800mm, 2,340 kg' },
+    { '@type': 'PropertyValue', name: '400 Gallon', value: '3000 × 1250 × 800mm, 1,837 kg' },
+    { '@type': 'PropertyValue', name: '300 Gallon', value: '2450 × 1250 × 800mm, 1,600 kg' },
+    { '@type': 'PropertyValue', name: '180 Gallon', value: '2200 × 1140 × 700mm, 1,250 kg' },
+    { '@type': 'PropertyValue', name: '80 Gallon', value: '1500 × 820 × 600mm, 635 kg' },
+    { '@type': 'PropertyValue', name: '40 Gallon', value: '1200 × 800 × 420mm, 398 kg' },
+    { '@type': 'PropertyValue', name: "30 Gallon Inline 'Cube'", value: '750 × 890 × 800mm, 597 kg (in-line end-stop)' },
+    { '@type': 'PropertyValue', name: 'Service features', value: 'Integrated pipe void to base; concrete lids; large drain holes with rubber bungs' },
+    { '@type': 'PropertyValue', name: 'Valve options', value: 'XtraFlow universal or brass high/low pressure' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '2–3 weeks (stock often available)' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
   ],
-  offers: { '@type': 'Offer', priceCurrency: 'GBP', availability: 'https://schema.org/InStock', seller: { '@type': 'Organization', name: site.name } },
+  offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
 };
 
 const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
 ---
 
 <BaseLayout
-  title="Water Troughs — single + double-row · 1300×600mm"
-  description="Precast cattle water troughs. Single 1300×600 at 180L, double 1300×1200 at 360L. Frost-protected and tip-over variants. Cast in North Devon."
-  image="/images/products/water-troughs.jpg"
+  title="Drinking Troughs — 40 to 500 Gallon precast range"
+  description="WCCP Drinking Troughs from 30 Gallon Inline 'Cube' to 500 Gallon flagship. 500 Gallon 3930×1285×800mm at 2,340kg. Integrated pipe void, concrete lids, XtraFlow or brass valves. Cast in North Devon."
+  image="/og/water-troughs.png"
   schema="Product"
   schemaData={productSchema}
+  whatsappContext="Drinking Troughs"
 >
   <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
   <TrustStrip />
 
-  <section class="bg-navy text-white">
+  <ProductPageTOC sections={tocSections} />
+
+  <section id="overview" class="bg-navy text-white">
     <div class="container-wccp py-16 md:py-20">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <p class="eyebrow text-yellow mb-4">Agricultural · cattle · water</p>
-          <h1 class="font-display text-display-xl text-white mb-4">Water Troughs.</h1>
-          <p class="text-lg text-white/90 leading-relaxed mb-6">
-            Single and double-row precast water troughs sized to AHDB cow-flow guidance. Standard
-            1300 × 600 × 400mm single at 180 L, double at 360 L. Frost-protected, heavy-duty and
-            tip-over variants on the catalogue.
+          <p class="eyebrow text-yellow mb-4">Agricultural · cattle · drinking water</p>
+          <h1 class="font-display text-display-xl text-white mb-4">Drinking Troughs.</h1>
+          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">
+            Cast in one piece. Built for fifty winters.
+          </p>
+          <h2 class="sr-only">How big should a cattle drinker be?</h2>
+          <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
+            <strong class="not-italic text-white">How big should a cattle drinker be?</strong>
+            AHDB recommends 100&nbsp;mm of trough perimeter per cow on a free-flow water system.
+            For a 200-cow free-flow group that's roughly 20&nbsp;m of accessible drinking face —
+            achievable with two 500&nbsp;Gal flagships or four 300&nbsp;Gal units. The 500&nbsp;Gal
+            measures 3,930&nbsp;mm × 1,285&nbsp;mm × 800&nbsp;mm.
+          </blockquote>
+          <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
+            Seven sizes, 40 to 500 Gallon. Integrated pipe void to the base, concrete lids,
+            large drain holes, rubber bungs and either XtraFlow or brass valves to fit.
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
-            <li class="flex gap-2"><span class="text-yellow">·</span> 1300 × 600 single</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 1300 × 1200 double</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 180 L / 360 L</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Frost-protected</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Tip-over option</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 500 Gal flagship</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 7 sizes total</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Pipe void to base</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Concrete lids</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> XtraFlow / brass valve</li>
             <li class="flex gap-2"><span class="text-yellow">·</span> 2–3 week lead</li>
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Water+Troughs" class="btn-primary">Configure a quote</a>
-            <a href="/spec-sheets/water-troughs.pdf" class="btn-yellow">Download spec sheet</a>
+            <a href="/downloads/specs/water-troughs/wccp-water-troughs-new-shape-500-gallon-trough.pdf" class="btn-yellow">Download spec sheet</a>
             <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">Call {site.contact.phone}</a>
           </div>
         </div>
-        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-300 via-cast to-navy"></div></div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
+          <img src="/images/products/water-troughs/wccp-water-troughs-500-gallon-crop1-1024x731.jpg" alt="500-gallon precast concrete drinking trough — West Country Concrete Products, Devon" class="w-full h-full object-cover" loading="eager" decoding="async" />
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="container-wccp py-20">
+  <section id="specifications" class="container-wccp py-20 section-reveal">
     <div class="max-w-2xl mb-10">
       <p class="eyebrow text-cast mb-3">Specification</p>
-      <h2 class="font-display text-display-lg mb-4">Variants, capacities and weights.</h2>
-      <p class="text-cast-700 text-lg">Catalogue troughs sized to AHDB cow-flow recommendations. Bespoke sizes and integrated cubicle-end-wall combinations on application.</p>
+      <h2 class="font-display text-display-lg mb-4">Sizes, capacities and weights.</h2>
+      <p class="text-cast-700 text-lg">Seven sizes from 40 Gallon to 500 Gallon, plus the 30 Gallon Inline 'Cube' that fits in line with the feed-trough run as an end-stop.</p>
     </div>
     <div class="overflow-x-auto">
       <table class="spec-table w-full text-left border-collapse">
@@ -113,7 +160,6 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
           <tr>
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Type</th>
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Size (L×W×H)</th>
-            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Capacity</th>
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Weight</th>
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
           </tr>
@@ -123,7 +169,6 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
             <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
               <td class="px-4 py-3 font-bold text-navy">{s.type}</td>
               <td class="px-4 py-3">{s.size}</td>
-              <td class="px-4 py-3">{s.capacity}</td>
               <td class="px-4 py-3">{s.weight}</td>
               <td class="px-4 py-3 text-cast">{s.use}</td>
             </tr>
@@ -133,27 +178,39 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
     </div>
   </section>
 
-  <section class="bg-bone-200 py-20">
+  <div id="gallery" class="section-reveal">
+  <ProductGallery
+    eyebrow="The range"
+    heading="The full water-trough range."
+    background="bone"
+    cols={4}
+    images={[
+      { src: '/images/products/water-troughs/wccp-water-troughs-500-gallon-delivery-holsworthy-to-shropshire.jpg', alt: 'WCCP 500-gallon precast concrete water troughs loaded on a flatbed lorry leaving Holsworthy, Devon for a Shropshire dairy', caption: '500-Gal load · Holsworthy → Shropshire' },
+      { src: '/images/products/water-troughs/wccp-water-troughs-40-400-gallon-trough.jpg', alt: 'WCCP precast concrete cattle drinking trough range from 40-gallon up to 400-gallon, cast in Devon', caption: '40–400 Gallon range' },
+      { src: '/images/products/water-troughs/wccp-water-troughs-cube-trough-inline-j-trough-notch-out.jpg', alt: 'Row of inline cube precast concrete water troughs with J-trough notch-out and WCCP cast-in branding, Devon', caption: 'Inline cube troughs in stock' },
+      { src: '/images/products/water-troughs/wccp-water-troughs-3-row-cubicle-end-wall-trough-1024x768.jpg', alt: 'Precast concrete 3-row cubicle bed with end-wall water trough installed in a covered cattle building by WCCP Devon', caption: '3-row cubicle end-wall trough' },
+      { src: '/images/products/water-troughs/wccp-water-troughs-single-cubicle-end-wall-trough-e1449759910234.png', alt: 'Single-row cubicle end-wall precast concrete water trough with central drinking bowl by WCCP Devon', caption: 'Single end-wall trough' },
+    ]}
+  />
+  </div>
+
+  <section id="features" class="bg-white py-20 section-reveal">
     <div class="container-wccp">
       <div class="grid lg:grid-cols-2 gap-12">
         <div>
-          <p class="eyebrow text-cast mb-3">Where they go</p>
-          <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
-          <p class="text-cast-700 text-lg leading-relaxed mb-6">From a cubicle-shed cross-over to a wintering pad with frost protection — same trough family, sized for the herd.</p>
+          <p class="eyebrow text-cast mb-3">Built-in features</p>
+          <h2 class="font-display text-display-lg mb-6">Cast for the long haul.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">Every WCCP drinking trough ships with the service-space, valve and drain detailing already cast in.</p>
           <ul class="space-y-3">
-            {applications.map((a) => (<li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">·</span><span>{a}</span></li>))}
+            {features.map((f) => (<li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">·</span><span>{f}</span></li>))}
           </ul>
         </div>
         <div class="card p-8">
-          <p class="eyebrow text-cast mb-3">Standards & references</p>
-          <h3 class="font-display text-2xl font-bold text-navy mb-4">Cast and sized to current best practice.</h3>
-          <dl class="space-y-4 text-sm">
-            <div><dt class="font-bold text-navy">BS EN 13369</dt><dd class="text-cast">Common rules for precast concrete — factory production control.</dd></div>
-            <div><dt class="font-bold text-navy">BS 5502-22:2003</dt><dd class="text-cast">Agricultural buildings — cattle housing.</dd></div>
-            <div><dt class="font-bold text-navy">BS 8500-1:2023</dt><dd class="text-cast">Concrete spec — C40/50 designed mix.</dd></div>
-            <div><dt class="font-bold text-navy">AHDB Dairy</dt><dd class="text-cast">Cow-flow and trough sizing guidance: 100mm trough perimeter per cow.</dd></div>
-            <div><dt class="font-bold text-navy">DEFRA Code</dt><dd class="text-cast">Welfare of livestock — cattle. Continuous water provision required.</dd></div>
-          </dl>
+          <p class="eyebrow text-cast mb-3">Where they go</p>
+          <h3 class="font-display text-2xl font-bold text-navy mb-4">Common applications.</h3>
+          <ul class="space-y-3">
+            {applications.map((a) => (<li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">·</span><span>{a}</span></li>))}
+          </ul>
         </div>
       </div>
     </div>
@@ -174,7 +231,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
     </div>
   </section>
 
-  <section class="container-wccp py-20">
+  <section id="related" class="container-wccp py-20 section-reveal">
     <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
       <div>
         <p class="eyebrow text-cast mb-3">Related products</p>
@@ -184,22 +241,14 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" /><polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" /></svg>
       </a>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      {related.map((r) => (
-        <a href={r.href} class="card p-5 group">
-          <div class="aspect-[16/10] bg-cast-100 mb-4 rounded overflow-hidden"><div class="w-full h-full bg-gradient-to-br from-cast-200 to-cast-100"></div></div>
-          <h3 class="font-display text-base font-bold text-navy mb-1 group-hover:text-ember">{r.label}</h3>
-          <p class="text-cast text-xs">{r.meta}</p>
-        </a>
-      ))}
-    </div>
+    <RelatedProductGrid items={related} />
   </section>
 
-  <section class="bg-bone-200 py-20">
+  <section id="faq" class="bg-bone-200 py-20 section-reveal">
     <div class="container-wccp">
       <div class="max-w-2xl mb-12">
         <p class="eyebrow text-cast mb-3">Common questions</p>
-        <h2 class="font-display text-display-lg mb-4">What people ask about water troughs.</h2>
+        <h2 class="font-display text-display-lg mb-4">What people ask about drinking troughs.</h2>
         <p class="text-cast-700 text-lg">Five questions we answer most weeks. If yours is not here, ring the yard.</p>
       </div>
       <div class="max-w-3xl space-y-4">
@@ -216,6 +265,45 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
     </div>
   </section>
 
+  <div id="downloads" class="section-reveal">
+  <SpecDownloads
+    intro="Every drinking trough in the range — pick the size you're spec'ing and download the PDF."
+    downloads={[
+      { href: '/downloads/specs/water-troughs/wccp-water-troughs-new-shape-500-gallon-trough.pdf', title: '500 Gallon trough', meta: 'PDF · 255 KB' },
+      { href: '/downloads/specs/water-troughs/wccp-water-troughs-40-400-gallon-drinker.pdf', title: '40–400 Gallon drinker range', meta: 'PDF · 527 KB' },
+      { href: '/downloads/specs/water-troughs/wccp-water-troughs-180-gallon-drinker.pdf', title: '180 Gallon drinker', meta: 'PDF · 491 KB' },
+      { href: '/downloads/specs/water-troughs/wccp-water-troughs-100-gal-water-trough.pdf', title: '100 Gallon water trough', meta: 'PDF · 30 KB' },
+      { href: '/downloads/specs/water-troughs/wccp-water-troughs-30-gallon-inline-cube-drinking-trough.pdf', title: "30 Gallon inline ‘cube’ trough", meta: 'PDF · 345 KB' },
+      { href: '/downloads/specs/water-troughs/wccp-water-troughs-single-end-wall-trough.pdf', title: 'Single end-wall trough', meta: 'PDF · 891 KB' },
+      { href: '/downloads/specs/water-troughs/wccp-water-troughs-double-end-wall-trough.pdf', title: 'Double end-wall trough', meta: 'PDF · 2.4 MB' },
+    ]}
+  />
+  </div>
+
+  <!-- Supply-only vs Fitted -->
+  <section class="container-wccp section-rhythm border-t border-cast-100">
+    <FittedVsSupply
+      productName="Drinking Troughs"
+      defaultMode="supply"
+      supply={{
+        price: 'from £290 each',
+        leadTime: '1–2 weeks (stock often available)',
+        includes: [
+          'Drinking trough (40 Gal to 500 Gal) with integrated pipe void',
+          'Concrete lid, large drain hole and rubber bung',
+          'XtraFlow universal or brass high/low pressure valve',
+          'Delivery on our HIAB to your shed',
+        ],
+        excludes: [
+          'Plumbing in and pipe runs to the void',
+          'Trace heating or insulation jacket (exposed sites)',
+          'On-site setting and bedding screed',
+        ],
+      }}
+      note="Indicative 2026 pricing for the smaller 40 / 80 Gallon units. The 300, 400 and 500 Gallon flagships and the 30 Gallon Inline 'Cube' priced individually. Stock units often despatch within a week."
+    />
+  </section>
+
   <section class="bg-navy text-white py-20">
     <div class="container-wccp text-center">
       <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
@@ -227,4 +315,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
       </div>
     </div>
   </section>
+
+  <SpecSheetButton productSlug="water-troughs" productName="Drinking Troughs" href="/downloads/specs/water-troughs/wccp-water-troughs-new-shape-500-gallon-trough.pdf" />
+  <ProductWarrantyLine />
 </BaseLayout>
