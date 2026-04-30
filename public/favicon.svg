@@ -1,17 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="WCCP">
-  <!-- Heritage Navy seal -->
-  <rect width="64" height="64" rx="6" fill="#0A2351"/>
-  <!-- Thin white border around the wordmark -->
-  <rect x="4" y="4" width="56" height="56" rx="4" fill="none" stroke="#F6F4EE" stroke-width="1.5" opacity="0.85"/>
-  <!-- Yard Yellow stamped wordmark -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="WCCP — West Country Concrete Products">
+  <!-- Cobalt-blue rounded square (matches header brandmark · navy.700) -->
+  <rect width="64" height="64" rx="10" fill="#3a5cb5"/>
+  <!-- Hairline yellow inner border, mirrors the header brandmark -->
+  <rect x="4" y="4" width="56" height="56" rx="7" fill="none" stroke="#fff005" stroke-opacity="0.35" stroke-width="1.25"/>
+  <!-- Bold WCCP stamp — legible at 16/32px tab sizes -->
   <text x="32" y="42"
-        text-anchor="middle"
-        font-family="'Work Sans', system-ui, -apple-system, 'Segoe UI', sans-serif"
-        font-weight="700"
+        font-family="'DM Sans', 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif"
+        font-weight="800"
         font-size="22"
-        letter-spacing="-0.5"
-        fill="#F5C13B"
-        stroke="#F6F4EE"
-        stroke-width="0.6"
-        paint-order="stroke fill">WCCP</text>
+        letter-spacing="-1"
+        fill="#fff005"
+        text-anchor="middle">WCCP</text>
 </svg>
