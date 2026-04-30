@@ -297,11 +297,14 @@ const megaCols = [
       Mon–Fri {site.hours.weekdays} · Same-day callback
     </p>
 
-    <!-- Mobile search trigger — opens the same modal -->
+    <!-- Mobile search trigger — opens the same modal. Hidden by default; JS
+         unhides once it confirms the Pagefind index is reachable so a
+         half-deployed search never shows. -->
     <button
       type="button"
-      class="flex items-center gap-3 w-full px-4 py-3 mb-5 rounded-lg border border-cast-200 bg-cast-50 hover:bg-cast-100 text-left text-cast-700 transition-colors"
+      class="hidden items-center gap-3 w-full px-4 py-3 mb-5 rounded-lg border border-cast-200 bg-cast-50 hover:bg-cast-100 text-left text-cast-700 transition-colors"
       data-mobile-search-trigger
+      data-search-trigger
       aria-label="Search the site"
     >
       <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25">

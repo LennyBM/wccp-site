@@ -7,14 +7,17 @@
 // to run `npm run build` first. In production it just works.
 ---
 
-<!-- Trigger button (icon-only on mobile, icon+text on desktop) -->
+<!-- Trigger button (icon-only on mobile, icon+text on desktop).
+     Hidden by default — JS unhides it once it confirms the Pagefind index
+     is reachable, so a half-deployed search never shows on production. -->
 <button
   type="button"
   id="site-search-trigger"
-  class="inline-flex items-center gap-2 px-3 py-2 rounded-lg text-navy-700 hover:bg-cast-50 transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-500"
+  class="hidden inline-flex items-center gap-2 px-3 py-2 rounded-lg text-navy-700 hover:bg-cast-50 transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-500"
   aria-label="Search the site"
   aria-haspopup="dialog"
   aria-controls="site-search-modal"
+  data-search-trigger
 >
   <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25">
     <circle cx="11" cy="11" r="7" />
@@ -54,7 +57,8 @@
       <!-- Pagefind injects its UI here -->
       <div id="site-search-mount"></div>
       <p id="site-search-fallback" class="hidden text-sm text-cast-700 mt-3">
-        Search index not yet built. Run <code class="px-1.5 py-0.5 bg-cast-100 rounded text-xs font-mono">npm run build</code> to generate it, then refresh.
+        Search is unavailable right now. Browse <a href="/products" class="text-ember font-bold hover:text-ember-700 underline">our products</a> or
+        <a href="/contact" class="text-ember font-bold hover:text-ember-700 underline">call the yard</a>.
       </p>
     </div>
   </div>
@@ -102,6 +106,18 @@
       if (trigger.dataset.wccpBound === '1') return;
       trigger.dataset.wccpBound = '1';
 
+      // Probe: only reveal the search triggers if Pagefind is actually reachable.
+      // Half-deployed search (or running on the dev server with no built index)
+      // stays hidden so the UI never advertises a feature it can't deliver.
+      fetch('/pagefind/pagefind-entry.json', { method: 'HEAD' }).then(function (r) {
+        if (!r.ok) return;
+        document.querySelectorAll('[data-search-trigger]').forEach(function (el) {
+          el.classList.remove('hidden');
+          if (el.hasAttribute('data-mobile-search-trigger')) el.classList.add('flex');
+          else el.classList.add('inline-flex');
+        });
+      }).catch(function () { /* silent — keeps button hidden */ });
+
       var pagefindLoaded = false;
       var lastFocused = null;
 
@@ -114,19 +130,34 @@
           css.setAttribute('data-pagefind-ui-css', '1');
           document.head.appendChild(css);
         }
+        // pagefind-ui.js is an IIFE that registers window.PagefindUI — load via <script>, not import().
         return new Promise(function (resolve, reject) {
-          // Use a string assembled at runtime so Vite/Rollup can't statically resolve it
-          var path = '/' + 'pagefind' + '/pagefind-ui.js';
-          import(/* @vite-ignore */ path).then(function (mod) {
-            new mod.PagefindUI({
-              element: '#site-search-mount',
-              showSubResults: true,
-              showImages: false,
-              resetStyles: false,
-              translations: { placeholder: 'Search products, specs, case studies…', clear_search: 'Clear', zero_results: 'No matches for [SEARCH_TERM]. Try a wider term, or call the yard.' },
-            });
-            resolve(true);
-          }).catch(function (err) { reject(err); });
+          if (window.PagefindUI) { resolve(window.PagefindUI); return; }
+          var existing = document.querySelector('script[data-pagefind-ui-js]');
+          if (existing) {
+            existing.addEventListener('load', function () { resolve(window.PagefindUI); });
+            existing.addEventListener('error', function () { reject(new Error('Pagefind script failed to load')); });
+            return;
+          }
+          var s = document.createElement('script');
+          s.src = '/pagefind/pagefind-ui.js';
+          s.async = true;
+          s.setAttribute('data-pagefind-ui-js', '1');
+          s.onload = function () {
+            if (window.PagefindUI) resolve(window.PagefindUI);
+            else reject(new Error('Pagefind UI loaded but PagefindUI not exposed'));
+          };
+          s.onerror = function () { reject(new Error('Pagefind script failed to load')); };
+          document.head.appendChild(s);
+        }).then(function (PagefindUI) {
+          new PagefindUI({
+            element: '#site-search-mount',
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            translations: { placeholder: 'Search products, specs, case studies…', clear_search: 'Clear', zero_results: 'No matches for [SEARCH_TERM]. Try a wider term, or call the yard.' },
+          });
+          return true;
         });
       }
 

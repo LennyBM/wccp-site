@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && pagefind --site dist",
+    "build": "astro build && pagefind --site dist && node -e \"import('node:fs/promises').then(async (fs) => { await fs.rm('public/pagefind', { recursive: true, force: true }); await fs.cp('dist/pagefind', 'public/pagefind', { recursive: true }); console.log('Copied pagefind index to public/ for dev'); })\"",
     "preview": "astro preview",
     "astro": "astro"
   },
