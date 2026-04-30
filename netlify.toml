@@ -24,6 +24,12 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Pagefind index + UI — content-hashed at build time, safe to cache long
+[[headers]]
+  for = "/pagefind/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
 # Security headers (UK 2026 baseline)
 [[headers]]
   for = "/*"

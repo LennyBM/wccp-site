@@ -2,6 +2,7 @@
 import { site } from '@/config/site';
 import SocialIcon from './SocialIcon.astro';
 import Logo from './Logo.astro';
+import SiteSearch from './SiteSearch.astro';
 
 const navItems = [
   { href: '/sectors/agricultural', label: 'Agricultural' },
@@ -147,6 +148,9 @@ const megaCols = [
 
       <!-- Right CTAs -->
       <div class="flex items-center gap-2 lg:gap-2">
+        <!-- Site search — Pagefind-powered, ⌘K / Ctrl+K / "/" to open -->
+        <SiteSearch />
+
         <!-- WhatsApp icon button — desktop only. The href is rebuilt client-side
              from the per-page <meta name="wccp-whatsapp-context"> if present so
              the message is pre-filled with the product/sector being viewed. -->
@@ -289,9 +293,23 @@ const megaCols = [
       </button>
     </div>
 
-    <p class="text-xs font-semibold text-navy-700/80 mt-3 mb-5 uppercase tracking-wider">
+    <p class="text-xs font-semibold text-navy-700/80 mt-3 mb-3 uppercase tracking-wider">
       Mon–Fri {site.hours.weekdays} · Same-day callback
     </p>
+
+    <!-- Mobile search trigger — opens the same modal -->
+    <button
+      type="button"
+      class="flex items-center gap-3 w-full px-4 py-3 mb-5 rounded-lg border border-cast-200 bg-cast-50 hover:bg-cast-100 text-left text-cast-700 transition-colors"
+      data-mobile-search-trigger
+      aria-label="Search the site"
+    >
+      <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25">
+        <circle cx="11" cy="11" r="7" />
+        <line x1="21" y1="21" x2="16.5" y2="16.5" stroke-linecap="round" />
+      </svg>
+      <span class="text-sm font-semibold">Search products, specs, case studies…</span>
+    </button>
 
     <ul class="space-y-1 mb-6">
       {navItems.map((item) => (
