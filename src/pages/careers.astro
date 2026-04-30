@@ -242,6 +242,27 @@ const benefits = [
             <textarea id="c-message" name="message" rows="5" required class="input" placeholder="A few lines about your work history and why you'd like to join the yard."></textarea>
           </div>
 
+          <div class="border-t border-cast-100 pt-8 mt-8">
+            <p class="text-sm font-bold text-navy mb-4">Data & contact consent</p>
+            <div class="space-y-3">
+              <label class="flex items-start gap-3 cursor-pointer group">
+                <input type="checkbox" name="consent_data" value="yes" required class="mt-0.5 w-4 h-4 accent-ember cursor-pointer" />
+                <span class="text-navy text-xs leading-relaxed">
+                  <span class="font-semibold">I consent to WCCP storing my details</span> to process my job application.
+                </span>
+              </label>
+              <label class="flex items-start gap-3 cursor-pointer group">
+                <input type="checkbox" name="consent_contact" value="yes" required class="mt-0.5 w-4 h-4 accent-ember cursor-pointer" />
+                <span class="text-navy text-xs leading-relaxed">
+                  <span class="font-semibold">I consent to be contacted</span> by phone or email about my application and future relevant opportunities at WCCP.
+                </span>
+              </label>
+            </div>
+            <p class="text-cast text-xs text-center mt-4">
+              See our <a href="/privacy" class="text-ember font-semibold hover:underline">privacy policy</a> for how we handle your data.
+            </p>
+          </div>
+
           <button type="submit" class="btn-primary w-full justify-center">Send application</button>
           <p class="text-cast text-xs text-center">
             Your application stays with us — we don't share CVs with third parties.

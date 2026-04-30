@@ -1,6 +1,17 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { site } from '@/config/site';
+import { Image } from 'astro:assets';
+import gemini1 from '@/assets/images/gemini-generated/Gemini_Generated_Image_1.png';
+import gemini2 from '@/assets/images/gemini-generated/Gemini_Generated_Image_2.png';
+import gemini3 from '@/assets/images/gemini-generated/Gemini_Generated_Image_3.png';
+import gemini4 from '@/assets/images/gemini-generated/Gemini_Generated_Image_4.png';
+import gemini5 from '@/assets/images/gemini-generated/Gemini_Generated_Image_5.png';
+import gemini6 from '@/assets/images/gemini-generated/Gemini_Generated_Image_6.png';
+import gemini7 from '@/assets/images/gemini-generated/Gemini_Generated_Image_7.png';
+import gemini8 from '@/assets/images/gemini-generated/Gemini_Generated_Image_8.png';
+import gemini9 from '@/assets/images/gemini-generated/Gemini_Generated_Image_9.png';
+import gemini10 from '@/assets/images/gemini-generated/Gemini_Generated_Image_10.png';
 
 const posts = [
   {
@@ -11,6 +22,7 @@ const posts = [
     title: 'SIG Round 4 — what farmers need to know before 30 September 2026.',
     excerpt:
       'The Slurry Infrastructure Grant Round 4 is open — £74 million on the table, deadline 30 September 2026. Here is what to look at first if you might apply.',
+    image: gemini1,
   },
   {
     slug: 'chilsworthy-yard-modernisation',
@@ -20,6 +32,7 @@ const posts = [
     title: 'Inside our 2023 move to Chilsworthy.',
     excerpt:
       '46 jobs, modern plant, a new circular-economy footprint — and the Severn Trent biogas neighbour that helps make it work. The story of the move from Shebbear.',
+    image: gemini2,
   },
   {
     slug: 'example-post',
@@ -29,6 +42,7 @@ const posts = [
     title: 'New 46-job yard opens at Holsworthy.',
     excerpt:
       'After two years of planning and a winter of fit-out, the new yard near Chilsworthy is open. Better moulds, better cranes, more capacity — and 46 new jobs for North Devon.',
+    image: gemini3,
   },
   {
     slug: '#',
@@ -38,6 +52,7 @@ const posts = [
     title: 'Dairy-Tech 2026 — what we saw and showed.',
     excerpt:
       'Three days at the NAEC Stoneleigh. Highlights: more interest than ever in slurry covers, plenty of robot-base questions, and a steady queue at the cubicle stand.',
+    image: gemini4,
   },
   {
     slug: '#',
@@ -47,6 +62,7 @@ const posts = [
     title: 'SIG Round 4 confirmed — £74m, closes 30 September.',
     excerpt:
       'DEFRA have confirmed the Slurry Infrastructure Grant Round 4 details. We\'ve updated our guide and our calculator to match the new eligibility rules.',
+    image: gemini5,
   },
   {
     slug: '#',
@@ -56,6 +72,7 @@ const posts = [
     title: 'LAMMA 2026 — see us on Stand 4.730.',
     excerpt:
       'We\'re back at LAMMA at the NEC. Cubicles, troughs, and the full slurry range on display. Bring your drawings and we\'ll quote on the stand.',
+    image: gemini6,
   },
   {
     slug: '#',
@@ -65,6 +82,7 @@ const posts = [
     title: 'New 280mm prestressed panel — proven for deep slurry.',
     excerpt:
       'Our new 280mm prestressed panel is now in stock. Engineered for slurry depths to 4.5m, with the same lifting and joint detail as the rest of the range.',
+    image: gemini7,
   },
   {
     slug: '#',
@@ -74,6 +92,7 @@ const posts = [
     title: 'Royal Cornwall, Devon County, Bath & West — 2026 dates.',
     excerpt:
       'Show season is back. Here\'s where you\'ll find us: Royal Cornwall, Devon County, Bath & West, North Devon, Great Yorkshire and the Royal Welsh.',
+    image: gemini8,
   },
   {
     slug: '#',
@@ -83,6 +102,7 @@ const posts = [
     title: 'FETF 2026 — the items we expect to be eligible.',
     excerpt:
       'DEFRA hasn\'t published the FETF 2026 list yet, but here\'s our read on which of our products are likely to qualify based on the 2024 and 2025 rounds.',
+    image: gemini9,
   },
   {
     slug: '#',
@@ -92,6 +112,7 @@ const posts = [
     title: 'Jake passed his C+E — and other yard wins.',
     excerpt:
       'Driver Jake passed his C+E ticket this month. We sponsored the training because he\'s the right person and the right person is worth investing in.',
+    image: gemini10,
   },
 ];
 
@@ -142,7 +163,11 @@ const categoryColors: Record<string, string> = {
       {posts.map((p) => (
         <a href={`/news/${p.slug}`} class="card group flex flex-col overflow-hidden">
           <div class="aspect-[16/10] bg-cast-100 overflow-hidden">
-            <div class="w-full h-full bg-gradient-to-br from-navy to-navy-700 group-hover:scale-105 transition-transform duration-500"></div>
+            <Image
+              src={p.image}
+              alt={p.title}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
           </div>
           <div class="p-6 flex-1 flex flex-col">
             <div class="flex items-center gap-3 mb-3">
@@ -180,19 +205,35 @@ const categoryColors: Record<string, string> = {
           method="POST"
           data-netlify="true"
           netlify-honeypot="bot-field"
-          class="flex flex-col sm:flex-row gap-3 w-full md:w-auto md:min-w-[400px]"
+          class="w-full md:w-auto"
         >
           <input type="hidden" name="form-name" value="newsletter" />
           <p class="hidden"><label>Don't fill: <input name="bot-field" /></label></p>
-          <input
-            type="email"
-            name="email"
-            required
-            placeholder="your@email.co.uk"
-            class="input flex-1"
-            autocomplete="email"
-          />
-          <button type="submit" class="btn bg-navy text-white hover:bg-navy-700">Sign me up</button>
+          <div class="flex flex-col sm:flex-row gap-3 mb-4">
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="your@email.co.uk"
+              class="input flex-1"
+              autocomplete="email"
+            />
+            <button type="submit" class="btn bg-navy text-white hover:bg-navy-700 shrink-0">Sign me up</button>
+          </div>
+          <div class="space-y-2">
+            <label class="flex items-start gap-3 cursor-pointer group">
+              <input type="checkbox" name="consent_data" value="yes" required class="mt-0.5 w-4 h-4 accent-ember cursor-pointer" />
+              <span class="text-navy text-xs leading-relaxed">
+                <span class="font-semibold">I consent to WCCP storing my email</span> to send me the quarterly newsletter.
+              </span>
+            </label>
+            <label class="flex items-start gap-3 cursor-pointer group">
+              <input type="checkbox" name="consent_contact" value="yes" required class="mt-0.5 w-4 h-4 accent-ember cursor-pointer" />
+              <span class="text-navy text-xs leading-relaxed">
+                <span class="font-semibold">I consent to be contacted</span> by email about relevant WCCP grants and products.
+              </span>
+            </label>
+          </div>
         </form>
       </div>
     </div>

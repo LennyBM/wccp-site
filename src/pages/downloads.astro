@@ -94,10 +94,38 @@ const roles = ['Architect', 'Engineer', 'Contractor', 'Farmer', 'Specifier', 'Ot
             <input id="dl-company" name="company" type="text" class="input" autocomplete="organization" />
           </div>
 
+          <div class="sm:col-span-2 space-y-3 border-t border-cast-200 pt-4">
+            <label class="flex items-start gap-3 cursor-pointer group text-xs">
+              <input
+                type="checkbox"
+                name="consent_data"
+                value="yes"
+                required
+                class="mt-0.5 w-4 h-4 accent-ember cursor-pointer"
+              />
+              <span class="text-navy leading-relaxed">
+                <span class="font-semibold">I consent to WCCP storing my details</span> to send the download pack and related product information.
+              </span>
+            </label>
+
+            <label class="flex items-start gap-3 cursor-pointer group text-xs">
+              <input
+                type="checkbox"
+                name="consent_contact"
+                value="yes"
+                required
+                class="mt-0.5 w-4 h-4 accent-ember cursor-pointer"
+              />
+              <span class="text-navy leading-relaxed">
+                <span class="font-semibold">I consent to be contacted</span> by email or phone about grants and relevant WCCP products.
+              </span>
+            </label>
+          </div>
+
           <div class="sm:col-span-2">
             <button type="submit" class="btn-primary w-full justify-center">Send me the pack</button>
             <p class="text-cast text-xs text-center mt-2">
-              We'll only email you about products and grants you've asked about. Unsubscribe any time.
+              See our <a href="/privacy" class="text-ember font-semibold hover:underline">privacy policy</a> for how we handle your data.
             </p>
           </div>
         </form>

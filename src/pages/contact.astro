@@ -345,13 +345,25 @@ const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${mapQ
 
             <div id="contact-summary" class="bg-bone-200 rounded-lg p-6 space-y-1 border-l-4 border-yellow"></div>
 
-            <label class="flex items-start gap-3 cursor-pointer">
-              <input type="checkbox" name="consent" required class="mt-1 w-5 h-5 rounded border-2 border-cast-300 text-ember focus:ring-ember"/>
-              <span class="text-sm text-cast-700 leading-relaxed">
-                I'm happy for WCCP to contact me about this enquiry. We won't sell your details, share them with anyone outside our team, or spam you with marketing.
-                See our <a href="/privacy" class="text-ember underline font-semibold hover:no-underline">privacy policy</a>.
-              </span>
-            </label>
+            <div class="space-y-3 border-t border-cast-100 pt-4">
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" name="consent_data" value="yes" required class="mt-1 w-5 h-5 rounded border-2 border-cast-300 text-ember focus:ring-ember"/>
+                <span class="text-sm text-cast-700 leading-relaxed">
+                  <span class="font-semibold text-navy-700">I consent to WCCP storing my details</span> to process this enquiry and provide a quote.
+                </span>
+              </label>
+
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" name="consent_contact" value="yes" required class="mt-1 w-5 h-5 rounded border-2 border-cast-300 text-ember focus:ring-ember"/>
+                <span class="text-sm text-cast-700 leading-relaxed">
+                  <span class="font-semibold text-navy-700">I consent to be contacted</span> by phone, WhatsApp or email about this enquiry and relevant WCCP products.
+                </span>
+              </label>
+
+              <p class="text-xs text-cast-600 pt-2">
+                See our <a href="/privacy" class="text-ember underline font-semibold hover:no-underline">privacy policy</a> for how we handle your data.
+              </p>
+            </div>
           </fieldset>
 
           <div class="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-3 pt-4 border-t border-cast-100">

@@ -1,15 +1,15 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
-import PressStrip from '@/components/PressStrip.astro';
 import ProductIllustration from '@/components/ProductIllustration.astro';
-import SpecTicker from '@/components/SpecTicker.astro';
 import CapacityIndicator from '@/components/CapacityIndicator.astro';
 import SlurryQuickCalc from '@/components/SlurryQuickCalc.astro';
 import ProductGallery from '@/components/ProductGallery.astro';
 import { Image } from 'astro:assets';
 import yardHero from '@/assets/images/wccp-yard-aerial-chilsworthy-holsworthy.png';
 import agriculturalCard from '@/assets/images/cards/agricultural-card.jpg';
+import civilsCard from '@/assets/images/cards/civils-card.jpg';
+import bespokeCard from '@/assets/images/cards/bespoke-card.jpg';
 import { site } from '@/config/site';
 
 // Map flagship product hrefs to illustration slugs
@@ -177,7 +177,7 @@ const trustLogos = ['CE / UKCA', 'BS EN 14992', 'BS 8500-1:2023', 'Eurocode 2', 
           <span class="font-body text-sm uppercase tracking-[0.16em] text-cast-700">Units cast<br class="hidden md:inline"/> &amp; delivered</span>
         </div>
         <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-4 section-reveal" style="transition-delay: 160ms;">
-          <span class="font-display italic text-forest-700 text-6xl md:text-7xl leading-none tabular-nums" style="font-weight:300; font-variation-settings: 'opsz' 60;" data-counter data-target="31">0</span>
+          <span class="font-display italic text-forest-700 text-6xl md:text-7xl leading-none tabular-nums" style="font-weight:300; font-variation-settings: 'opsz' 60;" data-counter data-target="11">0</span>
           <span class="font-body text-sm uppercase tracking-[0.16em] text-cast-700">UK counties<br class="hidden md:inline"/> served</span>
         </div>
       </div>
@@ -185,11 +185,6 @@ const trustLogos = ['CE / UKCA', 'BS EN 14992', 'BS 8500-1:2023', 'Eurocode 2', 
   </section>
 
   <TrustStrip />
-
-  <PressStrip />
-
-  <!-- ====== Concrete spec ticker — today's mix, signals competence ====== -->
-  <SpecTicker />
 
   <!-- ====== Standards marquee — moving trust strip ====== -->
   <section class="bg-white border-y border-cast-100 py-6 overflow-hidden mask-fade-x">
@@ -217,39 +212,43 @@ const trustLogos = ['CE / UKCA', 'BS EN 14992', 'BS 8500-1:2023', 'Eurocode 2', 
     <div class="grid md:grid-cols-3 gap-6 reveal-stagger">
       {sectors.map((s) => (
         <a href={s.href} class="card overflow-hidden group block">
-          <!-- Image area — real photo for agricultural, gradient placeholders otherwise -->
+          <!-- Image area — real photos for all sectors -->
           <div class="aspect-[4/3] bg-navy-700 relative overflow-hidden">
-            {s.href === '/sectors/agricultural' ? (
-              <>
-                <Image
-                  src={agriculturalCard}
-                  alt=""
-                  widths={[400, 600, 800, 1200]}
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  loading="lazy"
-                  decoding="async"
-                  class="card-image absolute inset-0 w-full h-full object-cover"
-                />
-                <!-- Subtle navy fade for text legibility on hover labels -->
-                <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-navy-700/40 via-transparent to-transparent"></div>
-              </>
-            ) : (
-              <>
-                <div
-                  class="card-image absolute inset-0"
-                  style="background: radial-gradient(circle at 30% 20%, #3a5cb5 0%, #2e4796 50%, #3a5cb5 100%);"
-                ></div>
-                <div
-                  aria-hidden="true"
-                  class="absolute inset-0 opacity-[0.06]"
-                  style="background-image: linear-gradient(rgba(246,241,231,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(246,241,231,0.5) 1px, transparent 1px); background-size: 28px 28px;"
-                ></div>
-                <svg class="absolute inset-0 m-auto w-20 h-20 text-yellow opacity-90 transition-transform duration-700 group-hover:scale-110 group-hover:rotate-3"
-                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d={s.icon} stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </>
+            {s.href === '/sectors/agricultural' && (
+              <Image
+                src={agriculturalCard}
+                alt=""
+                widths={[400, 600, 800, 1200]}
+                sizes="(max-width: 768px) 100vw, 33vw"
+                loading="lazy"
+                decoding="async"
+                class="card-image absolute inset-0 w-full h-full object-cover"
+              />
             )}
+            {s.href === '/sectors/civils' && (
+              <Image
+                src={civilsCard}
+                alt=""
+                widths={[400, 600, 800, 1200]}
+                sizes="(max-width: 768px) 100vw, 33vw"
+                loading="lazy"
+                decoding="async"
+                class="card-image absolute inset-0 w-full h-full object-cover"
+              />
+            )}
+            {s.href === '/sectors/bespoke' && (
+              <Image
+                src={bespokeCard}
+                alt=""
+                widths={[400, 600, 800, 1200]}
+                sizes="(max-width: 768px) 100vw, 33vw"
+                loading="lazy"
+                decoding="async"
+                class="card-image absolute inset-0 w-full h-full object-cover"
+              />
+            )}
+            <!-- Subtle navy fade for text legibility -->
+            <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-navy-700/40 via-transparent to-transparent"></div>
           </div>
           <div class="p-6">
             <h3 class="font-display text-2xl font-bold text-navy mb-2 transition-colors duration-200 group-hover:text-ember">
@@ -550,7 +549,13 @@ const trustLogos = ['CE / UKCA', 'BS EN 14992', 'BS 8500-1:2023', 'Eurocode 2', 
             if (e.isIntersecting) { animate(e.target); cObs.unobserve(e.target); }
           });
         }, { threshold: 0.4 });
-        counters.forEach(function (el) { cObs.observe(el); });
+        counters.forEach(function (el) {
+          cObs.observe(el);
+          if (el.getBoundingClientRect().top < window.innerHeight) {
+            animate(el);
+            cObs.unobserve(el);
+          }
+        });
       } else {
         counters.forEach(animate);
       }

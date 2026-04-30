@@ -382,6 +382,49 @@ const timeframes = [
             </div>
           </label>
         </div>
+
+        <!-- GDPR Consent -->
+        <div class="border-t border-cast-100 pt-8 mt-8">
+          <p class="text-sm font-bold text-navy mb-4">Data & contact consent</p>
+
+          <div class="space-y-3">
+            <label class="flex items-start gap-3 cursor-pointer group">
+              <input
+                type="checkbox"
+                name="consent_data"
+                value="yes"
+                required
+                class="mt-1 w-5 h-5 accent-ember cursor-pointer"
+                data-field="consent_data"
+                aria-describedby="error-consent_data"
+              />
+              <span class="flex-1 text-sm text-cast leading-relaxed">
+                <span class="font-semibold text-navy">I consent to WCCP storing my contact details</span> to send me a quote and discuss this enquiry.
+              </span>
+            </label>
+            <span id="error-consent_data" class="text-xs text-danger font-semibold mt-1 hidden block ml-8" role="alert" data-error="consent_data">Please confirm you consent to us storing your contact details.</span>
+
+            <label class="flex items-start gap-3 cursor-pointer group">
+              <input
+                type="checkbox"
+                name="consent_contact"
+                value="yes"
+                required
+                class="mt-1 w-5 h-5 accent-ember cursor-pointer"
+                data-field="consent_contact"
+                aria-describedby="error-consent_contact"
+              />
+              <span class="flex-1 text-sm text-cast leading-relaxed">
+                <span class="font-semibold text-navy">I consent to be contacted</span> by phone or email about my quote and future relevant WCCP products and services.
+              </span>
+            </label>
+            <span id="error-consent_contact" class="text-xs text-danger font-semibold mt-1 hidden block ml-8" role="alert" data-error="consent_contact">Please confirm you consent to us contacting you.</span>
+          </div>
+
+          <p class="text-xs text-cast-700 mt-4">
+            See our <a href="/privacy" class="text-ember font-semibold hover:underline">privacy policy</a> for how we handle your data.
+          </p>
+        </div>
       </section>
 
       <!-- Navigation -->
