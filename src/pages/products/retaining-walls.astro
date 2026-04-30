@@ -140,7 +140,6 @@ const faqSchema = {
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Retaining+Walls" class="btn-primary">Configure a quote</a>
-            <a href="/downloads/specs/retaining-walls.pdf" class="btn-yellow">Download spec sheet</a>
             <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">Call {site.contact.phone}</a>
           </div>
         </div>
@@ -327,7 +326,6 @@ const faqSchema = {
   <SpecDownloads
     intro="A-Wall, L-and-T-Wall and Rapid-Fit retaining block PDFs — the geometry your engineer needs."
     downloads={[
-      { href: '/downloads/specs/retaining-walls.pdf', title: 'Retaining walls — overview', meta: 'PDF' },
       { href: '/downloads/specs/retaining-walls/wccp-retaining-walls-a-wall.pdf', title: 'A-Wall retaining wall', meta: 'PDF · 151 KB' },
       { href: '/downloads/specs/retaining-walls/wccp-retaining-walls-l-and-t-wall.pdf', title: 'L-Wall and T-Wall', meta: 'PDF · 127 KB' },
       { href: '/downloads/specs/rapid-fit-retaining-block/wccp-rapid-fit-retaining-block-system.pdf', title: 'Rapid-Fit retaining block system', meta: 'PDF · 1.9 MB' },
@@ -340,7 +338,7 @@ const faqSchema = {
       productName="Retaining Walls"
       defaultMode="supply"
       supply={{
-        price: 'from £350 per linear metre',
+        price: 'Bespoke quote',
         leadTime: '3–5 weeks',
         includes: [
           'Designer-stamped drawings to BS EN 1992',
@@ -355,7 +353,7 @@ const faqSchema = {
         ],
       }}
       fitted={{
-        price: 'from £550 per linear metre',
+        price: 'Bespoke quote',
         leadTime: '6–8 weeks (incl. site slot)',
         includes: [
           'Everything in supply only',
@@ -368,7 +366,7 @@ const faqSchema = {
           'Backfill, drainage and surfacing reinstatement',
         ],
       }}
-      note="Indicative 2026 pricing per linear metre at 3m wall height — taller walls and higher surcharge ratings priced individually. Send the section drawing and we will spec the cheapest right answer."
+      note="priced individually. Send the section drawing and we will spec the cheapest right answer."
     />
   </section>
 
@@ -386,6 +384,6 @@ const faqSchema = {
     </div>
   </section>
 
-  <SpecSheetButton productSlug="retaining-walls" productName="Retaining Walls" href="/downloads/specs/retaining-walls.pdf" />
+  <SpecSheetButton productSlug="retaining-walls" productName="Retaining Walls" />
   <ProductWarrantyLine />
 </BaseLayout>

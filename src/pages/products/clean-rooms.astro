@@ -7,13 +7,14 @@ import SpecSheetButton from '@/components/SpecSheetButton.astro';
 import { site } from '@/config/site';
 import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
 
-const specs = [
-  { component: 'Cleanroom slab', size: '4.0m × 3.0m × 200mm', weight: '6,000 kg', feature: 'Tanked floor, 1:80 fall', use: 'DeLaval / Lely / GEA / BouMatic enclosure' },
-  { component: 'Floor gully kit', size: '3.0m × 200mm × 150mm', weight: '420 kg', feature: 'Integrated stainless grate', use: 'Wash-down drainage' },
-  { component: 'Machine pit base', size: '3.6m × 2.4m × 250mm', weight: '5,200 kg', feature: 'Cast-in robot anchors', use: 'Adjacent robot box' },
-  { component: 'Plant-room riser', size: '2.4m × 1.2m × 100mm', weight: '720 kg', feature: 'Cable + service ducts', use: 'Vacuum / chiller plant area' },
-  { component: 'Walk-on cover slab', size: '1.0m × 0.6m × 75mm', weight: '108 kg', feature: 'Removable, sealed', use: 'Floor gully access cover' },
-  { component: 'Bespoke kit', size: 'To drawing', weight: 'On application', feature: 'Manufacturer-specific', use: 'Multi-box / multi-brand fit-outs' },
+// Cleanroom kits are configured to the customer's drawing — no two layouts are the same.
+// What we publish is the kit components and the way they fit together.
+const kit = [
+  { component: 'Vertical wall panel', detail: 'Cast vertical, smooth on both inside and outside faces — durable, easy to clean' },
+  { component: '90° corner panel', detail: 'Cast as a single corner unit so panels stand unsupported around the box' },
+  { component: 'Straight run panels', detail: 'Slot between supporting galvanised steel posts on long straight sections' },
+  { component: 'Galvanised steel posts', detail: 'Supplied with the panels for straight runs' },
+  { component: 'DeLaval / Lely sumps + bases', detail: 'Robot-specific sumps and pit bases supplied alongside the cleanroom kit' },
 ];
 
 const applications = [
@@ -34,29 +35,27 @@ const related = [
 ];
 
 const faqs = [
-  { q: 'What is a "clean room" in a parlour fit-out?', a: 'It is the enclosed slab next to the robot box that houses the milk reception, vacuum plant, chiller and washdown equipment. The cow side is dirty and wet; the cleanroom side is sealed, drained and washable. Tanked floor with a continuous fall to a stainless gully is the standard detail.' },
-  { q: 'Which robots is it compatible with?', a: 'DeLaval VMS V300 / V310, Lely Astronaut A5 / A5 Next, GEA DairyRobot R9500 and BouMatic MR-S1. Each manufacturer has slightly different cleanroom dimensions and service-entry positions; we cast to their published install pack.' },
-  { q: 'What about the floor gully?', a: 'A 3-metre stainless-grated gully kit casts into the slab with a 1:80 fall to the discharge end. Removable cover slabs lift out for cleaning. Falls and gully positions vary by manufacturer — we cast to spec.' },
-  { q: 'Do you supply the machine pit too?', a: 'Yes — the machine pit (the void under the robot box for the air pulsator and milk lines) casts as a matched component to the cleanroom slab, with cast-in robot anchors at the manufacturer pattern. See the milking-robot-bases page for the box base detail.' },
-  { q: 'Lead time?', a: 'Typical 4 to 6 weeks from drawing sign-off. We need the manufacturer install pack first — book the engineer in early or commit to the brand before ordering. Multi-box and multi-brand fit-outs run 6 to 8 weeks.' },
+  { q: 'How are the clean rooms supplied?', a: 'In kit form, sized to suit the layout you want. Send us your plans and we will quote the supply of a kit to suit your requirements. The wall panels are vertically cast and smooth on both the inside and the outside — durable and easy to clean.' },
+  { q: 'Do the panels need supporting posts?', a: 'It depends on the run. The wall panels can be cast with 90° corners which lets them stand unsupported. Straight sections of wall we supply with supporting galvanised steel posts.' },
+  { q: 'Can you also supply the milking-equipment bases?', a: 'Yes — we can also supply sumps and bases for DeLaval and Lely milking equipment alongside the clean-room kit so it all arrives together.' },
+  { q: 'What concrete grade?', a: 'C40/50 to BS 8500-1:2023, factory production control to BS EN 13369. Smooth-cast finish on both faces of the panel.' },
+  { q: 'Lead time?', a: 'Once we have your plans we can quote within a working day and ship the kit on our typical agricultural lead time. Ring the yard for current capacity.' },
 ];
 
 const productSchema = {
-  name: 'Cleanroom Enclosures and Robot Pit Bases',
-  description: 'Cleanroom slabs, machine-pit bases and floor-gully kits for robotic milking parlour fit-outs. Compatible with DeLaval, Lely, GEA and BouMatic robots. Tanked floor, integrated drainage, manufacturer-specific anchors.',
+  name: 'Precast Concrete Clean Room Enclosures',
+  description: 'Precast concrete clean rooms supplied in kit form to suit your layout. Vertically-cast wall panels are smooth on both inside and outside making them durable and easy to clean. 90° corner panels can stand unsupported; straight runs use galvanised supporting steel posts. Sumps and bases for DeLaval and Lely milking equipment available alongside.',
   brand: { '@type': 'Brand', name: site.name },
   manufacturer: { '@type': 'Organization', name: site.name },
-  category: 'Precast cleanroom enclosure',
+  category: 'Precast concrete clean-room enclosure (kit form)',
   material: 'Reinforced concrete, C40/50 (BS 8500-1:2023)',
-  weight: { '@type': 'QuantitativeValue', minValue: 108, maxValue: 6000, unitCode: 'KGM', unitText: 'kilogram per component' },
   additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Supply form', value: 'Kit — bespoke to layout' },
     { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 13369 / BS 8500-1:2023' },
-    { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50' },
-    { '@type': 'PropertyValue', name: 'Compatible robots', value: 'DeLaval VMS V300/V310, Lely A5/A5 Next, GEA R9500, BouMatic MR-S1' },
-    { '@type': 'PropertyValue', name: 'Floor gully', value: '3.0 m stainless-grated, 1:80 fall' },
-    { '@type': 'PropertyValue', name: 'Standard slab', value: '4.0 × 3.0 × 0.2 m, 6,000 kg' },
-    { '@type': 'PropertyValue', name: 'Machine pit', value: '3.6 × 2.4 × 0.25 m, 5,200 kg' },
-    { '@type': 'PropertyValue', name: 'Lead time', value: '4–6 weeks from drawing sign-off' },
+    { '@type': 'PropertyValue', name: 'Wall panel', value: 'Vertically cast, smooth both faces' },
+    { '@type': 'PropertyValue', name: '90° corner panels', value: 'Cast as single unit — can stand unsupported' },
+    { '@type': 'PropertyValue', name: 'Straight runs', value: 'Galvanised steel posts supplied' },
+    { '@type': 'PropertyValue', name: 'Robot equipment', value: 'Sumps and bases for DeLaval and Lely milking equipment available' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
   ],
   offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
@@ -83,26 +82,27 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
           <p class="eyebrow text-yellow mb-4">Agricultural · robotic dairy · parlour fit-out</p>
           <h1 class="font-display text-display-xl text-white mb-4">Clean Rooms.</h1>
           <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">
-            Food-grade cast. Wash-down ready.
+            Kit form. Smooth both faces. Cast to your layout.
           </p>
-          <h2 class="sr-only">What's a precast clean-room base?</h2>
+          <h2 class="sr-only">What's a precast clean-room enclosure?</h2>
           <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
-            <strong class="not-italic text-white">What's a precast clean-room base?</strong>
-            A factory-cast tanked floor, robot-anchor matched, with a cast-in 3&nbsp;m stainless
-            gully and integrated drainage. DeLaval, Lely, GEA and BouMatic compatible. Ships in
-            matched sets with the milking-robot base — wash-down ready on day one.
+            <strong class="not-italic text-white">What's a precast clean-room enclosure?</strong>
+            Vertically-cast wall panels supplied in kit form to suit the layout you want.
+            Smooth on both inside and outside — durable and easy to clean. 90° corner panels
+            stand unsupported; straight runs use galvanised steel posts.
           </blockquote>
           <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
-            Tanked floor with a 3-metre stainless gully, integrated drainage, manufacturer-specific anchor
-            patterns. DeLaval, Lely, GEA and BouMatic compatible. Cast as matched sets with the robot base.
+            Send us the plans for your robot box and we will quote a kit of vertical wall
+            panels and corner units to suit. Sumps and bases for DeLaval and Lely milking
+            equipment available alongside.
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
-            <li class="flex gap-2"><span class="text-yellow">·</span> Tanked floor</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 3m gully kit</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Integrated machine pit</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> All four brands</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Cast-in conduits</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 4–6 week lead</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Kit form</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Smooth both faces</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 90° corner panels</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Galvanised posts</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> DeLaval / Lely sumps</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Cast to your drawing</li>
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Clean%20Rooms" class="btn-primary">Configure a quote</a>
@@ -117,33 +117,39 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
 
   <section class="container-wccp py-20">
     <div class="max-w-2xl mb-10">
-      <p class="eyebrow text-cast mb-3">Specification</p>
-      <h2 class="font-display text-display-lg mb-4">Components, sizes and weights.</h2>
-      <p class="text-cast-700 text-lg">Catalogue components for typical single-box and double-box fit-outs. Bespoke layouts cast to manufacturer install pack.</p>
+      <p class="eyebrow text-cast mb-3">What's in the kit</p>
+      <h2 class="font-display text-display-lg mb-4">Kit components.</h2>
+      <p class="text-cast-700 text-lg">Each clean-room kit is configured to your drawing — no two layouts are the same. These are the components we cast and supply.</p>
     </div>
     <div class="overflow-x-auto">
       <table class="spec-table w-full text-left border-collapse">
         <thead class="bg-navy text-white">
           <tr>
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Component</th>
-            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Size</th>
-            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Weight</th>
-            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Feature</th>
-            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Detail</th>
           </tr>
         </thead>
         <tbody>
-          {specs.map((s, i) => (
+          {kit.map((s, i) => (
             <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
               <td class="px-4 py-3 font-bold text-navy">{s.component}</td>
-              <td class="px-4 py-3">{s.size}</td>
-              <td class="px-4 py-3">{s.weight}</td>
-              <td class="px-4 py-3">{s.feature}</td>
-              <td class="px-4 py-3 text-cast">{s.use}</td>
+              <td class="px-4 py-3 text-cast">{s.detail}</td>
             </tr>
           ))}
         </tbody>
       </table>
+    </div>
+    <p class="text-cast text-sm mt-4">Send us your robot-box and parlour layout drawing and we will quote a complete kit. We can also supply DeLaval and Lely sumps and bases alongside.</p>
+  </section>
+
+  <section class="bg-bone-200 py-12">
+    <div class="container-wccp">
+      <p class="eyebrow text-cast mb-3">On-farm</p>
+      <h2 class="font-display text-display-md mb-6">Clean rooms in service.</h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        <img src="/images/products/clean-rooms/wccp-clean-room-enclosures-20120831-084144-1024x768.jpg" alt="WCCP precast concrete clean room enclosure installed on a Devon dairy with smooth-cast vertical wall panels" class="w-full h-auto rounded" loading="lazy" decoding="async" />
+        <img src="/images/products/clean-rooms/wccp-clean-room-enclosures-20130626-160926-1024x768.jpg" alt="Precast concrete clean room kit assembled on-farm by WCCP, vertical panels with galvanised supporting posts on the straight run" class="w-full h-auto rounded" loading="lazy" decoding="async" />
+      </div>
     </div>
   </section>
 
@@ -228,27 +234,27 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
       productName="Clean Rooms"
       defaultMode="fitted"
       supply={{
-        price: 'Bespoke quote (typical kits from £6,500)',
-        leadTime: '6–8 weeks from drawing sign-off',
+        price: 'Bespoke quote',
+        leadTime: 'Quoted with kit',
         includes: [
-          'Cleanroom slab with tanked floor and 1:80 fall',
-          '3m stainless-grated gully kit',
-          'Cast-in service ducts and conduits',
+          'Vertically-cast wall panels (smooth both faces)',
+          '90° corner panels for unsupported corners',
+          'Galvanised supporting steel posts for straight runs',
           'Delivery on our HIAB to your shed',
         ],
         excludes: [
-          'Cast-in-situ joints and grouting on site',
+          'On-site setting and bedding mortar',
           'Robot supply, plumbing and electrical fit-out',
-          'Wall panels and external cladding',
+          'Sumps and milking-equipment bases (priced separately)',
         ],
       }}
       fitted={{
-        price: 'Bespoke quote — incl. install (typical from £11,000)',
-        leadTime: '10–12 weeks (incl. site slot)',
+        price: 'Bespoke quote (incl. install)',
+        leadTime: 'Quoted with kit',
         includes: [
           'Everything in supply only',
-          'Four-man install crew with HIAB and 35t crane',
-          'Setting to manufacturer install pack tolerance',
+          'Install crew with HIAB to set the kit',
+          'Setting to drawing tolerance',
           '12-month workmanship warranty',
         ],
         excludes: [
@@ -256,7 +262,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
           'Mechanical, electrical and chiller plant',
         ],
       }}
-      note="Pricing is bespoke — every cleanroom is sized to the manufacturer's published install pack and your shed layout. We need the robot brand, box count and drawing before we quote — typically within a working day."
+      note="Every clean-room kit is sized to your robot-box layout. Send the drawing — we will quote inside a working day."
     />
   </section>
 

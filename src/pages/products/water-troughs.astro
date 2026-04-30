@@ -22,12 +22,15 @@ const tocSections = [
 
 const specs = [
   { type: '500 Gallon', size: '3930 × 1285 × 800mm', weight: '2,340 kg', use: 'Largest flagship trough — high-yield groups, robotic herds' },
-  { type: '400 Gallon', size: '3000 × 1250 × 800mm', weight: '1,837 kg', use: 'Main parlour cross-overs, large dairy groups' },
+  { type: '400 Gallon', size: '3000 × 1250 × 800mm', weight: '1,873 kg', use: 'Main parlour cross-overs, large dairy groups' },
   { type: '300 Gallon', size: '2450 × 1250 × 800mm', weight: '1,600 kg', use: 'Cubicle row dividers, two-sided drink' },
-  { type: '180 Gallon', size: '2200 × 1140 × 700mm', weight: '1,250 kg', use: 'Mid-size cubicle service' },
+  { type: '180 Gallon', size: '2400 × 800 × 420mm', weight: '600 kg', use: 'Long, low trough for field and yard runs' },
+  { type: '100 Gallon', size: '2200 × 1140 × 700mm', weight: '1,250 kg', use: 'Mid-size cubicle service' },
   { type: '80 Gallon', size: '1500 × 820 × 600mm', weight: '635 kg', use: 'Calf pens, smaller groups' },
-  { type: '40 Gallon', size: '1200 × 800 × 420mm', weight: '398 kg', use: 'Field troughs, sheep and youngstock' },
-  { type: "30 Gallon Inline 'Cube'", size: '750 × 890 × 800mm (HxWxD)', weight: '597 kg', use: 'End-stop in line with feed troughs to increase water availability' },
+  { type: '40 Gallon', size: '1220 × 800 × 420mm', weight: '398 kg', use: 'Field troughs, sheep and youngstock' },
+  { type: "30 Gallon Inline 'Cube'", size: '890 × 800 × 600mm', weight: '598 kg', use: 'End-stop in line with feed troughs to increase water availability' },
+  { type: 'Single Cubicle End-Wall', size: '2420 × 785 × 800mm', weight: '1,440 kg', use: 'Finishes a single row of cubicles with integrated drinker' },
+  { type: 'Double Cubicle End-Wall', size: '4400 × 785 × 800mm', weight: '2,250 kg', use: 'Finishes a double row of cubicles with integrated drinker' },
 ];
 
 const features = [
@@ -76,12 +79,15 @@ const productSchema = {
     { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 13369 / BS 5502-22:2003' },
     { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
     { '@type': 'PropertyValue', name: '500 Gallon', value: '3930 × 1285 × 800mm, 2,340 kg' },
-    { '@type': 'PropertyValue', name: '400 Gallon', value: '3000 × 1250 × 800mm, 1,837 kg' },
+    { '@type': 'PropertyValue', name: '400 Gallon', value: '3000 × 1250 × 800mm, 1,873 kg' },
     { '@type': 'PropertyValue', name: '300 Gallon', value: '2450 × 1250 × 800mm, 1,600 kg' },
-    { '@type': 'PropertyValue', name: '180 Gallon', value: '2200 × 1140 × 700mm, 1,250 kg' },
+    { '@type': 'PropertyValue', name: '180 Gallon', value: '2400 × 800 × 420mm, 600 kg' },
+    { '@type': 'PropertyValue', name: '100 Gallon', value: '2200 × 1140 × 700mm, 1,250 kg' },
     { '@type': 'PropertyValue', name: '80 Gallon', value: '1500 × 820 × 600mm, 635 kg' },
-    { '@type': 'PropertyValue', name: '40 Gallon', value: '1200 × 800 × 420mm, 398 kg' },
-    { '@type': 'PropertyValue', name: "30 Gallon Inline 'Cube'", value: '750 × 890 × 800mm, 597 kg (in-line end-stop)' },
+    { '@type': 'PropertyValue', name: '40 Gallon', value: '1220 × 800 × 420mm, 398 kg' },
+    { '@type': 'PropertyValue', name: "30 Gallon Inline 'Cube'", value: '890 × 800 × 600mm, 598 kg (in-line end-stop)' },
+    { '@type': 'PropertyValue', name: 'Single Cubicle End-Wall', value: '2420 × 785 × 800mm, 1,440 kg' },
+    { '@type': 'PropertyValue', name: 'Double Cubicle End-Wall', value: '4400 × 785 × 800mm, 2,250 kg' },
     { '@type': 'PropertyValue', name: 'Service features', value: 'Integrated pipe void to base; concrete lids; large drain holes with rubber bungs' },
     { '@type': 'PropertyValue', name: 'Valve options', value: 'XtraFlow universal or brass high/low pressure' },
     { '@type': 'PropertyValue', name: 'Lead time', value: '2–3 weeks (stock often available)' },
@@ -124,12 +130,13 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
             measures 3,930&nbsp;mm × 1,285&nbsp;mm × 800&nbsp;mm.
           </blockquote>
           <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
-            Seven sizes, 40 to 500 Gallon. Integrated pipe void to the base, concrete lids,
-            large drain holes, rubber bungs and either XtraFlow or brass valves to fit.
+            Eight sizes, 30 to 500 Gallon, plus single and double cubicle end-wall troughs.
+            Integrated pipe void to the base, concrete lids, large drain holes, rubber bungs
+            and either XtraFlow or brass valves to fit.
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
             <li class="flex gap-2"><span class="text-yellow">·</span> 500 Gal flagship</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 7 sizes total</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 8 sizes + cubicle</li>
             <li class="flex gap-2"><span class="text-yellow">·</span> Pipe void to base</li>
             <li class="flex gap-2"><span class="text-yellow">·</span> Concrete lids</li>
             <li class="flex gap-2"><span class="text-yellow">·</span> XtraFlow / brass valve</li>
@@ -152,7 +159,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
     <div class="max-w-2xl mb-10">
       <p class="eyebrow text-cast mb-3">Specification</p>
       <h2 class="font-display text-display-lg mb-4">Sizes, capacities and weights.</h2>
-      <p class="text-cast-700 text-lg">Seven sizes from 40 Gallon to 500 Gallon, plus the 30 Gallon Inline 'Cube' that fits in line with the feed-trough run as an end-stop.</p>
+      <p class="text-cast-700 text-lg">Eight sizes from 30 Gallon to 500 Gallon, plus single and double cubicle end-wall troughs that finish a row of cubicles with an integrated drinker.</p>
     </div>
     <div class="overflow-x-auto">
       <table class="spec-table w-full text-left border-collapse">
@@ -286,7 +293,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
       productName="Drinking Troughs"
       defaultMode="supply"
       supply={{
-        price: 'from £290 each',
+        price: 'Bespoke quote',
         leadTime: '1–2 weeks (stock often available)',
         includes: [
           'Drinking trough (40 Gal to 500 Gal) with integrated pipe void',
@@ -300,7 +307,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
           'On-site setting and bedding screed',
         ],
       }}
-      note="Indicative 2026 pricing for the smaller 40 / 80 Gallon units. The 300, 400 and 500 Gallon flagships and the 30 Gallon Inline 'Cube' priced individually. Stock units often despatch within a week."
+      note="Stock units often despatch within a week. Ring the yard for current availability and a quote tailored to your herd size."
     />
   </section>
 

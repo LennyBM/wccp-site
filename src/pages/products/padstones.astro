@@ -8,13 +8,17 @@ import SpecSheetButton from '@/components/SpecSheetButton.astro';
 import { site } from '@/config/site';
 import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
 
+// Padstones cast to standard sizes or any size and shape to suit the project.
+// All padstones — standard or bespoke — are cast to 50 N/mm² compressive strength @ 28 days.
 const specs = [
-  { size: '200 × 200 × 100mm', weight: '9.6 kg', strength: '20 N/mm²', use: 'Light timber and steel beam bearings' },
-  { size: '300 × 200 × 100mm', weight: '14.4 kg', strength: '20 N/mm²', use: 'Standard masonry beam bearings' },
-  { size: '300 × 300 × 150mm', weight: '32.4 kg', strength: '30 N/mm²', use: 'Concrete-frame beam bearings' },
-  { size: '450 × 300 × 150mm', weight: '48.6 kg', strength: '30 N/mm²', use: 'Heavier steel beam bearings' },
-  { size: '450 × 450 × 200mm', weight: '97.2 kg', strength: '40 N/mm²', use: 'Civils and industrial bearings' },
-  { size: '600 × 600 × 300mm', weight: '259 kg', strength: '50 N/mm²', use: 'Heavy industrial / portal frame bearings' },
+  { size: '200 × 200 × 100mm', weight: '9.6 kg', strength: '50 N/mm² @ 28 days', use: 'Light timber and steel beam bearings' },
+  { size: '300 × 200 × 100mm', weight: '14.4 kg', strength: '50 N/mm² @ 28 days', use: 'Standard masonry beam bearings' },
+  { size: '300 × 300 × 150mm', weight: '32.4 kg', strength: '50 N/mm² @ 28 days', use: 'Concrete-frame beam bearings' },
+  { size: '450 × 300 × 150mm', weight: '48.6 kg', strength: '50 N/mm² @ 28 days', use: 'Heavier steel beam bearings' },
+  { size: '450 × 450 × 200mm', weight: '97.2 kg', strength: '50 N/mm² @ 28 days', use: 'Civils and industrial bearings' },
+  { size: '600 × 600 × 300mm', weight: '259 kg', strength: '50 N/mm² @ 28 days', use: 'Heavy industrial / portal frame bearings' },
+  { size: 'L-shape padstone', weight: 'On application', strength: '50 N/mm² @ 28 days', use: 'Corner-of-wall bearings — cast to your dimensions' },
+  { size: 'Bespoke (any size or shape)', weight: 'On application', strength: '50 N/mm² @ 28 days', use: 'Cast to your engineer\'s schedule' },
 ];
 
 const applications = [
@@ -36,9 +40,9 @@ const related = [
 
 const faqs = [
   { q: 'How do I size a padstone?', a: 'Padstone sizing follows BS EN 1996 — characteristic compressive strength of the masonry wall divided into the beam reaction load gives the bearing area required. We hold a sizing table on the spec sheet for typical UB and UC beam reactions on Class B and Class M masonry. Send the beam reaction and we will spec it.' },
-  { q: 'What concrete grade do you cast in?', a: 'Standard padstones are 20 N/mm² compressive strength; heavier civils-grade up to 50 N/mm². All to BS EN 13369 with factory production control.' },
+  { q: 'What concrete grade do you cast in?', a: 'Every padstone — standard size or bespoke — is cast in concrete with a compressive strength of 50 N/mm² @ 28 days. Cast to BS EN 13369 with factory production control.' },
   { q: 'Are they reinforced?', a: 'The 200×200 and 300×200 are unreinforced — the load distribution is by mass alone. From 300×300 upwards we add a basket of B500B fabric to prevent splitting under concentrated loads.' },
-  { q: 'Stock or made-to-order?', a: 'The five smallest sizes we hold in stock — usually shipping within a week. The 600×600 we cast to order, 2 to 3 weeks. Bespoke sizes — say a 750×500 for a portal frame — 3 to 4 weeks.' },
+  { q: 'Stock or made-to-order?', a: 'Standard sizes are usually shipping within a week. Larger sizes and L-shape padstones are cast to order in 2 to 3 weeks. Bespoke sizes and shapes — say a 750×500 for a portal frame — 3 to 4 weeks. Pad stones can be made in any size and shape that you require for your project.' },
   { q: 'Can I get them delivered with the rest of my order?', a: 'Yes — we ship padstones on the same lorry as cubicles, panels or troughs going to the same site. Saves a delivery and gets everything to you on the right day. Mention it when you order.' },
 ];
 
@@ -52,7 +56,8 @@ const productSchema = {
   weight: { '@type': 'QuantitativeValue', minValue: 9.6, maxValue: 259, unitCode: 'KGM', unitText: 'kilogram per padstone' },
   additionalProperty: [
     { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 13369 (production) / BS EN 1996 (sizing)' },
-    { '@type': 'PropertyValue', name: 'Compressive strength', value: '20 / 30 / 40 / 50 N/mm²' },
+    { '@type': 'PropertyValue', name: 'Compressive strength', value: '50 N/mm² @ 28 days (all sizes)' },
+    { '@type': 'PropertyValue', name: 'Bespoke', value: 'Any size or shape — including L-shape padstones — to your engineer\'s schedule' },
     { '@type': 'PropertyValue', name: 'Smallest size', value: '200 × 200 × 100 mm (9.6 kg)' },
     { '@type': 'PropertyValue', name: 'Largest size', value: '600 × 600 × 300 mm (259 kg)' },
     { '@type': 'PropertyValue', name: 'Reinforcement', value: 'B500B fabric on 300×300 and above' },
@@ -104,13 +109,23 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Padstones" class="btn-primary">Order padstones</a>
-            <a href="/downloads/specs/padstones.pdf" class="btn-yellow">Download spec sheet</a>
             <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">Call {site.contact.phone}</a>
           </div>
         </div>
         <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
-          <img src="/images/products/home/wccp-home-padstones.jpg" alt="Precast concrete padstones for steel beam bearings — West Country Concrete Products, Devon" class="w-full h-full object-cover" loading="eager" decoding="async" />
+          <img src="/images/products/padstones/wccp-pad-stones-padstones.jpg" alt="WCCP precast concrete padstones in the yard at Holsworthy, Devon" class="w-full h-full object-cover" loading="eager" decoding="async" />
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-bone-200 py-12">
+    <div class="container-wccp">
+      <p class="eyebrow text-cast mb-3">In the yard</p>
+      <h2 class="font-display text-display-md mb-6">Standard and L-shape padstones.</h2>
+      <div class="grid md:grid-cols-2 gap-4 max-w-3xl">
+        <img src="/images/products/padstones/wccp-pad-stones-padstones.jpg" alt="WCCP standard precast concrete padstones stacked in the yard, Devon" class="w-full h-auto rounded" loading="lazy" decoding="async" />
+        <img src="/images/products/padstones/wccp-pad-stones-l-shape-padstone-jpg.jpg" alt="WCCP precast concrete L-shape padstone for corner-of-wall bearings, Devon" class="w-full h-auto rounded" loading="lazy" decoding="async" />
       </div>
     </div>
   </section>
@@ -226,12 +241,12 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
       productName="Padstones"
       defaultMode="supply"
       supply={{
-        price: 'from £45 each',
-        leadTime: '2–3 weeks (stock often available)',
+        price: 'Bespoke quote',
+        leadTime: '1–3 weeks (stock often available)',
         includes: [
           'Padstone cast to BS EN 13369 / BS EN 1996',
-          'Compressive strength test certificate',
-          'B500B fabric reinforcement on 300×300+ sizes',
+          '50 N/mm² @ 28 days compressive strength',
+          'B500B fabric reinforcement on 300×300 and above',
           'Delivery on our HIAB or pallet courier',
         ],
         excludes: [
@@ -239,7 +254,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
           'Beam reaction calculation (we will check, free of charge)',
         ],
       }}
-      note="Indicative 2026 pricing for the 300×200×100 standard size. The smaller five sizes ship from stock — 600×600 cast to order in 2–3 weeks. Bulk pallets discounted; ring the yard for trade rates."
+      note="Standard sizes ship from stock; larger sizes and bespoke shapes (including L-shape padstones) cast to order in 2–3 weeks. Ring the yard with your engineer’s schedule and we will quote and deliver."
     />
   </section>
 
@@ -257,6 +272,6 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
     </div>
   </section>
 
-  <SpecSheetButton productSlug="padstones" productName="Padstones" href="/downloads/specs/padstones.pdf" />
+  <SpecSheetButton productSlug="padstones" productName="Padstones" />
   <ProductWarrantyLine />
 </BaseLayout>

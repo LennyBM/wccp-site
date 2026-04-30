@@ -127,7 +127,6 @@ const faqSchema = {
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=V-Section+Sand+Channels" class="btn-primary">Configure a quote</a>
-            <a href="/downloads/specs/sand-channels.pdf" class="btn-yellow">Download spec sheet</a>
             <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">
               Call {site.contact.phone}
             </a>
@@ -299,7 +298,6 @@ const faqSchema = {
   <SpecDownloads
     intro="Sand-channel sections plus the dish-channel technical reference for adjacent yard drainage."
     downloads={[
-      { href: '/downloads/specs/sand-channels.pdf', title: 'Sand channels — overview', meta: 'PDF' },
       { href: '/downloads/specs/slurry-handling/wccp-slurry-handling-v-section-sand-slurry-channels.pdf', title: 'V-section sand & slurry channels', meta: 'PDF · 290 KB' },
       { href: '/downloads/specs/slurry-handling/wccp-slurry-handling-shallow-v-section-sand-slurry-channels.pdf', title: 'Shallow V-section sand & slurry channels', meta: 'PDF · 356 KB' },
       { href: '/downloads/specs/home/wccp-home-dish-channel-tech.pdf', title: 'Dish channel — technical', meta: 'PDF · 27 KB' },
@@ -312,7 +310,7 @@ const faqSchema = {
       productName="V-Section Sand Channels"
       defaultMode="supply"
       supply={{
-        price: 'from £640/lm complete system',
+        price: 'Bespoke quote',
         leadTime: '3–5 weeks',
         includes: [
           'V-section channels + matching 3m diagonal slats',
@@ -326,7 +324,7 @@ const faqSchema = {
           'On-site setting and bedding-mortar',
         ],
       }}
-      note="Indicative 2026 pricing per linear metre for V-section + slat runs over 30m. Heavy-duty slat upgrades, mixed straight-slat lengths and bespoke channel depths quoted individually — send the shed sketch and we'll come back within a working day."
+      note=". Heavy-duty slat upgrades, mixed straight-slat lengths and bespoke channel depths quoted individually — send the shed sketch and we'll come back within a working day."
     />
   </section>
 
@@ -345,6 +343,6 @@ const faqSchema = {
     </div>
   </section>
 
-  <SpecSheetButton productSlug="sand-channels" productName="V-Section Sand Channels" href="/downloads/specs/sand-channels.pdf" />
+  <SpecSheetButton productSlug="sand-channels" productName="V-Section Sand Channels" />
   <ProductWarrantyLine />
 </BaseLayout>

@@ -10,14 +10,40 @@ import ProductGallery from '@/components/ProductGallery.astro';
 import { site } from '@/config/site';
 import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
 
-// Stocked range — three thicknesses, three heights, custom lengths, plus 15' and
-// 20' standard stocked lengths. Source: WCCP product brochure (Nov 2021).
-const specs = [
-  { thickness: '95mm',  height: '1.0m', use: 'Bay divisions, push-walls, light retention' },
-  { thickness: '95mm',  height: '1.2m', use: 'Grain walls, light agricultural' },
-  { thickness: '145mm', height: '1.2m', use: 'Silage clamps, mid-depth push walls' },
-  { thickness: '145mm', height: '1.5m', use: 'Silage clamps, slurry channels' },
-  { thickness: '180mm', height: '1.5m', use: 'Slurry, silage and retaining wall infill' },
+// Stocked range — three thicknesses (95 / 145 / 180mm) × three heights (1.0 / 1.2 / 1.5m)
+// × two stocked lengths (15ft = 4572mm, 20ft = 6096mm). Custom lengths to order.
+// Weights from WCCP published spec table.
+const specs15 = [
+  { panel: '1000 × 95mm',  weight: '1,042 kg', height: '1.0m', thickness: '95mm' },
+  { panel: '1200 × 95mm',  weight: '1,251 kg', height: '1.2m', thickness: '95mm' },
+  { panel: '1500 × 95mm',  weight: '1,564 kg', height: '1.5m', thickness: '95mm' },
+  { panel: '1000 × 145mm', weight: '1,591 kg', height: '1.0m', thickness: '145mm' },
+  { panel: '1200 × 145mm', weight: '1,909 kg', height: '1.2m', thickness: '145mm' },
+  { panel: '1500 × 145mm', weight: '2,387 kg', height: '1.5m', thickness: '145mm' },
+  { panel: '1000 × 180mm', weight: '1,975 kg', height: '1.0m', thickness: '180mm' },
+  { panel: '1200 × 180mm', weight: '2,370 kg', height: '1.2m', thickness: '180mm' },
+  { panel: '1500 × 180mm', weight: '2,963 kg', height: '1.5m', thickness: '180mm' },
+];
+
+const specs20 = [
+  { panel: '1000 × 95mm',  weight: '1,390 kg', height: '1.0m', thickness: '95mm' },
+  { panel: '1200 × 95mm',  weight: '1,668 kg', height: '1.2m', thickness: '95mm' },
+  { panel: '1500 × 95mm',  weight: '2,085 kg', height: '1.5m', thickness: '95mm' },
+  { panel: '1000 × 145mm', weight: '2,121 kg', height: '1.0m', thickness: '145mm' },
+  { panel: '1200 × 145mm', weight: '2,546 kg', height: '1.2m', thickness: '145mm' },
+  { panel: '1500 × 145mm', weight: '3,182 kg', height: '1.5m', thickness: '145mm' },
+  { panel: '1000 × 180mm', weight: '2,633 kg', height: '1.0m', thickness: '180mm' },
+  { panel: '1200 × 180mm', weight: '3,160 kg', height: '1.2m', thickness: '180mm' },
+  { panel: '1500 × 180mm', weight: '3,950 kg', height: '1.5m', thickness: '180mm' },
+];
+
+// Optional extras — direct from the old WCCP product page
+const extras = [
+  'Double stressed to accept loading from both sides',
+  'Bolts and brackets to fix panels to steel posts',
+  'Mastic for sealing panels',
+  'Panel rebates (to allow flush fitting)',
+  'Lifting clutch that fits the cast-in panel rebate',
 ];
 
 // Vertical Cantilever Panels — 180mm thick prestressed panels stood vertically
@@ -148,7 +174,6 @@ const faqSchema = {
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Prestressed+Wall+Panels" class="btn-primary">Configure a quote</a>
-            <a href="/downloads/specs/prestressed-panels.pdf" class="btn-yellow">Download spec sheet</a>
             <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">
               Call {site.contact.phone}
             </a>
@@ -173,21 +198,52 @@ const faqSchema = {
       </p>
     </div>
 
+    <h3 class="font-display text-2xl font-bold text-navy mb-4">15ft (4572mm) panels</h3>
+    <div class="overflow-x-auto mb-10">
+      <table class="spec-table w-full text-left border-collapse">
+        <thead class="bg-navy text-white">
+          <tr>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Panel (height × thickness)</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Length</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Height</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Thickness</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Weight</th>
+          </tr>
+        </thead>
+        <tbody>
+          {specs15.map((s, i) => (
+            <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
+              <td class="px-4 py-3 font-bold text-navy">{s.panel}</td>
+              <td class="px-4 py-3">4572mm</td>
+              <td class="px-4 py-3">{s.height}</td>
+              <td class="px-4 py-3">{s.thickness}</td>
+              <td class="px-4 py-3 text-cast">{s.weight}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="font-display text-2xl font-bold text-navy mb-4">20ft (6096mm) panels</h3>
     <div class="overflow-x-auto">
       <table class="spec-table w-full text-left border-collapse">
         <thead class="bg-navy text-white">
           <tr>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Panel (height × thickness)</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Length</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Height</th>
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Thickness</th>
-            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Standard height</th>
-            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Weight</th>
           </tr>
         </thead>
         <tbody>
-          {specs.map((s, i) => (
+          {specs20.map((s, i) => (
             <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
-              <td class="px-4 py-3 font-bold text-navy">{s.thickness}</td>
+              <td class="px-4 py-3 font-bold text-navy">{s.panel}</td>
+              <td class="px-4 py-3">6096mm</td>
               <td class="px-4 py-3">{s.height}</td>
-              <td class="px-4 py-3 text-cast">{s.use}</td>
+              <td class="px-4 py-3">{s.thickness}</td>
+              <td class="px-4 py-3 text-cast">{s.weight}</td>
             </tr>
           ))}
         </tbody>
@@ -195,9 +251,16 @@ const faqSchema = {
     </div>
 
     <p class="text-cast text-sm mt-4">
-      Custom lengths to order. <strong class="text-navy">15ft and 20ft</strong> are standard stocked lengths.
-      Site-specific design carried out to BS EN 1992 / Eurocode 2 — talk to us before ordering.
+      <strong class="text-navy">15ft and 20ft</strong> are standard stocked lengths. Custom lengths to order —
+      site-specific design carried out to BS EN 1992 / Eurocode 2.
     </p>
+
+    <div class="mt-10 card p-6 bg-bone-200">
+      <p class="eyebrow text-cast mb-3">Optional extras</p>
+      <ul class="grid sm:grid-cols-2 gap-2 text-sm text-cast-700">
+        {extras.map((e) => (<li class="flex gap-2"><span class="text-ember font-bold">·</span><span>{e}</span></li>))}
+      </ul>
+    </div>
 
     <!-- ====== Vertical Cantilever Panels — flagship use of the 180mm panel ====== -->
     <div class="mt-16 card p-6 md:p-8 border-l-4 border-yellow">
@@ -361,7 +424,6 @@ const faqSchema = {
   <SpecDownloads
     intro="Panel range overview plus the on-site handling, lifting and storage guidelines."
     downloads={[
-      { href: '/downloads/specs/prestressed-panels.pdf', title: 'Prestressed wall panels — overview', meta: 'PDF' },
       { href: '/downloads/specs/concrete-panels/wccp-concrete-panels-handling-guidelines.pdf', title: 'Concrete panels — handling guidelines', meta: 'PDF · 386 KB' },
     ]}
   />
@@ -372,10 +434,10 @@ const faqSchema = {
       productName="Prestressed Wall Panels"
       defaultMode="supply"
       supply={{
-        price: 'from £85 per m²',
+        price: 'Bespoke quote',
         leadTime: '3–4 weeks',
         includes: [
-          'Factory-cast prestressed panels (100/150/180/280mm)',
+          'Factory-cast prestressed panels (95 / 145 / 180mm)',
           'BS EN 14992 UKCA declaration of performance',
           'Lifting points and install drawing',
           'Delivery on our HIAB to your site',
@@ -386,7 +448,7 @@ const faqSchema = {
           'Bedding mortar and joint sealant',
         ],
       }}
-      note="Indicative 2026 pricing per m² of panel face for 50m+ runs. Bespoke pocket details, exposed-aggregate finishes and sulphate-resisting variants priced individually. Install handled by our partner contractors — ask the yard for a referral."
+      note="Bespoke pocket details, exposed-aggregate finishes and sulphate-resisting variants all priced individually. Install handled by our partner contractors — ask the yard for a referral."
     />
   </section>
 
@@ -409,6 +471,6 @@ const faqSchema = {
     </div>
   </section>
 
-  <SpecSheetButton productSlug="prestressed-panels" productName="Prestressed Wall Panels" href="/downloads/specs/prestressed-panels.pdf" />
+  <SpecSheetButton productSlug="prestressed-panels" productName="Prestressed Wall Panels" />
   <ProductWarrantyLine />
 </BaseLayout>

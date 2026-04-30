@@ -18,13 +18,15 @@ const tocSections = [
   { id: 'downloads', label: 'Downloads' },
 ];
 
+// WCCP cubicle range — sizes published in feet/inches by the yard, with metric equivalents.
+// Front-leg mushroom design on the cow cubicles; smaller-stature variants for youngstock.
 const specs = [
-  { variant: 'Holstein standard', bed: '2.4m × 1.2m', neckRail: '1.15m', brisket: '1.7m', weight: '95 kg/division', use: 'Mature dairy cows up to 750kg' },
-  { variant: 'Holstein large', bed: '2.5m × 1.25m', neckRail: '1.20m', brisket: '1.75m', weight: '105 kg/division', use: 'Higher-yielding Holstein groups' },
-  { variant: 'Jersey / Friesian', bed: '2.2m × 1.1m', neckRail: '1.05m', brisket: '1.55m', weight: '85 kg/division', use: 'Jersey and smaller Friesian cows' },
-  { variant: 'Beef suckler', bed: '2.3m × 1.15m', neckRail: '1.10m', brisket: '1.60m', weight: '90 kg/division', use: 'Beef suckler cows and stores' },
-  { variant: 'Youngstock', bed: '2.0m × 1.0m', neckRail: '0.95m', brisket: '1.40m', weight: '70 kg/division', use: 'Heifers 12–18 months' },
-  { variant: 'Portable cantilever', bed: '2.4m × 1.2m', neckRail: '1.15m (adj.)', brisket: '1.7m', weight: '180 kg/unit', use: 'Reroofed barns, retro-fits, lets' },
+  { variant: '7’6" × 4’ Cow Cubicle', bed: "7'6\" × 4'0\" (2286 × 1219mm)", style: 'Front-leg mushroom', use: 'Larger-frame Holstein and modern dairy herds' },
+  { variant: '7’6" × 3’9" Cow Cubicle', bed: "7'6\" × 3'9\" (2286 × 1143mm)", style: 'Front-leg mushroom', use: 'Standard dairy herd' },
+  { variant: '7’ × 3’9" Young Stock Cubicle', bed: "7'0\" × 3'9\" (2134 × 1143mm)", style: 'Sized for young and small stock', use: 'In-calf heifers and rearing groups' },
+  { variant: '6’6" × 3’3" Young Stock Cubicle', bed: "6'6\" × 3'3\" (1981 × 991mm)", style: 'Sized for young and small stock', use: 'Smaller youngstock — train them young' },
+  { variant: 'Portable Blank Cow Cubicle Bed', bed: "To suit your cubicle make", style: 'Free-standing — accepts most cubicle hoops', use: 'Re-roofed barns, retro-fits, tenanted lets' },
+  { variant: 'Precast heelstones (sand beds)', bed: "Standard or to spec", style: 'Eliminates on-site shutter forming', use: 'Sand bed and loose-bedding cubicle formation' },
 ];
 
 const applications = [
@@ -162,9 +164,7 @@ const faqSchema = {
           <tr>
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Variant</th>
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Bed size</th>
-            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Neck rail</th>
-            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Brisket</th>
-            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Weight</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Style</th>
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
           </tr>
         </thead>
@@ -173,15 +173,18 @@ const faqSchema = {
             <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
               <td class="px-4 py-3 font-bold text-navy">{s.variant}</td>
               <td class="px-4 py-3">{s.bed}</td>
-              <td class="px-4 py-3">{s.neckRail}</td>
-              <td class="px-4 py-3">{s.brisket}</td>
-              <td class="px-4 py-3">{s.weight}</td>
+              <td class="px-4 py-3">{s.style}</td>
               <td class="px-4 py-3 text-cast">{s.use}</td>
             </tr>
           ))}
         </tbody>
       </table>
     </div>
+    <p class="text-cast text-sm mt-4">
+      All cubicle metalwork is available direct from us — if you are forming your own beds with our heelstone coping
+      we can supply all the appropriate accessories to complete the job. For longer beds, position the cubicle further
+      away from the back wall as this part is only lunging space.
+    </p>
 
     <p class="text-cast text-sm mt-4">
       Size cubicles on the heaviest 15% of the herd, not the average — AHDB Dairy 2024 recommendation.
@@ -321,7 +324,7 @@ const faqSchema = {
       productName="Cattle Cubicles"
       defaultMode="fitted"
       supply={{
-        price: 'from £210 per cubicle',
+        price: 'Bespoke quote',
         leadTime: '2–3 weeks',
         includes: [
           'Cast cubicle divisions to AHDB 2024 sizing',
@@ -335,7 +338,7 @@ const faqSchema = {
         ],
       }}
       fitted={{
-        price: 'from £290 per cubicle (incl. install)',
+        price: 'Bespoke quote (incl. install)',
         leadTime: '4–6 weeks (incl. site slot)',
         includes: [
           'Everything in supply only',
@@ -348,7 +351,7 @@ const faqSchema = {
           'Mains electrical or scrape-system fit-out',
         ],
       }}
-      note="Indicative 2026 pricing per cubicle for 60+ unit runs. Smaller batches and bespoke bed sizes priced individually — send the shed dimensions and we'll come back within a working day."
+      note=". Smaller batches and bespoke bed sizes priced individually — send the shed dimensions and we'll come back within a working day."
     />
   </section>
 

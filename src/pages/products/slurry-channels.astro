@@ -137,7 +137,6 @@ const faqSchema = {
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Slurry+Channels" class="btn-primary">Configure a quote</a>
-            <a href="/downloads/specs/slurry-channels.pdf" class="btn-yellow">Download spec sheet</a>
             <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">
               Call {site.contact.phone}
             </a>
@@ -328,7 +327,6 @@ const faqSchema = {
       { href: '/downloads/specs/slurry-handling/wccp-slurry-handling-shallow-v-section-sand-slurry-channels.pdf', title: 'Shallow V-section sand & slurry channels', meta: 'PDF · 356 KB' },
       { href: '/downloads/specs/slurry-handling/wccp-slurry-handling-slatted-lid.pdf', title: 'Slatted channel lid', meta: 'PDF · 108 KB' },
       { href: '/downloads/specs/home/wccp-home-slotted-drainage-channel.pdf', title: 'Slotted drainage channel', meta: 'PDF · 30 KB' },
-      { href: '/downloads/specs/slurry-channels.pdf', title: 'Slurry channels — overview', meta: 'PDF' },
     ]}
   />
 
@@ -338,7 +336,7 @@ const faqSchema = {
       productName="Slurry Channels"
       defaultMode="supply"
       supply={{
-        price: 'from £580/lm standard',
+        price: 'Bespoke quote',
         leadTime: '2–3 weeks',
         includes: [
           'Cast-in-place delivery on our HIAB',
@@ -351,7 +349,7 @@ const faqSchema = {
           'On-site setting and bedding-mortar',
         ],
       }}
-      note="Indicative 2026 pricing per linear metre for standard channel + slat runs over 30m. Heavy-duty slat upgrades and bespoke depths quoted individually — send the shed dimensions and we'll come back within a working day."
+      note=". Heavy-duty slat upgrades and bespoke depths quoted individually — send the shed dimensions and we'll come back within a working day."
     />
   </section>
 
@@ -370,6 +368,6 @@ const faqSchema = {
     </div>
   </section>
 
-  <SpecSheetButton productSlug="slurry-channels" productName="Slurry Channels" href="/downloads/specs/slurry-channels.pdf" />
+  <SpecSheetButton productSlug="slurry-channels" productName="Slurry Channels" />
   <ProductWarrantyLine />
 </BaseLayout>

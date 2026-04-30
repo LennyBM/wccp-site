@@ -18,13 +18,34 @@ const tocSections = [
   { id: 'downloads', label: 'Downloads' },
 ];
 
+// Lely A3/A4 catalogue kit — sump, surround and machine base. Machine base is
+// handed (left or right). Total kit approximately 2,800 kg.
+const lelySpecs = [
+  { component: 'Sump', detail: 'Integrated V-channel and sump with socket connections for 110mm drain pipes' },
+  { component: 'Surround', detail: 'Smooth-cast surround that frames the machine base' },
+  { component: 'Machine base', detail: 'Handed (left or right) — specify when ordering' },
+  { component: 'Total kit weight', detail: 'Approximately 2,800 kg' },
+];
+
+// DeLaval VMS — integrated drainage and pipework cast in.
+const delavalFeatures = [
+  'Integrated V-shape channel, sump and drainage pipework cast in',
+  'Integrated drain gully on clean-room side runs into the sump',
+  'Push-fit socket connections for 110mm soil pipe to three sides — flexibility for the drain run',
+  '50mm waste connector on cleanroom side for machine washout — runs into V-channel and sump',
+  'Drain gully also functions as the guide for finishing the clean-room floor at 300mm below outside floor level',
+  'VMS machine fixes 75mm below outside floor level — keeps the machine floor level with the floor outside',
+  'Raised edge offset from the machine on the cow-shed side — easy angle-bracket fixing of the machine base',
+  'Once the VMS machine is in place the gap between machine and edge is grouted in',
+];
+
+// Modern model bases — cast to manufacturer's published install drawing.
 const specs = [
-  { model: 'DeLaval VMS V300', size: '3.6m × 2.4m × 200mm', weight: '4,150 kg', drainage: '110mm centre fall', use: 'Single-box dairy, 60–70 cows/box' },
-  { model: 'DeLaval VMS V310', size: '3.6m × 2.4m × 200mm', weight: '4,150 kg', drainage: '110mm centre fall', use: 'V300 with batch milking option' },
-  { model: 'Lely Astronaut A5', size: '3.4m × 2.2m × 200mm', weight: '3,580 kg', drainage: '110mm offset fall', use: 'Single-box, free-cow-traffic herds' },
-  { model: 'Lely Astronaut A5 Next', size: '3.4m × 2.2m × 220mm', weight: '3,940 kg', drainage: '110mm offset fall', use: 'Latest-generation A5 install' },
-  { model: 'GEA DairyRobot R9500', size: '3.5m × 2.3m × 200mm', weight: '3,850 kg', drainage: '110mm twin fall', use: 'Box-by-box GEA installs' },
-  { model: 'BouMatic MR-S1', size: '3.5m × 2.3m × 200mm', weight: '3,850 kg', drainage: '110mm centre fall', use: 'BouMatic single-box robot' },
+  { model: 'Lely Astronaut A3 / A4', size: 'Sump + surround + machine base', weight: '~2,800 kg total kit', drainage: '110mm sockets', use: 'Handed kit (left or right)' },
+  { model: 'Lely Astronaut A5 / A5 Next', size: 'Cast to manufacturer drawing', weight: 'On application', drainage: 'Per Lely install pack', use: 'Single-box free-cow-traffic herds' },
+  { model: 'DeLaval VMS V300 / V310', size: 'Cast to VMS install drawing', weight: 'On application', drainage: 'Integrated V-channel + sump (see features)', use: 'Single-box and multi-box VMS installs' },
+  { model: 'GEA DairyRobot R9500', size: 'Cast to manufacturer drawing', weight: 'On application', drainage: 'Per GEA install pack', use: 'Box-by-box GEA installs' },
+  { model: 'BouMatic MR-S1', size: 'Cast to manufacturer drawing', weight: 'On application', drainage: 'Per BouMatic install pack', use: 'BouMatic single-box robot' },
 ];
 
 const applications = [
@@ -150,7 +171,7 @@ const faqSchema = {
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Base size</th>
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Weight</th>
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Drainage</th>
-            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Notes</th>
           </tr>
         </thead>
         <tbody>
@@ -166,18 +187,42 @@ const faqSchema = {
         </tbody>
       </table>
     </div>
+
+    <div class="mt-12 grid md:grid-cols-2 gap-6">
+      <div class="card p-6">
+        <p class="eyebrow text-cast mb-3">Lely A3 / A4 catalogue kit</p>
+        <h3 class="font-display text-2xl font-bold text-navy mb-4">Sump, surround and machine base.</h3>
+        <p class="text-cast-700 leading-relaxed mb-4">
+          The kit we supply for the Lely A3 and A4 milking robots consists of a sump, a
+          surround and a machine base. The machine base is handed — there are different
+          left-handed and right-handed versions.
+        </p>
+        <dl class="space-y-2 text-sm">
+          {lelySpecs.map((s) => (<div><dt class="font-bold text-navy inline">{s.component}:</dt> <dd class="text-cast inline">{s.detail}</dd></div>))}
+        </dl>
+      </div>
+      <div class="card p-6">
+        <p class="eyebrow text-cast mb-3">DeLaval VMS — built-in features</p>
+        <h3 class="font-display text-2xl font-bold text-navy mb-4">Drainage and pipework cast in.</h3>
+        <ul class="space-y-2 text-sm text-cast-700">
+          {delavalFeatures.map((f) => (<li class="flex gap-2"><span class="text-ember font-bold mt-0.5">·</span><span>{f}</span></li>))}
+        </ul>
+      </div>
+    </div>
   </section>
 
   <ProductGallery
     eyebrow="Drawings & dimensions"
-    heading="Lely A4 base — drawings & dimensions."
+    heading="Robot base drawings + on-farm photos."
     background="bone"
-    cols={2}
+    cols={4}
     images={[
-      { src: '/images/products/home/wccp-home-20130626-160926.jpg', alt: 'Two Lely Astronaut milking robots installed back-to-back on a precast concrete robot base supplied by West Country Concrete Products, Devon', caption: 'Lely Astronauts on WCCP base' },
       { src: '/images/products/lely-milking-robot-bases/wccp-lely-milking-robot-bases-lely-a4-sump.png', alt: 'Precast concrete Lely A4 milking robot sump base cast by West Country Concrete Products, Devon', caption: 'Lely A4 sump (cast)' },
-      { src: '/images/products/lely-milking-robot-bases/wccp-lely-milking-robot-bases-a4-sump-base-and-surround-dims.png', alt: 'Dimensioned drawing of the Lely A4 precast concrete sump base and surround by WCCP Devon', caption: 'Base & surround dims' },
-      { src: '/images/products/lely-milking-robot-bases/wccp-lely-milking-robot-bases-a4-sump-dims.png', alt: 'Dimensioned drawing of the Lely A4 precast concrete milking-robot sump by WCCP Devon', caption: 'Sump dimensions' },
+      { src: '/images/products/lely-milking-robot-bases/wccp-lely-milking-robot-bases-a4-sump-base-and-surround-dims.png', alt: 'Dimensioned drawing of the Lely A4 precast concrete sump base and surround by WCCP Devon', caption: 'Lely A4 base + surround dims' },
+      { src: '/images/products/lely-milking-robot-bases/wccp-lely-milking-robot-bases-a4-sump-dims.png', alt: 'Dimensioned drawing of the Lely A4 precast concrete milking-robot sump by WCCP Devon', caption: 'Lely A4 sump dimensions' },
+      { src: '/images/products/delaval-vms-robot-bases/wccp-delaval-vms-robot-bases-vms-base-perspective-view-with-main-dimensions.png', alt: 'Perspective drawing of the WCCP precast concrete DeLaval VMS robot base with main dimensions and integrated V-channel and sump, Devon', caption: 'DeLaval VMS base · perspective + dims' },
+      { src: '/images/products/delaval-vms-robot-bases/wccp-delaval-vms-robot-bases-20180830-080148.jpg', alt: 'Cast precast concrete DeLaval VMS robot base in the WCCP yard at Holsworthy showing the integrated drainage gully and sump, Devon', caption: 'DeLaval VMS base · cast in the yard' },
+      { src: '/images/products/delaval-vms-robot-bases/wccp-delaval-vms-robot-bases-20180830-080203.jpg', alt: 'Top view of cast precast concrete DeLaval VMS robot base showing socket connections for 110mm soil pipe, Devon', caption: 'DeLaval VMS · 110mm pipe sockets' },
     ]}
   />
 
@@ -264,7 +309,7 @@ const faqSchema = {
       productName="Milking Robot Bases"
       defaultMode="fitted"
       supply={{
-        price: 'from £1,400 each',
+        price: 'Bespoke quote',
         leadTime: '3–4 weeks from drawing sign-off',
         includes: [
           'Manufacturer-specific anchor pattern cast in',
@@ -279,7 +324,7 @@ const faqSchema = {
         ],
       }}
       fitted={{
-        price: 'from £2,100 each fitted',
+        price: 'Bespoke quote (incl. install)',
         leadTime: '5–6 weeks (incl. site slot)',
         includes: [
           'Everything in supply only',
@@ -292,7 +337,7 @@ const faqSchema = {
           'Cleanroom slab and machine pit (priced separately)',
         ],
       }}
-      note="Indicative 2026 pricing per box on a single-box DeLaval VMS V300 install. Multi-box and matched cleanroom packages priced individually — book the manufacturer engineer in early."
+      note="Multi-box and matched cleanroom packages priced individually — book the manufacturer engineer in early. Send the install drawing for the chosen robot brand and we will quote within a working day."
     />
   </section>
 

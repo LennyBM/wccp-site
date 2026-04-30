@@ -111,7 +111,6 @@ const faqSchema = {
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=King+Post+Walls" class="btn-primary">Configure a quote</a>
-            <a href="/downloads/specs/king-post-walls.pdf" class="btn-yellow">Download spec sheet</a>
             <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">Call {site.contact.phone}</a>
           </div>
         </div>
@@ -237,7 +236,7 @@ const faqSchema = {
       productName="King Post Walls"
       defaultMode="supply"
       supply={{
-        price: 'from £400 per linear metre',
+        price: 'Bespoke quote',
         leadTime: '3–4 weeks',
         includes: [
           'UB/UC posts cut, drilled and painted (S355)',
@@ -252,7 +251,7 @@ const faqSchema = {
         ],
       }}
       fitted={{
-        price: 'from £680 per linear metre',
+        price: 'Bespoke quote',
         leadTime: '6–8 weeks (incl. site slot)',
         includes: [
           'Everything in supply only',
@@ -265,7 +264,7 @@ const faqSchema = {
           'Backfill, drainage and reinstatement',
         ],
       }}
-      note="Indicative 2026 pricing per linear metre at 3.5m wall height with a 254×146 UB37. Heavier sections and HA traffic surcharge (LM1) priced individually."
+      note=".5m wall height with a 254×146 UB37. Heavier sections and HA traffic surcharge (LM1) priced individually."
     />
   </section>
 
@@ -283,6 +282,6 @@ const faqSchema = {
     </div>
   </section>
 
-  <SpecSheetButton productSlug="king-post-walls" productName="King Post Walls" href="/downloads/specs/king-post-walls.pdf" />
+  <SpecSheetButton productSlug="king-post-walls" productName="King Post Walls" />
   <ProductWarrantyLine />
 </BaseLayout>

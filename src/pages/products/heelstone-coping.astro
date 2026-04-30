@@ -8,6 +8,22 @@ import ProductGallery from '@/components/ProductGallery.astro';
 import { site } from '@/config/site';
 import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
 
+// Two variants from the WCCP yard — the classic profile and the new comfort profile.
+const variants = [
+  {
+    name: 'Classic Heel Stone Coping',
+    profile: 'Square-shoulder profile',
+    use: 'Fast and efficient formation of sand bed and loose bedding cubicles — eliminates the need to shutter-form your own heelstones, saving labour and materials',
+    option: 'Available with a precast lip which can be used for screeding off for new passageways',
+  },
+  {
+    name: 'Comfort Heel Stone Coping',
+    profile: 'Softer chamfered profile (designed with cow comfort in mind)',
+    use: 'Sacrifices a fraction of bed space for a softer profile that still fits our classic cubicle frame for easy cleaning',
+    option: 'Use in place of the classic where cow comfort and lameness are the priority',
+  },
+];
+
 const specs = [
   { property: 'Length', value: '3000 mm' },
   { property: 'Width', value: '240 mm' },
@@ -16,7 +32,8 @@ const specs = [
   { property: 'Concrete grade', value: 'C40/50 sulphate-resisting (BS 8500-1:2023)' },
   { property: 'Lifting eyes', value: 'Cast-in, dual-pick' },
   { property: 'Anchor / joining-pin holes', value: 'Pre-cast — no on-site drilling' },
-  { property: 'Optional front lip', value: '50 × 50 mm screeding lip' },
+  { property: 'Optional front lip (Classic)', value: 'Precast screeding lip for forming new passageways' },
+  { property: 'Variants', value: 'Classic profile or new Comfort profile' },
   { property: 'Compatible bed', value: '4m Cubicle Base · 4000 × 2056 × 75 mm · 1639 kg · 223mm heelstone integrated' },
 ];
 
@@ -126,7 +143,6 @@ const faqSchema = {
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Heelstone+Coping" class="btn-primary">Configure a quote</a>
-            <a href="/downloads/specs/heelstone-coping.pdf" class="btn-yellow">Download spec sheet</a>
             <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">
               Call {site.contact.phone}
             </a>
@@ -151,10 +167,20 @@ const faqSchema = {
       <p class="eyebrow text-cast mb-3">Specification</p>
       <h2 class="font-display text-display-lg mb-4">One unit, every cubicle row.</h2>
       <p class="text-cast-700 text-lg">
-        The catalogue heelstone is a single, well-developed unit: 3 metres long, square
-        section, cast-in fixings. Specify the optional screeding lip at order time, or
-        come to us with a bespoke length and we will cast it.
+        Two profile options — Classic and the new Comfort. Both are 3 metres long with
+        cast-in fixings; the optional screeding lip on the Classic forms new passageways.
       </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-12">
+      {variants.map((v) => (
+        <div class="card p-6 border-l-4 border-yellow">
+          <h3 class="font-display text-2xl font-bold text-navy mb-2">{v.name}</h3>
+          <p class="text-cast text-sm font-bold mb-4">{v.profile}</p>
+          <p class="text-cast-700 leading-relaxed mb-3"><strong class="text-navy">Use:</strong> {v.use}</p>
+          <p class="text-cast-700 leading-relaxed text-sm"><strong class="text-navy">Option:</strong> {v.option}</p>
+        </div>
+      ))}
     </div>
 
     <div class="overflow-x-auto">
@@ -310,7 +336,7 @@ const faqSchema = {
       productName="Heelstone Coping"
       defaultMode="supply"
       supply={{
-        price: 'from £85 each',
+        price: 'Bespoke quote',
         leadTime: '1–2 weeks',
         includes: [
           'Cast 3000 × 240 × 230mm units to BS 8500-1:2023',
@@ -323,7 +349,7 @@ const faqSchema = {
           'On-site setting and bedding-mortar',
         ],
       }}
-      note="Indicative 2026 pricing per unit for runs of 20+ heelstones. Bespoke lengths and non-standard fixing patterns priced individually — send the cubicle row layout and we'll come back within a working day."
+      note=". Bespoke lengths and non-standard fixing patterns priced individually — send the cubicle row layout and we'll come back within a working day."
     />
   </section>
 
@@ -342,6 +368,6 @@ const faqSchema = {
     </div>
   </section>
 
-  <SpecSheetButton productSlug="heelstone-coping" productName="Heelstone Coping" href="/downloads/specs/heelstone-coping.pdf" />
+  <SpecSheetButton productSlug="heelstone-coping" productName="Heelstone Coping" />
   <ProductWarrantyLine />
 </BaseLayout>

@@ -11,7 +11,7 @@ import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
 const aWallSpecs = [
   { height: '2500mm', weight: '2,300 kg', notes: '1200mm wide × 1300mm deep base' },
   { height: '3000mm', weight: '2,500 kg', notes: '1200mm wide × 1300mm deep base' },
-  { height: '3500mm', weight: '2,680 kg', notes: '1200mm wide × 1300mm deep base' },
+  { height: '3500mm', weight: '2,700 kg', notes: '1200mm wide × 1300mm deep base' },
 ];
 
 const aWallFeatures = [
@@ -23,29 +23,27 @@ const aWallFeatures = [
 ];
 
 const lWallSpecs = [
-  { height: '2500mm', base: '1400mm deep', weight: '2,000 kg' },
-  { height: '3000mm', base: '1600mm deep', weight: '2,240 kg' },
+  { height: '2500mm', base: '1400mm deep · 1200mm wide', weight: '2,000 kg' },
+  { height: '3000mm', base: '1605mm deep · 1200mm wide', weight: '2,230 kg' },
+  { height: '4000mm', base: '2155mm deep · 1000mm wide', weight: '2,660 kg' },
 ];
 
 const lWallFeatures = [
-  '2.5m or 3m high · 1200mm wide',
-  '1400mm or 1600mm deep base',
+  '2.5m, 3m or 4m high',
+  '1400 / 1605 / 2155mm deep base',
   'Integrated anchoring holes',
   'Very heavy-duty reinforcement for high-load applications',
   'Lifting brackets available for level positioning',
 ];
 
 const tWallSpecs = [
-  { height: '2.5m', base: '2200/2600mm width base · 1200mm wide', weight: '2,360 kg' },
-  { height: '3m', base: '2200/2600mm width base · 1200mm wide', weight: '2,660 kg' },
-  { height: '3.5m', base: '2000mm wide base · 1200mm wide', weight: '3,180 kg' },
-  { height: '4m', base: '2000mm wide base · 1200mm wide', weight: '3,340 kg' },
+  { height: '2500mm', base: '2390mm wide base · 1200mm wide', weight: '2,400 kg' },
+  { height: '3000mm', base: '2600mm wide base · 1200mm wide', weight: '2,700 kg' },
 ];
 
 const tWallFeatures = [
-  '2.5m, 3m, 3.5m or 4m high',
-  '2200/2600mm width base for 2.5m and 3m heights',
-  '2000mm wide base for 3.5m and 4m high',
+  '2.5m or 3m high',
+  '2390mm wide base at 2.5m, 2600mm wide base at 3m',
   '1200mm wide units throughout',
   'Integrated anchoring holes',
   'Very heavy-duty reinforcement',
@@ -170,7 +168,6 @@ const faqSchema = {
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Free-Standing+Walls" class="btn-primary">Configure a quote</a>
-            <a href="/downloads/specs/l-blocks.pdf" class="btn-yellow">Download spec sheet</a>
             <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">Call {site.contact.phone}</a>
           </div>
         </div>
@@ -440,7 +437,7 @@ const faqSchema = {
       productName="Free-Standing Walls & Blocks"
       defaultMode="supply"
       supply={{
-        price: 'from £140 each',
+        price: 'Bespoke quote',
         leadTime: '2–4 weeks',
         includes: [
           "Cast 'A', 'L', 'T' Wall or Interlocking Beton Block to spec",
@@ -454,7 +451,7 @@ const faqSchema = {
         ],
       }}
       fitted={{
-        price: 'from £180 each installed',
+        price: 'Bespoke quote (incl. install)',
         leadTime: '3–4 weeks (incl. site slot)',
         includes: [
           'Everything in supply only',
@@ -467,7 +464,7 @@ const faqSchema = {
           'Backfill or stored-material handling',
         ],
       }}
-      note="Indicative 2026 pricing for the standard 600mm Beton single. 'A', 'L' and 'T' Walls and bespoke face finishes priced individually — unit count drives the rate."
+      note="'A', 'L', 'T' Walls and bespoke face finishes all priced individually — unit count drives the rate. Send the bay layout for an inside-a-day quote."
     />
   </section>
 
@@ -485,6 +482,6 @@ const faqSchema = {
     </div>
   </section>
 
-  <SpecSheetButton productSlug="l-blocks" productName="Free-Standing Walls &amp; Blocks" href="/downloads/specs/l-blocks.pdf" />
+  <SpecSheetButton productSlug="l-blocks" productName="Free-Standing Walls &amp; Blocks" />
   <ProductWarrantyLine />
 </BaseLayout>

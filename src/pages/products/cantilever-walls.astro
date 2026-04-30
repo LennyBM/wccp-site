@@ -109,7 +109,6 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Cantilever+Walls" class="btn-primary">Configure a quote</a>
-            <a href="/downloads/specs/cantilever-walls.pdf" class="btn-yellow">Download spec sheet</a>
             <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">Call {site.contact.phone}</a>
           </div>
         </div>
@@ -235,7 +234,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
       productName="Cantilever Walls"
       defaultMode="supply"
       supply={{
-        price: 'from £420 per linear metre',
+        price: 'Bespoke quote',
         leadTime: '3–4 weeks',
         includes: [
           'Precast cantilever stem with engineered heel',
@@ -250,7 +249,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
         ],
       }}
       fitted={{
-        price: 'from £640 per linear metre',
+        price: 'Bespoke quote',
         leadTime: '6–8 weeks (incl. site slot)',
         includes: [
           'Everything in supply only',
@@ -263,7 +262,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
           'Backfill, drainage and traffic management',
         ],
       }}
-      note="Indicative 2026 pricing per linear metre at 3m wall height. Higher walls, 120-year design life and rail / highway schemes priced individually — send the section."
+      note=". Higher walls, 120-year design life and rail / highway schemes priced individually — send the section."
     />
   </section>
 
@@ -281,6 +280,6 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
     </div>
   </section>
 
-  <SpecSheetButton productSlug="cantilever-walls" productName="Cantilever Walls" href="/downloads/specs/cantilever-walls.pdf" />
+  <SpecSheetButton productSlug="cantilever-walls" productName="Cantilever Walls" />
   <ProductWarrantyLine />
 </BaseLayout>

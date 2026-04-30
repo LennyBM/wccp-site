@@ -21,14 +21,15 @@ const tocSections = [
 ];
 
 const specs = [
-  { type: "'J' Trough", size: '3658 × 1150 × 800mm', weight: '1,740 kg', use: 'Smooth curved internal surface; cast-in lifting eyes' },
-  { type: "Youngstock 'J' Trough", size: '3658 × 800 × 700mm', weight: '1,321 kg', use: 'Lower-height variant for youngstock pens' },
-  { type: 'Quad Run (largest)', size: '2440 × 1760 × 600mm', weight: '1,898 kg', use: 'Adjustable headrail and gated ends' },
-  { type: 'Double Sided', size: '2440 × 1180 × 600mm', weight: '1,476 kg', use: 'Centre-passage two-sided feeding; rapid fit rail system' },
-  { type: 'Single Sided', size: '2440 × 1180 × 1100mm', weight: '1,774 kg', use: 'Wall-mounted feed line; adjustable headrail' },
-  { type: "'L' Shaped", size: '2440 × 900 × 600mm', weight: '924 kg', use: 'End-of-passage corner unit' },
-  { type: 'Feedstop Walls', size: '3000 × 250 × 600mm', weight: '684 kg', use: 'Cast-in fork slots; quick repositioning' },
-  { type: "Round Top Feed Walls (15' × 500mm)", size: 'up to 21\' (6401mm); 500 or 600mm tall × 130mm thick', weight: "580 kg @ 15' × 500mm; 816 kg @ 15' × 600mm", use: '600mm round top front feed wall; eyes for steel-post panel brackets' },
+  { type: "'J' Single Sided (12ft)", size: '3658 × 1150 × 600/800mm', weight: '1,740 kg', use: 'Smooth curved internal surface; notch-outs around steel stanchions' },
+  { type: "Youngstock 'J' Single Sided (12ft)", size: '3658 × 800 × 500/700mm', weight: '1,321 kg', use: 'Narrower flat base, lower front wall — for youngstock' },
+  { type: 'Single Sided (8ft)', size: '2440 × 1180 × 610/1100mm', weight: '1,822 kg', use: 'Wall or partition; adjustable headrail; suits all cattle' },
+  { type: 'Double Sided (8ft)', size: '2440 × 1180 × 610mm', weight: '1,600 kg', use: 'Two-sided feed passage through the shed or yard' },
+  { type: 'Quad Run (8ft)', size: '2440 × 1760 × 600mm', weight: '1,885 kg', use: 'Sized for quad-bike + scraper cleaning; one-sided feed arms' },
+  { type: 'Youngstock Compact (8ft)', size: '2440 × 720 × 520/830mm', weight: '1,102 kg', use: 'Compact youngstock variant' },
+  { type: "'L' Shape Feed Wall (8ft)", size: '2440 × 900 × 610mm', weight: '925 kg', use: 'Use against an existing wall to lift feed off the ground' },
+  { type: 'Half Round Top Feed Wall (21ft)', size: '6400 × 127 × 500 or 600mm', weight: '812 kg @ 500mm · 1,142 kg @ 600mm', use: 'Cow-friendly barrier; up to 21\' lengths' },
+  { type: "'Flick Stop' / Feed Stop Wall", size: '3000 × 275/75 (tapered) × 600mm', weight: '685 kg', use: 'Freestanding with integrated fork slots; tapered for stability' },
 ];
 
 const applications = [
@@ -79,14 +80,15 @@ const productSchema = {
   additionalProperty: [
     { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 13369 / BS 5502-22:2003' },
     { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
-    { '@type': 'PropertyValue', name: "'J' Trough", value: '3658 × 1150 × 800mm, 1,740 kg' },
-    { '@type': 'PropertyValue', name: "Youngstock 'J' Trough", value: '3658 × 800 × 700mm, 1,321 kg' },
-    { '@type': 'PropertyValue', name: 'Quad Run', value: '2440 × 1760 × 600mm, 1,898 kg' },
-    { '@type': 'PropertyValue', name: 'Double Sided', value: '2440 × 1180 × 600mm, 1,476 kg (rapid fit rail system)' },
-    { '@type': 'PropertyValue', name: 'Single Sided', value: '2440 × 1180 × 1100mm, 1,774 kg (adjustable headrail)' },
-    { '@type': 'PropertyValue', name: "'L' Shaped", value: '2440 × 900 × 600mm, 924 kg' },
-    { '@type': 'PropertyValue', name: 'Feedstop Walls', value: '3000 × 250 × 600mm, 684 kg (cast-in fork slots)' },
-    { '@type': 'PropertyValue', name: 'Round Top Feed Walls', value: "Up to 21' (6401mm), 500 or 600mm tall, 130mm thick" },
+    { '@type': 'PropertyValue', name: "'J' Single Sided 12ft", value: '3658 × 1150 × 600/800mm, 1,740 kg' },
+    { '@type': 'PropertyValue', name: "Youngstock 'J' 12ft", value: '3658 × 800 × 500/700mm, 1,321 kg' },
+    { '@type': 'PropertyValue', name: 'Quad Run 8ft', value: '2440 × 1760 × 600mm, 1,885 kg' },
+    { '@type': 'PropertyValue', name: 'Double Sided 8ft', value: '2440 × 1180 × 610mm, 1,600 kg' },
+    { '@type': 'PropertyValue', name: 'Single Sided 8ft', value: '2440 × 1180 × 610/1100mm, 1,822 kg' },
+    { '@type': 'PropertyValue', name: 'Youngstock Compact 8ft', value: '2440 × 720 × 520/830mm, 1,102 kg' },
+    { '@type': 'PropertyValue', name: "'L' Shape Feed Wall", value: '2440 × 900 × 610mm, 925 kg' },
+    { '@type': 'PropertyValue', name: "'Flick Stop' Feed Stop Wall", value: '3000 × 275/75 tapered × 600mm, 685 kg (cast-in fork slots)' },
+    { '@type': 'PropertyValue', name: 'Half Round Top Feed Wall', value: "6400 × 127 × 500 or 600mm; 812 kg @ 500, 1,142 kg @ 600" },
     { '@type': 'PropertyValue', name: 'Features', value: 'Cast-in lifting eyes; custom lengths and notch-outs available' },
     { '@type': 'PropertyValue', name: 'Lead time', value: '2–3 weeks catalogue' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
@@ -291,10 +293,10 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
       productName="Feed Troughs"
       defaultMode="supply"
       supply={{
-        price: 'from £180 per linear metre',
+        price: 'Bespoke quote',
         leadTime: '2–3 weeks',
         includes: [
-          "'J', Quad Run, Double Sided, Single Sided, 'L' Shaped or Feedstop sections",
+          "'J', Quad Run, Double Sided, Single Sided, 'L' Shaped, Half Round or Feedstop sections",
           'Cast-in lifting eyes on every section',
           'BS EN 13369 / BS 5502-22 documentation',
           'Delivery on our HIAB to your shed',
@@ -305,7 +307,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
           'Custom notch-outs (priced separately)',
         ],
       }}
-      note="Indicative 2026 pricing per linear metre on the standard 'L' Shaped trough. 'J', Quad Run, Single Sided, Round Top and bespoke notch-outs priced individually. Install handled by our partner ag-fit-out crews — ask for a referral."
+      note="Send us the feed-passage length, herd type and any notch-outs needed around steel stanchions — we'll quote inside a working day. Install handled by our partner ag-fit-out crews — ask for a referral."
     />
   </section>
 

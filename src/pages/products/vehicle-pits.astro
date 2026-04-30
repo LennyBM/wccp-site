@@ -9,22 +9,22 @@ import { site } from '@/config/site';
 import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
 
 const specs = [
-  { spec: 'Internal depth', value: '1500 mm' },
-  { spec: 'Internal width', value: '1100 mm' },
-  { spec: 'Standard section lengths', value: '3.7 m & 3048 mm' },
-  { spec: 'Section weights', value: '6.5 t & 5.3 t' },
-  { spec: 'Lighting', value: 'Integral recesses cast in for lighting' },
-  { spec: 'Installation', value: 'Crane-lorry installation service available' },
+  { spec: 'Deep pit (low-loader / 7.5t)', value: '1.5 m internal depth · 6.4 t main unit' },
+  { spec: 'Shallow pit (standard artic)', value: '1.3 m internal depth · 5.5 t main unit' },
+  { spec: 'Side recesses', value: 'Cast in for cables, airlines and lighting — keeps services flush' },
+  { spec: 'End walls', value: 'Available with cast-in galvanised steel steps to one end' },
+  { spec: 'Lifting points', value: 'Cast-in eyes on every main section' },
+  { spec: 'Installation', value: 'Crane-lorry delivery — sections drop straight into the prepared excavation' },
 ];
 
 const features = [
-  '1500mm internal depth — full standing height for most technicians',
-  '1100mm internal width — comfortable working room around the chassis',
-  'Section lengths of 3.7m and 3048mm — combine to suit any workshop',
-  'Section weights of 6.5t (3.7m) and 5.3t (3048mm)',
-  'Integral recesses cast in for lighting',
-  'Crane-lorry installation service available',
-  'Much faster installation and much less expensive than prefabricated steel equivalents',
+  'Two depths — 1.5m (low-loaders / 7.5 tonne lorries) and 1.3m (standard artics)',
+  'Main section weights — 6.4 t (deep) and 5.5 t (shallow)',
+  'Side recesses cast in for cables, airlines and lighting — services run flush',
+  'Cast-in galvanised steel steps to one end available',
+  'Crane-lorry delivery for fast install — sections drop straight in',
+  'Far less expensive than steel-formed pits, very quick and easy to install',
+  'Cast-in lifting eyes on every section',
 ];
 
 const applications = [
@@ -45,31 +45,30 @@ const related = [
 ];
 
 const faqs = [
-  { q: 'What is the standard pit size?', a: 'Our precast lorry workshop pits are 1500mm deep × 1100mm wide internally. Sections are cast in 3.7m and 3048mm lengths so you can build the pit to any workshop dimension. The 3.7m section weighs 6.5 tonnes; the 3048mm section weighs 5.3 tonnes.' },
-  { q: 'Why precast over a fabricated steel pit?', a: 'Much faster installation and much less expensive than prefabricated steel equivalents. Drop the section into the prepared excavation, level it, grout the joint, and you are running the workshop again the next week.' },
-  { q: 'How are the pits installed?', a: 'A crane-lorry installation service is available — we run the section straight from the casting yard to the prepared excavation and craft it in. Each section drops onto a blinding layer, levels with shims, and grouts in. Joint detail and lifting eyes are cast as standard.' },
-  { q: 'Lighting and services?', a: 'Integral recesses are cast into the wall for lighting — set your fittings in the recesses and the cables run flush. Tell us before we cast if you need additional sleeves for compressed air, lube reel returns or 16A power.' },
-  { q: 'Lead time?', a: 'Catalogue pit sections run 4 to 6 weeks. Bespoke depths and widths run 8 to 10 weeks. Send the workshop drawing first — most concerns are resolvable in a 30-minute call with our design team.' },
+  { q: 'What depths are available?', a: 'Two depths — 1.5m for low-loaders and 7.5 tonne lorries, or 1.3m for standard artics. The depth is the internal depth of the pit. The deep main unit weighs 6.4 tonnes; the shallow main unit weighs 5.5 tonnes.' },
+  { q: 'Why precast over a fabricated steel pit?', a: 'We believe our precast concrete workshop pits are far less expensive than steel-formed ones, and very quick and easy to install. Drop the section into the prepared excavation, level it, grout the joint, and you are running the workshop again very quickly.' },
+  { q: 'How are the pits installed?', a: 'Typical installation is to excavate the pit, lay a blinding base, drop the precast sections in by crane lorry, then grout the joints. We can arrange delivery of the complete kit by crane lorry to fit the units straight into position.' },
+  { q: 'Lighting, cables and air services?', a: 'The sides of the main sections have cast-in recesses you can use to run cables, airlines, and accommodate lighting — keeping them neatly out of the way. Pits can be supplied with cast-in galvanised steel steps to one end.' },
+  { q: 'Lead time?', a: 'Catalogue pit sections run 4 to 6 weeks. Bespoke depths or layouts run 8 to 10 weeks. Send the workshop drawing first — most details are resolvable in a 30-minute call with our team.' },
 ];
 
 const productSchema = {
   name: 'Precast Concrete Lorry Workshop Pits',
-  description: 'Precast concrete lorry workshop and inspection pits. 1500mm internal depth × 1100mm internal width. Section lengths of 3.7m and 3048mm; section weights of 6.5t and 5.3t. Integral recesses cast in for lighting. Crane-lorry installation service available. Much faster and much less expensive than prefabricated steel equivalents.',
+  description: 'Precast concrete lorry workshop and inspection pits in two depths — 1.5m (low-loaders / 7.5 tonne lorries) and 1.3m (standard artics). Main units 6.4t (deep) and 5.5t (shallow). Side recesses cast-in for cables, airlines and lighting; cast-in galvanised steps optional. Crane-lorry delivery.',
   brand: { '@type': 'Brand', name: site.name },
   manufacturer: { '@type': 'Organization', name: site.name },
   category: 'Precast vehicle inspection pit',
   material: 'Reinforced concrete, C40/50 (BS 8500-1:2023)',
-  weight: { '@type': 'QuantitativeValue', minValue: 5300, maxValue: 6500, unitCode: 'KGM', unitText: 'kilogram per section' },
+  weight: { '@type': 'QuantitativeValue', minValue: 5500, maxValue: 6400, unitCode: 'KGM', unitText: 'kilogram per main unit' },
   additionalProperty: [
     { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 13369' },
     { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
-    { '@type': 'PropertyValue', name: 'Internal depth', value: '1500 mm' },
-    { '@type': 'PropertyValue', name: 'Internal width', value: '1100 mm' },
-    { '@type': 'PropertyValue', name: 'Section length 1', value: '3.7 m, 6.5 t per section' },
-    { '@type': 'PropertyValue', name: 'Section length 2', value: '3048 mm, 5.3 t per section' },
-    { '@type': 'PropertyValue', name: 'Lighting', value: 'Integral recesses cast in for lighting' },
-    { '@type': 'PropertyValue', name: 'Installation', value: 'Crane-lorry installation service available' },
-    { '@type': 'PropertyValue', name: 'Comparison', value: 'Faster + cheaper than prefabricated steel equivalents' },
+    { '@type': 'PropertyValue', name: 'Deep pit', value: '1.5 m internal depth — for low-loaders / 7.5t lorries' },
+    { '@type': 'PropertyValue', name: 'Shallow pit', value: '1.3 m internal depth — for standard artics' },
+    { '@type': 'PropertyValue', name: 'Main unit weight', value: '6.4 t (deep), 5.5 t (shallow)' },
+    { '@type': 'PropertyValue', name: 'Side recesses', value: 'Cast-in for cables, airlines and lighting' },
+    { '@type': 'PropertyValue', name: 'End wall option', value: 'Cast-in galvanised steel steps available' },
+    { '@type': 'PropertyValue', name: 'Installation', value: 'Crane-lorry delivery — sections drop into prepared excavation' },
     { '@type': 'PropertyValue', name: 'Lead time', value: '4–6 weeks catalogue, 8–10 weeks bespoke' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
   ],
@@ -80,8 +79,8 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
 ---
 
 <BaseLayout
-  title="Lorry Workshop Pits — 1500mm deep × 1100mm wide · 3.7m + 3048mm sections"
-  description="Precast concrete lorry workshop pits. 1500mm internal depth × 1100mm wide. 3.7m & 3048mm section lengths (6.5t & 5.3t). Integral recesses for lighting. Crane-lorry install. Much faster and cheaper than steel. Cast in North Devon."
+  title="Lorry Workshop Pits — 1.5m and 1.3m precast concrete inspection pits"
+  description="Precast concrete lorry workshop pits in two depths: 1.5m for low-loaders / 7.5t lorries (6.4t main unit) and 1.3m for standard artics (5.5t main unit). Side recesses for cables, airlines and lighting. Crane-lorry install. Cast in North Devon."
   image="/og/vehicle-pits.png"
   schema="Product"
   schemaData={productSchema}
@@ -99,24 +98,25 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
           <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">
             Sub-base to top deck. One pour. One delivery.
           </p>
-          <h2 class="sr-only">How deep should a vehicle inspection pit be?</h2>
+          <h2 class="sr-only">How deep should a lorry workshop pit be?</h2>
           <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
-            <strong class="not-italic text-white">How deep should a vehicle inspection pit be?</strong>
-            For HGV / LGV inspection, 1.5&nbsp;m clear depth between finished floor and pit floor
-            is the WCCP standard. Working depth is set to the user, not the average. HSE Workplace
-            (HSW) Regulations 1992 and PUWER 1998 govern operation.
+            <strong class="not-italic text-white">How deep should a lorry workshop pit be?</strong>
+            We supply two depths — <strong class="text-white">1.5&nbsp;m</strong> for low-loaders
+            and 7.5 tonne lorries, and <strong class="text-white">1.3&nbsp;m</strong> for standard
+            artics. The depth is the internal depth of the precast pit. Working depth always to PUWER 1998.
           </blockquote>
           <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
-            <strong class="text-white">1500mm deep × 1100mm wide</strong>, cast in 3.7m and 3048mm sections at
-            6.5 and 5.3 tonnes. Integral recesses for lighting. Crane-lorry install on the same delivery.
+            Main units are <strong class="text-white">6.4&nbsp;t</strong> (deep) and
+            <strong class="text-white">5.5&nbsp;t</strong> (shallow). Side recesses cast-in for
+            cables, airlines and lighting. Cast-in galvanised steel steps optional.
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
-            <li class="flex gap-2"><span class="text-yellow">·</span> 1500mm deep</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 1100mm wide</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 3.7m / 3048mm</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 6.5t / 5.3t sections</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Lighting recesses</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Crane-lorry install</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 1.5m or 1.3m deep</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 6.4t / 5.5t main units</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Side service recesses</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Galv steel steps option</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Crane-lorry delivery</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Far cheaper than steel</li>
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Vehicle%20Pits" class="btn-primary">Configure a quote</a>
@@ -158,13 +158,17 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
   </section>
 
   <ProductGallery
-    eyebrow="Variants"
-    heading="Inspection pit detail."
+    eyebrow="On-farm + workshop"
+    heading="Inspection pits in service."
     background="bone"
-    cols={2}
+    cols={3}
     images={[
-      { src: '/images/products/automotive-work-pit/wccp-automotive-work-pit-auto-pit-2-sqr-1-1024x1024.jpg', alt: 'Installed WCCP precast concrete vehicle inspection pit in a commercial workshop, Devon', caption: 'Inspection pit in service' },
-      { src: '/images/products/automotive-work-pit/wccp-automotive-work-pit-auto-pit-3-sqr-1024x1024.jpg', alt: 'Lorry parked over a WCCP precast concrete inspection pit with stairs, Devon', caption: 'Lorry over inspection pit' },
+      { src: '/images/products/lorry-workshop-pit/wccp-lorry-workshop-pit-an-installation-of-west-country-concrete-products-precast-concrete-vehicle-inspe.jpg', alt: 'Installation of a WCCP precast concrete vehicle inspection pit in a commercial workshop, Devon', caption: 'Pit installation' },
+      { src: '/images/products/lorry-workshop-pit/wccp-lorry-workshop-pit-photo-showing-korry-mounted-crane-installation-of-west-country-concrete-products.jpg', alt: 'Lorry-mounted crane lifting a WCCP precast concrete inspection-pit section into a prepared excavation, Devon', caption: 'Crane-lorry install' },
+      { src: '/images/products/lorry-workshop-pit/wccp-lorry-workshop-pit-photo-showing-end-wall-and-lifting-points-on-west-country-concrete-products-prec.jpg', alt: 'Close-up of cast-in lifting points and end wall on a WCCP precast concrete vehicle inspection pit, Devon', caption: 'Cast-in lifting points + end wall' },
+      { src: '/images/products/lorry-workshop-pit/wccp-lorry-workshop-pit-image-of-precast-concrete-workshop-pit-showing-galvanised-steel-steps-to-one-end.jpg', alt: 'WCCP precast concrete workshop pit showing optional cast-in galvanised steel steps to one end, Devon', caption: 'Optional galvanised steps' },
+      { src: '/images/products/lorry-workshop-pit/wccp-lorry-workshop-pit-drawing-showing-dimensioned-profiles-of-west-country-concrete-products-precast-c.png', alt: 'Dimensioned profile drawing of WCCP precast concrete workshop pit deep and shallow variants, Devon', caption: '1.5m and 1.3m profiles · drawing' },
+      { src: '/images/products/lorry-workshop-pit/wccp-lorry-workshop-pit-20180705-133122.jpg', alt: 'WCCP precast concrete workshop pit on the lorry leaving the Holsworthy yard for delivery, Devon', caption: 'On the lorry from Holsworthy' },
     ]}
   />
 
@@ -245,22 +249,22 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
       productName="Vehicle Inspection Pits"
       defaultMode="fitted"
       supply={{
-        price: 'from £4,800 each (3048mm section)',
+        price: 'Bespoke quote',
         leadTime: '4–6 weeks',
         includes: [
-          '3.7m or 3048mm precast pit section (6.5t / 5.3t)',
-          'Integral recesses for lighting cast in',
-          'Lifting eyes and LOLER lifting cert',
-          'Delivery on our low-loader to site',
+          'Precast pit main unit (1.5m deep 6.4t or 1.3m deep 5.5t)',
+          'Side recesses cast-in for cables, airlines, lighting',
+          'Cast-in lifting eyes and LOLER lifting cert',
+          'Delivery on our low-loader / crane-lorry to site',
         ],
         excludes: [
           'Excavation, blinding and grouting',
           'On-site crane and section setting',
-          'Lighting, power, compressed air fit-out',
+          'Lighting, power, compressed-air fit-out',
         ],
       }}
       fitted={{
-        price: 'from £8,200 each installed',
+        price: 'Bespoke quote (incl. install)',
         leadTime: '8–10 weeks (incl. site slot)',
         includes: [
           'Everything in supply only',
@@ -273,7 +277,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
           'MOT testing-lane equipment and lighting',
         ],
       }}
-      note="Indicative 2026 pricing per section. Build the workshop pit to any length using 3.7m and 3048mm sections. Send the workshop drawing and we will spec the section count and any cast-in sleeves."
+      note="Send the workshop drawing and we will spec the depth, section count and any cast-in sleeves. Crane-lorry delivery means same-day install."
     />
   </section>
 
