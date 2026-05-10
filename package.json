@@ -15,7 +15,8 @@
     "@fontsource-variable/newsreader": "^5.2.10",
     "@fontsource/dm-sans": "^5.2.8",
     "@sentry/astro": "^10.52.0",
-    "astro": "^6.1.10"
+    "astro": "^6.1.10",
+    "jszip": "^3.10.1"
   },
   "devDependencies": {
     "@astrojs/rss": "^4.0.18",
