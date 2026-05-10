@@ -7,6 +7,7 @@ import { site } from '@/config/site';
 const city = 'Taunton';
 const county = 'Somerset';
 const distanceMi = 60;
+const driveTime = '90 minutes';
 
 const surroundingAreas = [
   'Wellington', 'Bridgwater', 'Wiveliscombe', 'Williton', 'Minehead',
@@ -34,28 +35,36 @@ const related = [
   { href: '/products/padstones',           label: 'Padstones',           meta: 'Eurocode 6 sized' },
 ];
 
-const localBusinessSchema = {
-  areaServed: { '@type': 'City', name: `${city}, ${county}, United Kingdom` },
+const serviceSchema = {
+  name: `Precast concrete supplier in ${city}`,
+  description: `Precast concrete delivered to ${city} and West ${county} from the WCCP yard in Holsworthy — roughly ${distanceMi} miles via the A361 and M5. Cubicles, silage clamps, retaining walls, padstones.`,
+  serviceType: 'Precast concrete manufacture and delivery',
+  areaServed: [{ '@type': 'City', name: city }, { '@type': 'AdministrativeArea', name: `West ${county}` }],
   mainEntityOfPage: `${site.url}/concrete-supplier-taunton`,
 };
 ---
 
 <BaseLayout
-  title={`Precast concrete supplier · ${city}`}
-  description={`Precast concrete delivered to ${city} and West Somerset from the WCCP yard in Holsworthy — roughly ${distanceMi} miles. Cubicles, slurry, retaining walls, padstones, culverts. Cast in North Devon.`}
-  schema="LocalBusiness"
-  schemaData={localBusinessSchema}
+  title={`Precast concrete supplier ${city} · WCCP`}
+  description={`Precast concrete supplier delivering to ${city} and West ${county} from our Holsworthy yard, ${distanceMi} miles via the A361 / M5. Cubicles, silage, retaining walls.`}
+  schema="Service"
+  schemaData={serviceSchema}
 >
   <section class="bg-forest-700 text-cream">
     <div class="container-wccp py-20 md:py-28">
       <p class="eyebrow text-cream/70 mb-4">Areas served · {city}</p>
       <h1 class="font-display text-display-2xl text-cream mb-6 max-w-4xl">
-        Precast concrete delivered to {city} and West {county}.<br />
+        Precast concrete supplier in {city}.<br />
         <em class="text-terracotta not-italic font-display italic">Cast in Devon. Delivered to {city}.</em>
       </h1>
-      <p class="text-cream/85 text-lg leading-relaxed max-w-2xl mb-8">
-        Family-led North Devon precast, {distanceMi} miles south-west of {city} via the A361. Same lorries
-        we run to Wellington, Bridgwater and Minehead.
+      <p class="text-cream/85 text-lg leading-relaxed max-w-3xl mb-8">
+        WCCP delivers precast concrete to {city} from our Holsworthy yard, around {driveTime}
+        away via the A361 and M5. Common {city} precast jobs:
+        <a href="/products/silage-clamp-walls" class="text-terracotta-300 underline-offset-4 hover:underline">silage clamp walls</a> for
+        West Somerset dairy units, <a href="/products/retaining-walls" class="text-terracotta-300 underline-offset-4 hover:underline"> retaining walls</a> for
+        Hinkley / M5 civils and <a href="/products/padstones" class="text-terracotta-300 underline-offset-4 hover:underline"> padstones</a>.
+        Lead times: 2–3 weeks for catalogue items, 4–6 weeks bespoke. Recent deliveries:
+        Wellington, Bridgwater and Minehead.
       </p>
       <div class="flex flex-wrap gap-3">
         <a href="/quote" class="btn-primary">Get a quote</a>
@@ -92,49 +101,77 @@ const localBusinessSchema = {
 
   <section class="bg-cream-200 py-16 md:py-20 section-reveal">
     <div class="container-wccp">
-      <div class="max-w-2xl mb-10">
-        <p class="eyebrow text-cast mb-3">Areas covered</p>
-        <h2 class="font-display text-display-md text-forest-700 mb-4">{city} and West {county}.</h2>
-        <p class="text-cast-700">From the M5 corridor across to Exmoor and the West Somerset coast.</p>
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow text-cast mb-3">Why {city} farms and contractors choose WCCP</p>
+        <h2 class="font-display text-display-md text-forest-700 mb-4">A361 corridor, our home turf.</h2>
       </div>
-      <ul class="grid sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-2 max-w-3xl">
-        {surroundingAreas.map((a) => (
-          <li class="flex gap-2 text-cast-700"><span class="text-terracotta font-bold">·</span> {a}</li>
-        ))}
-      </ul>
+      <div class="grid md:grid-cols-2 gap-6 max-w-4xl">
+        <div class="card p-6">
+          <h3 class="font-display text-lg font-bold text-forest-700 mb-2">West Somerset dairy and beef</h3>
+          <p class="text-cast-700 leading-relaxed">Brendon Hills and Quantocks farms — <a href="/products/cattle-cubicles" class="text-terracotta font-semibold hover:underline">cubicles</a>, <a href="/products/silage-clamp-walls" class="text-terracotta font-semibold hover:underline">silage clamp walls</a> and <a href="/products/feed-troughs" class="text-terracotta font-semibold hover:underline">feed troughs</a> sized for your herd.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="font-display text-lg font-bold text-forest-700 mb-2">Hinkley and M5 contractors</h3>
+          <p class="text-cast-700 leading-relaxed">Trusted into Hinkley Point C connections and Somerset Council frameworks for engineered <a href="/products/retaining-walls" class="text-terracotta font-semibold hover:underline">retaining walls</a>, <a href="/products/culverts" class="text-terracotta font-semibold hover:underline">box culverts</a> and headwalls.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="font-display text-lg font-bold text-forest-700 mb-2">Architects and self-builders</h3>
+          <p class="text-cast-700 leading-relaxed">Eurocode 6 <a href="/products/padstones" class="text-terracotta font-semibold hover:underline">padstones</a> cast to your beam schedule — usually inside three weeks. Self-build basements get <a href="/products/king-post-walls" class="text-terracotta font-semibold hover:underline">king-post walls</a>.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="font-display text-lg font-bold text-forest-700 mb-2">Tight Exmoor-edge access</h3>
+          <p class="text-cast-700 leading-relaxed">Tight farm drives and steep lanes are routine — same drivers, same lorries, no missed deliveries on day one.</p>
+        </div>
+      </div>
+      <div class="mt-8">
+        <a href="/quote" class="btn-primary">Get a quote</a>
+      </div>
     </div>
   </section>
 
   <section class="container-wccp py-16 md:py-20 section-reveal">
     <div class="max-w-2xl mb-10">
-      <p class="eyebrow text-cast mb-3">What we cast</p>
-      <h2 class="font-display text-display-md text-forest-700 mb-4">Most ordered around {city}.</h2>
-      <p class="text-cast-700">Dairy and beef cubicle sheds across West Somerset, civils into the M5 and Hinkley schemes.</p>
+      <p class="eyebrow text-cast mb-3">Areas covered</p>
+      <h2 class="font-display text-display-md text-forest-700 mb-4">{city} and West {county}.</h2>
+      <p class="text-cast-700">From the M5 corridor across to Exmoor and the West Somerset coast.</p>
     </div>
-    <RelatedProductGrid items={related} />
-    <div class="mt-8 flex flex-wrap gap-6 text-sm">
-      <a href="/products" class="text-terracotta font-bold hover:text-terracotta-700">See the full catalogue →</a>
-      <a href="/case-studies" class="text-terracotta font-bold hover:text-terracotta-700">Recent case studies →</a>
-    </div>
+    <ul class="grid sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-2 max-w-3xl">
+      {surroundingAreas.map((a) => (
+        <li class="flex gap-2 text-cast-700"><span class="text-terracotta font-bold">·</span> {a}</li>
+      ))}
+    </ul>
   </section>
 
   <section class="bg-cream-200 py-16 md:py-20 section-reveal">
     <div class="container-wccp">
       <div class="max-w-2xl mb-10">
-        <p class="eyebrow text-cast mb-3">Common questions</p>
-        <h2 class="font-display text-display-md text-forest-700">Delivering to {city}.</h2>
+        <p class="eyebrow text-cast mb-3">What we cast</p>
+        <h2 class="font-display text-display-md text-forest-700 mb-4">Most ordered around {city}.</h2>
+        <p class="text-cast-700">Dairy and beef cubicle sheds across West Somerset, civils into the M5 and Hinkley schemes.</p>
       </div>
-      <div class="max-w-3xl space-y-4">
-        {faqs.map((f) => (
-          <details class="card p-6 group">
-            <summary class="font-display text-lg font-bold text-forest-700 cursor-pointer list-none flex justify-between items-start gap-4">
-              <span>{f.q}</span>
-              <span class="text-terracotta text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
-            </summary>
-            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
-          </details>
-        ))}
+      <RelatedProductGrid items={related} />
+      <div class="mt-8 flex flex-wrap gap-6 text-sm">
+        <a href="/products" class="text-terracotta font-bold hover:text-terracotta-700">See the full catalogue →</a>
+        <a href="/case-studies" class="text-terracotta font-bold hover:text-terracotta-700">Recent case studies →</a>
       </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-16 md:py-20 section-reveal">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Common questions</p>
+      <h2 class="font-display text-display-md text-forest-700">Delivering to {city}.</h2>
+    </div>
+    <div class="max-w-3xl space-y-4">
+      {faqs.map((f) => (
+        <details class="card p-6 group">
+          <summary class="font-display text-lg font-bold text-forest-700 cursor-pointer list-none flex justify-between items-start gap-4">
+            <span>{f.q}</span>
+            <span class="text-terracotta text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+          </summary>
+          <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+        </details>
+      ))}
     </div>
   </section>
 

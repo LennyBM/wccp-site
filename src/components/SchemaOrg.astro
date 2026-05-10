@@ -1,4 +1,10 @@
 ---
+// CLIENT CONSTRAINT (Kim, WCCP): no public prices anywhere on the site,
+// including in JSON-LD. This component MUST strip price/priceCurrency/
+// priceRange/lowPrice/highPrice from any incoming Offer or AggregateOffer
+// object, and any hasOfferCatalog content that contains prices is dropped.
+// Keyed off site.pricingPolicy === 'no-public-prices'. Do not relax without
+// explicit sign-off from the client.
 import { site } from '@/config/site';
 
 interface Props {
@@ -17,11 +23,16 @@ interface Props {
 const { type, data = {} } = Astro.props;
 
 // Always include Organization on every page; add the page-specific schema on top.
+// alternateName combines the short name with any historical trading names from
+// site.previousNames (e.g. South Molton Concrete Products Limited).
+const previousNames = (site as { previousNames?: readonly string[] }).previousNames ?? [];
+const alternateNames = [site.shortName, ...previousNames].filter(Boolean);
+
 const orgSchema = {
   '@type': 'Organization',
   '@id': `${site.url}/#organization`,
   name: site.name,
-  alternateName: site.shortName,
+  alternateName: alternateNames.length > 1 ? alternateNames : site.shortName,
   legalName: site.legalName,
   url: site.url,
   logo: `${site.url}/logo.png`,
@@ -63,6 +74,39 @@ const localBusinessSchema = {
   areaServed: site.areasServed.map((name) => ({ '@type': 'AdministrativeArea', name })),
 };
 
+// Shared price-field stripper. Removes anything the client (Kim) doesn't want
+// surfaced — applied to Offer, AggregateOffer, and hasOfferCatalog entries.
+const PRICE_KEYS = new Set([
+  'price',
+  'priceCurrency',
+  'priceRange',
+  'lowPrice',
+  'highPrice',
+  'priceSpecification',
+]);
+
+function stripPriceFields<T extends Record<string, unknown>>(o: T): Omit<T, never> {
+  const out: Record<string, unknown> = {};
+  for (const [k, v] of Object.entries(o)) {
+    if (!PRICE_KEYS.has(k)) out[k] = v;
+  }
+  return out as T;
+}
+
+// Recursively check if a value mentions any price field. Used to gate
+// hasOfferCatalog: we only attach the catalog if it's price-free.
+function containsPriceFields(value: unknown): boolean {
+  if (value === null || value === undefined) return false;
+  if (Array.isArray(value)) return value.some(containsPriceFields);
+  if (typeof value === 'object') {
+    for (const [k, v] of Object.entries(value as Record<string, unknown>)) {
+      if (PRICE_KEYS.has(k)) return true;
+      if (containsPriceFields(v)) return true;
+    }
+  }
+  return false;
+}
+
 // Build a Service schema with provider auto-filled from Organization.
 function buildServiceSchema(d: Record<string, unknown>) {
   const provider = d.provider ?? {
@@ -80,21 +124,25 @@ function buildServiceSchema(d: Record<string, unknown>) {
       )
     : areaServedRaw;
 
-  const { provider: _p, areaServed: _a, ...rest } = d;
+  // hasOfferCatalog: only include if it is entirely price-free.
+  // If any nested entry mentions price/priceCurrency/priceRange/etc., drop
+  // the whole catalog rather than risk leaking pricing into JSON-LD.
+  const { provider: _p, areaServed: _a, hasOfferCatalog: catalog, ...rest } = d;
+  const safeCatalog =
+    catalog !== undefined && !containsPriceFields(catalog) ? { hasOfferCatalog: catalog } : {};
+
   return {
     '@type': 'Service',
     provider,
     areaServed,
     ...rest,
+    ...safeCatalog,
   };
 }
 
-// Build a Product schema with Offer auto-completed (priceCurrency, availability, seller, priceValidUntil).
+// Build a Product schema with Offer auto-completed (availability, seller).
+// Price fields are stripped from both Offer and AggregateOffer per client policy.
 function buildProductSchema(d: Record<string, unknown>) {
-  // Default priceValidUntil: end of next calendar year.
-  const now = new Date();
-  const defaultPriceValidUntil = `${now.getUTCFullYear() + 1}-12-31`;
-
   const seller = {
     '@type': 'Organization',
     '@id': `${site.url}/#organization`,
@@ -102,19 +150,16 @@ function buildProductSchema(d: Record<string, unknown>) {
     url: site.url,
   };
 
+  // Note: no price/priceCurrency/priceRange — client (Kim) does not want
+  // any pricing information surfaced on the site, including in JSON-LD.
   let offers: unknown = d.offers;
   if (offers) {
-    // Note: no price/priceCurrency/priceRange — client (Kim) does not want
-    // any pricing information surfaced on the site, including in JSON-LD.
-    const normaliseOffer = (o: Record<string, unknown>) => {
-      const { price: _p, priceCurrency: _pc, priceRange: _pr, lowPrice: _lp, highPrice: _hp, ...clean } = o;
-      return {
-        '@type': 'Offer',
-        availability: 'https://schema.org/InStock',
-        seller,
-        ...clean,
-      };
-    };
+    const normaliseOffer = (o: Record<string, unknown>) => ({
+      '@type': 'Offer',
+      availability: 'https://schema.org/InStock',
+      seller,
+      ...stripPriceFields(o),
+    });
 
     if (Array.isArray(offers)) {
       offers = offers.map((o) => normaliseOffer(o as Record<string, unknown>));
@@ -123,11 +168,48 @@ function buildProductSchema(d: Record<string, unknown>) {
     }
   }
 
-  const { offers: _o, ...rest } = d;
+  // AggregateOffer: same price-stripping treatment. Schema.org requires
+  // offerCount; pass through whatever the caller supplied minus price keys.
+  let aggregateOffer: unknown = d.aggregateOffer;
+  if (aggregateOffer) {
+    const normaliseAggregate = (a: Record<string, unknown>) => ({
+      '@type': 'AggregateOffer',
+      seller,
+      ...stripPriceFields(a),
+    });
+    aggregateOffer = Array.isArray(aggregateOffer)
+      ? aggregateOffer.map((a) => normaliseAggregate(a as Record<string, unknown>))
+      : normaliseAggregate(aggregateOffer as Record<string, unknown>);
+  }
+
+  const { offers: _o, aggregateOffer: _ao, ...rest } = d;
   return {
     '@type': 'Product',
     ...rest,
     ...(offers ? { offers } : {}),
+    ...(aggregateOffer ? { aggregateOffer } : {}),
+  };
+}
+
+// Build an Article schema with required fields (headline, author, datePublished)
+// falling back to site config so a missing prop never crashes the build.
+function buildArticleSchema(d: Record<string, unknown>) {
+  const headline = (d.headline as string | undefined) ?? site.name;
+  const author = d.author ?? {
+    '@type': 'Organization',
+    '@id': `${site.url}/#organization`,
+    name: site.name,
+    url: site.url,
+  };
+  const datePublished = (d.datePublished as string | undefined) ?? new Date().toISOString().slice(0, 10);
+
+  const { headline: _h, author: _au, datePublished: _dp, ...rest } = d;
+  return {
+    '@type': 'Article',
+    headline,
+    author,
+    datePublished,
+    ...rest,
   };
 }
 
@@ -141,6 +223,8 @@ const pageSchema = (() => {
       return buildServiceSchema(data);
     case 'Product':
       return buildProductSchema(data);
+    case 'Article':
+      return buildArticleSchema(data);
     default:
       return { '@type': type, ...data };
   }

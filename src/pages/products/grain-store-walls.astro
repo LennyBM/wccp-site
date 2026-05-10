@@ -1,0 +1,382 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import FittedVsSupply from '@/components/FittedVsSupply.astro';
+import SpecSheetButton from '@/components/SpecSheetButton.astro';
+import ProductGallery from '@/components/ProductGallery.astro';
+import { site } from '@/config/site';
+import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
+import ProductPageTOC from '@/components/ProductPageTOC.astro';
+
+const tocSections = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'specifications', label: 'Specifications' },
+  { id: 'gallery', label: 'Gallery' },
+  { id: 'related', label: 'Related' },
+  { id: 'faq', label: 'FAQ' },
+  { id: 'downloads', label: 'Downloads' },
+];
+
+// Grain store walls and ventilated floor systems. C40/50, food-grade smooth finish.
+const specs = [
+  { variant: 'Grain Store Wall 3.0m × 3.0m', bed: '3000 × 3000 × 200mm', style: 'Smooth food-grade finish · L-toe', use: 'Standard grain bay walls — bulk store' },
+  { variant: 'Grain Store Wall 3.0m × 4.0m', bed: '3000 × 4000 × 250mm', style: 'Smooth food-grade finish · L-toe', use: 'Tall bays for higher fill heights' },
+  { variant: 'Grain Store Wall 3.0m × 5.0m', bed: '3000 × 5000 × 300mm', style: 'Engineered for higher pressure', use: 'Deep central-aisle stores' },
+  { variant: 'Ventilated Floor Channel', bed: '3000 × 600 × 200mm', style: 'Cast-in air slots · removable cover', use: 'Below-floor ventilation runs' },
+  { variant: 'Drying Floor Pedestal Base', bed: 'Bespoke — to grain depth', style: 'Pedestal-supported decking base', use: 'On-floor drying pedestal systems' },
+];
+
+const applications = [
+  'New-build bulk grain stores for combinable crops',
+  'Refurbishment of ageing stores ahead of TASCC and Red Tractor audits',
+  'Pulse and oilseed stores requiring smooth, washable walls',
+  'Anaerobic digester feedstock bays (maize, wholecrop)',
+  'Contract farming and merchant grain handling stores',
+  'On-floor drying systems with ventilated below-floor channels',
+  'Pedestal-supported drying decks for malting barley premiums',
+];
+
+const related = [
+  { href: '/products/retaining-walls', label: 'Retaining Walls', meta: 'L-shape & T-shape · to 6m' },
+  { href: '/products/cantilever-walls', label: 'Cantilever Walls', meta: 'Free-standing · clamp & bay' },
+  { href: '/products/feed-stop-walling', label: 'Feed-Stop Walling', meta: 'Steel lip · silage clamps' },
+  { href: '/products/silage-clamp-walls', label: 'Silage Clamp Walls', meta: 'A-panel · sulphate-resisting' },
+];
+
+const faqs = [
+  { q: 'Why a smooth finish?', a: 'Grain store audits — TASCC, Red Tractor, BRC — all require walls that can be cleaned and inspected for pests. A rough as-cast finish hides weevils, rodents and fungal spores. Our walls come off the steel mould table with a glass-smooth face that wipes down with a power washer between harvests. That is the food-grade specification.' },
+  { q: 'What about lateral grain pressure?', a: 'Stored grain behaves as a fluid. EN 1991-4 (Eurocode 1, silo loading) gives a horizontal pressure of about 4.5 kN/m² per metre of fill depth for wheat. Our standard 3m wall handles 4m of fill; the 4m and 5m walls take more, with engineered toe widths to suit. The structural calc comes signed off with the order.' },
+  { q: 'Can you cast the ventilated floor channels too?', a: 'Yes — that is one of our specialties. Pre-cast ventilated floor channels with cast-in air slots, removable covers and the duct connections sized to your fan plant. We will detail the layout to match your drying-floor system whether on-floor radial or pedestal-supported deck.' },
+  { q: 'How are they assembled?', a: 'L-shape units locked together with stainless dowel bars and a continuous cast-in keyway. The L-toe takes the lateral pressure; no separate strip foundation needed if the floor slab is reinforced to suit. We supply the install drawing and the dowel-bar hardware as part of the order.' },
+  { q: 'What is the lead time?', a: 'Catalogue 3m and 4m walls run 4 to 6 weeks. Engineered taller walls and bespoke ventilated floor systems 6 to 10 weeks. Harvest is the busy season — get the order in by January for an August completion.' },
+];
+
+const productSchema = {
+  name: 'Precast Grain Store Walls and Ventilated Floor Systems',
+  description: 'Precast grain store wall units with food-grade smooth finish and engineered toe profile. Ventilated below-floor channel systems for on-floor drying. Cast in C40/50 concrete at our Holsworthy yard.',
+  brand: { '@type': 'Brand', name: site.name },
+  manufacturer: { '@type': 'Organization', name: site.name },
+  category: 'Precast concrete grain store walling',
+  material: 'Reinforced concrete, C40/50 (BS 8500-1:2023)',
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 14992 (precast wall elements) / BS EN 1991-4 (silo loading)' },
+    { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
+    { '@type': 'PropertyValue', name: 'Surface finish', value: 'Food-grade smooth (steel mould face)' },
+    { '@type': 'PropertyValue', name: 'Heights available', value: '3.0m, 4.0m, 5.0m + bespoke' },
+    { '@type': 'PropertyValue', name: 'Audit compliance', value: 'TASCC / Red Tractor / BRC compatible' },
+    { '@type': 'PropertyValue', name: 'Ventilated floor', value: 'Cast-in channel system available' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '4–6 weeks catalogue, 6–10 weeks bespoke' },
+    { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
+  ],
+  offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="Grain Store Walls — Food-grade precast · TASCC compatible"
+  description="Precast grain store walls with food-grade smooth finish and ventilated floor systems for on-floor drying. C40/50 concrete to BS 8500-1:2023. Cast in North Devon."
+  image="/og-default.png"
+  schema="Product"
+  schemaData={productSchema}
+  whatsappContext="Grain Store Walls"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <TrustStrip />
+  <ProductPageTOC sections={tocSections} />
+
+  <!-- Hero -->
+  <section id="overview" class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow text-yellow mb-4">Agricultural · arable · grain handling</p>
+          <h1 class="font-display text-display-xl text-white mb-4">Grain Store Walls.</h1>
+          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">Glass-smooth. Pest-proof. Audit-ready.</p>
+          <p class="text-lg lg:text-xl text-cast leading-relaxed font-medium text-white/95 mb-6 max-w-xl">
+            Precast grain store walls with a food-grade smooth finish off the steel mould,
+            engineered to BS EN 1991-4 silo loading. Catalogue heights 3m, 4m and 5m. Plus
+            ventilated below-floor channel systems for on-floor drying. C40/50 concrete to
+            BS 8500-1:2023. Civils lead time 4-6 weeks.
+          </p>
+          <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
+            A grain store wall must withstand lateral grain pressure (about 4.5&nbsp;kN/m²
+            per metre of fill for wheat) and present a smooth washable face for TASCC and
+            Red Tractor audit. WCCP cast L-shape grain store walls in C40/50 concrete with
+            a steel-moulded glass-smooth front face and engineered toe profile.
+          </blockquote>
+          <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
+            We cast and deliver across the UK from the Holsworthy yard. New-build stores,
+            refurbishments, AD feedstock bays and on-floor drying systems all welcome.
+          </p>
+          <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
+            <li class="flex gap-2"><span class="text-yellow">·</span> Food-grade smooth</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> BS EN 1991-4 sized</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 3m / 4m / 5m heights</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Ventilated floor option</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> TASCC compatible</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 4–6 week lead</li>
+          </ul>
+          <div class="flex flex-wrap gap-3">
+            <a href="/quote?product=Grain%20Store%20Walls" class="btn-primary">Configure a quote</a>
+            <a href="mailto:engineering@wccp.co.uk?subject=Spec%20sheet%20request%20%E2%80%94%20Grain%20Store%20Walls&amp;body=Hi%20WCCP%20engineering%2C%0A%0APlease%20send%20the%20spec%20sheet%20for%20Grain%20Store%20Walls.%0A%0AProject%20details%3A%0A%E2%80%A2%20Project%20name%3A%0A%E2%80%A2%20Site%20location%3A%0A%E2%80%A2%20Required%20spec%20%2F%20standard%3A%0A%0AThanks" class="btn-yellow">Request spec sheet</a>
+            <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">
+              Call {site.contact.phone}
+            </a>
+          </div>
+        </div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
+          <div>
+            <p class="text-cast-600 text-sm font-mono">📷 Photo needed</p>
+            <p class="text-cast text-xs mt-2">Hero shot — grain store interior with smooth precast L-walls forming bays, full of grain or freshly built and empty, taken at a Devon or Somerset arable farm</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spec table -->
+  <section id="specifications" class="container-wccp py-20">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Specification</p>
+      <h2 class="font-display text-display-lg mb-4">Heights, profiles and floor systems.</h2>
+      <p class="text-cast-700 text-lg">
+        Catalogue heights from 3m to 5m. L-toe profile for free-standing walls. Plus
+        ventilated channel and pedestal base systems for on-floor drying.
+      </p>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="spec-table w-full text-left border-collapse">
+        <thead class="bg-navy text-white">
+          <tr>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Variant</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Dimensions</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Detail</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
+          </tr>
+        </thead>
+        <tbody>
+          {specs.map((s, i) => (
+            <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
+              <td class="px-4 py-3 font-bold text-navy">{s.variant}</td>
+              <td class="px-4 py-3">{s.bed}</td>
+              <td class="px-4 py-3">{s.style}</td>
+              <td class="px-4 py-3 text-cast">{s.use}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-cast text-sm mt-4">
+      Walls are cast face-down on a steel mould table for the smooth finish. Stainless
+      dowel bars supplied with the order; all hardware audit-traceable to the cast date.
+    </p>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-10">
+        <p class="eyebrow text-cast mb-3">The range</p>
+        <h2 class="font-display text-display-lg mb-4 text-navy">Grain store walls in service.</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          'Interior of a working grain store with precast L-wall bays, full of wheat',
+          'Close-up of food-grade smooth front face — steel mould finish',
+          'Cast-in keyway and stainless dowel bar joint detail',
+          'Ventilated below-floor channel system before grain laid',
+          'Pedestal-supported drying deck on a malting barley store',
+          'L-toe profile cross-section drawing',
+          'Tall (5m) grain store wall on a deep central-aisle store',
+          'New-build store under construction — walls being lifted into place',
+        ].map((d) => (
+          <figure>
+            <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
+              <div>
+                <p class="text-cast-600 text-sm font-mono">📷 Photo needed</p>
+                <p class="text-cast text-xs mt-2">{d}</p>
+              </div>
+            </div>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Applications -->
+  <section class="bg-white py-20">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow text-cast mb-3">Where they go</p>
+          <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            From a 1500-tonne on-farm store in Wiltshire to a 12,000-tonne merchant
+            handling shed in Cambridgeshire, the L-wall and ventilated channel system
+            scales to the build.
+          </p>
+          <ul class="space-y-3">
+            {applications.map((a) => (
+              <li class="flex gap-3 text-cast-700 leading-relaxed">
+                <span class="text-ember font-bold mt-1">·</span>
+                <span>{a}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="card p-8">
+          <p class="eyebrow text-cast mb-3">Standards & references</p>
+          <h3 class="font-display text-2xl font-bold text-navy mb-4">Cast and detailed to current best practice.</h3>
+          <dl class="space-y-4 text-sm">
+            <div>
+              <dt class="font-bold text-navy">BS EN 1991-4:2006</dt>
+              <dd class="text-cast">Eurocode 1 — actions on silos and tanks. Lateral pressure design for stored grain.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS EN 14992</dt>
+              <dd class="text-cast">Precast concrete wall elements — structural performance and CE marking.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS 5502-25:1991</dt>
+              <dd class="text-cast">Buildings and structures for agriculture — bulk crop storage.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS 8500-1:2023</dt>
+              <dd class="text-cast">Concrete specification — C40/50 mix for the grain store environment.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">TASCC / Red Tractor</dt>
+              <dd class="text-cast">Trade Assurance Scheme for Combinable Crops and Red Tractor cleanability requirements.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Configurator CTA -->
+  <section class="bg-yellow text-navy py-16">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-navy mb-2">Configure your store</p>
+          <h2 class="font-display text-display-md">Send store dimensions and tonnage — we will quote inside 48 hours.</h2>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href="/quote?product=Grain%20Store%20Walls" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
+          <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section id="related" class="container-wccp py-20">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
+      <div>
+        <p class="eyebrow text-cast mb-3">Related products</p>
+        <h2 class="font-display text-display-lg">Often ordered alongside.</h2>
+      </div>
+      <a href="/products" class="text-ember font-bold hover:text-ember-700 inline-flex items-center gap-2">
+        View full range
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" />
+          <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+    <RelatedProductGrid items={related} />
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">Common questions</p>
+        <h2 class="font-display text-display-lg mb-4">What people ask about grain store walls.</h2>
+        <p class="text-cast-700 text-lg">
+          Five questions we answer most weeks. If yours is not here, ring the yard.
+        </p>
+      </div>
+      <div class="max-w-3xl space-y-4">
+        {faqs.map((f) => (
+          <details class="card p-6 group">
+            <summary class="font-display text-lg font-bold text-navy cursor-pointer list-none flex justify-between items-start gap-4">
+              <span>{f.q}</span>
+              <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Supply-only vs Fitted -->
+  <section class="container-wccp section-rhythm border-t border-cast-100">
+    <FittedVsSupply
+      productName="Grain Store Walls"
+      defaultMode="fitted"
+      supply={{
+        price: 'Bespoke quote',
+        leadTime: '4–6 weeks',
+        includes: [
+          'Precast L-shape grain store walls in C40/50',
+          'Food-grade smooth front face',
+          'Stainless dowel bars and install drawing',
+          'Delivery on our HIAB to your slab',
+        ],
+        excludes: [
+          'Reinforced floor slab and base works',
+          'On-site setting / fixing labour',
+        ],
+      }}
+      fitted={{
+        price: 'Bespoke quote (incl. install)',
+        leadTime: '6–10 weeks (incl. site slot)',
+        includes: [
+          'Everything in supply only',
+          'Two-man install crew with HIAB',
+          'Dowel-bar joint setting and bedding-mortar',
+          '12-month workmanship warranty',
+        ],
+        excludes: [
+          'Reinforced floor slab and ventilated underfloor works',
+          'Drying-fan plant and electrical fit-out',
+        ],
+      }}
+      note=". Bespoke heights, ventilated floor systems and pedestal-deck packages priced individually — send store dimensions and tonnage and we'll come back within two working days."
+    />
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-navy text-white py-20">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
+      <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">
+        Send us store dimensions, tonnage and crop type. Quote within 48 hours.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/quote?product=Grain%20Store%20Walls" class="btn-yellow">Configure a quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
+      </div>
+    </div>
+  </section>
+
+  <SpecSheetButton productSlug="grain-store-walls" productName="Grain Store Walls" />
+  <ProductWarrantyLine />
+</BaseLayout>

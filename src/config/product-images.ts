@@ -6,66 +6,21 @@
 // Images live under `src/assets/images/` so that Astro's `astro:assets`
 // pipeline can optimise them (AVIF/WebP/JPEG, responsive sources, intrinsic
 // width/height to prevent CLS).
+//
+// As of 2026-05-10, ALL previously-mapped images have been quarantined as
+// AI-generated pending real WCCP yard photography. Slugs now fall back to the
+// hand-drawn SVG architectural-section diagram in ProductIllustration.astro.
 
 import type { ImageMetadata } from 'astro';
 
-import cattleCubicles      from '@/assets/images/products/cattle-cubicles.jpg';
-import slurryStorage       from '@/assets/images/products/slurry-storage.jpg';
-import milkingRobotBases   from '@/assets/images/products/milking-robot-bases.jpg';
-import prestressedPanels   from '@/assets/images/products/prestressed-panels.jpg';
-import retainingWalls      from '@/assets/images/products/retaining-walls.jpg';
-import kingPostWalls       from '@/assets/images/products/king-post-walls.jpg';
-import lBlocks             from '@/assets/images/products/l-blocks.jpg';
-import cantileverWalls     from '@/assets/images/products/cantilever-walls.jpg';
-import silageClampWalls    from '@/assets/images/products/silage-clamp-walls.jpg';
-import feedTroughs         from '@/assets/images/products/feed-troughs.jpg';
-import waterTroughs        from '@/assets/images/products/water-troughs.jpg';
-import footbaths           from '@/assets/images/products/footbaths.jpg';
-import culverts            from '@/assets/images/products/culverts.jpg';
-import bespoke             from '@/assets/images/products/bespoke.jpg';
-import cubicleEndWalls     from '@/assets/images/products/cubicle-end-walls.jpg';
-import cleanRooms          from '@/assets/images/products/clean-rooms.jpg';
+export const productImages: Record<string, ImageMetadata> = {};
 
-import sectorAgricultural  from '@/assets/images/sector-agricultural.jpg';
-import sectorCivils        from '@/assets/images/sector-civils.jpg';
-import sectorBespoke       from '@/assets/images/sector-bespoke.jpg';
+// Sector-level hero images — currently no real WCCP photo available; pages
+// fall back to placeholders or to product-yard photos.
+export const sectorImages: Record<string, ImageMetadata> = {};
 
-import agriculturalCard    from '@/assets/images/cards/agricultural-card.jpg';
-import civilsCard          from '@/assets/images/cards/civils-card.jpg';
-import bespokeCard         from '@/assets/images/cards/bespoke-card.jpg';
-
-export const productImages: Record<string, ImageMetadata> = {
-  'cattle-cubicles':         cattleCubicles,
-  'slurry-storage':          slurryStorage,
-  'milking-robot-bases':     milkingRobotBases,
-  'prestressed-panels':      prestressedPanels,
-  'retaining-walls':         retainingWalls,
-  'king-post-walls':         kingPostWalls,
-  'l-blocks':                lBlocks,
-  'cantilever-walls':        cantileverWalls,
-  'silage-clamp-walls':      silageClampWalls,
-  'feed-troughs':            feedTroughs,
-  'water-troughs':           waterTroughs,
-  'footbaths':               footbaths,
-  'culverts':                culverts,
-  'bespoke':                 bespoke,
-  'cubicle-end-walls':       cubicleEndWalls,
-  'clean-rooms':             cleanRooms,
-};
-
-// Sector-level hero images
-export const sectorImages: Record<string, ImageMetadata> = {
-  'agricultural': sectorAgricultural,
-  'civils':       sectorCivils,
-  'bespoke':      sectorBespoke,
-};
-
-// Sector card images (shown on homepage 4:3 cards)
-export const sectorCardImages: Record<string, ImageMetadata> = {
-  'agricultural': agriculturalCard,
-  'civils':       civilsCard,
-  'bespoke':      bespokeCard,
-};
+// Sector card images — placeholders until real WCCP yard photography lands.
+export const sectorCardImages: Record<string, ImageMetadata> = {};
 
 // Product short captions (alt text + visible labels)
 export const productCaptions: Record<string, string> = {

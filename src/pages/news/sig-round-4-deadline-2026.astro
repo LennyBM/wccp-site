@@ -1,12 +1,48 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { site } from '@/config/site';
+
+const post = {
+  title: 'SIG Round 4 — what farmers need to know before 30 September 2026',
+  description:
+    'Slurry Infrastructure Grant Round 4 explained — £74m fund, eligible items, application timeline, and how WCCP supports SIG-ready precast deliveries before the 30 September 2026 deadline.',
+  datePublished: '2026-04-15',
+  dateModified: '2026-04-15',
+  author: 'WCCP Engineering Team',
+  url: `${site.url}/news/sig-round-4-deadline-2026`,
+};
+
+const schemaData = {
+  headline: post.title,
+  description: post.description,
+  datePublished: post.datePublished,
+  dateModified: post.dateModified,
+  author: {
+    '@type': 'Organization',
+    name: post.author,
+    url: `${site.url}/team`,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: site.name,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${site.url}/logo.png`,
+    },
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': post.url,
+  },
+  image: `${site.url}/og-default.png`,
+};
 ---
 
 <BaseLayout
   title="SIG Round 4 — what farmers need to know before 30 September 2026"
   description="Slurry Infrastructure Grant Round 4 explained — £74m fund, eligible items, application timeline, and how WCCP supports SIG-ready precast deliveries before the 30 September 2026 deadline."
   schema="Article"
+  schemaData={schemaData}
 >
   <section class="bg-navy text-white">
     <div class="container-wccp py-14 md:py-16">
@@ -31,6 +67,23 @@ import { site } from '@/config/site';
 
   <article class="container-wccp py-12 md:py-16">
     <div class="max-w-3xl">
+
+      <!-- Direct-answer block — for AI Overviews, Perplexity and the busy reader -->
+      <aside class="bg-bone-200 border-l-4 border-ember p-6 rounded-r mb-10">
+        <p class="eyebrow text-cast mb-2">In one paragraph</p>
+        <p class="text-navy text-lg leading-relaxed font-medium">
+          The Slurry Infrastructure Grant Round 4 is a DEFRA capital grant of £74 million for English
+          livestock farmers, with applications closing 30 September 2026. It funds new or replacement
+          slurry stores, covers, agitation kit and slurry separators that meet SSAFO 2018 and provide
+          at least 6 months' storage. WCCP cast all the eligible storage items in North Devon and
+          ship a paperwork pack formatted to RPA expectations.
+        </p>
+        <div class="mt-4 flex flex-wrap gap-3">
+          <a href="/grants/sig-round-4" class="btn-primary text-sm">Read the SIG Round 4 guide</a>
+          <a href="/quote?product=slurry-storage" class="btn-yellow text-sm">Quote a slurry store</a>
+        </div>
+      </aside>
+
       <h2 class="font-display text-3xl text-navy mb-4">What is SIG Round 4?</h2>
       <p class="text-cast-700 text-lg leading-relaxed mb-6">
         The Slurry Infrastructure Grant is a DEFRA capital grant for English livestock farmers to
@@ -80,6 +133,7 @@ import { site } from '@/config/site';
 
       <div class="flex flex-wrap gap-3">
         <a href="/grants/sig-round-4" class="btn-primary">Read the SIG guide</a>
+        <a href="/quote?product=slurry-storage" class="btn-secondary">Quote a slurry store</a>
         <a href={`tel:${site.contact.phoneIntl}`} class="btn-yellow">Call {site.contact.phone}</a>
       </div>
     </div>

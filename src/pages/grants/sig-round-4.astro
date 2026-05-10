@@ -21,6 +21,32 @@ const schemaData = {
   mainEntityOfPage: { '@type': 'WebPage', '@id': `${site.url}/grants/sig-round-4` },
 };
 
+// FAQ schema — separate JSON-LD, rendered alongside Article via inline script.
+const faqs = [
+  {
+    q: 'What is the Slurry Infrastructure Grant Round 4?',
+    a: 'A £74m DEFRA capital grant for English farms covering 50% of the cost of new or upgraded slurry storage, store covers and slurry separators. Round 4 is the largest round to date.',
+  },
+  {
+    q: 'Who qualifies for SIG Round 4?',
+    a: 'Registered agricultural businesses in England with an SBI and CPH that produce slurry, digestate or AD-separated liquids and need to reach the 6-month storage requirement. Eligible works must not have started before the grant offer is made.',
+  },
+  {
+    q: 'When does SIG Round 4 close?',
+    a: 'The Round 4 stage-2 application window closes at midnight on 30 September 2026. Applications submitted after this point will not be considered until a future round.',
+  },
+];
+
+const faqSchemaJson = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
 const steps = [
   {
     n: '01',
@@ -66,6 +92,12 @@ const steps = [
         <h1 class="font-display text-display-2xl text-white mb-6">
           SIG Round 4 closes <span class="text-yellow">30 September 2026</span>.
         </h1>
+        <p class="text-lg lg:text-xl text-white/90 leading-relaxed mt-6 max-w-3xl mb-8" aria-label="Direct answer">
+          The Slurry Infrastructure Grant Round 4 is a £74m DEFRA fund covering 50% of slurry storage,
+          cover and separator costs in England. Round 4 closes for stage-2 applications 30 September 2026.
+          WCCP provides itemised quotes, capacity statements and structural calcs in the format Defra's
+          grant team requires.
+        </p>
         <p class="text-lg lg:text-xl text-white/90 leading-relaxed mb-8">
           Defra's Slurry Infrastructure Grant Round 4 makes
           <strong class="text-white">£74&nbsp;million</strong> available across England for
@@ -79,7 +111,7 @@ const steps = [
           {['days','hours','minutes','seconds'].map((unit) => (
             <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-3 text-center">
               <div class="font-display text-display-md text-yellow leading-none" data-countdown-unit={unit}>--</div>
-              <div class="text-xs uppercase tracking-wider text-white/70 mt-1">{unit}</div>
+              <div class="text-xs uppercase tracking-wider text-white/85 mt-1">{unit}</div>
             </div>
           ))}
         </div>
@@ -118,6 +150,9 @@ const steps = [
         What we do is the bit that makes the rest of the application solid:
         documented capacity, SSAFO 2018 compliance, a manufacturing slot you can rely on.
       </p>
+      <p class="mt-4">
+        <a href="/quote?product=slurry-storage" class="inline-flex items-center gap-1.5 text-ember font-bold link-underline">Quote a slurry store →</a>
+      </p>
     </div>
     <ol class="grid md:grid-cols-2 gap-4">
       {steps.map((s) => (
@@ -146,6 +181,26 @@ const steps = [
       </div>
     </div>
   </section>
+
+  <!-- FAQ -->
+  <section class="container-wccp section-rhythm">
+    <p class="eyebrow text-cast mb-3">Common questions</p>
+    <h2 class="font-display text-display-lg mb-8">SIG Round 4 FAQ</h2>
+    <div class="max-w-prose-wide space-y-3">
+      {faqs.map((f) => (
+        <details class="card p-5 group">
+          <summary class="font-display text-lg text-navy cursor-pointer list-none flex justify-between items-center gap-4">
+            <span>{f.q}</span>
+            <span class="text-ember text-2xl group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <p class="text-cast mt-3 leading-relaxed">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <!-- FAQ JSON-LD (rendered alongside the Article schema in BaseLayout) -->
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchemaJson)} />
 
   <CTAStrip
     eyebrow="The countdown is on"

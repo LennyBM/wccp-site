@@ -16,10 +16,10 @@ metrics:
     value: "2,800m³"
   - label: "Install time on site"
     value: "4 weeks"
-image: "/images/case-studies/trewartha.jpg"
+image: "/images/case-studies/trewartha-farm-dairy.jpg"
 quote:
   text: "WCCP turned up when they said, with the kit they said, and finished the week they said. After thirty years of farming I can count on one hand the contractors I'd say that about."
-  attribution: "Robert Eddy, Trewartha Farm"
+  attribution: "Robert Eddy, Trewartha Farm" # 📝 [Detail needed from Kim: confirm real name OK to publish — .astro page currently uses anonymised attribution]
 ---
 
 ## The brief
@@ -42,7 +42,7 @@ Our install crew spent four weeks on site between October and November. The cubi
 
 The new slurry store passed its SSAFO inspection on first visit, with the SIG funding draw-down approved within a fortnight. The replacement cubicles delivered an immediate reduction in hock injuries — Robert's vet recorded a 40% drop in hock-related calls in the first three months. Lying-time monitoring (CowManager collars) showed an average increase from 11.2 to 12.6 hours per day.
 
-For Robert, the hidden win was the install staging. Because we worked in rotating blocks rather than emptying the shed, he didn't lose a single milking — and didn't have to bed cows on straw in the yard, which would have cost him roughly £180 a day.
+For Robert, the hidden win was the install staging. Because we worked in rotating blocks rather than emptying the shed, he didn't lose a single milking — and didn't have to bed cows on straw in the yard for the duration of the cubicle changeover.
 
 ## Lessons for other dairies
 

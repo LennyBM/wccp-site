@@ -1,0 +1,382 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import FittedVsSupply from '@/components/FittedVsSupply.astro';
+import SpecSheetButton from '@/components/SpecSheetButton.astro';
+import ProductGallery from '@/components/ProductGallery.astro';
+import { site } from '@/config/site';
+import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
+import ProductPageTOC from '@/components/ProductPageTOC.astro';
+
+const tocSections = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'specifications', label: 'Specifications' },
+  { id: 'gallery', label: 'Gallery' },
+  { id: 'related', label: 'Related' },
+  { id: 'faq', label: 'FAQ' },
+  { id: 'downloads', label: 'Downloads' },
+];
+
+// Cattle slats — slip-resistant, BS EN 12737, dairy and beef cubicle housing.
+const specs = [
+  { variant: 'Cattle Gang Slat 3.0m', bed: '3000 × 1000 × 175mm', style: '38mm slot · Surefoot top finish', use: 'Standard dairy cubicle passages' },
+  { variant: 'Cattle Gang Slat 3.5m', bed: '3500 × 1000 × 200mm', style: '38mm slot · Surefoot top finish', use: 'Wider dairy and beef passages' },
+  { variant: 'Cattle Gang Slat 4.0m', bed: '4000 × 1000 × 225mm', style: '38mm slot · twin-tee profile', use: 'Long spans · fully-slatted beef sheds' },
+  { variant: 'Calf Slat 2.4m', bed: '2400 × 800 × 150mm', style: '32mm slot · Surefoot top finish', use: 'Calf rearing pens (>3 months)' },
+  { variant: 'Bespoke Cattle Slat', bed: 'To 5m span on twin-tee', style: 'Engineer-detailed for the loading', use: 'Heavy beef finishing, AD digester yards' },
+];
+
+const applications = [
+  'Dairy cubicle passages over slurry channels',
+  'Fully-slatted beef finishing sheds',
+  'Suckler cow housing on grant-funded steel-frame buildings',
+  'Calf rearing units for groups over 3 months old',
+  'AD digester yard slats over feedstock pits',
+  'Cubicle cross-passages and feed-passage gangways',
+  'Retro-fits where existing slats have failed lameness checks',
+];
+
+const related = [
+  { href: '/products/slatted-lids', label: 'Slatted Lids', meta: 'Lift-out · BS EN 12737' },
+  { href: '/products/cattle-cubicles', label: 'Cattle Cubicles', meta: 'AHDB 2024 sized' },
+  { href: '/products/slurry-storage', label: 'Slurry Storage', meta: 'SSAFO 2018-compliant' },
+  { href: '/products/cubicle-end-walls', label: 'Cubicle End Walls', meta: 'Single + double row · trough option' },
+];
+
+const faqs = [
+  { q: 'How slip-resistant is the surface?', a: 'Every cattle slat we cast has the Surefoot grid texture — a precise pattern of grooves at 50mm centres, 8mm deep, in both directions. AHDB cow-flow research shows this finish maintains traction for the full 15-year design life. Worn slats are the single biggest cause of lameness in cubicle herds — a fresh-cast WCCP slat addresses that head-on.' },
+  { q: 'What slot width should I use?', a: 'BS EN 12737 sets 38mm as the cattle standard for adult dairy and beef. Calf slats use 32mm. Anything wider risks foot trapping; anything narrower stops dung clearing through. We cast to 38mm as standard but can quote 35mm for very young or smaller-stature beef.' },
+  { q: 'Will they take a tractor?', a: 'Yes — to the rated load. Our 3m gang slat carries 30kN/m² imposed (about 3 tonnes per square metre), enough for any farm tractor with a feeder bucket. The 4m twin-tee carries 25kN/m². For tracked machines or large telehandlers we engineer-detail bespoke spans with extra reinforcement.' },
+  { q: 'How do they bed onto the channel?', a: 'On a 75mm × 200mm bedding ledge cast into the channel wall, with a 10mm bedding-mortar joint and a 5mm gap to the next slat for thermal movement. The install drawing comes with the order. Set the slats with a tractor and chains through the cast-in lifting eyes.' },
+  { q: 'What is the lead time?', a: 'Catalogue 3m and 3.5m gang slats run 2 to 4 weeks. Bespoke 4m and twin-tee profiles 4 to 6 weeks. Spring and autumn shed-build seasons book up early — get the order in.' },
+];
+
+const productSchema = {
+  name: 'Precast Cattle Slats',
+  description: 'Slip-resistant precast concrete cattle slats and gang slats. Cast to BS EN 12737 with Surefoot top finish. For dairy, beef and calf housing. Cast at our Holsworthy yard in C40/50 concrete.',
+  brand: { '@type': 'Brand', name: site.name },
+  manufacturer: { '@type': 'Organization', name: site.name },
+  category: 'Precast concrete cattle slats',
+  material: 'Reinforced concrete, C40/50 (BS 8500-1:2023)',
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 12737:2008+A1:2011 (livestock slats)' },
+    { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
+    { '@type': 'PropertyValue', name: 'Slot width', value: '38mm cattle / 32mm calf' },
+    { '@type': 'PropertyValue', name: 'Top finish', value: 'Surefoot grid texture (50mm × 50mm × 8mm)' },
+    { '@type': 'PropertyValue', name: 'Span range', value: '2.4m to 5m on twin-tee' },
+    { '@type': 'PropertyValue', name: 'Imposed load', value: '25–30kN/m² (tractor traffic)' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '2–4 weeks catalogue, 4–6 weeks bespoke' },
+    { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
+  ],
+  offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="Cattle Slats — Slip-resistant gang slats · BS EN 12737"
+  description="Precast concrete cattle slats and gang slats with Surefoot slip-resistant finish. BS EN 12737 standard. 2.4m to 5m spans for dairy, beef and calf housing. Cast in North Devon."
+  image="/og-default.png"
+  schema="Product"
+  schemaData={productSchema}
+  whatsappContext="Cattle Slats"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <TrustStrip />
+  <ProductPageTOC sections={tocSections} />
+
+  <!-- Hero -->
+  <section id="overview" class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow text-yellow mb-4">Agricultural · dairy · beef</p>
+          <h1 class="font-display text-display-xl text-white mb-4">Cattle Slats.</h1>
+          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">Surefoot finish. No slip. No lameness.</p>
+          <p class="text-lg lg:text-xl text-cast leading-relaxed font-medium text-white/95 mb-6 max-w-xl">
+            Slip-resistant precast concrete cattle slats and gang slats — Surefoot grid finish
+            cast in, 38mm slots for adult cattle and 32mm for calves. Cast to BS EN 12737 in
+            C40/50 concrete. 2.4m to 5m spans for dairy, beef and calf housing.
+            Catalogue lead time 2-4 weeks.
+          </p>
+          <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
+            A cattle slat is a precast concrete floor element with cast-in slots that let
+            dung pass through into the slurry channel below. UK cattle slats use 38&nbsp;mm
+            slots to BS EN 12737. WCCP slats add the Surefoot grid finish — 8&nbsp;mm grooves
+            at 50&nbsp;mm centres — for the design life of the herd.
+          </blockquote>
+          <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
+            We cast and deliver across England, Wales and into Scotland from the Holsworthy
+            yard. Catalogue and bespoke spans engineered to suit your herd and shed.
+          </p>
+          <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
+            <li class="flex gap-2"><span class="text-yellow">·</span> BS EN 12737</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Surefoot finish</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 38mm slots cattle</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 32mm slots calves</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Spans to 5m</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 2–4 week lead</li>
+          </ul>
+          <div class="flex flex-wrap gap-3">
+            <a href="/quote?product=Cattle%20Slats" class="btn-primary">Configure a quote</a>
+            <a href="mailto:engineering@wccp.co.uk?subject=Spec%20sheet%20request%20%E2%80%94%20Cattle%20Slats&amp;body=Hi%20WCCP%20engineering%2C%0A%0APlease%20send%20the%20spec%20sheet%20for%20Cattle%20Slats.%0A%0AProject%20details%3A%0A%E2%80%A2%20Project%20name%3A%0A%E2%80%A2%20Site%20location%3A%0A%E2%80%A2%20Required%20spec%20%2F%20standard%3A%0A%0AThanks" class="btn-yellow">Request spec sheet</a>
+            <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">
+              Call {site.contact.phone}
+            </a>
+          </div>
+        </div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
+          <div>
+            <p class="text-cast-600 text-sm font-mono">📷 Photo needed</p>
+            <p class="text-cast text-xs mt-2">Hero shot — fresh-cast cattle slats stacked at the Holsworthy yard or laid in a Devon dairy passage with cattle on, top-down or low angle</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spec table -->
+  <section id="specifications" class="container-wccp py-20">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Specification</p>
+      <h2 class="font-display text-display-lg mb-4">Spans, slots and loadings.</h2>
+      <p class="text-cast-700 text-lg">
+        Catalogue 3m and 3.5m gang slats for dairy passages. 4m twin-tee for fully-slatted
+        beef. Calf slats with 32mm slot. Bespoke spans engineered to suit.
+      </p>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="spec-table w-full text-left border-collapse">
+        <thead class="bg-navy text-white">
+          <tr>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Variant</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Dimensions</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Detail</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
+          </tr>
+        </thead>
+        <tbody>
+          {specs.map((s, i) => (
+            <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
+              <td class="px-4 py-3 font-bold text-navy">{s.variant}</td>
+              <td class="px-4 py-3">{s.bed}</td>
+              <td class="px-4 py-3">{s.style}</td>
+              <td class="px-4 py-3 text-cast">{s.use}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-cast text-sm mt-4">
+      Slats are batch-tested to BS EN 12737 — every cast carries a date stamp and the test
+      certificate is on file at the yard. Lifting eyes are cast in for tractor-and-chain set.
+    </p>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-10">
+        <p class="eyebrow text-cast mb-3">The range</p>
+        <h2 class="font-display text-display-lg mb-4 text-navy">Cattle slats in service.</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          'Run of 3m gang slats laid in a dairy cubicle passage with cattle on',
+          'Close-up of the Surefoot grid finish on the top face',
+          'Cross-section of slat profile — slot, rib and reinforcement',
+          'Slat being lifted into a beef finishing shed by tractor',
+          'Calf slat (32mm slot) compared to cattle slat (38mm) — side by side',
+          '4m twin-tee slat in fully-slatted beef shed',
+          'Bedding ledge and joint detail at the channel wall',
+          'AD digester yard with engineered cattle slats over the feedstock pit',
+        ].map((d) => (
+          <figure>
+            <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
+              <div>
+                <p class="text-cast-600 text-sm font-mono">📷 Photo needed</p>
+                <p class="text-cast text-xs mt-2">{d}</p>
+              </div>
+            </div>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Applications -->
+  <section class="bg-white py-20">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow text-cast mb-3">Where they go</p>
+          <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            From a 100-cow dairy passage retro-fit to a 400-head fully-slatted beef finishing
+            shed, the slat is the same technology — sized to span, loading and slot for the
+            stock that lives on it.
+          </p>
+          <ul class="space-y-3">
+            {applications.map((a) => (
+              <li class="flex gap-3 text-cast-700 leading-relaxed">
+                <span class="text-ember font-bold mt-1">·</span>
+                <span>{a}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="card p-8">
+          <p class="eyebrow text-cast mb-3">Standards & references</p>
+          <h3 class="font-display text-2xl font-bold text-navy mb-4">Cast and detailed to current best practice.</h3>
+          <dl class="space-y-4 text-sm">
+            <div>
+              <dt class="font-bold text-navy">BS EN 12737:2008+A1:2011</dt>
+              <dd class="text-cast">Precast concrete livestock slats — slot width, surface finish, structural performance.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS 5502-22:2003</dt>
+              <dd class="text-cast">Buildings and structures for agriculture — cattle housing loadings and detail.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS 8500-1:2023</dt>
+              <dd class="text-cast">Concrete specification — C40/50 mix for the dairy slurry environment.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">SSAFO Regulations 2018</dt>
+              <dd class="text-cast">Silage, Slurry & Agricultural Fuel Oil — slurry channel inspectability.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">AHDB Cow-Flow Guidance</dt>
+              <dd class="text-cast">Slip-resistance and lameness prevention research underpinning the Surefoot finish.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Configurator CTA -->
+  <section class="bg-yellow text-navy py-16">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-navy mb-2">Configure your slat run</p>
+          <h2 class="font-display text-display-md">Send passage width, span and stocking — we will quote inside 24 hours.</h2>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href="/quote?product=Cattle%20Slats" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
+          <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section id="related" class="container-wccp py-20">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
+      <div>
+        <p class="eyebrow text-cast mb-3">Related products</p>
+        <h2 class="font-display text-display-lg">Often ordered alongside.</h2>
+      </div>
+      <a href="/products" class="text-ember font-bold hover:text-ember-700 inline-flex items-center gap-2">
+        View full range
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" />
+          <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+    <RelatedProductGrid items={related} />
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">Common questions</p>
+        <h2 class="font-display text-display-lg mb-4">What people ask about cattle slats.</h2>
+        <p class="text-cast-700 text-lg">
+          Five questions we answer most weeks. If yours is not here, ring the yard.
+        </p>
+      </div>
+      <div class="max-w-3xl space-y-4">
+        {faqs.map((f) => (
+          <details class="card p-6 group">
+            <summary class="font-display text-lg font-bold text-navy cursor-pointer list-none flex justify-between items-start gap-4">
+              <span>{f.q}</span>
+              <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Supply-only vs Fitted -->
+  <section class="container-wccp section-rhythm border-t border-cast-100">
+    <FittedVsSupply
+      productName="Cattle Slats"
+      defaultMode="fitted"
+      supply={{
+        price: 'Bespoke quote',
+        leadTime: '2–4 weeks',
+        includes: [
+          'Cattle slats cast to BS EN 12737',
+          'Surefoot slip-resistant top finish',
+          'Cast-in lifting eyes and install drawing',
+          'Delivery on our HIAB to your shed',
+        ],
+        excludes: [
+          'Channel walls and bedding ledges',
+          'On-site setting / fixing labour',
+        ],
+      }}
+      fitted={{
+        price: 'Bespoke quote (incl. install)',
+        leadTime: '4–6 weeks (incl. site slot)',
+        includes: [
+          'Everything in supply only',
+          'Two-man install crew with HIAB',
+          'Bedding-mortar set onto channel ledges',
+          '12-month workmanship warranty',
+        ],
+        excludes: [
+          'Channel construction and slurry storage',
+          'Mains electrical or scrape-system fit-out',
+        ],
+      }}
+      note=". Bespoke spans, twin-tee profiles and AD digester slats priced individually — send shed sketch and stocking and we'll come back within a working day."
+    />
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-navy text-white py-20">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
+      <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">
+        Send us span, slot and stocking type. Quote and lead-time same day.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/quote?product=Cattle%20Slats" class="btn-yellow">Configure a quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
+      </div>
+    </div>
+  </section>
+
+  <SpecSheetButton productSlug="cattle-slats" productName="Cattle Slats" />
+  <ProductWarrantyLine />
+</BaseLayout>

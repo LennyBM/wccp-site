@@ -1,0 +1,1053 @@
+---
+// Internal-only intake hub for collecting client confirmations and assets.
+// Mark noindex + excluded from sitemap. Used in meetings to capture answers
+// + photos in real time. All state lives in localStorage (text) and
+// IndexedDB (files) — nothing is sent off-machine.
+//
+// Questions are sourced from src/data/intake-questions.ts (auto-generated).
+// If that file isn't present yet, a fallback set is used so the page still
+// renders for testing.
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+let questions: Array<{
+  id: string;
+  category: string;
+  subcategory: string;
+  question: string;
+  type: 'text' | 'longtext' | 'photo' | 'video' | 'file' | 'decision' | 'confirm';
+  priority: 1 | 2 | 3;
+  currentValue?: string;
+  sourceFiles?: string[];
+}> = [];
+
+try {
+  const mod = await import('@/data/intake-questions');
+  questions = (mod as any).intakeQuestions ?? [];
+} catch (_) {
+  // Fallback minimal set — will be replaced when the data file lands.
+  questions = [
+    { id: 'fallback-1', category: 'team', subcategory: 'Team — Kim', question: 'Surname + exact role for Kim', type: 'text', priority: 1 },
+    { id: 'fallback-2', category: 'team', subcategory: 'Team — Matt + Mark', question: 'Surnames + roles for Matt and Mark', type: 'text', priority: 1 },
+    { id: 'fallback-3', category: 'photo', subcategory: 'Photo — homepage', question: 'Wide aerial of Chilsworthy yard', type: 'photo', priority: 1 },
+  ];
+}
+
+// Group by category for the sidebar
+const categoryOrder = ['team', 'factory', 'accreditations', 'contact', 'hours', 'brand', 'photo', 'video', 'case-study', 'content-signoff', 'operations', 'launch'];
+const categories = categoryOrder.filter((c) => questions.some((q) => q.category === c));
+
+const categoryMeta: Record<string, { label: string; icon: string; color: string }> = {
+  team:              { label: 'Team',           icon: '👥', color: 'navy' },
+  factory:           { label: 'Factory',        icon: '🏭', color: 'navy' },
+  accreditations:    { label: 'Accreditations', icon: '🏅', color: 'ember' },
+  contact:           { label: 'Contact',        icon: '📞', color: 'navy' },
+  hours:             { label: 'Hours',          icon: '⏰', color: 'navy' },
+  brand:             { label: 'Brand',          icon: '🎨', color: 'ember' },
+  photo:             { label: 'Photos',         icon: '📷', color: 'ember' },
+  video:             { label: 'Videos',         icon: '🎬', color: 'ember' },
+  'case-study':      { label: 'Case studies',   icon: '📋', color: 'navy' },
+  'content-signoff': { label: 'Content sign-off', icon: '✍️', color: 'navy' },
+  operations:        { label: 'Operations',     icon: '⚙️', color: 'navy' },
+  launch:            { label: 'Launch',         icon: '🚀', color: 'ember' },
+};
+
+const totalCount = questions.length;
+const countByCategory: Record<string, number> = Object.fromEntries(
+  categories.map((c) => [c, questions.filter((q) => q.category === c).length]),
+);
+
+// Group questions within a category by subcategory for display
+function groupedFor(cat: string) {
+  const cqs = questions.filter((q) => q.category === cat);
+  const bySub: Record<string, typeof cqs> = {};
+  for (const q of cqs) {
+    bySub[q.subcategory] = bySub[q.subcategory] || [];
+    bySub[q.subcategory].push(q);
+  }
+  return bySub;
+}
+---
+
+<BaseLayout
+  title="Intake hub — internal"
+  description="Internal asset and confirmation intake hub. Not for public access."
+  noindex={true}
+>
+  <main class="bg-bone min-h-screen">
+    <!-- Sticky toolbar -->
+    <header class="sticky top-0 z-50 bg-white border-b border-cast-200 shadow-soft">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center gap-3">
+        <div class="flex items-center gap-2 mr-auto">
+          <span class="text-2xl" aria-hidden="true">📋</span>
+          <div>
+            <p class="font-display font-bold text-navy text-base leading-tight">WCCP intake hub</p>
+            <p class="text-cast text-xs">Internal — meeting use only · {totalCount} items total</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 text-sm">
+          <span data-stat="done" class="font-mono text-green-700 font-bold">0</span>
+          <span class="text-cast">/ {totalCount} done</span>
+          <span class="mx-1 text-cast-300">·</span>
+          <span data-stat="started" class="font-mono text-yellow-700 font-bold">0</span>
+          <span class="text-cast">started</span>
+        </div>
+
+        <div class="flex items-center gap-2 ml-auto">
+          <button data-action="capture-mode" class="btn-primary btn-sm" title="Mobile-first capture mode for photo shoots">
+            📸 Capture mode
+          </button>
+          <details class="relative">
+            <summary class="btn-ghost btn-sm cursor-pointer list-none">Export ▾</summary>
+            <div class="absolute right-0 mt-2 bg-white border border-cast-200 rounded-lg shadow-lifted p-2 min-w-[180px] z-10">
+              <button data-export="json" class="block w-full text-left text-sm px-3 py-2 hover:bg-bone-200 rounded">JSON</button>
+              <button data-export="md" class="block w-full text-left text-sm px-3 py-2 hover:bg-bone-200 rounded">Markdown</button>
+              <button data-export="files" class="block w-full text-left text-sm px-3 py-2 hover:bg-bone-200 rounded">Files (ZIP)</button>
+              <hr class="my-1 border-cast-100" />
+              <button data-export="reset" class="block w-full text-left text-sm px-3 py-2 text-danger hover:bg-bone-200 rounded">Reset all</button>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="h-1 bg-cast-100">
+        <div data-progress-bar class="h-full bg-success transition-all duration-300 ease-out" style="width: 0%"></div>
+      </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6 grid gap-6 items-start" style="grid-template-columns: 1fr;" data-intake-grid>
+      <!-- Sidebar -->
+      <aside class="lg:sticky lg:top-24 self-start">
+        <div class="bg-white border border-cast-200 rounded-lg p-3 mb-4">
+          <p class="text-xs font-semibold text-cast uppercase tracking-wide mb-2">Filter</p>
+          <input
+            type="search"
+            placeholder="Search questions…"
+            class="w-full text-sm px-3 py-2 border border-cast-200 rounded focus:outline-none focus:border-navy"
+            data-search
+          />
+          <div class="flex items-center gap-2 mt-3 text-xs">
+            <label class="flex items-center gap-1 cursor-pointer">
+              <input type="checkbox" data-filter-status="needed" checked class="accent-ember" />
+              <span class="text-cast-700">Needed</span>
+            </label>
+            <label class="flex items-center gap-1 cursor-pointer">
+              <input type="checkbox" data-filter-status="started" checked class="accent-yellow-500" />
+              <span class="text-cast-700">Started</span>
+            </label>
+            <label class="flex items-center gap-1 cursor-pointer">
+              <input type="checkbox" data-filter-status="done" checked class="accent-success" />
+              <span class="text-cast-700">Done</span>
+            </label>
+          </div>
+        </div>
+
+        <nav class="bg-white border border-cast-200 rounded-lg overflow-hidden">
+          <p class="text-xs font-semibold text-cast uppercase tracking-wide px-3 py-2 border-b border-cast-100">Categories</p>
+          <ul>
+            <li>
+              <a href="#all" class="flex items-center justify-between px-3 py-2 text-sm hover:bg-bone-200 border-b border-cast-100" data-cat-link="all">
+                <span><span aria-hidden="true">🗂️</span> All</span>
+                <span class="text-cast text-xs">{totalCount}</span>
+              </a>
+            </li>
+            {categories.map((cat) => (
+              <li>
+                <a
+                  href={`#cat-${cat}`}
+                  data-cat-link={cat}
+                  class="flex items-center justify-between px-3 py-2 text-sm hover:bg-bone-200 border-b border-cast-100 last:border-0"
+                >
+                  <span><span aria-hidden="true">{categoryMeta[cat]?.icon ?? '·'}</span> {categoryMeta[cat]?.label ?? cat}</span>
+                  <span class="text-cast text-xs" data-cat-count={cat}>{countByCategory[cat]}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div class="bg-yellow-50 border border-yellow-300 rounded-lg p-3 mt-4 text-xs text-cast-700 leading-relaxed">
+          <p class="font-semibold text-navy mb-1">💾 How storage works</p>
+          <p>Text answers live in <code class="bg-white px-1 rounded">localStorage</code>. Files live in <code class="bg-white px-1 rounded">IndexedDB</code>. Nothing leaves your browser until you hit Export.</p>
+        </div>
+      </aside>
+
+      <!-- Question list -->
+      <div data-question-list class="space-y-10">
+        {categories.map((cat) => {
+          const groups = groupedFor(cat);
+          const subs = Object.keys(groups);
+          return (
+            <section id={`cat-${cat}`} data-cat-section={cat} class="scroll-mt-32">
+              <div class="flex items-baseline justify-between mb-4 gap-3 flex-wrap">
+                <div>
+                  <p class="text-xs uppercase tracking-wider text-cast font-semibold">
+                    <span aria-hidden="true">{categoryMeta[cat]?.icon}</span> Category
+                  </p>
+                  <h2 class="font-display text-2xl font-bold text-navy">{categoryMeta[cat]?.label ?? cat}</h2>
+                </div>
+                <div class="text-sm text-cast">
+                  <span data-cat-progress={cat}>0</span>/{countByCategory[cat]} complete
+                </div>
+              </div>
+
+              <div class="space-y-6">
+                {subs.map((sub) => (
+                  <div class="bg-white border border-cast-200 rounded-lg overflow-hidden">
+                    <div class="px-5 py-3 bg-bone-200 border-b border-cast-200 flex items-baseline justify-between gap-3">
+                      <h3 class="font-display font-bold text-navy text-sm">{sub}</h3>
+                      <span class="text-xs text-cast">{groups[sub].length} item{groups[sub].length === 1 ? '' : 's'}</span>
+                    </div>
+
+                    <ul class="divide-y divide-cast-100">
+                      {groups[sub].map((q) => (
+                        <li class="p-5 question-row" data-question-id={q.id} data-question-cat={q.category} data-question-sub={q.subcategory} data-question-type={q.type} data-question-text={q.question.toLowerCase()}>
+                          <div class="flex items-start gap-3 mb-3">
+                            <span data-status-pill class="status-pill status-needed shrink-0 mt-0.5" aria-label="Status: needed">
+                              <span class="status-dot" aria-hidden="true"></span>
+                              <span data-status-label>Needed</span>
+                            </span>
+
+                            <div class="flex-1 min-w-0">
+                              <p class="font-display font-bold text-navy text-base leading-snug">
+                                {q.question}
+                                {q.priority === 1 && (
+                                  <span class="ml-2 inline-block text-[10px] font-mono uppercase tracking-wide bg-danger text-white px-1.5 py-0.5 rounded">Blocking</span>
+                                )}
+                                {q.priority === 3 && (
+                                  <span class="ml-2 inline-block text-[10px] font-mono uppercase tracking-wide bg-cast-100 text-cast-700 px-1.5 py-0.5 rounded">Nice-to-have</span>
+                                )}
+                              </p>
+
+                              {q.currentValue && (
+                                <p class="text-xs text-cast mt-1">
+                                  <span class="font-semibold">Current:</span>
+                                  <span class="font-mono ml-1">{q.currentValue}</span>
+                                </p>
+                              )}
+
+                              {q.sourceFiles && q.sourceFiles.length > 0 && (
+                                <details class="mt-1.5 text-xs text-cast">
+                                  <summary class="cursor-pointer hover:text-navy">Where used ({q.sourceFiles.length})</summary>
+                                  <ul class="mt-1 ml-3 list-disc text-[11px]">
+                                    {q.sourceFiles.slice(0, 5).map((f) => (
+                                      <li class="font-mono">{f}</li>
+                                    ))}
+                                    {q.sourceFiles.length > 5 && <li class="text-cast italic">+{q.sourceFiles.length - 5} more</li>}
+                                  </ul>
+                                </details>
+                              )}
+                            </div>
+                          </div>
+
+                          <!-- Answer area -->
+                          <div class="ml-7 space-y-3">
+                            {(q.type === 'text' || q.type === 'decision' || q.type === 'confirm') && (
+                              <input
+                                type="text"
+                                data-input
+                                placeholder={q.type === 'confirm' ? 'Type "yes" / "no" / details…' : 'Answer…'}
+                                class="w-full text-sm px-3 py-2 border border-cast-200 rounded focus:outline-none focus:border-navy"
+                              />
+                            )}
+                            {q.type === 'longtext' && (
+                              <textarea
+                                data-input
+                                rows="3"
+                                placeholder="Answer…"
+                                class="w-full text-sm px-3 py-2 border border-cast-200 rounded focus:outline-none focus:border-navy"
+                              ></textarea>
+                            )}
+                            {(q.type === 'photo' || q.type === 'video' || q.type === 'file') && (
+                              <div class="space-y-2">
+                                <textarea
+                                  data-input
+                                  rows="2"
+                                  placeholder="Notes (e.g. who's in shot, when taken, where)…"
+                                  class="w-full text-sm px-3 py-2 border border-cast-200 rounded focus:outline-none focus:border-navy"
+                                ></textarea>
+                                <label class="block">
+                                  <input
+                                    type="file"
+                                    data-file-input
+                                    multiple
+                                    accept={q.type === 'photo' ? 'image/*' : q.type === 'video' ? 'video/*' : '*'}
+                                    class="block w-full text-xs text-cast file:mr-3 file:py-1.5 file:px-3 file:rounded file:border-0 file:text-xs file:font-bold file:bg-navy file:text-white hover:file:bg-navy-700 cursor-pointer"
+                                  />
+                                </label>
+                                <div data-file-list class="space-y-1 text-xs"></div>
+                              </div>
+                            )}
+
+                            <div class="flex items-center gap-2">
+                              <button type="button" data-action="done" class="btn-ghost btn-sm text-success border-success hover:bg-success hover:text-white">
+                                Mark done ✓
+                              </button>
+                              <button type="button" data-action="reset-row" class="btn-ghost btn-sm text-danger">
+                                Clear
+                              </button>
+                            </div>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })}
+
+        {totalCount === 0 && (
+          <div class="bg-white border border-dashed border-cast-300 rounded-lg p-10 text-center">
+            <p class="text-cast text-lg">No questions loaded yet — run the intake-mining agent to populate.</p>
+          </div>
+        )}
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== Capture mode overlay (Rebecca's mobile-first photo flow) ===== -->
+  <div id="capture-mode" class="hidden fixed inset-0 z-[200] bg-navy text-white flex flex-col" role="dialog" aria-label="Capture mode">
+    <!-- Toolbar -->
+    <div class="flex items-center gap-2 px-4 py-3 bg-navy-900/80 backdrop-blur border-b border-white/10">
+      <button data-capture-close class="text-white/80 hover:text-white p-2 -ml-2" aria-label="Close capture mode">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25"><line x1="18" y1="6" x2="6" y2="18" stroke-linecap="round"/><line x1="6" y1="6" x2="18" y2="18" stroke-linecap="round"/></svg>
+      </button>
+
+      <div class="text-sm flex-1 min-w-0">
+        <p class="font-bold text-yellow leading-tight">Capture mode</p>
+        <p class="text-xs text-white/70 truncate" data-capture-counter>Shot 1 of 1</p>
+      </div>
+
+      <select data-capture-filter class="bg-white/10 text-white text-xs px-2 py-1.5 rounded border border-white/20 max-w-[160px]">
+        <option value="all-photo-video">All photos + videos</option>
+        <option value="needed">Needed only</option>
+        <option value="started">Started only</option>
+      </select>
+    </div>
+
+    <!-- Sub-category filter chips -->
+    <div data-capture-subs class="flex gap-2 overflow-x-auto px-4 py-2 bg-navy-900/40 border-b border-white/10 text-xs whitespace-nowrap">
+      <!-- chips injected by JS -->
+    </div>
+
+    <!-- Main shot card -->
+    <div class="flex-1 flex flex-col overflow-y-auto p-4 sm:p-6">
+      <div class="max-w-2xl mx-auto w-full">
+        <div class="flex items-center gap-2 mb-3">
+          <span data-capture-status class="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded bg-yellow text-navy">Needed</span>
+          <span data-capture-priority class="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded bg-white/10 text-white/80 hidden">Blocking</span>
+          <span data-capture-sub class="text-xs text-white/60 truncate"></span>
+        </div>
+
+        <h2 data-capture-question class="font-display text-2xl sm:text-3xl font-bold text-white leading-tight mb-3">Loading…</h2>
+        <p data-capture-current class="text-sm text-white/70 mb-5 hidden"><span class="font-semibold">Current:</span> <span class="font-mono"></span></p>
+
+        <!-- Live preview thumbnails of files already attached to this question -->
+        <div data-capture-thumbs class="grid grid-cols-3 sm:grid-cols-4 gap-2 mb-5"></div>
+
+        <!-- Capture controls -->
+        <div class="space-y-3">
+          <!-- Big camera button: opens phone camera directly via capture attr -->
+          <label class="block">
+            <input
+              type="file"
+              data-capture-camera
+              accept="image/*,video/*"
+              capture="environment"
+              multiple
+              class="sr-only"
+            />
+            <span class="block w-full text-center px-6 py-5 bg-yellow text-navy font-display font-bold text-lg rounded-lg cursor-pointer hover:bg-yellow-300 active:scale-[0.99] transition-all shadow-lifted">
+              📷 Take photo / video
+            </span>
+          </label>
+
+          <!-- Upload from gallery -->
+          <label class="block">
+            <input
+              type="file"
+              data-capture-gallery
+              accept="image/*,video/*"
+              multiple
+              class="sr-only"
+            />
+            <span class="block w-full text-center px-6 py-3 bg-white/10 text-white border border-white/20 font-semibold rounded-lg cursor-pointer hover:bg-white/20 active:scale-[0.99] transition-all">
+              🗂️ Choose from gallery
+            </span>
+          </label>
+
+          <textarea
+            data-capture-notes
+            rows="2"
+            placeholder="Notes (who's in shot, when taken, where)…"
+            class="w-full text-sm px-3 py-2 bg-white/10 border border-white/20 rounded text-white placeholder-white/50 focus:outline-none focus:border-yellow"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom navigation bar -->
+    <div class="flex items-center gap-2 px-4 py-3 bg-navy-900/80 backdrop-blur border-t border-white/10">
+      <button data-capture-prev class="px-4 py-3 text-white/80 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-1 text-sm">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25"><polyline points="15 18 9 12 15 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Previous
+      </button>
+
+      <div class="flex-1 text-center">
+        <button data-capture-skip class="px-4 py-2 text-white/70 hover:text-white text-sm underline-offset-4 hover:underline">
+          Skip
+        </button>
+      </div>
+
+      <button data-capture-done class="px-4 py-3 bg-success text-white font-bold rounded text-sm flex items-center gap-1 hover:bg-success/90">
+        Mark done
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <button data-capture-next class="px-4 py-3 bg-yellow text-navy font-bold rounded text-sm flex items-center gap-1 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-yellow-300">
+        Next
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25"><polyline points="9 18 15 12 9 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <!-- Capture-mode progress bar -->
+    <div class="h-1 bg-white/10">
+      <div data-capture-progress class="h-full bg-success transition-all duration-300 ease-out" style="width: 0%"></div>
+    </div>
+  </div>
+
+  <style>
+    @media (min-width: 1024px) {
+      [data-intake-grid] {
+        grid-template-columns: 260px 1fr !important;
+      }
+    }
+    /* Heavy list — let the browser skip offscreen work */
+    .question-row {
+      content-visibility: auto;
+      contain-intrinsic-size: 0 220px;
+    }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.125rem 0.5rem;
+      border-radius: 9999px;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 1.4;
+      transition: all 0.2s ease;
+    }
+    .status-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 9999px;
+      background: currentColor;
+    }
+    .status-needed { background: #FEF3F2; color: #C0322B; }
+    .status-started { background: #FEF7DA; color: #946A00; }
+    .status-done { background: #DCFCE7; color: #0E7A45; }
+
+    .question-row.is-done {
+      background: #F6FDFA;
+    }
+    .question-row.is-hidden {
+      display: none;
+    }
+    .question-row.is-done [data-input],
+    .question-row.is-done [data-file-input] {
+      opacity: 0.7;
+    }
+  </style>
+
+  <!-- JSZip CDN — used for ZIP exports of uploaded files -->
+  <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" defer></script>
+
+  <script is:inline>
+    (function () {
+      const STORE_KEY = 'wccp-intake-v1';
+      const DB_NAME = 'wccp-intake';
+      const DB_STORE = 'files';
+
+      // ---- IndexedDB helpers (file storage) ----
+      function openDb() {
+        return new Promise((resolve, reject) => {
+          const req = indexedDB.open(DB_NAME, 1);
+          req.onupgradeneeded = (e) => {
+            const db = e.target.result;
+            if (!db.objectStoreNames.contains(DB_STORE)) {
+              db.createObjectStore(DB_STORE, { keyPath: 'id' });
+            }
+          };
+          req.onsuccess = () => resolve(req.result);
+          req.onerror = () => reject(req.error);
+        });
+      }
+      async function putFile(record) {
+        const db = await openDb();
+        return new Promise((resolve, reject) => {
+          const tx = db.transaction(DB_STORE, 'readwrite');
+          tx.objectStore(DB_STORE).put(record);
+          tx.oncomplete = () => resolve();
+          tx.onerror = () => reject(tx.error);
+        });
+      }
+      async function getFilesForQuestion(qid) {
+        const db = await openDb();
+        return new Promise((resolve, reject) => {
+          const tx = db.transaction(DB_STORE, 'readonly');
+          const store = tx.objectStore(DB_STORE);
+          const req = store.getAll();
+          req.onsuccess = () => {
+            resolve((req.result || []).filter((r) => r.questionId === qid));
+          };
+          req.onerror = () => reject(req.error);
+        });
+      }
+      async function getAllFiles() {
+        const db = await openDb();
+        return new Promise((resolve, reject) => {
+          const tx = db.transaction(DB_STORE, 'readonly');
+          const req = tx.objectStore(DB_STORE).getAll();
+          req.onsuccess = () => resolve(req.result || []);
+          req.onerror = () => reject(req.error);
+        });
+      }
+      async function deleteFile(id) {
+        const db = await openDb();
+        return new Promise((resolve, reject) => {
+          const tx = db.transaction(DB_STORE, 'readwrite');
+          tx.objectStore(DB_STORE).delete(id);
+          tx.oncomplete = () => resolve();
+          tx.onerror = () => reject(tx.error);
+        });
+      }
+      async function clearAllFiles() {
+        const db = await openDb();
+        return new Promise((resolve, reject) => {
+          const tx = db.transaction(DB_STORE, 'readwrite');
+          tx.objectStore(DB_STORE).clear();
+          tx.oncomplete = () => resolve();
+          tx.onerror = () => reject(tx.error);
+        });
+      }
+
+      // ---- localStorage helpers (text + status) ----
+      function loadState() {
+        try { return JSON.parse(localStorage.getItem(STORE_KEY) || '{}'); } catch (_) { return {}; }
+      }
+      function saveState(s) {
+        try { localStorage.setItem(STORE_KEY, JSON.stringify(s)); } catch (_) {}
+      }
+
+      const state = loadState();
+
+      // ---- Wire up rows ----
+      const rows = document.querySelectorAll('[data-question-id]');
+
+      function getRowState(qid) {
+        return state[qid] || { value: '', status: 'needed' };
+      }
+      function setRowState(qid, patch) {
+        state[qid] = Object.assign({}, getRowState(qid), patch);
+        saveState(state);
+        updateProgress();
+      }
+
+      function statusClassFor(s) { return s === 'done' ? 'status-done' : s === 'started' ? 'status-started' : 'status-needed'; }
+      function statusLabelFor(s) { return s === 'done' ? 'Done' : s === 'started' ? 'Started' : 'Needed'; }
+
+      function renderRowStatus(row, status) {
+        const pill = row.querySelector('[data-status-pill]');
+        const label = row.querySelector('[data-status-label]');
+        if (!pill || !label) return;
+        pill.classList.remove('status-needed', 'status-started', 'status-done');
+        pill.classList.add(statusClassFor(status));
+        label.textContent = statusLabelFor(status);
+        row.classList.toggle('is-done', status === 'done');
+      }
+
+      async function renderRowFiles(row, qid) {
+        const list = row.querySelector('[data-file-list]');
+        if (!list) return;
+        const files = await getFilesForQuestion(qid);
+        list.innerHTML = '';
+        files.forEach((f) => {
+          const wrap = document.createElement('div');
+          wrap.className = 'flex items-center gap-2 p-2 bg-bone-200 rounded';
+          const isImage = f.type && f.type.startsWith('image/');
+          if (isImage) {
+            const img = document.createElement('img');
+            img.src = URL.createObjectURL(f.blob);
+            img.className = 'w-10 h-10 object-cover rounded';
+            wrap.appendChild(img);
+          } else {
+            const icon = document.createElement('span');
+            icon.textContent = f.type && f.type.startsWith('video/') ? '🎬' : '📎';
+            icon.className = 'text-lg';
+            wrap.appendChild(icon);
+          }
+          const info = document.createElement('div');
+          info.className = 'flex-1 min-w-0';
+          info.innerHTML = `<p class="font-mono text-[11px] truncate">${f.name}</p><p class="text-cast text-[10px]">${(f.size/1024).toFixed(0)} KB</p>`;
+          wrap.appendChild(info);
+          const del = document.createElement('button');
+          del.textContent = '✕';
+          del.className = 'text-cast hover:text-danger px-2 text-sm';
+          del.title = 'Remove';
+          del.onclick = async () => {
+            await deleteFile(f.id);
+            await renderRowFiles(row, qid);
+          };
+          wrap.appendChild(del);
+          list.appendChild(wrap);
+        });
+      }
+
+      function recomputeStatus(qid, row) {
+        const inputEl = row.querySelector('[data-input]');
+        const fileInputEl = row.querySelector('[data-file-input]');
+        const value = inputEl ? inputEl.value.trim() : '';
+        const fileCount = (state[qid] && state[qid].fileCount) || 0;
+        let status = 'needed';
+        const cur = getRowState(qid);
+        if (cur.status === 'done') {
+          status = 'done';
+        } else if (value || fileCount > 0) {
+          status = 'started';
+        }
+        setRowState(qid, { value, status });
+        renderRowStatus(row, status);
+      }
+
+      rows.forEach(async (row) => {
+        const qid = row.getAttribute('data-question-id');
+        const cur = getRowState(qid);
+        const input = row.querySelector('[data-input]');
+        if (input && cur.value) input.value = cur.value;
+        renderRowStatus(row, cur.status || 'needed');
+        await renderRowFiles(row, qid);
+
+        if (input) {
+          input.addEventListener('input', () => recomputeStatus(qid, row));
+          input.addEventListener('blur', () => recomputeStatus(qid, row));
+        }
+
+        const fileInput = row.querySelector('[data-file-input]');
+        if (fileInput) {
+          fileInput.addEventListener('change', async (e) => {
+            const files = Array.from(e.target.files || []);
+            for (const f of files) {
+              const id = qid + '__' + Date.now() + '__' + Math.random().toString(36).slice(2, 8);
+              await putFile({ id, questionId: qid, name: f.name, type: f.type, size: f.size, blob: f });
+            }
+            const all = await getFilesForQuestion(qid);
+            setRowState(qid, { fileCount: all.length });
+            await renderRowFiles(row, qid);
+            recomputeStatus(qid, row);
+            e.target.value = '';
+          });
+        }
+
+        const doneBtn = row.querySelector('[data-action="done"]');
+        if (doneBtn) {
+          doneBtn.addEventListener('click', () => {
+            setRowState(qid, { status: 'done' });
+            renderRowStatus(row, 'done');
+            updateProgress();
+          });
+        }
+        const resetBtn = row.querySelector('[data-action="reset-row"]');
+        if (resetBtn) {
+          resetBtn.addEventListener('click', async () => {
+            if (!confirm('Clear answer for this question?')) return;
+            if (input) input.value = '';
+            const allFiles = await getFilesForQuestion(qid);
+            for (const f of allFiles) await deleteFile(f.id);
+            await renderRowFiles(row, qid);
+            setRowState(qid, { value: '', fileCount: 0, status: 'needed' });
+            renderRowStatus(row, 'needed');
+          });
+        }
+      });
+
+      // ---- Progress ----
+      function updateProgress() {
+        let done = 0, started = 0;
+        rows.forEach((row) => {
+          const qid = row.getAttribute('data-question-id');
+          const s = getRowState(qid).status || 'needed';
+          if (s === 'done') done++;
+          else if (s === 'started') started++;
+        });
+        const total = rows.length;
+        const pct = total ? Math.round((done / total) * 100) : 0;
+        const bar = document.querySelector('[data-progress-bar]');
+        if (bar) bar.style.width = pct + '%';
+        document.querySelector('[data-stat="done"]').textContent = String(done);
+        document.querySelector('[data-stat="started"]').textContent = String(started);
+
+        // Per-category counts
+        const categoryCounts = {};
+        rows.forEach((row) => {
+          const cat = row.getAttribute('data-question-cat');
+          const qid = row.getAttribute('data-question-id');
+          if (!categoryCounts[cat]) categoryCounts[cat] = { done: 0, total: 0 };
+          categoryCounts[cat].total++;
+          if (getRowState(qid).status === 'done') categoryCounts[cat].done++;
+        });
+        Object.entries(categoryCounts).forEach(([cat, c]) => {
+          const el = document.querySelector(`[data-cat-progress="${cat}"]`);
+          if (el) el.textContent = String(c.done);
+        });
+      }
+      updateProgress();
+
+      // ---- Search + filter ----
+      const searchInput = document.querySelector('[data-search]');
+      const filterCheckboxes = document.querySelectorAll('[data-filter-status]');
+      function applyFilters() {
+        const term = (searchInput?.value || '').toLowerCase();
+        const allowed = new Set(
+          Array.from(filterCheckboxes).filter((cb) => cb.checked).map((cb) => cb.dataset.filterStatus)
+        );
+        rows.forEach((row) => {
+          const qid = row.getAttribute('data-question-id');
+          const text = row.getAttribute('data-question-text') || '';
+          const status = getRowState(qid).status || 'needed';
+          const matchesText = !term || text.includes(term);
+          const matchesStatus = allowed.has(status);
+          row.classList.toggle('is-hidden', !(matchesText && matchesStatus));
+        });
+      }
+      searchInput?.addEventListener('input', applyFilters);
+      filterCheckboxes.forEach((cb) => cb.addEventListener('change', applyFilters));
+
+      // ---- Exports ----
+      function downloadBlob(blob, filename) {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+
+      document.querySelector('[data-export="json"]')?.addEventListener('click', () => {
+        const out = { exportedAt: new Date().toISOString(), answers: state };
+        downloadBlob(new Blob([JSON.stringify(out, null, 2)], { type: 'application/json' }), `wccp-intake-${Date.now()}.json`);
+      });
+
+      document.querySelector('[data-export="md"]')?.addEventListener('click', () => {
+        let md = `# WCCP intake — exported ${new Date().toLocaleString('en-GB')}\n\n`;
+        const byCat = {};
+        rows.forEach((row) => {
+          const qid = row.getAttribute('data-question-id');
+          const cat = row.getAttribute('data-question-cat');
+          if (!byCat[cat]) byCat[cat] = [];
+          byCat[cat].push({ qid, row });
+        });
+        Object.entries(byCat).forEach(([cat, items]) => {
+          md += `## ${cat}\n\n`;
+          items.forEach(({ qid, row }) => {
+            const q = row.querySelector('p.font-display')?.textContent?.replace(/\s+/g, ' ').trim() || qid;
+            const s = getRowState(qid);
+            const status = s.status === 'done' ? '✅' : s.status === 'started' ? '🟡' : '🔴';
+            md += `- ${status} **${q}**\n`;
+            if (s.value) md += `  - Answer: ${s.value}\n`;
+            if (s.fileCount) md += `  - Files attached: ${s.fileCount}\n`;
+          });
+          md += '\n';
+        });
+        downloadBlob(new Blob([md], { type: 'text/markdown' }), `wccp-intake-${Date.now()}.md`);
+      });
+
+      document.querySelector('[data-export="files"]')?.addEventListener('click', async () => {
+        if (typeof JSZip === 'undefined') {
+          alert('JSZip still loading — try again in a moment.');
+          return;
+        }
+        const all = await getAllFiles();
+        if (!all.length) { alert('No files uploaded yet.'); return; }
+        const zip = new JSZip();
+        all.forEach((f) => {
+          const folder = f.questionId.replace(/[^a-z0-9-]/gi, '_');
+          zip.folder(folder).file(f.name, f.blob);
+        });
+        const blob = await zip.generateAsync({ type: 'blob' });
+        downloadBlob(blob, `wccp-intake-files-${Date.now()}.zip`);
+      });
+
+      document.querySelector('[data-export="reset"]')?.addEventListener('click', async () => {
+        if (!confirm('Clear ALL answers and uploaded files? This cannot be undone.')) return;
+        try { localStorage.removeItem(STORE_KEY); } catch (_) {}
+        await clearAllFiles();
+        location.reload();
+      });
+
+      // ===================== CAPTURE MODE (Rebecca's flow) =====================
+      // Mobile-first one-shot-at-a-time UI for the photo/video shot list.
+      // Builds a queue from rows whose type is photo or video, navigates with
+      // prev/next/skip/done, opens the phone camera via capture="environment".
+
+      const captureModal = document.getElementById('capture-mode');
+      const captureBtn = document.querySelector('[data-action="capture-mode"]');
+      let captureQueue = [];
+      let captureIndex = 0;
+
+      function captureBuildQueue() {
+        const filterMode = (document.querySelector('[data-capture-filter]') || {}).value || 'all-photo-video';
+        const subFilter = (document.querySelector('[data-capture-subs] [aria-pressed="true"]') || {}).getAttribute?.('data-sub') || '__all__';
+
+        // Identify photo/video rows by checking presence of [data-file-input].
+        // (Question-row markup includes the file input when its type is photo|video|file.)
+        const all = Array.from(rows).filter((r) => {
+          const t = r.getAttribute('data-question-type');
+          return t === 'photo' || t === 'video';
+        });
+
+        let queue = all;
+
+        if (filterMode === 'needed') {
+          queue = queue.filter((r) => (getRowState(r.getAttribute('data-question-id')).status || 'needed') === 'needed');
+        } else if (filterMode === 'started') {
+          queue = queue.filter((r) => (getRowState(r.getAttribute('data-question-id')).status || 'needed') === 'started');
+        }
+
+        if (subFilter !== '__all__') {
+          queue = queue.filter((r) => (r.getAttribute('data-question-sub') || '') === subFilter);
+        }
+
+        return queue;
+      }
+
+      function captureBuildSubChips() {
+        const all = Array.from(rows).filter((r) => {
+          const t = r.getAttribute('data-question-type');
+          return t === 'photo' || t === 'video';
+        });
+        const subs = Array.from(new Set(all.map((r) => r.getAttribute('data-question-sub') || ''))).filter(Boolean);
+        const wrap = document.querySelector('[data-capture-subs]');
+        if (!wrap) return;
+        wrap.innerHTML = '';
+        const all_chip = document.createElement('button');
+        all_chip.textContent = 'All sub-categories';
+        all_chip.className = 'shrink-0 px-3 py-1 rounded-full bg-yellow text-navy font-bold';
+        all_chip.setAttribute('data-sub', '__all__');
+        all_chip.setAttribute('aria-pressed', 'true');
+        wrap.appendChild(all_chip);
+        subs.forEach((s) => {
+          const b = document.createElement('button');
+          b.textContent = s;
+          b.className = 'shrink-0 px-3 py-1 rounded-full bg-white/10 text-white border border-white/20 hover:bg-white/20';
+          b.setAttribute('data-sub', s);
+          b.setAttribute('aria-pressed', 'false');
+          wrap.appendChild(b);
+        });
+        wrap.querySelectorAll('button').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            wrap.querySelectorAll('button').forEach((b) => {
+              b.setAttribute('aria-pressed', 'false');
+              b.className = 'shrink-0 px-3 py-1 rounded-full bg-white/10 text-white border border-white/20 hover:bg-white/20';
+            });
+            btn.setAttribute('aria-pressed', 'true');
+            btn.className = 'shrink-0 px-3 py-1 rounded-full bg-yellow text-navy font-bold';
+            captureQueue = captureBuildQueue();
+            captureIndex = 0;
+            captureRender();
+          });
+        });
+      }
+
+      async function captureRender() {
+        if (!captureQueue.length) {
+          document.querySelector('[data-capture-question]').textContent = 'No shots in this filter — try "All".';
+          document.querySelector('[data-capture-counter]').textContent = '';
+          document.querySelector('[data-capture-thumbs]').innerHTML = '';
+          document.querySelector('[data-capture-current]').classList.add('hidden');
+          document.querySelector('[data-capture-prev]').setAttribute('disabled', '');
+          document.querySelector('[data-capture-next]').setAttribute('disabled', '');
+          return;
+        }
+        if (captureIndex < 0) captureIndex = 0;
+        if (captureIndex >= captureQueue.length) captureIndex = captureQueue.length - 1;
+
+        const row = captureQueue[captureIndex];
+        const qid = row.getAttribute('data-question-id');
+        const sub = row.getAttribute('data-question-sub') || '';
+        const question = row.querySelector('p.font-display')?.textContent?.trim() || qid;
+        const cur = getRowState(qid);
+
+        // Find current value placeholder (rendered as "Current: ..." in the row)
+        const currentP = row.querySelector('p.text-xs.text-cast');
+        const currentValueText = currentP ? currentP.textContent.replace('Current:', '').trim() : '';
+
+        // Detect priority badge
+        const isBlocking = !!row.querySelector('.bg-danger');
+
+        document.querySelector('[data-capture-question]').textContent = question;
+        document.querySelector('[data-capture-sub]').textContent = sub;
+        document.querySelector('[data-capture-counter]').textContent = `Shot ${captureIndex + 1} of ${captureQueue.length}`;
+
+        const status = cur.status || 'needed';
+        const statusEl = document.querySelector('[data-capture-status]');
+        statusEl.textContent = status === 'done' ? 'Done ✓' : status === 'started' ? 'Started' : 'Needed';
+        statusEl.className = 'text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded ' +
+          (status === 'done' ? 'bg-success text-white' : status === 'started' ? 'bg-yellow text-navy' : 'bg-white/10 text-white');
+
+        const priEl = document.querySelector('[data-capture-priority]');
+        priEl.classList.toggle('hidden', !isBlocking);
+
+        const curEl = document.querySelector('[data-capture-current]');
+        if (currentValueText) {
+          curEl.classList.remove('hidden');
+          curEl.querySelector('span.font-mono').textContent = currentValueText;
+        } else {
+          curEl.classList.add('hidden');
+        }
+
+        // Sync notes textarea with row's existing notes
+        const notesEl = document.querySelector('[data-capture-notes]');
+        notesEl.value = cur.value || '';
+
+        // Render thumbnails
+        const thumbsWrap = document.querySelector('[data-capture-thumbs]');
+        thumbsWrap.innerHTML = '';
+        const files = await getFilesForQuestion(qid);
+        files.forEach((f) => {
+          const cell = document.createElement('div');
+          cell.className = 'relative aspect-square bg-white/10 rounded overflow-hidden group';
+          if (f.type && f.type.startsWith('image/')) {
+            const img = document.createElement('img');
+            img.src = URL.createObjectURL(f.blob);
+            img.className = 'absolute inset-0 w-full h-full object-cover';
+            cell.appendChild(img);
+          } else if (f.type && f.type.startsWith('video/')) {
+            const v = document.createElement('div');
+            v.className = 'absolute inset-0 flex items-center justify-center text-3xl';
+            v.textContent = '🎬';
+            cell.appendChild(v);
+          }
+          const del = document.createElement('button');
+          del.textContent = '✕';
+          del.className = 'absolute top-1 right-1 w-6 h-6 rounded-full bg-black/70 text-white text-xs hidden group-hover:flex items-center justify-center';
+          del.onclick = async () => { await deleteFile(f.id); captureRender(); };
+          cell.appendChild(del);
+          thumbsWrap.appendChild(cell);
+        });
+
+        // Nav buttons
+        document.querySelector('[data-capture-prev]').toggleAttribute('disabled', captureIndex === 0);
+        document.querySelector('[data-capture-next]').toggleAttribute('disabled', captureIndex >= captureQueue.length - 1);
+
+        // Capture-mode progress bar reflects done/total within current queue
+        const done = captureQueue.filter((r) => (getRowState(r.getAttribute('data-question-id')).status === 'done')).length;
+        const pct = captureQueue.length ? Math.round((done / captureQueue.length) * 100) : 0;
+        document.querySelector('[data-capture-progress]').style.width = pct + '%';
+      }
+
+      async function captureAcceptFiles(files) {
+        if (!captureQueue.length) return;
+        const row = captureQueue[captureIndex];
+        const qid = row.getAttribute('data-question-id');
+        for (const f of files) {
+          const id = qid + '__' + Date.now() + '__' + Math.random().toString(36).slice(2, 8);
+          await putFile({ id, questionId: qid, name: f.name, type: f.type, size: f.size, blob: f });
+        }
+        const all = await getFilesForQuestion(qid);
+        setRowState(qid, { fileCount: all.length });
+        // Auto-mark started (will become done if user taps Mark done)
+        recomputeStatus(qid, row);
+        await renderRowFiles(row, qid);
+        await captureRender();
+      }
+
+      function captureOpen() {
+        captureBuildSubChips();
+        captureQueue = captureBuildQueue();
+        captureIndex = 0;
+        captureModal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        captureRender();
+      }
+      function captureClose() {
+        captureModal.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+
+      captureBtn?.addEventListener('click', captureOpen);
+      document.querySelector('[data-capture-close]')?.addEventListener('click', captureClose);
+      document.querySelector('[data-capture-prev]')?.addEventListener('click', () => { captureIndex--; captureRender(); });
+      document.querySelector('[data-capture-next]')?.addEventListener('click', () => { captureIndex++; captureRender(); });
+      document.querySelector('[data-capture-skip]')?.addEventListener('click', () => { captureIndex++; captureRender(); });
+
+      document.querySelector('[data-capture-done]')?.addEventListener('click', () => {
+        const row = captureQueue[captureIndex];
+        if (!row) return;
+        const qid = row.getAttribute('data-question-id');
+        setRowState(qid, { status: 'done' });
+        renderRowStatus(row, 'done');
+        updateProgress();
+        // Auto-advance
+        if (captureIndex < captureQueue.length - 1) captureIndex++;
+        captureRender();
+      });
+
+      document.querySelector('[data-capture-camera]')?.addEventListener('change', async (e) => {
+        await captureAcceptFiles(Array.from(e.target.files || []));
+        e.target.value = '';
+      });
+      document.querySelector('[data-capture-gallery]')?.addEventListener('change', async (e) => {
+        await captureAcceptFiles(Array.from(e.target.files || []));
+        e.target.value = '';
+      });
+
+      document.querySelector('[data-capture-notes]')?.addEventListener('input', (e) => {
+        const row = captureQueue[captureIndex];
+        if (!row) return;
+        const qid = row.getAttribute('data-question-id');
+        setRowState(qid, { value: e.target.value });
+        const rowInput = row.querySelector('[data-input]');
+        if (rowInput) rowInput.value = e.target.value;
+        recomputeStatus(qid, row);
+      });
+
+      document.querySelector('[data-capture-filter]')?.addEventListener('change', () => {
+        captureQueue = captureBuildQueue();
+        captureIndex = 0;
+        captureRender();
+      });
+
+      // Keyboard: arrows, Esc
+      document.addEventListener('keydown', (e) => {
+        if (captureModal.classList.contains('hidden')) return;
+        // Skip when typing in an input
+        if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+        if (e.key === 'ArrowLeft') { captureIndex = Math.max(0, captureIndex - 1); captureRender(); }
+        else if (e.key === 'ArrowRight') { captureIndex = Math.min(captureQueue.length - 1, captureIndex + 1); captureRender(); }
+        else if (e.key === 'Escape') { captureClose(); }
+      });
+
+      // Touch swipe (basic)
+      let touchStartX = null;
+      captureModal.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+      captureModal.addEventListener('touchend', (e) => {
+        if (touchStartX === null) return;
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 60) {
+          if (dx < 0 && captureIndex < captureQueue.length - 1) { captureIndex++; captureRender(); }
+          else if (dx > 0 && captureIndex > 0) { captureIndex--; captureRender(); }
+        }
+        touchStartX = null;
+      }, { passive: true });
+    })();
+  </script>
+</BaseLayout>

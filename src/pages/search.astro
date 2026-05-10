@@ -2,6 +2,9 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { site } from '@/config/site';
 
+// Directory groupings — every link below is verified against the build output.
+// When products / guides / grants / case-studies are added or renamed, update
+// this list so the search page never advertises a route that 404s.
 const directory = [
   {
     heading: 'Sectors',
@@ -28,7 +31,8 @@ const directory = [
     heading: 'More products',
     links: [
       { href: '/products/l-blocks', label: 'L-blocks' },
-      { href: '/products/a-panels', label: 'A-panels' },
+      { href: '/products/cantilever-walls', label: 'Cantilever walls' },
+      { href: '/products/king-post-walls', label: 'King-post walls' },
       { href: '/products/culverts', label: 'Box culverts' },
       { href: '/products/padstones', label: 'Padstones' },
       { href: '/products/vehicle-pits', label: 'Vehicle inspection pits' },
@@ -39,10 +43,11 @@ const directory = [
   {
     heading: 'Resources & guides',
     links: [
-      { href: '/guides/slurry-sizing', label: 'Slurry sizing guide' },
-      { href: '/guides/cubicle-design', label: 'Cubicle design guide' },
-      { href: '/guides/silage-clamp-design', label: 'Silage clamp design' },
-      { href: '/guides/retaining-wall-design', label: 'Retaining wall design' },
+      { href: '/guides/slurry-wall-thickness', label: 'Slurry wall thickness' },
+      { href: '/guides/cubicle-sizing', label: 'Cubicle sizing' },
+      { href: '/guides/retaining-wall-types', label: 'Retaining wall types' },
+      { href: '/guides/retaining-wall-cost-uk', label: 'Retaining wall cost (UK)' },
+      { href: '/guides/concrete-grades', label: 'Concrete grades' },
       { href: '/downloads', label: 'Downloads — datasheets, CAD, BIM' },
       { href: '/faqs', label: 'Frequently asked questions' },
       { href: '/news', label: 'News & updates' },
@@ -53,8 +58,8 @@ const directory = [
     heading: 'Grants & funding',
     links: [
       { href: '/grants/slurry-grant', label: 'Slurry Infrastructure Grant (SIG)' },
-      { href: '/grants/fetf', label: 'FETF 2026 grant' },
-      { href: '/grants', label: 'All grants & funding' },
+      { href: '/grants/sig-round-4', label: 'SIG Round 4 — 2026 deadline' },
+      { href: '/grants/fetf-2026', label: 'FETF 2026 grant' },
     ],
   },
   {
@@ -102,7 +107,7 @@ const directory = [
 
 <BaseLayout
   title="Search"
-  description="Search West Country Concrete Products. Site search is coming soon — in the meantime, browse the directory of every page."
+  description="Search West Country Concrete Products. Type a query, or browse the directory of every page on the site."
   noindex={true}
 >
   <!-- Hero -->
@@ -111,44 +116,38 @@ const directory = [
       <div class="max-w-3xl">
         <p class="eyebrow text-yellow mb-6">Search</p>
         <h1 class="font-display text-display-2xl text-white mb-6">
-          Site search<br />
-          <span class="text-yellow">coming soon.</span>
+          Find what you're after.
         </h1>
         <p class="text-lg md:text-xl text-white/90 max-w-2xl mb-8 leading-relaxed">
-          We're building a proper search index. Until it's ready, the directory below covers every
-          page on the site — or just ring the yard on {site.contact.phone} and we'll point you at it.
+          Type a product, a spec, a sector, or a guide title. The full directory of every page sits below
+          if you'd rather click than type — or just ring the yard on {site.contact.phone}.
         </p>
-
-        <form action="/search" method="GET" class="flex flex-col sm:flex-row gap-3 max-w-2xl">
-          <label for="q" class="sr-only">Search</label>
-          <input
-            id="q"
-            type="search"
-            name="q"
-            placeholder="Try 'slurry' or 'cubicles' or 'SIG'…"
-            class="input flex-1"
-            autocomplete="off"
-          />
-          <button type="submit" class="btn-yellow">Search</button>
-        </form>
       </div>
     </div>
   </section>
 
-  <!-- Notice -->
-  <section class="bg-yellow text-navy py-8">
-    <div class="container-wccp">
-      <p class="text-navy text-center">
-        <strong>In the meantime…</strong> browse the directory below — or jump to
-        <a href="/faqs" class="underline font-bold hover:text-ember">FAQs</a>,
-        <a href="/products" class="underline font-bold hover:text-ember">products</a>,
-        or <a href="/contact" class="underline font-bold hover:text-ember">contact</a>.
+  <!-- Pagefind UI mount + fallback -->
+  <section class="container-wccp py-12 md:py-16">
+    <div class="max-w-3xl mx-auto">
+      <!-- Pagefind UI is injected here at runtime. The probe below only mounts
+           the UI if /pagefind/pagefind-entry.json is reachable, so a half-deployed
+           build never advertises a search box that can't return results. -->
+      <div id="pagefind-search-mount"></div>
+      <noscript>
+        <p class="text-cast-700">
+          Search needs JavaScript. Browse the directory below, or
+          <a href="/contact" class="text-ember font-bold hover:text-ember-700 underline">contact us</a>.
+        </p>
+      </noscript>
+      <p id="pagefind-search-fallback" class="hidden text-sm text-cast-700">
+        Search index isn't reachable from this page. Browse the directory below — or
+        <a href="/contact" class="text-ember font-bold hover:text-ember-700 underline">call the yard</a>.
       </p>
     </div>
   </section>
 
   <!-- Directory -->
-  <section class="container-wccp py-20">
+  <section class="container-wccp pb-20">
     <div class="max-w-2xl mb-10">
       <p class="eyebrow text-cast mb-3">Site directory</p>
       <h2 class="font-display text-display-lg">Every page on the site.</h2>
@@ -186,4 +185,113 @@ const directory = [
       </div>
     </div>
   </section>
+
+  <style is:global>
+    /* Pagefind UI overrides — match WCCP brand */
+    #pagefind-search-mount {
+      --pagefind-ui-scale: 1;
+      --pagefind-ui-primary: #3a5cb5;
+      --pagefind-ui-text: #1a2236;
+      --pagefind-ui-background: #ffffff;
+      --pagefind-ui-border: #e2e3e7;
+      --pagefind-ui-tag: #f5f5f0;
+      --pagefind-ui-border-width: 1px;
+      --pagefind-ui-border-radius: 8px;
+      --pagefind-ui-image-border-radius: 6px;
+      --pagefind-ui-image-box-ratio: 4 / 3;
+      --pagefind-ui-font: 'Inter Variable', system-ui, sans-serif;
+    }
+    #pagefind-search-mount .pagefind-ui__search-input {
+      font-size: 1.05rem;
+      padding: 0.75rem 2.75rem 0.75rem 1rem;
+    }
+    #pagefind-search-mount .pagefind-ui__result-title a {
+      color: #3a5cb5;
+      font-weight: 700;
+    }
+    #pagefind-search-mount .pagefind-ui__result-title a:hover {
+      color: #E54D17;
+    }
+  </style>
+
+  <script is:inline>
+    (function () {
+      function initInlinePagefind() {
+        var mount = document.getElementById('pagefind-search-mount');
+        var fallback = document.getElementById('pagefind-search-fallback');
+        if (!mount || mount.dataset.wccpBound === '1') return;
+        mount.dataset.wccpBound = '1';
+
+        // Probe the index — only attempt to load Pagefind if it's actually deployed.
+        fetch('/pagefind/pagefind-entry.json', { method: 'HEAD' }).then(function (r) {
+          if (!r.ok) {
+            if (fallback) fallback.classList.remove('hidden');
+            return;
+          }
+
+          // Inject CSS
+          if (!document.querySelector('link[data-pagefind-ui-css]')) {
+            var css = document.createElement('link');
+            css.rel = 'stylesheet';
+            css.href = '/pagefind/pagefind-ui.css';
+            css.setAttribute('data-pagefind-ui-css', '1');
+            document.head.appendChild(css);
+          }
+
+          // pagefind-ui.js is an IIFE that registers window.PagefindUI.
+          function mountUI() {
+            if (!window.PagefindUI) return;
+            new window.PagefindUI({
+              element: '#pagefind-search-mount',
+              showSubResults: true,
+              showImages: false,
+              resetStyles: false,
+              translations: {
+                placeholder: 'Search products, specs, case studies…',
+                clear_search: 'Clear',
+                zero_results: 'No matches for [SEARCH_TERM]. Try a wider term, or call the yard.',
+              },
+            });
+            // Read ?q= from the URL so /search?q=foo works.
+            try {
+              var params = new URLSearchParams(window.location.search);
+              var q = params.get('q');
+              if (q) {
+                setTimeout(function () {
+                  var input = mount.querySelector('input.pagefind-ui__search-input');
+                  if (input) {
+                    input.value = q;
+                    input.dispatchEvent(new Event('input', { bubbles: true }));
+                  }
+                }, 80);
+              }
+            } catch (_) { /* no-op */ }
+          }
+
+          if (window.PagefindUI) { mountUI(); return; }
+          var existing = document.querySelector('script[data-pagefind-ui-js]');
+          if (existing) {
+            existing.addEventListener('load', mountUI);
+            return;
+          }
+          var s = document.createElement('script');
+          s.src = '/pagefind/pagefind-ui.js';
+          s.async = true;
+          s.setAttribute('data-pagefind-ui-js', '1');
+          s.onload = mountUI;
+          s.onerror = function () { if (fallback) fallback.classList.remove('hidden'); };
+          document.head.appendChild(s);
+        }).catch(function () {
+          if (fallback) fallback.classList.remove('hidden');
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initInlinePagefind);
+      } else {
+        initInlinePagefind();
+      }
+      document.addEventListener('astro:page-load', initInlinePagefind);
+    })();
+  </script>
 </BaseLayout>

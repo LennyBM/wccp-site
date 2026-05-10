@@ -17,6 +17,19 @@ const towns = [
   { name: 'Liskeard', drive: '60 min' },
 ];
 
+const townsServed = [
+  { name: 'Launceston', note: 'Dairy holdings, slurry stores and cubicle housing across the Tamar valley fringe.' },
+  { name: 'Bodmin', note: 'Beef sheds and silage clamp walls for moor-edge farms and contractor yards.' },
+  { name: 'Wadebridge', note: 'AD-plant tank panels, cubicle housing and bespoke civils for the Camel valley.' },
+  { name: 'Truro', note: 'Civils retaining walls, padstones and Cornwall Council framework supply.' },
+  { name: 'St Austell', note: 'Aggregate-yard L-blocks, push walls and bunker walls for clay-country contractors.' },
+  { name: 'Newquay', note: 'Stable bases, dairy cubicles and bunker walls across Cornwall\'s north coast.' },
+  { name: 'Penzance', note: 'West Penwith dairy slurry stores, cubicle housing and farm civils.' },
+  { name: 'Falmouth', note: 'Marine-yard L-blocks, padstones and Roseland Peninsula farm jobs.' },
+  { name: 'Boscastle', note: 'North-coast estate retaining walls and small-batch agricultural panels.' },
+  { name: 'Liskeard', note: 'Mid-Cornwall dairy cubicles, silage clamps and contractor yard walls.' },
+];
+
 const faqs = [
   {
     q: 'How far do you deliver in Cornwall?',
@@ -40,20 +53,26 @@ const faqs = [
   },
 ];
 
-const localBusinessSchema = {
+const serviceSchema = {
+  '@type': 'Service',
+  name: 'Cornwall precast concrete supplier',
+  serviceType: 'Precast concrete supply and delivery',
+  provider: { '@type': 'Organization', name: site.name, url: site.url },
   areaServed: {
     '@type': 'AdministrativeArea',
     name: 'Cornwall, United Kingdom',
   },
+  description:
+    'Own-fleet precast concrete supply and delivery from the WCCP yard in Holsworthy, North Devon to farms, civils and contractors across Cornwall.',
   mainEntityOfPage: 'https://westcountryconcreteproducts.co.uk/areas/cornwall',
 };
 ---
 
 <BaseLayout
-  title="Precast concrete supplier serving Cornwall farms and contractors"
-  description="WCCP precast concrete delivered across Cornwall — Truro, Launceston, Bodmin, Penzance and beyond. Slurry stores, cubicles, retaining walls. Made in North Devon."
-  schema="LocalBusiness"
-  schemaData={localBusinessSchema}
+  title="Cornwall precast concrete supplier — slurry stores, cubicles, civils"
+  description="Cornwall precast concrete supplier. WCCP delivers slurry stores, cattle cubicles, silage clamps and civils L-blocks across Cornwall from Holsworthy, North Devon."
+  schema="Service"
+  schemaData={serviceSchema}
 >
   <!-- Hero -->
   <section class="bg-navy text-white">
@@ -67,7 +86,7 @@ const localBusinessSchema = {
       </nav>
       <p class="eyebrow text-yellow mb-5">Cornwall · across the Tamar</p>
       <h1 class="font-display text-display-xl text-white mb-5 max-w-4xl">
-        Precast concrete supplier serving Cornwall farms and contractors.
+        Cornwall precast concrete supplier — farms, civils and contractors.
       </h1>
       <p class="text-lg text-white/90 max-w-2xl leading-relaxed mb-8">
         Holsworthy to Penzance is a single working day for our fleet. Cornwall is half our weekly
@@ -78,6 +97,24 @@ const localBusinessSchema = {
         <a href="/quote" class="btn-primary">Get a Cornwall quote</a>
         <a href={`tel:${site.contact.phoneIntl}`} class="btn-yellow">Call {site.contact.phone}</a>
       </div>
+    </div>
+  </section>
+
+  <!-- Direct-answer block (GEO / AI search) -->
+  <section class="bg-bone-100 border-b border-cast-100">
+    <div class="container-wccp py-10 max-w-3xl">
+      <p class="eyebrow text-cast mb-3">In short</p>
+      <p class="text-cast-700 text-lg leading-relaxed">
+        WCCP supplies precast concrete to <strong>Cornwall</strong> from our <a href="/about" class="text-ember hover:text-ember-700 underline underline-offset-2">Holsworthy yard</a>
+        in North Devon — roughly 30 minutes to Launceston, 80 minutes to Truro and 110 minutes to Penzance via the A30. Common Cornwall jobs:
+        <a href="/products/slurry-storage" class="text-ember hover:text-ember-700 underline underline-offset-2">dairy slurry storage</a>,
+        <a href="/products/cattle-cubicles" class="text-ember hover:text-ember-700 underline underline-offset-2">cattle cubicles</a> and
+        <a href="/products/silage-clamp-walls" class="text-ember hover:text-ember-700 underline underline-offset-2">silage clamp walls</a>.
+        Civils contractors also order
+        <a href="/products/l-blocks" class="text-ember hover:text-ember-700 underline underline-offset-2">L-blocks</a>
+        for push walls and bunkers. Lead times: 2–6 weeks for catalogue items. Recent deliveries to Boscastle, St Austell and Truro.
+        <a href="/quote" class="text-ember font-bold hover:text-ember-700">Start a Cornwall quote.</a>
+      </p>
     </div>
   </section>
 
@@ -132,6 +169,20 @@ const localBusinessSchema = {
     </div>
   </section>
 
+  <!-- Towns served · context per town -->
+  <section class="container-wccp py-16">
+    <p class="eyebrow text-cast mb-3">Towns we serve in Cornwall</p>
+    <h2 class="font-display text-display-lg mb-8">What Cornwall buys from the yard.</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      {townsServed.map((t) => (
+        <div class="card p-5">
+          <h3 class="font-display text-base font-bold text-navy mb-2">{t.name}</h3>
+          <p class="text-cast-700 text-sm leading-relaxed">{t.note}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
   <!-- Local case studies teaser -->
   <section class="container-wccp py-16">
     <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-8 gap-4">
@@ -149,15 +200,15 @@ const localBusinessSchema = {
     </div>
 
     <div class="grid md:grid-cols-3 gap-5">
-      <a href="/case-studies/cornish-beef-cubicles" class="card p-6 group">
-        <span class="eyebrow text-ember mb-3 block">St Erme · 2025</span>
-        <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Trewithen Barton — 180-cow cubicle shed</h3>
-        <p class="text-cast text-sm leading-relaxed">95 tonnes of cubicles fitted in six days, herd settled in 48 hours.</p>
+      <a href="/case-studies/boscastle-beef-shed" class="card p-6 group">
+        <span class="eyebrow text-ember mb-3 block">Boscastle · 2025</span>
+        <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Boscastle beef shed — FETF-funded conversion</h3>
+        <p class="text-cast text-sm leading-relaxed">Cubicle conversion delivered inside a tight FETF grant window, on a tight Cornish lane.</p>
       </a>
-      <a href="/case-studies/cornish-anaerobic-digester" class="card p-6 group">
-        <span class="eyebrow text-ember mb-3 block">Wadebridge · 2024</span>
-        <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Polmorla AD plant — bespoke tank panels</h3>
-        <p class="text-cast text-sm leading-relaxed">540 tonnes of bespoke AD tank panels engineered around the digester geometry.</p>
+      <a href="/case-studies/wessex-ad-plant" class="card p-6 group">
+        <span class="eyebrow text-ember mb-3 block">SW England · 2024</span>
+        <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Wessex AD plant — bespoke tank panels</h3>
+        <p class="text-cast text-sm leading-relaxed">Bespoke AD-tank panels engineered around the digester geometry, beating the national lead by half.</p>
       </a>
       <a href="/case-studies" class="card p-6 group">
         <span class="eyebrow text-ember mb-3 block">More Cornwall jobs</span>

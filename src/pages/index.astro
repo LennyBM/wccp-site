@@ -7,9 +7,8 @@ import SlurryQuickCalc from '@/components/SlurryQuickCalc.astro';
 import ProductGallery from '@/components/ProductGallery.astro';
 import { Image } from 'astro:assets';
 import yardHero from '@/assets/images/wccp-yard-aerial-chilsworthy-holsworthy.png';
-import agriculturalCard from '@/assets/images/cards/agricultural-card.jpg';
-import civilsCard from '@/assets/images/cards/civils-card.jpg';
-import bespokeCard from '@/assets/images/cards/bespoke-card.jpg';
+// Sector card images removed pending real photography from the WCCP yard.
+// Previous AI-generated cards have been replaced with placeholders below.
 import { site } from '@/config/site';
 
 // Map flagship product hrefs to illustration slugs
@@ -92,13 +91,30 @@ const reach = [
 ];
 
 const trustLogos = ['CE / UKCA', 'BS EN 14992', 'BS 8500-1:2023', 'Eurocode 2', 'SSAFO 2018', 'BS 5502-22'];
+
 ---
 
 <BaseLayout
   title="Precast concrete, cast in North Devon"
   description={site.description}
+  image="/og/home.png"
+  imageAlt="West Country Concrete Products — aerial view of the Holsworthy yard, North Devon, where precast concrete is cast and despatched UK-wide"
   schema="LocalBusiness"
 >
+  <div data-success-banner="newsletter" class="hidden bg-success text-white py-4">
+    <div class="container-wccp flex items-center gap-3">
+      <svg class="w-6 h-6 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <p class="font-semibold">Subscribed — thanks. We'll send the next quarterly update soon.</p>
+    </div>
+  </div>
+  <script is:inline>
+    if (new URLSearchParams(window.location.search).get('newsletter') === 'ok') {
+      document.querySelector('[data-success-banner="newsletter"]')?.classList.remove('hidden');
+    }
+  </script>
+
   <!-- ====== Editorial hero — full-bleed, headline pinned bottom-left ====== -->
   <section class="relative bg-forest-800 text-cream overflow-hidden min-h-[78vh] md:min-h-[82vh] lg:min-h-[88vh] flex flex-col justify-end">
     <!-- Full-bleed yard drone photograph -->
@@ -212,43 +228,20 @@ const trustLogos = ['CE / UKCA', 'BS EN 14992', 'BS 8500-1:2023', 'Eurocode 2', 
     <div class="grid md:grid-cols-3 gap-6 reveal-stagger">
       {sectors.map((s) => (
         <a href={s.href} class="card overflow-hidden group block">
-          <!-- Image area — real photos for all sectors -->
-          <div class="aspect-[4/3] bg-navy-700 relative overflow-hidden">
-            {s.href === '/sectors/agricultural' && (
-              <Image
-                src={agriculturalCard}
-                alt=""
-                widths={[400, 600, 800, 1200]}
-                sizes="(max-width: 768px) 100vw, 33vw"
-                loading="lazy"
-                decoding="async"
-                class="card-image absolute inset-0 w-full h-full object-cover"
-              />
-            )}
-            {s.href === '/sectors/civils' && (
-              <Image
-                src={civilsCard}
-                alt=""
-                widths={[400, 600, 800, 1200]}
-                sizes="(max-width: 768px) 100vw, 33vw"
-                loading="lazy"
-                decoding="async"
-                class="card-image absolute inset-0 w-full h-full object-cover"
-              />
-            )}
-            {s.href === '/sectors/bespoke' && (
-              <Image
-                src={bespokeCard}
-                alt=""
-                widths={[400, 600, 800, 1200]}
-                sizes="(max-width: 768px) 100vw, 33vw"
-                loading="lazy"
-                decoding="async"
-                class="card-image absolute inset-0 w-full h-full object-cover"
-              />
-            )}
-            <!-- Subtle navy fade for text legibility -->
-            <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-navy-700/40 via-transparent to-transparent"></div>
+          <!-- Image area — placeholders pending real WCCP yard photography -->
+          <div class="aspect-[4/3] bg-cast-100 relative overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
+            <div>
+              <p class="text-cast-600 text-sm font-mono">📷 Photo needed</p>
+              {s.href === '/sectors/agricultural' && (
+                <p class="text-cast text-xs mt-2">Cattle in WCCP cubicles or feeding at WCCP feed troughs — Devon dairy farm</p>
+              )}
+              {s.href === '/sectors/civils' && (
+                <p class="text-cast text-xs mt-2">WCCP precast retaining walls or culverts on a UK civils site</p>
+              )}
+              {s.href === '/sectors/bespoke' && (
+                <p class="text-cast text-xs mt-2">Bespoke WCCP precast units on pallets at the Holsworthy yard</p>
+              )}
+            </div>
           </div>
           <div class="p-6">
             <h3 class="font-display text-2xl font-bold text-navy mb-2 transition-colors duration-200 group-hover:text-ember">
@@ -288,8 +281,11 @@ const trustLogos = ['CE / UKCA', 'BS EN 14992', 'BS 8500-1:2023', 'Eurocode 2', 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 reveal-stagger">
         {flagshipProducts.map((p) => (
           <a href={p.href} class="card p-6 group block">
-            <div class="mb-5 relative">
-              <ProductIllustration product={flagshipSlugMap[p.href] as any} variant="card" />
+            <div class="mb-5 relative aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-6 text-center">
+              <div>
+                <p class="text-cast-600 text-sm font-mono">📷 Photo needed</p>
+                <p class="text-cast text-xs mt-2 leading-snug">{p.label} — finished installation, working scale visible</p>
+              </div>
               <div aria-hidden="true" class="absolute top-2 right-2 w-2 h-2 bg-ember rounded-full transition-all duration-400 group-hover:scale-150 group-hover:shadow-glow-ember pointer-events-none"></div>
             </div>
             <h3 class="font-display text-lg font-bold text-navy mb-1 transition-colors duration-200 group-hover:text-ember">
@@ -314,12 +310,14 @@ const trustLogos = ['CE / UKCA', 'BS EN 14992', 'BS 8500-1:2023', 'Eurocode 2', 
           same question: <strong class="text-navy">what'll outlast the job?</strong>
         </p>
         <p class="text-cast text-lg leading-relaxed mb-8">
-          Bespoke or catalogue. Farm or civils. We design, manufacture, deliver — and increasingly install.
+          Bespoke or catalogue. Farm or civils. We design, manufacture, deliver — and increasingly install
+          from <a href="/factory" class="font-semibold text-navy hover:text-ember underline decoration-cast-200 hover:decoration-ember underline-offset-4">our purpose-built factory at Chilsworthy</a>.
           Recent jobs span Cornwall to the Outer Hebrides, and into Germany, the Netherlands and beyond.
           Pick up the phone — we'll pick up at the desk.
         </p>
         <div class="flex flex-wrap gap-3">
           <a href="/about" class="btn-secondary">Our story</a>
+          <a href="/factory" class="btn-ghost">Walk the yard</a>
           <a href="/case-studies" class="btn-ghost">See our work</a>
         </div>
       </div>

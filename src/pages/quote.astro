@@ -47,6 +47,8 @@ const timeframes = [
 <BaseLayout
   title="Get a quote in 24 hours"
   description="Configure a precast concrete quote with WCCP. Slurry storage, retaining walls, cubicles, prestressed panels, bespoke. Same-day callback Mon–Fri."
+  image="/og-default.png"
+  imageAlt="WCCP quote configurator — get a written precast concrete quote within 24 hours, cast in Holsworthy, North Devon"
   schema="Article"
 >
   <!-- Hero -->
@@ -134,6 +136,23 @@ const timeframes = [
             </label>
           ))}
         </div>
+
+        <!-- Live lead-time hint, populated when a product is picked -->
+        <div
+          id="product-leadtime-hint"
+          class="mt-5 p-4 rounded-md border border-yellow bg-yellow/10 hidden"
+          role="status"
+          aria-live="polite"
+          data-leadtime-hint
+        >
+          <div class="flex items-start gap-3">
+            <span aria-hidden="true" class="mt-0.5 inline-flex items-center justify-center w-6 h-6 rounded-full bg-yellow text-navy text-xs font-bold shrink-0">i</span>
+            <div class="flex-1">
+              <div class="font-display font-bold text-navy text-sm" data-leadtime-title></div>
+              <div class="text-xs mt-1 text-cast-700" data-leadtime-detail></div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- STEP 2 -->
@@ -148,11 +167,11 @@ const timeframes = [
         <div data-product="retaining-wall prestressed-panels silage-clamp" class="grid md:grid-cols-3 gap-5">
           <label class="block">
             <span class="block text-sm font-bold text-navy mb-2">Wall / panel height (m)</span>
-            <input type="number" step="0.1" min="0" name="wall_height" class="input" placeholder="e.g. 3.0" data-field="wall_height" />
+            <input type="number" step="0.1" min="0" inputmode="decimal" name="wall_height" class="input" placeholder="e.g. 3.0" data-field="wall_height" />
           </label>
           <label class="block">
             <span class="block text-sm font-bold text-navy mb-2">Run length (m)</span>
-            <input type="number" step="0.1" min="0" name="wall_length" class="input" placeholder="e.g. 24" data-field="wall_length" />
+            <input type="number" step="0.1" min="0" inputmode="decimal" name="wall_length" class="input" placeholder="e.g. 24" data-field="wall_length" />
           </label>
           <label class="block">
             <span class="block text-sm font-bold text-navy mb-2">Panel thickness</span>
@@ -171,7 +190,7 @@ const timeframes = [
         <div data-product="cattle-cubicles" class="grid md:grid-cols-2 gap-5" hidden>
           <label class="block">
             <span class="block text-sm font-bold text-navy mb-2">Number of cubicles</span>
-            <input type="number" min="1" name="cubicle_count" class="input" placeholder="e.g. 120" data-field="cubicle_count" />
+            <input type="number" min="1" inputmode="numeric" pattern="[0-9]*" name="cubicle_count" class="input" placeholder="e.g. 120" data-field="cubicle_count" />
           </label>
           <label class="block">
             <span class="block text-sm font-bold text-navy mb-2">Breed</span>
@@ -189,11 +208,11 @@ const timeframes = [
         <div data-product="slurry-storage" class="grid md:grid-cols-2 gap-5" hidden>
           <label class="block">
             <span class="block text-sm font-bold text-navy mb-2">Required capacity (m³)</span>
-            <input type="number" min="0" name="slurry_capacity" class="input" placeholder="e.g. 2,400" data-field="slurry_capacity" />
+            <input type="number" min="0" inputmode="numeric" pattern="[0-9]*" name="slurry_capacity" class="input" placeholder="e.g. 2,400" data-field="slurry_capacity" />
           </label>
           <label class="block">
             <span class="block text-sm font-bold text-navy mb-2">Retained height (m)</span>
-            <input type="number" step="0.1" min="0" name="slurry_height" class="input" placeholder="e.g. 3.6" data-field="slurry_height" />
+            <input type="number" step="0.1" min="0" inputmode="decimal" name="slurry_height" class="input" placeholder="e.g. 3.6" data-field="slurry_height" />
           </label>
         </div>
 
@@ -201,7 +220,7 @@ const timeframes = [
         <div data-product="feed-troughs" class="grid md:grid-cols-2 gap-5" hidden>
           <label class="block">
             <span class="block text-sm font-bold text-navy mb-2">Run length (m)</span>
-            <input type="number" step="0.1" min="0" name="trough_length" class="input" placeholder="e.g. 30" data-field="trough_length" />
+            <input type="number" step="0.1" min="0" inputmode="decimal" name="trough_length" class="input" placeholder="e.g. 30" data-field="trough_length" />
           </label>
           <label class="block">
             <span class="block text-sm font-bold text-navy mb-2">Trough type</span>
@@ -347,12 +366,12 @@ const timeframes = [
           </label>
           <label class="block">
             <span class="block text-sm font-bold text-navy mb-2">Email <span class="text-ember">*</span></span>
-            <input type="email" name="email" required autocomplete="email" class="input" data-field="email" data-validate="email" aria-describedby="error-email" />
+            <input type="email" name="email" required autocomplete="email" inputmode="email" class="input" data-field="email" data-validate="email" aria-describedby="error-email" />
             <span id="error-email" class="text-xs text-danger font-semibold mt-1 hidden block" role="alert" data-error="email">Please enter a valid email.</span>
           </label>
           <label class="block">
             <span class="block text-sm font-bold text-navy mb-2">Phone <span class="text-ember">*</span></span>
-            <input type="tel" name="phone" required autocomplete="tel" class="input" data-field="phone" data-validate="phone" aria-describedby="error-phone" />
+            <input type="tel" name="phone" required autocomplete="tel" inputmode="tel" class="input" data-field="phone" data-validate="phone" aria-describedby="error-phone" />
             <span id="error-phone" class="text-xs text-danger font-semibold mt-1 hidden block" role="alert" data-error="phone">Please enter a valid UK phone number.</span>
           </label>
           <label class="block md:col-span-2">
@@ -362,7 +381,7 @@ const timeframes = [
 
           <label class="block md:col-span-2">
             <span class="block text-sm font-bold text-navy mb-2">
-              Got drawings or a sketch? <span class="text-cast font-normal text-xs">(optional — PDF, JPG, PNG, DWG, up to 25 MB)</span>
+              Got drawings or a sketch? <span class="text-cast font-normal text-xs">(optional — PDF, JPG, PNG, DWG, DXF, up to 10 MB per file)</span>
             </span>
             <div class="card p-4 border-dashed bg-bone-50 hover:border-ember transition-colors" data-upload-zone>
               <input
@@ -374,10 +393,12 @@ const timeframes = [
                 class="block w-full text-sm text-cast file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-ember file:text-white file:font-semibold file:cursor-pointer hover:file:bg-ember-600"
                 data-field="drawings"
                 data-drawings-input
+                aria-describedby="error-drawings"
               />
               <p class="text-xs text-cast mt-2">
-                We work with what you send — full architect's drawings, a phone snap of a sketch, or a measured-up site photo. Multiple files OK.
+                Optional. Drawings, sketches, photos. PDF / JPG / PNG / DWG / DXF up to 10MB per file. Multiple files OK.
               </p>
+              <p id="error-drawings" class="text-xs text-danger font-semibold mt-2 hidden" role="alert" data-error="drawings"></p>
               <ul class="mt-3 space-y-1 hidden" data-drawings-list></ul>
             </div>
           </label>
@@ -430,11 +451,41 @@ const timeframes = [
       <!-- Navigation -->
       <div class="flex flex-wrap items-center justify-between gap-4 mt-10 pt-8 border-t border-cast-100">
         <button type="button" class="btn-ghost" data-back hidden>← Back</button>
-        <div class="ml-auto flex items-center gap-4">
-          <button type="button" class="text-cast text-sm font-semibold hover:text-ember underline" data-reset>Start over</button>
+        <div class="ml-auto flex flex-wrap items-center gap-4">
+          <!-- Reset cluster: button + inline confirm. No native confirm() dialog. -->
+          <div class="flex items-center gap-2" data-reset-cluster>
+            <button type="button" class="text-cast text-sm font-semibold hover:text-ember underline" data-reset>Start over</button>
+            <span class="hidden items-center gap-2 text-sm" data-reset-confirm role="alert">
+              <span class="text-cast">Clear all answers?</span>
+              <button type="button" class="text-ember font-bold hover:underline" data-reset-yes>Yes, reset</button>
+              <span class="text-cast-300" aria-hidden="true">·</span>
+              <button type="button" class="text-cast font-semibold hover:underline" data-reset-no>Cancel</button>
+            </span>
+          </div>
           <button type="button" class="btn-primary" data-next>Continue →</button>
           <button type="submit" class="btn-primary text-lg px-10" data-submit hidden>Get my quote</button>
         </div>
+      </div>
+
+      <!-- Submit error region (inline replacement for any alert-style failure) -->
+      <p
+        id="quote-submit-error"
+        role="alert"
+        class="hidden mt-4 p-3 rounded-md border border-danger bg-danger/5 text-sm text-danger font-semibold"
+      ></p>
+
+      <!-- Reply-time promise + Save affordance -->
+      <div class="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-cast">
+        <p data-reply-promise>
+          <span class="font-semibold text-navy">We reply within 1 working day.</span>
+          Mon–Fri 07:30–17:00, calls returned same-day.
+        </p>
+        <p class="flex items-center gap-1.5" data-saved-note>
+          <svg class="w-3.5 h-3.5 text-ember shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Saved · resume any time on this device.</span>
+        </p>
       </div>
     </form>
 
@@ -446,9 +497,14 @@ const timeframes = [
         </svg>
       </div>
       <p class="eyebrow text-ember mb-3">Enquiry received</p>
-      <h2 class="font-display text-display-lg text-navy mb-4">Thanks — we'll be in touch within 1 working day.</h2>
-      <p class="text-cast-700 text-lg max-w-xl mx-auto leading-relaxed mb-8">
-        In the meantime, you can continue browsing or call us on <a href={`tel:${site.contact.phoneIntl}`} class="text-ember font-bold hover:underline">{site.contact.phone}</a>.
+      <h2 class="font-display text-display-lg text-navy mb-4">
+        Thanks — we'll call from <a href={`tel:${site.contact.phoneIntl}`} class="text-ember hover:underline">{site.contact.phone}</a> within 1 working day.
+      </h2>
+      <p class="text-cast-700 text-lg max-w-xl mx-auto leading-relaxed mb-3">
+        A real person at the Holsworthy yard reads every enquiry. We confirm we can do it, ask any blockers, and book your costing slot.
+      </p>
+      <p class="text-cast text-sm max-w-xl mx-auto leading-relaxed mb-8">
+        Office hours: Mon–Fri 07:30–17:00. Caller-ID will show <strong class="text-navy">{site.contact.phone}</strong> — please pick up if you can, otherwise we'll leave a voicemail and email.
       </p>
       <div class="flex flex-wrap justify-center gap-3">
         <a href="/products" class="btn-secondary">Browse products</a>
@@ -847,50 +903,143 @@ const timeframes = [
       // Restore on load if a value was persisted
       if (postcodeInput?.value) renderZone(postcodeInput.value);
 
-      // ---- Drawings upload — show selected files inline ----
+      // ---- Drawings upload — show selected files inline + 10MB cap per file ----
       const drawingsInput = form.querySelector('[data-drawings-input]');
       const drawingsList = form.querySelector('[data-drawings-list]');
+      const drawingsErr = document.getElementById('error-drawings');
+      const MAX_FILE_BYTES = 10 * 1024 * 1024; // 10 MB per file
       const fmtBytes = (n) => n < 1024 ? `${n} B` : n < 1024*1024 ? `${(n/1024).toFixed(0)} KB` : `${(n/1048576).toFixed(1)} MB`;
+      const showDrawingsError = (msg) => {
+        if (!drawingsErr) return;
+        if (msg) { drawingsErr.textContent = msg; drawingsErr.classList.remove('hidden'); drawingsInput?.setAttribute('aria-invalid', 'true'); }
+        else { drawingsErr.textContent = ''; drawingsErr.classList.add('hidden'); drawingsInput?.removeAttribute('aria-invalid'); }
+      };
       drawingsInput?.addEventListener('change', () => {
         const files = Array.from(drawingsInput.files || []);
-        if (!files.length) { drawingsList.classList.add('hidden'); drawingsList.innerHTML = ''; return; }
-        drawingsList.innerHTML = files.map(f => `
-          <li class="flex items-center justify-between text-xs text-navy bg-white rounded px-3 py-2 border border-cast-100">
-            <span class="truncate font-mono">${f.name.replace(/[<>&]/g, '')}</span>
-            <span class="text-cast shrink-0 ml-2">${fmtBytes(f.size)}</span>
-          </li>
-        `).join('');
+        if (!files.length) { drawingsList.classList.add('hidden'); drawingsList.innerHTML = ''; showDrawingsError(''); return; }
+        const oversize = files.filter((f) => f.size > MAX_FILE_BYTES);
+        if (oversize.length) {
+          showDrawingsError(`${oversize.length === 1 ? 'One file is' : `${oversize.length} files are`} larger than 10MB. Please compress or send via WhatsApp.`);
+        } else {
+          showDrawingsError('');
+        }
+        drawingsList.innerHTML = files.map((f) => {
+          const tooBig = f.size > MAX_FILE_BYTES;
+          return `
+            <li class="flex items-center justify-between text-xs ${tooBig ? 'text-danger bg-danger/5 border-danger' : 'text-navy bg-white border-cast-100'} rounded px-3 py-2 border">
+              <span class="truncate font-mono">${f.name.replace(/[<>&]/g, '')}</span>
+              <span class="shrink-0 ml-2 ${tooBig ? 'font-bold' : 'text-cast'}">${fmtBytes(f.size)}${tooBig ? ' — too big' : ''}</span>
+            </li>`;
+        }).join('');
         drawingsList.classList.remove('hidden');
       });
 
+      // ---- Product lead-time hint (Step 1) ----
+      const LEAD_TIMES = {
+        'slurry-storage':    { title: 'Lead time: typically 4–6 weeks',  detail: 'Panel store walls, channels and lagoon walls cast to your spec at the Holsworthy yard.' },
+        'retaining-wall':    { title: 'Lead time: typically 3–6 weeks',  detail: 'King post, L-block and cantilever walls — engineered to your soil and load brief.' },
+        'cattle-cubicles':   { title: 'Lead time: 2–3 weeks for catalogue cubicles', detail: 'Holstein, Jersey and beef sizes held in stock patterns. Bespoke runs add 1–2 weeks.' },
+        'prestressed-panels':{ title: 'Lead time: typically 3–4 weeks',  detail: '100/150/180/280mm panels, BS EN 14992. We confirm a manufacturing slot in writing.' },
+        'feed-troughs':      { title: 'Lead time: typically 3–5 weeks',  detail: 'Single, twin or barrier-rail trough lines, made to length.' },
+        'silage-clamp':      { title: 'Lead time: typically 4–6 weeks',  detail: 'C40/50 sulphate-resisting walls and aprons — Defra-friendly templates available.' },
+        'bespoke':           { title: 'Lead time: typically 4–8 weeks',  detail: 'Bespoke moulds and engineering. Send drawings or a sketch — we cost from anything legible.' },
+        'other':             { title: 'Lead time confirmed once we see the spec', detail: "Tell us what you're doing on site and we'll guide it. Same 24-hour reply window." },
+      };
+      const leadHint = form.querySelector('[data-leadtime-hint]');
+      const leadTitle = form.querySelector('[data-leadtime-title]');
+      const leadDetail = form.querySelector('[data-leadtime-detail]');
+      const renderLeadTimeHint = () => {
+        if (!leadHint) return;
+        const product = state.data.product || '';
+        const info = LEAD_TIMES[product];
+        if (!info) { leadHint.classList.add('hidden'); return; }
+        leadTitle.textContent = info.title;
+        leadDetail.textContent = info.detail;
+        leadHint.classList.remove('hidden');
+      };
+
       form.addEventListener('input', (e) => { if (e.target.dataset.field) { persist(); setInvalid(e.target.dataset.field, false); } });
-      form.addEventListener('change', (e) => { if (e.target.dataset.field === 'product') updateStep2Visibility(); persist(); });
+      form.addEventListener('change', (e) => {
+        if (e.target.dataset.field === 'product') { updateStep2Visibility(); renderLeadTimeHint(); }
+        persist();
+      });
       nextBtn.addEventListener('click', () => { persist(); if (validateStep(state.current)) { state.current = Math.min(state.current + 1, TOTAL); persist(); render(); } });
       backBtn.addEventListener('click', () => { state.current = Math.max(state.current - 1, 1); persist(); render(); });
-      resetBtn.addEventListener('click', () => { if (confirm('Clear all answers and start over?')) { localStorage.removeItem(STORAGE_KEY); form.reset(); state.current = 1; state.data = {}; render(); } });
+
+      // ---- Inline reset (replaces native confirm() — looks dated and breaks flow) ----
+      const resetCluster = form.querySelector('[data-reset-cluster]');
+      const resetConfirm = resetCluster?.querySelector('[data-reset-confirm]');
+      const resetYes = resetCluster?.querySelector('[data-reset-yes]');
+      const resetNo = resetCluster?.querySelector('[data-reset-no]');
+      const showResetConfirm = (show) => {
+        if (!resetConfirm || !resetBtn) return;
+        if (show) {
+          resetConfirm.classList.remove('hidden');
+          resetConfirm.classList.add('inline-flex');
+          resetBtn.classList.add('hidden');
+          resetYes?.focus();
+        } else {
+          resetConfirm.classList.add('hidden');
+          resetConfirm.classList.remove('inline-flex');
+          resetBtn.classList.remove('hidden');
+        }
+      };
+      resetBtn.addEventListener('click', () => showResetConfirm(true));
+      resetNo?.addEventListener('click', () => showResetConfirm(false));
+      resetYes?.addEventListener('click', () => {
+        localStorage.removeItem(STORAGE_KEY);
+        form.reset();
+        state.current = 1;
+        state.data = {};
+        // Clear any error/hint UI that doesn't auto-clear on form.reset()
+        form.querySelectorAll('[data-error]').forEach((el) => el.classList.add('hidden'));
+        form.querySelectorAll('[aria-invalid="true"]').forEach((el) => el.removeAttribute('aria-invalid'));
+        if (zoneEl) zoneEl.classList.add('hidden');
+        if (drawingsList) { drawingsList.innerHTML = ''; drawingsList.classList.add('hidden'); }
+        showDrawingsError('');
+        renderLeadTimeHint();
+        showResetConfirm(false);
+        render();
+      });
 
       const submitErr = document.getElementById('quote-submit-error');
+      const showSubmitError = (msg) => {
+        if (!submitErr) return;
+        submitErr.textContent = msg;
+        submitErr.classList.remove('hidden');
+        submitErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      };
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
         persist();
         if (!validateStep(5)) return;
+
+        // Block submit if the user has attached files that exceed the 10MB cap
+        const files = Array.from(drawingsInput?.files || []);
+        if (files.some((f) => f.size > MAX_FILE_BYTES)) {
+          showDrawingsError('Please remove or compress files larger than 10MB before sending.');
+          drawingsInput?.focus();
+          return;
+        }
+
+        // Hide any previous submit error
+        submitErr?.classList.add('hidden');
+
         try {
-          const body = new URLSearchParams(new FormData(form));
-          await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body });
+          // Use FormData (multipart) so file uploads reach Netlify Forms
+          const fd = new FormData(form);
+          await fetch('/', { method: 'POST', body: fd });
           form.hidden = true;
           confirmation.hidden = false;
           localStorage.removeItem(STORAGE_KEY);
           window.scrollTo({ top: indicator.offsetTop - 10, behavior: 'smooth' });
         } catch {
-          if (submitErr) {
-            submitErr.textContent = 'Something went wrong sending your enquiry. Please try again, or call us on 01409 281437.';
-            submitErr.classList.remove('hidden');
-            submitErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }
+          showSubmitError('Something went wrong sending your enquiry. Please try again, or call us on 01409 281437 — Mon–Fri 07:30–17:00.');
         }
       });
 
       restore();
+      renderLeadTimeHint();
       render();
     })();
   </script>

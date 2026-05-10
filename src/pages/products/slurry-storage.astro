@@ -6,8 +6,42 @@ import SlurryCalculator from '@/components/SlurryCalculator.astro';
 import FittedVsSupply from '@/components/FittedVsSupply.astro';
 import SpecSheetButton from '@/components/SpecSheetButton.astro';
 import SpecDownloads from '@/components/SpecDownloads.astro';
+import ProductGallery from '@/components/ProductGallery.astro';
 import { site } from '@/config/site';
 import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
+
+const slurryGallery = [
+  {
+    src: '/images/products/concrete-panels/wccp-concrete-panels-prestressed-concrete-panels.jpg',
+    alt: 'WCCP precast concrete prestressed panels stacked in the Holsworthy yard, used for slurry store walls',
+    caption: 'Prestressed panel run, ready for collection. 95, 145 and 180mm thicknesses leave the yard most weeks.',
+  },
+  {
+    src: '/images/products/slurry-handling/wccp-slurry-handling-channel.jpg',
+    alt: 'WCCP precast concrete slurry channel for under-slat dairy housing, Devon',
+    caption: 'Under-slat channel section — flows feed straight into the storage tank, no transfer pumps needed.',
+  },
+  {
+    src: '/images/products/slurry-handling/wccp-slurry-handling-image-of-v-sand-slurry-channel.jpg',
+    alt: 'WCCP precast concrete V-shape sand slurry channel for dairy buildings',
+    caption: 'V-profile sand-slurry channel. Suits sand-bedded cubicle housing where straight channels clog.',
+  },
+  {
+    src: '/images/products/slurry-handling/wccp-slurry-handling-floating-sleeper-channel-edited.png',
+    alt: 'WCCP floating sleeper slurry channel cross-section drawing, Devon precast concrete',
+    caption: 'Floating sleeper channel detail — keeps the slurry crust moving and the slat bay clean.',
+  },
+  {
+    src: '/images/products/slurry-handling/wccp-slurry-handling-slat.jpg',
+    alt: 'WCCP precast concrete slat for cattle housing over slurry channels',
+    caption: 'Cubicle-house slat. Cast in C40/50 sulphate-resisting concrete to take livestock and tanker traffic.',
+  },
+  {
+    src: '/images/case-studies/dairy-farm-slurry.jpg',
+    alt: 'WCCP precast slurry store walls installed on a Devon dairy farm under SSAFO 2018',
+    caption: 'Devon dairy install. SSAFO 2018 capacity statement issued with the order pack.',
+  },
+];
 
 const prestressedSpecs = [
   { thickness: '95mm', heights: '1.0m, 1.2m, 1.5m', lengths: 'Custom + 15\' & 20\' standard stocked', use: 'Bund walls, transition panels, lower-load applications' },
@@ -109,6 +143,12 @@ const faqSchema = {
           <p class="eyebrow text-yellow mb-4">Agricultural · slurry · grant-ready</p>
           <h1 class="font-display text-display-xl text-white mb-4">Slurry Storage.</h1>
           <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">SSAFO 2018-ready. Six-month capacity, grant-friendly.</p>
+          <p class="text-lg lg:text-xl text-cast leading-relaxed font-medium text-white/95 mb-6 max-w-xl">
+            Precast slurry walls are SSAFO 2018-compliant, 200mm to 250mm thick at typical heights
+            up to 4.0m, designed to BS EN 1992-3 (Eurocode 2 part 3), with sulphate-resisting C40/50
+            concrete and a 20-year minimum design life. WCCP supplies stage-2 SIG-compatible quotes
+            with structural calcs included.
+          </p>
           <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
             Precast slurry store walls in the UK are typically 200&nbsp;mm thick up to 3&nbsp;m retained
             height and 250&nbsp;mm above that, designed to BS&nbsp;EN&nbsp;1992-3 and SSAFO&nbsp;2018.
@@ -137,7 +177,7 @@ const faqSchema = {
           </div>
         </div>
         <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
-          <img src="/images/products/slurry-handling/wccp-slurry-handling-shallow-v-channel.jpg" alt="Precast concrete slurry channel — SSAFO 2018 compliant, West Country Concrete Products, Devon" class="w-full h-full object-cover" loading="eager" decoding="async" />
+          <img src="/images/products/slurry-handling/wccp-slurry-handling-shallow-v-channel.jpg" alt="WCCP precast concrete slurry channel — SSAFO 2018 compliant, West Country Concrete Products, Devon" class="w-full h-full object-cover" loading="eager" fetchpriority="high" decoding="async" />
         </div>
       </div>
     </div>
@@ -239,6 +279,15 @@ const faqSchema = {
       </div>
     </div>
   </section>
+
+  <ProductGallery
+    eyebrow="From the yard, into the field"
+    heading="Slurry kit, in the metal."
+    intro="Panels, channels, slats and finished installs — straight off the Chilsworthy casting beds."
+    images={slurryGallery}
+    cols={3}
+    background="bone"
+  />
 
   <section class="bg-yellow text-navy py-16">
     <div class="container-wccp">

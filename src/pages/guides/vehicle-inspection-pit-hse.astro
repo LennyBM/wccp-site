@@ -17,6 +17,11 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
   title="Vehicle inspection pit HSE compliance (UK)"
   description="UK vehicle inspection pit HSE compliance: Workplace (HSW) Regulations 1992, PUWER 1998, ventilation, lighting, edge protection, gas detection and HSE INDG293 / HSG261 guidance. Plain-English guide for fleet, agri and commercial garages."
   schema="Article"
+  schemaData={{
+    headline: 'Vehicle inspection pit HSE compliance (UK)',
+    datePublished: '2026-04-29',
+    dateModified: '2026-04-29',
+  }}
 >
   <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
 
@@ -32,10 +37,11 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
       <div class="bg-navy-700 border-l-4 border-yellow p-6 max-w-3xl rounded-r">
         <p class="text-white/90 text-lg leading-relaxed">
           <strong class="text-white">Direct answer:</strong> UK vehicle inspection pits are governed
-          by the Workplace (Health, Safety and Welfare) Regulations 1992, PUWER 1998 and HSE
-          guidance HSG261 / INDG293. Compliance covers ventilation (6–10 air changes/hour),
-          lighting (low-voltage, IP-rated), edge protection, gas detection and a working depth
-          set to the user.
+          by the Workplace (Health, Safety and Welfare) Regulations 1992, PUWER 1998, the Confined
+          Spaces Regulations 1997 and HSE guidance HSG261 / INDG293. Compliance covers mechanical
+          ventilation (6–10 air changes per hour), low-voltage IP-rated lighting, edge protection,
+          permanent ladder access, gas detection where flammables are present, and a working depth
+          set to the user — typically 1.5m for cars and LCVs, 1.7–1.9m for HGV and tractor pits.
         </p>
       </div>
 
@@ -138,7 +144,19 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
             with cast-in inserts for fixed equipment. Tell us at design stage what is going in
             the pit.
           </p>
+
+          <aside class="my-8 p-5 border-l-4 border-ember bg-ember/5 rounded-r-md">
+            <p class="font-display font-bold text-navy text-base mb-1">Quote a vehicle pit</p>
+            <p class="text-sm text-cast mb-3">Car, LCV, HGV and tractor pits with cast-in service voids, kerb upstand and ladder pockets.</p>
+            <a href="/quote?product=vehicle-pits" class="inline-flex items-center gap-1.5 text-ember font-bold link-underline">Start a quote →</a>
+          </aside>
         </section>
+
+        <aside class="my-8 p-5 border-l-4 border-ember bg-ember/5 rounded-r-md">
+          <p class="font-display font-bold text-navy text-base mb-1">See vehicle pits</p>
+          <p class="text-sm text-cast mb-3">Car, LCV, HGV and tractor pits in precast — kerb upstand, ladder pockets and service voids cast in.</p>
+          <a href="/products/vehicle-pits" class="inline-flex items-center gap-1.5 text-ember font-bold link-underline">View vehicle pits →</a>
+        </aside>
 
         <section id="standards" class="mb-12 scroll-mt-24">
           <h2 class="font-display text-3xl text-navy mb-4">Standards on a precast pit.</h2>

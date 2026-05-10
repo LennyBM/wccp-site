@@ -1,0 +1,60 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/config/site';
+---
+
+<BaseLayout
+  title="Something cracked at our end"
+  description="Our server hit an error. Try again, or call the Holsworthy yard direct."
+  noindex={true}
+>
+  <!-- Hero -->
+  <section class="bg-forest-700 text-cream">
+    <div class="container-wccp py-20 md:py-28">
+      <div class="max-w-3xl">
+        <p class="eyebrow text-cream/70 mb-4">500 · Server error</p>
+        <h1 class="font-display text-display-2xl text-cream mb-6">
+          Something cracked<br />
+          <em class="text-terracotta not-italic font-display italic">at our end.</em>
+        </h1>
+        <p class="text-cream/85 text-lg leading-relaxed max-w-2xl mb-4">
+          The server threw an error trying to load that page. It is not you — it is us.
+          Refresh the page, or take the shortcuts below.
+        </p>
+        <p class="text-cream/70 text-base leading-relaxed max-w-2xl">
+          If you were halfway through a quote, your details should still be saved.
+          Try the form again — and if it keeps breaking, ring the yard.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick rescue links -->
+  <section class="container-wccp py-16 md:py-20 section-reveal">
+    <div class="max-w-3xl">
+      <h2 class="font-display text-display-md text-forest-700 mb-6">Try one of these.</h2>
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-5 gap-2 text-sm mb-10">
+        <li><a href="/" class="block px-4 py-3 rounded-lg bg-bone-200 hover:bg-cream-200 hover:text-terracotta transition-colors text-forest-700 font-semibold text-center">Homepage</a></li>
+        <li><a href="/products" class="block px-4 py-3 rounded-lg bg-bone-200 hover:bg-cream-200 hover:text-terracotta transition-colors text-forest-700 font-semibold text-center">Products</a></li>
+        <li><a href="/contact" class="block px-4 py-3 rounded-lg bg-bone-200 hover:bg-cream-200 hover:text-terracotta transition-colors text-forest-700 font-semibold text-center">Contact</a></li>
+        <li><a href="/quote" class="block px-4 py-3 rounded-lg bg-bone-200 hover:bg-cream-200 hover:text-terracotta transition-colors text-forest-700 font-semibold text-center">Quote</a></li>
+        <li><a href="/search" class="block px-4 py-3 rounded-lg bg-bone-200 hover:bg-cream-200 hover:text-terracotta transition-colors text-forest-700 font-semibold text-center">Search</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Direct contact card -->
+  <section class="bg-navy text-white py-16">
+    <div class="container-wccp text-center">
+      <p class="eyebrow text-yellow mb-3">Or just ring the yard</p>
+      <h2 class="font-display text-display-lg text-white mb-6">We will quote on the phone.</h2>
+      <p class="text-white/85 max-w-xl mx-auto mb-8">
+        The office is open Mon–Fri {site.hours.weekdays}. Same-day quote on most products.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-yellow">Call {site.contact.phone}</a>
+        <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

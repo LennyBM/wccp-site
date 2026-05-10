@@ -1,0 +1,389 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import FittedVsSupply from '@/components/FittedVsSupply.astro';
+import SpecSheetButton from '@/components/SpecSheetButton.astro';
+import { site } from '@/config/site';
+import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
+import ProductPageTOC from '@/components/ProductPageTOC.astro';
+
+const tocSections = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'specifications', label: 'Specifications' },
+  { id: 'gallery', label: 'Gallery' },
+  { id: 'related', label: 'Related' },
+  { id: 'faq', label: 'FAQ' },
+  { id: 'downloads', label: 'Downloads' },
+];
+
+const specs = [
+  { variant: 'Transformer plinth', size: '1.5m × 1.0m up to 4.5m × 3.0m', weight: '0.6 – 6.0 t', use: '11kV / 33kV pad-mounted transformers — DNO schedules' },
+  { variant: 'Generator plinth', size: '2.0m × 1.0m up to 6.0m × 2.5m', weight: '1.0 – 8.0 t', use: 'Standby gensets — Cat, FG Wilson, Cummins, Kohler' },
+  { variant: 'Switchgear / RMU base', size: '1.0m × 0.8m up to 3.0m × 1.2m', weight: '0.4 – 2.5 t', use: 'Ring-main units, LV panels, package substations' },
+  { variant: 'Pump / chiller base', size: 'To engineer schedule', weight: 'Per design', use: 'M&E plant on roof or at-grade with anti-vibration' },
+  { variant: 'Battery / BESS base', size: '6.0m × 2.5m up to 12.0m × 3.0m', weight: '4.0 – 15.0 t', use: 'Container BESS, EV charger plinths, solar inverter' },
+  { variant: 'Cable trough plinth', size: 'Modular 1.0m segments', weight: '0.3 – 0.5 t / m', use: 'Trefoil cable runs feeding the substation plinth' },
+  { variant: 'Bespoke equipment base', size: 'Anything we can lift and ship', weight: 'Up to 25 t single piece', use: 'Manufacturer-specific schedule, non-standard plant' },
+];
+
+const applications = [
+  'DNO secondary substations — UKPN, NGED, NPg, SSEN, SPEN frameworks',
+  'Standby diesel generator installations — hospitals, data centres, telecoms',
+  'Battery energy storage system (BESS) container plinths',
+  'EV ultra-rapid charger pads — Gridserve, Osprey, Instavolt',
+  'Solar farm inverter and transformer skids',
+  'Industrial chillers, cooling towers and air-handling plant bases',
+  'Anaerobic digester pump and CHP-engine bases',
+];
+
+const related = [
+  { href: '/products/architectural-panels', label: 'Architectural Panels', meta: 'Bespoke facades · BS EN 14992' },
+  { href: '/products/retaining-walls', label: 'Retaining Walls', meta: 'L-walls · cantilever' },
+  { href: '/products/dish-channels', label: 'Dish Channels', meta: 'Heavy-duty · DNO spec' },
+  { href: '/products/soakaways-chambers', label: 'Soakaways & Chambers', meta: 'Drainage · access' },
+];
+
+const faqs = [
+  { q: 'How do you size a transformer or generator plinth?', a: 'We work to the manufacturer schedule — Schneider, ABB, Siemens for transformers; Cat, Cummins, FG Wilson for gensets. The plinth has to take the static weight, the seismic spread footing, the cable-entry duct pattern and any oil-bund detail required by BS EN 61936-1. We send a drawing for engineer sign-off before we cut moulds.' },
+  { q: 'What concrete grade do you cast?', a: 'C40/50 to BS 8500-1:2023 is our standard for plinths and equipment bases — exposure XC4/XF1 minimum. For substations we add sulphate resistance (DC-3 / DC-4 if the geotechnical report calls for it). All cast under BS EN 13369 Factory Production Control with cube tests at 7 and 28 days.' },
+  { q: 'Can you cast in earthing, conduits and bund kerbs?', a: 'Yes — every penetration, conduit, earth-rod sleeve, lifting socket and bund upstand cast in to engineer drawings. We coordinate with the principal contractor and DNO design engineer on a shop drawing before mould cutting. Late changes after mould-cut are chargeable.' },
+  { q: 'Do you deliver and install?', a: 'We deliver UK-wide on flatbed or low-loader and offload with our own HIAB up to 12 tonnes. Above that we coordinate a site mobile crane with the principal contractor. We can supply, deliver, set on a pre-prepared sub-base and grout-bed in one visit on most substation programmes.' },
+  { q: 'What is the lead time?', a: 'Civils-grade plinths run 4-6 weeks from drawing sign-off. DNO substation plinths to standard frameworks ship in 3-4 weeks if the schedule matches our existing moulds. Bespoke geometries — non-standard sizes, integrated bunds, complex penetration patterns — typically 6-10 weeks.' },
+];
+
+const productSchema = {
+  name: 'Custom Precast Plinths & Equipment Bases',
+  description: 'Bespoke precast concrete plinths and equipment bases for transformers, standby generators, switchgear, BESS containers, EV chargers and process plant. C40/50 concrete to BS 8500-1:2023, designed to engineer schedule. UKCA marked under BS EN 13369 FPC.',
+  brand: { '@type': 'Brand', name: site.name },
+  manufacturer: { '@type': 'Organization', name: site.name },
+  category: 'Precast concrete equipment foundation',
+  material: 'Reinforced concrete, C40/50 (BS 8500-1:2023)',
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 13369 (precast common rules)' },
+    { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023), DC-3/DC-4 if required' },
+    { '@type': 'PropertyValue', name: 'Marking', value: 'UKCA' },
+    { '@type': 'PropertyValue', name: 'DNO compatibility', value: 'UKPN / NGED / NPg / SSEN / SPEN schedules' },
+    { '@type': 'PropertyValue', name: 'Maximum single piece', value: '25 tonnes' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '3-6 weeks standard, 6-10 weeks bespoke' },
+    { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
+  ],
+  offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="Custom Precast Plinths — Transformer, Generator & Equipment Bases"
+  description="Bespoke precast plinths and equipment bases — transformers, generators, switchgear, BESS, EV chargers. C40/50 to BS 8500-1, UKCA marked. Designed to engineer schedule. Cast in North Devon."
+  image="/og-default.png"
+  schema="Product"
+  schemaData={productSchema}
+  whatsappContext="Custom Plinths"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <TrustStrip />
+  <ProductPageTOC sections={tocSections} />
+
+  <!-- Hero -->
+  <section id="overview" class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow text-yellow mb-4">Civils · DNO · M&amp;E plant</p>
+          <h1 class="font-display text-display-xl text-white mb-4">Custom Plinths.</h1>
+          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">Cast to your engineer's schedule, not ours.</p>
+          <p class="text-lg lg:text-xl text-cast leading-relaxed font-medium text-white/95 mb-6 max-w-xl">
+            Bespoke precast plinths and equipment bases for transformers, standby generators,
+            switchgear, BESS containers, EV chargers and process plant. C40/50 concrete to BS
+            8500-1:2023, UKCA marked under BS EN 13369 Factory Production Control. Single
+            pieces up to 25 tonnes.
+          </p>
+          <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
+            Send us your engineer's drawing, the manufacturer schedule, the cable-entry pattern
+            and the geotechnical data — we will return a shop drawing for sign-off and a
+            programme that matches your DNO outage window.
+          </blockquote>
+          <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
+            We work to UKPN, NGED, Northern Powergrid, SSEN and SP Energy Networks substation
+            schedules and direct to principal contractors on data-centre, hospital and BESS
+            projects across England, Wales and Scotland.
+          </p>
+          <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
+            <li class="flex gap-2"><span class="text-yellow">·</span> BS EN 13369 FPC</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> C40/50 + DC-3/4</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> UKCA marked</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Up to 25 t</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> All DNO frameworks</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 4-6 week lead</li>
+          </ul>
+          <div class="flex flex-wrap gap-3">
+            <a href="/quote?product=Custom%20Plinths" class="btn-primary">Configure a quote</a>
+            <a href="mailto:engineering@wccp.co.uk?subject=Spec%20sheet%20request%20%E2%80%94%20Custom%20Plinths&amp;body=Hi%20WCCP%20engineering%2C%0A%0APlease%20send%20the%20spec%20sheet%20for%20Custom%20Plinths.%0A%0AProject%20details%3A%0A%E2%80%A2%20Project%20name%3A%0A%E2%80%A2%20Site%20location%3A%0A%E2%80%A2%20Required%20spec%20%2F%20standard%3A%0A%0AThanks" class="btn-yellow">Request spec sheet</a>
+            <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">
+              Call {site.contact.phone}
+            </a>
+          </div>
+        </div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
+          <div>
+            <p class="text-cast-600 text-sm font-mono">Photo needed</p>
+            <p class="text-cast text-xs mt-2">Hero — completed transformer plinth on site, with cable ducts, earth bonding and lifting points visible</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spec table -->
+  <section id="specifications" class="container-wccp py-20">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Specification</p>
+      <h2 class="font-display text-display-lg mb-4">Common base types and weight ranges.</h2>
+      <p class="text-cast-700 text-lg">
+        These are our recurring base types — every plinth we cast is bespoke, but the families
+        below cover most of the work. Send us the engineer schedule and we will quote against your
+        exact loading, cable-entry pattern and bund detail.
+      </p>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="spec-table w-full text-left border-collapse">
+        <thead class="bg-navy text-white">
+          <tr>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Variant</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Footprint</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical weight</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
+          </tr>
+        </thead>
+        <tbody>
+          {specs.map((s, i) => (
+            <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
+              <td class="px-4 py-3 font-bold text-navy">{s.variant}</td>
+              <td class="px-4 py-3">{s.size}</td>
+              <td class="px-4 py-3">{s.weight}</td>
+              <td class="px-4 py-3 text-cast">{s.use}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-cast text-sm mt-4">
+      Cast-in items — lifting sockets, earth bonds, conduit sleeves, oil-bund kerbs, levelling
+      shims — coordinated to your engineer's drawing. We issue a shop drawing for sign-off
+      before we cut moulds.
+    </p>
+
+    <p class="text-cast text-sm mt-4">
+      Each consignment ships with UKCA Declaration of Performance, mix design data and 7- and
+      28-day cube test results.
+    </p>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-10">
+        <p class="eyebrow text-cast mb-3">Plinth library</p>
+        <h2 class="font-display text-display-lg mb-4 text-navy">Equipment bases we cast every week.</h2>
+        <p class="text-cast-700 text-lg">Photo plates being commissioned — placeholder shot briefs below.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { caption: 'Transformer plinth · 11kV pad-mount', shot: 'Completed transformer plinth with cable ducts and earth bonds, transformer landed' },
+          { caption: 'Generator plinth · 2MW standby', shot: 'Large genset plinth on site with vibration mounts visible, exhaust stack penetration' },
+          { caption: 'Switchgear / RMU base', shot: 'Compact switchgear base with multiple cable entries — substation context' },
+          { caption: 'BESS container plinth', shot: 'Long battery-storage container plinth, container landed with conduits running up' },
+          { caption: 'EV ultra-rapid charger pad', shot: 'EV charger plinth at motorway services with charging unit installed' },
+          { caption: 'Cable trough run · trefoil', shot: 'Modular cable trough segments running between substation and feed point' },
+          { caption: 'Plinth being cast at yard', shot: 'Transformer plinth in mould at Holsworthy yard, reinforcement and ducts visible' },
+          { caption: 'HIAB offload on site', shot: 'WCCP HIAB lorry offloading plinth onto prepared sub-base on construction site' },
+        ].map((img) => (
+          <figure>
+            <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-4 text-center">
+              <div>
+                <p class="text-cast-600 text-xs font-mono">Photo needed</p>
+                <p class="text-cast text-xs mt-2">{img.shot}</p>
+              </div>
+            </div>
+            <figcaption class="mt-3 text-sm font-medium text-cast">{img.caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Applications -->
+  <section class="bg-white py-20">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow text-cast mb-3">Where they go</p>
+          <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            From a single ground-mount transformer in a Cornish village to a 40-plinth BESS site
+            in Lincolnshire, we cast against the engineer's schedule and the DNO outage window.
+          </p>
+          <ul class="space-y-3">
+            {applications.map((a) => (
+              <li class="flex gap-3 text-cast-700 leading-relaxed">
+                <span class="text-ember font-bold mt-1">·</span>
+                <span>{a}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="card p-8">
+          <p class="eyebrow text-cast mb-3">Standards & references</p>
+          <h3 class="font-display text-2xl font-bold text-navy mb-4">Cast and certified to current code.</h3>
+          <dl class="space-y-4 text-sm">
+            <div>
+              <dt class="font-bold text-navy">BS EN 13369</dt>
+              <dd class="text-cast">Common rules for precast concrete products — Factory Production Control.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS 8500-1:2023</dt>
+              <dd class="text-cast">Concrete specification — C40/50, exposure classes XC4/XF1, sulphate DC-3/DC-4.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS EN 1992-1-1 (Eurocode 2)</dt>
+              <dd class="text-cast">Structural design of reinforced concrete — plinth slab and reinforcement design.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS EN 61936-1</dt>
+              <dd class="text-cast">Power installations exceeding 1 kV AC — substation and oil-bund detailing.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">DNO frameworks</dt>
+              <dd class="text-cast">Designed to UKPN, NGED, Northern Powergrid, SSEN and SPEN substation schedules.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Configurator CTA -->
+  <section class="bg-yellow text-navy py-16">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-navy mb-2">Configure your plinth</p>
+          <h2 class="font-display text-display-md">Send us the engineer schedule and the manufacturer drawing — we will quote inside 48 hours.</h2>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href="/quote?product=Custom%20Plinths" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
+          <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section id="related" class="container-wccp py-20">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
+      <div>
+        <p class="eyebrow text-cast mb-3">Related products</p>
+        <h2 class="font-display text-display-lg">Often ordered alongside.</h2>
+      </div>
+      <a href="/products" class="text-ember font-bold hover:text-ember-700 inline-flex items-center gap-2">
+        View full range
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" />
+          <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+    <RelatedProductGrid items={related} />
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">Common questions</p>
+        <h2 class="font-display text-display-lg mb-4">What contractors ask about plinths.</h2>
+        <p class="text-cast-700 text-lg">
+          Five questions we answer most weeks. If yours is not here, ring the yard.
+        </p>
+      </div>
+      <div class="max-w-3xl space-y-4">
+        {faqs.map((f) => (
+          <details class="card p-6 group">
+            <summary class="font-display text-lg font-bold text-navy cursor-pointer list-none flex justify-between items-start gap-4">
+              <span>{f.q}</span>
+              <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Supply-only vs Fitted -->
+  <section class="container-wccp section-rhythm border-t border-cast-100">
+    <FittedVsSupply
+      productName="Custom Plinths"
+      defaultMode="fitted"
+      supply={{
+        price: 'Bespoke quote',
+        leadTime: '4–6 weeks',
+        includes: [
+          'Cast plinth to engineer schedule',
+          'Cast-in lifting sockets, ducts, earth bonds',
+          'UKCA DoP, mix design, cube-test data',
+          'Delivery on flatbed or low-loader',
+        ],
+        excludes: [
+          'On-site lifting / craneage above 12 t',
+          'Sub-base preparation and grout-bedding',
+        ],
+      }}
+      fitted={{
+        price: 'Bespoke quote (incl. set & grout)',
+        leadTime: '5–8 weeks (incl. site slot)',
+        includes: [
+          'Everything in supply only',
+          'WCCP HIAB offload up to 12 t',
+          'Set on prepared sub-base, levelled and grout-bedded',
+          '12-month workmanship warranty',
+        ],
+        excludes: [
+          'DNO terminations and electrical fit-out',
+          'Manufacturer commissioning of plant',
+        ],
+      }}
+      note=". Substation and BESS programmes priced per scheme — send the engineer schedule and we will respond with a fixed quote and dates."
+    />
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-navy text-white py-20">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
+      <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">
+        Send us the engineer's drawing and the DNO outage date — we will quote, programme and cast.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/quote?product=Custom%20Plinths" class="btn-yellow">Configure a quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
+      </div>
+    </div>
+  </section>
+
+  <SpecSheetButton productSlug="custom-plinths" productName="Custom Plinths" />
+  <ProductWarrantyLine />
+</BaseLayout>

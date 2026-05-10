@@ -1,12 +1,48 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { site } from '@/config/site';
+
+const post = {
+  title: 'Inside our 2023 move to Chilsworthy.',
+  description:
+    "The story of WCCP's 2023 move from Shebbear to Chilsworthy — 46 new jobs, a modern batching plant, and the Severn Trent biogas neighbour that powers a circular-economy footprint.",
+  datePublished: '2026-03-01',
+  dateModified: '2026-03-01',
+  author: 'WCCP Engineering Team',
+  url: `${site.url}/news/chilsworthy-yard-modernisation`,
+};
+
+const schemaData = {
+  headline: post.title,
+  description: post.description,
+  datePublished: post.datePublished,
+  dateModified: post.dateModified,
+  author: {
+    '@type': 'Organization',
+    name: post.author,
+    url: `${site.url}/team`,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: site.name,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${site.url}/logo.png`,
+    },
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': post.url,
+  },
+  image: `${site.url}/images/wccp-yard-aerial-chilsworthy-holsworthy.png`,
+};
 ---
 
 <BaseLayout
   title="Inside our 2023 move to Chilsworthy — 46 jobs, modern plant, circular-economy footprint"
   description="The story of WCCP's 2023 move from Shebbear to Chilsworthy — 46 new jobs, a modern batching plant, and the Severn Trent biogas neighbour that powers a circular-economy footprint."
   schema="Article"
+  schemaData={schemaData}
 >
   <section class="bg-navy text-white">
     <div class="container-wccp py-14 md:py-16">
@@ -31,6 +67,44 @@ import { site } from '@/config/site';
 
   <article class="container-wccp py-12 md:py-16">
     <div class="max-w-3xl">
+
+      <!-- Direct-answer block -->
+      <aside class="bg-bone-200 border-l-4 border-ember p-6 rounded-r mb-10">
+        <p class="eyebrow text-cast mb-2">In one paragraph</p>
+        <p class="text-navy text-lg leading-relaxed font-medium">
+          In 2023 West Country Concrete Products relocated from Shebbear to a purpose-built
+          eight-acre yard at Chilsworthy, near Holsworthy on the Devon / Cornwall border. The move
+          created 46 jobs (over 90% filled within 15 miles), introduced a modern batching plant
+          with electronically logged mixes, longer prestressing beds, doubled cement-silo capacity
+          and a covered casting hall. The yard sits beside Severn Trent Green Power's Holsworthy
+          biogas plant, recycles process water and concrete returns, and houses our first full-time
+          concrete laboratory.
+        </p>
+        <div class="mt-4 flex flex-wrap gap-3">
+          <a href="/factory" class="btn-primary text-sm">Tour the factory</a>
+          <a href="/contact?subject=yard-visit" class="btn-yellow text-sm">Book a yard visit</a>
+        </div>
+      </aside>
+
+      <!-- Lead photo -->
+      <figure class="mb-10 rounded-lg overflow-hidden bg-cast-100">
+        <picture>
+          <source srcset="/images/wccp-yard-aerial-chilsworthy-holsworthy.webp" type="image/webp" />
+          <img
+            src="/images/wccp-yard-aerial-chilsworthy-holsworthy.png"
+            alt="Aerial view of the WCCP precast yard at Chilsworthy, Holsworthy — purpose-built in 2023"
+            class="w-full h-auto block"
+            loading="eager"
+            decoding="async"
+            width="1600"
+            height="900"
+          />
+        </picture>
+        <figcaption class="bg-navy/95 text-white text-sm px-4 py-3">
+          The Chilsworthy yard from the air — eight acres, purpose-built and opened in 2023.
+        </figcaption>
+      </figure>
+
       <h2 class="font-display text-3xl text-navy mb-4">Why we moved.</h2>
       <p class="text-cast-700 text-lg leading-relaxed mb-6">
         We had outgrown Shebbear. The old yard had served us well since the 1970s — three
@@ -39,13 +113,23 @@ import { site } from '@/config/site';
         completed the move to a new site at Chilsworthy, just outside Holsworthy on the
         Devon / Cornwall border.
       </p>
+      <p class="text-cast-700 text-lg leading-relaxed mb-6">
+        The decision was years in the making. By 2020 we were turning down bespoke jobs we should
+        have been quoting for, simply because we could not lay the moulds out. The new
+        prestressed range needed a 60-metre casting bed; the old yard could give us 38 on a good
+        day. HGV access was tight enough that loading a 14m panel meant moving four other lorries
+        first. The move was not a lifestyle choice — it was the only way to keep growing without
+        sending customers to a competitor.
+      </p>
 
       <h2 class="font-display text-3xl text-navy mb-4">46 jobs.</h2>
       <p class="text-cast-700 text-lg leading-relaxed mb-6">
-        The move created 46 new roles — drivers, batchers, fitters, design engineers, yard
-        hands and admin staff. Over 90% of those jobs are filled by people living within 15
-        miles of the yard. North Devon is not flush with manufacturing employment; we are proud
-        the move kept skilled jobs in the area and brought new ones with it.
+        The move created 46 roles — drivers, batchers, fitters, design engineers, yard hands and
+        admin staff. Over 90% of those jobs are filled by people living within 15 miles of the
+        yard. North Devon is not flush with manufacturing employment; we are proud the move kept
+        skilled jobs in the area and brought new ones with it. Today the team is 46 strong and
+        we are still hiring on the production side. Anyone interested in joining us can read the
+        current <a href="/careers" class="text-ember underline">vacancies on the careers page</a>.
       </p>
 
       <h2 class="font-display text-3xl text-navy mb-4">The new plant.</h2>
@@ -55,6 +139,27 @@ import { site } from '@/config/site';
         electronically, every cube test traceable to the load. <a href="/standards-explained#bs-en-13369" class="text-ember underline">BS EN 13369</a>
         compliance is easier when the kit is built for it.
       </p>
+      <p class="text-cast-700 text-lg leading-relaxed mb-6">
+        We doubled cement silo capacity, brought in a new computer-controlled mixer that holds
+        water content to a tenth of a percent, and built a covered casting hall so winter pours
+        no longer wait on the weather. A dedicated bespoke bay sits alongside the standard
+        production line, which means one-off jobs no longer queue behind the day's cubicle run.
+        For the customer the practical wins are shorter lead times, a longer working day at the
+        yard, and capacity for the heavier prestressed sections we could not previously cast.
+      </p>
+
+      <!-- Inline photo placeholder: pour / casting (pending real WCCP yard photography) -->
+      <figure class="my-10 rounded-lg overflow-hidden bg-cast-100">
+        <div class="aspect-[16/9] flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
+          <div>
+            <p class="text-cast-600 text-sm font-mono">📷 Photo needed</p>
+            <p class="text-cast text-xs mt-2">Concrete being poured into a precast mould on the new line at Chilsworthy</p>
+          </div>
+        </div>
+        <figcaption class="bg-navy/95 text-white text-sm px-4 py-3">
+          Pouring on the new line — every batch is logged electronically and tied back to a cube test.
+        </figcaption>
+      </figure>
 
       <h2 class="font-display text-3xl text-navy mb-4">The biogas neighbour.</h2>
       <p class="text-cast-700 text-lg leading-relaxed mb-6">
@@ -74,6 +179,19 @@ import { site } from '@/config/site';
         we cast.
       </p>
 
+      <!-- Inline photo placeholder: loading / lorry (pending real WCCP yard photography) -->
+      <figure class="my-10 rounded-lg overflow-hidden bg-cast-100">
+        <div class="aspect-[16/9] flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
+          <div>
+            <p class="text-cast-600 text-sm font-mono">📷 Photo needed</p>
+            <p class="text-cast text-xs mt-2">HIAB lorry being loaded with precast panels at the Chilsworthy yard hardstanding</p>
+          </div>
+        </div>
+        <figcaption class="bg-navy/95 text-white text-sm px-4 py-3">
+          Loading out — proper hardstanding for HGVs was one of the reasons we moved.
+        </figcaption>
+      </figure>
+
       <h2 class="font-display text-3xl text-navy mb-4">A good neighbour.</h2>
       <p class="text-cast-700 text-lg leading-relaxed mb-6">
         Moving a working concrete yard into a rural village is a real change for the community.
@@ -85,6 +203,7 @@ import { site } from '@/config/site';
       <div class="flex flex-wrap gap-3">
         <a href="/about" class="btn-primary">Our story</a>
         <a href="/factory" class="btn-yellow">The factory</a>
+        <a href="/contact?subject=yard-visit" class="btn-secondary">Book a yard visit</a>
       </div>
     </div>
   </article>

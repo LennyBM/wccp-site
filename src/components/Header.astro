@@ -82,13 +82,13 @@ const megaCols = [
             <span data-hours-text>—</span>
           </span>
         </a>
-        <span class="text-white/40">·</span>
+        <span class="text-white/55">·</span>
         <a href={`mailto:${site.contact.email}`} class="hover:text-yellow transition-colors duration-200">{site.contact.email}</a>
-        <span class="text-white/40 hidden lg:inline">·</span>
+        <span class="text-white/55 hidden lg:inline">·</span>
         <span class="hidden lg:inline">{site.address.town}, Devon · {site.hours.weekdays} Mon–Fri</span>
       </div>
       <div class="flex items-center gap-3">
-        <span class="text-white/60">Find us:</span>
+        <span class="text-white/85">Find us:</span>
         <a href={site.socials.facebook} target="_blank" rel="noopener noreferrer" aria-label="WCCP on Facebook" class="hover:text-yellow transition-colors duration-200">
           <SocialIcon network="facebook" size={14} />
         </a>
@@ -523,6 +523,22 @@ const megaCols = [
   // Re-runs on every astro:page-load so view-transition navigations re-bind.
   (function () {
     function initRest() {
+      // aria-current="page" sync — runs on every page-load so view-transition
+      // navigations correctly mark the active nav item for AT users.
+      try {
+        const here = window.location.pathname.replace(/\/+$/, '') || '/';
+        const links = document.querySelectorAll('.nav-link, [data-mega-trigger]');
+        links.forEach(function (a) {
+          let href = a.getAttribute('href') || '';
+          try { href = new URL(href, window.location.origin).pathname; } catch (e) { /* leave as-is */ }
+          href = href.replace(/\/+$/, '') || '/';
+          const isMega = a.hasAttribute('data-mega-trigger');
+          const match = href === here || (isMega && here.indexOf('/products/') === 0);
+          if (match) a.setAttribute('aria-current', 'page');
+          else a.removeAttribute('aria-current');
+        });
+      } catch (e) { /* non-fatal */ }
+
       // Reveal observer
       if ('IntersectionObserver' in window) {
         const io = new IntersectionObserver(function (entries) {
@@ -627,10 +643,10 @@ const megaCols = [
         const isWeekday = weekdays.indexOf(wd) > -1;
         const isOpen = isWeekday && now >= hoursOpen && now < hoursClose;
         if (isOpen) {
-          dot.style.background = '#3a5cb5';
+          dot.style.background = '#3a5cb5'; // brand navy-700
           text.textContent = 'Open · ' + hoursOpen + '–' + hoursClose;
         } else {
-          dot.style.background = '#fff005';
+          dot.style.background = '#f5c13b';
           const dayIdx = dayNames.indexOf(wd);
           let nextDay = 'Mon';
           if (isWeekday && now < hoursOpen) {

@@ -17,6 +17,11 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
   title="Concrete padstone sizing for steel beams (UK)"
   description="UK concrete padstone sizing explained: how to calculate bearing area, schedule of typical sizes, BS 8500-1:2023 concrete grade, Eurocode 6 design checks and common mistakes."
   schema="Article"
+  schemaData={{
+    headline: 'Concrete padstone sizing for steel beams (UK)',
+    datePublished: '2026-04-29',
+    dateModified: '2026-04-29',
+  }}
 >
   <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
 
@@ -32,9 +37,10 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
       <div class="bg-navy-700 border-l-4 border-yellow p-6 max-w-3xl rounded-r">
         <p class="text-white/90 text-lg leading-relaxed">
           <strong class="text-white">Direct answer:</strong> Padstone size is the bearing reaction
-          divided by the masonry's allowable bearing pressure (typically 0.4–0.6 N/mm² for
-          blockwork). UK standard sizes run 215×215×100mm to 440×215×215mm in C40/50 concrete to
-          BS 8500-1:2023. Eurocode 6 (BS EN 1996) governs the bearing check.
+          (in kN, from the structural engineer) divided by the masonry's allowable bearing pressure
+          (typically 0.4–0.6 N/mm² for blockwork). UK standard sizes run from 215×215×100mm to
+          440×215×215mm, cast in C40/50 concrete to BS 8500-1:2023. Eurocode 6 (BS EN 1996) governs
+          the bearing check; Eurocode 2 governs the concrete design.
         </p>
       </div>
 
@@ -89,6 +95,12 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
             </table>
           </div>
           <p class="text-sm text-cast italic">All WCCP padstones cast in C40/50 to BS 8500-1:2023; bespoke sizes to your engineer's drawing.</p>
+
+          <aside class="my-8 p-5 border-l-4 border-ember bg-ember/5 rounded-r-md">
+            <p class="font-display font-bold text-navy text-base mb-1">Quote a padstone</p>
+            <p class="text-sm text-cast mb-3">Send the beam schedule — we'll check sizes against reactions, cast in C40/50 and deliver in load order.</p>
+            <a href="/quote?product=padstones" class="inline-flex items-center gap-1.5 text-ember font-bold link-underline">Start a quote →</a>
+          </aside>
         </section>
 
         <aside class="not-prose my-12 reveal">
@@ -113,6 +125,12 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
             padstones to the engineer's drawing.
           </p>
         </section>
+
+        <aside class="my-8 p-5 border-l-4 border-ember bg-ember/5 rounded-r-md">
+          <p class="font-display font-bold text-navy text-base mb-1">See padstones</p>
+          <p class="text-sm text-cast mb-3">Standard sizes 215×215×100mm to 440×215×215mm in C40/50, plus pocket and bespoke padstones.</p>
+          <a href="/products/padstones" class="inline-flex items-center gap-1.5 text-ember font-bold link-underline">View padstones →</a>
+        </aside>
 
         <section id="standards" class="mb-12 scroll-mt-24">
           <h2 class="font-display text-3xl text-navy mb-4">Standards on the spec sheet.</h2>

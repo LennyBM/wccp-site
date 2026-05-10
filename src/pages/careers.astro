@@ -47,12 +47,27 @@ const benefits = [
     desc: 'Purpose-built yard near Holsworthy. Free parking, decent canteen, no rush-hour commute.',
   },
 ];
+
 ---
 
 <BaseLayout
   title="Careers — work at the yard"
   description="We're hiring at the yard. Concrete production, yard hands, office support — full-time roles at our Holsworthy site. 46 jobs at the new yard. Apply with the form."
 >
+  <div data-success-banner="applied" class="hidden bg-success text-white py-4 border-b-4 border-navy">
+    <div class="container-wccp flex items-center gap-3">
+      <svg class="w-6 h-6 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <p class="font-semibold">Application received — thanks. We'll be in touch within five working days.</p>
+    </div>
+  </div>
+  <script is:inline>
+    if (new URLSearchParams(window.location.search).get('applied') === 'true') {
+      document.querySelector('[data-success-banner="applied"]')?.classList.remove('hidden');
+    }
+  </script>
+
   <!-- Hero -->
   <section class="relative bg-navy text-white overflow-hidden">
     <div class="relative container-wccp py-20 md:py-28">
@@ -73,16 +88,13 @@ const benefits = [
           </div>
         </div>
         <div class="rounded-lg overflow-hidden shadow-lifted ring-1 ring-yellow-400/30">
-          <picture>
-            <source srcset="/images/wccp-careers-hiring-concrete-production-operatives-holsworthy.webp" type="image/webp" />
-            <img
-              src="/images/wccp-careers-hiring-concrete-production-operatives-holsworthy.jpg"
-              alt="WCCP recruiting Concrete Production Operatives at the Holsworthy yard, Devon"
-              class="w-full h-auto block"
-              loading="eager"
-              decoding="async"
-            />
-          </picture>
+          <!-- Hiring image placeholder pending real WCCP yard photography -->
+          <div class="aspect-[3/2] bg-navy-700/40 flex items-center justify-center border-2 border-dashed border-yellow-400/40 p-8 text-center">
+            <div>
+              <p class="text-yellow text-sm font-mono uppercase tracking-widest">📷 Photo needed</p>
+              <p class="text-cream/80 text-xs mt-2">Real WCCP yard team in PPE — production operatives at the Holsworthy casting bay</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -135,9 +147,14 @@ const benefits = [
   <!-- Vacancies -->
   <section id="vacancies" class="bg-bone-200 py-20">
     <div class="container-wccp">
-      <div class="max-w-2xl mb-10">
+      <div class="max-w-3xl mb-10">
         <p class="eyebrow text-cast mb-3">Currently hiring · {vacancies.length} roles</p>
-        <h2 class="font-display text-display-lg">Current vacancies.</h2>
+        <h2 class="font-display text-display-lg mb-3">Current vacancies.</h2>
+        <p class="text-cast-700 text-lg leading-relaxed">
+          Our active hiring focus is <span class="font-semibold text-navy">Concrete Production Operatives</span>
+          at the Holsworthy yard — driven by a genuinely busy order book. Two more roles below
+          alongside it. All full-time, permanent, and based at the Chilsworthy site.
+        </p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-6">
@@ -156,6 +173,42 @@ const benefits = [
         Don't see your trade? We always have an ear out for HGV drivers, telehandler operators and
         good production hands. Send a CV anyway — we'll keep it on file.
       </p>
+
+      <!-- How to apply -->
+      <div class="mt-12 grid md:grid-cols-3 gap-4 max-w-5xl">
+        <div class="card p-6 bg-yellow border-l-4 border-navy md:col-span-3">
+          <p class="eyebrow text-navy mb-2">How to apply</p>
+          <h3 class="font-display text-2xl font-bold text-navy mb-3">Three ways in.</h3>
+          <ol class="grid md:grid-cols-3 gap-4 text-navy">
+            <li class="bg-bone-100 p-4 rounded">
+              <p class="font-display font-bold text-navy mb-1">1. Email</p>
+              <p class="text-sm leading-relaxed">
+                Send a CV and short cover letter to
+                <a href="mailto:careers@wccp.co.uk?subject=Application%20%E2%80%94%20Concrete%20Production%20Operative" class="text-ember font-semibold hover:underline break-all">careers@wccp.co.uk</a>.
+                Tell us which role and when you can start.
+              </p>
+            </li>
+            <li class="bg-bone-100 p-4 rounded">
+              <p class="font-display font-bold text-navy mb-1">2. Form below</p>
+              <p class="text-sm leading-relaxed">
+                Use the application form on this page — attach a CV (PDF or Word) or write your
+                history in the message. We answer every one.
+              </p>
+            </li>
+            <li class="bg-bone-100 p-4 rounded">
+              <p class="font-display font-bold text-navy mb-1">3. Phone the yard</p>
+              <p class="text-sm leading-relaxed">
+                Ring <a href={`tel:${site.contact.phoneIntl}`} class="text-ember font-semibold hover:underline">{site.contact.phone}</a>
+                and ask for the office. Mon–Fri, working hours.
+              </p>
+            </li>
+          </ol>
+          <p class="text-navy/85 text-xs mt-4">
+            We reply to every application — usually within five working days. CVs are kept on file
+            for twelve months unless you ask otherwise.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -199,6 +252,7 @@ const benefits = [
           enctype="multipart/form-data"
           data-netlify="true"
           netlify-honeypot="bot-field"
+          action="/careers?applied=true"
           class="card p-6 bg-bone-100 text-navy space-y-4"
         >
           <input type="hidden" name="form-name" value="careers" />

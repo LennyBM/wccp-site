@@ -1,0 +1,383 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import FittedVsSupply from '@/components/FittedVsSupply.astro';
+import SpecSheetButton from '@/components/SpecSheetButton.astro';
+import ProductGallery from '@/components/ProductGallery.astro';
+import { site } from '@/config/site';
+import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
+import ProductPageTOC from '@/components/ProductPageTOC.astro';
+
+const tocSections = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'specifications', label: 'Specifications' },
+  { id: 'gallery', label: 'Gallery' },
+  { id: 'related', label: 'Related' },
+  { id: 'faq', label: 'FAQ' },
+  { id: 'downloads', label: 'Downloads' },
+];
+
+// WCCP precast prestressed bridge beams — Y, M and U sections, BS EN 15050. Network Rail and DMRB.
+const specs = [
+  { variant: 'Y1 to Y8 Y-beam', bed: '600–1500mm depth · spans 9–28m', style: 'BS EN 15050 prestressed · DMRB CD 360', use: 'Highway and rail bridge decks, short to medium spans' },
+  { variant: 'M2 to M10 M-beam', bed: '720–1360mm depth · spans 14–32m', style: 'BS EN 15050 prestressed · DMRB CD 360', use: 'Medium to long span motorway and trunk-road bridges' },
+  { variant: 'U7 to U12 U-beam', bed: '1100–1600mm depth · spans 18–40m', style: 'BS EN 15050 prestressed · open-trough', use: 'Long-span rail and highway viaducts' },
+  { variant: 'TY-beam (inverted T)', bed: '380–680mm depth · spans 6–18m', style: 'BS EN 15050 prestressed · TY profile', use: 'Short-span footbridges, agricultural underbridges' },
+  { variant: 'SY-beam (super-Y)', bed: '1500–2000mm depth · spans 24–40m', style: 'BS EN 15050 prestressed · deep section', use: 'Major motorway and rail viaduct decks' },
+  { variant: 'Bespoke beam', bed: 'To engineer\'s drawing', style: 'BS EN 15050 prestressed · CAT III checked', use: 'Network Rail GRIP-stage projects, DMRB AIP' },
+];
+
+const applications = [
+  'Highway bridge decks — A-roads, motorways, slip roads',
+  'Network Rail under-track and over-track bridge renewals',
+  'Pedestrian and cycle footbridges',
+  'Agricultural and estate-road underbridges',
+  'Multi-span motorway viaducts and flyovers',
+  'River and floodplain crossings',
+  'Industrial-park and logistics-yard span structures',
+];
+
+const related = [
+  { href: '/products/pipe-culverts', label: 'Pipe Culverts', meta: 'BS 5911-1 · 300–1800mm' },
+  { href: '/products/culverts', label: 'Box Culverts', meta: 'Rectangular precast · BS 5911-2' },
+  { href: '/products/retaining-walls', label: 'Retaining Walls', meta: 'L-shape and counterfort civils' },
+  { href: '/products/king-post-walls', label: 'King Post Walls', meta: 'Earth-retaining structures' },
+];
+
+const faqs = [
+  { q: 'What standard do your bridge beams meet?', a: 'BS EN 15050:2007+A1:2012 — precast concrete bridge elements. Designed to BS EN 1992-1-1 and BS EN 1992-2 (Eurocode 2 Parts 1-1 and 2 — bridges), with prestressed strand to BS EN 10138-3. UKCA marked, factory-production-controlled to BS EN 13369. Network Rail orders include the GRIP-stage CAT III check certification pack; DMRB orders include the AIP (Approval in Principle) compliance documentation.' },
+  { q: 'Y, M, U or TY — which beam do I want?', a: 'Y-beams are the workhorse for spans 9 to 28m on highway bridges. M-beams handle 14 to 32m and are common on motorway widenings. U-beams (open-trough) are for long-span rail and highway viaducts to 40m. TY (inverted T) suits short-span footbridges and agricultural underbridges from 6m. Send us the bridge GA and span length and we will recommend the family.' },
+  { q: 'Do you do Network Rail and DMRB schemes?', a: 'Yes — we cast and supply for Network Rail GRIP-stage projects and DMRB-compliant highway bridge schemes UK-wide. The certification pack for Network Rail orders includes the BS EN 15050 declaration of performance, prestress strand mill certs to BS EN 10138-3, and the CAT III check engineer\'s sign-off. DMRB orders include the AIP compliance and CD 360 (concrete bridge design) cross-references.' },
+  { q: 'How are they delivered to site?', a: 'Beams up to 28m on standard low-loaders, 28m to 40m on extending or super-low STGO Cat 3 trailers with police escort. We co-ordinate the route survey with the haulier and supply the lift drawing with the centre-of-gravity and pick-point positions. Beams are typically erected by 250t to 500t mobile crane in tandem with a second crane for the longer pieces.' },
+  { q: 'What is the lead time?', a: 'Catalogue Y and M beams typically run 8 to 12 weeks from order — prestressed beams need bed time on the long-line and a 28-day cure cycle. Bespoke and SY-beams sit at 12 to 16 weeks. Network Rail possession-driven orders are scheduled around your blockade dates — engage engineering at GRIP 4 if possible.' },
+];
+
+const productSchema = {
+  name: 'Precast Prestressed Bridge Beams',
+  description: 'Precast prestressed concrete bridge beams to BS EN 15050 — Y, M, U, TY and SY profiles. Network Rail and DMRB compliant. Cast in C50/60 concrete to BS EN 1992 at our Holsworthy yard.',
+  brand: { '@type': 'Brand', name: site.name },
+  manufacturer: { '@type': 'Organization', name: site.name },
+  category: 'Precast prestressed concrete bridge beam',
+  material: 'Prestressed reinforced concrete, C50/60 (BS 8500-1:2023)',
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 15050:2007+A1:2012' },
+    { '@type': 'PropertyValue', name: 'Design code', value: 'BS EN 1992-1-1 and BS EN 1992-2 (Eurocode 2)' },
+    { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C50/60 (BS 8500-1:2023)' },
+    { '@type': 'PropertyValue', name: 'Prestress strand', value: 'BS EN 10138-3 · 7-wire 15.7mm super-strand' },
+    { '@type': 'PropertyValue', name: 'Beam profiles', value: 'Y / M / U / TY / SY' },
+    { '@type': 'PropertyValue', name: 'Span range', value: '6m to 40m' },
+    { '@type': 'PropertyValue', name: 'Compliance', value: 'Network Rail GRIP · DMRB CD 360' },
+    { '@type': 'PropertyValue', name: 'Factory production control', value: 'BS EN 13369 · UKCA marked' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '8–12 weeks catalogue, 12–16 weeks bespoke' },
+    { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
+  ],
+  offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="Bridge Beams — BS EN 15050 · Y, M, U-beams · Network Rail & DMRB"
+  description="Precast prestressed bridge beams to BS EN 15050. Y-beams, M-beams, U-beams to 40m span. Network Rail and DMRB compliant. Cast in North Devon."
+  image="/og-default.png"
+  schema="Product"
+  schemaData={productSchema}
+  whatsappContext="Bridge Beams"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <TrustStrip />
+  <ProductPageTOC sections={tocSections} />
+
+  <!-- Hero -->
+  <section id="overview" class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow text-yellow mb-4">Civils · highways · rail</p>
+          <h1 class="font-display text-display-xl text-white mb-4">Bridge Beams.</h1>
+          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">Prestressed. Long-span. Built for the blockade.</p>
+          <p class="text-lg lg:text-xl text-cast leading-relaxed font-medium text-white/95 mb-6 max-w-xl">
+            Precast prestressed bridge beams to BS EN 15050 — Y-beams, M-beams, U-beams, TY
+            and SY profiles, in spans from 6m to 40m. C50/60 concrete to BS 8500-1:2023,
+            7-wire 15.7mm super-strand to BS EN 10138-3, designed to BS EN 1992-1-1 and
+            EN 1992-2. Network Rail GRIP-stage and DMRB CD 360 compliant. Lead time
+            8–12 weeks.
+          </p>
+          <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
+            A 24&nbsp;m Y6 prestressed bridge beam cast to BS EN 15050 carries the full HB44.5
+            highways envelope under DMRB CD 360, with prestress losses and camber calculated
+            in accordance with BS EN 1992-1-1 long-term creep and shrinkage models.
+          </blockquote>
+          <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
+            Cast at Holsworthy on long-line prestressing beds. CAT III checked, UKCA marked,
+            full certification pack with every order. Delivered UK-wide on STGO trailers.
+          </p>
+          <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
+            <li class="flex gap-2"><span class="text-yellow">·</span> BS EN 15050</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Y / M / U / TY / SY</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 6m–40m spans</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Network Rail + DMRB</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> CAT III checked</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 8–16 week lead</li>
+          </ul>
+          <div class="flex flex-wrap gap-3">
+            <a href="/quote?product=Bridge%20Beams" class="btn-primary">Configure a quote</a>
+            <a href="mailto:engineering@wccp.co.uk?subject=Spec%20sheet%20request%20%E2%80%94%20Bridge%20Beams&amp;body=Hi%20WCCP%20engineering%2C%0A%0APlease%20send%20the%20spec%20sheet%20for%20Bridge%20Beams.%0A%0AProject%20details%3A%0A%E2%80%A2%20Project%20name%3A%0A%E2%80%A2%20Site%20location%3A%0A%E2%80%A2%20Required%20spec%20%2F%20standard%3A%0A%0AThanks" class="btn-yellow">Request spec sheet</a>
+            <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">
+              Call {site.contact.phone}
+            </a>
+          </div>
+        </div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
+          <div>
+            <p class="text-cast-600 text-sm font-mono">📷 Photo needed</p>
+            <p class="text-cast text-xs mt-2">Hero shot: Y-beams stacked in the Holsworthy yard, end-on, showing the prestressing strand pattern at the beam end</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spec table -->
+  <section class="container-wccp py-20">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Specification</p>
+      <h2 class="font-display text-display-lg mb-4">Beam profiles, depths and spans.</h2>
+      <p class="text-cast-700 text-lg">
+        Six families covering 6m footbridges to 40m motorway viaducts. Bespoke profiles and
+        non-standard prestress patterns cast on order — engineering will work the design
+        from your bridge GA.
+      </p>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="spec-table w-full text-left border-collapse">
+        <thead class="bg-navy text-white">
+          <tr>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Variant</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Depth / span</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Standard / style</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
+          </tr>
+        </thead>
+        <tbody>
+          {specs.map((s, i) => (
+            <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
+              <td class="px-4 py-3 font-bold text-navy">{s.variant}</td>
+              <td class="px-4 py-3">{s.bed}</td>
+              <td class="px-4 py-3">{s.style}</td>
+              <td class="px-4 py-3 text-cast">{s.use}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-cast text-sm mt-4">
+      All beams cast on long-line prestressing beds at Holsworthy. UKCA marked, declaration
+      of performance per BS EN 15050. Network Rail orders include the GRIP-stage CAT III
+      check engineer's certification pack.
+    </p>
+
+    <p class="text-cast text-sm mt-4">
+      Camber, prestress losses and creep modelled to BS EN 1992-1-1. Send us the bridge GA
+      and we will return a beam schedule with depths, span lengths and prestress strand
+      counts inside 48 hours.
+    </p>
+  </section>
+
+  <ProductGallery
+    eyebrow="The range"
+    heading="Bridge beams in the yard and on site."
+    background="bone"
+    cols={4}
+    images={[
+      { src: '', alt: 'Y-beam casting bed', caption: 'Casting bed · Y-beam on long-line prestressing bed at Holsworthy' },
+      { src: '', alt: 'Y-beam end detail', caption: 'End detail · prestressing strand pattern at beam end' },
+      { src: '', alt: 'M-beam stockpile', caption: 'M-beam stockpile · cured beams banded for delivery' },
+      { src: '', alt: 'U-beam open trough', caption: 'U-beam · open-trough section showing internal bracing' },
+      { src: '', alt: 'Beam delivery STGO', caption: 'Delivery · 28m Y-beam on STGO Cat 3 trailer with escort' },
+      { src: '', alt: 'Beam erection crane', caption: 'Erection · 250t mobile crane lifting beam onto bearings' },
+      { src: '', alt: 'Bridge deck install', caption: 'Deck install · multi-beam highway bridge with beams placed' },
+      { src: '', alt: 'TY footbridge', caption: 'Footbridge · TY-beam on a 12m pedestrian bridge install' },
+    ]}
+  />
+
+  <!-- Applications -->
+  <section class="bg-white py-20">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow text-cast mb-3">Where they go</p>
+          <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            From a 12m TY-beam footbridge over a Devon stream to a 40m SY-beam Network Rail
+            viaduct in Somerset, we cast and deliver to the same engineered standard —
+            prestressed, certified, and on the trailer to your blockade slot.
+          </p>
+          <ul class="space-y-3">
+            {applications.map((a) => (
+              <li class="flex gap-3 text-cast-700 leading-relaxed">
+                <span class="text-ember font-bold mt-1">·</span>
+                <span>{a}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="card p-8">
+          <p class="eyebrow text-cast mb-3">Standards & references</p>
+          <h3 class="font-display text-2xl font-bold text-navy mb-4">Cast and certified to current code.</h3>
+          <dl class="space-y-4 text-sm">
+            <div>
+              <dt class="font-bold text-navy">BS EN 15050:2007+A1:2012</dt>
+              <dd class="text-cast">Precast concrete bridge elements — beams, slabs and parapet sections.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS EN 1992-1-1 and EN 1992-2</dt>
+              <dd class="text-cast">Eurocode 2 — design of concrete structures, Parts 1-1 (general) and 2 (bridges).</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">DMRB CD 360</dt>
+              <dd class="text-cast">Design Manual for Roads and Bridges — concrete bridge design and detailing.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">Network Rail NR/L2/CIV/003</dt>
+              <dd class="text-cast">Engineering assurance of bridges — GRIP-stage certification framework.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS EN 10138-3</dt>
+              <dd class="text-cast">Prestressing steels — 7-wire strand for prestressing applications.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS EN 13369</dt>
+              <dd class="text-cast">Common rules for precast concrete products — factory production control.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Configurator CTA -->
+  <section class="bg-yellow text-navy py-16">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-navy mb-2">Configure your bridge deck</p>
+          <h2 class="font-display text-display-md">Send us the bridge GA, span length and loading — we will return a beam schedule inside 48 hours.</h2>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href="/quote?product=Bridge%20Beams" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
+          <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="container-wccp py-20">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
+      <div>
+        <p class="eyebrow text-cast mb-3">Related products</p>
+        <h2 class="font-display text-display-lg">Often ordered alongside.</h2>
+      </div>
+      <a href="/products" class="text-ember font-bold hover:text-ember-700 inline-flex items-center gap-2">
+        View full range
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" />
+          <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+    <RelatedProductGrid items={related} />
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">Common questions</p>
+        <h2 class="font-display text-display-lg mb-4">What people ask about bridge beams.</h2>
+        <p class="text-cast-700 text-lg">
+          Five questions we answer most weeks. If yours is not here, ring the yard.
+        </p>
+      </div>
+      <div class="max-w-3xl space-y-4">
+        {faqs.map((f) => (
+          <details class="card p-6 group">
+            <summary class="font-display text-lg font-bold text-navy cursor-pointer list-none flex justify-between items-start gap-4">
+              <span>{f.q}</span>
+              <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Supply-only vs Fitted -->
+  <section class="container-wccp section-rhythm border-t border-cast-100">
+    <FittedVsSupply
+      productName="Bridge Beams"
+      defaultMode="supply"
+      supply={{
+        price: 'Bespoke quote',
+        leadTime: '8–16 weeks',
+        includes: [
+          'Prestressed beams to BS EN 15050',
+          'CAT III check engineer certification pack',
+          'BS EN 10138-3 strand mill certs',
+          'STGO delivery to site with route survey',
+        ],
+        excludes: [
+          'Crane lift and erection works',
+          'Bearing supply and bridge deck pour',
+        ],
+      }}
+      fitted={{
+        price: 'Bespoke quote (incl. erection)',
+        leadTime: '12–20 weeks (incl. site slot)',
+        includes: [
+          'Everything in supply only',
+          'Mobile-crane erection (250t–500t)',
+          'Lift drawing and method statement',
+          '12-month workmanship warranty',
+        ],
+        excludes: [
+          'Substructure and abutment works',
+          'Possession and traffic-management costs',
+        ],
+      }}
+      note=". Bespoke beam profiles, Network Rail GRIP-stage and major-scheme packages priced individually — send the bridge GA and we'll return a beam schedule inside 48 hours."
+    />
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-navy text-white py-20">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
+      <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">
+        Send us the bridge GA, span length, loading and possession dates. Beam schedule inside 48 hours.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/quote?product=Bridge%20Beams" class="btn-yellow">Configure a quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
+      </div>
+    </div>
+  </section>
+
+  <SpecSheetButton productSlug="bridge-beams" productName="Bridge Beams" />
+  <ProductWarrantyLine />
+</BaseLayout>

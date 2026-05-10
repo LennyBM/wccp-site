@@ -55,8 +55,8 @@ const capabilities = [
         </h1>
         <p class="text-lg md:text-xl text-white/90 max-w-2xl mb-10 leading-relaxed">
           Our purpose-built precast facility opened in 2023 on the edge of Holsworthy. Bigger casting
-          beds, in-house design, modern batching, a proper QC lab — and 46 jobs in a part of Devon
-          that needed them.
+          beds, <a href="/about" class="text-yellow underline decoration-yellow/40 hover:decoration-yellow underline-offset-4">in-house design</a>, modern batching, a proper QC lab — and 46 jobs in a part of Devon
+          that needed them. See it in <a href="/case-studies" class="text-yellow underline decoration-yellow/40 hover:decoration-yellow underline-offset-4">recent jobs</a>, or browse <a href="/products" class="text-yellow underline decoration-yellow/40 hover:decoration-yellow underline-offset-4">the full range</a>.
         </p>
         <div class="flex flex-wrap gap-3">
           <a href="/contact" class="btn-yellow">Book a factory tour</a>
@@ -67,7 +67,28 @@ const capabilities = [
   </section>
 
   <!-- Concrete spec ticker — today's mix straight off the factory floor -->
-  <SpecTicker />
+  <SpecTicker fines="Fines 28%" />
+
+  <!-- Currently casting · static signal of competence -->
+  <section class="bg-bone-200 border-b border-cast-100">
+    <div class="container-wccp py-4">
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[11px] sm:text-xs uppercase tracking-widest text-navy-700">
+        <span class="inline-flex items-center gap-2 font-bold text-ember">
+          <span class="relative inline-flex w-2 h-2">
+            <span class="absolute inset-0 rounded-full bg-ember animate-ping opacity-60"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-ember"></span>
+          </span>
+          Currently casting
+        </span>
+        <span aria-hidden="true" class="w-1 h-1 rounded-full bg-cast-300"></span>
+        <span>C40/50 SR</span>
+        <span aria-hidden="true" class="w-1 h-1 rounded-full bg-cast-300"></span>
+        <span>CEM III/A</span>
+        <span aria-hidden="true" class="w-1 h-1 rounded-full bg-cast-300"></span>
+        <span>Fines 28%</span>
+      </div>
+    </div>
+  </section>
 
   <!-- Walk the yard — video block -->
   <section class="container-wccp section-rhythm">
@@ -91,13 +112,12 @@ const capabilities = [
         role="img"
         aria-label="Live still from the Holsworthy yard, panel bay 3"
       >
-        <img
-          src="/images/factory-hero.jpg"
-          alt="Holsworthy yard, panel bay 3 — most recent still"
-          class="absolute inset-0 w-full h-full object-cover"
-          loading="lazy"
-          decoding="async"
-        />
+        <div class="absolute inset-0 bg-cast-100 flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
+          <div>
+            <p class="text-cast-600 text-sm font-mono">📷 Photo needed</p>
+            <p class="text-cast text-xs mt-2">Holsworthy yard panel bay 3 — recent webcam still</p>
+          </div>
+        </div>
 
         <!-- Timestamp badge -->
         <div class="absolute top-4 right-4 z-10">
@@ -231,13 +251,13 @@ const capabilities = [
     <div class="grid lg:grid-cols-2 gap-12 items-center">
       <div>
         <p class="eyebrow text-cast mb-3">Next door: Severn Trent biogas</p>
-        <h2 class="font-display text-display-lg mb-6">Co-located with an anaerobic digestion plant.</h2>
+        <h2 class="font-display text-display-lg mb-6">On the same lane as Severn Trent's biogas plant.</h2>
         <p class="text-cast-700 text-lg leading-relaxed mb-5">
-          The Chilsworthy yard sits adjacent to the Holsworthy Biogas Plant, owned by
-          <strong class="text-navy-700">Severn Trent Green Power</strong> — the FTSE-100 utility's
-          renewable arm, and one of the largest food-waste biogas plants in the UK. The neighbour
-          relationship is a circular-economy story: food-waste digestate one side of the fence,
-          precast concrete the other.
+          Our Chilsworthy site is built on the same lane as
+          <strong class="text-navy-700">Severn Trent Green Power's Holsworthy biogas plant</strong> —
+          the UK's first food-waste anaerobic digestion plant, owned by the FTSE-listed water utility.
+          The neighbour relationship is a circular-economy story: food-waste digestate one side of
+          the fence, precast concrete the other.
         </p>
         <p class="text-cast-700 text-lg leading-relaxed mb-8">
           Concrete is one of the most carbon-intensive materials in construction. Sitting next door

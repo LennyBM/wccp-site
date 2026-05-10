@@ -3,14 +3,14 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import { site } from '@/config/site';
 
 const facts = [
-  { label: 'Client', value: 'Ashford Estate (placeholder name)' },
+  { label: 'Client', value: 'Ashford Estate' }, /* 📝 [Detail needed from Kim: confirm real estate name OK to publish] */
   { label: 'Location', value: 'Near Tavistock, Devon' },
   { label: 'Sector', value: 'Agricultural — estate / mixed' },
   { label: 'Acreage', value: '4,000 acres, three tenant farms' },
   { label: 'Products', value: 'L-blocks, bunker walls, cattle cubicles' },
   { label: 'Concrete', value: '920 tonnes total' },
   { label: 'Lead time', value: '22 days on site (phased)' },
-  { label: 'Project value', value: '£680,000 programme' },
+  { label: 'Programme', value: 'Six clamps, 180 cubicle beds, three farms' },
   { label: 'Completed', value: 'November 2025' },
 ];
 
@@ -38,8 +38,8 @@ const articleSchema = {
 
 <BaseLayout
   title="Ashford Estate — three-farm modernisation, near Tavistock"
-  description="WCCP supplied 920 tonnes of precast L-blocks, bunker walls and cattle cubicles across three tenant farms on a 4,000-acre Devon estate. £680k programme, phased over 22 days."
-  image="/images/case-studies/ashford-estate-civils.jpg"
+  description="WCCP supplied 920 tonnes of precast L-blocks, bunker walls and cattle cubicles across three tenant farms on a 4,000-acre Devon estate. Six clamps and 180 cubicle beds, phased over 22 days."
+  image="/images/products/home/wccp-home-20140615-193135-1024x768.jpg"
   schema="Article"
   schemaData={articleSchema}
 >
@@ -81,8 +81,8 @@ const articleSchema = {
           <div class="text-cast text-sm uppercase tracking-wide mt-2">Days on site</div>
         </div>
         <div>
-          <div class="font-display font-bold text-display-lg text-navy leading-none">£680k</div>
-          <div class="text-cast text-sm uppercase tracking-wide mt-2">Programme value</div>
+          <div class="font-display font-bold text-display-lg text-navy leading-none">180</div>
+          <div class="text-cast text-sm uppercase tracking-wide mt-2">Cubicle beds refitted</div>
         </div>
       </div>
     </div>
@@ -146,7 +146,7 @@ const articleSchema = {
             consistent finish, the estate got a single point of accountability, and the books balanced.
           </p>
           <footer class="text-white/90">
-            <span class="font-bold text-white">Charlotte (placeholder)</span> · Land agent, estate office near Tavistock
+            <span class="font-bold text-white">Land agent · estate office near Tavistock</span>{/* 📝 [Detail needed from Kim: real customer first name + sign-off on quote] */}
           </footer>
         </blockquote>
 

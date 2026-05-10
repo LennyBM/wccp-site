@@ -7,6 +7,7 @@ import { site } from '@/config/site';
 const city = 'Truro';
 const county = 'Cornwall';
 const distanceMi = 60;
+const driveTime = '90 minutes';
 
 const surroundingAreas = [
   'Falmouth', 'Penryn', 'Redruth', 'Camborne', 'St Austell',
@@ -34,28 +35,36 @@ const related = [
   { href: '/products/culverts',            label: 'Box Culverts',        meta: 'BS EN 1916 / BS 5911' },
 ];
 
-const localBusinessSchema = {
-  areaServed: { '@type': 'City', name: `${city}, ${county}, United Kingdom` },
+const serviceSchema = {
+  name: `Precast concrete supplier in ${city}`,
+  description: `Precast concrete delivered to ${city} and Mid ${county} from the WCCP yard in Holsworthy — roughly ${distanceMi} miles via the A30.`,
+  serviceType: 'Precast concrete manufacture and delivery',
+  areaServed: [{ '@type': 'City', name: city }, { '@type': 'AdministrativeArea', name: `Mid ${county}` }],
   mainEntityOfPage: `${site.url}/concrete-supplier-truro`,
 };
 ---
 
 <BaseLayout
-  title={`Precast concrete supplier · ${city}`}
-  description={`Precast concrete delivered to ${city} and Mid Cornwall from the WCCP yard in Holsworthy — roughly ${distanceMi} miles via the A30. Cubicles, slurry, retaining walls, padstones, culverts. Cast in North Devon.`}
-  schema="LocalBusiness"
-  schemaData={localBusinessSchema}
+  title={`Precast concrete supplier ${city} · WCCP`}
+  description={`Precast concrete supplier delivering to ${city} and Mid ${county} from our Holsworthy yard, ${distanceMi} miles via the A30. Cubicles, slurry, retaining walls.`}
+  schema="Service"
+  schemaData={serviceSchema}
 >
   <section class="bg-forest-700 text-cream">
     <div class="container-wccp py-20 md:py-28">
       <p class="eyebrow text-cream/70 mb-4">Areas served · {city}</p>
       <h1 class="font-display text-display-2xl text-cream mb-6 max-w-4xl">
-        Precast concrete delivered to {city} and Mid {county}.<br />
+        Precast concrete supplier in {city}.<br />
         <em class="text-terracotta not-italic font-display italic">Cast up the road. On your slab in days.</em>
       </h1>
-      <p class="text-cream/85 text-lg leading-relaxed max-w-2xl mb-8">
-        Family-led North Devon precast, ten miles from the {county} border. Same lorries we run to
-        Falmouth, St Austell and Newquay every week.
+      <p class="text-cream/85 text-lg leading-relaxed max-w-3xl mb-8">
+        WCCP delivers precast concrete to {city} from our Holsworthy yard, around {driveTime}
+        away down the A30. Common {city} precast jobs:
+        <a href="/products/cattle-cubicles" class="text-terracotta-300 underline-offset-4 hover:underline">cattle cubicles</a> for
+        South Cornwall dairies, <a href="/products/retaining-walls" class="text-terracotta-300 underline-offset-4 hover:underline"> retaining walls</a> for
+        A30 civils and <a href="/products/culverts" class="text-terracotta-300 underline-offset-4 hover:underline"> box culverts</a> for
+        South West Water schemes. Lead times: 2–3 weeks for catalogue items, 4–6 weeks bespoke.
+        Recent deliveries: Falmouth, St Austell and Newquay.
       </p>
       <div class="flex flex-wrap gap-3">
         <a href="/quote" class="btn-primary">Get a quote</a>
@@ -92,49 +101,77 @@ const localBusinessSchema = {
 
   <section class="bg-cream-200 py-16 md:py-20 section-reveal">
     <div class="container-wccp">
-      <div class="max-w-2xl mb-10">
-        <p class="eyebrow text-cast mb-3">Areas covered</p>
-        <h2 class="font-display text-display-md text-forest-700 mb-4">{city} and Mid {county}.</h2>
-        <p class="text-cast-700">From the cathedral city out to the Roseland and the north coast.</p>
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow text-cast mb-3">Why {city} farms and contractors choose WCCP</p>
+        <h2 class="font-display text-display-md text-forest-700 mb-4">A30 west, daily run for fifty years.</h2>
       </div>
-      <ul class="grid sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-2 max-w-3xl">
-        {surroundingAreas.map((a) => (
-          <li class="flex gap-2 text-cast-700"><span class="text-terracotta font-bold">·</span> {a}</li>
-        ))}
-      </ul>
+      <div class="grid md:grid-cols-2 gap-6 max-w-4xl">
+        <div class="card p-6">
+          <h3 class="font-display text-lg font-bold text-forest-700 mb-2">South Cornwall dairy</h3>
+          <p class="text-cast-700 leading-relaxed">South Cornwall valley dairies — <a href="/products/cattle-cubicles" class="text-terracotta font-semibold hover:underline">cubicles</a>, SSAFO-compliant <a href="/products/slurry-storage" class="text-terracotta font-semibold hover:underline">slurry stores</a> and <a href="/products/feed-troughs" class="text-terracotta font-semibold hover:underline">feed troughs</a>.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="font-display text-lg font-bold text-forest-700 mb-2">A30 dualling and Cornwall civils</h3>
+          <p class="text-cast-700 leading-relaxed">Trusted into Cornwall Council, National Highways and South West Water for engineered <a href="/products/retaining-walls" class="text-terracotta font-semibold hover:underline">retaining walls</a> and <a href="/products/culverts" class="text-terracotta font-semibold hover:underline">box culverts</a>.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="font-display text-lg font-bold text-forest-700 mb-2">Roseland, Lizard, north coast</h3>
+          <p class="text-cast-700 leading-relaxed">Tight Cornish lanes are routine — we recce in advance and switch from artic to rigid 8-wheeler where the village or drive demands it.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="font-display text-lg font-bold text-forest-700 mb-2">Stock for fast turnaround</h3>
+          <p class="text-cast-700 leading-relaxed">Stock cubicles, troughs and <a href="/products/l-blocks" class="text-terracotta font-semibold hover:underline">L-blocks</a> mean smaller Truro orders often ship inside a week, not three.</p>
+        </div>
+      </div>
+      <div class="mt-8">
+        <a href="/quote" class="btn-primary">Get a quote</a>
+      </div>
     </div>
   </section>
 
   <section class="container-wccp py-16 md:py-20 section-reveal">
     <div class="max-w-2xl mb-10">
-      <p class="eyebrow text-cast mb-3">What we cast</p>
-      <h2 class="font-display text-display-md text-forest-700 mb-4">Most ordered around {city}.</h2>
-      <p class="text-cast-700">Dairy and beef across the South Cornwall valleys, civils for the A30 dualling and the South West Water network.</p>
+      <p class="eyebrow text-cast mb-3">Areas covered</p>
+      <h2 class="font-display text-display-md text-forest-700 mb-4">{city} and Mid {county}.</h2>
+      <p class="text-cast-700">From the cathedral city out to the Roseland and the north coast.</p>
     </div>
-    <RelatedProductGrid items={related} />
-    <div class="mt-8 flex flex-wrap gap-6 text-sm">
-      <a href="/products" class="text-terracotta font-bold hover:text-terracotta-700">See the full catalogue →</a>
-      <a href="/case-studies" class="text-terracotta font-bold hover:text-terracotta-700">Recent case studies →</a>
-    </div>
+    <ul class="grid sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-2 max-w-3xl">
+      {surroundingAreas.map((a) => (
+        <li class="flex gap-2 text-cast-700"><span class="text-terracotta font-bold">·</span> {a}</li>
+      ))}
+    </ul>
   </section>
 
   <section class="bg-cream-200 py-16 md:py-20 section-reveal">
     <div class="container-wccp">
       <div class="max-w-2xl mb-10">
-        <p class="eyebrow text-cast mb-3">Common questions</p>
-        <h2 class="font-display text-display-md text-forest-700">Delivering to {city}.</h2>
+        <p class="eyebrow text-cast mb-3">What we cast</p>
+        <h2 class="font-display text-display-md text-forest-700 mb-4">Most ordered around {city}.</h2>
+        <p class="text-cast-700">Dairy and beef across the South Cornwall valleys, civils for the A30 dualling and the South West Water network.</p>
       </div>
-      <div class="max-w-3xl space-y-4">
-        {faqs.map((f) => (
-          <details class="card p-6 group">
-            <summary class="font-display text-lg font-bold text-forest-700 cursor-pointer list-none flex justify-between items-start gap-4">
-              <span>{f.q}</span>
-              <span class="text-terracotta text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
-            </summary>
-            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
-          </details>
-        ))}
+      <RelatedProductGrid items={related} />
+      <div class="mt-8 flex flex-wrap gap-6 text-sm">
+        <a href="/products" class="text-terracotta font-bold hover:text-terracotta-700">See the full catalogue →</a>
+        <a href="/case-studies" class="text-terracotta font-bold hover:text-terracotta-700">Recent case studies →</a>
       </div>
+    </div>
+  </section>
+
+  <section class="container-wccp py-16 md:py-20 section-reveal">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Common questions</p>
+      <h2 class="font-display text-display-md text-forest-700">Delivering to {city}.</h2>
+    </div>
+    <div class="max-w-3xl space-y-4">
+      {faqs.map((f) => (
+        <details class="card p-6 group">
+          <summary class="font-display text-lg font-bold text-forest-700 cursor-pointer list-none flex justify-between items-start gap-4">
+            <span>{f.q}</span>
+            <span class="text-terracotta text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+          </summary>
+          <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+        </details>
+      ))}
     </div>
   </section>
 

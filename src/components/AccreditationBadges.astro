@@ -29,16 +29,16 @@ type Accreditation = {
 };
 
 const accreditations: Accreditation[] = [
-  { id: 'ce-ukca',         short: 'CE / UKCA',       descriptor: 'Marked & certified',          status: 'current' },
-  { id: 'bs-en-14992',     short: 'BS EN 14992',     descriptor: 'Precast wall panels',         status: 'current' },
-  { id: 'bs-8500',         short: 'BS 8500-1:2023',  descriptor: 'Concrete specification',      status: 'current' },
-  { id: 'eurocode-2',      short: 'Eurocode 2',      descriptor: 'BS EN 1992 structural design',status: 'current' },
-  { id: 'iso-9001',        short: 'ISO 9001',        descriptor: 'Quality management',          status: 'pending' },
-  { id: 'iso-14001',       short: 'ISO 14001',       descriptor: 'Environmental management',    status: 'pending' },
-  { id: 'iso-45001',       short: 'ISO 45001',       descriptor: 'Occupational H&S',            status: 'pending' },
-  { id: 'bes-6001',        short: 'BES 6001',        descriptor: 'Responsible sourcing',        status: 'pending' },
-  { id: 'mpa-precast',     short: 'MPA Precast',     descriptor: 'Trade body member',           status: 'placeholder' },
-  { id: 'made-in-britain', short: 'Made in Britain', descriptor: 'UK-manufactured',             status: 'placeholder' },
+  { id: 'ce-ukca',         short: 'CE / UKCA',       descriptor: 'Conformity marked',                       status: 'current' },
+  { id: 'bs-en-14992',     short: 'BS EN 14992',     descriptor: 'BSI — declared conformity, wall panels',  status: 'current' },
+  { id: 'bs-8500',         short: 'BS 8500-1:2023',  descriptor: 'BSI — concrete specification',            status: 'current' },
+  { id: 'eurocode-2',      short: 'Eurocode 2',      descriptor: 'BS EN 1992 — BSI/CEN structural design',  status: 'current' },
+  { id: 'iso-9001',        short: 'ISO 9001',        descriptor: 'ISO — quality management',                status: 'pending' },
+  { id: 'iso-14001',       short: 'ISO 14001',       descriptor: 'ISO — environmental management',          status: 'pending' },
+  { id: 'iso-45001',       short: 'ISO 45001',       descriptor: 'ISO — occupational H&S',                  status: 'pending' },
+  { id: 'bes-6001',        short: 'BES 6001',        descriptor: 'BRE — responsible sourcing',              status: 'pending' },
+  { id: 'mpa-precast',     short: 'MPA Precast',     descriptor: 'Mineral Products Association member',     status: 'placeholder' },
+  { id: 'made-in-britain', short: 'Made in Britain', descriptor: 'UK-manufactured',                         status: 'placeholder' },
 ];
 
 const visible = accreditations.filter((a) => {
@@ -69,7 +69,11 @@ const dimClass = isDark ? 'opacity-70' : 'opacity-60';
         {i > 0 && (
           <span aria-hidden="true" class={`hidden sm:block w-px self-stretch mx-5 lg:mx-7 ${separatorClass}`}></span>
         )}
-        <div class={`flex flex-col items-center text-center px-3 ${a.status !== 'current' ? dimClass : ''}`}>
+        <div
+          role="img"
+          aria-label={`${a.short} — ${a.descriptor}`}
+          class={`flex flex-col items-center text-center px-3 ${a.status !== 'current' ? dimClass : ''}`}
+        >
           <div class={`font-display font-semibold text-[15px] lg:text-base uppercase tracking-[0.18em] ${labelClass}`}>
             {a.short}
           </div>
@@ -85,7 +89,11 @@ const dimClass = isDark ? 'opacity-70' : 'opacity-60';
 {layout === 'grid' && (
   <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8">
     {visible.map((a) => (
-      <div class={`flex flex-col items-start text-left border-l-2 border-terracotta pl-4 ${a.status !== 'current' ? dimClass : ''}`}>
+      <div
+        role="img"
+        aria-label={`${a.short} — ${a.descriptor}${a.status === 'pending' ? ' (in progress)' : a.status === 'placeholder' ? ' (pursuing)' : ''}`}
+        class={`flex flex-col items-start text-left border-l-2 border-terracotta pl-4 ${a.status !== 'current' ? dimClass : ''}`}
+      >
         <div class={`font-display font-semibold text-sm lg:text-base uppercase tracking-[0.18em] ${labelClass}`}>
           {a.short}
         </div>
@@ -105,7 +113,11 @@ const dimClass = isDark ? 'opacity-70' : 'opacity-60';
 {layout === 'card' && (
   <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
     {visible.map((a) => (
-      <div class={`card p-5 ${a.status !== 'current' ? dimClass : ''}`}>
+      <div
+        role="img"
+        aria-label={`${a.short} — ${a.descriptor}`}
+        class={`card p-5 ${a.status !== 'current' ? dimClass : ''}`}
+      >
         <div class={`font-display font-semibold text-sm uppercase tracking-[0.18em] ${labelClass}`}>
           {a.short}
         </div>

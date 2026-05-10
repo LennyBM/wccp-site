@@ -4,8 +4,37 @@ import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
 import CADDownloads from '@/components/CADDownloads.astro';
 import SpecSheetButton from '@/components/SpecSheetButton.astro';
+import ProductGallery from '@/components/ProductGallery.astro';
 import { site } from '@/config/site';
 import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
+
+const tetrapodGallery = [
+  {
+    src: '/images/products/tetrapods-3-5-tonne/wccp-tetrapods-3-5-tonne-20240910-101251-1024x768.jpg',
+    alt: 'WCCP precast concrete tetrapods in the Devon yard — 3 and 5-tonne coastal armour units',
+    caption: '3-tonne and 5-tonne tetrapods in the yard. Each unit cast in C40/50 marine-grade concrete.',
+  },
+  {
+    src: '/images/products/home/wccp-home-img-20260414-162247920-comp-1024x1024.jpg',
+    alt: 'WCCP tetrapod stockpile awaiting heavy haulage to a UK coastal-defence scheme',
+    caption: 'Pre-despatch stockpile. Goes out on heavy breakbulk haulage to harbour and seawall sites.',
+  },
+  {
+    src: '/images/products/home/wccp-home-img-20260414-162319990-comp-1024x1024.jpg',
+    alt: 'Close detail of WCCP four-leg precast concrete tetrapod showing interlocking armour shape',
+    caption: 'Four-leg interlock. Why a tetrapod stays put on a 1.5:1 slope when a rock would roll.',
+  },
+  {
+    src: '/images/products/home/wccp-home-20140615-193135-1024x768.jpg',
+    alt: 'WCCP yard view of large precast civils units near Holsworthy, Devon',
+    caption: 'Yard view at Chilsworthy. The same casting beds shape the tetrapods, panels and L-blocks.',
+  },
+  {
+    src: '/images/products/home/wccp-home-20130626-160926.jpg',
+    alt: 'WCCP heavy precast concrete unit being lifted by yard crane, Devon',
+    caption: 'Yard lift. 5-tonne tetrapods need a spreader beam and a careful pick.',
+  },
+];
 
 const tocSections = [
   { id: 'overview', label: 'Overview' },
@@ -80,6 +109,9 @@ const productSchema = {
             Tetrapods.<br />
             <span class="text-yellow">3 and 5-tonne wave armour.</span>
           </h1>
+          <p class="text-lg lg:text-xl text-white/95 leading-relaxed font-medium max-w-2xl mb-6">
+            Precast concrete tetrapods for coastal defence, breakwater armour and erosion control. Cast in marine-grade C50/60 concrete to BS EN 1992-1 with full chloride-resistance detailing. Standard 2-tonne and 5-tonne units; bespoke sizes to coastal-engineer spec. Lead time 6&ndash;10 weeks; full project supply for harbour and seawall schemes.
+          </p>
           <p class="text-lg md:text-xl text-white/90 max-w-2xl mb-10 leading-relaxed">
             Ideal for sea defence — reduce erosion, reduce wave energy. Suitable for
             Environment Agency coastal works. Two sizes — 3-tonne (1.95 × 1.95 × 1.72 m)
@@ -92,12 +124,13 @@ const productSchema = {
         </div>
         <div class="rounded-lg overflow-hidden shadow-lifted ring-1 ring-yellow-400/30">
           <picture>
-            <source srcset="/images/products/home/wccp-home-img-20260414-162319990-comp-1024x1024.webp" type="image/webp" />
+            <source srcset="/images/products/tetrapods-3-5-tonne/wccp-tetrapods-3-5-tonne-20240910-101251-1024x768.webp" type="image/webp" />
             <img
-              src="/images/products/home/wccp-home-img-20260414-162319990-comp-1024x1024.jpg"
-              alt="WCCP tetrapods in the yard"
+              src="/images/products/tetrapods-3-5-tonne/wccp-tetrapods-3-5-tonne-20240910-101251-1024x768.jpg"
+              alt="WCCP precast concrete 3 and 5-tonne tetrapods in the yard, coastal armour units cast in Devon"
               class="w-full h-auto block"
               loading="eager"
+              fetchpriority="high"
               decoding="async"
             />
           </picture>
@@ -200,6 +233,15 @@ const productSchema = {
       </div>
     </div>
   </section>
+
+  <ProductGallery
+    eyebrow="From the casting bed, to the foreshore"
+    heading="Armour units, in the yard."
+    intro="3-tonne and 5-tonne tetrapods cast at Chilsworthy, ready for breakbulk haulage to the harbour or seawall site."
+    images={tetrapodGallery}
+    cols={3}
+    background="white"
+  />
 
   <!-- FAQ -->
   <section id="faq" class="container-wccp py-20">

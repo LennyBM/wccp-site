@@ -13,18 +13,24 @@
 <button
   type="button"
   id="site-search-trigger"
-  class="hidden inline-flex items-center gap-2 px-3 py-2 rounded-lg text-navy-700 hover:bg-cast-50 transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-500"
+  class="hidden items-center gap-2.5 pl-3 pr-2 py-1.5 rounded-md text-cast-700 bg-bone hover:bg-cast-50 hover:text-navy border border-cast-200 hover:border-cast-300 transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-500"
   aria-label="Search the site"
   aria-haspopup="dialog"
   aria-controls="site-search-modal"
   data-search-trigger
 >
-  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25">
+  <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25">
     <circle cx="11" cy="11" r="7" />
     <line x1="21" y1="21" x2="16.5" y2="16.5" stroke-linecap="round" />
   </svg>
-  <span class="hidden xl:inline text-sm font-semibold">Search</span>
-  <kbd class="hidden xl:inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono font-semibold text-cast-700 bg-cast-100 border border-cast-200 rounded">⌘K</kbd>
+  <span class="hidden lg:inline text-sm font-medium">Search</span>
+  <kbd
+    class="hidden lg:inline-flex items-center gap-0.5 px-1.5 py-0.5 ml-1 text-[10px] font-sans font-semibold text-cast-700 bg-white border border-cast-200 rounded shadow-sm"
+    data-search-shortcut
+    aria-hidden="true"
+  >
+    <span data-shortcut-mod>Ctrl</span><span>K</span>
+  </kbd>
 </button>
 
 <!-- Modal backdrop + dialog -->
@@ -105,6 +111,12 @@
       if (!trigger || !modal || !mount) return;
       if (trigger.dataset.wccpBound === '1') return;
       trigger.dataset.wccpBound = '1';
+
+      // OS-aware shortcut hint: ⌘ on Mac, Ctrl elsewhere.
+      var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent || '');
+      document.querySelectorAll('[data-shortcut-mod]').forEach(function (el) {
+        el.textContent = isMac ? '⌘' : 'Ctrl';
+      });
 
       // Probe: only reveal the search triggers if Pagefind is actually reachable.
       // Half-deployed search (or running on the dev server with no built index)

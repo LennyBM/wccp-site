@@ -42,13 +42,25 @@ const faqSchema = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const articleSchema = {
+  headline: 'SSAFO 2018 compliance checklist for UK farms',
+  datePublished: '2026-03-20',
+  dateModified: '2026-04-26',
+  author: {
+    '@type': 'Organization',
+    name: 'WCCP Engineering',
+    url: 'https://wccp.co.uk',
+  },
+};
 ---
 
 <BaseLayout
   title="SSAFO 2018 compliance checklist for UK farms"
   description="SSAFO 2018 explained: slurry storage capacity, BS 5502-50 design, 10m watercourse separation, 750mm freeboard, EA WQE1 notification and the full 14-point compliance checklist."
-  image="/images/guides/ssafo-2018.jpg"
+  image="/images/case-studies/dairy-farm-slurry.jpg"
   schema="Article"
+  schemaData={articleSchema}
 >
   <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
   <section class="bg-navy text-white">
@@ -125,6 +137,12 @@ const faqSchema = {
             and <a href="/products/slurry-channels" class="text-ember underline">slurry channels &amp; covers</a>.
           </p>
         </section>
+
+        <aside class="my-8 p-5 border-l-4 border-ember bg-ember/5 rounded-r-md">
+          <p class="font-display font-bold text-navy text-base mb-1">Quote a SSAFO 2018 slurry store</p>
+          <p class="text-sm text-cast mb-3">Precast panels cast to BS 5502-50 and BS EN 1992-3, 20-year design life, EA-ready paperwork.</p>
+          <a href="/products/slurry-storage" class="inline-flex items-center gap-1.5 text-ember font-bold link-underline">Start a quote &rarr;</a>
+        </aside>
 
         <section id="capacity" class="mb-12 scroll-mt-24">
           <h2 class="font-display text-3xl text-navy mb-4">How do I calculate slurry storage volume?</h2>
@@ -205,6 +223,12 @@ const faqSchema = {
             file is worth doing — both are routinely requested at inspection.
           </p>
         </section>
+
+        <aside class="my-8 p-5 border-l-4 border-ember bg-ember/5 rounded-r-md">
+          <p class="font-display font-bold text-navy text-base mb-1">Quote precast slurry channels &amp; covers</p>
+          <p class="text-sm text-cast mb-3">20-year design life, C40/50 SR concrete, hydrogen-sulphide-rated covers — engineered to outlast SSAFO.</p>
+          <a href="/products/slurry-channels" class="inline-flex items-center gap-1.5 text-ember font-bold link-underline">Start a quote &rarr;</a>
+        </aside>
 
         <section id="distances" class="mb-12 scroll-mt-24">
           <h2 class="font-display text-3xl text-navy mb-4">How far from a watercourse must a slurry store sit?</h2>
@@ -310,6 +334,12 @@ const faqSchema = {
               <li>Inspection and maintenance plan documented for the 20-year life</li>
             </ol>
           </div>
+
+          <aside class="my-8 p-5 border-l-4 border-ember bg-ember/5 rounded-r-md">
+            <p class="font-display font-bold text-navy text-base mb-1">Quote a SSAFO-compliant store</p>
+            <p class="text-sm text-cast mb-3">Tick all 14 with WCCP precast — send livestock numbers, capacity needs and a sketch.</p>
+            <a href="/quote?product=slurry-storage" class="inline-flex items-center gap-1.5 text-ember font-bold link-underline">Start a quote &rarr;</a>
+          </aside>
         </section>
 
         <section id="faq" class="mb-12 scroll-mt-24">

@@ -27,7 +27,7 @@ interface Props {
 const {
   title,
   description = site.description,
-  image = '/og-default.png',
+  image,
   imageAlt = 'West Country Concrete Products — precast concrete cast in North Devon',
   noindex = false,
   schema = 'Organization',
@@ -36,9 +36,35 @@ const {
   whatsappContext,
 } = Astro.props;
 
+// Pick a sensible per-route OG card if the caller didn't override `image`.
+// Falls back to /og-default.png. All paths point at assets that exist in
+// public/og/ — purpose-built 1200x630 cards.
+const ogImageFromPath = (path: string): string => {
+  // Normalise — strip trailing slash (except root)
+  const p = path !== '/' && path.endsWith('/') ? path.slice(0, -1) : path;
+  switch (p) {
+    case '/':                       return '/og/home.png';
+    case '/sectors/agricultural':   return '/og/sectors-agricultural.png';
+    case '/sectors/civils':         return '/og/sectors-civils.png';
+    case '/sectors/bespoke':        return '/og/sectors-bespoke.png';
+    case '/products':               return '/og/products.png';
+    default:                        return '/og-default.png';
+  }
+};
+
+const resolvedImage = image ?? ogImageFromPath(Astro.url.pathname);
 const pageTitle = title ? `${title} | ${site.name}` : `${site.name} — ${site.shortTagline}`;
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, site.url).toString();
-const ogImage = new URL(image, site.url).toString();
+const ogImage = new URL(resolvedImage, site.url).toString();
+// Only preload the OG image if it's a same-origin asset path (skip absolute
+// external URLs — they'd waste bandwidth on a resource the social crawler,
+// not the user, will fetch).
+const ogImageIsLocal = resolvedImage.startsWith('/');
+// Note: the homepage hero is rendered via astro:assets <Image>, which hashes
+// its output URL at build time. A fixed <link rel="preload"> here would not
+// match those hashed URLs and would fire an "unused preload" warning. The
+// hero element itself already carries fetchpriority="high" + loading="eager",
+// which gives it equivalent priority without the URL-mismatch risk.
 ---
 
 <!doctype html>
@@ -55,16 +81,29 @@ const ogImage = new URL(image, site.url).toString();
     <link rel="alternate" hreflang="en-GB" href={canonicalUrl} />
     <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
 
-    <!-- Theming for browser UI -->
+    <!-- Theming for browser UI. #3a5cb5 = brand navy-700 (cobalt) per
+         tailwind.config.mjs. msapplication-TileColor is intentionally
+         omitted — Edge has long since deprecated it and theme-color
+         covers the same ground for current Microsoft surfaces. -->
     <meta name="theme-color" content="#3a5cb5" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#3a5cb5" media="(prefers-color-scheme: dark)" />
-    <meta name="msapplication-TileColor" content="#3a5cb5" />
+
+    <!-- Stop iOS from auto-styling phone numbers throughout the page; we
+         render explicit tel: links where we want them to be tappable. -->
+    <meta name="format-detection" content="telephone=no" />
 
     <!-- Preconnect to high-traffic outbound destinations to shave the TLS+DNS cost
          on the most-clicked links: WhatsApp, tel-handler, Companies House lookups. -->
     <link rel="preconnect" href="https://wa.me" crossorigin />
     <link rel="dns-prefetch" href="https://wa.me" />
     <link rel="dns-prefetch" href="https://www.facebook.com" />
+
+    <!-- Preload the OG/social card so it's ready for any in-page reference
+         (e.g. share dialogs that read the meta tag). Only same-origin
+         assets — absolute external URLs are skipped. The body Inter font
+         is NOT preloaded here: it's already loaded via @fontsource-variable
+         in src/styles/global.css and double-preloading would waste bytes. -->
+    {ogImageIsLocal && <link rel="preload" as="image" href={ogImage} />}
 
     <!-- Astro View Transitions — enables native page-to-page animations across
          the site. The ClientRouter is included below in <head>. -->

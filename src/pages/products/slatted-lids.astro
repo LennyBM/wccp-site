@@ -1,0 +1,381 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import FittedVsSupply from '@/components/FittedVsSupply.astro';
+import SpecSheetButton from '@/components/SpecSheetButton.astro';
+import ProductGallery from '@/components/ProductGallery.astro';
+import { site } from '@/config/site';
+import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
+import ProductPageTOC from '@/components/ProductPageTOC.astro';
+
+const tocSections = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'specifications', label: 'Specifications' },
+  { id: 'gallery', label: 'Gallery' },
+  { id: 'related', label: 'Related' },
+  { id: 'faq', label: 'FAQ' },
+  { id: 'downloads', label: 'Downloads' },
+];
+
+// Slatted lids — lift-out covers for slurry channels. BS EN 12737. Slip-resistant top.
+const specs = [
+  { variant: 'Standard Slatted Lid', bed: '3000 × 1200 × 175mm', style: 'Cattle slat profile · slip-resistant top', use: 'Main slurry channels — full cubicle housing' },
+  { variant: 'Midi Slatted Lid', bed: '2400 × 1000 × 150mm', style: 'Cattle slat profile · slip-resistant top', use: 'Smaller dairy and beef channels' },
+  { variant: 'Mini Slatted Lid', bed: '1800 × 800 × 125mm', style: 'Sheep / calf slat profile', use: 'Sheep, calf and youngstock channels' },
+  { variant: 'Reception Pit Lid', bed: 'Bespoke to opening', style: 'Solid or slotted · sealed gasket', use: 'Slurry reception pits and pump chambers' },
+  { variant: 'Channel Closure Slab', bed: 'To suit channel width', style: 'Solid lift-off cover', use: 'Closing off unused channel runs' },
+];
+
+const applications = [
+  'Dairy cubicle housing with under-slat slurry storage',
+  'Beef finishing units on fully-slatted floor systems',
+  'Sheep handling pens and lambing sheds with channel drains',
+  'Calf rearing units with slatted lying areas',
+  'Slurry reception pits at parlour and robot end of shed',
+  'Channel closures where flow direction has been changed',
+  'Retro-fitting slatted covers over existing scrape channels',
+];
+
+const related = [
+  { href: '/products/cattle-slats', label: 'Cattle Slats', meta: 'BS EN 12737 · slip-resistant' },
+  { href: '/products/slurry-storage', label: 'Slurry Storage', meta: 'SSAFO 2018-compliant' },
+  { href: '/products/cattle-cubicles', label: 'Cattle Cubicles', meta: 'AHDB 2024 sized' },
+  { href: '/products/cubicle-end-walls', label: 'Cubicle End Walls', meta: 'Single + double row · trough option' },
+];
+
+const faqs = [
+  { q: 'What standard do the slats meet?', a: 'All our slatted lids are cast to BS EN 12737:2008+A1:2011 — the European standard for precast concrete livestock slats. That covers slat opening width (typically 38mm for cattle, 25mm for sheep), surface finish, structural performance and the safe working load. Each batch is tested at the yard and traceable by cast date.' },
+  { q: 'Why lift-out rather than fixed?', a: 'Lift-out lids let you access the channel for cleaning, repair and inspection without breaking concrete. SSAFO 2018 requires every storage facility to be inspectable for leaks — fixed slabs make that genuinely difficult. Our standard lid lifts with a tractor and chain through cast-in lifting eyes.' },
+  { q: 'How slip-resistant is the top?', a: 'We cast a textured grid pattern into the top face of every cattle slat — the so-called "Surefoot" finish. BS EN 12737 requires a minimum surface roughness; our finish exceeds it. The texture stays sharp for 15+ years in normal dairy use.' },
+  { q: 'Can you cast bespoke sizes?', a: 'Yes — slurry channels are rarely two of a kind, especially in retro-fit work. Send us channel width, span between bearings and the loading you need (typically 5kN/m² imposed for cattle, 2kN/m² for sheep) and we will cast to suit. Bespoke runs to 6m span on twin-tee profiles.' },
+  { q: 'What is the lead time?', a: 'Catalogue sizes ship in 2 to 4 weeks. Bespoke spans and reception pit lids run 4 to 6 weeks. Civils-grade gasketed lids for sealed pits go to 6 weeks for the cure cycle.' },
+];
+
+const productSchema = {
+  name: 'Precast Slatted Lids',
+  description: 'Lift-out precast slatted covers for slurry channels and reception pits. Cast to BS EN 12737 livestock slat standard. Standard, midi and mini sizes plus bespoke. Slip-resistant top finish.',
+  brand: { '@type': 'Brand', name: site.name },
+  manufacturer: { '@type': 'Organization', name: site.name },
+  category: 'Precast concrete slatted slurry cover',
+  material: 'Reinforced concrete, C40/50 (BS 8500-1:2023)',
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 12737:2008+A1:2011 (livestock slats)' },
+    { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
+    { '@type': 'PropertyValue', name: 'Slat opening', value: '38mm cattle / 25mm sheep' },
+    { '@type': 'PropertyValue', name: 'Top finish', value: 'Cast-in slip-resistant grid texture' },
+    { '@type': 'PropertyValue', name: 'Span range', value: 'To 6m on bespoke twin-tee profile' },
+    { '@type': 'PropertyValue', name: 'Lifting', value: 'Cast-in lifting eyes — tractor and chain' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '2–4 weeks catalogue, 4–6 weeks bespoke' },
+    { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
+  ],
+  offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="Slatted Lids — Lift-out slurry channel covers · BS EN 12737"
+  description="Precast lift-out slatted covers for slurry channels. BS EN 12737 livestock slat standard. Standard, midi, mini and bespoke sizes. Slip-resistant top finish. Cast in North Devon."
+  image="/og-default.png"
+  schema="Product"
+  schemaData={productSchema}
+  whatsappContext="Slatted Lids"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <TrustStrip />
+  <ProductPageTOC sections={tocSections} />
+
+  <!-- Hero -->
+  <section id="overview" class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow text-yellow mb-4">Agricultural · slurry · livestock</p>
+          <h1 class="font-display text-display-xl text-white mb-4">Slatted Lids.</h1>
+          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">Lift one out. Hose underneath. SSAFO done.</p>
+          <p class="text-lg lg:text-xl text-cast leading-relaxed font-medium text-white/95 mb-6 max-w-xl">
+            Precast lift-out slatted covers for slurry channels and reception pits. Cast to
+            BS EN 12737 with a slip-resistant grid finish on the top face. Standard, midi
+            and mini catalogue sizes, plus bespoke spans to 6m. Cattle and sheep profiles.
+            Catalogue lead time 2-4 weeks.
+          </p>
+          <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
+            A slatted lid is a precast concrete cover that closes off a slurry channel while
+            letting cattle dung fall through into the storage below. The slat openings are
+            38&nbsp;mm wide for cattle, 25&nbsp;mm for sheep. WCCP slats are cast to BS EN 12737
+            with cast-in lifting eyes so the lid lifts straight out for inspection.
+          </blockquote>
+          <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
+            We cast and deliver across England and Wales from the Holsworthy yard,
+            with installation crews available for full SSAFO retrofits.
+          </p>
+          <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
+            <li class="flex gap-2"><span class="text-yellow">·</span> BS EN 12737</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Lift-out design</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Slip-resistant top</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Cattle + sheep slot</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Bespoke to 6m</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 2–4 week lead</li>
+          </ul>
+          <div class="flex flex-wrap gap-3">
+            <a href="/quote?product=Slatted%20Lids" class="btn-primary">Configure a quote</a>
+            <a href="mailto:engineering@wccp.co.uk?subject=Spec%20sheet%20request%20%E2%80%94%20Slatted%20Lids&amp;body=Hi%20WCCP%20engineering%2C%0A%0APlease%20send%20the%20spec%20sheet%20for%20Slatted%20Lids.%0A%0AProject%20details%3A%0A%E2%80%A2%20Project%20name%3A%0A%E2%80%A2%20Site%20location%3A%0A%E2%80%A2%20Required%20spec%20%2F%20standard%3A%0A%0AThanks" class="btn-yellow">Request spec sheet</a>
+            <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">
+              Call {site.contact.phone}
+            </a>
+          </div>
+        </div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
+          <div>
+            <p class="text-cast-600 text-sm font-mono">📷 Photo needed</p>
+            <p class="text-cast text-xs mt-2">Hero shot — lift-out slatted lid being craned into a slurry channel, top-down or three-quarter view, taken at the Holsworthy yard or on a Devon dairy</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spec table -->
+  <section id="specifications" class="container-wccp py-20">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Specification</p>
+      <h2 class="font-display text-display-lg mb-4">Sizes, slot widths and spans.</h2>
+      <p class="text-cast-700 text-lg">
+        Catalogue sizes for the common dairy, beef and sheep channel widths. Bespoke spans,
+        slot widths and reception pit lids quoted on application.
+      </p>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="spec-table w-full text-left border-collapse">
+        <thead class="bg-navy text-white">
+          <tr>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Variant</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Dimensions</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Style</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
+          </tr>
+        </thead>
+        <tbody>
+          {specs.map((s, i) => (
+            <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
+              <td class="px-4 py-3 font-bold text-navy">{s.variant}</td>
+              <td class="px-4 py-3">{s.bed}</td>
+              <td class="px-4 py-3">{s.style}</td>
+              <td class="px-4 py-3 text-cast">{s.use}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-cast text-sm mt-4">
+      Lifting eyes are cast in to every lid as standard. We supply the chain bridle to suit on
+      request — or use a standard 4-leg sling and shackles from your tractor.
+    </p>
+  </section>
+
+  <!-- Gallery (placeholder cards — real photos pending) -->
+  <section id="gallery" class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-10">
+        <p class="eyebrow text-cast mb-3">The range</p>
+        <h2 class="font-display text-display-lg mb-4 text-navy">Slatted lids in service.</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          'Standard 3m slatted lid being lifted into a slurry channel by tractor and chain',
+          'Close-up of slip-resistant grid finish on the top face',
+          'Underside view showing reinforcement and slat profile',
+          'Run of slatted lids covering a 24m dairy slurry channel',
+          'Sheep slat (25mm) compared to cattle slat (38mm) — side by side',
+          'Reception pit lid with sealed gasket detail',
+          'Mini slatted lid in a calf rearing pen',
+          'Cross-section drawing — slat profile and bearing detail',
+        ].map((d) => (
+          <figure>
+            <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
+              <div>
+                <p class="text-cast-600 text-sm font-mono">📷 Photo needed</p>
+                <p class="text-cast text-xs mt-2">{d}</p>
+              </div>
+            </div>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Applications -->
+  <section class="bg-white py-20">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow text-cast mb-3">Where they go</p>
+          <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            From a dairy parlour reception pit to a 200-head fully-slatted beef finishing
+            shed, the same precast lid system covers the channel and lifts out for cleaning.
+          </p>
+          <ul class="space-y-3">
+            {applications.map((a) => (
+              <li class="flex gap-3 text-cast-700 leading-relaxed">
+                <span class="text-ember font-bold mt-1">·</span>
+                <span>{a}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="card p-8">
+          <p class="eyebrow text-cast mb-3">Standards & references</p>
+          <h3 class="font-display text-2xl font-bold text-navy mb-4">Cast to current best practice.</h3>
+          <dl class="space-y-4 text-sm">
+            <div>
+              <dt class="font-bold text-navy">BS EN 12737:2008+A1:2011</dt>
+              <dd class="text-cast">Precast concrete products — floor slats for livestock. Slot widths, surface finish, loading.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">SSAFO Regulations 2018</dt>
+              <dd class="text-cast">Silage, Slurry & Agricultural Fuel Oil — storage standards and inspection access.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS 5502-50:1993</dt>
+              <dd class="text-cast">Buildings for agriculture — slurry storage and handling structures.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS 8500-1:2023</dt>
+              <dd class="text-cast">Concrete specification — sulphate-resisting C40/50 mix for slurry contact.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">DEFRA Code of Good Agricultural Practice</dt>
+              <dd class="text-cast">Welfare and water-pollution prevention for livestock buildings.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Configurator CTA -->
+  <section class="bg-yellow text-navy py-16">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-navy mb-2">Configure your slat run</p>
+          <h2 class="font-display text-display-md">Send channel width, span and stocking — we will quote inside 24 hours.</h2>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href="/quote?product=Slatted%20Lids" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
+          <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section id="related" class="container-wccp py-20">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
+      <div>
+        <p class="eyebrow text-cast mb-3">Related products</p>
+        <h2 class="font-display text-display-lg">Often ordered alongside.</h2>
+      </div>
+      <a href="/products" class="text-ember font-bold hover:text-ember-700 inline-flex items-center gap-2">
+        View full range
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" />
+          <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+    <RelatedProductGrid items={related} />
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">Common questions</p>
+        <h2 class="font-display text-display-lg mb-4">What people ask about slatted lids.</h2>
+        <p class="text-cast-700 text-lg">
+          Five questions we answer most weeks. If yours is not here, ring the yard.
+        </p>
+      </div>
+      <div class="max-w-3xl space-y-4">
+        {faqs.map((f) => (
+          <details class="card p-6 group">
+            <summary class="font-display text-lg font-bold text-navy cursor-pointer list-none flex justify-between items-start gap-4">
+              <span>{f.q}</span>
+              <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Supply-only vs Fitted -->
+  <section class="container-wccp section-rhythm border-t border-cast-100">
+    <FittedVsSupply
+      productName="Slatted Lids"
+      defaultMode="fitted"
+      supply={{
+        price: 'Bespoke quote',
+        leadTime: '2–4 weeks',
+        includes: [
+          'Precast slatted lids cast to BS EN 12737',
+          'Slip-resistant top finish as standard',
+          'Cast-in lifting eyes',
+          'Delivery on our HIAB to your slab',
+        ],
+        excludes: [
+          'Channel walls and bearing ledges',
+          'On-site setting / sealing labour',
+        ],
+      }}
+      fitted={{
+        price: 'Bespoke quote (incl. install)',
+        leadTime: '4–6 weeks (incl. site slot)',
+        includes: [
+          'Everything in supply only',
+          'Two-man install crew with HIAB',
+          'Bedding-mortar set onto channel ledges',
+          '12-month workmanship warranty',
+        ],
+        excludes: [
+          'Channel construction and waterproofing',
+          'Slurry handling system fit-out',
+        ],
+      }}
+      note=". Bespoke spans, reception pit lids and gasketed sealed covers priced individually — send channel sketch and stocking and we'll come back within a working day."
+    />
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-navy text-white py-20">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
+      <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">
+        Send us channel width, span and stocking type. Quote and lead-time same day.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/quote?product=Slatted%20Lids" class="btn-yellow">Configure a quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
+      </div>
+    </div>
+  </section>
+
+  <SpecSheetButton productSlug="slatted-lids" productName="Slatted Lids" />
+  <ProductWarrantyLine />
+</BaseLayout>

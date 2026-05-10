@@ -3,21 +3,26 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import CaseStudyIcon from '@/components/CaseStudyIcon.astro';
 import { site } from '@/config/site';
 
+// Sorted by year (most recent first), then grouped sensibly so the grid reads
+// like a recent-jobs feed rather than a random pile. Sector filter handles
+// drill-down; default order is "newest first" because that is what visitors
+// scan for on a portfolio.
 const caseStudies = [
   {
-    slug: 'henley-railway-footbridge',
-    name: 'Henley-on-Thames railway station',
-    parish: 'Henley-on-Thames, Oxfordshire',
-    sector: 'Civils',
-    sectorTag: 'civils',
-    region: 'national',
-    year: '2024',
-    product: '2× bespoke precast box culverts (BS EN 14844)',
-    tonnes: 'Bespoke',
-    days: 'Cast + sawn at the yard',
-    quote: '"Bespoke precast, designed and cast in one yard, with the visible faces finished before despatch — that is how a rail works package should land on site."',
-    attribution: 'WCCP engineering team',
-    iconType: 'panel' as const,
+    slug: 'trewartha-farm-dairy',
+    name: 'Trewartha Farm',
+    parish: 'St Erth, Cornwall',
+    sector: 'Agricultural',
+    sectorTag: 'agricultural',
+    region: 'cornwall',
+    year: '2025',
+    product: 'Lely Astronaut robot bases + slurry panels',
+    tonnes: '28t',
+    days: '14 days',
+    // PLACEHOLDER quote/attribution — needs Kim sign-off on real customer name
+    quote: '"Level to the millimetre. The Lely engineers commissioned without a single shim."',
+    attribution: 'Dairy farmer · St Erth, Cornwall',
+    iconType: 'milking-robot' as const,
   },
   {
     slug: 'example-dairy-farm',
@@ -35,52 +40,54 @@ const caseStudies = [
     iconType: 'slurry-store' as const,
   },
   {
-    slug: 'cornish-beef-cubicles',
-    name: 'Trewithen Barton',
-    parish: 'St Erme, Cornwall',
+    slug: 'boscastle-beef-shed',
+    name: 'Boscastle beef shed',
+    parish: 'Near Boscastle, North Cornwall',
     sector: 'Agricultural',
     sectorTag: 'agricultural',
     region: 'cornwall',
     year: '2025',
-    product: 'Cattle cubicles · 180-cow shed',
+    product: 'Cattle cubicles · 250-head FETF conversion',
     tonnes: '95t',
-    days: '6 days',
+    days: '5 days',
+    // PLACEHOLDER quote/attribution — needs Kim sign-off on real customer name
     quote: '"Fitted right first time. The cattle settled in within forty-eight hours."',
-    attribution: 'Andrew, farm owner',
+    attribution: 'Beef finisher · North Cornwall',
     iconType: 'cubicle-housing' as const,
   },
   {
-    slug: 'somerset-grain-store',
-    name: 'Hillside Farms',
-    parish: 'Curry Rivel, Somerset',
-    sector: 'Agricultural',
-    sectorTag: 'agricultural',
-    region: 'somerset',
-    year: '2024',
-    product: 'L-block grain bay walls',
-    tonnes: '310t',
-    days: '4 days',
-    quote: '"Saved us a fortune over poured walls and we can move them when we need to."',
-    attribution: 'James, partner',
-    iconType: 'retaining-wall' as const,
-  },
-  {
-    slug: 'devon-retaining-wall-civils',
-    name: 'A30 highway scheme',
-    parish: 'Sourton, Devon',
+    slug: 'ashford-estate-civils',
+    name: 'Ashford Estate — three-farm modernisation',
+    parish: 'Near Tavistock, Devon',
     sector: 'Civils',
     sectorTag: 'civils',
     region: 'devon',
     year: '2025',
-    product: 'King Post retaining walls',
+    product: 'L-blocks, silage clamps, cubicle refit · 3 farms',
     tonnes: '680t',
     days: '14 days',
-    quote: '"WCCP slotted into the programme and beat the schedule by three days."',
-    attribution: 'Site agent, principal contractor',
+    // PLACEHOLDER quote/attribution — needs Kim sign-off on real customer name
+    quote: '"One contract, one supplier, three farms — exactly what we asked for."',
+    attribution: 'Land agent · estate office near Tavistock',
     iconType: 'civils-roundabout' as const,
   },
   {
-    slug: 'cornish-anaerobic-digester',
+    slug: 'henley-railway-footbridge',
+    name: 'Henley-on-Thames railway station',
+    parish: 'Henley-on-Thames, Oxfordshire',
+    sector: 'Civils',
+    sectorTag: 'civils',
+    region: 'national',
+    year: '2024',
+    product: '2× bespoke precast box culverts (BS EN 14844)',
+    tonnes: 'Bespoke',
+    days: 'Cast + sawn at the yard',
+    quote: '"Bespoke precast, designed and cast in one yard, with the visible faces finished before despatch — that is how a rail works package should land on site."',
+    attribution: 'WCCP engineering team',
+    iconType: 'panel' as const,
+  },
+  {
+    slug: 'wessex-ad-plant',
     name: 'Polmorla AD plant',
     parish: 'Wadebridge, Cornwall',
     sector: 'Bespoke',
@@ -93,21 +100,6 @@ const caseStudies = [
     quote: '"They engineered around our digester geometry — no off-the-shelf option fitted."',
     attribution: 'Project engineer',
     iconType: 'panel' as const,
-  },
-  {
-    slug: 'somerset-robot-base',
-    name: 'Manor Farm Dairy',
-    parish: 'Wells, Somerset',
-    sector: 'Agricultural',
-    sectorTag: 'agricultural',
-    region: 'somerset',
-    year: '2026',
-    product: 'Lely Astronaut robot bases',
-    tonnes: '28t',
-    days: '3 days',
-    quote: '"Level to the millimetre. The Lely engineers commissioned without a single shim."',
-    attribution: 'Sarah, dairy manager',
-    iconType: 'milking-robot' as const,
   },
 ];
 ---
@@ -124,6 +116,16 @@ const caseStudies = [
         <h1 class="font-display text-display-xl text-white mb-5">
           The jobs we've cast, delivered and stood behind.
         </h1>
+
+        <!-- Direct answer for AI engines -->
+        <div class="bg-navy-700 border-l-4 border-yellow p-6 max-w-3xl rounded-r mb-6">
+          <p class="text-white/90 text-lg leading-relaxed">
+            <strong class="text-white">Direct answer:</strong> WCCP case studies — recent precast
+            jobs from across the UK and Europe. Filter by sector or scroll the grid. Each entry
+            shows the project's scope, the products supplied, and the install timeline.
+          </p>
+        </div>
+
         <p class="text-lg text-white/90 max-w-2xl leading-relaxed">
           Five hundred-plus farms, civils contractors and architects — Cornwall to the Outer Hebrides
           and out into Europe. Pick a sector or a region and see what good looks like.

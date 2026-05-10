@@ -29,3 +29,9 @@ pnpm-debug.log*
 
 # Local Netlify folder
 .netlify
+
+# AI image quarantine — kept locally so we can verify what was removed, but
+# never committed. Re-create the folders if they don't exist.
+src/assets/images/_ai-quarantine-2026-05-10/
+src/assets/images/_ai-replaced-2026-04-29/
+public/_ai-quarantine/

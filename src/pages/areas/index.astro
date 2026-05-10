@@ -1,0 +1,170 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import { site } from '@/config/site';
+
+// South West daily-delivery footprint — each links to the relevant
+// /areas/<county> sub-page. One-line descriptions reference drive
+// distance and the typical job mix in that county.
+const counties = [
+  {
+    name: 'Devon',
+    href: '/areas/devon',
+    blurb: 'Home county. Holsworthy yard sits on the A3072 — Exeter, Plymouth and the South Hams reached door-to-door. Slurry stores, cubicles, A30 civils.',
+  },
+  {
+    name: 'Cornwall',
+    href: '/areas/cornwall',
+    blurb: 'Ten miles to the border. North and East Cornwall dairies, West Penwith slurry stores, Cornwall Council civils framework.',
+  },
+  {
+    name: 'Somerset',
+    href: '/areas/somerset',
+    blurb: 'M5 corridor. Levels and Mendip dairies, Hinkley Tier 2 supply, AD-plant components, silage clamp walls.',
+  },
+  {
+    name: 'Dorset',
+    href: '/areas/dorset',
+    blurb: 'A35 across to Dorchester. Blackmore Vale dairies, civils retaining walls and bespoke padstones for South Coast contractors.',
+  },
+  {
+    name: 'Wiltshire',
+    href: '/areas/wiltshire',
+    blurb: 'A303 east. Salisbury Plain civils L-blocks, arable bunker walls, Pewsey Vale dairy cubicles and silage clamp panels.',
+  },
+];
+
+const serviceSchema = {
+  '@type': 'Service',
+  name: 'Precast concrete supply and delivery',
+  serviceType: 'Precast concrete supply and delivery',
+  provider: { '@type': 'Organization', name: site.name, url: site.url },
+  areaServed: site.areasServed.map((a) => ({ '@type': 'AdministrativeArea', name: a })),
+  description:
+    'Own-fleet precast concrete supply and delivery from the WCCP yard in Holsworthy, North Devon. Daily runs across the South West (Devon, Cornwall, Somerset, Dorset, Wiltshire) and planned-run loads UK-wide and into Europe.',
+  mainEntityOfPage: `${site.url}/areas/`,
+};
+---
+
+<BaseLayout
+  title="Areas served — Devon, Cornwall, Somerset, Dorset, Wiltshire and beyond"
+  description="WCCP precast concrete delivered across the South West and beyond. Daily runs to Devon, Cornwall, Somerset, Dorset and Wiltshire. Planned UK-wide and European loads from Holsworthy."
+  schema="Service"
+  schemaData={serviceSchema}
+>
+  <!-- Hero with direct-answer block -->
+  <section class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="mb-6">
+        <Breadcrumbs items={[{ label: 'Areas served' }]} variant="navy" />
+      </div>
+      <p class="eyebrow text-yellow mb-5">Where we deliver</p>
+      <h1 class="font-display text-display-xl text-white mb-5 max-w-4xl">
+        Areas served — Devon, Cornwall, Somerset, Dorset, Wiltshire and beyond.
+      </h1>
+      <p class="text-lg text-white/90 max-w-3xl leading-relaxed mb-6">
+        WCCP delivers precast concrete from Holsworthy across the UK and into Europe. Our core
+        daily-delivery footprint is the South West (Devon, Cornwall, Somerset, Dorset, Wiltshire).
+        Planned-run loads run UK-wide and into Germany, Netherlands, France and Belgium. Recent
+        jobs: Outer Hebrides, Bavaria, Rotterdam, Northern Ireland.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="/quote" class="btn-primary">Start a quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-yellow">Call {site.contact.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- South West counties grid -->
+  <section class="container-wccp py-16">
+    <div class="max-w-3xl mb-10">
+      <p class="eyebrow text-cast mb-3">Daily-delivery footprint</p>
+      <h2 class="font-display text-display-lg mb-4">The South West, door-to-door from Holsworthy.</h2>
+      <p class="text-cast-700 text-lg leading-relaxed">
+        Five counties make up our day-trip range. Our own fleet runs them on a rolling weekly
+        schedule — 8-wheel rigids for tight farm tracks, four-axle artics for civils sites with
+        clean access. Pick a county for drive times, towns covered and recent jobs.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      {counties.map((c) => (
+        <a href={c.href} class="card p-6 group">
+          <p class="eyebrow text-ember mb-3">South West</p>
+          <h3 class="font-display text-xl font-bold text-navy mb-3 group-hover:text-ember">
+            {c.name}
+          </h3>
+          <p class="text-cast-700 text-sm leading-relaxed mb-4">{c.blurb}</p>
+          <span class="text-ember font-bold text-sm inline-flex items-center gap-2">
+            See {c.name} coverage
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+              <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Beyond the South West -->
+  <section class="bg-bone-200 py-16">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow text-cast mb-3">Everywhere else</p>
+          <h2 class="font-display text-display-lg mb-5">UK-wide and into Europe.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-4">
+            Outside the daily South West run, we deliver UK-wide on planned routes — Scotland,
+            Wales, Northern Ireland and the Republic of Ireland — and into Germany, the
+            Netherlands, France and Belgium when European jobs come up.
+          </p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            Recent runs include the Outer Hebrides, Bavaria, Rotterdam and County Down. If
+            you're outside the South West, the reach page covers haulage planning, lead times
+            and the freight model we use to keep mileage out of your quote.
+          </p>
+          <a href="/reach" class="btn-primary inline-flex items-center gap-2">
+            See full UK + Europe reach
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+              <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="card p-8">
+          <p class="eyebrow text-cast mb-4">Planned-run destinations</p>
+          <ul class="grid grid-cols-2 gap-y-3 gap-x-6 text-navy">
+            <li class="font-display font-bold">Scotland</li>
+            <li class="font-display font-bold">Wales</li>
+            <li class="font-display font-bold">Northern Ireland</li>
+            <li class="font-display font-bold">Republic of Ireland</li>
+            <li class="font-display font-bold">Germany</li>
+            <li class="font-display font-bold">Netherlands</li>
+            <li class="font-display font-bold">France</li>
+            <li class="font-display font-bold">Belgium</li>
+          </ul>
+          <p class="text-sm text-cast mt-6 italic">
+            Outer Hebrides, Bavaria and Rotterdam jobs all dispatched from the Holsworthy yard
+            in the last twelve months.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-yellow text-navy py-12">
+    <div class="container-wccp text-center max-w-2xl mx-auto">
+      <h2 class="font-display text-display-md mb-3">Job to spec, wherever you are?</h2>
+      <p class="text-navy text-lg mb-6">
+        Call the yard, send a sketch on WhatsApp, or fill in the quote form — same-day callback Mon–Fri.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href="/quote" class="btn bg-navy text-white hover:bg-navy-700">Start a quote</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

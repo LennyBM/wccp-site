@@ -1,0 +1,397 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import FittedVsSupply from '@/components/FittedVsSupply.astro';
+import SpecSheetButton from '@/components/SpecSheetButton.astro';
+import { site } from '@/config/site';
+import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
+import ProductPageTOC from '@/components/ProductPageTOC.astro';
+
+const tocSections = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'specifications', label: 'Specifications' },
+  { id: 'gallery', label: 'Gallery' },
+  { id: 'related', label: 'Related' },
+  { id: 'faq', label: 'FAQ' },
+  { id: 'downloads', label: 'Downloads' },
+];
+
+const specs = [
+  { variant: 'Calf drinker · 50L', size: '600 × 400 × 350mm', supply: 'Single ball-cock, mains fed', use: 'Calf pens, weaned-group accommodation' },
+  { variant: 'Single drinker · 200L', size: '900 × 600 × 500mm', supply: 'Single ball-cock, mains fed', use: 'Small group, youngstock pens' },
+  { variant: 'Double drinker · 400L', size: '1300 × 600 × 500mm', supply: 'Twin ball-cock, mains fed', use: 'Cubicle row drinker, dairy passages' },
+  { variant: 'Field drinker · 600L', size: '1800 × 800 × 500mm', supply: 'Ball-cock + service-pipe insulation', use: 'Pasture, mob grazing, paddock systems' },
+  { variant: 'Insulated frost-protected · 800L', size: '2000 × 800 × 600mm', supply: 'Insulated jacket + buried supply', use: 'Out-wintering pads, exposed sites' },
+  { variant: 'Long-trough · 1200L', size: '3000 × 800 × 600mm', supply: 'Twin ball-cock, mains fed', use: 'Large herd, drink-through passages' },
+  { variant: 'Bulk reservoir · 1500L', size: '3600 × 900 × 700mm', supply: 'Float valve + remote tank link', use: 'Yards, finishing units, store cattle' },
+];
+
+const applications = [
+  'Cubicle-row drinkers in dairy parlours and loose housing',
+  'Out-wintering pads with frost-protection requirement',
+  'Pasture and mob-grazing paddock systems',
+  'Calf-rearing accommodation with low-rim drinkers',
+  'Beef finishing yards and store cattle housing',
+  'Sheep-handling and shearing-yard drinkers',
+  'Suckler cow paddocks with high winter exposure',
+];
+
+const related = [
+  { href: '/products/cattle-cubicles', label: 'Cattle Cubicles', meta: 'Fixed + portable · AHDB sized' },
+  { href: '/products/water-troughs', label: 'Water Troughs', meta: 'Single + double row' },
+  { href: '/products/feed-troughs', label: 'Feed Troughs', meta: 'Smooth or grooved' },
+  { href: '/products/cubicle-end-walls', label: 'Cubicle End Walls', meta: 'With drinker option' },
+];
+
+const faqs = [
+  { q: 'Are these frost-protected?', a: 'Standard precast drinkers are not specifically frost-protected — they rely on cattle drinking frequently to keep the water turning over. Our insulated variants have a closed-cell PIR jacket cast into the wall and a buried armoured supply pipe, and they will keep flowing through a typical UK winter. For exposed Welsh hill or Scottish out-wintering sites we add a thermostat-controlled trace heater on the supply.' },
+  { q: 'How is water supplied?', a: 'Mains-fed via a heavy-duty Jobe or Fullwood ball-cock — same valves used across the British dairy industry, easy to source spares for. The valve is cast into a recessed pocket on the back wall so cattle cannot get at it. Larger drinkers run twin valves so flow keeps up with herd demand. Field drinkers can also be float-valve fed from a remote tank where mains pressure is unreliable.' },
+  { q: 'How big a herd does each drinker serve?', a: 'AHDB Dairy guidance is one drinking space per 10 cows for fresh-water access in housing, with 100mm trough length per cow drinking simultaneously. So a 1300mm twin-valve double drinker serves about 13 cows. For pasture, the rule is 10 litres per cow per day plus surge capacity — a 600L field drinker comfortably handles 40 cows in summer.' },
+  { q: 'Do they have to be cleaned?', a: 'Yes — water hygiene affects intake and yield. Our drinkers have a stainless drain bung at the lowest point so you can pull, scrub and refill in five minutes. Red Tractor Dairy Standards expect a weekly clean as a minimum; in summer with algae you may want to do it twice. The internal corners are radiused for easy brushing.' },
+  { q: 'What is the lead time?', a: 'Catalogue drinkers ship from stock at the Holsworthy yard in 1-2 weeks during quiet months and 2-3 weeks in spring and autumn turnout season. Insulated variants and bespoke long-troughs run 3-4 weeks. We deliver UK-wide on flatbed with HIAB offload up to 12 tonnes.' },
+];
+
+const productSchema = {
+  name: 'Precast Concrete Cattle Drinkers',
+  description: 'Frost-protected precast cattle drinkers from 50L calf size up to 1500L bulk reservoir. Insulated variants with buried armoured supply for out-wintering and exposed sites. Ball-cock fed, easy-clean drain bung. Cast in C40/50 concrete at our Holsworthy yard.',
+  brand: { '@type': 'Brand', name: site.name },
+  manufacturer: { '@type': 'Organization', name: site.name },
+  category: 'Precast concrete cattle drinker',
+  material: 'Reinforced concrete, C40/50 (BS 8500-1:2023)',
+  weight: {
+    '@type': 'QuantitativeValue',
+    minValue: 80,
+    maxValue: 1100,
+    unitCode: 'KGM',
+    unitText: 'kilogram',
+  },
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Standard', value: 'BS 5502-22:2003 (agricultural buildings)' },
+    { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
+    { '@type': 'PropertyValue', name: 'Capacity range', value: '50L – 1500L' },
+    { '@type': 'PropertyValue', name: 'Frost protection', value: 'Insulated jacket + buried supply (variant)' },
+    { '@type': 'PropertyValue', name: 'Valve compatibility', value: 'Jobe, Fullwood, Hudson ball-cocks' },
+    { '@type': 'PropertyValue', name: 'Sizing', value: 'AHDB Dairy 1 space per 10 cows, 100mm/cow' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '1–3 weeks catalogue, 3–4 weeks bespoke' },
+    { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
+  ],
+  offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="Cattle Drinkers — Frost-Protected Precast · 50L to 1500L · Ball-cock fed"
+  description="Precast cattle drinkers from 50L calf to 1500L bulk reservoir. Insulated frost-protected variants for out-wintering. Ball-cock fed, easy-clean drain. C40/50 to BS 5502-22. Cast in North Devon."
+  image="/og-default.png"
+  schema="Product"
+  schemaData={productSchema}
+  whatsappContext="Cattle Drinkers"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <TrustStrip />
+  <ProductPageTOC sections={tocSections} />
+
+  <!-- Hero -->
+  <section id="overview" class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow text-yellow mb-4">Agricultural · dairy · beef · pasture</p>
+          <h1 class="font-display text-display-xl text-white mb-4">Cattle Drinkers.</h1>
+          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">Cold winters. Warm water. Healthy intake.</p>
+          <p class="text-lg lg:text-xl text-cast leading-relaxed font-medium text-white/95 mb-6 max-w-xl">
+            Frost-protected precast cattle drinkers from 50L calf-pen size up to 1500L bulk
+            reservoir. Insulated variants with buried armoured supply for out-wintering pads
+            and exposed sites. Ball-cock fed (Jobe, Fullwood, Hudson), easy-clean drain bung.
+            Sized to AHDB Dairy guidance — 1 drinking space per 10 cows, 100mm of trough per cow.
+          </p>
+          <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
+            A dairy cow drinks 100 litres a day in milk. If she cannot get to fresh water,
+            yield drops within 24 hours. The drinker matters more than most farm equipment
+            twice the price.
+          </blockquote>
+          <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
+            From cubicle-row passage drinkers to bulk pasture reservoirs on Welsh hill
+            farms — cast in C40/50 concrete to BS 5502-22 at our Holsworthy yard. Catalogue
+            sizes ex-stock; bespoke 3-4 weeks.
+          </p>
+          <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
+            <li class="flex gap-2"><span class="text-yellow">·</span> 50L – 1500L</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Frost-protected option</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Ball-cock fed</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> AHDB sized</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Easy-clean drain</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Ex-stock catalogue</li>
+          </ul>
+          <div class="flex flex-wrap gap-3">
+            <a href="/quote?product=Cattle%20Drinkers" class="btn-primary">Configure a quote</a>
+            <a href="mailto:engineering@wccp.co.uk?subject=Spec%20sheet%20request%20%E2%80%94%20Cattle%20Drinkers&amp;body=Hi%20WCCP%20engineering%2C%0A%0APlease%20send%20the%20spec%20sheet%20for%20Cattle%20Drinkers.%0A%0AProject%20details%3A%0A%E2%80%A2%20Project%20name%3A%0A%E2%80%A2%20Site%20location%3A%0A%E2%80%A2%20Required%20spec%20%2F%20standard%3A%0A%0AThanks" class="btn-yellow">Request spec sheet</a>
+            <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">
+              Call {site.contact.phone}
+            </a>
+          </div>
+        </div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
+          <div>
+            <p class="text-cast-600 text-sm font-mono">Photo needed</p>
+            <p class="text-cast text-xs mt-2">Hero — Holstein cow drinking from 1300mm double drinker in cubicle passage, ball-cock pocket and side wall visible</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spec table -->
+  <section id="specifications" class="container-wccp py-20">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Specification</p>
+      <h2 class="font-display text-display-lg mb-4">Capacities, sizes and supply options.</h2>
+      <p class="text-cast-700 text-lg">
+        Seven catalogue sizes cover almost every situation from calf pens to suckler-cow paddocks.
+        Bespoke lengths and twin / triple valve options quoted on application.
+      </p>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="spec-table w-full text-left border-collapse">
+        <thead class="bg-navy text-white">
+          <tr>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Variant</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Size</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Supply</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
+          </tr>
+        </thead>
+        <tbody>
+          {specs.map((s, i) => (
+            <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
+              <td class="px-4 py-3 font-bold text-navy">{s.variant}</td>
+              <td class="px-4 py-3">{s.size}</td>
+              <td class="px-4 py-3">{s.supply}</td>
+              <td class="px-4 py-3 text-cast">{s.use}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-cast text-sm mt-4">
+      Drinkers supplied with ball-cock pocket and stainless drain bung as standard. Valve and
+      armoured supply pipe specified separately — we can supply Jobe / Fullwood valve packs
+      direct from the yard.
+    </p>
+
+    <p class="text-cast text-sm mt-4">
+      Size to AHDB Dairy guidance — one drinking space per 10 cows, 100mm trough length per
+      cow drinking simultaneously, 10 litres per cow per day plus summer surge.
+    </p>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-10">
+        <p class="eyebrow text-cast mb-3">Drinker library</p>
+        <h2 class="font-display text-display-lg mb-4 text-navy">Catalogue drinkers and field installations.</h2>
+        <p class="text-cast-700 text-lg">Photo plates being commissioned — placeholder shot briefs below.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { caption: 'Calf drinker · 50L low-rim', shot: 'Small calf drinker installed in straw-bedded pen, low rim suitable for young calves' },
+          { caption: 'Single 200L · cubicle passage', shot: 'Single drinker on cubicle passage wall, ball-cock pocket visible' },
+          { caption: 'Double 400L · cow row', shot: '1300mm twin-valve drinker in dairy cubicle row, two cows drinking' },
+          { caption: 'Field drinker · 600L', shot: 'Field drinker on prepared concrete pad in pasture with mob-grazing fence behind' },
+          { caption: 'Insulated frost-protected · 800L', shot: 'Insulated drinker on out-wintering pad with PIR jacket and buried supply' },
+          { caption: 'Long-trough 1200L · finishing yard', shot: 'Long trough drinker in beef finishing yard serving 30+ cattle' },
+          { caption: 'Drain bung · easy clean', shot: 'Close-up of stainless drain bung at low point of drinker — clean access' },
+          { caption: 'Bulk reservoir · 1500L', shot: 'Largest reservoir drinker on yard, twin float valves, mains fed' },
+        ].map((img) => (
+          <figure>
+            <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-4 text-center">
+              <div>
+                <p class="text-cast-600 text-xs font-mono">Photo needed</p>
+                <p class="text-cast text-xs mt-2">{img.shot}</p>
+              </div>
+            </div>
+            <figcaption class="mt-3 text-sm font-medium text-cast">{img.caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Applications -->
+  <section class="bg-white py-20">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow text-cast mb-3">Where they go</p>
+          <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            From a calf pen on a Devon dairy to a 1500L pasture reservoir on a Welsh hill
+            farm — the precast drinker outlasts plastic by twenty years and outlasts steel
+            in a wet field by ten.
+          </p>
+          <ul class="space-y-3">
+            {applications.map((a) => (
+              <li class="flex gap-3 text-cast-700 leading-relaxed">
+                <span class="text-ember font-bold mt-1">·</span>
+                <span>{a}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="card p-8">
+          <p class="eyebrow text-cast mb-3">Standards & references</p>
+          <h3 class="font-display text-2xl font-bold text-navy mb-4">Cast and certified to current code.</h3>
+          <dl class="space-y-4 text-sm">
+            <div>
+              <dt class="font-bold text-navy">BS 5502-22:2003</dt>
+              <dd class="text-cast">Buildings and structures for agriculture — cattle housing fittings.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS 8500-1:2023</dt>
+              <dd class="text-cast">Concrete specification — C40/50, exposure XC4 / XF1 for outdoor drinkers.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS EN 13369</dt>
+              <dd class="text-cast">Common rules for precast concrete products — Factory Production Control.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">AHDB Dairy</dt>
+              <dd class="text-cast">Drinking-space sizing — 1 per 10 cows, 100mm/cow, 10L/cow/day plus surge.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">Red Tractor Dairy</dt>
+              <dd class="text-cast">Hygiene — weekly clean minimum, fresh-water access at all times.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Configurator CTA -->
+  <section class="bg-yellow text-navy py-16">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-navy mb-2">Configure your drinker order</p>
+          <h2 class="font-display text-display-md">Tell us herd size, location and whether you need frost-protection — we will quote and dispatch from stock.</h2>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href="/quote?product=Cattle%20Drinkers" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
+          <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section id="related" class="container-wccp py-20">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
+      <div>
+        <p class="eyebrow text-cast mb-3">Related products</p>
+        <h2 class="font-display text-display-lg">Often ordered alongside.</h2>
+      </div>
+      <a href="/products" class="text-ember font-bold hover:text-ember-700 inline-flex items-center gap-2">
+        View full range
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" />
+          <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+    <RelatedProductGrid items={related} />
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">Common questions</p>
+        <h2 class="font-display text-display-lg mb-4">What stockmen ask.</h2>
+        <p class="text-cast-700 text-lg">
+          Five questions we answer most weeks. If yours is not here, ring the yard.
+        </p>
+      </div>
+      <div class="max-w-3xl space-y-4">
+        {faqs.map((f) => (
+          <details class="card p-6 group">
+            <summary class="font-display text-lg font-bold text-navy cursor-pointer list-none flex justify-between items-start gap-4">
+              <span>{f.q}</span>
+              <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Supply-only vs Fitted -->
+  <section class="container-wccp section-rhythm border-t border-cast-100">
+    <FittedVsSupply
+      productName="Cattle Drinkers"
+      defaultMode="supply"
+      supply={{
+        price: 'Bespoke quote',
+        leadTime: '1–3 weeks catalogue',
+        includes: [
+          'Cast drinker with ball-cock pocket and drain',
+          'Optional valve pack (Jobe / Fullwood / Hudson)',
+          'BS 5502-22 / BS 8500-1 documentation',
+          'Delivery on flatbed with HIAB up to 12 t',
+        ],
+        excludes: [
+          'Plumbing connection and supply pipework',
+          'Concrete pad / base preparation',
+        ],
+      }}
+      fitted={{
+        price: 'Bespoke quote (incl. set & plumb)',
+        leadTime: '2–4 weeks (incl. site slot)',
+        includes: [
+          'Everything in supply only',
+          'Set on prepared pad and connect to mains',
+          'Valve set, fill test, leak check',
+          '12-month workmanship warranty',
+        ],
+        excludes: [
+          'Mains-water main run and metering',
+          'Trace heating commissioning (if specified)',
+        ],
+      }}
+      note=". Catalogue drinkers ex-stock; bespoke long-troughs and frost-protected runs 3-4 weeks."
+    />
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-navy text-white py-20">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
+      <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">
+        Herd size, location and frost-protection requirement — we will quote the same day.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/quote?product=Cattle%20Drinkers" class="btn-yellow">Configure a quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
+      </div>
+    </div>
+  </section>
+
+  <SpecSheetButton productSlug="cattle-drinkers" productName="Cattle Drinkers" />
+  <ProductWarrantyLine />
+</BaseLayout>

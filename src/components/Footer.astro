@@ -158,7 +158,7 @@ const year = new Date().getFullYear();
         <h3 class="text-eyebrow text-white/90 mb-4">Talk to the yard</h3>
         <ul class="space-y-2.5 text-sm">
           <li><a href={`tel:${site.contact.phoneIntl}`} class="text-white hover:text-yellow font-bold link-underline">{site.contact.phone}</a></li>
-          <li><a href={`tel:${site.contact.mobileIntl}`} class="text-white hover:text-yellow link-underline">{site.contact.mobile}</a> <span class="text-white/50 text-xs">(mobile / WhatsApp)</span></li>
+          <li><a href={`tel:${site.contact.mobileIntl}`} class="text-white hover:text-yellow link-underline">{site.contact.mobile}</a> <span class="text-white/80 text-xs">(mobile / WhatsApp)</span></li>
           <li><a href={`mailto:${site.contact.email}`} class="text-white hover:text-yellow link-underline">{site.contact.email}</a></li>
           <li><a href={`mailto:${site.contact.quotesEmail}`} class="text-white hover:text-yellow link-underline">{site.contact.quotesEmail}</a></li>
         </ul>
@@ -200,6 +200,15 @@ const year = new Date().getFullYear();
 
     <!-- Accreditations strip -->
     <div id="footer-accreditations" class="py-10 border-b border-white/10" tabindex="-1">
+      <p class="text-center text-xs text-white/80 mb-4 tracking-wide">
+        Verified UK manufacturer ·
+        <a
+          href={`https://find-and-update.company-information.service.gov.uk/company/${site.companyNumber}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-yellow transition-colors duration-200 link-underline"
+        >Companies House #{site.companyNumber}</a>
+      </p>
       <div class="bg-white/5 rounded-lg p-6">
         <AccreditationBadges layout="strip" filter="current" tone="dark" />
       </div>
@@ -234,15 +243,17 @@ const year = new Date().getFullYear();
             required
             autocomplete="email"
             placeholder="you@farm.co.uk"
-            class="flex-1 px-4 py-3 rounded-md bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:bg-white/15 focus:border-yellow focus:outline-none transition-colors"
+            aria-describedby="newsletter-email-note"
+            class="flex-1 px-4 py-3 rounded-md bg-white/10 border border-white/30 text-white placeholder:text-white/70 focus:bg-white/15 focus:border-yellow focus:outline-none transition-colors"
           />
           <button type="submit" class="btn-primary whitespace-nowrap">Sign up</button>
+          <span id="newsletter-email-note" class="sr-only">We email once a month max. Unsubscribe in one click.</span>
         </form>
       </div>
     </div>
 
     <!-- Legal bar -->
-    <div class="pt-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-xs text-white/50">
+    <div class="pt-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-xs text-white/80">
       <div class="flex flex-col sm:flex-row sm:items-center sm:flex-wrap gap-x-3 gap-y-1">
         <span>
           © {year} {site.legalName} · Companies House #{site.companyNumber} · Manufacturing precast concrete in North Devon since 1971

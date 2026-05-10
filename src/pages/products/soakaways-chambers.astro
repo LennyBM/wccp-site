@@ -1,0 +1,381 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import FittedVsSupply from '@/components/FittedVsSupply.astro';
+import SpecSheetButton from '@/components/SpecSheetButton.astro';
+import ProductGallery from '@/components/ProductGallery.astro';
+import { site } from '@/config/site';
+import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
+import ProductPageTOC from '@/components/ProductPageTOC.astro';
+
+const tocSections = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'specifications', label: 'Specifications' },
+  { id: 'gallery', label: 'Gallery' },
+  { id: 'related', label: 'Related' },
+  { id: 'faq', label: 'FAQ' },
+  { id: 'downloads', label: 'Downloads' },
+];
+
+// WCCP precast soakaway chambers and inspection chambers — BS 5911-3, SuDS systems.
+const specs = [
+  { variant: '900mm DN inspection chamber', bed: '900mm internal · 1m or 2m depth', style: 'BS 5911-3 · sealed base, ladder optional', use: 'Adoptable foul and surface-water drainage' },
+  { variant: '1200mm DN inspection chamber', bed: '1200mm internal · 1m to 6m depth', style: 'BS 5911-3 · person-entry, step-irons', use: 'Adoptable highway drainage networks' },
+  { variant: '1500mm DN inspection chamber', bed: '1500mm internal · 1m to 8m depth', style: 'BS 5911-3 · backdrop manhole compatible', use: 'Trunk-sewer junctions, deep manholes' },
+  { variant: '1800mm DN soakaway chamber', bed: '1800mm internal · perforated rings', style: 'BS 5911-3 · CIRIA C753 SuDS', use: 'Domestic and small commercial soakaways' },
+  { variant: '2400mm DN soakaway chamber', bed: '2400mm internal · perforated rings', style: 'BS 5911-3 · CIRIA C753 SuDS', use: 'Estate and industrial soakaway crates' },
+  { variant: '3000mm DN attenuation chamber', bed: '3000mm internal · sealed base', style: 'BS 5911-3 · attenuation storage', use: 'Large SuDS attenuation, controlled outflow' },
+];
+
+const applications = [
+  'Adoptable foul and surface-water inspection chambers',
+  'Highway drainage manholes and gulley connections',
+  'SuDS soakaway and infiltration systems',
+  'Attenuation storage with controlled outflow',
+  'Domestic and small commercial soakaways',
+  'Industrial-park surface-water spine networks',
+  'Renewable-energy site water management',
+];
+
+const related = [
+  { href: '/products/pipe-culverts', label: 'Pipe Culverts', meta: 'BS 5911-1 · 300–1800mm' },
+  { href: '/products/dish-channels', label: 'Dish Channels', meta: 'BS EN 1433 · surface drainage' },
+  { href: '/products/culverts', label: 'Box Culverts', meta: 'Rectangular precast · BS 5911-2' },
+  { href: '/products/sand-channels', label: 'Sand Channels', meta: 'Forecourt and yard drainage' },
+];
+
+const faqs = [
+  { q: 'What standard do your chambers meet?', a: 'BS 5911-3:2014+A1:2015 — concrete pipes and ancillary products, manholes and inspection chambers. We supply chambers from 900mm to 3000mm internal diameter, in 250mm and 500mm chamber-ring depths, with sealed or perforated bases. Cast in C40/50 concrete to BS 8500-1:2023, factory-production-controlled to BS EN 13369 and UKCA marked.' },
+  { q: 'Are they SuDS-compatible?', a: 'Yes — perforated soakaway chambers form the source-control infiltration component of SuDS systems and meet CIRIA C753 SuDS Manual requirements. Sealed-base attenuation chambers serve as storage with a controlled outflow device (Hydro-Brake or orifice plate). We will work the soakaway sizing back from your runoff calc and BRE Digest 365 percolation test.' },
+  { q: 'How deep can you go?', a: 'Standard catalogue depth is 1m to 6m for the 1200mm DN, up to 8m for the 1500mm DN. Deeper chambers and benched-base manholes are cast on request — send the long section with invert levels and we will engineer the chamber stack with the right step-iron and ladder pattern under BS 5911-3 person-entry rules.' },
+  { q: 'Do you supply the cover and frame?', a: 'Yes — D400 ductile-iron covers and frames to BS EN 124 are supplied with the chamber as a complete package. Specify the location (carriageway, footway, off-road) and we will match the loading class. For HGV-yard and port-side use we supply F900-rated covers on request.' },
+  { q: 'What is the lead time?', a: 'Catalogue 900mm to 1500mm DN chambers ship in 2 to 3 weeks. Bespoke depths, soakaway perforations and 2400mm-plus diameters run 4 to 6 weeks. Adoption-grade orders are scheduled around your S104 sign-off date — give us the works programme early.' },
+];
+
+const productSchema = {
+  name: 'Precast Soakaway and Inspection Chambers',
+  description: 'Precast concrete soakaway and inspection chambers to BS 5911-3, 900mm to 3000mm internal diameter. SuDS-compatible per CIRIA C753. Cast in C40/50 concrete at our Holsworthy yard.',
+  brand: { '@type': 'Brand', name: site.name },
+  manufacturer: { '@type': 'Organization', name: site.name },
+  category: 'Precast concrete chamber',
+  material: 'Reinforced concrete, C40/50 (BS 8500-1:2023)',
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Standard', value: 'BS 5911-3:2014+A1:2015' },
+    { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
+    { '@type': 'PropertyValue', name: 'Diameter range', value: '900mm to 3000mm DN' },
+    { '@type': 'PropertyValue', name: 'Ring depths', value: '250mm and 500mm' },
+    { '@type': 'PropertyValue', name: 'Base options', value: 'Sealed / perforated / benched' },
+    { '@type': 'PropertyValue', name: 'SuDS compatibility', value: 'CIRIA C753 source control' },
+    { '@type': 'PropertyValue', name: 'Cover loading', value: 'D400 standard, F900 on request (BS EN 124)' },
+    { '@type': 'PropertyValue', name: 'Factory production control', value: 'BS EN 13369 · UKCA marked' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '2–3 weeks catalogue, 4–6 weeks bespoke' },
+    { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
+  ],
+  offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="Soakaways & Chambers — BS 5911-3 · SuDS · 900–3000mm DN"
+  description="Precast soakaway and inspection chambers to BS 5911-3. 900mm to 3000mm DN, SuDS-compatible per CIRIA C753, sealed and perforated bases. Cast in North Devon."
+  image="/og-default.png"
+  schema="Product"
+  schemaData={productSchema}
+  whatsappContext="Soakaways & Chambers"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <TrustStrip />
+  <ProductPageTOC sections={tocSections} />
+
+  <!-- Hero -->
+  <section id="overview" class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow text-yellow mb-4">Civils · drainage · SuDS</p>
+          <h1 class="font-display text-display-xl text-white mb-4">Soakaways & Chambers.</h1>
+          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">Storage. Infiltration. Inspection. Cast in one stack.</p>
+          <p class="text-lg lg:text-xl text-cast leading-relaxed font-medium text-white/95 mb-6 max-w-xl">
+            Precast soakaway and inspection chambers to BS 5911-3, 900mm to 3000mm internal
+            diameter. CIRIA C753 SuDS-compatible perforated rings for infiltration, sealed-base
+            chambers for attenuation and inspection. Cast in C40/50 concrete to BS 8500-1:2023,
+            UKCA marked. Catalogue lead time 2–3 weeks.
+          </p>
+          <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
+            A 1800&nbsp;mm DN soakaway chamber to BS 5911-3 with perforated rings sized to the
+            BRE Digest 365 percolation test infiltrates the design storm into the surrounding
+            granular surround, satisfying CIRIA C753 SuDS source-control criteria.
+          </blockquote>
+          <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
+            Sealed-base inspection chambers, perforated soakaway rings, attenuation storage —
+            full chamber stack engineered to your long section. D400 covers supplied as
+            standard; F900 on request.
+          </p>
+          <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
+            <li class="flex gap-2"><span class="text-yellow">·</span> BS 5911-3</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 900–3000mm DN</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> CIRIA C753 SuDS</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Sealed + perforated</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> UKCA marked</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 2–6 week lead</li>
+          </ul>
+          <div class="flex flex-wrap gap-3">
+            <a href="/quote?product=Soakaways%20%26%20Chambers" class="btn-primary">Configure a quote</a>
+            <a href="mailto:engineering@wccp.co.uk?subject=Spec%20sheet%20request%20%E2%80%94%20Soakaways%20%26%20Chambers&amp;body=Hi%20WCCP%20engineering%2C%0A%0APlease%20send%20the%20spec%20sheet%20for%20Soakaways%20%26%20Chambers.%0A%0AProject%20details%3A%0A%E2%80%A2%20Project%20name%3A%0A%E2%80%A2%20Site%20location%3A%0A%E2%80%A2%20Required%20spec%20%2F%20standard%3A%0A%0AThanks" class="btn-yellow">Request spec sheet</a>
+            <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">
+              Call {site.contact.phone}
+            </a>
+          </div>
+        </div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
+          <div>
+            <p class="text-cast-600 text-sm font-mono">📷 Photo needed</p>
+            <p class="text-cast text-xs mt-2">Hero shot: 1800mm DN soakaway chamber rings stacked in Holsworthy yard, perforations visible, with cone-top piece on top</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spec table -->
+  <section class="container-wccp py-20">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Specification</p>
+      <h2 class="font-display text-display-lg mb-4">Diameters, depths and bases.</h2>
+      <p class="text-cast-700 text-lg">
+        Six catalogue formats covering domestic to industrial-scale work. Bespoke depths,
+        benched bases and backdrop manhole connections cast on request — send the long
+        section with inverts.
+      </p>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="spec-table w-full text-left border-collapse">
+        <thead class="bg-navy text-white">
+          <tr>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Variant</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Size</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Standard / base</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
+          </tr>
+        </thead>
+        <tbody>
+          {specs.map((s, i) => (
+            <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
+              <td class="px-4 py-3 font-bold text-navy">{s.variant}</td>
+              <td class="px-4 py-3">{s.bed}</td>
+              <td class="px-4 py-3">{s.style}</td>
+              <td class="px-4 py-3 text-cast">{s.use}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-cast text-sm mt-4">
+      All chambers UKCA marked, factory production controlled to BS EN 13369. Step irons
+      to BS EN 13101 and ladders to BS 4211 fitted on request for person-entry chambers.
+    </p>
+
+    <p class="text-cast text-sm mt-4">
+      Soakaway sizing: we will work the design back from your BRE Digest 365 percolation
+      test result and the runoff calc — talk to engineering with the soil report.
+    </p>
+  </section>
+
+  <ProductGallery
+    eyebrow="The range"
+    heading="Chambers in service."
+    background="bone"
+    cols={4}
+    images={[
+      { src: '', alt: 'Soakaway chamber stockpile', caption: 'Stockpile · 1800mm DN soakaway rings, perforations visible' },
+      { src: '', alt: 'Inspection chamber install', caption: 'Install · 1200mm DN chamber being lowered into excavation' },
+      { src: '', alt: 'Chamber base detail', caption: 'Base detail · benched-base inspection chamber for adoptable sewer' },
+      { src: '', alt: 'Soakaway perforation detail', caption: 'Perforation detail · soakaway ring with infiltration holes' },
+      { src: '', alt: 'Cover and frame install', caption: 'Cover install · D400 ductile-iron frame to BS EN 124' },
+      { src: '', alt: 'Chamber stack', caption: 'Chamber stack · multi-ring 6m deep manhole on highways site' },
+      { src: '', alt: 'Step irons detail', caption: 'Step irons · BS EN 13101 stainless-steel pattern' },
+      { src: '', alt: 'Attenuation outflow', caption: 'Attenuation · controlled outflow Hydro-Brake fitted in 3000mm DN chamber' },
+    ]}
+  />
+
+  <!-- Applications -->
+  <section class="bg-white py-20">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow text-cast mb-3">Where they go</p>
+          <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            From a domestic soakaway under a back garden in Bideford to a 3000mm DN
+            attenuation chamber on an industrial estate in Plymouth, we cast and deliver to
+            the same engineered standard.
+          </p>
+          <ul class="space-y-3">
+            {applications.map((a) => (
+              <li class="flex gap-3 text-cast-700 leading-relaxed">
+                <span class="text-ember font-bold mt-1">·</span>
+                <span>{a}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="card p-8">
+          <p class="eyebrow text-cast mb-3">Standards & references</p>
+          <h3 class="font-display text-2xl font-bold text-navy mb-4">Cast and certified to current code.</h3>
+          <dl class="space-y-4 text-sm">
+            <div>
+              <dt class="font-bold text-navy">BS 5911-3:2014+A1:2015</dt>
+              <dd class="text-cast">Concrete pipes and ancillary products — manholes and inspection chambers.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">CIRIA C753</dt>
+              <dd class="text-cast">SuDS Manual — surface water management, source control and infiltration design.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BRE Digest 365</dt>
+              <dd class="text-cast">Soakaway design — percolation testing and sizing methodology.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS EN 124</dt>
+              <dd class="text-cast">Gulley tops and manhole tops — loading classes A15 to F900.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS EN 1992 / Eurocode 2</dt>
+              <dd class="text-cast">Design of concrete structures — durability and detailing.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS EN 13369</dt>
+              <dd class="text-cast">Common rules for precast concrete products — factory production control.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Configurator CTA -->
+  <section class="bg-yellow text-navy py-16">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-navy mb-2">Configure your chamber stack</p>
+          <h2 class="font-display text-display-md">Send us the long section, runoff calc and percolation result — we will quote inside 24 hours.</h2>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href="/quote?product=Soakaways%20%26%20Chambers" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
+          <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="container-wccp py-20">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
+      <div>
+        <p class="eyebrow text-cast mb-3">Related products</p>
+        <h2 class="font-display text-display-lg">Often ordered alongside.</h2>
+      </div>
+      <a href="/products" class="text-ember font-bold hover:text-ember-700 inline-flex items-center gap-2">
+        View full range
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" />
+          <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+    <RelatedProductGrid items={related} />
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">Common questions</p>
+        <h2 class="font-display text-display-lg mb-4">What people ask about chambers.</h2>
+        <p class="text-cast-700 text-lg">
+          Five questions we answer most weeks. If yours is not here, ring the yard.
+        </p>
+      </div>
+      <div class="max-w-3xl space-y-4">
+        {faqs.map((f) => (
+          <details class="card p-6 group">
+            <summary class="font-display text-lg font-bold text-navy cursor-pointer list-none flex justify-between items-start gap-4">
+              <span>{f.q}</span>
+              <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Supply-only vs Fitted -->
+  <section class="container-wccp section-rhythm border-t border-cast-100">
+    <FittedVsSupply
+      productName="Soakaways & Chambers"
+      defaultMode="supply"
+      supply={{
+        price: 'Bespoke quote',
+        leadTime: '2–6 weeks',
+        includes: [
+          'BS 5911-3 chamber rings, base and cone',
+          'D400 ductile-iron cover and frame',
+          'Step irons / ladder to BS EN 13101 / BS 4211',
+          'Delivery to site by HIAB or flat-bed',
+        ],
+        excludes: [
+          'Excavation and granular surround',
+          'Pipe-connection and benching works',
+        ],
+      }}
+      fitted={{
+        price: 'Bespoke quote (incl. install)',
+        leadTime: '6–10 weeks (incl. site slot)',
+        includes: [
+          'Everything in supply only',
+          'Civils crew with 30t excavator',
+          'Granular surround and pipe connections',
+          '12-month workmanship warranty',
+        ],
+        excludes: [
+          'Carriageway reinstatement works',
+          'Traffic-management costs',
+        ],
+      }}
+      note=". Bespoke depths, attenuation chambers with controlled-outflow devices and adoption-grade packages priced individually — send the long section and we'll come back within a working day."
+    />
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-navy text-white py-20">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
+      <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">
+        Send us the long section, percolation result and cover-loading class. Quote and lead-time same day.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/quote?product=Soakaways%20%26%20Chambers" class="btn-yellow">Configure a quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
+      </div>
+    </div>
+  </section>
+
+  <SpecSheetButton productSlug="soakaways-chambers" productName="Soakaways & Chambers" />
+  <ProductWarrantyLine />
+</BaseLayout>

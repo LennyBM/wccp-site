@@ -1,0 +1,384 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import FittedVsSupply from '@/components/FittedVsSupply.astro';
+import SpecSheetButton from '@/components/SpecSheetButton.astro';
+import ProductGallery from '@/components/ProductGallery.astro';
+import { site } from '@/config/site';
+import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
+import ProductPageTOC from '@/components/ProductPageTOC.astro';
+
+const tocSections = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'specifications', label: 'Specifications' },
+  { id: 'gallery', label: 'Gallery' },
+  { id: 'related', label: 'Related' },
+  { id: 'faq', label: 'FAQ' },
+  { id: 'downloads', label: 'Downloads' },
+];
+
+// WCCP precast circular pipe culverts to BS 5911-1, 300mm to 1800mm internal diameter.
+// Cast in C40/50 concrete, supplied with rebated flexible joints, suitable for highways and rail.
+const specs = [
+  { variant: '300mm DN', bed: '300mm internal · 2.5m effective length', style: 'Class 120 ogee or rebated joint', use: 'Field drainage, minor watercourse crossings' },
+  { variant: '450mm DN', bed: '450mm internal · 2.5m effective length', style: 'Class 120 rebated, flexible seal', use: 'Estate roads, minor highway crossings' },
+  { variant: '600mm DN', bed: '600mm internal · 2.5m effective length', style: 'Class 120 rebated, flexible seal', use: 'Highway gulley connections, farm tracks' },
+  { variant: '900mm DN', bed: '900mm internal · 2.5m effective length', style: 'Class 120 rebated, flexible seal', use: 'A-road verge culverts, attenuation outflow' },
+  { variant: '1200mm DN', bed: '1200mm internal · 2.5m effective length', style: 'Class 120 rebated · person-entry permitted', use: 'Highway and rail watercourse crossings' },
+  { variant: '1500mm DN', bed: '1500mm internal · 2.5m effective length', style: 'Class 120 rebated · person-entry', use: 'Trunk-road and Network Rail crossings' },
+  { variant: '1800mm DN', bed: '1800mm internal · 2.5m effective length', style: 'Class 120 rebated · person-entry', use: 'Major watercourse, motorway culverts' },
+];
+
+const applications = [
+  'Highway watercourse crossings — A-roads and trunk roads',
+  'Network Rail under-track culvert renewals',
+  'Motorway verge and embankment drainage runs',
+  'Estate-road and farm-track ditch crossings',
+  'SuDS attenuation outflow and bypass channels',
+  'Renewable-energy site access road drainage',
+  'Industrial-park surface-water spine drains',
+];
+
+const related = [
+  { href: '/products/culverts', label: 'Box Culverts', meta: 'Rectangular precast · BS 5911-2' },
+  { href: '/products/soakaways-chambers', label: 'Soakaways & Chambers', meta: 'BS 5911-3 · SuDS systems' },
+  { href: '/products/dish-channels', label: 'Dish Channels', meta: 'BS EN 1433 · surface drainage' },
+  { href: '/products/retaining-walls', label: 'Retaining Walls', meta: 'L-shape and counterfort civils' },
+];
+
+const faqs = [
+  { q: 'What standard do your pipe culverts meet?', a: 'BS 5911-1:2002+A2:2010 — precast concrete pipes and ancillary products, with strength class 120 to suit HB44.5 highways loading. Our pipes are factory-production-controlled to BS EN 13369 and UKCA marked. Joints are rebated with flexible elastomeric seals to BS EN 681-1 — watertight to 0.5 bar test pressure on completion.' },
+  { q: 'What loading do they take?', a: 'Class 120 (the standard for adoptable highway use) carries the full HB44.5 load envelope at 1.2m cover, dropping to a minimum 600mm cover under DMRB CD 526. For Network Rail crossings we supply to the higher Class 180 strength on request, with end-bearing reinforcement and the joint detail signed off by your CAT III check engineer.' },
+  { q: 'What sizes do you cast?', a: 'Catalogue range is 300mm to 1800mm internal diameter in 2.5m effective lengths. Larger diameters (2100mm and 2400mm) and bespoke headwalls, bends and junctions are quoted on application. We also supply matching precast headwalls, wingwalls and grilles to complete the run — see our headwalls page.' },
+  { q: 'What is the lead time?', a: 'Catalogue diameters up to 900mm are typically 2 to 3 weeks ex-yard. Larger 1200mm-plus and bespoke runs sit at 4 to 6 weeks depending on programme. Highways and rail orders are scheduled around possession dates — give us the works programme early and we will batch-cast to your delivery slots.' },
+  { q: 'Do you supply the headwall and grille?', a: 'Yes — we cast precast inlet and outlet headwalls, splayed wingwalls, trash screens and otter-friendly grille frames to match the pipe diameter. All to Environment Agency and Highways England standard details. We can also supply the granular bedding spec and joint lubricant — talk to the yard for a complete package.' },
+];
+
+const productSchema = {
+  name: 'Precast Circular Pipe Culverts',
+  description: 'Precast circular pipe culverts to BS 5911-1, 300mm to 1800mm internal diameter. Strength class 120 for highway and rail loading. Rebated flexible joints to BS EN 681-1. Cast in C40/50 concrete at our Holsworthy yard.',
+  brand: { '@type': 'Brand', name: site.name },
+  manufacturer: { '@type': 'Organization', name: site.name },
+  category: 'Precast concrete pipe culvert',
+  material: 'Reinforced concrete, C40/50 (BS 8500-1:2023)',
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Standard', value: 'BS 5911-1:2002+A2:2010' },
+    { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
+    { '@type': 'PropertyValue', name: 'Strength class', value: 'Class 120 (Class 180 on request)' },
+    { '@type': 'PropertyValue', name: 'Joint', value: 'Rebated flexible — BS EN 681-1 elastomeric seal' },
+    { '@type': 'PropertyValue', name: 'Diameter range', value: '300mm to 1800mm DN (larger on request)' },
+    { '@type': 'PropertyValue', name: 'Effective length', value: '2.5m standard' },
+    { '@type': 'PropertyValue', name: 'Loading', value: 'HB44.5 highways · Network Rail on request' },
+    { '@type': 'PropertyValue', name: 'Factory production control', value: 'BS EN 13369 · UKCA marked' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '2–3 weeks catalogue, 4–6 weeks bespoke' },
+    { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
+  ],
+  offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="Pipe Culverts — BS 5911-1 · 300–1800mm DN · Highways & Rail"
+  description="Precast circular pipe culverts to BS 5911-1, 300mm to 1800mm internal diameter. Class 120 for HB44.5 highways. Rebated flexible joints. Cast in North Devon."
+  image="/og-default.png"
+  schema="Product"
+  schemaData={productSchema}
+  whatsappContext="Pipe Culverts"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <TrustStrip />
+  <ProductPageTOC sections={tocSections} />
+
+  <!-- Hero -->
+  <section id="overview" class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow text-yellow mb-4">Civils · highways · drainage</p>
+          <h1 class="font-display text-display-xl text-white mb-4">Pipe Culverts.</h1>
+          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">Cast for the trunk road. Sealed for the river.</p>
+          <p class="text-lg lg:text-xl text-cast leading-relaxed font-medium text-white/95 mb-6 max-w-xl">
+            Precast circular pipe culverts to BS 5911-1, cast in C40/50 concrete in 300mm to
+            1800mm internal diameter, in 2.5m effective lengths. Strength class 120 for HB44.5
+            highways loading. Rebated flexible joints to BS EN 681-1. UKCA marked, factory
+            production controlled to BS EN 13369. Catalogue lead time 2–3 weeks.
+          </p>
+          <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
+            A 1200mm DN highway culvert sits at Class 120 strength under BS 5911-1, carries
+            the full HB44.5 envelope at 1.2&nbsp;m cover, and joints up watertight to 0.5&nbsp;bar
+            with the flexible elastomeric seal we supply pre-fitted in the rebate.
+          </blockquote>
+          <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
+            We cast pipe culverts for highways, rail, motorways and watercourse crossings
+            UK-wide. Headwalls, wingwalls and trash grilles supplied to match — full
+            engineered package from the Holsworthy yard.
+          </p>
+          <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
+            <li class="flex gap-2"><span class="text-yellow">·</span> BS 5911-1 cast</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 300–1800mm DN</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Class 120 standard</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> HB44.5 highways</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> UKCA marked</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 2–6 week lead</li>
+          </ul>
+          <div class="flex flex-wrap gap-3">
+            <a href="/quote?product=Pipe%20Culverts" class="btn-primary">Configure a quote</a>
+            <a href="mailto:engineering@wccp.co.uk?subject=Spec%20sheet%20request%20%E2%80%94%20Pipe%20Culverts&amp;body=Hi%20WCCP%20engineering%2C%0A%0APlease%20send%20the%20spec%20sheet%20for%20Pipe%20Culverts.%0A%0AProject%20details%3A%0A%E2%80%A2%20Project%20name%3A%0A%E2%80%A2%20Site%20location%3A%0A%E2%80%A2%20Required%20spec%20%2F%20standard%3A%0A%0AThanks" class="btn-yellow">Request spec sheet</a>
+            <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">
+              Call {site.contact.phone}
+            </a>
+          </div>
+        </div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
+          <div>
+            <p class="text-cast-600 text-sm font-mono">📷 Photo needed</p>
+            <p class="text-cast text-xs mt-2">Hero shot: 1200mm DN pipe culvert section in the Holsworthy yard, end-on, showing rebated joint and elastomeric seal — strop visible from the gantry</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spec table -->
+  <section class="container-wccp py-20">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Specification</p>
+      <h2 class="font-display text-display-lg mb-4">Diameters, lengths and joints.</h2>
+      <p class="text-cast-700 text-lg">
+        Catalogue range from 300mm to 1800mm internal diameter, all Class 120 strength,
+        rebated flexible joint as standard. Bespoke bends, junctions and Class 180 cast on
+        request — quoted with the engineering drawing.
+      </p>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="spec-table w-full text-left border-collapse">
+        <thead class="bg-navy text-white">
+          <tr>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Variant</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Size</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Joint / class</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
+          </tr>
+        </thead>
+        <tbody>
+          {specs.map((s, i) => (
+            <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
+              <td class="px-4 py-3 font-bold text-navy">{s.variant}</td>
+              <td class="px-4 py-3">{s.bed}</td>
+              <td class="px-4 py-3">{s.style}</td>
+              <td class="px-4 py-3 text-cast">{s.use}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-cast text-sm mt-4">
+      All pipes UKCA marked, with batch-traceable factory production control to BS EN 13369. Mill
+      certs and concrete cube records supplied with delivery on request.
+    </p>
+
+    <p class="text-cast text-sm mt-4">
+      For Network Rail crossings under NR/L2/CIV/074, specify Class 180 at order — we will
+      cast with end-bearing reinforcement and supply the certification pack to your CAT III
+      check engineer.
+    </p>
+  </section>
+
+  <ProductGallery
+    eyebrow="The range"
+    heading="Pipe culverts on site and in the yard."
+    background="bone"
+    cols={4}
+    images={[
+      { src: '', alt: 'Pipe culvert stockpile', caption: 'Stockpile shot · 600mm DN pipes stacked in yard with WCCP banding visible' },
+      { src: '', alt: 'Pipe culvert install', caption: 'Install shot · 1200mm DN pipe being lowered by 30t excavator into bedding' },
+      { src: '', alt: 'Pipe culvert joint detail', caption: 'Joint detail · close-up of rebated socket and elastomeric seal pre-fit' },
+      { src: '', alt: 'Pipe culvert end-on', caption: 'End-on shot · 1500mm DN pipe with man for scale, showing wall thickness' },
+      { src: '', alt: 'Pipe culvert with headwall', caption: 'Pipe + headwall · 900mm DN run terminating at precast splayed headwall' },
+      { src: '', alt: 'Pipe culvert highway', caption: 'Highway crossing · A-road verge install with traffic-management cones' },
+      { src: '', alt: 'Pipe culvert bedding', caption: 'Bedding detail · Class S granular bed, pipe set to invert level' },
+      { src: '', alt: 'Pipe culvert delivery', caption: 'Delivery shot · WCCP artic offloading pipes via HIAB on highways site' },
+    ]}
+  />
+
+  <!-- Applications -->
+  <section class="bg-white py-20">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow text-cast mb-3">Where they go</p>
+          <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            From a 300mm field-drainage crossing on a Devon estate road to a 1800mm
+            watercourse culvert under a motorway slip, we cast the same engineered
+            product — sized to your hydraulic calc, delivered to your possession slot.
+          </p>
+          <ul class="space-y-3">
+            {applications.map((a) => (
+              <li class="flex gap-3 text-cast-700 leading-relaxed">
+                <span class="text-ember font-bold mt-1">·</span>
+                <span>{a}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="card p-8">
+          <p class="eyebrow text-cast mb-3">Standards & references</p>
+          <h3 class="font-display text-2xl font-bold text-navy mb-4">Cast and certified to current code.</h3>
+          <dl class="space-y-4 text-sm">
+            <div>
+              <dt class="font-bold text-navy">BS 5911-1:2002+A2:2010</dt>
+              <dd class="text-cast">Concrete pipes and ancillary products — circular pipes, manholes, soakaways. Strength classes and joint types.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS EN 1916</dt>
+              <dd class="text-cast">Concrete pipes and fittings — unreinforced, steel-fibre and reinforced. Companion EN code.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS EN 681-1</dt>
+              <dd class="text-cast">Elastomeric seals — joint sealing for water and drainage. Watertight to 0.5 bar test.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS EN 1992 / Eurocode 2</dt>
+              <dd class="text-cast">Design of concrete structures — reinforcement detailing and durability.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">DMRB CD 526</dt>
+              <dd class="text-cast">Design Manual for Roads and Bridges — buried concrete drainage. Cover, bedding and HB44.5 loading.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS EN 13369</dt>
+              <dd class="text-cast">Common rules for precast concrete products — factory production control, UKCA marking.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Configurator CTA -->
+  <section class="bg-yellow text-navy py-16">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-navy mb-2">Configure your culvert run</p>
+          <h2 class="font-display text-display-md">Send us the diameter, run length and cover — we will quote inside 24 hours with headwalls and grilles included.</h2>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href="/quote?product=Pipe%20Culverts" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
+          <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="container-wccp py-20">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
+      <div>
+        <p class="eyebrow text-cast mb-3">Related products</p>
+        <h2 class="font-display text-display-lg">Often ordered alongside.</h2>
+      </div>
+      <a href="/products" class="text-ember font-bold hover:text-ember-700 inline-flex items-center gap-2">
+        View full range
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" />
+          <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+    <RelatedProductGrid items={related} />
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">Common questions</p>
+        <h2 class="font-display text-display-lg mb-4">What people ask about pipe culverts.</h2>
+        <p class="text-cast-700 text-lg">
+          Five questions we answer most weeks. If yours is not here, ring the yard.
+        </p>
+      </div>
+      <div class="max-w-3xl space-y-4">
+        {faqs.map((f) => (
+          <details class="card p-6 group">
+            <summary class="font-display text-lg font-bold text-navy cursor-pointer list-none flex justify-between items-start gap-4">
+              <span>{f.q}</span>
+              <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Supply-only vs Fitted -->
+  <section class="container-wccp section-rhythm border-t border-cast-100">
+    <FittedVsSupply
+      productName="Pipe Culverts"
+      defaultMode="supply"
+      supply={{
+        price: 'Bespoke quote',
+        leadTime: '2–6 weeks',
+        includes: [
+          'BS 5911-1 Class 120 pipes with rebated joints',
+          'Pre-fitted BS EN 681-1 elastomeric seals',
+          'UKCA mill certs and concrete cube records',
+          'Delivery to site by HIAB or flat-bed',
+        ],
+        excludes: [
+          'Excavation, bedding and surround works',
+          'Headwalls and grilles unless specified',
+        ],
+      }}
+      fitted={{
+        price: 'Bespoke quote (incl. install)',
+        leadTime: '6–10 weeks (incl. site slot)',
+        includes: [
+          'Everything in supply only',
+          'Civils crew with 30t excavator',
+          'Setting-out, bedding and surround',
+          '12-month workmanship warranty',
+        ],
+        excludes: [
+          'Traffic management and possession costs',
+          'Permanent reinstatement of carriageway',
+        ],
+      }}
+      note=". Bespoke diameters, Class 180 strength and Network Rail packages priced individually — send the long section and we'll come back within a working day."
+    />
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-navy text-white py-20">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
+      <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">
+        Send us diameter, run length, cover depth and possession dates. Quote and lead-time same day.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/quote?product=Pipe%20Culverts" class="btn-yellow">Configure a quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
+      </div>
+    </div>
+  </section>
+
+  <SpecSheetButton productSlug="pipe-culverts" productName="Pipe Culverts" />
+  <ProductWarrantyLine />
+</BaseLayout>

@@ -20,50 +20,63 @@ const sections = [
     links: [
       { href: '/products', label: 'Full product range (index)' },
       { href: '/products/cattle-cubicles', label: 'Cattle cubicles' },
-      { href: '/products/cubicle-beds', label: 'Cubicle beds' },
+      { href: '/products/cubicle-end-walls', label: 'Cubicle end walls' },
       { href: '/products/slurry-storage', label: 'Slurry storage panels' },
+      { href: '/products/slurry-channels', label: 'Slurry channels' },
+      { href: '/products/sand-channels', label: 'V-section sand channels' },
       { href: '/products/silage-clamp-walls', label: 'Silage clamp walls' },
       { href: '/products/feed-troughs', label: 'Feed troughs' },
       { href: '/products/water-troughs', label: 'Water troughs' },
       { href: '/products/footbaths', label: 'Footbaths' },
       { href: '/products/milking-robot-bases', label: 'Milking robot bases' },
       { href: '/products/prestressed-panels', label: 'Prestressed wall panels' },
-      { href: '/products/a-panels', label: 'A-panels' },
+      { href: '/products/heelstone-coping', label: 'Heelstone coping' },
       { href: '/products/l-blocks', label: 'L-blocks' },
-      { href: '/products/retaining-walls', label: 'Retaining walls' },
+      { href: '/products/interlocking-blocks', label: 'Interlocking blocks' },
+      { href: '/products/king-post-walls', label: 'King post walls' },
+      { href: '/products/cantilever-walls', label: 'Cantilever walls' },
+      { href: '/products/retaining-walls', label: 'Retaining walls (overview)' },
       { href: '/products/culverts', label: 'Box culverts' },
-      { href: '/products/manhole-rings', label: 'Manhole rings' },
-      { href: '/products/drain-channels', label: 'Drain channels' },
       { href: '/products/padstones', label: 'Padstones' },
       { href: '/products/vehicle-pits', label: 'Vehicle inspection pits' },
+      { href: '/products/ad-plant-components', label: 'AD plant components' },
+      { href: '/products/clean-rooms', label: 'Clean rooms' },
+      { href: '/products/tetrapods', label: 'Tetrapods' },
       { href: '/products/bespoke', label: 'Bespoke precast' },
-      { href: '/products/architectural', label: 'Architectural precast' },
     ],
   },
   {
-    title: 'Resources & guides',
+    title: 'Guides',
     links: [
       { href: '/guides', label: 'Guides index' },
-      { href: '/guides/slurry-sizing', label: 'Slurry sizing guide' },
-      { href: '/guides/cubicle-design', label: 'Cubicle design guide' },
-      { href: '/guides/silage-clamp-design', label: 'Silage clamp design' },
-      { href: '/guides/retaining-wall-design', label: 'Retaining wall design' },
-      { href: '/guides/ssafo-compliance', label: 'SSAFO 2018 compliance' },
+      { href: '/guides/slurry-wall-thickness', label: 'How thick should a slurry wall be?' },
+      { href: '/guides/cubicle-sizing', label: 'Cattle cubicle sizing guide' },
+      { href: '/guides/ssafo-2018', label: 'SSAFO 2018 compliance' },
+      { href: '/guides/concrete-grades', label: 'Concrete grades for agricultural use' },
+      { href: '/guides/prestressed-vs-reinforced', label: 'Prestressed vs reinforced panels' },
+      { href: '/guides/retaining-wall-types', label: 'King Post vs L-Block vs cantilever' },
+      { href: '/guides/king-post-retaining-walls', label: 'King post retaining walls' },
+      { href: '/guides/l-block-vs-cantilever', label: 'L-block vs cantilever' },
+      { href: '/guides/retaining-wall-cost-uk', label: 'Retaining wall cost factors' },
+      { href: '/guides/padstone-sizing-uk', label: 'Padstone sizing UK' },
+      { href: '/guides/vehicle-inspection-pit-hse', label: 'Vehicle inspection pit (HSE)' },
+      { href: '/guides/bespoke-precast-process', label: 'Bespoke precast process' },
+      { href: '/guides/fetf-2026-eligible-products', label: 'FETF 2026 eligible products' },
       { href: '/downloads', label: 'Downloads (datasheets, CAD, BIM)' },
       { href: '/faqs', label: 'Frequently asked questions' },
-      { href: '/news', label: 'News & updates' },
     ],
   },
   {
     title: 'Case studies',
     links: [
       { href: '/case-studies', label: 'Case studies index' },
-      { href: '/case-studies/dairy-cubicle-build-devon', label: 'Devon dairy cubicle build' },
-      { href: '/case-studies/slurry-store-cornwall', label: 'Cornwall slurry store' },
-      { href: '/case-studies/silage-clamp-somerset', label: 'Somerset silage clamp' },
-      { href: '/case-studies/retaining-wall-civils', label: 'Civils retaining wall' },
-      { href: '/case-studies/robot-base-devon', label: 'Robot base, North Devon' },
-      { href: '/case-studies/bespoke-architectural', label: 'Bespoke architectural panels' },
+      { href: '/case-studies/trewartha-farm-dairy', label: 'Trewartha Farm dairy' },
+      { href: '/case-studies/boscastle-beef-shed', label: 'Boscastle beef shed' },
+      { href: '/case-studies/example-dairy-farm', label: 'Dairy farm cubicle install' },
+      { href: '/case-studies/ashford-estate-civils', label: 'Ashford Estate civils' },
+      { href: '/case-studies/henley-railway-footbridge', label: 'Henley railway footbridge' },
+      { href: '/case-studies/higgins-civils-roundabout', label: 'Higgins civils roundabout' },
+      { href: '/case-studies/wessex-ad-plant', label: 'Wessex AD plant' },
     ],
   },
   {
@@ -74,34 +87,53 @@ const sections = [
       { href: '/areas/somerset', label: 'Somerset' },
       { href: '/areas/dorset', label: 'Dorset' },
       { href: '/areas/wiltshire', label: 'Wiltshire' },
+      { href: '/reach', label: 'Delivery footprint (UK + Europe)' },
     ],
   },
   {
-    title: 'Grants & funding',
+    title: 'Cities',
     links: [
-      { href: '/grants', label: 'Grants overview' },
-      { href: '/grants/slurry-grant', label: 'Slurry Infrastructure Grant (SIG)' },
-      { href: '/grants/fetf', label: 'FETF 2026 / 2027' },
+      { href: '/concrete-supplier-exeter', label: 'Concrete supplier Exeter' },
+      { href: '/concrete-supplier-plymouth', label: 'Concrete supplier Plymouth' },
+      { href: '/concrete-supplier-truro', label: 'Concrete supplier Truro' },
+      { href: '/concrete-supplier-taunton', label: 'Concrete supplier Taunton' },
+      { href: '/concrete-supplier-yeovil', label: 'Concrete supplier Yeovil' },
+      { href: '/concrete-supplier-salisbury', label: 'Concrete supplier Salisbury' },
+      { href: '/concrete-supplier-devon', label: 'Concrete supplier Devon' },
+      { href: '/concrete-supplier-cornwall', label: 'Concrete supplier Cornwall' },
+      { href: '/concrete-supplier-somerset', label: 'Concrete supplier Somerset' },
+      { href: '/concrete-supplier-dorset', label: 'Concrete supplier Dorset' },
     ],
   },
   {
-    title: 'Company',
+    title: 'Grants',
+    links: [
+      { href: '/grants/slurry-grant', label: 'Slurry Infrastructure Grant (SIG)' },
+      { href: '/grants/sig-round-4', label: 'SIG Round 4 — closes 30 Sep 2026' },
+      { href: '/grants/fetf-2026', label: 'FETF 2026 / 2027' },
+    ],
+  },
+  {
+    title: 'About / Company',
     links: [
       { href: '/about', label: 'About us' },
       { href: '/factory', label: 'The factory' },
+      { href: '/team', label: 'The team' },
+      { href: '/our-safety', label: 'How we work safely' },
       { href: '/sustainability', label: 'Sustainability' },
+      { href: '/sustainability/carbon', label: 'Sustainability — carbon' },
+      { href: '/community', label: 'Community' },
+      { href: '/standards', label: 'Standards' },
+      { href: '/standards-explained', label: 'Standards explained' },
+      { href: '/standards/conformity', label: 'Standards conformity' },
       { href: '/careers', label: 'Careers' },
+      { href: '/news', label: 'News & updates' },
+      { href: '/contact', label: 'Contact' },
+      { href: '/quote', label: 'Get a quote' },
     ],
   },
   {
-    title: 'Get a quote',
-    links: [
-      { href: '/quote', label: 'Configure a quote' },
-      { href: '/contact', label: 'Contact us' },
-    ],
-  },
-  {
-    title: 'Legal & policies',
+    title: 'Legal',
     links: [
       { href: '/privacy', label: 'Privacy policy' },
       { href: '/cookies', label: 'Cookie policy' },
@@ -111,9 +143,11 @@ const sections = [
     ],
   },
   {
-    title: 'Utility',
+    title: 'AI / Resources',
     links: [
-      { href: '/search', label: 'Search' },
+      { href: '/ai-information', label: 'AI / LLM information page' },
+      { href: '/llms.txt', label: '/llms.txt — machine-readable summary' },
+      { href: '/search', label: 'Search the site' },
       { href: '/sitemap', label: 'HTML sitemap (this page)' },
       { href: '/sitemap-index.xml', label: 'XML sitemap (for search engines)' },
       { href: '/feed.xml', label: 'RSS feed' },
@@ -121,12 +155,23 @@ const sections = [
   },
 ];
 
-const totalLinks = sections.reduce((sum, s) => sum + s.links.length, 0);
+// De-duplicate within each section in case the same href appears twice.
+const cleanedSections = sections.map((s) => {
+  const seen = new Set<string>();
+  const links = s.links.filter((l) => {
+    if (seen.has(l.href)) return false;
+    seen.add(l.href);
+    return true;
+  });
+  return { ...s, links };
+});
+
+const totalLinks = cleanedSections.reduce((sum, s) => sum + s.links.length, 0);
 ---
 
 <BaseLayout
   title="Sitemap — every page on the site"
-  description="Full HTML sitemap for West Country Concrete Products. Every page grouped by section: products, sectors, resources, areas, company, grants and legal."
+  description="Full HTML sitemap for West Country Concrete Products. Every page grouped by section: products, sectors, guides, case studies, areas, cities, grants, company, legal and AI resources."
 >
   <!-- Hero -->
   <section class="bg-navy text-white">
@@ -144,10 +189,29 @@ const totalLinks = sections.reduce((sum, s) => sum + s.links.length, 0);
     </div>
   </section>
 
+  <!-- Explanatory paragraph -->
+  <section class="bg-bone-100 border-b border-cast-100">
+    <div class="container-wccp py-8 md:py-10">
+      <div class="max-w-3xl text-cast-700 leading-relaxed">
+        <p>
+          This sitemap is a single index of every public page on the WCCP site, organised by
+          section so contractors, dairy farmers, civils specifiers, search engines and AI
+          search assistants can navigate quickly to the right reference. Products are listed
+          individually with their canonical URLs; guides and case studies are grouped
+          together; the cities and areas-served lists cover the regional landing pages; and
+          the AI / Resources block links the machine-readable references (the
+          <a href="/ai-information" class="text-ember underline">/ai-information</a> page,
+          the <a href="/llms.txt" class="text-ember underline">/llms.txt</a> file and the XML
+          sitemap) used by ChatGPT, Perplexity, Google AI Overviews, Claude and Bing Copilot.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- Sections -->
   <section class="container-wccp py-16">
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-      {sections.map((section) => (
+      {cleanedSections.map((section) => (
         <div>
           <h2 class="font-display text-xl font-bold text-navy mb-4 pb-2 border-b-2 border-yellow">
             {section.title}

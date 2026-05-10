@@ -43,13 +43,25 @@ const faqSchema = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const articleSchema = {
+  headline: 'How thick should a UK slurry store wall be?',
+  datePublished: '2026-03-12',
+  dateModified: '2026-04-22',
+  author: {
+    '@type': 'Organization',
+    name: 'WCCP Engineering',
+    url: 'https://wccp.co.uk',
+  },
+};
 ---
 
 <BaseLayout
   title="How thick should a UK slurry store wall be?"
   description="UK slurry store wall thickness explained: SSAFO 2018 rules, 200mm vs 250mm vs 300mm precast panels by retained height, C40/50 sulphate-resisting concrete and reinforcement cover."
-  image="/images/guides/slurry-wall-thickness.jpg"
+  image="/images/case-studies/dairy-farm-slurry.jpg"
   schema="Article"
+  schemaData={articleSchema}
 >
   <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
   <!-- Hero -->
@@ -137,6 +149,12 @@ const faqSchema = {
             cast to the same C40/50 SR mix.
           </p>
         </section>
+
+        <aside class="my-8 p-5 border-l-4 border-ember bg-ember/5 rounded-r-md">
+          <p class="font-display font-bold text-navy text-base mb-1">Quote a SSAFO 2018 slurry store</p>
+          <p class="text-sm text-cast mb-3">SIG 2026 closes 30 September — see how the Slurry Infrastructure Grant covers a SSAFO-compliant build.</p>
+          <a href="/grants/slurry-grant" class="inline-flex items-center gap-1.5 text-ember font-bold link-underline">Start a quote &rarr;</a>
+        </aside>
 
         <!-- Section 2 -->
         <section id="thickness-by-height" class="mb-12 scroll-mt-24">
@@ -254,6 +272,12 @@ const faqSchema = {
               </tbody>
             </table>
           </div>
+
+          <aside class="my-8 p-5 border-l-4 border-ember bg-ember/5 rounded-r-md">
+            <p class="font-display font-bold text-navy text-base mb-1">Quote a precast slurry wall</p>
+            <p class="text-sm text-cast mb-3">200mm, 250mm or 300mm panels cast to BS EN 1992-3 — tell us your retained height and capacity.</p>
+            <a href="/products/slurry-storage" class="inline-flex items-center gap-1.5 text-ember font-bold link-underline">Start a quote &rarr;</a>
+          </aside>
         </section>
 
         <!-- Inline mid-article CTA — pillar guide → quote conversion bridge -->
@@ -384,6 +408,12 @@ const faqSchema = {
               <li>Filling and emptying points designed to prevent overflow</li>
             </ol>
           </div>
+
+          <aside class="my-8 p-5 border-l-4 border-ember bg-ember/5 rounded-r-md">
+            <p class="font-display font-bold text-navy text-base mb-1">Quote a slurry storage build</p>
+            <p class="text-sm text-cast mb-3">Lead times 6–10 weeks ex-yard. Send livestock numbers and a sketch — fixed price back within 24 hours.</p>
+            <a href="/quote?product=slurry-storage" class="inline-flex items-center gap-1.5 text-ember font-bold link-underline">Start a quote &rarr;</a>
+          </aside>
         </section>
 
         <!-- FAQ -->
@@ -425,7 +455,7 @@ const faqSchema = {
         <PillarConversionAside
           product="Slurry Storage"
           productHref="/products/slurry-storage"
-          productImage="/images/products/slurry-storage.jpg"
+          productImage="/images/products/slurry-handling/wccp-slurry-handling-shallow-v-channel.jpg"
           productSpec="200/250/300mm precast panels · C40/50 SR · SSAFO 2018"
           productSlug="slurry-storage"
         />
@@ -460,17 +490,17 @@ const faqSchema = {
       <h2 class="font-display text-display-md mb-8">Keep reading.</h2>
 
       <div class="grid md:grid-cols-3 gap-5">
-        <a href="/guides/ssafo-2018-compliance" class="card p-6 group">
+        <a href="/guides/ssafo-2018" class="card p-6 group">
           <span class="eyebrow text-ember mb-3 block">Regulations</span>
           <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">SSAFO 2018 compliance checklist</h3>
           <p class="text-cast text-sm leading-relaxed">14-day notice, BS 5502-50 design life, drainage rules and EA inspection rights.</p>
         </a>
-        <a href="/guides/concrete-grades-agriculture" class="card p-6 group">
+        <a href="/guides/concrete-grades" class="card p-6 group">
           <span class="eyebrow text-ember mb-3 block">Materials</span>
           <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Concrete grades for agricultural use</h3>
           <p class="text-cast text-sm leading-relaxed">Why slurry stores need C40/50 SR and silage clamps need acid-resistant mixes.</p>
         </a>
-        <a href="/guides/slurry-infrastructure-grant-2026" class="card p-6 group">
+        <a href="/grants/sig-round-4" class="card p-6 group">
           <span class="eyebrow text-ember mb-3 block">Grants</span>
           <h3 class="font-display text-lg font-bold text-navy mb-2 group-hover:text-ember">Slurry Infrastructure Grant 2026</h3>
           <p class="text-cast text-sm leading-relaxed">£74m, capacity bands, eligibility and the 30 September 2026 deadline.</p>

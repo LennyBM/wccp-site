@@ -24,12 +24,27 @@ const datasheets = [
 ];
 
 const roles = ['Architect', 'Engineer', 'Contractor', 'Farmer', 'Specifier', 'Other'];
+
 ---
 
 <BaseLayout
   title="Downloads — datasheets, CAD, BIM"
   description="Datasheets, CAD blocks, BIM objects and brochures for our full precast range. Email-gated for the technical packs — instant download for the brochure."
 >
+  <div data-success-banner="requested" class="hidden bg-success text-white py-4 border-b-4 border-navy">
+    <div class="container-wccp flex items-center gap-3">
+      <svg class="w-6 h-6 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <p class="font-semibold">Request received — we'll email the download pack within 60 seconds. Check your spam folder if it doesn't arrive.</p>
+    </div>
+  </div>
+  <script is:inline>
+    if (new URLSearchParams(window.location.search).get('requested') === 'true') {
+      document.querySelector('[data-success-banner="requested"]')?.classList.remove('hidden');
+    }
+  </script>
+
   <!-- Hero -->
   <section class="relative bg-navy text-white overflow-hidden">
     <div class="relative container-wccp py-20 md:py-24">
@@ -64,6 +79,7 @@ const roles = ['Architect', 'Engineer', 'Contractor', 'Farmer', 'Specifier', 'Ot
           method="POST"
           data-netlify="true"
           netlify-honeypot="bot-field"
+          action="/downloads?requested=true"
           class="card p-6 bg-bone-100 grid sm:grid-cols-2 gap-4"
         >
           <input type="hidden" name="form-name" value="download-pack" />
@@ -141,7 +157,7 @@ const roles = ['Architect', 'Engineer', 'Contractor', 'Farmer', 'Specifier', 'Ot
     </div>
 
     <div class="grid md:grid-cols-3 gap-6">
-      <a href="/downloads/wccp-brochure.pdf" class="card p-6 group block">
+      <a href="/downloads/wccp-brochure.pdf" download class="card p-6 group block">
         <div class="aspect-[16/10] bg-gradient-to-br from-navy to-navy-700 rounded mb-5 flex flex-col items-center justify-center gap-3 text-white font-display font-bold text-2xl border-2 border-terracotta-300/70 relative overflow-hidden">
           <svg class="w-10 h-10 text-yellow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke-linecap="round" stroke-linejoin="round"/>
@@ -151,9 +167,10 @@ const roles = ['Architect', 'Engineer', 'Contractor', 'Farmer', 'Specifier', 'Ot
           </svg>
           <span>Full Brochure</span>
         </div>
-        <p class="eyebrow text-ember mb-2">Brochure · PDF · 4MB</p>
+        <p class="eyebrow text-ember mb-2">Brochure · PDF · 3.9 MB</p>
         <h3 class="font-display text-lg font-bold text-navy mb-1 group-hover:text-ember">Full product brochure</h3>
         <p class="text-cast text-sm">Every product, every spec — the whole catalogue in one PDF.</p>
+        <p class="text-cast text-xs mt-2 font-mono break-all">wccp-brochure.pdf</p>
       </a>
 
       <a href="/grants/fetf-2026" class="card p-6 group block">
@@ -259,6 +276,31 @@ const roles = ['Architect', 'Engineer', 'Contractor', 'Farmer', 'Specifier', 'Ot
           </p>
           <a href="#bim-pack" data-gate="bim-pack" class="btn-primary dl-gate">Request BIM pack</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bespoke file request -->
+  <section class="container-wccp py-16">
+    <div class="grid lg:grid-cols-[1fr_1.4fr] gap-10 items-start max-w-5xl mx-auto">
+      <div>
+        <p class="eyebrow text-cast mb-3">Need a bespoke file?</p>
+        <h2 class="font-display text-display-md text-navy mb-3">Drawings to your spec.</h2>
+        <p class="text-cast-700 text-lg leading-relaxed">
+          The packs above cover our standard range. If you need a one-off section, a custom PDF, an
+          EPD for tender, or a parametric block tweaked to fit your job, the design office will
+          turn it round — usually the same working day.
+        </p>
+      </div>
+      <div class="card p-6 bg-bone-200">
+        <p class="eyebrow text-ember mb-3">Email engineering</p>
+        <p class="text-cast-700 leading-relaxed mb-4">
+          Send a sketch, drawing reference or short brief to
+          <a href="mailto:engineering@wccp.co.uk?subject=Bespoke%20file%20request" class="text-ember font-semibold hover:underline break-all">engineering@wccp.co.uk</a>.
+          Tell us the product family, the dimensions or section you need, and the file format
+          (.pdf, .dwg, .ifc, .rfa). One reply, one file, no chase.
+        </p>
+        <a href="mailto:engineering@wccp.co.uk?subject=Bespoke%20file%20request" class="btn-primary">Email engineering@wccp.co.uk</a>
       </div>
     </div>
   </section>

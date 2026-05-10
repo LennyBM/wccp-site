@@ -1,0 +1,390 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import FittedVsSupply from '@/components/FittedVsSupply.astro';
+import SpecSheetButton from '@/components/SpecSheetButton.astro';
+import { site } from '@/config/site';
+import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
+import ProductPageTOC from '@/components/ProductPageTOC.astro';
+
+const tocSections = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'specifications', label: 'Specifications' },
+  { id: 'gallery', label: 'Gallery' },
+  { id: 'related', label: 'Related' },
+  { id: 'faq', label: 'FAQ' },
+  { id: 'downloads', label: 'Downloads' },
+];
+
+const specs = [
+  { variant: 'Standard slot panel · 2.4 × 1.2m', slot: '20mm slots at 60mm centres', loading: '20 t/m² grain stack', use: 'Wheat, barley, oats, maize floor stores' },
+  { variant: 'Heavy-duty slot panel · 2.4 × 1.2m', slot: '20mm slots at 60mm centres, increased rebar', loading: '30 t/m² stack height', use: 'Tall stores up to 7m heap, OSR' },
+  { variant: 'Pulse / pea panel', slot: '15mm slots at 50mm centres', loading: '15 t/m²', use: 'Beans, peas, smaller-grain crops' },
+  { variant: 'Edge / closure panel', slot: 'Solid edge with side ducting', loading: 'Per design', use: 'Wall edge, duct termination' },
+  { variant: 'Plenum duct cover slab', slot: 'Solid with cast-in fan opening', loading: 'Per fan schedule', use: 'Main fan plenum and turning chamber' },
+  { variant: 'Pillar / bridge support', slot: 'N/A — support element', loading: '20-30 t per pillar', use: 'Sub-floor pillars supporting slot panels' },
+];
+
+const applications = [
+  'On-floor grain drying stores — wheat, barley, oats',
+  'OSR (oilseed rape) and pulse drying floors',
+  'Maize grain stores with deeper heap heights',
+  'Multi-bay stores with central plenum and side ducts',
+  'Retro-fits inside steel-framed stores converting from bag drying',
+  'Tip-over silos and dry-store grain handling buildings',
+  'Seed crops and food-grade contract drying',
+];
+
+const related = [
+  { href: '/products/retaining-walls', label: 'Retaining Walls', meta: 'Push-walls · grain divisions' },
+  { href: '/products/feed-troughs', label: 'Feed Troughs', meta: 'Smooth or grooved' },
+  { href: '/products/soakaways-chambers', label: 'Soakaways & Chambers', meta: 'Plenum access' },
+  { href: '/products/lintels', label: 'Precast Lintels', meta: 'Door + opening lintels' },
+];
+
+const faqs = [
+  { q: 'What slot pattern do you cast and why?', a: 'Standard pattern is 20mm slots at 60mm centres, giving roughly 33% open area — that is the proven figure for wheat, barley and oats per the AHDB on-floor drying guidance. For peas and beans we cast a tighter 15mm slot at 50mm centres so the crop does not bridge into the duct. The casting tolerance on slot width is ±1mm.' },
+  { q: 'What stack height can the floor take?', a: 'Standard panels are designed for a 5m grain heap (around 20 t/m² imposed load) to BS 5502-50 and the AHDB store-design guide. Heavy-duty panels with extra reinforcement take a 7m heap (around 30 t/m²). We will design to your store height and crop bulk density on application.' },
+  { q: 'Is the finish food-grade?', a: 'Yes — we steel-trowel the top face to a tight closed finish, sealed with a food-grade two-pack epoxy if specified. The store as a whole has to meet TASCC, AIC FEMAS or Red Tractor Combinable Crops scheme requirements depending on which assurance the farm operates under. Concrete grade is C40/50 to BS 8500-1, exposure XC1.' },
+  { q: 'How does the plenum and ducting work?', a: 'A typical layout is a central main plenum running the length of the store with branch ducts at right angles every 3-4m. Slot panels span the ducts. The fan at the gable end pushes air down the plenum, up through the slots and into the heap. We cast the duct cover slabs and the plenum closure pieces to match.' },
+  { q: 'What is the lead time?', a: 'Catalogue slot panels ship in 2-4 weeks. We hold standard sizes in stock at the Holsworthy yard during summer and autumn for harvest readiness. Bespoke duct layouts and special slot patterns run 4-6 weeks. Order before the end of June for a typical August harvest store.' },
+];
+
+const productSchema = {
+  name: 'Precast Ventilated Grain Drying Floor',
+  description: 'Precast slotted floor panels for on-floor grain drying. 20mm slots at 60mm centres, food-grade smooth finish, designed to BS 5502-50 and AHDB grain store guidance. Cast in C40/50 concrete at our Holsworthy yard.',
+  brand: { '@type': 'Brand', name: site.name },
+  manufacturer: { '@type': 'Organization', name: site.name },
+  category: 'Precast concrete ventilated grain floor',
+  material: 'Reinforced concrete, C40/50 (BS 8500-1:2023)',
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Standard', value: 'BS 5502-50:1993 (crop drying and storage buildings)' },
+    { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
+    { '@type': 'PropertyValue', name: 'Standard slot pattern', value: '20mm slots at 60mm centres' },
+    { '@type': 'PropertyValue', name: 'Open area', value: '33% (standard)' },
+    { '@type': 'PropertyValue', name: 'Standard panel size', value: '2.4m × 1.2m' },
+    { '@type': 'PropertyValue', name: 'Loading', value: '20 t/m² standard, 30 t/m² heavy-duty' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '2-4 weeks catalogue, 4-6 weeks bespoke' },
+    { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
+  ],
+  offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="Ventilated Grain Floors — Precast Slot Panels · BS 5502-50 · AHDB"
+  description="Precast ventilated grain drying floor panels. 20mm slots at 60mm centres, food-grade finish, 5-7m stack height. BS 5502-50 and AHDB on-floor drying guidance. Cast in North Devon."
+  image="/og-default.png"
+  schema="Product"
+  schemaData={productSchema}
+  whatsappContext="Ventilated Floors"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <TrustStrip />
+  <ProductPageTOC sections={tocSections} />
+
+  <!-- Hero -->
+  <section id="overview" class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow text-yellow mb-4">Agricultural · arable · grain stores</p>
+          <h1 class="font-display text-display-xl text-white mb-4">Ventilated Floors.</h1>
+          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">Slotted, smooth, food-grade. Ready before harvest.</p>
+          <p class="text-lg lg:text-xl text-cast leading-relaxed font-medium text-white/95 mb-6 max-w-xl">
+            Precast slotted floor panels for on-floor grain drying — 20mm slots at 60mm centres,
+            33% open area, food-grade closed-trowel finish. Designed to BS 5502-50 and AHDB
+            on-floor drying guidance. Standard panels take a 5m heap; heavy-duty take a 7m heap.
+            Catalogue lead time 2-4 weeks.
+          </p>
+          <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
+            On-floor drying done right is the cheapest way to dry combinable crops. The
+            difference between a store that dries 14 to 12% and a store that does not is the
+            slot pattern, the duct layout and the panel-to-panel seal. We cast all three to
+            tolerance.
+          </blockquote>
+          <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
+            From a 200-tonne single-bay store to a 5000-tonne contract drying facility, we
+            cast the panels, the duct covers and the plenum closures, and we deliver against
+            harvest dates across the South West, the Cotswolds and East Anglia.
+          </p>
+          <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
+            <li class="flex gap-2"><span class="text-yellow">·</span> 20mm × 60mm slot</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 33% open area</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Up to 30 t/m²</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Food-grade finish</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> BS 5502-50</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 2-4 week lead</li>
+          </ul>
+          <div class="flex flex-wrap gap-3">
+            <a href="/quote?product=Ventilated%20Floors" class="btn-primary">Configure a quote</a>
+            <a href="mailto:engineering@wccp.co.uk?subject=Spec%20sheet%20request%20%E2%80%94%20Ventilated%20Floors&amp;body=Hi%20WCCP%20engineering%2C%0A%0APlease%20send%20the%20spec%20sheet%20for%20Ventilated%20Floors.%0A%0AProject%20details%3A%0A%E2%80%A2%20Project%20name%3A%0A%E2%80%A2%20Site%20location%3A%0A%E2%80%A2%20Required%20spec%20%2F%20standard%3A%0A%0AThanks" class="btn-yellow">Request spec sheet</a>
+            <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">
+              Call {site.contact.phone}
+            </a>
+          </div>
+        </div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
+          <div>
+            <p class="text-cast-600 text-sm font-mono">Photo needed</p>
+            <p class="text-cast text-xs mt-2">Hero — completed grain store with ventilated floor visible, fan plenum at gable, ready for harvest fill</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spec table -->
+  <section id="specifications" class="container-wccp py-20">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Specification</p>
+      <h2 class="font-display text-display-lg mb-4">Slot panels and duct elements.</h2>
+      <p class="text-cast-700 text-lg">
+        Standard panels suit wheat, barley, oats and OSR. Tighter slot patterns are cast for
+        peas, beans and small seed crops. Send us crop, heap height and store dimensions and
+        we will issue a setting-out drawing.
+      </p>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="spec-table w-full text-left border-collapse">
+        <thead class="bg-navy text-white">
+          <tr>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Variant</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Slot pattern</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Loading</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
+          </tr>
+        </thead>
+        <tbody>
+          {specs.map((s, i) => (
+            <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
+              <td class="px-4 py-3 font-bold text-navy">{s.variant}</td>
+              <td class="px-4 py-3">{s.slot}</td>
+              <td class="px-4 py-3">{s.loading}</td>
+              <td class="px-4 py-3 text-cast">{s.use}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-cast text-sm mt-4">
+      Panels supplied with steel-trowel closed finish as standard. Food-grade two-pack epoxy seal
+      available where the store is in a TASCC or FEMAS scheme.
+    </p>
+
+    <p class="text-cast text-sm mt-4">
+      Air volume sized per AHDB Grain Storage Guide — typically 0.05 m³/sec per tonne for
+      ambient drying, more for hot-air assisted.
+    </p>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-10">
+        <p class="eyebrow text-cast mb-3">Grain store references</p>
+        <h2 class="font-display text-display-lg mb-4 text-navy">Recent grain store installations.</h2>
+        <p class="text-cast-700 text-lg">Photo plates being commissioned — placeholder shot briefs below.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { caption: 'Slot panel · standard pattern', shot: 'Top-down close-up of slot panel showing 20mm slots at 60mm centres' },
+          { caption: 'Floor in store · pre-fill', shot: 'Wide view of completed ventilated floor in steel-frame store before harvest fill' },
+          { caption: 'Plenum and side ducts', shot: 'Cross-section through plenum showing main duct, branch ducts and slot panel layout' },
+          { caption: 'Fan gable end · plenum cover', shot: 'Gable end of store with main fan, plenum cover slab and air-throat detail' },
+          { caption: 'Pillar supports installed', shot: 'Sub-floor pillar grid before slot panels are laid — duct space visible' },
+          { caption: 'Pulse panel · tighter slot', shot: 'Close-up of pulse-crop panel with 15mm slots at 50mm centres' },
+          { caption: 'Steel-trowel food-grade finish', shot: 'Detail of trowelled top surface — closed, smooth, sealed' },
+          { caption: 'HIAB delivery to site', shot: 'WCCP HIAB lorry offloading slot panels at farm grain store before harvest' },
+        ].map((img) => (
+          <figure>
+            <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-4 text-center">
+              <div>
+                <p class="text-cast-600 text-xs font-mono">Photo needed</p>
+                <p class="text-cast text-xs mt-2">{img.shot}</p>
+              </div>
+            </div>
+            <figcaption class="mt-3 text-sm font-medium text-cast">{img.caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Applications -->
+  <section class="bg-white py-20">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow text-cast mb-3">Where they go</p>
+          <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            From a 300-tonne arable farm in Devon to a 4000-tonne contract drying floor in
+            Lincolnshire, the slot panel, the duct cover and the plenum closure all come
+            from the same Holsworthy yard.
+          </p>
+          <ul class="space-y-3">
+            {applications.map((a) => (
+              <li class="flex gap-3 text-cast-700 leading-relaxed">
+                <span class="text-ember font-bold mt-1">·</span>
+                <span>{a}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="card p-8">
+          <p class="eyebrow text-cast mb-3">Standards & references</p>
+          <h3 class="font-display text-2xl font-bold text-navy mb-4">Cast and certified to current code.</h3>
+          <dl class="space-y-4 text-sm">
+            <div>
+              <dt class="font-bold text-navy">BS 5502-50:1993</dt>
+              <dd class="text-cast">Buildings and structures for agriculture — buildings for crop drying and storage.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS 8500-1:2023</dt>
+              <dd class="text-cast">Concrete specification — C40/50, exposure XC1 (dry interior).</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS EN 13369</dt>
+              <dd class="text-cast">Common rules for precast concrete products — Factory Production Control.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">AHDB Grain Storage Guide</dt>
+              <dd class="text-cast">On-floor drying air volumes, heap heights, slot specification.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">TASCC / AIC FEMAS</dt>
+              <dd class="text-cast">Trade Assurance Scheme for Combinable Crops — food-grade store hygiene.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Configurator CTA -->
+  <section class="bg-yellow text-navy py-16">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-navy mb-2">Configure your grain floor</p>
+          <h2 class="font-display text-display-md">Tell us crop, store dimensions and harvest date — we will quote and hold a delivery slot inside 24 hours.</h2>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href="/quote?product=Ventilated%20Floors" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
+          <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section id="related" class="container-wccp py-20">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
+      <div>
+        <p class="eyebrow text-cast mb-3">Related products</p>
+        <h2 class="font-display text-display-lg">Often ordered alongside.</h2>
+      </div>
+      <a href="/products" class="text-ember font-bold hover:text-ember-700 inline-flex items-center gap-2">
+        View full range
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" />
+          <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+    <RelatedProductGrid items={related} />
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">Common questions</p>
+        <h2 class="font-display text-display-lg mb-4">What arable farmers ask.</h2>
+        <p class="text-cast-700 text-lg">
+          Five questions we answer most weeks. If yours is not here, ring the yard.
+        </p>
+      </div>
+      <div class="max-w-3xl space-y-4">
+        {faqs.map((f) => (
+          <details class="card p-6 group">
+            <summary class="font-display text-lg font-bold text-navy cursor-pointer list-none flex justify-between items-start gap-4">
+              <span>{f.q}</span>
+              <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Supply-only vs Fitted -->
+  <section class="container-wccp section-rhythm border-t border-cast-100">
+    <FittedVsSupply
+      productName="Ventilated Floors"
+      defaultMode="supply"
+      supply={{
+        price: 'Bespoke quote',
+        leadTime: '2–4 weeks catalogue',
+        includes: [
+          'Cast slot panels, duct covers, plenum closures',
+          'Setting-out drawing for the floor layout',
+          'Mix design, cube-test data, BS 5502-50 conformity',
+          'Delivery on flatbed or HIAB',
+        ],
+        excludes: [
+          'Sub-floor pillar build-up (in-situ block or precast)',
+          'Fans, ducting and air-handling plant',
+        ],
+      }}
+      fitted={{
+        price: 'Bespoke quote (incl. lay)',
+        leadTime: '4–6 weeks (incl. site slot)',
+        includes: [
+          'Everything in supply only',
+          'Two-man crew with HIAB to lay panels',
+          'Setting-out, jointing, edge trimming',
+          '12-month workmanship warranty',
+        ],
+        excludes: [
+          'Steel-frame store and cladding',
+          'Electrical fan installation and commissioning',
+        ],
+      }}
+      note=". Order before end of June for a typical August harvest store. Spring orders get priority casting slots."
+    />
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-navy text-white py-20">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
+      <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">
+        Tell us crop, tonnage and harvest date — we will quote and hold a delivery slot.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/quote?product=Ventilated%20Floors" class="btn-yellow">Configure a quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
+      </div>
+    </div>
+  </section>
+
+  <SpecSheetButton productSlug="ventilated-floors" productName="Ventilated Floors" />
+  <ProductWarrantyLine />
+</BaseLayout>

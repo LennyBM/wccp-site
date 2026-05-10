@@ -1,0 +1,389 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import FittedVsSupply from '@/components/FittedVsSupply.astro';
+import SpecSheetButton from '@/components/SpecSheetButton.astro';
+import ProductGallery from '@/components/ProductGallery.astro';
+import { site } from '@/config/site';
+import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
+import ProductPageTOC from '@/components/ProductPageTOC.astro';
+
+const tocSections = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'specifications', label: 'Specifications' },
+  { id: 'gallery', label: 'Gallery' },
+  { id: 'related', label: 'Related' },
+  { id: 'faq', label: 'FAQ' },
+  { id: 'downloads', label: 'Downloads' },
+];
+
+// Portable cubicles — lift-and-shift, free-standing beds. AHDB 2024 sized. C40/50.
+const specs = [
+  { variant: 'Portable Cow Cubicle 7\'6" × 4\'', bed: "7'6\" × 4'0\" (2286 × 1219mm)", style: 'Free-standing — accepts most cubicle hoops', use: 'Re-roofed barns and tenanted dairy lets' },
+  { variant: 'Portable Cow Cubicle 7\'6" × 3\'9"', bed: "7'6\" × 3'9\" (2286 × 1143mm)", style: 'Free-standing — lift-and-shift base', use: 'Standard dairy retro-fit' },
+  { variant: 'Portable Young Stock 7\' × 3\'9"', bed: "7'0\" × 3'9\" (2134 × 1143mm)", style: 'Smaller-stature portable bed', use: 'In-calf heifers, rearing groups' },
+  { variant: 'Portable Young Stock 6\'6" × 3\'3"', bed: "6'6\" × 3'3\" (1981 × 991mm)", style: 'Smaller-stature portable bed', use: 'Smaller youngstock — train them young' },
+  { variant: 'Blank Portable Bed', bed: "To suit your existing cubicle make", style: 'Universal — accepts Wilson, IAE, Spinder hoops', use: 'Mixed-make sheds and replacement rows' },
+  { variant: 'Portable Heelstone Bed', bed: "To spec — sand bed retainer", style: 'Eliminates on-site shutter forming', use: 'Sand-bed and deep-bedding cubicles' },
+];
+
+const applications = [
+  'Re-roofed barns where existing slabs cannot accept cast-in upstands',
+  'Tenanted dairy units where the landlord forbids permanent fixings',
+  'Cubicle rows that flex between groups (dry, fresh, high-yielders)',
+  'Heifer rearing sheds with multiple age bands rotating through',
+  'Grant-funded steel-frame conversions on existing concrete',
+  'Short-term lets and contract rearing arrangements',
+  'Mixed-make sheds where one row needs replacing without retrofit',
+];
+
+const related = [
+  { href: '/products/cattle-cubicles', label: 'Cattle Cubicles', meta: 'Fixed + portable · AHDB 2024 sized' },
+  { href: '/products/cubicle-end-walls', label: 'Cubicle End Walls', meta: 'Single + double row · trough option' },
+  { href: '/products/water-troughs', label: 'Water Troughs', meta: 'Single + double row · 1300×600' },
+  { href: '/products/cattle-slats', label: 'Cattle Slats', meta: 'BS EN 12737 · slip-resistant' },
+];
+
+const faqs = [
+  { q: 'Why portable instead of fixed?', a: 'Portable cubicles sit on a free-standing base rail and can be lifted out with a tractor and chain. They suit re-roofed sheds where the existing slab will not accept cast-in upstands, tenanted units where the landlord forbids permanent fixings, and farms that want to reconfigure between groups. Expect about 25% more cost per cubicle than fixed but you keep the asset when you leave.' },
+  { q: 'Will they accept my existing cubicle hoops?', a: 'Yes — the blank portable bed is drilled to accept the common UK makes (Wilson, IAE, Spinder, Cowcare). Send us the make and model with the order and we will pre-drill at the yard. Any non-standard pattern we will template free of charge before casting.' },
+  { q: 'Do they move under the cow?', a: 'No. A portable bed weighs 320–360kg and the geometry of the front leg plus the cow’s lying position locks it down. We have units that have been in continuous service since 2008 with no creep. On a slick concrete floor we recommend a single anchor pin at each end of the row.' },
+  { q: 'How are they delivered?', a: 'On our HIAB lorry, lifted straight off onto your slab. A two-man crew can set a 30-cubicle row in a morning. We supply lifting points cast into each unit and the install drawing comes with the order.' },
+  { q: 'What is the lead time?', a: 'Catalogue portable cubicle beds run 2 to 3 weeks from order. Bespoke heel-stone heights or non-standard hoop drilling adds a week. Spring and autumn are our busy seasons — get the order in early if your shed is going up to a programme.' },
+];
+
+const productSchema = {
+  name: 'Portable Precast Cattle Cubicles',
+  description: 'Lift-and-shift portable cattle cubicle bed system. Free-standing, accepts most UK cubicle hoops. AHDB 2024 sized. Cast at our Holsworthy yard in C40/50 concrete.',
+  brand: { '@type': 'Brand', name: site.name },
+  manufacturer: { '@type': 'Organization', name: site.name },
+  category: 'Precast concrete portable cattle cubicle',
+  material: 'Reinforced concrete, C40/50 (BS 8500-1:2023)',
+  weight: {
+    '@type': 'QuantitativeValue',
+    minValue: 280,
+    maxValue: 360,
+    unitCode: 'KGM',
+    unitText: 'kilogram per bed',
+  },
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Standard', value: 'BS 5502-22:2003 (agricultural buildings)' },
+    { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
+    { '@type': 'PropertyValue', name: 'Sizing reference', value: 'AHDB Dairy 2024 cubicle dimensions' },
+    { '@type': 'PropertyValue', name: 'Hoop compatibility', value: 'Wilson / IAE / Spinder / Cowcare' },
+    { '@type': 'PropertyValue', name: 'Variants', value: 'Cow / Youngstock / Blank / Heelstone' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '2–3 weeks catalogue' },
+    { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
+  ],
+  offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="Portable Cattle Cubicles — Lift-and-shift · AHDB 2024 sizing"
+  description="Free-standing portable cattle cubicle beds. Lift-and-shift between groups. Accepts Wilson, IAE, Spinder hoops. AHDB 2024 sized, C40/50 concrete. Cast in North Devon."
+  image="/og-default.png"
+  schema="Product"
+  schemaData={productSchema}
+  whatsappContext="Portable Cubicles"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <TrustStrip />
+  <ProductPageTOC sections={tocSections} />
+
+  <!-- Hero -->
+  <section id="overview" class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow text-yellow mb-4">Agricultural · dairy · retro-fit</p>
+          <h1 class="font-display text-display-xl text-white mb-4">Portable Cubicles.</h1>
+          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">Lift one out. Drop one in. No drilling.</p>
+          <p class="text-lg lg:text-xl text-cast leading-relaxed font-medium text-white/95 mb-6 max-w-xl">
+            Free-standing precast cubicle beds for re-roofed barns, retro-fits and tenanted lets.
+            AHDB Dairy 2024 sized, cast in C40/50 concrete, drilled to accept Wilson, IAE,
+            Spinder and Cowcare cubicle hoops. Lifts in and out with a tractor and chain.
+            Catalogue lead time 2-3 weeks.
+          </p>
+          <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
+            A portable cattle cubicle is a free-standing precast bed that locks the cubicle hoop
+            into the floor by weight alone — no cast-in upstands, no drilled bolts. WCCP portable
+            beds weigh 280–360&nbsp;kg, sized to AHDB 2024 dimensions, and lift in and out with a
+            tractor and chain in under five minutes.
+          </blockquote>
+          <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
+            The right answer for re-roofed sheds, mixed-make herds, and tenanted units. We cast,
+            deliver and install UK-wide from the Holsworthy yard.
+          </p>
+          <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
+            <li class="flex gap-2"><span class="text-yellow">·</span> Free-standing</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> No cast-in upstands</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Universal hoop drilling</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> AHDB 2024 sized</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Lifts with tractor</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 2–3 week lead</li>
+          </ul>
+          <div class="flex flex-wrap gap-3">
+            <a href="/quote?product=Portable%20Cubicles" class="btn-primary">Configure a quote</a>
+            <a href="mailto:engineering@wccp.co.uk?subject=Spec%20sheet%20request%20%E2%80%94%20Portable%20Cubicles&amp;body=Hi%20WCCP%20engineering%2C%0A%0APlease%20send%20the%20spec%20sheet%20for%20Portable%20Cubicles.%0A%0AProject%20details%3A%0A%E2%80%A2%20Project%20name%3A%0A%E2%80%A2%20Site%20location%3A%0A%E2%80%A2%20Required%20spec%20%2F%20standard%3A%0A%0AThanks" class="btn-yellow">Request spec sheet</a>
+            <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">
+              Call {site.contact.phone}
+            </a>
+          </div>
+        </div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
+          <div>
+            <p class="text-cast-600 text-sm font-mono">📷 Photo needed</p>
+            <p class="text-cast text-xs mt-2">Hero shot — portable cubicle bed sat on a barn slab with the galvanised hoop fitted, side-on view, taken at the Holsworthy yard or on a Devon dairy farm</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spec table -->
+  <section class="container-wccp py-20">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Specification</p>
+      <h2 class="font-display text-display-lg mb-4">Variants, sizing and weights.</h2>
+      <p class="text-cast-700 text-lg">
+        AHDB Dairy 2024 dimensions for the standard catalogue. Bespoke hoop drilling and
+        heel-stone heights quoted on application.
+      </p>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="spec-table w-full text-left border-collapse">
+        <thead class="bg-navy text-white">
+          <tr>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Variant</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Bed size</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Style</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
+          </tr>
+        </thead>
+        <tbody>
+          {specs.map((s, i) => (
+            <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
+              <td class="px-4 py-3 font-bold text-navy">{s.variant}</td>
+              <td class="px-4 py-3">{s.bed}</td>
+              <td class="px-4 py-3">{s.style}</td>
+              <td class="px-4 py-3 text-cast">{s.use}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-cast text-sm mt-4">
+      Send us the make and model of your existing cubicle hoops — we will pre-drill the bed at the
+      yard so it is ready to fit out the day it lands on your slab.
+    </p>
+  </section>
+
+  <!-- Gallery (placeholder cards — real photos pending) -->
+  <section id="gallery" class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-10">
+        <p class="eyebrow text-cast mb-3">The range</p>
+        <h2 class="font-display text-display-lg mb-4 text-navy">Portable cubicles in service.</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          'Portable cow cubicle bed sat free-standing on a barn slab — three-quarter view',
+          'Lift-and-shift sequence — tractor lifting a portable bed by chains',
+          'Universal hoop drilling — pre-drilled bolt pattern detail',
+          'Row of 12 portable beds set up in a re-roofed Devon dairy',
+          'Young-stock portable bed in a heifer rearing shed',
+          'Heelstone portable bed for sand-bedded cubicles',
+          'Profile drawing — portable cubicle dimensions',
+          'Underside view showing free-standing base rail',
+        ].map((d) => (
+          <figure>
+            <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
+              <div>
+                <p class="text-cast-600 text-sm font-mono">📷 Photo needed</p>
+                <p class="text-cast text-xs mt-2">{d}</p>
+              </div>
+            </div>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Applications -->
+  <section class="bg-white py-20">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow text-cast mb-3">Where they go</p>
+          <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            Portable cubicles are the answer when you cannot — or do not want to — fix into the
+            slab. Tenanted lets, re-roofed barns, mixed-make sheds and rearing units all benefit
+            from the lift-and-shift design.
+          </p>
+          <ul class="space-y-3">
+            {applications.map((a) => (
+              <li class="flex gap-3 text-cast-700 leading-relaxed">
+                <span class="text-ember font-bold mt-1">·</span>
+                <span>{a}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="card p-8">
+          <p class="eyebrow text-cast mb-3">Standards & references</p>
+          <h3 class="font-display text-2xl font-bold text-navy mb-4">Cast and sized to current best practice.</h3>
+          <dl class="space-y-4 text-sm">
+            <div>
+              <dt class="font-bold text-navy">AHDB Dairy 2024</dt>
+              <dd class="text-cast">Cubicle dimensions guide — bed size, neck rail, brisket board sized to herd liveweight distribution.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS 5502-22:2003</dt>
+              <dd class="text-cast">Buildings and structures for agriculture — cattle housing. Loadings and detailing.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS 8500-1:2023</dt>
+              <dd class="text-cast">Concrete specification — C40/50 mix designed for the dairy environment.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS EN 13369</dt>
+              <dd class="text-cast">Common rules for precast concrete products — factory production control.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">DEFRA Code of Recommendations</dt>
+              <dd class="text-cast">Welfare of livestock — cattle. Stocking densities and lying-comfort guidance.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Configurator CTA -->
+  <section class="bg-yellow text-navy py-16">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-navy mb-2">Configure your portable row</p>
+          <h2 class="font-display text-display-md">Tell us hoop make, herd size and shed dimensions — we will quote inside 24 hours.</h2>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href="/quote?product=Portable%20Cubicles" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
+          <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="container-wccp py-20">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
+      <div>
+        <p class="eyebrow text-cast mb-3">Related products</p>
+        <h2 class="font-display text-display-lg">Often ordered alongside.</h2>
+      </div>
+      <a href="/products" class="text-ember font-bold hover:text-ember-700 inline-flex items-center gap-2">
+        View full range
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" />
+          <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+    <RelatedProductGrid items={related} />
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">Common questions</p>
+        <h2 class="font-display text-display-lg mb-4">What people ask about portable cubicles.</h2>
+        <p class="text-cast-700 text-lg">
+          Five questions we answer most weeks. If yours is not here, ring the yard.
+        </p>
+      </div>
+      <div class="max-w-3xl space-y-4">
+        {faqs.map((f) => (
+          <details class="card p-6 group">
+            <summary class="font-display text-lg font-bold text-navy cursor-pointer list-none flex justify-between items-start gap-4">
+              <span>{f.q}</span>
+              <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Supply-only vs Fitted -->
+  <section class="container-wccp section-rhythm border-t border-cast-100">
+    <FittedVsSupply
+      productName="Portable Cubicles"
+      defaultMode="supply"
+      supply={{
+        price: 'Bespoke quote',
+        leadTime: '2–3 weeks',
+        includes: [
+          'Free-standing portable cubicle beds — AHDB 2024 sized',
+          'Pre-drilled to your existing cubicle hoop pattern',
+          'Cast-in lifting points and install drawing',
+          'Delivery on our HIAB to your slab',
+        ],
+        excludes: [
+          'Cubicle hoops and metalwork (supplied separately)',
+          'On-site setting / fixing labour',
+        ],
+      }}
+      fitted={{
+        price: 'Bespoke quote (incl. install)',
+        leadTime: '4–6 weeks (incl. site slot)',
+        includes: [
+          'Everything in supply only',
+          'Two-man install crew with HIAB',
+          'Hoop fit-out and anchoring',
+          '12-month workmanship warranty',
+        ],
+        excludes: [
+          'Concrete slab and base works',
+          'Mains electrical or scrape-system fit-out',
+        ],
+      }}
+      note=". Mixed-make replacements and bespoke heelstone heights priced individually — send hoop make, model and shed dimensions and we'll come back within a working day."
+    />
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-navy text-white py-20">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
+      <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">
+        Send us hoop make, herd size and a sketch of the shed. Quote and lead-time same day.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/quote?product=Portable%20Cubicles" class="btn-yellow">Configure a quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
+      </div>
+    </div>
+  </section>
+
+  <SpecSheetButton productSlug="portable-cubicles" productName="Portable Cubicles" />
+  <ProductWarrantyLine />
+</BaseLayout>

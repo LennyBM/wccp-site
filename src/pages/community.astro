@@ -10,6 +10,39 @@ const commitments = [
   { title: 'Local employment', body: '46 jobs created on the move to Chilsworthy in 2023. Over 90% of the team live within 15 miles of Holsworthy. We back local apprentices and run open days for North Devon schools.' },
   { title: 'Direct line', body: `If something at the yard concerns you — noise, dust, traffic, lorry movements — please call us directly on ${site.contact.phone}. The phone is answered by the yard, not a call centre.` },
 ];
+
+// Trade and farming shows where you'll find Kim, Claire and the team in person.
+// Photos sit in /images/team — they double as community pages and team pages.
+const shows = [
+  {
+    name: 'North Devon Show',
+    image: '/images/team/wccp-team-kim-claire-north-devon-show.jpg',
+    imageWebp: '/images/team/wccp-team-kim-claire-north-devon-show.webp',
+    alt: 'Kim Rumsam and Claire Mumford on the WCCP stand at the North Devon Show',
+    body: 'Our home show. Kim and Claire are on the stand both days every August — drawings welcome.',
+  },
+  {
+    name: 'Royal Welsh Show',
+    image: '/images/team/wccp-team-kim-claire-royal-welsh-show.jpg',
+    imageWebp: '/images/team/wccp-team-kim-claire-royal-welsh-show.webp',
+    alt: 'Kim and Claire on the WCCP stand at the Royal Welsh Show, Llanelwedd',
+    body: 'Llanelwedd in July — four days of dairy, beef and an unbroken queue at the cubicle stand.',
+  },
+  {
+    name: 'Great Yorkshire Show',
+    image: '/images/team/wccp-team-kim-claire-yorkshire-agricultural-show.jpg',
+    imageWebp: '/images/team/wccp-team-kim-claire-yorkshire-agricultural-show.webp',
+    alt: 'WCCP at the Great Yorkshire Show, Harrogate',
+    body: 'A long way from North Devon — and worth the drive. The Yorkshire dairy crowd run the same kit we cast for.',
+  },
+  {
+    name: 'West Country Farming & Machinery Show',
+    image: '/images/team/wccp-team-claire-west-country-farming-machinery-show.jpg',
+    imageWebp: '/images/team/wccp-team-claire-west-country-farming-machinery-show.webp',
+    alt: 'Claire Mumford on the WCCP stand at the West Country Farming & Machinery Show',
+    body: 'The Westpoint show in Exeter — a regular fixture and the best place to talk slurry without the wind.',
+  },
+];
 ---
 
 <BaseLayout
@@ -72,10 +105,87 @@ const commitments = [
             <a href="/about" class="btn-yellow">Our story</a>
           </div>
         </div>
-        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
-          <img src="/images/factory/wccp-yard-hero.jpg" alt="The WCCP yard at Chilsworthy, Holsworthy — Devon precast concrete works"
-               class="w-full h-full object-cover" loading="lazy" decoding="async" />
-          <!-- CLIENT: confirm yard / fence-line photo of choice -->
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
+          <div>
+            <p class="text-cast-600 text-sm font-mono">📷 Photo needed</p>
+            <p class="text-cast text-xs mt-2">WCCP yard fence-line / community shot at Chilsworthy</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trade & farming shows — where you'll find us in person -->
+  <section class="container-wccp py-16 md:py-20 section-reveal">
+    <div class="max-w-3xl mb-10">
+      <p class="eyebrow text-cast mb-3">On the road</p>
+      <h2 class="font-display text-display-md text-forest-700 mb-4">Trade shows &amp; farming shows.</h2>
+      <p class="text-cast-700 text-lg leading-relaxed">
+        We turn up — every year, in person, with the kettle on. Across the summer Kim, Claire and
+        the team work the county-show circuit from Devon to Yorkshire and the Royal Welsh, and
+        across the winter we are at LAMMA, Dairy-Tech and the West Country Farming &amp; Machinery
+        Show. If you would like to talk slurry, cubicles, panels or a one-off bespoke piece face to
+        face, the show stand is the right place. Bring drawings, bring photos, bring questions.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {shows.map((s) => (
+        <figure class="card overflow-hidden flex flex-col">
+          <div class="aspect-[4/3] bg-cast-100 overflow-hidden">
+            <picture>
+              <source srcset={s.imageWebp} type="image/webp" />
+              <img src={s.image} alt={s.alt} class="w-full h-full object-cover" loading="lazy" decoding="async" />
+            </picture>
+          </div>
+          <figcaption class="p-5 flex-1 flex flex-col">
+            <p class="font-display text-lg font-bold text-forest-700">{s.name}</p>
+            <p class="text-cast-700 text-sm leading-relaxed mt-1">{s.body}</p>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+
+    <p class="text-cast text-sm mt-6 max-w-3xl">
+      Confirmed 2026 dates and stand numbers go up on the <a href="/news" class="text-terracotta font-semibold hover:underline">news page</a>
+      ahead of each show. Drop us a line if you want to book a slot at the stand and we will hold a
+      space.
+    </p>
+  </section>
+
+  <!-- Local roots — sponsorships, schools, biogas neighbour -->
+  <section class="bg-cream-200 py-16 md:py-20 section-reveal">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-3 gap-8">
+        <div class="card p-6 border-l-4 border-terracotta">
+          <p class="eyebrow text-cast mb-2">Local sponsorships</p>
+          <h3 class="font-display text-xl font-bold text-forest-700 mb-2">North Devon farming community.</h3>
+          <p class="text-cast-700 leading-relaxed">
+            We back the North Devon Show every year and contribute to local young-farmer clubs,
+            ploughing matches and dairy discussion groups. If you run a North Devon farming
+            initiative and need a hand, please ask — we'd rather say yes when we can.
+          </p>
+        </div>
+
+        <div class="card p-6 border-l-4 border-terracotta">
+          <p class="eyebrow text-cast mb-2">Schools &amp; apprenticeships</p>
+          <h3 class="font-display text-xl font-bold text-forest-700 mb-2">Open days &amp; training routes.</h3>
+          <p class="text-cast-700 leading-relaxed">
+            We run open days for North Devon schools and back local apprentices through the casting
+            and HGV-driving routes. We recently funded one of our drivers, Jake, through his C+E
+            ticket because the right person was worth the time.
+          </p>
+        </div>
+
+        <div class="card p-6 border-l-4 border-terracotta">
+          <p class="eyebrow text-cast mb-2">Severn Trent neighbour</p>
+          <h3 class="font-display text-xl font-bold text-forest-700 mb-2">The biogas plant next door.</h3>
+          <p class="text-cast-700 leading-relaxed">
+            Across the road sits the Holsworthy Biogas Plant, run by Severn Trent Green Power. They
+            turn farm slurry into renewable electricity; we cast the AD-plant components that hold
+            it. Two businesses doing complementary work for the same farms — a circular relationship
+            that suits the area.
+          </p>
         </div>
       </div>
     </div>

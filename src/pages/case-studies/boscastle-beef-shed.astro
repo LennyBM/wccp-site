@@ -3,14 +3,14 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import { site } from '@/config/site';
 
 const facts = [
-  { label: 'Client', value: 'Boscastle beef unit (placeholder name)' },
+  { label: 'Client', value: 'Boscastle beef unit' }, /* 📝 [Detail needed from Kim: confirm real client name OK to publish] */
   { label: 'Location', value: 'Near Boscastle, North Cornwall' },
   { label: 'Sector', value: 'Agricultural — beef finishing' },
   { label: 'Stock', value: '250 store cattle' },
   { label: 'Products', value: '80 cubicle beds, slurry channel, feed-passage panels, footbath' },
   { label: 'Concrete', value: '96 tonnes' },
   { label: 'Lead time', value: '5 days on site' },
-  { label: 'Project value', value: '£42,000' },
+  { label: 'Programme', value: 'FETF-funded conversion, two delivery loads' },
   { label: 'Funded by', value: 'FETF — Farming Equipment & Technology Fund' },
   { label: 'Completed', value: 'June 2025' },
 ];
@@ -39,8 +39,8 @@ const articleSchema = {
 
 <BaseLayout
   title="Boscastle beef shed — FETF-funded conversion, North Cornwall"
-  description="WCCP supplied 80 cattle cubicle beds, slurry channels, feed-passage panels and a footbath kit for a 250-head beef finishing conversion near Boscastle. Five days on site."
-  image="/images/case-studies/boscastle-beef-shed.jpg"
+  description="WCCP supplied 80 cattle cubicle beds, slurry channels, feed-passage panels and a footbath kit for a 250-head FETF-funded beef finishing conversion near Boscastle. Five days on site."
+  image="/images/products/cubicles/wccp-cubicles-portable-cubicles-1024x768.jpg"
   schema="Article"
   schemaData={articleSchema}
 >
@@ -80,8 +80,8 @@ const articleSchema = {
           <div class="text-cast text-sm uppercase tracking-wide mt-2">Days on site</div>
         </div>
         <div>
-          <div class="font-display font-bold text-display-lg text-navy leading-none">£42k</div>
-          <div class="text-cast text-sm uppercase tracking-wide mt-2">Project value</div>
+          <div class="font-display font-bold text-display-lg text-navy leading-none">250</div>
+          <div class="text-cast text-sm uppercase tracking-wide mt-2">Head housed</div>
         </div>
       </div>
     </div>
@@ -96,10 +96,11 @@ const articleSchema = {
           to BS 5502, claim approved on first submission.
         </p>
 
+
         <h2 class="font-display text-2xl text-navy mb-3">The challenge</h2>
         <p class="text-cast-700 text-lg leading-relaxed mb-8">
           The owners had an old loose-housing shed they wanted converted to a 250-head beef finishing unit
-          using FETF funding. The grant window was short, the budget was tight at £42k, and the conversion
+          using FETF funding. The grant window was short, the FETF schedule was fixed, and the conversion
           had to fit inside the existing footprint. The lane up to the yard is steep, single-track and
           sharp at the top — a problem on Cornish farms more days than not.
         </p>
@@ -142,22 +143,22 @@ const articleSchema = {
             the cattle moved in the following week. Tidy job from start to finish.
           </p>
           <footer class="text-white/90">
-            <span class="font-bold text-white">Andrew (placeholder)</span> · Beef finisher near Boscastle, North Cornwall
+            <span class="font-bold text-white">Beef finisher · near Boscastle, North Cornwall</span>{/* 📝 [Detail needed from Kim: real customer first name + sign-off on quote] */}
           </footer>
         </blockquote>
 
         <h2 class="font-display text-2xl text-navy mb-3">The result</h2>
         <p class="text-cast-700 text-lg leading-relaxed mb-10">
           250 head of finishing cattle housed inside the original footprint, FETF claim approved on first
-          submission, project landed at £41,800 against a £42k budget. The unit's first turn through went
-          out to slaughter in spring 2026.
+          submission, the full schedule of 80 cubicle beds and slurry channels delivered inside the grant
+          window. The unit's first turn through went out to slaughter in spring 2026.
         </p>
 
         <section class="bg-bone-200 border border-cast-100 rounded-lg p-8">
           <h2 class="font-display text-2xl text-navy mb-3">FETF round closing soon?</h2>
           <p class="text-cast-700 leading-relaxed mb-6">
             We've supplied dozens of FETF-funded conversions across Devon and Cornwall. Send the eligible
-            item codes and a sketch — we'll come back with prices that fit the grant.
+            item codes and a sketch — we'll come back with a quote that fits the grant.
           </p>
           <div class="flex flex-wrap gap-3">
             <a href="/quote" class="btn-primary">Start a quote</a>

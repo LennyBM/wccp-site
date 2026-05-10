@@ -1,7 +1,7 @@
 export const productThumbnails: Record<string, string> = {
   '/products/cantilever-walls': '/images/products/retaining-walls/wccp-retaining-walls-a-wall-732x1024.jpg',
   '/products/cattle-cubicles': '/images/products/cubicles/wccp-cubicles-portable-cubicles-1024x768.jpg',
-  '/products/clean-rooms': '/images/products/clean-rooms.jpg',
+  '/products/clean-rooms': '/images/products/clean-rooms/wccp-clean-room-enclosures-20120831-084144-1024x768.jpg',
   '/products/cubicle-end-walls': '/images/products/cubicles/wccp-cubicles-cubicle-trough-slider-1-1024x438.jpg',
   '/products/culverts': '/images/products/culverts/wccp-culverts-20240308-121028-reduced-1024x768.jpg',
   '/products/feed-troughs': '/images/products/feed-troughs/wccp-feed-troughs-j-shape-single-sided-concrete-feed-trough.jpg',

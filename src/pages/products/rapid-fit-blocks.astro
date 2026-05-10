@@ -1,0 +1,387 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import FittedVsSupply from '@/components/FittedVsSupply.astro';
+import SpecSheetButton from '@/components/SpecSheetButton.astro';
+import { site } from '@/config/site';
+import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
+import ProductPageTOC from '@/components/ProductPageTOC.astro';
+
+const tocSections = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'specifications', label: 'Specifications' },
+  { id: 'gallery', label: 'Gallery' },
+  { id: 'related', label: 'Related' },
+  { id: 'faq', label: 'FAQ' },
+  { id: 'downloads', label: 'Downloads' },
+];
+
+const specs = [
+  { variant: 'Standard block · 1600 × 800 × 800mm', weight: '2.0 t', stack: 'Up to 5 courses (4m wall)', use: 'General retaining, push-walls, bay divisions' },
+  { variant: 'Half block · 800 × 800 × 800mm', weight: '1.0 t', stack: 'Course closure', use: 'Course breaks, return ends, half-bond pattern' },
+  { variant: 'Capping block · 1600 × 400 × 800mm', weight: '1.0 t', stack: 'Top course only', use: 'Wall capping, weather-shed top' },
+  { variant: 'Quarter block · 400 × 800 × 800mm', weight: '0.5 t', stack: 'Course closure', use: 'Tight returns and corner detail' },
+  { variant: 'Heavy-duty block · 1600 × 800 × 1200mm', weight: '3.2 t', stack: 'Up to 4 courses (4.8m)', use: 'Tall walls, surcharge loading, bunkers' },
+  { variant: 'Bunker base block', weight: '2.5 t', stack: 'Single course foundation', use: 'Base course on prepared sub-base' },
+];
+
+const applications = [
+  'Aggregate and material storage bays at quarries and yards',
+  'Push-walls in farm silage clamps and grain stores',
+  'Boundary and division walls — recycling, waste-transfer sites',
+  'Temporary site compounds, storage yards, drying pads',
+  'Gabion replacement on civils and infrastructure projects',
+  'Counterweight and anti-ram security walls',
+  'Fish-pass deflectors and water-control structures',
+];
+
+const related = [
+  { href: '/products/retaining-walls', label: 'Retaining Walls', meta: 'L-walls · cantilever' },
+  { href: '/products/slurry-storage', label: 'Slurry Storage', meta: 'SSAFO 2018-compliant' },
+  { href: '/products/feed-troughs', label: 'Feed Troughs', meta: 'Smooth or grooved' },
+  { href: '/products/soakaways-chambers', label: 'Soakaways & Chambers', meta: 'Drainage · access' },
+];
+
+const faqs = [
+  { q: 'How do they stack — do they need mortar?', a: 'No mortar. The blocks have a male lug on the top face and a matching female socket on the underside, so each course self-locates onto the one below. Friction and weight do the rest. A standard 1.6 × 0.8 × 0.8m block weighs 2 tonnes — once you have three or four courses up, the wall is not going anywhere. We do offer a hidden cast-in dowel for permanent retaining situations or where seismic / accidental impact loads are a design consideration.' },
+  { q: 'Can I move them later?', a: 'Yes — that is the point. Every block has a recessed lifting eye on the top face. Hook on with a 5-tonne shackle, lift, relocate, restack. We have customers who have moved the same wall three times in five years as the yard layout changed. There is no on-site waste because nothing is bonded.' },
+  { q: 'How tall can the wall go?', a: 'Standard blocks stack five courses (4m) freestanding for material retention. With cast-in dowels and engineered base detail we can take it higher — typical limit is 6m for retaining and 8m for divisions with no surcharge. Above that we move to a designed L-wall solution. Wall height also depends on what is behind it: 4m of crushed stone is not the same as 4m of grain.' },
+  { q: 'How are they better than gabions?', a: 'Faster to install — no mesh basket, no fill, no settlement. Reusable — gabions degrade and corrode after 15-20 years and have to be skipped. Cleaner footprint — no spilled stone, no mesh ends, no rusty wire. The total installed cost is similar; the lifecycle cost is far lower because you can lift and reuse the wall on a different site.' },
+  { q: 'What is the lead time?', a: 'Standard blocks ship from stock — typically same week if you order before Wednesday. Coloured pigmented blocks and bespoke sizes (longer, taller, special lifting points) run 3-4 weeks. We deliver UK-wide on flatbed; offload requires the customer\'s own forklift, telehandler or HIAB.' },
+];
+
+const productSchema = {
+  name: 'Rapid-Fit Stack-and-Go Concrete Blocks',
+  description: 'Reusable precast concrete retaining blocks. Lift, stack, lock — no mortar required. Self-locating lug-and-socket system. Block sizes from 0.5 t to 3.2 t. C40/50 concrete to BS 8500-1. Cast at our Holsworthy yard.',
+  brand: { '@type': 'Brand', name: site.name },
+  manufacturer: { '@type': 'Organization', name: site.name },
+  category: 'Precast modular retaining block',
+  material: 'Reinforced concrete, C40/50 (BS 8500-1:2023)',
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 13369 (precast common rules)' },
+    { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
+    { '@type': 'PropertyValue', name: 'Standard block size', value: '1600 × 800 × 800 mm' },
+    { '@type': 'PropertyValue', name: 'Standard block weight', value: '2.0 t' },
+    { '@type': 'PropertyValue', name: 'System', value: 'Lug-and-socket, mortarless, reusable' },
+    { '@type': 'PropertyValue', name: 'Maximum freestanding height', value: '4 m (5 courses standard)' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: 'Ex-stock standard, 3-4 weeks bespoke' },
+    { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
+  ],
+  offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="Rapid-Fit Concrete Blocks — Stack-and-Go Retaining · Reusable, No Mortar"
+  description="Precast stack-and-go concrete retaining blocks. Lug-and-socket self-locating, mortarless, reusable. 0.5 t to 3.2 t. C40/50 concrete to BS 8500-1. Cast in North Devon."
+  image="/og-default.png"
+  schema="Product"
+  schemaData={productSchema}
+  whatsappContext="Rapid-Fit Blocks"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <TrustStrip />
+  <ProductPageTOC sections={tocSections} />
+
+  <!-- Hero -->
+  <section id="overview" class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow text-yellow mb-4">Civils · agricultural · industrial</p>
+          <h1 class="font-display text-display-xl text-white mb-4">Rapid-Fit Blocks.</h1>
+          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">Lift. Stack. Lock. Move it next year.</p>
+          <p class="text-lg lg:text-xl text-cast leading-relaxed font-medium text-white/95 mb-6 max-w-xl">
+            Reusable precast retaining blocks with a lug-and-socket self-locating profile.
+            No mortar, no rebar pinning, no waste. A 2-tonne standard block stacks five courses
+            for a 4m freestanding wall. Lift with the cast-in eye, relocate, restack. The
+            modern alternative to gabions and in-situ pours.
+          </p>
+          <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
+            A wall you can take with you. Build a 60m run on Monday, fill it on Wednesday,
+            move it to a new pad in twelve months. We have customers on their fourth yard
+            with the same blocks.
+          </blockquote>
+          <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
+            Quarries, recycling sites, farm clamps, civils compounds, waste-transfer pads
+            and security walls. Standard blocks ex-stock; bespoke sizes 3-4 weeks. Cast in
+            C40/50 concrete to BS 8500-1, BS EN 13369 FPC, UKCA marked.
+          </p>
+          <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
+            <li class="flex gap-2"><span class="text-yellow">·</span> Mortarless</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Lift + reuse</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 4m freestanding</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 0.5 – 3.2 t blocks</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Ex-stock standard</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> UKCA marked</li>
+          </ul>
+          <div class="flex flex-wrap gap-3">
+            <a href="/quote?product=Rapid-Fit%20Blocks" class="btn-primary">Configure a quote</a>
+            <a href="mailto:engineering@wccp.co.uk?subject=Spec%20sheet%20request%20%E2%80%94%20Rapid-Fit%20Blocks&amp;body=Hi%20WCCP%20engineering%2C%0A%0APlease%20send%20the%20spec%20sheet%20for%20Rapid-Fit%20Blocks.%0A%0AProject%20details%3A%0A%E2%80%A2%20Project%20name%3A%0A%E2%80%A2%20Site%20location%3A%0A%E2%80%A2%20Required%20spec%20%2F%20standard%3A%0A%0AThanks" class="btn-yellow">Request spec sheet</a>
+            <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">
+              Call {site.contact.phone}
+            </a>
+          </div>
+        </div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
+          <div>
+            <p class="text-cast-600 text-sm font-mono">Photo needed</p>
+            <p class="text-cast text-xs mt-2">Hero — 4m high stacked block wall at quarry, multiple bays, lifting eyes visible on top course</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spec table -->
+  <section id="specifications" class="container-wccp py-20">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Specification</p>
+      <h2 class="font-display text-display-lg mb-4">Block sizes and stacking limits.</h2>
+      <p class="text-cast-700 text-lg">
+        Six standard blocks cover almost every retaining and division job. The system bonds with
+        half blocks at returns and a capping block on top. We can pigment to match site colours
+        — typically charcoal or earth red — for visual installations.
+      </p>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="spec-table w-full text-left border-collapse">
+        <thead class="bg-navy text-white">
+          <tr>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Variant</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Weight</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Stacking limit</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
+          </tr>
+        </thead>
+        <tbody>
+          {specs.map((s, i) => (
+            <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
+              <td class="px-4 py-3 font-bold text-navy">{s.variant}</td>
+              <td class="px-4 py-3">{s.weight}</td>
+              <td class="px-4 py-3">{s.stack}</td>
+              <td class="px-4 py-3 text-cast">{s.use}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-cast text-sm mt-4">
+      Stacking limits assume a level prepared sub-base and no surcharge. For taller walls,
+      surcharge loading or sloping ground we can add cast-in dowels and a designed base course.
+    </p>
+
+    <p class="text-cast text-sm mt-4">
+      All blocks supplied with cast-in lifting eye rated to safe working load — set out, lift
+      and reuse with standard 5-tonne shackle.
+    </p>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-10">
+        <p class="eyebrow text-cast mb-3">Block library & references</p>
+        <h2 class="font-display text-display-lg mb-4 text-navy">Recent stack-and-go installations.</h2>
+        <p class="text-cast-700 text-lg">Photo plates being commissioned — placeholder shot briefs below.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { caption: 'Standard block · 2 t', shot: 'Single standard block on yard floor, lug pattern visible on top, lifting eye centre' },
+          { caption: 'Lug-and-socket · interlock detail', shot: 'Close-up of male lug locating into female socket between two stacked blocks' },
+          { caption: 'Quarry stockpile bay', shot: 'Three-bay aggregate stockpile wall at quarry, blocks 4 courses high' },
+          { caption: 'Farm push-wall · silage clamp', shot: 'Single-course block wall forming silage clamp side, tractor scraping at base' },
+          { caption: 'Telehandler placing block', shot: 'Telehandler with chain lifting block into final position on wall under construction' },
+          { caption: 'Recycling site division wall', shot: 'Long block wall at waste transfer station separating material types' },
+          { caption: 'Capping block · weather top', shot: 'Top course of wall showing capping block profile with weathered shed' },
+          { caption: 'Wall being moved · reuse', shot: 'Same blocks being lifted off old base for relocation to new yard' },
+        ].map((img) => (
+          <figure>
+            <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-4 text-center">
+              <div>
+                <p class="text-cast-600 text-xs font-mono">Photo needed</p>
+                <p class="text-cast text-xs mt-2">{img.shot}</p>
+              </div>
+            </div>
+            <figcaption class="mt-3 text-sm font-medium text-cast">{img.caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Applications -->
+  <section class="bg-white py-20">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow text-cast mb-3">Where they go</p>
+          <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            From a 30m bay run at a Cornish quarry to a 200m perimeter at a Midlands waste
+            transfer station, the same block does the same job — fast to install, easy to relocate.
+          </p>
+          <ul class="space-y-3">
+            {applications.map((a) => (
+              <li class="flex gap-3 text-cast-700 leading-relaxed">
+                <span class="text-ember font-bold mt-1">·</span>
+                <span>{a}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="card p-8">
+          <p class="eyebrow text-cast mb-3">Standards & references</p>
+          <h3 class="font-display text-2xl font-bold text-navy mb-4">Cast and certified to current code.</h3>
+          <dl class="space-y-4 text-sm">
+            <div>
+              <dt class="font-bold text-navy">BS EN 13369</dt>
+              <dd class="text-cast">Common rules for precast concrete products — Factory Production Control.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS 8500-1:2023</dt>
+              <dd class="text-cast">Concrete specification — C40/50, exposure XC4 / XF1 for outdoor use.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS EN 1992-1-1 (Eurocode 2)</dt>
+              <dd class="text-cast">Structural design — block reinforcement and lifting-eye anchorage.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">CDM Regulations 2015</dt>
+              <dd class="text-cast">Lifting eye SWL marked on every block; lifting plan supplied.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">UKCA marking</dt>
+              <dd class="text-cast">Declaration of Performance issued for every consignment.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Configurator CTA -->
+  <section class="bg-yellow text-navy py-16">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-navy mb-2">Configure your wall</p>
+          <h2 class="font-display text-display-md">Tell us run length, height and what you are retaining — we will quote and dispatch from stock.</h2>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href="/quote?product=Rapid-Fit%20Blocks" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
+          <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section id="related" class="container-wccp py-20">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
+      <div>
+        <p class="eyebrow text-cast mb-3">Related products</p>
+        <h2 class="font-display text-display-lg">Often ordered alongside.</h2>
+      </div>
+      <a href="/products" class="text-ember font-bold hover:text-ember-700 inline-flex items-center gap-2">
+        View full range
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" />
+          <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+    <RelatedProductGrid items={related} />
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">Common questions</p>
+        <h2 class="font-display text-display-lg mb-4">What yard managers ask.</h2>
+        <p class="text-cast-700 text-lg">
+          Five questions we answer most weeks. If yours is not here, ring the yard.
+        </p>
+      </div>
+      <div class="max-w-3xl space-y-4">
+        {faqs.map((f) => (
+          <details class="card p-6 group">
+            <summary class="font-display text-lg font-bold text-navy cursor-pointer list-none flex justify-between items-start gap-4">
+              <span>{f.q}</span>
+              <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Supply-only vs Fitted -->
+  <section class="container-wccp section-rhythm border-t border-cast-100">
+    <FittedVsSupply
+      productName="Rapid-Fit Blocks"
+      defaultMode="supply"
+      supply={{
+        price: 'Bespoke quote',
+        leadTime: 'Ex-stock standard · 3–4 weeks bespoke',
+        includes: [
+          'Standard or bespoke blocks with cast-in lifting eyes',
+          'Lifting plan and SWL data',
+          'UKCA DoP and mix-design',
+          'Delivery on flatbed',
+        ],
+        excludes: [
+          'On-site offload (forklift / telehandler / HIAB by customer)',
+          'Sub-base preparation and stacking labour',
+        ],
+      }}
+      fitted={{
+        price: 'Bespoke quote (incl. stack)',
+        leadTime: '4–5 weeks (incl. install slot)',
+        includes: [
+          'Everything in supply only',
+          'Two-man crew with telehandler to set out and stack',
+          'Site survey and base check',
+          '12-month workmanship warranty (alignment)',
+        ],
+        excludes: [
+          'Sub-base civils (compacted Type 1 or concrete)',
+        ],
+      }}
+      note=". Standard blocks ship from stock — order before Wednesday for end-of-week despatch in most cases."
+    />
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-navy text-white py-20">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
+      <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">
+        Run length and height — we will quote the same day and dispatch from stock.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/quote?product=Rapid-Fit%20Blocks" class="btn-yellow">Configure a quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
+      </div>
+    </div>
+  </section>
+
+  <SpecSheetButton productSlug="rapid-fit-blocks" productName="Rapid-Fit Blocks" />
+  <ProductWarrantyLine />
+</BaseLayout>

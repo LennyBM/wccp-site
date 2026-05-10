@@ -7,6 +7,13 @@ export const site = {
   legalName: 'West Country Concrete Products Limited',
   companyNumber: '06987338',
   founded: '1971',
+  // Historical trading names — surfaced in schema as Organization.alternateName.
+  previousNames: ['South Molton Concrete Products Limited'],
+  // Machine-readable client constraint (Kim): no public prices anywhere on
+  // the site, including JSON-LD. Build-time guards key off this flag.
+  pricingPolicy: 'no-public-prices',
+  // Default lead time copy used by the live-status banner; keep human-friendly.
+  defaultLeadTime: '4 weeks ahead',
   url: 'https://westcountryconcreteproducts.co.uk',
   shortUrl: 'wccp.co.uk',
   description:
@@ -20,6 +27,7 @@ export const site = {
     mobile: '07970 520123',
     mobileIntl: '+447970520123',
     whatsapp: '+447970520123', // confirm at meeting
+    whatsappVerified: false, // flip true once Kim confirms; build can warn if false
     email: 'info@wccp.co.uk',
     quotesEmail: 'quotes@wccp.co.uk',
     accountsEmail: 'accounts@wccp.co.uk',
@@ -36,6 +44,18 @@ export const site = {
     // Approximate; correct with exact coords post-meeting
     geo: { latitude: 50.8120, longitude: -4.3540 },
   },
+
+  // Historical addresses — WCCP relocated from Shebbear to Chilsworthy in 2023.
+  // Use in schema as Organization.foundingLocation / location[] when needed.
+  previousAddresses: [
+    {
+      locality: 'Shebbear',
+      region: 'Devon',
+      country: 'GB',
+      validUntil: '2023',
+      note: 'Original site prior to the 2023 move to Chilsworthy.',
+    },
+  ],
 
   hours: {
     weekdays: '07:30–17:00',

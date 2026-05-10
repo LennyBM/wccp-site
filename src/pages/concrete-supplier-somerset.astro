@@ -26,28 +26,36 @@ const related = [
   { href: '/products/prestressed-panels',  label: 'Prestressed Panels',  meta: 'BS EN 14992 · 100–280mm' },
 ];
 
-const localBusinessSchema = {
-  areaServed: { '@type': 'AdministrativeArea', name: `${county}, United Kingdom` },
+const serviceSchema = {
+  name: `Precast concrete supplier in ${county}`,
+  description: `Precast concrete delivered across ${county} from the WCCP yard in Holsworthy. Slurry, cubicles, silage clamp walls, civils.`,
+  serviceType: 'Precast concrete manufacture and delivery',
+  areaServed: [{ '@type': 'AdministrativeArea', name: county }, { '@type': 'City', name: town }],
   mainEntityOfPage: `${site.url}/concrete-supplier-somerset`,
 };
 ---
 
 <BaseLayout
-  title={`Precast concrete supplier · ${county}`}
-  description={`Precast concrete delivered across ${county} from the WCCP yard in Holsworthy. Slurry, cubicles, silage clamp walls, civils. Since 1971.`}
-  schema="LocalBusiness"
-  schemaData={localBusinessSchema}
+  title={`Precast concrete supplier ${county} · WCCP`}
+  description={`Precast concrete supplier delivering across ${county} from our Holsworthy yard. Slurry stores, cubicles, silage clamp walls, civils. Family-led since 1971.`}
+  schema="Service"
+  schemaData={serviceSchema}
 >
   <section class="bg-forest-700 text-cream">
     <div class="container-wccp py-20 md:py-28">
       <p class="eyebrow text-cream/70 mb-4">Areas served · {county}</p>
       <h1 class="font-display text-display-2xl text-cream mb-6 max-w-4xl">
-        Precast concrete delivered across {county}.<br />
+        Precast concrete supplier in {county}.<br />
         <em class="text-terracotta not-italic font-display italic">Cast in North Devon. On your slab in days.</em>
       </h1>
-      <p class="text-cream/85 text-lg leading-relaxed max-w-2xl mb-8">
-        Family-led North Devon precast. Same lorries we send to {distances[0].name}, {distances[1].name}
-        and {distances[2].name} every week.
+      <p class="text-cream/85 text-lg leading-relaxed max-w-3xl mb-8">
+        WCCP delivers precast concrete across {county} from our Holsworthy yard, a half-day's run
+        away via the M5. Common Somerset precast jobs:
+        <a href="/products/slurry-storage" class="text-terracotta-300 underline-offset-4 hover:underline">slurry stores</a> for
+        Levels dairies, <a href="/products/silage-clamp-walls" class="text-terracotta-300 underline-offset-4 hover:underline"> silage clamp walls</a> and
+        <a href="/products/retaining-walls" class="text-terracotta-300 underline-offset-4 hover:underline"> retaining walls</a> for
+        M5 civils. Lead times: 2–3 weeks for catalogue items, 4–6 weeks bespoke. Recent
+        deliveries: Taunton, Bridgwater and Yeovil.
       </p>
       <div class="flex flex-wrap gap-3">
         <a href="/quote" class="btn-primary">Get a quote</a>
@@ -83,39 +91,69 @@ const localBusinessSchema = {
 
   <section class="bg-cream-200 py-16 md:py-20 section-reveal">
     <div class="container-wccp">
-      <div class="max-w-2xl mb-10">
-        <p class="eyebrow text-cast mb-3">What we cast</p>
-        <h2 class="font-display text-display-md text-forest-700 mb-4">Most ordered in {county}.</h2>
-        <p class="text-cast-700">Dairy on the Levels, beef in the hills, civils along the M5.</p>
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow text-cast mb-3">Why {county} farms and contractors choose WCCP</p>
+        <h2 class="font-display text-display-md text-forest-700 mb-4">From the Levels to the Mendips.</h2>
       </div>
-      <RelatedProductGrid items={related} />
+      <div class="grid md:grid-cols-2 gap-6 max-w-4xl">
+        <div class="card p-6">
+          <h3 class="font-display text-lg font-bold text-forest-700 mb-2">Somerset Levels dairy</h3>
+          <p class="text-cast-700 leading-relaxed">SSAFO-compliant <a href="/products/slurry-storage" class="text-terracotta font-semibold hover:underline">slurry stores</a>, <a href="/products/cattle-cubicles" class="text-terracotta font-semibold hover:underline">cubicles</a> and <a href="/products/silage-clamp-walls" class="text-terracotta font-semibold hover:underline">silage clamp walls</a> sized for Levels herds.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="font-display text-lg font-bold text-forest-700 mb-2">M5 corridor and Hinkley</h3>
+          <p class="text-cast-700 leading-relaxed">Trusted into the Hinkley Point C connections supply chain and M5 corridor schemes for engineered <a href="/products/retaining-walls" class="text-terracotta font-semibold hover:underline">retaining walls</a> and <a href="/products/culverts" class="text-terracotta font-semibold hover:underline">box culverts</a>.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="font-display text-lg font-bold text-forest-700 mb-2">Quantocks and Exmoor edge</h3>
+          <p class="text-cast-700 leading-relaxed">Tight rural lanes and steep drives are routine — we recce in advance and switch from artic to rigid 8-wheeler where access demands it.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="font-display text-lg font-bold text-forest-700 mb-2">Architects and self-builders</h3>
+          <p class="text-cast-700 leading-relaxed">Eurocode 6 <a href="/products/padstones" class="text-terracotta font-semibold hover:underline">padstones</a> and <a href="/products/prestressed-panels" class="text-terracotta font-semibold hover:underline">prestressed panels</a> for new-build steel frames across South Somerset.</p>
+        </div>
+      </div>
       <div class="mt-8">
-        <a href="/products" class="text-terracotta font-bold hover:text-terracotta-700 inline-flex items-center gap-1.5">
-          See the full catalogue
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" />
-            <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </a>
+        <a href="/quote" class="btn-primary">Get a quote</a>
       </div>
     </div>
   </section>
 
   <section class="container-wccp py-16 md:py-20 section-reveal">
     <div class="max-w-2xl mb-10">
-      <p class="eyebrow text-cast mb-3">Common questions</p>
-      <h2 class="font-display text-display-md text-forest-700">Delivering to {county}.</h2>
+      <p class="eyebrow text-cast mb-3">What we cast</p>
+      <h2 class="font-display text-display-md text-forest-700 mb-4">Most ordered in {county}.</h2>
+      <p class="text-cast-700">Dairy on the Levels, beef in the hills, civils along the M5.</p>
     </div>
-    <div class="max-w-3xl space-y-4">
-      {faqs.map((f) => (
-        <details class="card p-6 group">
-          <summary class="font-display text-lg font-bold text-forest-700 cursor-pointer list-none flex justify-between items-start gap-4">
-            <span>{f.q}</span>
-            <span class="text-terracotta text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
-          </summary>
-          <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
-        </details>
-      ))}
+    <RelatedProductGrid items={related} />
+    <div class="mt-8">
+      <a href="/products" class="text-terracotta font-bold hover:text-terracotta-700 inline-flex items-center gap-1.5">
+        See the full catalogue
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" />
+          <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <section class="bg-cream-200 py-16 md:py-20 section-reveal">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-10">
+        <p class="eyebrow text-cast mb-3">Common questions</p>
+        <h2 class="font-display text-display-md text-forest-700">Delivering to {county}.</h2>
+      </div>
+      <div class="max-w-3xl space-y-4">
+        {faqs.map((f) => (
+          <details class="card p-6 group">
+            <summary class="font-display text-lg font-bold text-forest-700 cursor-pointer list-none flex justify-between items-start gap-4">
+              <span>{f.q}</span>
+              <span class="text-terracotta text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
     </div>
   </section>
 

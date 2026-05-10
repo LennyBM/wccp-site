@@ -4,7 +4,41 @@ import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
 import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import CTAStrip from '@/components/CTAStrip.astro';
 import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
+import ProductGallery from '@/components/ProductGallery.astro';
 import { site } from '@/config/site';
+
+const adGallery = [
+  {
+    src: '/images/products/concrete-panels/wccp-concrete-panels-prestressed-concrete-panels.jpg',
+    alt: 'WCCP prestressed precast concrete panels for AD plant tank walls and digestate stores, Devon',
+    caption: 'Prestressed tank panels in the casting yard. Up to 10m unsupported span on the digester walls.',
+  },
+  {
+    src: '/images/products/concrete-panels/wccp-concrete-panels-lifting-clutch-1024x488.jpg',
+    alt: 'WCCP precast panel lifting clutch detail for safe AD plant install, sulphate-resisting concrete',
+    caption: 'Cast-in lifting clutch detail. Safe-to-rig out of the lorry, no slings round the panel.',
+  },
+  {
+    src: '/images/products/slurry-handling/wccp-slurry-handling-channel.jpg',
+    alt: 'WCCP precast digestate channel for anaerobic digester feedstock handling, Devon',
+    caption: 'Digestate channel section. Same C40/50 sulphate-resisting mix as the slurry kit.',
+  },
+  {
+    src: '/images/products/retaining-walls/wccp-retaining-walls-l-t-wall-1024x732.jpg',
+    alt: 'WCCP precast L and T-block retaining walls for AD plant feedstock bays and push walls',
+    caption: 'L and T-block retaining walls. Drop straight into a feedstock bay or push-wall layout.',
+  },
+  {
+    src: '/images/products/retaining-walls/wccp-retaining-walls-a-wall-732x1024.jpg',
+    alt: 'WCCP free-standing precast retaining wall for AD clamp and CHP enclosure surrounds',
+    caption: 'Free-standing retaining wall. Surcharge-rated to your engineer\'s schedule.',
+  },
+  {
+    src: '/images/products/home/wccp-home-free-standing-wall-section.jpg',
+    alt: 'WCCP free-standing precast wall section in the Holsworthy yard, near Severn Trent biogas plant',
+    caption: 'Yard view next door to the Severn Trent biogas site. Same fence line, same lorry route.',
+  },
+];
 
 const components = [
   {
@@ -31,12 +65,29 @@ const related = [
   { href: '/products/retaining-walls', label: 'Retaining Walls', meta: 'L-block, cantilever, surcharge to spec' },
   { href: '/sectors/civils', label: 'Civils sector', meta: 'Adoptable, Eurocode 2, full schedule' },
 ];
+
+const productSchema = {
+  name: 'Precast AD Plant Components',
+  description: 'Precast concrete tank panels, slurry/digestate channels, retaining walls and hardstanding bases for UK anaerobic digestion plants. Cast in C40/50 sulphate-resisting concrete to BS EN 14992 and BS EN 1992-3 with a 20-year minimum design life.',
+  brand: { '@type': 'Brand', name: site.name },
+  manufacturer: { '@type': 'Organization', name: site.name },
+  category: 'Precast concrete components for anaerobic digestion plants',
+  material: 'Sulphate-resisting reinforced concrete, C40/50 (BS 8500-1:2023)',
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Standards', value: 'BS EN 14992 (panels), BS EN 1992-3 (liquid-retaining)' },
+    { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 sulphate-resisting' },
+    { '@type': 'PropertyValue', name: 'Design life', value: '20 years minimum' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '4-8 weeks' },
+    { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
+  ],
+};
 ---
 
 <BaseLayout
   title="AD Plant Precast Components — Anaerobic Digestion infrastructure"
   description="Precast concrete tank panels, channels, retaining walls and hardstanding bases for the UK's anaerobic digestion plants. Cast next door to Severn Trent's Holsworthy biogas plant — the UK's first food-waste AD site."
   schema="Product"
+  schemaData={productSchema}
 >
   <!-- Hero -->
   <section class="relative bg-navy-700 text-white overflow-hidden">
@@ -51,6 +102,9 @@ const related = [
           <h1 class="font-display text-display-2xl text-white mb-5">
             Precast for the UK's <span class="text-yellow">720 anaerobic digestion plants</span>.
           </h1>
+          <p class="text-lg lg:text-xl text-white/95 leading-relaxed font-medium mb-6 max-w-2xl">
+            Precast concrete components for anaerobic-digestion (AD) plants &mdash; tank panels, slurry channels, retaining walls and hardstanding. Cast to BS EN 14992 and BS EN 1992-3 in sulphate-resisting C40/50 concrete with a 20-year minimum design life. Specced for the 720+ UK on-farm AD plants. Lead time 4&ndash;8 weeks.
+          </p>
           <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-6 max-w-2xl">
             Cast next door to the UK's first food-waste biogas plant — Severn Trent's Holsworthy site.
           </p>
@@ -65,7 +119,20 @@ const related = [
           </div>
         </div>
         <div class="lg:col-span-4 lg:pb-2">
-          <p class="text-white/70 text-sm leading-relaxed">
+          <div class="rounded-lg overflow-hidden shadow-lifted ring-1 ring-yellow-400/30 mb-6">
+            <picture>
+              <source srcset="/images/products/concrete-panels/wccp-concrete-panels-prestressed-concrete-panels.webp" type="image/webp" />
+              <img
+                src="/images/products/concrete-panels/wccp-concrete-panels-prestressed-concrete-panels.jpg"
+                alt="WCCP precast prestressed concrete tank panels for anaerobic digestion plants, cast in Devon"
+                class="w-full h-auto block"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+              />
+            </picture>
+          </div>
+          <p class="text-white/85 text-sm leading-relaxed">
             38 new on-farm AD builds went live across the UK in 2025 alone. The next decade of
             renewable-gas infrastructure is being cast right now — concrete is on the critical path.
           </p>
@@ -89,6 +156,15 @@ const related = [
       ))}
     </div>
   </section>
+
+  <ProductGallery
+    eyebrow="From the casting bed, into the digester yard"
+    heading="The kit, in the metal."
+    intro="Tank panels, channels and retaining units leaving the Chilsworthy yard for AD operators around the country."
+    images={adGallery}
+    cols={3}
+    background="white"
+  />
 
   <!-- Severn Trent neighbour story -->
   <section class="bg-bone-200 section-rhythm">

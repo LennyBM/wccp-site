@@ -17,6 +17,19 @@ const towns = [
   { name: 'Tisbury', drive: '2 hr 15' },
 ];
 
+const townsServed = [
+  { name: 'Salisbury', note: 'Civils retaining walls, padstones and prestressed panels around the A36 corridor.' },
+  { name: 'Devizes', note: 'Vale of Pewsey arable bunker walls, feed-merchant L-blocks and dairy civils.' },
+  { name: 'Trowbridge', note: 'Dairy slurry stores, cubicle housing and west-Wiltshire civils padstones.' },
+  { name: 'Swindon', note: 'M4-corridor civils retaining walls, prestressed cladding and contractor yard L-blocks.' },
+  { name: 'Chippenham', note: 'Industrial-shed prestressed panels, civils padstones and AD-plant components.' },
+  { name: 'Marlborough', note: 'Downland arable bunker walls, equestrian bases and civils retaining walls.' },
+  { name: 'Warminster', note: 'Beef finisher bunker walls, cubicle housing and Salisbury Plain civils work.' },
+  { name: 'Melksham', note: 'Dairy slurry stores, robot bases and west-Wiltshire farm civils.' },
+  { name: 'Westbury', note: 'Civils L-blocks, retaining walls and contractor yard panels around the A350.' },
+  { name: 'Calne', note: 'North-Wiltshire dairy civils, bunker walls and feed-yard L-blocks.' },
+];
+
 const faqs = [
   {
     q: 'Which Wiltshire farms have you supplied recently?',
@@ -40,20 +53,26 @@ const faqs = [
   },
 ];
 
-const localBusinessSchema = {
+const serviceSchema = {
+  '@type': 'Service',
+  name: 'Wiltshire precast concrete supplier',
+  serviceType: 'Precast concrete supply and delivery',
+  provider: { '@type': 'Organization', name: site.name, url: site.url },
   areaServed: {
     '@type': 'AdministrativeArea',
     name: 'Wiltshire, United Kingdom',
   },
+  description:
+    'Own-fleet precast concrete supply and delivery from the WCCP yard in Holsworthy, North Devon to farms, civils and contractors across Wiltshire.',
   mainEntityOfPage: 'https://westcountryconcreteproducts.co.uk/areas/wiltshire',
 };
 ---
 
 <BaseLayout
-  title="Precast concrete supplier serving Wiltshire farms and contractors"
-  description="WCCP precast concrete delivered across Wiltshire — Salisbury, Swindon, Trowbridge, Chippenham and beyond. Slurry stores, cubicles, retaining walls. North Devon-made precast."
-  schema="LocalBusiness"
-  schemaData={localBusinessSchema}
+  title="Wiltshire precast concrete supplier — civils, padstones, prestressed panels"
+  description="Wiltshire precast concrete supplier. WCCP delivers civils retaining walls, padstones, prestressed panels and box culverts across Wiltshire from Holsworthy."
+  schema="Service"
+  schemaData={serviceSchema}
 >
   <section class="bg-navy text-white">
     <div class="container-wccp py-16 md:py-20">
@@ -66,7 +85,7 @@ const localBusinessSchema = {
       </nav>
       <p class="eyebrow text-yellow mb-5">Wiltshire · across the West Country</p>
       <h1 class="font-display text-display-xl text-white mb-5 max-w-4xl">
-        Precast concrete supplier serving Wiltshire farms and contractors.
+        Wiltshire precast concrete supplier — farms, civils and contractors.
       </h1>
       <p class="text-lg text-white/90 max-w-2xl leading-relaxed mb-8">
         From Salisbury Plain to the Cotswold edge — Wiltshire's a weekly run for our fleet. Dairy, arable,
@@ -76,6 +95,23 @@ const localBusinessSchema = {
         <a href="/quote" class="btn-primary">Get a Wiltshire quote</a>
         <a href={`tel:${site.contact.phoneIntl}`} class="btn-yellow">Call {site.contact.phone}</a>
       </div>
+    </div>
+  </section>
+
+  <!-- Direct-answer block (GEO / AI search) -->
+  <section class="bg-bone-100 border-b border-cast-100">
+    <div class="container-wccp py-10 max-w-3xl">
+      <p class="eyebrow text-cast mb-3">In short</p>
+      <p class="text-cast-700 text-lg leading-relaxed">
+        WCCP supplies precast concrete to <strong>Wiltshire</strong> from our <a href="/about" class="text-ember hover:text-ember-700 underline underline-offset-2">Holsworthy yard</a>
+        in North Devon — roughly a 2.5–3 hour drive via the A303 / A36 / M4 corridor. Common Wiltshire jobs:
+        <a href="/products/retaining-walls" class="text-ember hover:text-ember-700 underline underline-offset-2">civils retaining walls</a>,
+        <a href="/products/padstones" class="text-ember hover:text-ember-700 underline underline-offset-2">civils padstones</a> and
+        <a href="/products/prestressed-panels" class="text-ember hover:text-ember-700 underline underline-offset-2">prestressed panels</a>.
+        Box culverts (<a href="/products/culverts" class="text-ember hover:text-ember-700 underline underline-offset-2">culverts</a>)
+        are a regular A303 / M4 civils order too. Lead times: 2–6 weeks for catalogue items. Recent deliveries to Salisbury, Devizes and Trowbridge.
+        <a href="/quote" class="text-ember font-bold hover:text-ember-700">Start a Wiltshire quote.</a>
+      </p>
     </div>
   </section>
 
@@ -125,6 +161,20 @@ const localBusinessSchema = {
       <p class="text-sm text-cast mt-6 italic">
         Outside this list? We deliver county-wide and beyond — call the yard for a haulage quote.
       </p>
+    </div>
+  </section>
+
+  <!-- Towns served · context per town -->
+  <section class="container-wccp py-16">
+    <p class="eyebrow text-cast mb-3">Towns we serve in Wiltshire</p>
+    <h2 class="font-display text-display-lg mb-8">What Wiltshire buys from the yard.</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      {townsServed.map((t) => (
+        <div class="card p-5">
+          <h3 class="font-display text-base font-bold text-navy mb-2">{t.name}</h3>
+          <p class="text-cast-700 text-sm leading-relaxed">{t.note}</p>
+        </div>
+      ))}
     </div>
   </section>
 

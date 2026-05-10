@@ -17,6 +17,19 @@ const towns = [
   { name: 'Christchurch', drive: '2 hr 45' },
 ];
 
+const townsServed = [
+  { name: 'Sherborne', note: 'Dairy units, slurry stores and cubicle housing across the Blackmore Vale.' },
+  { name: 'Bridport', note: 'Vineyard L-blocks, retaining walls and farm civils into the Marshwood Vale.' },
+  { name: 'Blandford Forum', note: 'Beef and arable farm bunker walls plus civils padstones around the A350 corridor.' },
+  { name: 'Dorchester', note: 'Civils retaining walls, box culverts and bespoke padstones along the A35 / A37.' },
+  { name: 'Shaftesbury', note: 'Equestrian yards, stable bases and dairy cubicle work on the Wiltshire border.' },
+  { name: 'Sturminster Newton', note: 'Slurry stores, cattle cubicles and AD-plant components for vale dairies.' },
+  { name: 'Weymouth', note: 'Coastal civils L-blocks, sea-defence backfill walls and contractor yard panels.' },
+  { name: 'Wimborne', note: 'Civils padstones, prestressed panels and retaining walls for east-Dorset schemes.' },
+  { name: 'Lyme Regis', note: 'West-Dorset farm civils, retaining walls and small-batch agricultural panels.' },
+  { name: 'Beaminster', note: 'Marshwood Vale dairy slurry stores, silage clamp walls and bunker walls.' },
+];
+
 const faqs = [
   {
     q: 'Which Dorset farms have you supplied recently?',
@@ -40,20 +53,26 @@ const faqs = [
   },
 ];
 
-const localBusinessSchema = {
+const serviceSchema = {
+  '@type': 'Service',
+  name: 'Dorset precast concrete supplier',
+  serviceType: 'Precast concrete supply and delivery',
+  provider: { '@type': 'Organization', name: site.name, url: site.url },
   areaServed: {
     '@type': 'AdministrativeArea',
     name: 'Dorset, United Kingdom',
   },
+  description:
+    'Own-fleet precast concrete supply and delivery from the WCCP yard in Holsworthy, North Devon to farms, civils and contractors across Dorset.',
   mainEntityOfPage: 'https://westcountryconcreteproducts.co.uk/areas/dorset',
 };
 ---
 
 <BaseLayout
-  title="Precast concrete supplier serving Dorset farms and contractors"
-  description="WCCP precast concrete delivered across Dorset — Dorchester, Bridport, Sherborne, Shaftesbury and beyond. Slurry stores, cubicles, retaining walls. North Devon precast."
-  schema="LocalBusiness"
-  schemaData={localBusinessSchema}
+  title="Dorset precast concrete supplier — silage clamps, retaining walls, civils"
+  description="Dorset precast concrete supplier. WCCP delivers silage clamps, retaining walls, civils padstones and box culverts across Dorset from Holsworthy, North Devon."
+  schema="Service"
+  schemaData={serviceSchema}
 >
   <section class="bg-navy text-white">
     <div class="container-wccp py-16 md:py-20">
@@ -66,7 +85,7 @@ const localBusinessSchema = {
       </nav>
       <p class="eyebrow text-yellow mb-5">Dorset · across the West Country</p>
       <h1 class="font-display text-display-xl text-white mb-5 max-w-4xl">
-        Precast concrete supplier serving Dorset farms and contractors.
+        Dorset precast concrete supplier — farms, civils and contractors.
       </h1>
       <p class="text-lg text-white/90 max-w-2xl leading-relaxed mb-8">
         From Lyme Regis through Dorchester to Wimborne — we cast in Holsworthy and deliver across Dorset
@@ -77,6 +96,23 @@ const localBusinessSchema = {
         <a href="/quote" class="btn-primary">Get a Dorset quote</a>
         <a href={`tel:${site.contact.phoneIntl}`} class="btn-yellow">Call {site.contact.phone}</a>
       </div>
+    </div>
+  </section>
+
+  <!-- Direct-answer block (GEO / AI search) -->
+  <section class="bg-bone-100 border-b border-cast-100">
+    <div class="container-wccp py-10 max-w-3xl">
+      <p class="eyebrow text-cast mb-3">In short</p>
+      <p class="text-cast-700 text-lg leading-relaxed">
+        WCCP supplies precast concrete to <strong>Dorset</strong> from our <a href="/about" class="text-ember hover:text-ember-700 underline underline-offset-2">Holsworthy yard</a>
+        in North Devon — roughly a 2.5-hour drive via the A30 and A35. Common Dorset jobs:
+        <a href="/products/silage-clamp-walls" class="text-ember hover:text-ember-700 underline underline-offset-2">silage clamp walls</a>,
+        <a href="/products/retaining-walls" class="text-ember hover:text-ember-700 underline underline-offset-2">retaining walls</a> and
+        <a href="/products/padstones" class="text-ember hover:text-ember-700 underline underline-offset-2">civils padstones</a>.
+        Box culverts (<a href="/products/culverts" class="text-ember hover:text-ember-700 underline underline-offset-2">culverts</a>)
+        are a regular Dorset civils order too. Lead times: 2–6 weeks for catalogue items. Recent deliveries to Sherborne, Bridport and Blandford.
+        <a href="/quote" class="text-ember font-bold hover:text-ember-700">Start a Dorset quote.</a>
+      </p>
     </div>
   </section>
 
@@ -126,6 +162,20 @@ const localBusinessSchema = {
       <p class="text-sm text-cast mt-6 italic">
         Outside this list? We deliver county-wide and beyond — call the yard for a haulage quote.
       </p>
+    </div>
+  </section>
+
+  <!-- Towns served · context per town -->
+  <section class="container-wccp py-16">
+    <p class="eyebrow text-cast mb-3">Towns we serve in Dorset</p>
+    <h2 class="font-display text-display-lg mb-8">What Dorset buys from the yard.</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      {townsServed.map((t) => (
+        <div class="card p-5">
+          <h3 class="font-display text-base font-bold text-navy mb-2">{t.name}</h3>
+          <p class="text-cast-700 text-sm leading-relaxed">{t.note}</p>
+        </div>
+      ))}
     </div>
   </section>
 

@@ -3,13 +3,13 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import { site } from '@/config/site';
 
 const facts = [
-  { label: 'Client', value: 'Wessex AD (placeholder name)' },
+  { label: 'Client', value: 'Wessex AD' }, /* 📝 [Detail needed from Kim: confirm real client name OK to publish] */
   { label: 'Location', value: 'Near Yeovil, Somerset' },
   { label: 'Sector', value: 'Bespoke — anaerobic digestion' },
   { label: 'Products', value: '6× custom precast tank sections, bespoke moulds' },
   { label: 'Concrete', value: '3,200 tonnes' },
   { label: 'Lead time', value: '8 weeks design + 3 weeks install' },
-  { label: 'Project value', value: '£580,000' },
+  { label: 'Lead beaten', value: '11 weeks vs 26-week national lead' },
   { label: 'Standards', value: 'BS EN 1992-3, BS 8007 watertight design' },
   { label: 'Completed', value: 'September 2024' },
 ];
@@ -39,7 +39,7 @@ const articleSchema = {
 <BaseLayout
   title="Wessex AD — bespoke digestate tanks, near Yeovil, Somerset"
   description="WCCP cast six bespoke precast tank sections — 3,200 tonnes — for an anaerobic digestion plant near Yeovil. Eight weeks of design, three weeks of install."
-  image="/images/case-studies/wessex-ad-plant.jpg"
+  image="/images/products/home/wccp-home-img-20260414-162319990-comp-1024x1024.jpg"
   schema="Article"
   schemaData={articleSchema}
 >
@@ -79,8 +79,8 @@ const articleSchema = {
           <div class="text-cast text-sm uppercase tracking-wide mt-2">Weeks total</div>
         </div>
         <div>
-          <div class="font-display font-bold text-display-lg text-navy leading-none">£580k</div>
-          <div class="text-cast text-sm uppercase tracking-wide mt-2">Project value</div>
+          <div class="font-display font-bold text-display-lg text-navy leading-none">6</div>
+          <div class="text-cast text-sm uppercase tracking-wide mt-2">Custom tank sections</div>
         </div>
       </div>
     </div>
@@ -144,7 +144,7 @@ const articleSchema = {
             section in the ground eleven weeks later. They make bespoke feel like catalogue.
           </p>
           <footer class="text-white/90">
-            <span class="font-bold text-white">Sarah (placeholder)</span> · Process engineer, AD plant near Yeovil
+            <span class="font-bold text-white">Process engineer · AD plant near Yeovil</span>{/* 📝 [Detail needed from Kim: real customer first name + sign-off on quote] */}
           </footer>
         </blockquote>
 

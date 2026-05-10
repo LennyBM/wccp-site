@@ -1,0 +1,380 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
+import TrustStrip from '@/components/TrustStrip.astro';
+import FittedVsSupply from '@/components/FittedVsSupply.astro';
+import SpecSheetButton from '@/components/SpecSheetButton.astro';
+import ProductGallery from '@/components/ProductGallery.astro';
+import { site } from '@/config/site';
+import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
+import ProductPageTOC from '@/components/ProductPageTOC.astro';
+
+const tocSections = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'specifications', label: 'Specifications' },
+  { id: 'gallery', label: 'Gallery' },
+  { id: 'related', label: 'Related' },
+  { id: 'faq', label: 'FAQ' },
+  { id: 'downloads', label: 'Downloads' },
+];
+
+// WCCP precast kerb units to BS EN 1340. HB44.5 highways. Half-batter, bullnose, splay.
+const specs = [
+  { variant: 'HB2 Half-batter', bed: '125 × 255 × 915mm', style: 'BS EN 1340 · adoptable highways', use: 'Standard adoptable estate-road kerb' },
+  { variant: 'HB3 Half-batter', bed: '150 × 305 × 915mm', style: 'BS EN 1340 · trunk-road duty', use: 'A-roads, trunk roads, heavier carriageways' },
+  { variant: 'BN Bullnose', bed: '150 × 150 × 915mm', style: 'BS EN 1340 · pedestrian areas', use: 'Footpaths, public realm, low-kerb edge' },
+  { variant: 'SP Splay kerb', bed: '125 × 150 × 915mm', style: 'BS EN 1340 · splay profile', use: 'Vehicle crossovers, dropped kerbs' },
+  { variant: 'Quadrant', bed: '305mm radius corner', style: 'BS EN 1340 · external angle', use: 'Junction radii, kerbline corners' },
+  { variant: 'Transition kerb', bed: '125 × 255 to 125 × 150 × 915mm', style: 'BS EN 1340 · graded profile', use: 'Full to dropped kerb transitions' },
+];
+
+const applications = [
+  'Adoptable estate-road and highway kerblines',
+  'Trunk-road and A-road carriageway edges',
+  'Public-realm and footpath edge restraint',
+  'Vehicle crossovers and dropped-kerb crossings',
+  'Industrial-park and logistics-yard channels',
+  'Bus-stop and bus-lane Kassel-style boarding',
+  'Car-park aisle and bay edge restraint',
+];
+
+const related = [
+  { href: '/products/dish-channels', label: 'Dish Channels', meta: 'BS EN 1433 · surface drainage' },
+  { href: '/products/sand-channels', label: 'Sand Channels', meta: 'Forecourt and yard drainage' },
+  { href: '/products/pipe-culverts', label: 'Pipe Culverts', meta: 'BS 5911-1 · 300–1800mm' },
+  { href: '/products/retaining-walls', label: 'Retaining Walls', meta: 'L-shape and counterfort civils' },
+];
+
+const faqs = [
+  { q: 'What standard do your kerbs meet?', a: 'BS EN 1340:2003 — concrete kerb units. Class 1 abrasion resistance, Class 3 weathering, Class 1 bending strength as standard. Cast in C40/50 concrete to BS 8500-1:2023, with reinforcement designed to Eurocode 2. UKCA marked, factory-production-controlled to BS EN 13369.' },
+  { q: 'Can they take HB44.5 highways loading?', a: 'Yes — our HB2 and HB3 half-batter kerbs are designed for HB44.5 highways loading per DMRB CD 532, set on a Class S granular bed with C32/40 backing concrete to a minimum 150mm. The HB3 profile is the standard for trunk-road and A-road work where heavier wheel loads occur regularly.' },
+  { q: 'Do you cast quadrants and transitions?', a: 'Yes — quadrant external-angle units, transition kerbs from full-height to dropped, splay units for crossovers and bespoke radius units to your setting-out drawing are all cast in-house. Send the kerbline GA and we will set out the run with named pieces — straights, transitions, drops, quadrants — so the gangs install kit-of-parts on site.' },
+  { q: 'What about Kassel kerbs for bus stops?', a: 'We supply Kassel-profile kerbs to TfL standard detail for bus-stop and bus-lane boarding edges. The 180mm Kassel face gives the bus driver a tight visual reference and provides level boarding for accessibility. Cast on order — talk to engineering with the location and bus-route specification.' },
+  { q: 'What is the lead time?', a: 'Catalogue HB2, HB3 and bullnose kerbs ship in 2 to 3 weeks. Bespoke radii, transitions and Kassel units run 4 to 6 weeks. Highways orders are batched around possession dates — give us the works programme early.' },
+];
+
+const productSchema = {
+  name: 'Precast Concrete Kerbs',
+  description: 'Precast kerb units to BS EN 1340 — half-batter, bullnose, splay and quadrant profiles. HB44.5 highways loading. Cast in C40/50 concrete at our Holsworthy yard.',
+  brand: { '@type': 'Brand', name: site.name },
+  manufacturer: { '@type': 'Organization', name: site.name },
+  category: 'Precast concrete kerb',
+  material: 'Reinforced concrete, C40/50 (BS 8500-1:2023)',
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 1340:2003' },
+    { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
+    { '@type': 'PropertyValue', name: 'Loading', value: 'HB44.5 highways · DMRB CD 532' },
+    { '@type': 'PropertyValue', name: 'Profiles', value: 'Half-batter / bullnose / splay / quadrant' },
+    { '@type': 'PropertyValue', name: 'Effective length', value: '915mm standard' },
+    { '@type': 'PropertyValue', name: 'Abrasion class', value: 'Class 1 (BS EN 1340)' },
+    { '@type': 'PropertyValue', name: 'Weathering class', value: 'Class 3 (BS EN 1340)' },
+    { '@type': 'PropertyValue', name: 'Factory production control', value: 'BS EN 13369 · UKCA marked' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '2–3 weeks catalogue, 4–6 weeks bespoke' },
+    { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
+  ],
+  offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="Kerbs — BS EN 1340 · Half-batter, Bullnose, Splay · HB44.5"
+  description="Precast concrete kerb units to BS EN 1340. Half-batter HB2/HB3, bullnose, splay and quadrant. HB44.5 highways loading. Cast in North Devon."
+  image="/og-default.png"
+  schema="Product"
+  schemaData={productSchema}
+  whatsappContext="Kerbs"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
+  <TrustStrip />
+  <ProductPageTOC sections={tocSections} />
+
+  <!-- Hero -->
+  <section id="overview" class="bg-navy text-white">
+    <div class="container-wccp py-16 md:py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow text-yellow mb-4">Civils · highways · public realm</p>
+          <h1 class="font-display text-display-xl text-white mb-4">Kerbs.</h1>
+          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">Carriageway edge. Cast to last the road.</p>
+          <p class="text-lg lg:text-xl text-cast leading-relaxed font-medium text-white/95 mb-6 max-w-xl">
+            Precast concrete kerb units to BS EN 1340 — half-batter HB2 and HB3, bullnose,
+            splay and quadrant profiles. Class 1 abrasion, Class 3 weathering, HB44.5 highways
+            loading per DMRB CD 532. Cast in C40/50 concrete to BS 8500-1:2023, UKCA marked.
+            Catalogue lead time 2–3 weeks.
+          </p>
+          <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
+            An HB2 half-batter kerb cast to BS EN 1340 sits at 125&nbsp;mm × 255&nbsp;mm ×
+            915&nbsp;mm, takes HB44.5 highways loading on a 150&nbsp;mm C32/40 backing, and
+            holds the carriageway edge true to the setting-out for the design life of the road.
+          </blockquote>
+          <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
+            Straights, quadrants, transitions, splays and Kassel-profile units cast in-house
+            at the Holsworthy yard. Send the kerbline GA, we set out the run.
+          </p>
+          <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
+            <li class="flex gap-2"><span class="text-yellow">·</span> BS EN 1340</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> HB44.5 highways</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 4 profiles + bespoke</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 915mm units</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> UKCA marked</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 2–6 week lead</li>
+          </ul>
+          <div class="flex flex-wrap gap-3">
+            <a href="/quote?product=Kerbs" class="btn-primary">Configure a quote</a>
+            <a href="mailto:engineering@wccp.co.uk?subject=Spec%20sheet%20request%20%E2%80%94%20Kerbs&amp;body=Hi%20WCCP%20engineering%2C%0A%0APlease%20send%20the%20spec%20sheet%20for%20Kerbs.%0A%0AProject%20details%3A%0A%E2%80%A2%20Project%20name%3A%0A%E2%80%A2%20Site%20location%3A%0A%E2%80%A2%20Required%20spec%20%2F%20standard%3A%0A%0AThanks" class="btn-yellow">Request spec sheet</a>
+            <a href={`tel:${site.contact.phoneIntl}`} class="btn-ghost border-white text-white hover:bg-white hover:text-navy">
+              Call {site.contact.phone}
+            </a>
+          </div>
+        </div>
+        <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
+          <div>
+            <p class="text-cast-600 text-sm font-mono">📷 Photo needed</p>
+            <p class="text-cast text-xs mt-2">Hero shot: HB2 half-batter kerb units stacked on a pallet in the Holsworthy yard, with WCCP banding visible</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spec table -->
+  <section class="container-wccp py-20">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">Specification</p>
+      <h2 class="font-display text-display-lg mb-4">Profiles, sizes and uses.</h2>
+      <p class="text-cast-700 text-lg">
+        Six catalogue profiles cover most adoptable and public-realm work. Bespoke radii,
+        transitions and Kassel units cast on order — send the kerbline GA, we will set out
+        the run.
+      </p>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="spec-table w-full text-left border-collapse">
+        <thead class="bg-navy text-white">
+          <tr>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Variant</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Size</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Standard</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Typical use</th>
+          </tr>
+        </thead>
+        <tbody>
+          {specs.map((s, i) => (
+            <tr class={i % 2 === 0 ? 'bg-white' : 'bg-bone-200'}>
+              <td class="px-4 py-3 font-bold text-navy">{s.variant}</td>
+              <td class="px-4 py-3">{s.bed}</td>
+              <td class="px-4 py-3">{s.style}</td>
+              <td class="px-4 py-3 text-cast">{s.use}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-cast text-sm mt-4">
+      All kerb units UKCA marked, factory production controlled to BS EN 13369. Class 1
+      abrasion, Class 3 weathering, Class 1 bending strength as standard.
+    </p>
+
+    <p class="text-cast text-sm mt-4">
+      Bedding spec: Class S granular bed with 150mm C32/40 backing concrete for adoptable
+      highway use. Full bedding detail on the spec sheet.
+    </p>
+  </section>
+
+  <ProductGallery
+    eyebrow="The range"
+    heading="Kerbs in service."
+    background="bone"
+    cols={4}
+    images={[
+      { src: '', alt: 'HB2 half-batter kerb stockpile', caption: 'Stockpile · HB2 half-batter kerbs banded on pallets' },
+      { src: '', alt: 'HB3 trunk-road kerb', caption: 'HB3 trunk-road profile · 150 × 305 × 915mm' },
+      { src: '', alt: 'Bullnose kerb pedestrian', caption: 'Bullnose · footpath edge restraint, public realm' },
+      { src: '', alt: 'Splay kerb crossover', caption: 'Splay · vehicle crossover, dropped kerb detail' },
+      { src: '', alt: 'Quadrant junction', caption: 'Quadrant · 305mm radius external angle, junction corner' },
+      { src: '', alt: 'Transition kerb', caption: 'Transition · graded full-to-dropped profile' },
+      { src: '', alt: 'Kerb install adoptable road', caption: 'Install · gang setting HB2 kerbline on adoptable estate road' },
+      { src: '', alt: 'Kassel bus-stop kerb', caption: 'Kassel · TfL-spec bus-stop boarding edge' },
+    ]}
+  />
+
+  <!-- Applications -->
+  <section class="bg-white py-20">
+    <div class="container-wccp">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow text-cast mb-3">Where they go</p>
+          <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">
+            From a 50m estate-road kerbline in Plymouth to a trunk-road A30 widening run, we
+            cast and deliver to the same engineered standard — sized to your kerbline GA,
+            delivered to your possession slot.
+          </p>
+          <ul class="space-y-3">
+            {applications.map((a) => (
+              <li class="flex gap-3 text-cast-700 leading-relaxed">
+                <span class="text-ember font-bold mt-1">·</span>
+                <span>{a}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="card p-8">
+          <p class="eyebrow text-cast mb-3">Standards & references</p>
+          <h3 class="font-display text-2xl font-bold text-navy mb-4">Cast and certified to current code.</h3>
+          <dl class="space-y-4 text-sm">
+            <div>
+              <dt class="font-bold text-navy">BS EN 1340:2003</dt>
+              <dd class="text-cast">Concrete kerb units — abrasion, weathering and strength classification.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">DMRB CD 532</dt>
+              <dd class="text-cast">Design Manual for Roads and Bridges — drainage and edge restraint.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">DMRB CD 622</dt>
+              <dd class="text-cast">Highways edge details — kerb profiles and channel block specifications.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS 8500-1:2023</dt>
+              <dd class="text-cast">Concrete specification — C40/50 mix designed for exposure class XF3.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS EN 1992 / Eurocode 2</dt>
+              <dd class="text-cast">Design of concrete structures — durability and detailing.</dd>
+            </div>
+            <div>
+              <dt class="font-bold text-navy">BS EN 13369</dt>
+              <dd class="text-cast">Common rules for precast concrete products — factory production control.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Configurator CTA -->
+  <section class="bg-yellow text-navy py-16">
+    <div class="container-wccp">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-navy mb-2">Configure your kerbline</p>
+          <h2 class="font-display text-display-md">Send us the kerbline GA, profile mix and total run length — we will quote inside 24 hours.</h2>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href="/quote?product=Kerbs" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
+          <a href={`mailto:${site.contact.quotesEmail}`} class="btn-secondary">Email quotes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="container-wccp py-20">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
+      <div>
+        <p class="eyebrow text-cast mb-3">Related products</p>
+        <h2 class="font-display text-display-lg">Often ordered alongside.</h2>
+      </div>
+      <a href="/products" class="text-ember font-bold hover:text-ember-700 inline-flex items-center gap-2">
+        View full range
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" />
+          <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+    <RelatedProductGrid items={related} />
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="bg-bone-200 py-20">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow text-cast mb-3">Common questions</p>
+        <h2 class="font-display text-display-lg mb-4">What people ask about kerbs.</h2>
+        <p class="text-cast-700 text-lg">
+          Five questions we answer most weeks. If yours is not here, ring the yard.
+        </p>
+      </div>
+      <div class="max-w-3xl space-y-4">
+        {faqs.map((f) => (
+          <details class="card p-6 group">
+            <summary class="font-display text-lg font-bold text-navy cursor-pointer list-none flex justify-between items-start gap-4">
+              <span>{f.q}</span>
+              <span class="text-ember text-2xl leading-none group-open:rotate-45 transition-transform shrink-0">+</span>
+            </summary>
+            <p class="text-cast-700 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Supply-only vs Fitted -->
+  <section class="container-wccp section-rhythm border-t border-cast-100">
+    <FittedVsSupply
+      productName="Kerbs"
+      defaultMode="supply"
+      supply={{
+        price: 'Bespoke quote',
+        leadTime: '2–6 weeks',
+        includes: [
+          'BS EN 1340 kerb units to specified profile',
+          'Quadrants, transitions and bespoke units cast to GA',
+          'UKCA mill certs and bedding spec',
+          'Delivery to site by HIAB or flat-bed',
+        ],
+        excludes: [
+          'Excavation and concrete backing works',
+          'Setting-out and laying labour',
+        ],
+      }}
+      fitted={{
+        price: 'Bespoke quote (incl. install)',
+        leadTime: '6–10 weeks (incl. site slot)',
+        includes: [
+          'Everything in supply only',
+          'Civils crew with setting-out',
+          'Granular bed and C32/40 backing concrete',
+          '12-month workmanship warranty',
+        ],
+        excludes: [
+          'Carriageway construction works',
+          'Traffic-management costs',
+        ],
+      }}
+      note=". Bespoke radii, Kassel-profile and conservation-area units priced individually — send the kerbline GA and we'll come back within a working day."
+    />
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-navy text-white py-20">
+    <div class="container-wccp text-center">
+      <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
+      <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">
+        Send us the kerbline GA, profile mix and run length. Quote and lead-time same day.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/quote?product=Kerbs" class="btn-yellow">Configure a quote</a>
+        <a href={`tel:${site.contact.phoneIntl}`} class="btn-secondary">Call {site.contact.phone}</a>
+        <a href={`mailto:${site.contact.quotesEmail}`} class="btn-primary">Email quotes</a>
+      </div>
+    </div>
+  </section>
+
+  <SpecSheetButton productSlug="kerbs" productName="Kerbs" />
+  <ProductWarrantyLine />
+</BaseLayout>

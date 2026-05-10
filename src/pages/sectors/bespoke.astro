@@ -2,7 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
 import { Image } from 'astro:assets';
-import bespokeHero from '@/assets/images/sector-bespoke.jpg';
+// Bespoke hero image removed pending real WCCP yard photography.
 import { site } from '@/config/site';
 
 const steps = [
@@ -78,13 +78,14 @@ const examples = [
   title="Bespoke precast — if it can be cast and delivered, we can make it"
   description="Custom and one-off precast concrete from our Holsworthy yard. In-house design to Eurocode 2, exposed-aggregate and board-marked finishes, delivered on our own Hiab. Tell us what you need."
   image="/og/sectors-bespoke.png"
+  imageAlt="WCCP bespoke precast concrete — architectural panels, custom plinths, one-off retaining systems — designed and cast in Holsworthy, North Devon"
   schema="Service"
   schemaData={{
-    serviceType: 'Bespoke precast concrete manufacture',
+    serviceType: 'Precast concrete manufacture and supply — Bespoke and custom',
     provider: { '@type': 'LocalBusiness', name: site.name, telephone: site.contact.phone },
     areaServed: site.areasServed,
     description:
-      'Bespoke and one-off precast concrete: architectural panels, custom plinths, retaining specials, heritage cast-stone. In-house design to BS EN 1992. Cast in North Devon.',
+      'Custom and one-off precast concrete: architectural panels, custom plinths and equipment bases, one-off retaining systems, AD-plant tank components, heritage cast-stone. Custom mould design Friday, quote Monday, cast within 4-8 weeks. In-house design to BS EN 1992 (Eurocode 2). Cast at our Holsworthy yard in North Devon and delivered nationwide and into Europe.',
   }}
 >
   <TrustStrip />
@@ -92,17 +93,15 @@ const examples = [
   <!-- Hero -->
   <section class="relative bg-forest-800 text-cream overflow-hidden min-h-[68vh] flex items-end">
     <div aria-hidden="true" class="absolute inset-0">
-      <Image
-        src={bespokeHero}
-        alt=""
-        widths={[768, 1280, 1920]}
-        sizes="100vw"
-        loading="eager"
-        fetchpriority="high"
-        class="w-full h-full object-cover"
-      />
-      <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(4,10,31,0.15) 30%, rgba(4,10,31,0.78) 100%);"></div>
-      <div class="absolute inset-0" style="background: linear-gradient(95deg, rgba(7,18,56,0.55) 0%, transparent 55%);"></div>
+      <!-- Hero image placeholder pending real WCCP bespoke-yard photography -->
+      <div class="absolute inset-0 bg-forest-800 flex items-center justify-center">
+        <div class="text-center text-cream/60 p-8">
+          <p class="text-xs font-mono uppercase tracking-widest">📷 Photo needed</p>
+          <p class="text-xs mt-2 max-w-md mx-auto">Bespoke WCCP precast units (lintels, posts, special panels) staged at the Holsworthy yard</p>
+        </div>
+      </div>
+      <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(4,10,31,0.55) 30%, rgba(4,10,31,0.88) 100%);"></div>
+      <div class="absolute inset-0" style="background: linear-gradient(95deg, rgba(7,18,56,0.70) 0%, transparent 55%);"></div>
       <div class="grain-overlay"></div>
     </div>
     <div class="relative container-wccp pt-28 pb-16 md:pt-36 md:pb-20">
@@ -128,6 +127,26 @@ const examples = [
             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/><polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Direct-answer block (LLM-quotable summary) — editorial italic, generous white space -->
+  <section class="bg-bone-100 border-b border-bone-300 py-16 md:py-24">
+    <div class="container-wccp">
+      <div class="max-w-3xl mx-auto">
+        <p class="eyebrow text-cast-700 mb-4">
+          <span class="inline-block w-6 h-px bg-cast-700 align-middle mr-2"></span>
+          What bespoke means here
+        </p>
+        <p class="font-display text-cast-900 leading-snug"
+           style="font-style: italic; font-weight: 300; font-size: clamp(1.5rem, 1.5vw + 1rem, 2.125rem); letter-spacing: -0.01em;">
+          If it's precast concrete and it can be delivered, WCCP can make it.
+          <span class="not-italic font-normal text-navy-900">Custom mould design Friday, quote Monday, cast within 4&ndash;8 weeks.</span>
+          Recent bespoke: DIN-spec <a href="/products/retaining-walls" class="text-navy-800 underline decoration-cast/30 underline-offset-4 hover:decoration-navy">retaining wall</a> to Bavaria,
+          AD-plant tank panels for Severn Trent biogas, custom <a href="/products/cattle-cubicles" class="text-navy-800 underline decoration-cast/30 underline-offset-4 hover:decoration-navy">cubicle beds</a> for Hebrides farms.
+          Send us a sketch &mdash; we'll work with what you've got.
+        </p>
       </div>
     </div>
   </section>
@@ -230,6 +249,83 @@ const examples = [
           <p class="text-cast text-sm leading-relaxed">{e.desc}</p>
         </div>
       ))}
+    </div>
+
+    <div class="mt-16 pt-12 border-t border-cast-100">
+      <p class="eyebrow text-cast mb-3">Bespoke product range</p>
+      <h2 class="font-display text-display-md mb-6">Standard products with bespoke finishes.</h2>
+      <p class="text-cast-700 text-lg leading-relaxed mb-8 max-w-2xl">
+        Architectural panels, custom plinths, AD plant tanks, clean room enclosures and more. Each has its own detail page with finish options and lead times.
+      </p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        <a href="/products/architectural-panels" class="card-link group flex items-start justify-between gap-3 p-4 bg-white border border-cast-100 hover:border-navy hover:shadow-soft transition-all">
+          <div class="min-w-0">
+            <p class="font-display font-bold text-navy group-hover:text-ember transition-colors">Architectural Panels</p>
+            <p class="text-cast text-xs mt-0.5">Board-marked · exposed-aggregate · acid-etched</p>
+          </div>
+          <span class="text-ember shrink-0 group-hover:translate-x-0.5 transition-transform" aria-hidden="true">→</span>
+        </a>
+        <a href="/products/custom-plinths" class="card-link group flex items-start justify-between gap-3 p-4 bg-white border border-cast-100 hover:border-navy hover:shadow-soft transition-all">
+          <div class="min-w-0">
+            <p class="font-display font-bold text-navy group-hover:text-ember transition-colors">Custom Plinths</p>
+            <p class="text-cast text-xs mt-0.5">Transformer · generator · plant bases</p>
+          </div>
+          <span class="text-ember shrink-0 group-hover:translate-x-0.5 transition-transform" aria-hidden="true">→</span>
+        </a>
+        <a href="/products/ad-plant-tanks" class="card-link group flex items-start justify-between gap-3 p-4 bg-white border border-cast-100 hover:border-navy hover:shadow-soft transition-all">
+          <div class="min-w-0">
+            <p class="font-display font-bold text-navy group-hover:text-ember transition-colors">AD Plant Tanks</p>
+            <p class="text-cast text-xs mt-0.5">200–3000m³ · sulphate-resisting</p>
+          </div>
+          <span class="text-ember shrink-0 group-hover:translate-x-0.5 transition-transform" aria-hidden="true">→</span>
+        </a>
+        <a href="/products/clean-rooms" class="card-link group flex items-start justify-between gap-3 p-4 bg-white border border-cast-100 hover:border-navy hover:shadow-soft transition-all">
+          <div class="min-w-0">
+            <p class="font-display font-bold text-navy group-hover:text-ember transition-colors">Clean Room Enclosures</p>
+            <p class="text-cast text-xs mt-0.5">Food-grade smooth · seam-sealed</p>
+          </div>
+          <span class="text-ember shrink-0 group-hover:translate-x-0.5 transition-transform" aria-hidden="true">→</span>
+        </a>
+        <a href="/products/parlour-bases" class="card-link group flex items-start justify-between gap-3 p-4 bg-white border border-cast-100 hover:border-navy hover:shadow-soft transition-all">
+          <div class="min-w-0">
+            <p class="font-display font-bold text-navy group-hover:text-ember transition-colors">Parlour Bases</p>
+            <p class="text-cast text-xs mt-0.5">Robotic + conventional · ±2mm level</p>
+          </div>
+          <span class="text-ember shrink-0 group-hover:translate-x-0.5 transition-transform" aria-hidden="true">→</span>
+        </a>
+        <a href="/products/lintels" class="card-link group flex items-start justify-between gap-3 p-4 bg-white border border-cast-100 hover:border-navy hover:shadow-soft transition-all">
+          <div class="min-w-0">
+            <p class="font-display font-bold text-navy group-hover:text-ember transition-colors">Lintels</p>
+            <p class="text-cast text-xs mt-0.5">Heritage + architectural · BS 5977</p>
+          </div>
+          <span class="text-ember shrink-0 group-hover:translate-x-0.5 transition-transform" aria-hidden="true">→</span>
+        </a>
+        <a href="/products/bespoke" class="card-link group flex items-start justify-between gap-3 p-4 bg-white border border-cast-100 hover:border-navy hover:shadow-soft transition-all">
+          <div class="min-w-0">
+            <p class="font-display font-bold text-navy group-hover:text-ember transition-colors">Cast Stone & Heritage</p>
+            <p class="text-cast text-xs mt-0.5">Copings, bollards · colour-matched</p>
+          </div>
+          <span class="text-ember shrink-0 group-hover:translate-x-0.5 transition-transform" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inline product bridges — editorial spacing -->
+  <section class="container-wccp pb-20">
+    <div class="max-w-3xl mx-auto pt-10 border-t border-bone-300 text-center">
+      <p class="eyebrow text-cast-700 mb-4">Bespoke usually starts from a product</p>
+      <p class="text-cast-700 leading-relaxed text-lg">
+        Most one-offs we cast began life as a tweak on a catalogue product. Browse
+        <a href="/products/retaining-walls" class="text-navy-800 underline decoration-cast/30 underline-offset-4 hover:decoration-navy font-medium">retaining walls</a>,
+        <a href="/products/prestressed-panels" class="text-navy-800 underline decoration-cast/30 underline-offset-4 hover:decoration-navy font-medium">prestressed panels</a>,
+        <a href="/products/culverts" class="text-navy-800 underline decoration-cast/30 underline-offset-4 hover:decoration-navy font-medium">culverts</a>,
+        <a href="/products/padstones" class="text-navy-800 underline decoration-cast/30 underline-offset-4 hover:decoration-navy font-medium">padstones</a>,
+        <a href="/products/slurry-storage" class="text-navy-800 underline decoration-cast/30 underline-offset-4 hover:decoration-navy font-medium">slurry storage</a>,
+        <a href="/products/silage-clamp-walls" class="text-navy-800 underline decoration-cast/30 underline-offset-4 hover:decoration-navy font-medium">silage clamp walls</a>,
+        <a href="/products/milking-robot-bases" class="text-navy-800 underline decoration-cast/30 underline-offset-4 hover:decoration-navy font-medium">milking-robot bases</a> or
+        <a href="/products/bespoke" class="text-navy-800 underline decoration-cast/30 underline-offset-4 hover:decoration-navy font-medium">bespoke civils</a> — then tell us what's different about yours.
+      </p>
     </div>
   </section>
 

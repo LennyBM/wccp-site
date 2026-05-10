@@ -41,6 +41,61 @@ const pins: Pin[] = [
 
 const recentRuns = pins.filter((p) => p.region !== 'origin');
 
+// Reach summary by region — used by the regional-coverage strip below.
+// Each entry pairs a region label with one confirmed delivery so the page
+// reads as "we have actually been there", not just "we say we go there".
+const ukRegions = [
+  {
+    name: 'South West',
+    detail: 'Cornwall, Devon, Somerset, Dorset and Wiltshire — own-fleet weekly. See the county pages:',
+    counties: [
+      { label: 'Cornwall', href: '/areas/cornwall' },
+      { label: 'Devon', href: '/areas/devon' },
+      { label: 'Somerset', href: '/areas/somerset' },
+      { label: 'Dorset', href: '/areas/dorset' },
+      { label: 'Wiltshire', href: '/areas/wiltshire' },
+    ],
+    example: 'Recent: cubicle shed at Trewithen Barton (Cornwall), 2025.',
+  },
+  {
+    name: 'South East',
+    detail: 'Hampshire, Surrey, Sussex, Kent and the Home Counties on planned multi-drop runs.',
+    example: 'Recent: civils retaining-wall package, M25-corridor scheme, 2024.',
+  },
+  {
+    name: 'Midlands',
+    detail: 'East and West Midlands — Warwickshire, Staffordshire, Leicestershire and the Welsh borders.',
+    example: 'Recent: industrial-shed prestressed cladding panels, 2025.',
+  },
+  {
+    name: 'North of England',
+    detail: 'Yorkshire, Lancashire, Cumbria and the North East via planned trunk runs.',
+    example: 'Recent: cantilever retaining-wall package, civils contractor, 2024.',
+  },
+  {
+    name: 'Wales',
+    detail: 'North and South Wales — dairy and beef farms plus civils contractors.',
+    example: 'Recent: dairy slurry tower, mid-Wales estate, 2025.',
+  },
+  {
+    name: 'Scotland',
+    detail: 'Aberdeen, Edinburgh, Highland and the Western Isles via low-loader.',
+    example: 'Recent: estate retaining walls, Outer Hebrides (Stornoway), 2025.',
+  },
+  {
+    name: 'Northern Ireland',
+    detail: 'NI Water and contractor schemes — bespoke precast culverts and padstones.',
+    example: 'Recent: twin-cell box culverts to NI Water, 2024.',
+  },
+];
+
+const europeRegions = [
+  { code: 'DE', name: 'Germany', example: 'DIN-spec L-block retaining walls, Munich ground-engineering job, 240 tonnes.' },
+  { code: 'NL', name: 'Netherlands', example: 'Container-basing slabs, Rotterdam port-side facility.' },
+  { code: 'FR', name: 'France', example: 'Cubicle end walls, Brittany dairy co-op (Rennes) via Roscoff.' },
+  { code: 'BE', name: 'Belgium', example: 'Bespoke padstone package, antwerp-area logistics scheme.' },
+];
+
 const serviceSchema = {
   '@type': 'Service',
   name: 'Precast concrete delivery — UK & Europe',
@@ -78,7 +133,29 @@ const serviceSchema = {
           France and beyond — same factory, same paperwork, same SSAFO/DIN-spec
           finish on the slab.
         </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="/quote" class="btn-primary">Start a delivery quote</a>
+          <a href={`tel:${site.contact.phoneIntl}`} class="btn-yellow">Call {site.contact.phone}</a>
+        </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Direct-answer block (GEO / AI search) -->
+  <section class="bg-bone-100 border-b border-cast-100">
+    <div class="container-wccp py-10 max-w-3xl">
+      <p class="eyebrow text-cast mb-3">In short</p>
+      <p class="text-cast-700 text-lg leading-relaxed">
+        WCCP precast concrete is cast at our <a href="/about" class="text-ember hover:text-ember-700 underline underline-offset-2">Holsworthy yard</a>
+        in North Devon and delivered UK-wide on our own fleet — South West, South East, Midlands, North, Wales, Scotland, Northern Ireland — plus
+        planned shipments to Germany, the Netherlands, France and Belgium. Common loads:
+        <a href="/products/slurry-storage" class="text-ember hover:text-ember-700 underline underline-offset-2">slurry storage</a>,
+        <a href="/products/cattle-cubicles" class="text-ember hover:text-ember-700 underline underline-offset-2">cattle cubicles</a>,
+        <a href="/products/retaining-walls" class="text-ember hover:text-ember-700 underline underline-offset-2">retaining walls</a> and
+        <a href="/products/prestressed-panels" class="text-ember hover:text-ember-700 underline underline-offset-2">prestressed panels</a>.
+        Lead times: 2–6 weeks for catalogue items.
+        <a href="/quote" class="text-ember font-bold hover:text-ember-700">Send a postcode and get a delivery quote.</a>
+      </p>
     </div>
   </section>
 
@@ -325,6 +402,65 @@ const serviceSchema = {
         WCCP precast deliveries between 2024 and 2025.
       </figcaption>
     </figure>
+  </section>
+
+  <!-- ====== Regional coverage · UK ====== -->
+  <section class="container-wccp section-rhythm">
+    <div class="max-w-2xl mb-10">
+      <p class="eyebrow text-cast mb-3">UK regions covered</p>
+      <h2 class="font-display text-display-lg mb-4">Where we deliver in the UK.</h2>
+      <p class="text-cast-700 text-lg">
+        Every UK region is on a regular run — own-fleet door-to-door for the West Country and the Home Counties,
+        planned trunk runs and low-loaders north of the Mersey and across the Irish Sea.
+      </p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {ukRegions.map((r) => (
+        <article class="card p-6">
+          <h3 class="font-display text-base font-bold text-navy mb-2">{r.name}</h3>
+          <p class="text-cast-700 text-sm leading-relaxed mb-3">{r.detail}</p>
+          {r.counties && (
+            <p class="text-sm leading-relaxed mb-3">
+              {r.counties.map((c, i) => (
+                <>
+                  <a href={c.href} class="text-ember hover:text-ember-700 underline underline-offset-2 font-medium">{c.label}</a>{i < r.counties.length - 1 ? ', ' : ''}
+                </>
+              ))}
+            </p>
+          )}
+          <p class="text-cast text-xs italic">{r.example}</p>
+        </article>
+      ))}
+    </div>
+    <div class="mt-8">
+      <a href="/quote" class="btn-primary">Get a UK delivery quote</a>
+    </div>
+  </section>
+
+  <!-- ====== Regional coverage · Europe ====== -->
+  <section class="bg-bone-100 section-rhythm border-t border-cast-100">
+    <div class="container-wccp">
+      <div class="max-w-2xl mb-10">
+        <p class="eyebrow text-cast mb-3">Europe</p>
+        <h2 class="font-display text-display-lg mb-4">Planned runs into Northern Europe.</h2>
+        <p class="text-cast-700 text-lg">
+          Same factory, same finish, same paperwork — DIN-spec or BS-EN, your choice. We run planned shipments
+          across the short-strait routes and via Roscoff and Cherbourg for France.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {europeRegions.map((r) => (
+          <article class="card p-6">
+            <p class="font-mono text-[11px] uppercase tracking-wider text-ember mb-2">{r.code}</p>
+            <h3 class="font-display text-base font-bold text-navy mb-2">{r.name}</h3>
+            <p class="text-cast-700 text-sm leading-relaxed">{r.example}</p>
+          </article>
+        ))}
+      </div>
+      <div class="mt-8">
+        <a href="/quote" class="btn-primary">Quote a European shipment</a>
+      </div>
+    </div>
   </section>
 
   <!-- ====== Recent runs grid ====== -->

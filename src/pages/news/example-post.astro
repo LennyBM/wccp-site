@@ -76,7 +76,20 @@ const mentionedProducts = [
   description={post.description}
   schema="Article"
   schemaData={schemaData}
+  noindex={true}
 >
+  <!-- Sample-post banner — replace this post with real content at launch -->
+  <div class="bg-yellow text-navy border-b-4 border-navy">
+    <div class="container-wccp py-3 text-sm md:text-base font-semibold flex items-center gap-3">
+      <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="12" y1="8" x2="12" y2="13" stroke-linecap="round"/>
+        <line x1="12" y1="16" x2="12" y2="16.01" stroke-linecap="round"/>
+      </svg>
+      <span>This is a sample post — real news posts will replace it after launch. Use it as a template for layout, tone and length.</span>
+    </div>
+  </div>
+
   <!-- Hero / header -->
   <section class="bg-navy text-white">
     <div class="container-wccp py-16 md:py-20">

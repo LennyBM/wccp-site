@@ -1,14 +1,20 @@
-/* Self-hosted variable fonts (replaces Google Fonts request chain) */
-@import "@fontsource-variable/inter/index.css";
+/* Self-hosted variable fonts (replaces Google Fonts request chain).
+   Inter — narrowed to weight-only axis (drops opsz). Body text doesn't
+   benefit from optical sizing and the smaller payload pays for itself
+   on first paint. font-display:swap is preserved by the upstream package. */
+@import "@fontsource-variable/inter/wght.css";
 
 /* Newsreader — solid editorial serif (NYT-coded). Heritage-industrial fit
-   for a 55-year precast concrete brand. Fraunces remains in the stack as a
-   transitional fallback while the CDN warms. */
-@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap');
+   for a 55-year precast concrete brand. Self-hosted via @fontsource — no
+   Google Fonts CDN request chain (faster + GDPR-clean for EU visitors). */
+@import "@fontsource-variable/newsreader/standard.css";
+@import "@fontsource-variable/newsreader/standard-italic.css";
 
-/* DM Sans 700/800 — heavy industrial sans used inside the brandmark lockup
-   (Logo.astro). Confident, geometric, NOT generic body sans. */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700;800&display=swap');
+/* DM Sans 500/700/800 — heavy industrial sans used inside the brandmark lockup
+   (Logo.astro). Self-hosted to avoid Google Fonts CDN. */
+@import "@fontsource/dm-sans/500.css";
+@import "@fontsource/dm-sans/700.css";
+@import "@fontsource/dm-sans/800.css";
 
 @tailwind base;
 @tailwind components;
@@ -240,10 +246,14 @@
   .reveal-stagger.is-visible > *:nth-child(7) { animation-delay: 480ms; }
   .reveal-stagger.is-visible > *:nth-child(8) { animation-delay: 560ms; }
 
-  /* Marquee track */
+  /* Marquee track. Hover pauses the scroll so users can read each badge. */
   .marquee-track {
     @apply flex gap-12 animate-marquee whitespace-nowrap;
     width: max-content;
+  }
+  .marquee-track:hover,
+  .marquee-track:focus-within {
+    animation-play-state: paused;
   }
 
   /* Shimmer placeholder */
