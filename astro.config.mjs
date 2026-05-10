@@ -44,7 +44,10 @@ export default defineConfig({
     inlineStylesheets: 'auto',
   },
   prefetch: {
-    prefetchAll: true,
-    defaultStrategy: 'viewport',
+    // Don't prefetch every link in viewport — that keeps the browser busy
+    // forever and breaks tooling that waits for document_idle (e.g. headless
+    // screenshot capture). Hover/touch prefetch is still on by default.
+    prefetchAll: false,
+    defaultStrategy: 'hover',
   },
 });
