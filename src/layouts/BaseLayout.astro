@@ -44,26 +44,16 @@ const {
   whatsappContext,
 } = Astro.props;
 
-// Pick a sensible per-route OG card if the caller didn't override `image`.
-// Falls back to /og-default.png. All paths point at assets that exist in
-// public/og/ — purpose-built 1200x630 cards.
+// Pick the OG card for this route. If a per-slug card exists at
+// public/og/{slug}.png we use it; otherwise every page falls back to the
+// branded /og/home.png hero card. Callers can still override via `image`.
 const ogImageFromPath = (path: string): string => {
   const p = path !== '/' && path.endsWith('/') ? path.slice(0, -1) : path;
-
-  const staticMap: Record<string, string> = {
-    '/':                       '/og/home.png',
-    '/sectors/agricultural':   '/og/sectors-agricultural.png',
-    '/sectors/civils':         '/og/sectors-civils.png',
-    '/sectors/bespoke':        '/og/sectors-bespoke.png',
-    '/products':               '/og/products.png',
-  };
-  if (staticMap[p]) return staticMap[p];
-
   const slug = p.split('/').pop();
   if (slug && ogFiles.has(`${slug}.png`)) {
     return `/og/${slug}.png`;
   }
-  return '/og-default.png';
+  return '/og/home.png';
 };
 
 const resolvedImage = image ?? ogImageFromPath(Astro.url.pathname);

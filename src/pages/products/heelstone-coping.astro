@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
@@ -8,12 +8,12 @@ import ProductGallery from '@/components/ProductGallery.astro';
 import { site } from '@/config/site';
 import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
 
-// Two variants from the WCCP yard — the classic profile and the new comfort profile.
+// Two variants from the WCCP yard â€” the classic profile and the new comfort profile.
 const variants = [
   {
     name: 'Classic Heel Stone Coping',
     profile: 'Square-shoulder profile',
-    use: 'Fast and efficient formation of sand bed and loose bedding cubicles — eliminates the need to shutter-form your own heelstones, saving labour and materials',
+    use: 'Fast and efficient formation of sand bed and loose bedding cubicles â€” eliminates the need to shutter-form your own heelstones, saving labour and materials',
     option: 'Available with a precast lip which can be used for screeding off for new passageways',
   },
   {
@@ -31,10 +31,10 @@ const specs = [
   { property: 'Weight', value: '210 kg' },
   { property: 'Concrete grade', value: 'C40/50 sulphate-resisting (BS 8500-1:2023)' },
   { property: 'Lifting eyes', value: 'Cast-in, dual-pick' },
-  { property: 'Anchor / joining-pin holes', value: 'Pre-cast — no on-site drilling' },
+  { property: 'Anchor / joining-pin holes', value: 'Pre-cast â€” no on-site drilling' },
   { property: 'Optional front lip (Classic)', value: 'Precast screeding lip for forming new passageways' },
   { property: 'Variants', value: 'Classic profile or new Comfort profile' },
-  { property: 'Compatible bed', value: '4m Cubicle Base · 4000 × 2056 × 75 mm · 1639 kg · 223mm heelstone integrated' },
+  { property: 'Compatible bed', value: '4m Cubicle Base Â· 4000 Ã— 2056 Ã— 75 mm Â· 1639 kg Â· 223mm heelstone integrated' },
 ];
 
 const applications = [
@@ -47,23 +47,23 @@ const applications = [
 ];
 
 const related = [
-  { href: '/products/cattle-cubicles', label: 'Cattle Cubicles', meta: 'Fixed + portable · AHDB 2024' },
-  { href: '/products/cubicle-end-walls', label: 'Cubicle End Walls', meta: 'Single + double row · trough option' },
-  { href: '/products/water-troughs', label: 'Water Troughs', meta: 'Frost-rated · 200–800L' },
-  { href: '/products/feed-troughs', label: 'Feed Troughs', meta: 'Reinforced · up to 2.4m lengths' },
+  { href: '/products/cattle-cubicles', label: 'Cattle Cubicles', meta: 'Fixed + portable Â· AHDB 2024' },
+  { href: '/products/cubicle-end-walls', label: 'Cubicle End Walls', meta: 'Single + double row Â· trough option' },
+  { href: '/products/water-troughs', label: 'Water Troughs', meta: 'Frost-rated Â· 200â€“800L' },
+  { href: '/products/feed-troughs', label: 'Feed Troughs', meta: 'Reinforced Â· up to 2.4m lengths' },
 ];
 
 const faqs = [
-  { q: 'What does the heelstone do?', a: "The heelstone is the precast kerb that runs along the rear edge of the cubicle bed — between the slatted floor (or scrape passage) and the bedding surface. It does three jobs: it stops bedding (mat, mattress, sand or sawdust) being kicked out into the slurry, it gives the cow a clean square edge to step over so her heels don't catch, and it anchors the rear cubicle frame. Get the height wrong and you get heel injuries; get the line wrong and the cow lies skewed. Our 3000×240×230mm units cast it square, true and to the same C40/50 spec as the bed." },
-  { q: 'How does the screeding lip work?', a: 'The optional 50×50mm front lip is a small upstand cast onto the leading edge of the heelstone. When you screed the cubicle bed concrete behind it, the lip becomes the formwork — you screed the bed level off the top of the lip, get a clean joint, and end up with a slightly raised front edge that helps grip bedding mortar. It is a five-pound feature that saves an hour of timber shuttering on every cubicle row. Specify it at order time; the standard heelstone ships without.' },
-  { q: 'Can I use existing cubicle frames?', a: 'Usually yes. The cast-in anchor and joining-pin holes accept the standard UK cubicle frame fixings (cantilever and through-bolt patterns), and the 230mm height matches the AHDB recommendation for the rear-of-bed step. Send us a photo of the existing frame foot or the manufacturer drawing and we will confirm before you order — there are a couple of older Wilson and Mayo patterns that need a packer plate, and we cast those to spec on the same lead time.' },
-  { q: 'What concrete grade?', a: 'C40/50 sulphate-resisting to BS 8500-1:2023, mix designed for the dairy environment — same spec as the matching 4-metre cubicle base. The dairy slurry environment is XA2/XA3 chemically aggressive, so a sulphate-resisting cement is the right call. We do not use a "general purpose" mix on heelstones — they are right at the splash line and would not stand up to it.' },
-  { q: 'Lead time?', a: '1 to 2 weeks from order confirmation for catalogue heelstones — they are a quick-turn product because the mould is set up most weeks. Bespoke lengths or non-standard fixing patterns run 2 to 3 weeks. We deliver on our own HIAB fleet across Devon, Cornwall, Somerset and Dorset same-week, and on planned UK runs in 2 weeks once the units are cast.' },
+  { q: 'What does the heelstone do?', a: "The heelstone is the precast kerb that runs along the rear edge of the cubicle bed â€” between the slatted floor (or scrape passage) and the bedding surface. It does three jobs: it stops bedding (mat, mattress, sand or sawdust) being kicked out into the slurry, it gives the cow a clean square edge to step over so her heels don't catch, and it anchors the rear cubicle frame. Get the height wrong and you get heel injuries; get the line wrong and the cow lies skewed. Our 3000Ã—240Ã—230mm units cast it square, true and to the same C40/50 spec as the bed." },
+  { q: 'How does the screeding lip work?', a: 'The optional 50Ã—50mm front lip is a small upstand cast onto the leading edge of the heelstone. When you screed the cubicle bed concrete behind it, the lip becomes the formwork â€” you screed the bed level off the top of the lip, get a clean joint, and end up with a slightly raised front edge that helps grip bedding mortar. It is a five-pound feature that saves an hour of timber shuttering on every cubicle row. Specify it at order time; the standard heelstone ships without.' },
+  { q: 'Can I use existing cubicle frames?', a: 'Usually yes. The cast-in anchor and joining-pin holes accept the standard UK cubicle frame fixings (cantilever and through-bolt patterns), and the 230mm height matches the AHDB recommendation for the rear-of-bed step. Send us a photo of the existing frame foot or the manufacturer drawing and we will confirm before you order â€” there are a couple of older Wilson and Mayo patterns that need a packer plate, and we cast those to spec on the same lead time.' },
+  { q: 'What concrete grade?', a: 'C40/50 sulphate-resisting to BS 8500-1:2023, mix designed for the dairy environment â€” same spec as the matching 4-metre cubicle base. The dairy slurry environment is XA2/XA3 chemically aggressive, so a sulphate-resisting cement is the right call. We do not use a "general purpose" mix on heelstones â€” they are right at the splash line and would not stand up to it.' },
+  { q: 'Lead time?', a: '1 to 2 weeks from order confirmation for catalogue heelstones â€” they are a quick-turn product because the mould is set up most weeks. Bespoke lengths or non-standard fixing patterns run 2 to 3 weeks. We deliver on our own HIAB fleet across Devon, Cornwall, Somerset and Dorset same-week, and on planned UK runs in 2 weeks once the units are cast.' },
 ];
 
 const productSchema = {
   name: 'Precast Heelstone Coping',
-  description: 'Precast heelstone coping for cattle cubicle beds. 3000×240×230mm units, 210kg, with optional 50×50mm front screeding lip. Cast-in lifting eyes, anchor and joining-pin holes. Compatible with WCCP 4m cubicle bases.',
+  description: 'Precast heelstone coping for cattle cubicle beds. 3000Ã—240Ã—230mm units, 210kg, with optional 50Ã—50mm front screeding lip. Cast-in lifting eyes, anchor and joining-pin holes. Compatible with WCCP 4m cubicle bases.',
   brand: { '@type': 'Brand', name: site.name },
   manufacturer: { '@type': 'Organization', name: site.name },
   category: 'Precast concrete cubicle kerb',
@@ -81,10 +81,10 @@ const productSchema = {
     { '@type': 'PropertyValue', name: 'Width', value: '240 mm' },
     { '@type': 'PropertyValue', name: 'Height', value: '230 mm' },
     { '@type': 'PropertyValue', name: 'Weight', value: '210 kg per unit' },
-    { '@type': 'PropertyValue', name: 'Optional feature', value: '50 × 50 mm front screeding lip' },
+    { '@type': 'PropertyValue', name: 'Optional feature', value: '50 Ã— 50 mm front screeding lip' },
     { '@type': 'PropertyValue', name: 'Cast-in details', value: 'Lifting eyes + anchor + joining-pin holes' },
-    { '@type': 'PropertyValue', name: 'Compatible product', value: '4m Cubicle Base (4000×2056×75mm, 1639kg)' },
-    { '@type': 'PropertyValue', name: 'Lead time', value: '1–2 weeks catalogue' },
+    { '@type': 'PropertyValue', name: 'Compatible product', value: '4m Cubicle Base (4000Ã—2056Ã—75mm, 1639kg)' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '1â€“2 weeks catalogue' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
   ],
   offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
@@ -102,9 +102,9 @@ const faqSchema = {
 ---
 
 <BaseLayout
-  title="Heelstone Coping — precast cubicle bed kerb"
-  description="Precast heelstone coping for cattle cubicle beds. 3000×240×230mm units, 210kg, with optional 50×50mm front screeding lip. Cast-in lifting eyes, anchor and joining-pin holes."
-  image="/og/heelstone-coping.png"
+  title="Heelstone Coping â€” precast cubicle bed kerb"
+  description="Precast heelstone coping for cattle cubicle beds. 3000Ã—240Ã—230mm units, 210kg, with optional 50Ã—50mm front screeding lip. Cast-in lifting eyes, anchor and joining-pin holes."
+  image="/og/home.png"
   schema="Product"
   schemaData={productSchema}
   whatsappContext="Heelstone Coping"
@@ -117,7 +117,7 @@ const faqSchema = {
     <div class="container-wccp py-16 md:py-20">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <p class="eyebrow text-yellow mb-4">Agricultural · cubicle housing</p>
+          <p class="eyebrow text-yellow mb-4">Agricultural Â· cubicle housing</p>
           <h1 class="font-display text-display-xl text-white mb-4">Heelstone Coping.</h1>
           <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">
             3-metre kerb. 210 kg. Outlives the cubicle.
@@ -131,16 +131,16 @@ const faqSchema = {
             bespoke lengths and non-standard fixings to spec.
           </blockquote>
           <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
-            Cast square, true, and to the same C40/50 spec as the bed. 3000 × 240 × 230 mm.
+            Cast square, true, and to the same C40/50 spec as the bed. 3000 Ã— 240 Ã— 230 mm.
             Cast-in lifting eyes, anchor and joining-pin holes pre-formed.
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
-            <li class="flex gap-2"><span class="text-yellow">·</span> 3000 mm length</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 240 × 230 mm section</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 210 kg per unit</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> C40/50 SR mix</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Optional 50 × 50 lip</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 1–2 week lead</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 3000 mm length</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 240 Ã— 230 mm section</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 210 kg per unit</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> C40/50 SR mix</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> Optional 50 Ã— 50 lip</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 1â€“2 week lead</li>
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Heelstone+Coping" class="btn-primary">Configure a quote</a>
@@ -152,7 +152,7 @@ const faqSchema = {
         <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
           <img
             src="/images/products/cubicles/wccp-cubicles-heel-stone-coping.jpg"
-            alt="Precast concrete heelstone coping for cattle cubicle beds — West Country Concrete Products, Devon"
+            alt="Precast concrete heelstone coping for cattle cubicle beds â€” West Country Concrete Products, Devon"
             class="w-full h-full object-cover"
             loading="eager"
             decoding="async"
@@ -168,7 +168,7 @@ const faqSchema = {
       <p class="eyebrow text-cast mb-3">Specification</p>
       <h2 class="font-display text-display-lg mb-4">One unit, every cubicle row.</h2>
       <p class="text-cast-700 text-lg">
-        Two profile options — Classic and the new Comfort. Both are 3 metres long with
+        Two profile options â€” Classic and the new Comfort. Both are 3 metres long with
         cast-in fixings; the optional screeding lip on the Classic forms new passageways.
       </p>
     </div>
@@ -204,7 +204,7 @@ const faqSchema = {
     </div>
 
     <p class="text-cast text-sm mt-4">
-      Pairs with the WCCP 4-Metre Cubicle Base (4000 × 2056 × 75 mm, 1639 kg, 223mm integrated heelstone,
+      Pairs with the WCCP 4-Metre Cubicle Base (4000 Ã— 2056 Ã— 75 mm, 1639 kg, 223mm integrated heelstone,
       cast-in brisket fixings, adjustable brisket bracket). Send us the cubicle frame manufacturer drawing
       and we will confirm the anchor pattern before you order.
     </p>
@@ -231,12 +231,12 @@ const faqSchema = {
           <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
           <p class="text-cast-700 text-lg leading-relaxed mb-6">
             A small, unfancy product that quietly determines whether your cubicle row works.
-            Used on every cubicle housing job we ship — the only question is how many.
+            Used on every cubicle housing job we ship â€” the only question is how many.
           </p>
           <ul class="space-y-3">
             {applications.map((a) => (
               <li class="flex gap-3 text-cast-700 leading-relaxed">
-                <span class="text-ember font-bold mt-1">·</span>
+                <span class="text-ember font-bold mt-1">Â·</span>
                 <span>{a}</span>
               </li>
             ))}
@@ -249,23 +249,23 @@ const faqSchema = {
           <dl class="space-y-4 text-sm">
             <div>
               <dt class="font-bold text-navy">AHDB Dairy 2024</dt>
-              <dd class="text-cast">Cubicle dimensions guide — heelstone height and rear-of-bed step recommendations.</dd>
+              <dd class="text-cast">Cubicle dimensions guide â€” heelstone height and rear-of-bed step recommendations.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BS 5502-22:2003</dt>
-              <dd class="text-cast">Buildings and structures for agriculture — cattle housing. Loadings and detailing.</dd>
+              <dd class="text-cast">Buildings and structures for agriculture â€” cattle housing. Loadings and detailing.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BS 8500-1:2023</dt>
-              <dd class="text-cast">Concrete specification — C40/50 sulphate-resisting mix designed for the dairy splash line.</dd>
+              <dd class="text-cast">Concrete specification â€” C40/50 sulphate-resisting mix designed for the dairy splash line.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BS EN 13369</dt>
-              <dd class="text-cast">Common rules for precast concrete products — factory production control.</dd>
+              <dd class="text-cast">Common rules for precast concrete products â€” factory production control.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">DEFRA Code of Recommendations</dt>
-              <dd class="text-cast">Welfare of livestock — cattle. Lying-comfort and step geometry guidance.</dd>
+              <dd class="text-cast">Welfare of livestock â€” cattle. Lying-comfort and step geometry guidance.</dd>
             </div>
           </dl>
         </div>
@@ -279,7 +279,7 @@ const faqSchema = {
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
           <p class="eyebrow text-navy mb-2">Order your heelstone run</p>
-          <h2 class="font-display text-display-md">Tell us cubicle count and frame type — we will quote inside 24 hours.</h2>
+          <h2 class="font-display text-display-md">Tell us cubicle count and frame type â€” we will quote inside 24 hours.</h2>
         </div>
         <div class="flex flex-wrap gap-3 shrink-0">
           <a href="/quote?product=Heelstone+Coping" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
@@ -338,11 +338,11 @@ const faqSchema = {
       defaultMode="supply"
       supply={{
         price: 'Bespoke quote',
-        leadTime: '1–2 weeks',
+        leadTime: '1â€“2 weeks',
         includes: [
-          'Cast 3000 × 240 × 230mm units to BS 8500-1:2023',
+          'Cast 3000 Ã— 240 Ã— 230mm units to BS 8500-1:2023',
           'Cast-in lifting eyes + anchor / joining-pin holes',
-          'Optional 50 × 50mm screeding lip on request',
+          'Optional 50 Ã— 50mm screeding lip on request',
           'Delivery on our HIAB to your slab',
         ],
         excludes: [
@@ -350,7 +350,7 @@ const faqSchema = {
           'On-site setting and bedding-mortar',
         ],
       }}
-      note=". Bespoke lengths and non-standard fixing patterns priced individually — send the cubicle row layout and we'll come back within a working day."
+      note=". Bespoke lengths and non-standard fixing patterns priced individually â€” send the cubicle row layout and we'll come back within a working day."
     />
   </section>
 

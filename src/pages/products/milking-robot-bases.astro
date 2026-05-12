@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
@@ -18,28 +18,28 @@ const tocSections = [
   { id: 'downloads', label: 'Downloads' },
 ];
 
-// Lely A3/A4 catalogue kit — sump, surround and machine base. Machine base is
+// Lely A3/A4 catalogue kit â€” sump, surround and machine base. Machine base is
 // handed (left or right). Total kit approximately 2,800 kg.
 const lelySpecs = [
   { component: 'Sump', detail: 'Integrated V-channel and sump with socket connections for 110mm drain pipes' },
   { component: 'Surround', detail: 'Smooth-cast surround that frames the machine base' },
-  { component: 'Machine base', detail: 'Handed (left or right) — specify when ordering' },
+  { component: 'Machine base', detail: 'Handed (left or right) â€” specify when ordering' },
   { component: 'Total kit weight', detail: 'Approximately 2,800 kg' },
 ];
 
-// DeLaval VMS — integrated drainage and pipework cast in.
+// DeLaval VMS â€” integrated drainage and pipework cast in.
 const delavalFeatures = [
   'Integrated V-shape channel, sump and drainage pipework cast in',
   'Integrated drain gully on clean-room side runs into the sump',
-  'Push-fit socket connections for 110mm soil pipe to three sides — flexibility for the drain run',
-  '50mm waste connector on cleanroom side for machine washout — runs into V-channel and sump',
+  'Push-fit socket connections for 110mm soil pipe to three sides â€” flexibility for the drain run',
+  '50mm waste connector on cleanroom side for machine washout â€” runs into V-channel and sump',
   'Drain gully also functions as the guide for finishing the clean-room floor at 300mm below outside floor level',
-  'VMS machine fixes 75mm below outside floor level — keeps the machine floor level with the floor outside',
-  'Raised edge offset from the machine on the cow-shed side — easy angle-bracket fixing of the machine base',
+  'VMS machine fixes 75mm below outside floor level â€” keeps the machine floor level with the floor outside',
+  'Raised edge offset from the machine on the cow-shed side â€” easy angle-bracket fixing of the machine base',
   'Once the VMS machine is in place the gap between machine and edge is grouted in',
 ];
 
-// Modern model bases — cast to manufacturer's published install drawing.
+// Modern model bases â€” cast to manufacturer's published install drawing.
 const specs = [
   { model: 'Lely Astronaut A3 / A4', size: 'Sump + surround + machine base', weight: '~2,800 kg total kit', drainage: '110mm sockets', use: 'Handed kit (left or right)' },
   { model: 'Lely Astronaut A5 / A5 Next', size: 'Cast to manufacturer drawing', weight: 'On application', drainage: 'Per Lely install pack', use: 'Single-box free-cow-traffic herds' },
@@ -49,7 +49,7 @@ const specs = [
 ];
 
 const applications = [
-  'New-build robotic milking parlours — single and multi-box',
+  'New-build robotic milking parlours â€” single and multi-box',
   'Conversions from rotary or herringbone to robot',
   'Replacement bases on first-generation robot upgrades',
   'Multi-box dairy expansions on grant-funded units',
@@ -59,18 +59,18 @@ const applications = [
 ];
 
 const related = [
-  { href: '/products/clean-rooms', label: 'Clean Rooms', meta: 'Tanked floor gully · machine pit' },
+  { href: '/products/clean-rooms', label: 'Clean Rooms', meta: 'Tanked floor gully Â· machine pit' },
   { href: '/products/cattle-cubicles', label: 'Cattle Cubicles', meta: 'AHDB 2024 sized' },
   { href: '/products/water-troughs', label: 'Water Troughs', meta: 'Single + double row' },
   { href: '/products/slurry-storage', label: 'Slurry Storage', meta: 'SSAFO 2018-compliant' },
 ];
 
 const faqs = [
-  { q: 'Which robots do you cast bases for?', a: 'DeLaval VMS V300 and V310, Lely Astronaut A5 and A5 Next, GEA DairyRobot R9500 and BouMatic MR-S1 are catalogue. We hold each manufacturer\'s installation drawing on file and cast the base — anchors, drainage, conduits — to their published tolerance.' },
+  { q: 'Which robots do you cast bases for?', a: 'DeLaval VMS V300 and V310, Lely Astronaut A5 and A5 Next, GEA DairyRobot R9500 and BouMatic MR-S1 are catalogue. We hold each manufacturer\'s installation drawing on file and cast the base â€” anchors, drainage, conduits â€” to their published tolerance.' },
   { q: 'How do you handle vibration isolation?', a: 'The base is cast as a separate slab, isolated from the building floor by a 25mm flexible joint and bedded on a 100mm compacted MOT Type 1. The robot manufacturer specifies the isolation detail; we cast it in. Cuts vibration transmission to neighbouring beds and stops the robot logging false fault codes.' },
-  { q: 'Drainage — what do you supply?', a: 'A 110mm uPVC outlet cast through the base with the fall pre-formed for the box layout. Centre fall for VMS, offset for Astronaut, twin fall for GEA. We pour to the millimetre — robot makers are precise about this and a wonky base means a flooded box.' },
-  { q: 'Can you supply a clean room base too?', a: 'Yes — we cast the cleanroom slab and the robot base as a matched set, with a tanked floor gully separating them. See our clean-rooms page for the full spec.' },
-  { q: 'What is the lead time?', a: 'Standard robot bases run 3 to 4 weeks from drawing sign-off. We need the manufacturer\'s install drawing or commissioning pack before we cast — book the engineer in early so we are not waiting for it.' },
+  { q: 'Drainage â€” what do you supply?', a: 'A 110mm uPVC outlet cast through the base with the fall pre-formed for the box layout. Centre fall for VMS, offset for Astronaut, twin fall for GEA. We pour to the millimetre â€” robot makers are precise about this and a wonky base means a flooded box.' },
+  { q: 'Can you supply a clean room base too?', a: 'Yes â€” we cast the cleanroom slab and the robot base as a matched set, with a tanked floor gully separating them. See our clean-rooms page for the full spec.' },
+  { q: 'What is the lead time?', a: 'Standard robot bases run 3 to 4 weeks from drawing sign-off. We need the manufacturer\'s install drawing or commissioning pack before we cast â€” book the engineer in early so we are not waiting for it.' },
 ];
 
 const productSchema = {
@@ -93,7 +93,7 @@ const productSchema = {
     { '@type': 'PropertyValue', name: 'Compatible robots', value: 'DeLaval VMS V300/V310, Lely A5/A5 Next, GEA R9500, BouMatic MR-S1' },
     { '@type': 'PropertyValue', name: 'Vibration isolation', value: '25mm flexible joint, 100mm MOT Type 1 sub-base' },
     { '@type': 'PropertyValue', name: 'Drainage', value: '110mm uPVC outlet, manufacturer-specific fall' },
-    { '@type': 'PropertyValue', name: 'Lead time', value: '3–4 weeks from drawing sign-off' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '3â€“4 weeks from drawing sign-off' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
   ],
   offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
@@ -107,9 +107,9 @@ const faqSchema = {
 ---
 
 <BaseLayout
-  title="Milking Robot Bases — DeLaval · Lely · GEA · BouMatic"
+  title="Milking Robot Bases â€” DeLaval Â· Lely Â· GEA Â· BouMatic"
   description="Precast milking robot bases. DeLaval VMS V300/V310, Lely Astronaut A5/A5 Next, GEA R9500, BouMatic. Vibration isolation, cast-in drainage, C40/50."
-  image="/og/milking-robot-bases.png"
+  image="/og/home.png"
   schema="Product"
   schemaData={productSchema}
   whatsappContext="Milking Robot Bases"
@@ -122,7 +122,7 @@ const faqSchema = {
     <div class="container-wccp py-16 md:py-20">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <p class="eyebrow text-yellow mb-4">Agricultural · robotic dairy</p>
+          <p class="eyebrow text-yellow mb-4">Agricultural Â· robotic dairy</p>
           <h1 class="font-display text-display-xl text-white mb-4">Milking Robot Bases.</h1>
           <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">DeLaval, Lely, GEA. Within 2mm. Robot lands and runs.</p>
           <p class="text-lg lg:text-xl text-cast leading-relaxed font-medium text-white/95 mb-6 max-w-xl">
@@ -142,12 +142,12 @@ const faqSchema = {
             millimetre. C40/50 concrete, cast in our Holsworthy yard.
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
-            <li class="flex gap-2"><span class="text-yellow">·</span> DeLaval / Lely / GEA</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> BouMatic compatible</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Vibration isolated</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Cast-in drainage</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> C40/50 mix</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 3–4 week lead</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> DeLaval / Lely / GEA</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> BouMatic compatible</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> Vibration isolated</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> Cast-in drainage</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> C40/50 mix</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 3â€“4 week lead</li>
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Milking%20Robot%20Bases" class="btn-primary">Configure a quote</a>
@@ -156,7 +156,7 @@ const faqSchema = {
           </div>
         </div>
         <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
-          <img src="/images/products/lely-milking-robot-bases/wccp-lely-milking-robot-bases-lely-a4-sump-base-and-surround.png" alt="Lely milking robot precast concrete base and surround dimensions — West Country Concrete Products" class="w-full h-full object-cover" loading="eager" decoding="async" />
+          <img src="/images/products/lely-milking-robot-bases/wccp-lely-milking-robot-bases-lely-a4-sump-base-and-surround.png" alt="Lely milking robot precast concrete base and surround dimensions â€” West Country Concrete Products" class="w-full h-full object-cover" loading="eager" decoding="async" />
         </div>
       </div>
     </div>
@@ -199,7 +199,7 @@ const faqSchema = {
         <h3 class="font-display text-2xl font-bold text-navy mb-4">Sump, surround and machine base.</h3>
         <p class="text-cast-700 leading-relaxed mb-4">
           The kit we supply for the Lely A3 and A4 milking robots consists of a sump, a
-          surround and a machine base. The machine base is handed — there are different
+          surround and a machine base. The machine base is handed â€” there are different
           left-handed and right-handed versions.
         </p>
         <dl class="space-y-2 text-sm">
@@ -207,10 +207,10 @@ const faqSchema = {
         </dl>
       </div>
       <div class="card p-6">
-        <p class="eyebrow text-cast mb-3">DeLaval VMS — built-in features</p>
+        <p class="eyebrow text-cast mb-3">DeLaval VMS â€” built-in features</p>
         <h3 class="font-display text-2xl font-bold text-navy mb-4">Drainage and pipework cast in.</h3>
         <ul class="space-y-2 text-sm text-cast-700">
-          {delavalFeatures.map((f) => (<li class="flex gap-2"><span class="text-ember font-bold mt-0.5">·</span><span>{f}</span></li>))}
+          {delavalFeatures.map((f) => (<li class="flex gap-2"><span class="text-ember font-bold mt-0.5">Â·</span><span>{f}</span></li>))}
         </ul>
       </div>
     </div>
@@ -225,9 +225,9 @@ const faqSchema = {
       { src: '/images/products/lely-milking-robot-bases/wccp-lely-milking-robot-bases-lely-a4-sump.png', alt: 'Precast concrete Lely A4 milking robot sump base cast by West Country Concrete Products, Devon', caption: 'Lely A4 sump (cast)' },
       { src: '/images/products/lely-milking-robot-bases/wccp-lely-milking-robot-bases-a4-sump-base-and-surround-dims.png', alt: 'Dimensioned drawing of the Lely A4 precast concrete sump base and surround by WCCP Devon', caption: 'Lely A4 base + surround dims' },
       { src: '/images/products/lely-milking-robot-bases/wccp-lely-milking-robot-bases-a4-sump-dims.png', alt: 'Dimensioned drawing of the Lely A4 precast concrete milking-robot sump by WCCP Devon', caption: 'Lely A4 sump dimensions' },
-      { src: '/images/products/delaval-vms-robot-bases/wccp-delaval-vms-robot-bases-vms-base-perspective-view-with-main-dimensions.png', alt: 'Perspective drawing of the WCCP precast concrete DeLaval VMS robot base with main dimensions and integrated V-channel and sump, Devon', caption: 'DeLaval VMS base · perspective + dims' },
-      { src: '/images/products/delaval-vms-robot-bases/wccp-delaval-vms-robot-bases-20180830-080148.jpg', alt: 'Cast precast concrete DeLaval VMS robot base in the WCCP yard at Holsworthy showing the integrated drainage gully and sump, Devon', caption: 'DeLaval VMS base · cast in the yard' },
-      { src: '/images/products/delaval-vms-robot-bases/wccp-delaval-vms-robot-bases-20180830-080203.jpg', alt: 'Top view of cast precast concrete DeLaval VMS robot base showing socket connections for 110mm soil pipe, Devon', caption: 'DeLaval VMS · 110mm pipe sockets' },
+      { src: '/images/products/delaval-vms-robot-bases/wccp-delaval-vms-robot-bases-vms-base-perspective-view-with-main-dimensions.png', alt: 'Perspective drawing of the WCCP precast concrete DeLaval VMS robot base with main dimensions and integrated V-channel and sump, Devon', caption: 'DeLaval VMS base Â· perspective + dims' },
+      { src: '/images/products/delaval-vms-robot-bases/wccp-delaval-vms-robot-bases-20180830-080148.jpg', alt: 'Cast precast concrete DeLaval VMS robot base in the WCCP yard at Holsworthy showing the integrated drainage gully and sump, Devon', caption: 'DeLaval VMS base Â· cast in the yard' },
+      { src: '/images/products/delaval-vms-robot-bases/wccp-delaval-vms-robot-bases-20180830-080203.jpg', alt: 'Top view of cast precast concrete DeLaval VMS robot base showing socket connections for 110mm soil pipe, Devon', caption: 'DeLaval VMS Â· 110mm pipe sockets' },
     ]}
   />
 
@@ -240,7 +240,7 @@ const faqSchema = {
           <p class="text-cast-700 text-lg leading-relaxed mb-6">From a single-box first install to a six-box expansion, we cast each base to the manufacturer\'s anchor pattern and drainage detail.</p>
           <ul class="space-y-3">
             {applications.map((a) => (
-              <li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">·</span><span>{a}</span></li>
+              <li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">Â·</span><span>{a}</span></li>
             ))}
           </ul>
         </div>
@@ -248,11 +248,11 @@ const faqSchema = {
           <p class="eyebrow text-cast mb-3">Standards & references</p>
           <h3 class="font-display text-2xl font-bold text-navy mb-4">Cast to manufacturer and British standards.</h3>
           <dl class="space-y-4 text-sm">
-            <div><dt class="font-bold text-navy">BS EN 13369</dt><dd class="text-cast">Common rules for precast concrete — factory production control.</dd></div>
-            <div><dt class="font-bold text-navy">BS 8500-1:2023</dt><dd class="text-cast">Concrete spec — C40/50 designed mix for dairy environments.</dd></div>
-            <div><dt class="font-bold text-navy">BS 5502-22:2003</dt><dd class="text-cast">Agricultural buildings — cattle housing loadings.</dd></div>
+            <div><dt class="font-bold text-navy">BS EN 13369</dt><dd class="text-cast">Common rules for precast concrete â€” factory production control.</dd></div>
+            <div><dt class="font-bold text-navy">BS 8500-1:2023</dt><dd class="text-cast">Concrete spec â€” C40/50 designed mix for dairy environments.</dd></div>
+            <div><dt class="font-bold text-navy">BS 5502-22:2003</dt><dd class="text-cast">Agricultural buildings â€” cattle housing loadings.</dd></div>
             <div><dt class="font-bold text-navy">Manufacturer install drawings</dt><dd class="text-cast">DeLaval, Lely, GEA and BouMatic published install tolerances followed exactly.</dd></div>
-            <div><dt class="font-bold text-navy">BS EN 1992 (Eurocode 2)</dt><dd class="text-cast">Structural design of concrete — base reinforcement designed in-house.</dd></div>
+            <div><dt class="font-bold text-navy">BS EN 1992 (Eurocode 2)</dt><dd class="text-cast">Structural design of concrete â€” base reinforcement designed in-house.</dd></div>
           </dl>
         </div>
       </div>
@@ -264,7 +264,7 @@ const faqSchema = {
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
           <p class="eyebrow text-navy mb-2">Configure your robot base</p>
-          <h2 class="font-display text-display-md">Tell us robot model, box count and shed dimensions — we will quote inside 24 hours.</h2>
+          <h2 class="font-display text-display-md">Tell us robot model, box count and shed dimensions â€” we will quote inside 24 hours.</h2>
         </div>
         <div class="flex flex-wrap gap-3 shrink-0">
           <a href="/quote?product=Milking%20Robot%20Bases" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
@@ -315,7 +315,7 @@ const faqSchema = {
       defaultMode="fitted"
       supply={{
         price: 'Bespoke quote',
-        leadTime: '3–4 weeks from drawing sign-off',
+        leadTime: '3â€“4 weeks from drawing sign-off',
         includes: [
           'Manufacturer-specific anchor pattern cast in',
           'Cast-in 110mm uPVC drainage with correct fall',
@@ -330,7 +330,7 @@ const faqSchema = {
       }}
       fitted={{
         price: 'Bespoke quote (incl. install)',
-        leadTime: '5–6 weeks (incl. site slot)',
+        leadTime: '5â€“6 weeks (incl. site slot)',
         includes: [
           'Everything in supply only',
           'Two-man install crew with HIAB and survey kit',
@@ -342,7 +342,7 @@ const faqSchema = {
           'Cleanroom slab and machine pit (priced separately)',
         ],
       }}
-      note="Multi-box and matched cleanroom packages priced individually — book the manufacturer engineer in early. Send the install drawing for the chosen robot brand and we will quote within a working day."
+      note="Multi-box and matched cleanroom packages priced individually â€” book the manufacturer engineer in early. Send the install drawing for the chosen robot brand and we will quote within a working day."
     />
   </section>
 

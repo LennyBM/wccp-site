@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
@@ -9,19 +9,19 @@ import { site } from '@/config/site';
 import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
 
 const specs = [
-  { product: '3 Metre Diagonal Slats', dimensions: '203 × 1220 × 3000 mm', weight: '1215 kg', notes: 'Covers 3m V-section channels; heavy-duty option' },
-  { product: "'V' Section Sand Channels", dimensions: '1180 × 1180 × 2950 mm', weight: '2310 kg', notes: 'Interlocking lip & rebate; narrow base for sand flow' },
-  { product: "Shallow 'V' Section", dimensions: '600 × 1180 × 2950 mm', weight: '1815 kg', notes: 'Interlocking lip & rebate' },
-  { product: "Straight Slats — 13'", dimensions: '3950 × 1200 × 180 mm', weight: '1380 kg', notes: '—' },
-  { product: 'Straight Slats — 12\'6"', dimensions: '3195 × 1200 × 180 mm', weight: '1330 kg', notes: '—' },
-  { product: 'Straight Slats — 10\'6"', dimensions: '3200 × 1160 × 200 mm', weight: '1485 kg', notes: '—' },
-  { product: 'Straight Slats — 8\'10"', dimensions: '2685 × 1200 × 180 mm', weight: '960 kg', notes: '—' },
-  { product: 'Straight Slats — 8\'6"', dimensions: '2585 × 1200 × 180 mm', weight: '924 kg', notes: '—' },
-  { product: 'Single Rib Hammer-Head Slats', dimensions: 'up to 10\'6" (3195mm) · 150mm thick · 130mm rib · 210mm head', weight: '~16 kg first ft + 13 kg/ft', notes: '40mm gaps between heads' },
+  { product: '3 Metre Diagonal Slats', dimensions: '203 Ã— 1220 Ã— 3000 mm', weight: '1215 kg', notes: 'Covers 3m V-section channels; heavy-duty option' },
+  { product: "'V' Section Sand Channels", dimensions: '1180 Ã— 1180 Ã— 2950 mm', weight: '2310 kg', notes: 'Interlocking lip & rebate; narrow base for sand flow' },
+  { product: "Shallow 'V' Section", dimensions: '600 Ã— 1180 Ã— 2950 mm', weight: '1815 kg', notes: 'Interlocking lip & rebate' },
+  { product: "Straight Slats â€” 13'", dimensions: '3950 Ã— 1200 Ã— 180 mm', weight: '1380 kg', notes: 'â€”' },
+  { product: 'Straight Slats â€” 12\'6"', dimensions: '3195 Ã— 1200 Ã— 180 mm', weight: '1330 kg', notes: 'â€”' },
+  { product: 'Straight Slats â€” 10\'6"', dimensions: '3200 Ã— 1160 Ã— 200 mm', weight: '1485 kg', notes: 'â€”' },
+  { product: 'Straight Slats â€” 8\'10"', dimensions: '2685 Ã— 1200 Ã— 180 mm', weight: '960 kg', notes: 'â€”' },
+  { product: 'Straight Slats â€” 8\'6"', dimensions: '2585 Ã— 1200 Ã— 180 mm', weight: '924 kg', notes: 'â€”' },
+  { product: 'Single Rib Hammer-Head Slats', dimensions: 'up to 10\'6" (3195mm) Â· 150mm thick Â· 130mm rib Â· 210mm head', weight: '~16 kg first ft + 13 kg/ft', notes: '40mm gaps between heads' },
 ];
 
 const applications = [
-  'Sand-bedded dairy housing — high-yielding herds',
+  'Sand-bedded dairy housing â€” high-yielding herds',
   'Robotic milking sheds where cow comfort drives lying time',
   'Cubicle housing retro-fits switching from mat to sand',
   'Mixed-bedding sheds (sand under cubicles, slurry under loafing)',
@@ -31,18 +31,18 @@ const applications = [
 ];
 
 const related = [
-  { href: '/products/slurry-channels', label: 'Slurry Channels', meta: 'Standard / midi / mini · 8ft slats' },
-  { href: '/products/cattle-cubicles', label: 'Cattle Cubicles', meta: 'AHDB 2024 · sand-bedding ready' },
+  { href: '/products/slurry-channels', label: 'Slurry Channels', meta: 'Standard / midi / mini Â· 8ft slats' },
+  { href: '/products/cattle-cubicles', label: 'Cattle Cubicles', meta: 'AHDB 2024 Â· sand-bedding ready' },
   { href: '/products/cubicle-end-walls', label: 'Cubicle End Walls', meta: 'Single + double row option' },
   { href: '/products/slurry-storage', label: 'Slurry Storage', meta: 'SSAFO 2018-compliant tanks' },
 ];
 
 const faqs = [
-  { q: 'Why a V section instead of a flat-bottomed channel?', a: 'Sand is the enemy of a flat-bottomed slurry channel — it settles in the corners, the slurry crusts on top, and within a season you have a silt problem that needs digging out. The V profile narrows at the base so the cross-sectional flow stays high even at low volumes, sand is carried along by the slurry instead of dropping out, and self-cleaning continues. It is the standard recommendation for sand-bedded dairy housing across the UK industry — AHDB and the AFBI in Northern Ireland have both published on this.' },
-  { q: "What's the recommended fall?", a: 'A 2% fall (1 in 50) along the run is the standard recommendation — enough to keep sand moving, gentle enough that the channel floor does not need stepping. On longer runs we will sometimes go to 1.5% over the first third and 2.5% over the last two thirds to compensate for the higher solids load near the reception pit. The install drawing we issue with delivery shows the falls for your specific shed layout.' },
-  { q: 'How does it pair with the diagonal slats?', a: "The 3 Metre Diagonal Slats are cast specifically to span the V-Section channels — same 1180mm width on the channel, same lifting-eye locations, same C40/50 SR mix. The diagonal pattern self-cleans as cattle walk and the gaps are sized to AHDB recommendations. Heavy-duty slats are available if you want to drive a feeder wagon over them. The slats from this range are interchangeable with our 8' diagonal slats from the standard slurry channel range, so you can run a mixed shed off common slat stock." },
-  { q: 'Lead time?', a: 'Standard V-section channels and matching 3m slats from catalogue ship in 3 to 5 weeks from order confirmation. The longer lead vs standard slurry channels is because the V-mould sees less use — we cast to order rather than from stock. Spring and autumn are our busiest seasons, so plan accordingly. We deliver on our own HIAB fleet across the South West same-week, and on planned UK runs in 2 to 3 weeks once the units are cast.' },
-  { q: 'Can you fit this around an existing parlour layout?', a: 'Yes — that is the bulk of our work. Send us a sketch or a survey of the existing slab, parlour pit, return passage and feed face, and we will set out the channel run and slat geometry to suit. The channels come in 1180×1180×2950mm units, and the shallow variant (600mm height) is useful where a 2950mm full-depth channel will not clear an existing foundation. Bespoke channel depths quoted on request.' },
+  { q: 'Why a V section instead of a flat-bottomed channel?', a: 'Sand is the enemy of a flat-bottomed slurry channel â€” it settles in the corners, the slurry crusts on top, and within a season you have a silt problem that needs digging out. The V profile narrows at the base so the cross-sectional flow stays high even at low volumes, sand is carried along by the slurry instead of dropping out, and self-cleaning continues. It is the standard recommendation for sand-bedded dairy housing across the UK industry â€” AHDB and the AFBI in Northern Ireland have both published on this.' },
+  { q: "What's the recommended fall?", a: 'A 2% fall (1 in 50) along the run is the standard recommendation â€” enough to keep sand moving, gentle enough that the channel floor does not need stepping. On longer runs we will sometimes go to 1.5% over the first third and 2.5% over the last two thirds to compensate for the higher solids load near the reception pit. The install drawing we issue with delivery shows the falls for your specific shed layout.' },
+  { q: 'How does it pair with the diagonal slats?', a: "The 3 Metre Diagonal Slats are cast specifically to span the V-Section channels â€” same 1180mm width on the channel, same lifting-eye locations, same C40/50 SR mix. The diagonal pattern self-cleans as cattle walk and the gaps are sized to AHDB recommendations. Heavy-duty slats are available if you want to drive a feeder wagon over them. The slats from this range are interchangeable with our 8' diagonal slats from the standard slurry channel range, so you can run a mixed shed off common slat stock." },
+  { q: 'Lead time?', a: 'Standard V-section channels and matching 3m slats from catalogue ship in 3 to 5 weeks from order confirmation. The longer lead vs standard slurry channels is because the V-mould sees less use â€” we cast to order rather than from stock. Spring and autumn are our busiest seasons, so plan accordingly. We deliver on our own HIAB fleet across the South West same-week, and on planned UK runs in 2 to 3 weeks once the units are cast.' },
+  { q: 'Can you fit this around an existing parlour layout?', a: 'Yes â€” that is the bulk of our work. Send us a sketch or a survey of the existing slab, parlour pit, return passage and feed face, and we will set out the channel run and slat geometry to suit. The channels come in 1180Ã—1180Ã—2950mm units, and the shallow variant (600mm height) is useful where a 2950mm full-depth channel will not clear an existing foundation. Bespoke channel depths quoted on request.' },
 ];
 
 const productSchema = {
@@ -64,11 +64,11 @@ const productSchema = {
     { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 sulphate-resisting (BS 8500-1:2023)' },
     { '@type': 'PropertyValue', name: 'Profile', value: 'V-section, narrow base for sand flow' },
     { '@type': 'PropertyValue', name: 'Recommended fall', value: '2% (1 in 50) along the run' },
-    { '@type': 'PropertyValue', name: 'Standard channel size', value: '1180 × 1180 × 2950 mm' },
-    { '@type': 'PropertyValue', name: 'Shallow variant', value: '600 × 1180 × 2950 mm' },
+    { '@type': 'PropertyValue', name: 'Standard channel size', value: '1180 Ã— 1180 Ã— 2950 mm' },
+    { '@type': 'PropertyValue', name: 'Shallow variant', value: '600 Ã— 1180 Ã— 2950 mm' },
     { '@type': 'PropertyValue', name: 'Slat span', value: '3000 mm diagonal slats matched to channel width' },
     { '@type': 'PropertyValue', name: 'Straight slat lengths', value: "8'6\" / 8'10\" / 10'6\" / 12'6\" / 13'" },
-    { '@type': 'PropertyValue', name: 'Lead time', value: '3–5 weeks' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '3â€“5 weeks' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
   ],
   offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
@@ -86,9 +86,9 @@ const faqSchema = {
 ---
 
 <BaseLayout
-  title="V-Section Sand Channels & Slats — for sand-bedded dairy"
+  title="V-Section Sand Channels & Slats â€” for sand-bedded dairy"
   description="Precast V-section sand-channel system for sand-bedded cubicle housing. Narrow base improves flow rate, prevents settlement, 2% fall recommended. Compatible with 3m diagonal slats and straight slat covers."
-  image="/og/sand-channels.png"
+  image="/og/home.png"
   schema="Product"
   schemaData={productSchema}
   whatsappContext="V-Section Sand Channels"
@@ -101,7 +101,7 @@ const faqSchema = {
     <div class="container-wccp py-16 md:py-20">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <p class="eyebrow text-yellow mb-4">Agricultural · sand-bedded dairy</p>
+          <p class="eyebrow text-yellow mb-4">Agricultural Â· sand-bedded dairy</p>
           <h1 class="font-display text-display-xl text-white mb-4">V-Section Sand Channels & Slats.</h1>
           <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">
             Narrow at the base. Sand never sits.
@@ -109,24 +109,24 @@ const faqSchema = {
           <h2 class="sr-only">What's a V-section sand-slurry channel?</h2>
           <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
             <strong class="not-italic text-white">What's a V-section sand-slurry channel?</strong>
-            A precast slurry channel with a "V" cross-section — wide at the top, narrow at the
+            A precast slurry channel with a "V" cross-section â€” wide at the top, narrow at the
             base. The geometry keeps flow moving so sand bedding never settles out and blocks the
             channel. WCCP's range pairs with 3&nbsp;m diagonal slats and runs at 2% fall.
           </blockquote>
           <p class="text-lg lg:text-xl text-white/95 leading-relaxed mb-6 max-w-xl font-medium">
-            V-section precast concrete sand-slurry channels, 1180 × 1180 × 2950mm
-            (shallow variant 600 × 1180 × 2950mm), cast to BS EN 14844 and BS 8500-1:2023
+            V-section precast concrete sand-slurry channels, 1180 Ã— 1180 Ã— 2950mm
+            (shallow variant 600 Ã— 1180 Ã— 2950mm), cast to BS EN 14844 and BS 8500-1:2023
             in C40/50 sulphate-resisting concrete. The 2% fall design keeps sand moving
-            with the slurry — no on-site sand recovery pit needed. Pairs with our 3m
+            with the slurry â€” no on-site sand recovery pit needed. Pairs with our 3m
             diagonal slats. Suits sand-bedded dairies. Lead time 3-5 weeks.
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
-            <li class="flex gap-2"><span class="text-yellow">·</span> V profile, narrow base</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 2% fall recommended</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 3m diagonal slats</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 8'6"–13' straight slats</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Interlocking lip & rebate</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 3–5 week lead</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> V profile, narrow base</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 2% fall recommended</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 3m diagonal slats</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 8'6"â€“13' straight slats</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> Interlocking lip & rebate</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 3â€“5 week lead</li>
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=V-Section+Sand+Channels" class="btn-primary">Configure a quote</a>
@@ -138,7 +138,7 @@ const faqSchema = {
         {/* TODO: replace placeholder with a V-section sand channel photo when available */}
         <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
           <div>
-            <p class="text-cast-600 text-sm font-mono">📷 Photo needed</p>
+            <p class="text-cast-600 text-sm font-mono">ðŸ“· Photo needed</p>
             <p class="text-cast text-xs mt-2">WCCP V-section sand channel installed in a sand-bedded dairy shed</p>
           </div>
         </div>
@@ -162,7 +162,7 @@ const faqSchema = {
         <thead class="bg-navy text-white">
           <tr>
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Product</th>
-            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Dimensions (L×W×H)</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Dimensions (LÃ—WÃ—H)</th>
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Weight</th>
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Notes</th>
           </tr>
@@ -194,13 +194,13 @@ const faqSchema = {
           <p class="eyebrow text-cast mb-3">Where they go</p>
           <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
           <p class="text-cast-700 text-lg leading-relaxed mb-6">
-            Sand bedding is the gold standard for cow comfort, lying time and lameness reduction —
+            Sand bedding is the gold standard for cow comfort, lying time and lameness reduction â€”
             but only if the slurry-and-sand handling underneath does its job. That is what this system is for.
           </p>
           <ul class="space-y-3">
             {applications.map((a) => (
               <li class="flex gap-3 text-cast-700 leading-relaxed">
-                <span class="text-ember font-bold mt-1">·</span>
+                <span class="text-ember font-bold mt-1">Â·</span>
                 <span>{a}</span>
               </li>
             ))}
@@ -213,23 +213,23 @@ const faqSchema = {
           <dl class="space-y-4 text-sm">
             <div>
               <dt class="font-bold text-navy">SSAFO 2018</dt>
-              <dd class="text-cast">Silage, Slurry & Agricultural Fuel Oil Regulations — channel and storage requirements for England.</dd>
+              <dd class="text-cast">Silage, Slurry & Agricultural Fuel Oil Regulations â€” channel and storage requirements for England.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BS EN 14844</dt>
-              <dd class="text-cast">Precast concrete products — box culverts. Geometry, tolerances and conformity testing.</dd>
+              <dd class="text-cast">Precast concrete products â€” box culverts. Geometry, tolerances and conformity testing.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BS 8500-1:2023</dt>
-              <dd class="text-cast">Concrete specification — C40/50 sulphate-resisting mix designed for the slurry environment.</dd>
+              <dd class="text-cast">Concrete specification â€” C40/50 sulphate-resisting mix designed for the slurry environment.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">AHDB Dairy</dt>
-              <dd class="text-cast">Sand-bedding lying-comfort guide — recommended channel falls and slat-gap dimensions.</dd>
+              <dd class="text-cast">Sand-bedding lying-comfort guide â€” recommended channel falls and slat-gap dimensions.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">AFBI Hillsborough</dt>
-              <dd class="text-cast">Sand-recovery research — V-section profile recommendations for high-flow sand handling.</dd>
+              <dd class="text-cast">Sand-recovery research â€” V-section profile recommendations for high-flow sand handling.</dd>
             </div>
           </dl>
         </div>
@@ -243,7 +243,7 @@ const faqSchema = {
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
           <p class="eyebrow text-navy mb-2">Configure your sand channel run</p>
-          <h2 class="font-display text-display-md">Send shed dimensions and herd size — we will quote inside 24 hours.</h2>
+          <h2 class="font-display text-display-md">Send shed dimensions and herd size â€” we will quote inside 24 hours.</h2>
         </div>
         <div class="flex flex-wrap gap-3 shrink-0">
           <a href="/quote?product=V-Section+Sand+Channels" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
@@ -298,9 +298,9 @@ const faqSchema = {
   <SpecDownloads
     intro="Sand-channel sections plus the dish-channel technical reference for adjacent yard drainage."
     downloads={[
-      { href: '/downloads/specs/slurry-handling/wccp-slurry-handling-v-section-sand-slurry-channels.pdf', title: 'V-section sand & slurry channels', meta: 'PDF · 290 KB' },
-      { href: '/downloads/specs/slurry-handling/wccp-slurry-handling-shallow-v-section-sand-slurry-channels.pdf', title: 'Shallow V-section sand & slurry channels', meta: 'PDF · 356 KB' },
-      { href: '/downloads/specs/home/wccp-home-dish-channel-tech.pdf', title: 'Dish channel — technical', meta: 'PDF · 27 KB' },
+      { href: '/downloads/specs/slurry-handling/wccp-slurry-handling-v-section-sand-slurry-channels.pdf', title: 'V-section sand & slurry channels', meta: 'PDF Â· 290 KB' },
+      { href: '/downloads/specs/slurry-handling/wccp-slurry-handling-shallow-v-section-sand-slurry-channels.pdf', title: 'Shallow V-section sand & slurry channels', meta: 'PDF Â· 356 KB' },
+      { href: '/downloads/specs/home/wccp-home-dish-channel-tech.pdf', title: 'Dish channel â€” technical', meta: 'PDF Â· 27 KB' },
     ]}
   />
 
@@ -311,7 +311,7 @@ const faqSchema = {
       defaultMode="supply"
       supply={{
         price: 'Bespoke quote',
-        leadTime: '3–5 weeks',
+        leadTime: '3â€“5 weeks',
         includes: [
           'V-section channels + matching 3m diagonal slats',
           'Cast-in-place delivery on our HIAB',
@@ -324,7 +324,7 @@ const faqSchema = {
           'On-site setting and bedding-mortar',
         ],
       }}
-      note=". Heavy-duty slat upgrades, mixed straight-slat lengths and bespoke channel depths quoted individually — send the shed sketch and we'll come back within a working day."
+      note=". Heavy-duty slat upgrades, mixed straight-slat lengths and bespoke channel depths quoted individually â€” send the shed sketch and we'll come back within a working day."
     />
   </section>
 

@@ -1,31 +1,31 @@
----
+﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import CTAStrip from '@/components/CTAStrip.astro';
 import { site } from '@/config/site';
 
-// Article schema — supports Google News indexing on grant-deadline content.
+// Article schema â€” supports Google News indexing on grant-deadline content.
 const schemaData = {
   '@type': 'Article',
-  headline: 'Slurry Infrastructure Grant Round 4 — closes 30 September 2026',
+  headline: 'Slurry Infrastructure Grant Round 4 â€” closes 30 September 2026',
   description:
-    "Defra's Slurry Infrastructure Grant Round 4 makes £74m available across England for on-farm slurry storage and handling. The application window closes at midnight on 30 September 2026.",
+    "Defra's Slurry Infrastructure Grant Round 4 makes Â£74m available across England for on-farm slurry storage and handling. The application window closes at midnight on 30 September 2026.",
   datePublished: '2026-04-01',
   dateModified: '2026-04-29',
   author: { '@type': 'Organization', name: site.name, url: site.url },
   publisher: {
     '@type': 'Organization',
     name: site.name,
-    logo: { '@type': 'ImageObject', url: `${site.url}/og-default.png` },
+    logo: { '@type': 'ImageObject', url: `${site.url}/og/home.png` },
   },
   mainEntityOfPage: { '@type': 'WebPage', '@id': `${site.url}/grants/sig-round-4` },
 };
 
-// FAQ schema — separate JSON-LD, rendered alongside Article via inline script.
+// FAQ schema â€” separate JSON-LD, rendered alongside Article via inline script.
 const faqs = [
   {
     q: 'What is the Slurry Infrastructure Grant Round 4?',
-    a: 'A £74m DEFRA capital grant for English farms covering 50% of the cost of new or upgraded slurry storage, store covers and slurry separators. Round 4 is the largest round to date.',
+    a: 'A Â£74m DEFRA capital grant for English farms covering 50% of the cost of new or upgraded slurry storage, store covers and slurry separators. Round 4 is the largest round to date.',
   },
   {
     q: 'Who qualifies for SIG Round 4?',
@@ -56,7 +56,7 @@ const steps = [
   {
     n: '02',
     title: 'Itemised quote on the Defra template',
-    body: 'We provide quotations on the Defra-recognised eligible-items format. Your RPA application picks up the figures verbatim — no re-keying, no version mismatch.',
+    body: 'We provide quotations on the Defra-recognised eligible-items format. Your RPA application picks up the figures verbatim â€” no re-keying, no version mismatch.',
   },
   {
     n: '03',
@@ -66,14 +66,14 @@ const steps = [
   {
     n: '04',
     title: 'Delivered, installed if you want it',
-    body: 'We deliver UK-wide on our own HIAB fleet. We can also project-manage the install — slab, panels, fittings — for a turn-key job.',
+    body: 'We deliver UK-wide on our own HIAB fleet. We can also project-manage the install â€” slab, panels, fittings â€” for a turn-key job.',
   },
 ];
 ---
 
 <BaseLayout
-  title="SIG Round 4 — Slurry Infrastructure Grant 2026 deadline"
-  description="The Slurry Infrastructure Grant Round 4 closes 30 September 2026. £74m available across England. WCCP supplies SSAFO 2018-compliant precast slurry stores on Defra-recognised quote templates."
+  title="SIG Round 4 â€” Slurry Infrastructure Grant 2026 deadline"
+  description="The Slurry Infrastructure Grant Round 4 closes 30 September 2026. Â£74m available across England. WCCP supplies SSAFO 2018-compliant precast slurry stores on Defra-recognised quote templates."
   schema="Article"
   schemaData={schemaData}
 >
@@ -87,20 +87,20 @@ const steps = [
       <div class="max-w-3xl">
         <p class="eyebrow text-ember mb-6">
           <span class="inline-block w-8 h-px bg-ember align-middle mr-3"></span>
-          Hard deadline · 30 September 2026
+          Hard deadline Â· 30 September 2026
         </p>
         <h1 class="font-display text-display-2xl text-white mb-6">
           SIG Round 4 closes <span class="text-yellow">30 September 2026</span>.
         </h1>
         <p class="text-lg lg:text-xl text-white/90 leading-relaxed mt-6 max-w-3xl mb-8" aria-label="Direct answer">
-          The Slurry Infrastructure Grant Round 4 is a £74m DEFRA fund covering 50% of slurry storage,
+          The Slurry Infrastructure Grant Round 4 is a Â£74m DEFRA fund covering 50% of slurry storage,
           cover and separator costs in England. Round 4 closes for stage-2 applications 30 September 2026.
           WCCP provides itemised quotes, capacity statements and structural calcs in the format Defra's
           grant team requires.
         </p>
         <p class="text-lg lg:text-xl text-white/90 leading-relaxed mb-8">
           Defra's Slurry Infrastructure Grant Round 4 makes
-          <strong class="text-white">£74&nbsp;million</strong> available across England for
+          <strong class="text-white">Â£74&nbsp;million</strong> available across England for
           on-farm slurry storage and handling. The application window closes at
           <strong class="text-white">midnight on 30 September 2026</strong>. Talk to the yard before
           you submit.
@@ -124,16 +124,16 @@ const steps = [
     </div>
   </section>
 
-  <!-- £74m callout -->
+  <!-- Â£74m callout -->
   <section class="bg-yellow border-y-4 border-navy-700">
     <div class="container-wccp py-8">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <p class="eyebrow text-navy-700 mb-1">Funding pot · England</p>
-          <p class="font-display text-display-lg text-navy-700 leading-none">£74 million available across England</p>
+          <p class="eyebrow text-navy-700 mb-1">Funding pot Â· England</p>
+          <p class="font-display text-display-lg text-navy-700 leading-none">Â£74 million available across England</p>
         </div>
         <p class="text-navy-700 text-sm md:text-right max-w-md">
-          50% intervention rate, between £25,000 and £250,000 per agricultural holding,
+          50% intervention rate, between Â£25,000 and Â£250,000 per agricultural holding,
           competitive scoring against farms in catchments of greatest environmental need.
         </p>
       </div>
@@ -146,12 +146,12 @@ const steps = [
       <p class="eyebrow text-cast mb-3">How WCCP fits into your application</p>
       <h2 class="font-display text-display-lg">Quote, slot, deliver.</h2>
       <p class="text-cast-700 text-lg mt-4">
-        We're not the people who fill in the application — that's between you and the RPA.
+        We're not the people who fill in the application â€” that's between you and the RPA.
         What we do is the bit that makes the rest of the application solid:
         documented capacity, SSAFO 2018 compliance, a manufacturing slot you can rely on.
       </p>
       <p class="mt-4">
-        <a href="/quote?product=slurry-storage" class="inline-flex items-center gap-1.5 text-ember font-bold link-underline">Quote a slurry store →</a>
+        <a href="/quote?product=slurry-storage" class="inline-flex items-center gap-1.5 text-ember font-bold link-underline">Quote a slurry store â†’</a>
       </p>
     </div>
     <ol class="grid md:grid-cols-2 gap-4">

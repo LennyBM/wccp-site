@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
@@ -18,14 +18,14 @@ const tocSections = [
   { id: 'downloads', label: 'Downloads' },
 ];
 
-// WCCP precast weighbridge bases — trade and agriculture, NMI-compliant tolerances, BS EN 1992.
+// WCCP precast weighbridge bases â€” trade and agriculture, NMI-compliant tolerances, BS EN 1992.
 const specs = [
-  { variant: '6m × 3m base', bed: '6000 × 3000 × 350mm deck', style: '30t SWL · trade-approved tolerances', use: 'Light commercial, agricultural feed mills' },
-  { variant: '12m × 3m base', bed: '12000 × 3000 × 400mm deck', style: '50t SWL · NMI Class III', use: 'Standard HGV agricultural weighbridge' },
-  { variant: '14m × 3m base', bed: '14000 × 3000 × 400mm deck', style: '60t SWL · NMI Class III', use: 'Six-axle HGV trade weighbridge' },
-  { variant: '18m × 3m base', bed: '18000 × 3000 × 450mm deck', style: '80t SWL · NMI Class III', use: 'Drawbar trailer + tractor unit' },
-  { variant: '22m × 3.5m base', bed: '22000 × 3500 × 500mm deck', style: '100t SWL · heavy industrial', use: 'Quarry, port, heavy-haul yards' },
-  { variant: 'Pit-type base', bed: 'To suit deck (flush surface)', style: 'Sealed pit · sump and drainage', use: 'Flush-deck installations, restricted sites' },
+  { variant: '6m Ã— 3m base', bed: '6000 Ã— 3000 Ã— 350mm deck', style: '30t SWL Â· trade-approved tolerances', use: 'Light commercial, agricultural feed mills' },
+  { variant: '12m Ã— 3m base', bed: '12000 Ã— 3000 Ã— 400mm deck', style: '50t SWL Â· NMI Class III', use: 'Standard HGV agricultural weighbridge' },
+  { variant: '14m Ã— 3m base', bed: '14000 Ã— 3000 Ã— 400mm deck', style: '60t SWL Â· NMI Class III', use: 'Six-axle HGV trade weighbridge' },
+  { variant: '18m Ã— 3m base', bed: '18000 Ã— 3000 Ã— 450mm deck', style: '80t SWL Â· NMI Class III', use: 'Drawbar trailer + tractor unit' },
+  { variant: '22m Ã— 3.5m base', bed: '22000 Ã— 3500 Ã— 500mm deck', style: '100t SWL Â· heavy industrial', use: 'Quarry, port, heavy-haul yards' },
+  { variant: 'Pit-type base', bed: 'To suit deck (flush surface)', style: 'Sealed pit Â· sump and drainage', use: 'Flush-deck installations, restricted sites' },
 ];
 
 const applications = [
@@ -46,11 +46,11 @@ const related = [
 ];
 
 const faqs = [
-  { q: 'Are your bases NMI-approved?', a: 'Our weighbridge bases are cast to tolerances that satisfy NMI (National Measurement and Regulation Office) Class III requirements for trade-approved weighbridges. The deck is cast flat to within ±2mm over the run length, with load-cell mounting plates set to ±1mm verticality. The actual trade approval is granted to the complete weighbridge by the load-cell supplier (Avery, Bilanciai, etc) — we cast the structural base to receive their kit.' },
+  { q: 'Are your bases NMI-approved?', a: 'Our weighbridge bases are cast to tolerances that satisfy NMI (National Measurement and Regulation Office) Class III requirements for trade-approved weighbridges. The deck is cast flat to within Â±2mm over the run length, with load-cell mounting plates set to Â±1mm verticality. The actual trade approval is granted to the complete weighbridge by the load-cell supplier (Avery, Bilanciai, etc) â€” we cast the structural base to receive their kit.' },
   { q: 'What concrete grade and reinforcement?', a: 'C40/50 concrete to BS 8500-1:2023, with B500B reinforcement designed to BS EN 1992 (Eurocode 2). Decks are cast 350mm to 500mm thick depending on SWL, with twin-layer reinforcement and cast-in load-cell pockets. Mill certs and concrete cube records supplied with delivery.' },
-  { q: 'Surface or pit-type?', a: 'Both. Surface-mount bases sit 350mm proud of the yard and use approach ramps — the standard for greenfield sites. Pit-type bases sit flush with the surrounding yard surface, with a sealed sump and drainage to a controlled outfall — better for tight sites and where flush vehicle access is needed. Pit type costs more in civils but saves yard length.' },
-  { q: 'How is it delivered and installed?', a: 'Decks up to 18m are cast in a single piece and delivered on a low-loader, then craned into position by 50t mobile crane. Larger 22m bases are cast in two sections with a cast-in-situ joint poured on site. We supply the rebar drawing for the joint and the concrete spec — the on-site civils contractor pours under our oversight if required.' },
-  { q: 'What is the lead time?', a: 'Catalogue 12m and 14m bases ship in 4 to 6 weeks. Larger 18m and 22m bespoke runs sit at 6 to 8 weeks given the deck-cure programme. Pit-type bases run 6 to 8 weeks. We schedule around your weighbridge installer\'s commissioning slot — talk to engineering early.' },
+  { q: 'Surface or pit-type?', a: 'Both. Surface-mount bases sit 350mm proud of the yard and use approach ramps â€” the standard for greenfield sites. Pit-type bases sit flush with the surrounding yard surface, with a sealed sump and drainage to a controlled outfall â€” better for tight sites and where flush vehicle access is needed. Pit type costs more in civils but saves yard length.' },
+  { q: 'How is it delivered and installed?', a: 'Decks up to 18m are cast in a single piece and delivered on a low-loader, then craned into position by 50t mobile crane. Larger 22m bases are cast in two sections with a cast-in-situ joint poured on site. We supply the rebar drawing for the joint and the concrete spec â€” the on-site civils contractor pours under our oversight if required.' },
+  { q: 'What is the lead time?', a: 'Catalogue 12m and 14m bases ship in 4 to 6 weeks. Larger 18m and 22m bespoke runs sit at 6 to 8 weeks given the deck-cure programme. Pit-type bases run 6 to 8 weeks. We schedule around your weighbridge installer\'s commissioning slot â€” talk to engineering early.' },
 ];
 
 const productSchema = {
@@ -64,12 +64,12 @@ const productSchema = {
     { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 1992 (Eurocode 2)' },
     { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
     { '@type': 'PropertyValue', name: 'Reinforcement', value: 'B500B twin-layer (BS 4449)' },
-    { '@type': 'PropertyValue', name: 'Tolerance', value: 'NMI Class III · ±2mm flatness' },
+    { '@type': 'PropertyValue', name: 'Tolerance', value: 'NMI Class III Â· Â±2mm flatness' },
     { '@type': 'PropertyValue', name: 'Load capacity', value: '30t to 100t SWL' },
     { '@type': 'PropertyValue', name: 'Length range', value: '6m to 22m standard' },
     { '@type': 'PropertyValue', name: 'Variants', value: 'Surface-mount / pit-type' },
-    { '@type': 'PropertyValue', name: 'Factory production control', value: 'BS EN 13369 · UKCA marked' },
-    { '@type': 'PropertyValue', name: 'Lead time', value: '4–6 weeks catalogue, 6–8 weeks bespoke' },
+    { '@type': 'PropertyValue', name: 'Factory production control', value: 'BS EN 13369 Â· UKCA marked' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '4â€“6 weeks catalogue, 6â€“8 weeks bespoke' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
   ],
   offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
@@ -87,9 +87,9 @@ const faqSchema = {
 ---
 
 <BaseLayout
-  title="Weighbridge Bases — NMI Class III · 30t–100t · Trade Approved"
+  title="Weighbridge Bases â€” NMI Class III Â· 30tâ€“100t Â· Trade Approved"
   description="Precast weighbridge bases for trade and agriculture. NMI Class III tolerances, 30t to 100t SWL, surface and pit-type variants. BS EN 1992. Cast in North Devon."
-  image="/og-default.png"
+  image="/og/home.png"
   schema="Product"
   schemaData={productSchema}
   whatsappContext="Weighbridge Bases"
@@ -103,19 +103,19 @@ const faqSchema = {
     <div class="container-wccp py-16 md:py-20">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <p class="eyebrow text-yellow mb-4">Civils · trade · agriculture</p>
+          <p class="eyebrow text-yellow mb-4">Civils Â· trade Â· agriculture</p>
           <h1 class="font-display text-display-xl text-white mb-4">Weighbridge Bases.</h1>
-          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">Flat to ±2mm. Approved for trade.</p>
+          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">Flat to Â±2mm. Approved for trade.</p>
           <p class="text-lg lg:text-xl text-cast leading-relaxed font-medium text-white/95 mb-6 max-w-xl">
             Precast concrete weighbridge bases cast to NMI Class III tolerances for trade-approved
             HGV weighing. 6m to 22m deck lengths, 30t to 100t SWL, surface-mount or pit-type
             variants. C40/50 concrete to BS 8500-1:2023 with twin-layer B500B reinforcement
-            designed to BS EN 1992 (Eurocode 2). Lead time 4–6 weeks.
+            designed to BS EN 1992 (Eurocode 2). Lead time 4â€“6 weeks.
           </p>
           <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
-            A trade-approved 14&nbsp;m × 3&nbsp;m weighbridge base for a six-axle HGV is cast to
-            NMI Class III flatness — the deck reads flat to ±2&nbsp;mm over the run, with load-cell
-            mounting plates set to ±1&nbsp;mm verticality so the load-cell supplier can sign off
+            A trade-approved 14&nbsp;m Ã— 3&nbsp;m weighbridge base for a six-axle HGV is cast to
+            NMI Class III flatness â€” the deck reads flat to Â±2&nbsp;mm over the run, with load-cell
+            mounting plates set to Â±1&nbsp;mm verticality so the load-cell supplier can sign off
             trade approval first time.
           </blockquote>
           <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
@@ -123,12 +123,12 @@ const faqSchema = {
             decks up to 18m, two-piece for 22m. Cast at Holsworthy, delivered on low-loader.
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
-            <li class="flex gap-2"><span class="text-yellow">·</span> NMI Class III</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 6–22m decks</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 30–100t SWL</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Surface + pit type</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> ±2mm flatness</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 4–6 week lead</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> NMI Class III</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 6â€“22m decks</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 30â€“100t SWL</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> Surface + pit type</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> Â±2mm flatness</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 4â€“6 week lead</li>
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Weighbridge%20Bases" class="btn-primary">Configure a quote</a>
@@ -140,7 +140,7 @@ const faqSchema = {
         </div>
         <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
           <div>
-            <p class="text-cast-600 text-sm font-mono">📷 Photo needed</p>
+            <p class="text-cast-600 text-sm font-mono">ðŸ“· Photo needed</p>
             <p class="text-cast text-xs mt-2">Hero shot: 14m weighbridge deck on low-loader leaving the Holsworthy yard, with banner straps visible</p>
           </div>
         </div>
@@ -155,7 +155,7 @@ const faqSchema = {
       <h2 class="font-display text-display-lg mb-4">Deck sizes and load capacities.</h2>
       <p class="text-cast-700 text-lg">
         Six catalogue formats from 30t agricultural to 100t industrial. Bespoke widths,
-        deck depths and pit configurations cast on order — send the load-cell supplier's
+        deck depths and pit configurations cast on order â€” send the load-cell supplier's
         installation drawing and we will work to it.
       </p>
     </div>
@@ -190,7 +190,7 @@ const faqSchema = {
 
     <p class="text-cast text-sm mt-4">
       We cast load-cell pockets to your supplier's setting-out (Avery, Bilanciai, Pfister
-      and others) — send their install drawing at order and we will work the rebar around
+      and others) â€” send their install drawing at order and we will work the rebar around
       the cell positions.
     </p>
   </section>
@@ -201,14 +201,14 @@ const faqSchema = {
     background="bone"
     cols={4}
     images={[
-      { src: '', alt: 'Weighbridge deck cast', caption: 'Deck cast · 14m base in formwork at Holsworthy, top steel placed' },
-      { src: '', alt: 'Weighbridge deck delivery', caption: 'Delivery · 12m deck on low-loader leaving yard for Cornwall site' },
-      { src: '', alt: 'Weighbridge deck install', caption: 'Install · 50t crane lifting deck onto load-cell mounting plates' },
-      { src: '', alt: 'Load cell pocket detail', caption: 'Load-cell pocket · cast-in mounting plate detail' },
-      { src: '', alt: 'Pit-type base', caption: 'Pit type · sealed sump base with sump pump location visible' },
-      { src: '', alt: 'Surface mount finished', caption: 'Surface mount · finished installation with approach ramps' },
-      { src: '', alt: 'Agricultural feed mill', caption: 'Feed mill · 12m base on Devon agricultural site' },
-      { src: '', alt: 'AD plant weighbridge', caption: 'AD plant · slurry-haulage weighbridge with vehicle on deck' },
+      { src: '', alt: 'Weighbridge deck cast', caption: 'Deck cast Â· 14m base in formwork at Holsworthy, top steel placed' },
+      { src: '', alt: 'Weighbridge deck delivery', caption: 'Delivery Â· 12m deck on low-loader leaving yard for Cornwall site' },
+      { src: '', alt: 'Weighbridge deck install', caption: 'Install Â· 50t crane lifting deck onto load-cell mounting plates' },
+      { src: '', alt: 'Load cell pocket detail', caption: 'Load-cell pocket Â· cast-in mounting plate detail' },
+      { src: '', alt: 'Pit-type base', caption: 'Pit type Â· sealed sump base with sump pump location visible' },
+      { src: '', alt: 'Surface mount finished', caption: 'Surface mount Â· finished installation with approach ramps' },
+      { src: '', alt: 'Agricultural feed mill', caption: 'Feed mill Â· 12m base on Devon agricultural site' },
+      { src: '', alt: 'AD plant weighbridge', caption: 'AD plant Â· slurry-haulage weighbridge with vehicle on deck' },
     ]}
   />
 
@@ -221,13 +221,13 @@ const faqSchema = {
           <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
           <p class="text-cast-700 text-lg leading-relaxed mb-6">
             From a 6m agricultural feed-mill base in Devon to a 22m quarry base in Cornwall,
-            we cast and deliver the same engineered standard — sized to your load-cell
+            we cast and deliver the same engineered standard â€” sized to your load-cell
             supplier's drawing, delivered to their commissioning slot.
           </p>
           <ul class="space-y-3">
             {applications.map((a) => (
               <li class="flex gap-3 text-cast-700 leading-relaxed">
-                <span class="text-ember font-bold mt-1">·</span>
+                <span class="text-ember font-bold mt-1">Â·</span>
                 <span>{a}</span>
               </li>
             ))}
@@ -240,23 +240,23 @@ const faqSchema = {
           <dl class="space-y-4 text-sm">
             <div>
               <dt class="font-bold text-navy">BS EN 1992 / Eurocode 2</dt>
-              <dd class="text-cast">Design of concrete structures — reinforcement detailing for the deck slab.</dd>
+              <dd class="text-cast">Design of concrete structures â€” reinforcement detailing for the deck slab.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">NMI / OIML R76</dt>
-              <dd class="text-cast">National Measurement and Regulation Office — Class III non-automatic weighing instrument tolerances.</dd>
+              <dd class="text-cast">National Measurement and Regulation Office â€” Class III non-automatic weighing instrument tolerances.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BS 8500-1:2023</dt>
-              <dd class="text-cast">Concrete specification — C40/50 mix designed for exposure class XF3/XD3.</dd>
+              <dd class="text-cast">Concrete specification â€” C40/50 mix designed for exposure class XF3/XD3.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BS 4449</dt>
-              <dd class="text-cast">B500B reinforcement steel — twin-layer mat to load-cell supplier drawing.</dd>
+              <dd class="text-cast">B500B reinforcement steel â€” twin-layer mat to load-cell supplier drawing.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BS EN 13369</dt>
-              <dd class="text-cast">Common rules for precast concrete products — factory production control.</dd>
+              <dd class="text-cast">Common rules for precast concrete products â€” factory production control.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">Weights and Measures Act 1985</dt>
@@ -274,7 +274,7 @@ const faqSchema = {
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
           <p class="eyebrow text-navy mb-2">Configure your weighbridge base</p>
-          <h2 class="font-display text-display-md">Send us deck length, SWL and load-cell supplier — we will quote inside 24 hours.</h2>
+          <h2 class="font-display text-display-md">Send us deck length, SWL and load-cell supplier â€” we will quote inside 24 hours.</h2>
         </div>
         <div class="flex flex-wrap gap-3 shrink-0">
           <a href="/quote?product=Weighbridge%20Bases" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
@@ -333,7 +333,7 @@ const faqSchema = {
       defaultMode="supply"
       supply={{
         price: 'Bespoke quote',
-        leadTime: '4–6 weeks',
+        leadTime: '4â€“6 weeks',
         includes: [
           'Cast deck to NMI Class III tolerances',
           'Cast-in load-cell pockets to supplier drawing',
@@ -347,7 +347,7 @@ const faqSchema = {
       }}
       fitted={{
         price: 'Bespoke quote (incl. install)',
-        leadTime: '6–10 weeks (incl. site slot)',
+        leadTime: '6â€“10 weeks (incl. site slot)',
         includes: [
           'Everything in supply only',
           '50t mobile crane lift onto pad',
@@ -359,7 +359,7 @@ const faqSchema = {
           'Trade-approval testing and certification',
         ],
       }}
-      note=". Bespoke deck sizes, pit-type bases and load-cell-supplier coordination priced individually — send the install drawing and we'll come back within a working day."
+      note=". Bespoke deck sizes, pit-type bases and load-cell-supplier coordination priced individually â€” send the install drawing and we'll come back within a working day."
     />
   </section>
 

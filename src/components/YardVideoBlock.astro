@@ -1,4 +1,4 @@
----
+﻿---
 interface Props {
   posterImage?: string;
   videoSrc?: string;
@@ -6,7 +6,7 @@ interface Props {
 }
 
 const {
-  posterImage = '/og-default.png',
+  posterImage = '/og/home.png',
   videoSrc,
   caption,
 } = Astro.props;
@@ -37,7 +37,7 @@ const hasVideo = Boolean(videoSrc);
       <>
         <img
           src={posterImage}
-          alt="The Holsworthy yard — a still from the planned walk-through video"
+          alt="The Holsworthy yard â€” a still from the planned walk-through video"
           class="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
           decoding="async"

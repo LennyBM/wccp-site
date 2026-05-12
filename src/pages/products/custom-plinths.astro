@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
@@ -18,38 +18,38 @@ const tocSections = [
 ];
 
 const specs = [
-  { variant: 'Transformer plinth', size: '1.5m × 1.0m up to 4.5m × 3.0m', weight: '0.6 – 6.0 t', use: '11kV / 33kV pad-mounted transformers — DNO schedules' },
-  { variant: 'Generator plinth', size: '2.0m × 1.0m up to 6.0m × 2.5m', weight: '1.0 – 8.0 t', use: 'Standby gensets — Cat, FG Wilson, Cummins, Kohler' },
-  { variant: 'Switchgear / RMU base', size: '1.0m × 0.8m up to 3.0m × 1.2m', weight: '0.4 – 2.5 t', use: 'Ring-main units, LV panels, package substations' },
+  { variant: 'Transformer plinth', size: '1.5m Ã— 1.0m up to 4.5m Ã— 3.0m', weight: '0.6 â€“ 6.0 t', use: '11kV / 33kV pad-mounted transformers â€” DNO schedules' },
+  { variant: 'Generator plinth', size: '2.0m Ã— 1.0m up to 6.0m Ã— 2.5m', weight: '1.0 â€“ 8.0 t', use: 'Standby gensets â€” Cat, FG Wilson, Cummins, Kohler' },
+  { variant: 'Switchgear / RMU base', size: '1.0m Ã— 0.8m up to 3.0m Ã— 1.2m', weight: '0.4 â€“ 2.5 t', use: 'Ring-main units, LV panels, package substations' },
   { variant: 'Pump / chiller base', size: 'To engineer schedule', weight: 'Per design', use: 'M&E plant on roof or at-grade with anti-vibration' },
-  { variant: 'Battery / BESS base', size: '6.0m × 2.5m up to 12.0m × 3.0m', weight: '4.0 – 15.0 t', use: 'Container BESS, EV charger plinths, solar inverter' },
-  { variant: 'Cable trough plinth', size: 'Modular 1.0m segments', weight: '0.3 – 0.5 t / m', use: 'Trefoil cable runs feeding the substation plinth' },
+  { variant: 'Battery / BESS base', size: '6.0m Ã— 2.5m up to 12.0m Ã— 3.0m', weight: '4.0 â€“ 15.0 t', use: 'Container BESS, EV charger plinths, solar inverter' },
+  { variant: 'Cable trough plinth', size: 'Modular 1.0m segments', weight: '0.3 â€“ 0.5 t / m', use: 'Trefoil cable runs feeding the substation plinth' },
   { variant: 'Bespoke equipment base', size: 'Anything we can lift and ship', weight: 'Up to 25 t single piece', use: 'Manufacturer-specific schedule, non-standard plant' },
 ];
 
 const applications = [
-  'DNO secondary substations — UKPN, NGED, NPg, SSEN, SPEN frameworks',
-  'Standby diesel generator installations — hospitals, data centres, telecoms',
+  'DNO secondary substations â€” UKPN, NGED, NPg, SSEN, SPEN frameworks',
+  'Standby diesel generator installations â€” hospitals, data centres, telecoms',
   'Battery energy storage system (BESS) container plinths',
-  'EV ultra-rapid charger pads — Gridserve, Osprey, Instavolt',
+  'EV ultra-rapid charger pads â€” Gridserve, Osprey, Instavolt',
   'Solar farm inverter and transformer skids',
   'Industrial chillers, cooling towers and air-handling plant bases',
   'Anaerobic digester pump and CHP-engine bases',
 ];
 
 const related = [
-  { href: '/products/architectural-panels', label: 'Architectural Panels', meta: 'Bespoke facades · BS EN 14992' },
-  { href: '/products/retaining-walls', label: 'Retaining Walls', meta: 'L-walls · cantilever' },
-  { href: '/products/dish-channels', label: 'Dish Channels', meta: 'Heavy-duty · DNO spec' },
-  { href: '/products/soakaways-chambers', label: 'Soakaways & Chambers', meta: 'Drainage · access' },
+  { href: '/products/architectural-panels', label: 'Architectural Panels', meta: 'Bespoke facades Â· BS EN 14992' },
+  { href: '/products/retaining-walls', label: 'Retaining Walls', meta: 'L-walls Â· cantilever' },
+  { href: '/products/dish-channels', label: 'Dish Channels', meta: 'Heavy-duty Â· DNO spec' },
+  { href: '/products/soakaways-chambers', label: 'Soakaways & Chambers', meta: 'Drainage Â· access' },
 ];
 
 const faqs = [
-  { q: 'How do you size a transformer or generator plinth?', a: 'We work to the manufacturer schedule — Schneider, ABB, Siemens for transformers; Cat, Cummins, FG Wilson for gensets. The plinth has to take the static weight, the seismic spread footing, the cable-entry duct pattern and any oil-bund detail required by BS EN 61936-1. We send a drawing for engineer sign-off before we cut moulds.' },
-  { q: 'What concrete grade do you cast?', a: 'C40/50 to BS 8500-1:2023 is our standard for plinths and equipment bases — exposure XC4/XF1 minimum. For substations we add sulphate resistance (DC-3 / DC-4 if the geotechnical report calls for it). All cast under BS EN 13369 Factory Production Control with cube tests at 7 and 28 days.' },
-  { q: 'Can you cast in earthing, conduits and bund kerbs?', a: 'Yes — every penetration, conduit, earth-rod sleeve, lifting socket and bund upstand cast in to engineer drawings. We coordinate with the principal contractor and DNO design engineer on a shop drawing before mould cutting. Late changes after mould-cut are chargeable.' },
+  { q: 'How do you size a transformer or generator plinth?', a: 'We work to the manufacturer schedule â€” Schneider, ABB, Siemens for transformers; Cat, Cummins, FG Wilson for gensets. The plinth has to take the static weight, the seismic spread footing, the cable-entry duct pattern and any oil-bund detail required by BS EN 61936-1. We send a drawing for engineer sign-off before we cut moulds.' },
+  { q: 'What concrete grade do you cast?', a: 'C40/50 to BS 8500-1:2023 is our standard for plinths and equipment bases â€” exposure XC4/XF1 minimum. For substations we add sulphate resistance (DC-3 / DC-4 if the geotechnical report calls for it). All cast under BS EN 13369 Factory Production Control with cube tests at 7 and 28 days.' },
+  { q: 'Can you cast in earthing, conduits and bund kerbs?', a: 'Yes â€” every penetration, conduit, earth-rod sleeve, lifting socket and bund upstand cast in to engineer drawings. We coordinate with the principal contractor and DNO design engineer on a shop drawing before mould cutting. Late changes after mould-cut are chargeable.' },
   { q: 'Do you deliver and install?', a: 'We deliver UK-wide on flatbed or low-loader and offload with our own HIAB up to 12 tonnes. Above that we coordinate a site mobile crane with the principal contractor. We can supply, deliver, set on a pre-prepared sub-base and grout-bed in one visit on most substation programmes.' },
-  { q: 'What is the lead time?', a: 'Civils-grade plinths run 4-6 weeks from drawing sign-off. DNO substation plinths to standard frameworks ship in 3-4 weeks if the schedule matches our existing moulds. Bespoke geometries — non-standard sizes, integrated bunds, complex penetration patterns — typically 6-10 weeks.' },
+  { q: 'What is the lead time?', a: 'Civils-grade plinths run 4-6 weeks from drawing sign-off. DNO substation plinths to standard frameworks ship in 3-4 weeks if the schedule matches our existing moulds. Bespoke geometries â€” non-standard sizes, integrated bunds, complex penetration patterns â€” typically 6-10 weeks.' },
 ];
 
 const productSchema = {
@@ -83,9 +83,9 @@ const faqSchema = {
 ---
 
 <BaseLayout
-  title="Custom Precast Plinths — Transformer, Generator & Equipment Bases"
-  description="Bespoke precast plinths and equipment bases — transformers, generators, switchgear, BESS, EV chargers. C40/50 to BS 8500-1, UKCA marked. Designed to engineer schedule. Cast in North Devon."
-  image="/og-default.png"
+  title="Custom Precast Plinths â€” Transformer, Generator & Equipment Bases"
+  description="Bespoke precast plinths and equipment bases â€” transformers, generators, switchgear, BESS, EV chargers. C40/50 to BS 8500-1, UKCA marked. Designed to engineer schedule. Cast in North Devon."
+  image="/og/home.png"
   schema="Product"
   schemaData={productSchema}
   whatsappContext="Custom Plinths"
@@ -99,7 +99,7 @@ const faqSchema = {
     <div class="container-wccp py-16 md:py-20">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <p class="eyebrow text-yellow mb-4">Civils · DNO · M&amp;E plant</p>
+          <p class="eyebrow text-yellow mb-4">Civils Â· DNO Â· M&amp;E plant</p>
           <h1 class="font-display text-display-xl text-white mb-4">Custom Plinths.</h1>
           <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">Cast to your engineer's schedule, not ours.</p>
           <p class="text-lg lg:text-xl text-cast leading-relaxed font-medium text-white/95 mb-6 max-w-xl">
@@ -110,7 +110,7 @@ const faqSchema = {
           </p>
           <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
             Send us your engineer's drawing, the manufacturer schedule, the cable-entry pattern
-            and the geotechnical data — we will return a shop drawing for sign-off and a
+            and the geotechnical data â€” we will return a shop drawing for sign-off and a
             programme that matches your DNO outage window.
           </blockquote>
           <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
@@ -119,12 +119,12 @@ const faqSchema = {
             projects across England, Wales and Scotland.
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
-            <li class="flex gap-2"><span class="text-yellow">·</span> BS EN 13369 FPC</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> C40/50 + DC-3/4</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> UKCA marked</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Up to 25 t</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> All DNO frameworks</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 4-6 week lead</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> BS EN 13369 FPC</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> C40/50 + DC-3/4</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> UKCA marked</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> Up to 25 t</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> All DNO frameworks</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 4-6 week lead</li>
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Custom%20Plinths" class="btn-primary">Configure a quote</a>
@@ -137,7 +137,7 @@ const faqSchema = {
         <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
           <div>
             <p class="text-cast-600 text-sm font-mono">Photo needed</p>
-            <p class="text-cast text-xs mt-2">Hero — completed transformer plinth on site, with cable ducts, earth bonding and lifting points visible</p>
+            <p class="text-cast text-xs mt-2">Hero â€” completed transformer plinth on site, with cable ducts, earth bonding and lifting points visible</p>
           </div>
         </div>
       </div>
@@ -150,7 +150,7 @@ const faqSchema = {
       <p class="eyebrow text-cast mb-3">Specification</p>
       <h2 class="font-display text-display-lg mb-4">Common base types and weight ranges.</h2>
       <p class="text-cast-700 text-lg">
-        These are our recurring base types — every plinth we cast is bespoke, but the families
+        These are our recurring base types â€” every plinth we cast is bespoke, but the families
         below cover most of the work. Send us the engineer schedule and we will quote against your
         exact loading, cable-entry pattern and bund detail.
       </p>
@@ -179,8 +179,8 @@ const faqSchema = {
       </table>
     </div>
     <p class="text-cast text-sm mt-4">
-      Cast-in items — lifting sockets, earth bonds, conduit sleeves, oil-bund kerbs, levelling
-      shims — coordinated to your engineer's drawing. We issue a shop drawing for sign-off
+      Cast-in items â€” lifting sockets, earth bonds, conduit sleeves, oil-bund kerbs, levelling
+      shims â€” coordinated to your engineer's drawing. We issue a shop drawing for sign-off
       before we cut moulds.
     </p>
 
@@ -196,16 +196,16 @@ const faqSchema = {
       <div class="max-w-2xl mb-10">
         <p class="eyebrow text-cast mb-3">Plinth library</p>
         <h2 class="font-display text-display-lg mb-4 text-navy">Equipment bases we cast every week.</h2>
-        <p class="text-cast-700 text-lg">Photo plates being commissioned — placeholder shot briefs below.</p>
+        <p class="text-cast-700 text-lg">Photo plates being commissioned â€” placeholder shot briefs below.</p>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {[
-          { caption: 'Transformer plinth · 11kV pad-mount', shot: 'Completed transformer plinth with cable ducts and earth bonds, transformer landed' },
-          { caption: 'Generator plinth · 2MW standby', shot: 'Large genset plinth on site with vibration mounts visible, exhaust stack penetration' },
-          { caption: 'Switchgear / RMU base', shot: 'Compact switchgear base with multiple cable entries — substation context' },
+          { caption: 'Transformer plinth Â· 11kV pad-mount', shot: 'Completed transformer plinth with cable ducts and earth bonds, transformer landed' },
+          { caption: 'Generator plinth Â· 2MW standby', shot: 'Large genset plinth on site with vibration mounts visible, exhaust stack penetration' },
+          { caption: 'Switchgear / RMU base', shot: 'Compact switchgear base with multiple cable entries â€” substation context' },
           { caption: 'BESS container plinth', shot: 'Long battery-storage container plinth, container landed with conduits running up' },
           { caption: 'EV ultra-rapid charger pad', shot: 'EV charger plinth at motorway services with charging unit installed' },
-          { caption: 'Cable trough run · trefoil', shot: 'Modular cable trough segments running between substation and feed point' },
+          { caption: 'Cable trough run Â· trefoil', shot: 'Modular cable trough segments running between substation and feed point' },
           { caption: 'Plinth being cast at yard', shot: 'Transformer plinth in mould at Holsworthy yard, reinforcement and ducts visible' },
           { caption: 'HIAB offload on site', shot: 'WCCP HIAB lorry offloading plinth onto prepared sub-base on construction site' },
         ].map((img) => (
@@ -237,7 +237,7 @@ const faqSchema = {
           <ul class="space-y-3">
             {applications.map((a) => (
               <li class="flex gap-3 text-cast-700 leading-relaxed">
-                <span class="text-ember font-bold mt-1">·</span>
+                <span class="text-ember font-bold mt-1">Â·</span>
                 <span>{a}</span>
               </li>
             ))}
@@ -250,19 +250,19 @@ const faqSchema = {
           <dl class="space-y-4 text-sm">
             <div>
               <dt class="font-bold text-navy">BS EN 13369</dt>
-              <dd class="text-cast">Common rules for precast concrete products — Factory Production Control.</dd>
+              <dd class="text-cast">Common rules for precast concrete products â€” Factory Production Control.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BS 8500-1:2023</dt>
-              <dd class="text-cast">Concrete specification — C40/50, exposure classes XC4/XF1, sulphate DC-3/DC-4.</dd>
+              <dd class="text-cast">Concrete specification â€” C40/50, exposure classes XC4/XF1, sulphate DC-3/DC-4.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BS EN 1992-1-1 (Eurocode 2)</dt>
-              <dd class="text-cast">Structural design of reinforced concrete — plinth slab and reinforcement design.</dd>
+              <dd class="text-cast">Structural design of reinforced concrete â€” plinth slab and reinforcement design.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BS EN 61936-1</dt>
-              <dd class="text-cast">Power installations exceeding 1 kV AC — substation and oil-bund detailing.</dd>
+              <dd class="text-cast">Power installations exceeding 1 kV AC â€” substation and oil-bund detailing.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">DNO frameworks</dt>
@@ -280,7 +280,7 @@ const faqSchema = {
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
           <p class="eyebrow text-navy mb-2">Configure your plinth</p>
-          <h2 class="font-display text-display-md">Send us the engineer schedule and the manufacturer drawing — we will quote inside 48 hours.</h2>
+          <h2 class="font-display text-display-md">Send us the engineer schedule and the manufacturer drawing â€” we will quote inside 48 hours.</h2>
         </div>
         <div class="flex flex-wrap gap-3 shrink-0">
           <a href="/quote?product=Custom%20Plinths" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
@@ -339,7 +339,7 @@ const faqSchema = {
       defaultMode="fitted"
       supply={{
         price: 'Bespoke quote',
-        leadTime: '4–6 weeks',
+        leadTime: '4â€“6 weeks',
         includes: [
           'Cast plinth to engineer schedule',
           'Cast-in lifting sockets, ducts, earth bonds',
@@ -353,7 +353,7 @@ const faqSchema = {
       }}
       fitted={{
         price: 'Bespoke quote (incl. set & grout)',
-        leadTime: '5–8 weeks (incl. site slot)',
+        leadTime: '5â€“8 weeks (incl. site slot)',
         includes: [
           'Everything in supply only',
           'WCCP HIAB offload up to 12 t',
@@ -365,7 +365,7 @@ const faqSchema = {
           'Manufacturer commissioning of plant',
         ],
       }}
-      note=". Substation and BESS programmes priced per scheme — send the engineer schedule and we will respond with a fixed quote and dates."
+      note=". Substation and BESS programmes priced per scheme â€” send the engineer schedule and we will respond with a fixed quote and dates."
     />
   </section>
 
@@ -374,7 +374,7 @@ const faqSchema = {
     <div class="container-wccp text-center">
       <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
       <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">
-        Send us the engineer's drawing and the DNO outage date — we will quote, programme and cast.
+        Send us the engineer's drawing and the DNO outage date â€” we will quote, programme and cast.
       </p>
       <div class="flex flex-wrap justify-center gap-3">
         <a href="/quote?product=Custom%20Plinths" class="btn-yellow">Configure a quote</a>

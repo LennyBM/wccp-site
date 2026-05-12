@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
@@ -9,12 +9,12 @@ import { site } from '@/config/site';
 import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
 
 const specs = [
-  { height: '1.5m', stem: '180mm', toe: '0.9m', heel: '0.6m', weight: '1,650 kg/m', surcharge: '20 kN/m²' },
-  { height: '2.5m', stem: '200mm', toe: '1.2m', heel: '0.9m', weight: '2,750 kg/m', surcharge: '25 kN/m²' },
-  { height: '3.5m', stem: '220mm', toe: '1.5m', heel: '1.2m', weight: '4,200 kg/m', surcharge: '30 kN/m²' },
-  { height: '4.5m', stem: '250mm', toe: '1.8m', heel: '1.5m', weight: '6,150 kg/m', surcharge: '40 kN/m²' },
-  { height: '5.5m', stem: '280mm', toe: '2.2m', heel: '1.8m', weight: '8,800 kg/m', surcharge: '45 kN/m²' },
-  { height: '6.0m', stem: '300mm', toe: '2.4m', heel: '2.0m', weight: '10,400 kg/m', surcharge: '50 kN/m²' },
+  { height: '1.5m', stem: '180mm', toe: '0.9m', heel: '0.6m', weight: '1,650 kg/m', surcharge: '20 kN/mÂ²' },
+  { height: '2.5m', stem: '200mm', toe: '1.2m', heel: '0.9m', weight: '2,750 kg/m', surcharge: '25 kN/mÂ²' },
+  { height: '3.5m', stem: '220mm', toe: '1.5m', heel: '1.2m', weight: '4,200 kg/m', surcharge: '30 kN/mÂ²' },
+  { height: '4.5m', stem: '250mm', toe: '1.8m', heel: '1.5m', weight: '6,150 kg/m', surcharge: '40 kN/mÂ²' },
+  { height: '5.5m', stem: '280mm', toe: '2.2m', heel: '1.8m', weight: '8,800 kg/m', surcharge: '45 kN/mÂ²' },
+  { height: '6.0m', stem: '300mm', toe: '2.4m', heel: '2.0m', weight: '10,400 kg/m', surcharge: '50 kN/mÂ²' },
 ];
 
 const applications = [
@@ -28,23 +28,23 @@ const applications = [
 ];
 
 const related = [
-  { href: '/products/retaining-walls', label: 'All Retaining Walls', meta: 'Family hub · four systems' },
+  { href: '/products/retaining-walls', label: 'All Retaining Walls', meta: 'Family hub Â· four systems' },
   { href: '/products/king-post-walls', label: 'King Post Walls', meta: 'Steel post + panel infill' },
-  { href: '/products/l-blocks', label: 'L-Block Retaining', meta: '1m–6m · interlocking' },
-  { href: '/products/prestressed-panels', label: 'Prestressed Panels', meta: 'BS EN 14992 · UKCA' },
+  { href: '/products/l-blocks', label: 'L-Block Retaining', meta: '1mâ€“6m Â· interlocking' },
+  { href: '/products/prestressed-panels', label: 'Prestressed Panels', meta: 'BS EN 14992 Â· UKCA' },
 ];
 
 const faqs = [
-  { q: 'How is a cantilever wall different from an L-block?', a: 'A cantilever wall has a continuous engineered heel — it is designed as a single structure with cast-in-situ joints. L-blocks are individual units sitting on hardcore. Cantilever takes a heavier engineered loading and a longer design life; L-blocks are quicker, cheaper and re-locatable.' },
+  { q: 'How is a cantilever wall different from an L-block?', a: 'A cantilever wall has a continuous engineered heel â€” it is designed as a single structure with cast-in-situ joints. L-blocks are individual units sitting on hardcore. Cantilever takes a heavier engineered loading and a longer design life; L-blocks are quicker, cheaper and re-locatable.' },
   { q: 'Do you cast in situ or precast?', a: 'Both options. We will precast the stem and ship to site with a cast-in-situ heel for fast install on heavy schemes. For smaller jobs, full precast units with a bolted heel are quicker still. Talk to the design team about which suits your programme.' },
   { q: 'Engineered to what code?', a: 'Every cantilever wall we deliver is calculated to BS EN 1992-1-1 (Eurocode 2) and BS EN 1997 (Eurocode 7) for the geotechnical bearing and sliding checks. 50-year design life as standard, 120-year available on civils-grade specs.' },
-  { q: 'What surcharge can I run?', a: 'Up to 50 kN/m² at 6m height — that covers HA traffic loading (LM1) plus a margin. Higher surcharges or seismic detailing on bespoke designs.' },
-  { q: 'Lead time?', a: '4 to 6 weeks for the standard cantilever range. Bespoke heel details, exposed-aggregate facing or curved alignments run 6 to 10 weeks. Send the section drawing first — we can usually shave a fortnight off if you order early.' },
+  { q: 'What surcharge can I run?', a: 'Up to 50 kN/mÂ² at 6m height â€” that covers HA traffic loading (LM1) plus a margin. Higher surcharges or seismic detailing on bespoke designs.' },
+  { q: 'Lead time?', a: '4 to 6 weeks for the standard cantilever range. Bespoke heel details, exposed-aggregate facing or curved alignments run 6 to 10 weeks. Send the section drawing first â€” we can usually shave a fortnight off if you order early.' },
 ];
 
 const productSchema = {
   name: 'Precast Cantilever Retaining Walls',
-  description: 'Free-standing precast cantilever retaining walls. Engineered to BS EN 1992-1-1 (Eurocode 2). Heights 1.5m to 6.0m, surcharge ratings to 50 kN/m². 50-year design life as standard.',
+  description: 'Free-standing precast cantilever retaining walls. Engineered to BS EN 1992-1-1 (Eurocode 2). Heights 1.5m to 6.0m, surcharge ratings to 50 kN/mÂ². 50-year design life as standard.',
   brand: { '@type': 'Brand', name: site.name },
   manufacturer: { '@type': 'Organization', name: site.name },
   category: 'Precast cantilever retaining wall',
@@ -54,10 +54,10 @@ const productSchema = {
     { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 14992 / BS EN 13369' },
     { '@type': 'PropertyValue', name: 'Structural design', value: 'BS EN 1992-1-1 / BS EN 1997 (Eurocode 7)' },
     { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
-    { '@type': 'PropertyValue', name: 'Height range', value: '1.5 m – 6.0 m' },
-    { '@type': 'PropertyValue', name: 'Maximum surcharge', value: '50 kN/m² (incl. LM1)' },
+    { '@type': 'PropertyValue', name: 'Height range', value: '1.5 m â€“ 6.0 m' },
+    { '@type': 'PropertyValue', name: 'Maximum surcharge', value: '50 kN/mÂ² (incl. LM1)' },
     { '@type': 'PropertyValue', name: 'Design life', value: '50 years (120-year option)' },
-    { '@type': 'PropertyValue', name: 'Lead time', value: '4–6 weeks catalogue' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '4â€“6 weeks catalogue' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
   ],
   offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
@@ -67,9 +67,9 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
 ---
 
 <BaseLayout
-  title="Cantilever Retaining Walls — engineered to BS EN 1992-1-1"
-  description="Free-standing precast cantilever retaining walls. Heights 1.5m to 6.0m, surcharge to 50 kN/m². BS EN 1992-1-1, 50-year design life. Cast in North Devon."
-  image="/og/cantilever-walls.png"
+  title="Cantilever Retaining Walls â€” engineered to BS EN 1992-1-1"
+  description="Free-standing precast cantilever retaining walls. Heights 1.5m to 6.0m, surcharge to 50 kN/mÂ². BS EN 1992-1-1, 50-year design life. Cast in North Devon."
+  image="/og/home.png"
   schema="Product"
   schemaData={productSchema}
   whatsappContext="Cantilever Walls"
@@ -81,7 +81,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
     <div class="container-wccp py-16 md:py-20">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <p class="eyebrow text-yellow mb-4">Civils · infrastructure · highways</p>
+          <p class="eyebrow text-yellow mb-4">Civils Â· infrastructure Â· highways</p>
           <h1 class="font-display text-display-xl text-white mb-4">Cantilever Walls.</h1>
           <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">
             No tie-back. Up and standing the same day.
@@ -91,23 +91,23 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
             <strong class="not-italic text-white">When should you choose a cantilever retaining wall?</strong>
             Pick cantilever when retained height runs above 3&nbsp;m, the wall is permanent, or
             vehicle surcharge is significant. WCCP cantilevers go to 6&nbsp;m, surcharge to
-            50&nbsp;kN/m² (HA traffic), engineered to BS&nbsp;EN&nbsp;1992-1-1 with a 50-year
+            50&nbsp;kN/mÂ² (HA traffic), engineered to BS&nbsp;EN&nbsp;1992-1-1 with a 50-year
             design life as standard.
           </blockquote>
           <p class="text-lg lg:text-xl text-white/95 leading-relaxed mb-6 max-w-xl font-medium">
             Free-standing precast cantilever retaining walls, heights 1.5m to 6.0m,
-            surcharge ratings up to 50 kN/m² (incl. HA traffic LM1). Cast to BS EN 1992-1-1
+            surcharge ratings up to 50 kN/mÂ² (incl. HA traffic LM1). Cast to BS EN 1992-1-1
             (Eurocode 2) and BS EN 1997 (Eurocode 7) with a 50-year minimum design life,
             120-year option on civils-grade specs. No tie-back required; engineered heel
             handles the moment. Lead time 4-6 weeks.
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
-            <li class="flex gap-2"><span class="text-yellow">·</span> Heights 1.5–6.0m</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Up to 50 kN/m²</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Eurocode 2 + 7</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 50-year life</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> LM1 traffic load</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 4–6 week lead</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> Heights 1.5â€“6.0m</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> Up to 50 kN/mÂ²</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> Eurocode 2 + 7</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 50-year life</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> LM1 traffic load</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 4â€“6 week lead</li>
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Cantilever+Walls" class="btn-primary">Configure a quote</a>
@@ -115,7 +115,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
           </div>
         </div>
         <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
-          <img src="/images/products/retaining-walls/wccp-retaining-walls-a-wall-732x1024.jpg" alt="Precast concrete cantilever retaining wall — West Country Concrete Products, Devon" class="w-full h-full object-cover" loading="eager" decoding="async" />
+          <img src="/images/products/retaining-walls/wccp-retaining-walls-a-wall-732x1024.jpg" alt="Precast concrete cantilever retaining wall â€” West Country Concrete Products, Devon" class="w-full h-full object-cover" loading="eager" decoding="async" />
         </div>
       </div>
     </div>
@@ -161,20 +161,20 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
         <div>
           <p class="eyebrow text-cast mb-3">Where they go</p>
           <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
-          <p class="text-cast-700 text-lg leading-relaxed mb-6">From a 1.5m level change at a forecourt to a 6m highway retention scheme — engineered for the long term.</p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">From a 1.5m level change at a forecourt to a 6m highway retention scheme â€” engineered for the long term.</p>
           <ul class="space-y-3">
-            {applications.map((a) => (<li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">·</span><span>{a}</span></li>))}
+            {applications.map((a) => (<li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">Â·</span><span>{a}</span></li>))}
           </ul>
         </div>
         <div class="card p-8">
           <p class="eyebrow text-cast mb-3">Standards & certification</p>
           <h3 class="font-display text-2xl font-bold text-navy mb-4">Engineered, marked, certified.</h3>
           <dl class="space-y-4 text-sm">
-            <div><dt class="font-bold text-navy">BS EN 1992-1-1 (Eurocode 2)</dt><dd class="text-cast">Concrete structural design — stem, heel and toe calculations.</dd></div>
-            <div><dt class="font-bold text-navy">BS EN 1997 (Eurocode 7)</dt><dd class="text-cast">Geotechnical design — bearing, sliding and overturning checks.</dd></div>
-            <div><dt class="font-bold text-navy">BS EN 14992</dt><dd class="text-cast">Precast wall elements — UKCA marking.</dd></div>
-            <div><dt class="font-bold text-navy">BS EN 13369</dt><dd class="text-cast">Common rules for precast — factory production control.</dd></div>
-            <div><dt class="font-bold text-navy">BS 8500-1:2023</dt><dd class="text-cast">Concrete spec — designated mixes for the exposure class.</dd></div>
+            <div><dt class="font-bold text-navy">BS EN 1992-1-1 (Eurocode 2)</dt><dd class="text-cast">Concrete structural design â€” stem, heel and toe calculations.</dd></div>
+            <div><dt class="font-bold text-navy">BS EN 1997 (Eurocode 7)</dt><dd class="text-cast">Geotechnical design â€” bearing, sliding and overturning checks.</dd></div>
+            <div><dt class="font-bold text-navy">BS EN 14992</dt><dd class="text-cast">Precast wall elements â€” UKCA marking.</dd></div>
+            <div><dt class="font-bold text-navy">BS EN 13369</dt><dd class="text-cast">Common rules for precast â€” factory production control.</dd></div>
+            <div><dt class="font-bold text-navy">BS 8500-1:2023</dt><dd class="text-cast">Concrete spec â€” designated mixes for the exposure class.</dd></div>
           </dl>
         </div>
       </div>
@@ -186,7 +186,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
           <p class="eyebrow text-navy mb-2">Configure your cantilever wall</p>
-          <h2 class="font-display text-display-md">Send section, height and surcharge — we will quote inside 24 hours.</h2>
+          <h2 class="font-display text-display-md">Send section, height and surcharge â€” we will quote inside 24 hours.</h2>
         </div>
         <div class="flex flex-wrap gap-3 shrink-0">
           <a href="/quote?product=Cantilever+Walls" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
@@ -237,7 +237,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
       defaultMode="supply"
       supply={{
         price: 'Bespoke quote',
-        leadTime: '3–4 weeks',
+        leadTime: '3â€“4 weeks',
         includes: [
           'Precast cantilever stem with engineered heel',
           'Designer-stamped BS EN 1992-1-1 / 1997 calcs',
@@ -252,7 +252,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
       }}
       fitted={{
         price: 'Bespoke quote',
-        leadTime: '6–8 weeks (incl. site slot)',
+        leadTime: '6â€“8 weeks (incl. site slot)',
         includes: [
           'Everything in supply only',
           'Four-man install crew with 50t crane',
@@ -264,7 +264,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
           'Backfill, drainage and traffic management',
         ],
       }}
-      note=". Higher walls, 120-year design life and rail / highway schemes priced individually — send the section."
+      note=". Higher walls, 120-year design life and rail / highway schemes priced individually â€” send the section."
     />
   </section>
 

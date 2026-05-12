@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
@@ -9,7 +9,7 @@ import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
 
 const prestressedSpecs = [
   { thickness: '95mm', heights: '1.0m, 1.2m, 1.5m', lengths: 'Custom + 15\' & 20\' standard stocked', use: 'Lighter clamp side walls and bay divisions' },
-  { thickness: '145mm', heights: '1.0m, 1.2m, 1.5m', lengths: 'Custom + 15\' & 20\' standard stocked', use: 'Mid-size clamps; cantilever heights reduced 0.3–0.4m vs 180mm' },
+  { thickness: '145mm', heights: '1.0m, 1.2m, 1.5m', lengths: 'Custom + 15\' & 20\' standard stocked', use: 'Mid-size clamps; cantilever heights reduced 0.3â€“0.4m vs 180mm' },
   { thickness: '180mm', heights: '1.0m, 1.2m, 1.5m', lengths: 'Custom + 15\' & 20\' standard stocked', use: 'Standard clamp panels; vertical cantilever rated' },
 ];
 
@@ -23,7 +23,7 @@ const applications = [
   'Dairy farm grass and maize silage clamps',
   'Beef finishing-unit feed-stock clamps',
   'AD plant silage clamp feedstock storage',
-  'Push walls — driven against during clamp filling',
+  'Push walls â€” driven against during clamp filling',
   'Transition walls between filling bays',
   'Ramp returns and end walls',
   'Effluent collection channels and tank walls',
@@ -38,9 +38,9 @@ const related = [
 
 const faqs = [
   { q: 'What thicknesses do you stock?', a: 'Our prestressed panel range is 95mm, 145mm or 180mm thick, in heights of 1.0m, 1.2m and 1.5m. Custom lengths to order, plus 15\' and 20\' standard stocked lengths. We size each scheme on the run length, height and surcharge.' },
-  { q: 'How tall can I retain with vertical cantilever?', a: 'The 180mm Vertical Cantilever Panels retain slurry to 3.7m, silage with a 10-tonne vehicle surcharge to 3.2m, and earth to 3.4m. The 145mm panels can be used in cantilever mode with retained heights reduced by 0.3–0.4m. No supporting posts are required for these cantilever panels.' },
-  { q: 'Why sulphate-resisting cement?', a: 'Silage effluent is around pH 3.8–4.2 and rich in lactic and acetic acids. Standard Portland cement reacts and the panel face deteriorates. CEM III/A (ground-granulated blast-furnace slag blend) is far more resistant — it is what gives the wall a 30+ year service life in clamp service.' },
-  { q: 'Can the panels take a tractor pushing against them?', a: 'Yes — the structural design accounts for vehicle impact during filling. The 180mm Vertical Cantilever spec assumes a 10-tonne surcharge during filling. Push-wall details with thickened upstands available where you want extra protection.' },
+  { q: 'How tall can I retain with vertical cantilever?', a: 'The 180mm Vertical Cantilever Panels retain slurry to 3.7m, silage with a 10-tonne vehicle surcharge to 3.2m, and earth to 3.4m. The 145mm panels can be used in cantilever mode with retained heights reduced by 0.3â€“0.4m. No supporting posts are required for these cantilever panels.' },
+  { q: 'Why sulphate-resisting cement?', a: 'Silage effluent is around pH 3.8â€“4.2 and rich in lactic and acetic acids. Standard Portland cement reacts and the panel face deteriorates. CEM III/A (ground-granulated blast-furnace slag blend) is far more resistant â€” it is what gives the wall a 30+ year service life in clamp service.' },
+  { q: 'Can the panels take a tractor pushing against them?', a: 'Yes â€” the structural design accounts for vehicle impact during filling. The 180mm Vertical Cantilever spec assumes a 10-tonne surcharge during filling. Push-wall details with thickened upstands available where you want extra protection.' },
   { q: 'Lead time?', a: 'Catalogue panels run 3 to 5 weeks. The 15\' and 20\' standard lengths often despatch from stock. Spring is the busy clamp season; get the order in by mid-winter if you are commissioning for the May silage cut.' },
 ];
 
@@ -60,12 +60,12 @@ const productSchema = {
     { '@type': 'PropertyValue', name: 'Panel heights', value: '1.0 m, 1.2 m, 1.5 m' },
     { '@type': 'PropertyValue', name: 'Panel thicknesses', value: '95 mm, 145 mm, 180 mm' },
     { '@type': 'PropertyValue', name: 'Standard stocked lengths', value: "15' & 20' (custom lengths available)" },
-    { '@type': 'PropertyValue', name: 'Vertical Cantilever — slurry', value: '3.7 m retained height (180mm)' },
-    { '@type': 'PropertyValue', name: 'Vertical Cantilever — silage + 10t surcharge', value: '3.2 m retained height (180mm)' },
-    { '@type': 'PropertyValue', name: 'Vertical Cantilever — earth', value: '3.4 m retained height (180mm)' },
+    { '@type': 'PropertyValue', name: 'Vertical Cantilever â€” slurry', value: '3.7 m retained height (180mm)' },
+    { '@type': 'PropertyValue', name: 'Vertical Cantilever â€” silage + 10t surcharge', value: '3.2 m retained height (180mm)' },
+    { '@type': 'PropertyValue', name: 'Vertical Cantilever â€” earth', value: '3.4 m retained height (180mm)' },
     { '@type': 'PropertyValue', name: 'Cantilever supporting posts', value: 'None required' },
-    { '@type': 'PropertyValue', name: '145mm cantilever', value: 'Reduce retained heights by 0.3–0.4m' },
-    { '@type': 'PropertyValue', name: 'Lead time', value: '3–5 weeks catalogue' },
+    { '@type': 'PropertyValue', name: '145mm cantilever', value: 'Reduce retained heights by 0.3â€“0.4m' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '3â€“5 weeks catalogue' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
   ],
   offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
@@ -75,9 +75,9 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
 ---
 
 <BaseLayout
-  title="Silage Clamp Walls — 95/145/180mm prestressed · vertical cantilever to 3.7m"
-  description="WCCP prestressed silage clamp panels. Heights 1.0m, 1.2m, 1.5m in 95mm, 145mm or 180mm. Vertical Cantilever Panels retain slurry to 3.7m, silage to 3.2m, earth to 3.4m — no supporting posts required. Cast in North Devon."
-  image="/og/silage-clamp-walls.png"
+  title="Silage Clamp Walls â€” 95/145/180mm prestressed Â· vertical cantilever to 3.7m"
+  description="WCCP prestressed silage clamp panels. Heights 1.0m, 1.2m, 1.5m in 95mm, 145mm or 180mm. Vertical Cantilever Panels retain slurry to 3.7m, silage to 3.2m, earth to 3.4m â€” no supporting posts required. Cast in North Devon."
+  image="/og/home.png"
   schema="Product"
   schemaData={productSchema}
   whatsappContext="Silage Clamp Walls"
@@ -89,7 +89,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
     <div class="container-wccp py-16 md:py-20">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <p class="eyebrow text-yellow mb-4">Agricultural · silage · push walls</p>
+          <p class="eyebrow text-yellow mb-4">Agricultural Â· silage Â· push walls</p>
           <h1 class="font-display text-display-xl text-white mb-4">Silage Clamp Walls.</h1>
           <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">Acid-tight. Push-rated. Stack and seal.</p>
           <h2 class="sr-only">What are precast silage clamp walls?</h2>
@@ -105,15 +105,15 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
             at thicknesses of <strong class="text-white">95mm, 145mm or 180mm</strong>. Custom lengths to
             order plus 15' and 20' standard stocked lengths. The 180mm Vertical Cantilever Panels
             retain slurry to 3.7m, silage with a 10-tonne vehicle surcharge to 3.2m and earth to 3.4m
-            — with no supporting posts required.
+            â€” with no supporting posts required.
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
-            <li class="flex gap-2"><span class="text-yellow">·</span> 1.0 / 1.2 / 1.5m high</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 95 / 145 / 180mm thick</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 15' & 20' stocked</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Vertical cantilever</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> No supporting posts</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 3–5 week lead</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 1.0 / 1.2 / 1.5m high</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 95 / 145 / 180mm thick</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 15' & 20' stocked</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> Vertical cantilever</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> No supporting posts</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 3â€“5 week lead</li>
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Silage%20Clamp%20Walls" class="btn-primary">Configure a quote</a>
@@ -122,7 +122,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
           </div>
         </div>
         <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
-          <img src="/images/products/concrete-panels/wccp-concrete-panels-prestressed-concrete-panels.jpg" alt="Prestressed concrete silage clamp wall panels — West Country Concrete Products, Devon" class="w-full h-full object-cover" loading="eager" decoding="async" />
+          <img src="/images/products/concrete-panels/wccp-concrete-panels-prestressed-concrete-panels.jpg" alt="Prestressed concrete silage clamp wall panels â€” West Country Concrete Products, Devon" class="w-full h-full object-cover" loading="eager" decoding="async" />
         </div>
       </div>
     </div>
@@ -165,7 +165,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
       <div class="max-w-2xl mb-10">
         <p class="eyebrow text-cast mb-3">Vertical Cantilever Panels</p>
         <h2 class="font-display text-display-lg mb-4">No supporting posts required.</h2>
-        <p class="text-cast-700 text-lg">The 180mm panels retain to the heights below in cantilever — no supporting posts in the wall run. 145mm panels can be used in cantilever with retained heights reduced by 0.3–0.4m.</p>
+        <p class="text-cast-700 text-lg">The 180mm panels retain to the heights below in cantilever â€” no supporting posts in the wall run. 145mm panels can be used in cantilever with retained heights reduced by 0.3â€“0.4m.</p>
       </div>
       <div class="overflow-x-auto">
         <table class="spec-table w-full text-left border-collapse">
@@ -195,20 +195,20 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
       <div>
         <p class="eyebrow text-cast mb-3">Where they go</p>
         <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
-        <p class="text-cast-700 text-lg leading-relaxed mb-6">From a 60-cow grass clamp to a maize clamp at an AD plant — same panel system, same paperwork.</p>
+        <p class="text-cast-700 text-lg leading-relaxed mb-6">From a 60-cow grass clamp to a maize clamp at an AD plant â€” same panel system, same paperwork.</p>
         <ul class="space-y-3">
-          {applications.map((a) => (<li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">·</span><span>{a}</span></li>))}
+          {applications.map((a) => (<li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">Â·</span><span>{a}</span></li>))}
         </ul>
       </div>
       <div class="card p-8">
         <p class="eyebrow text-cast mb-3">Standards & certification</p>
         <h3 class="font-display text-2xl font-bold text-navy mb-4">Cast for the silage environment.</h3>
         <dl class="space-y-4 text-sm">
-          <div><dt class="font-bold text-navy">SSAFO 2018</dt><dd class="text-cast">Silage, Slurry and Agricultural Fuel Oil regulations — clamp design and capacity.</dd></div>
-          <div><dt class="font-bold text-navy">BS EN 14992</dt><dd class="text-cast">Precast wall elements — UKCA marked.</dd></div>
-          <div><dt class="font-bold text-navy">BS 8500-1:2023</dt><dd class="text-cast">Concrete spec — DC-3/DC-4 designations for aggressive ground.</dd></div>
-          <div><dt class="font-bold text-navy">BS EN 206</dt><dd class="text-cast">Concrete exposure classes — XA3 for chemical aggressive environments.</dd></div>
-          <div><dt class="font-bold text-navy">BS EN 1992 (Eurocode 2)</dt><dd class="text-cast">Concrete structural design — surcharge and vehicle-loading checks.</dd></div>
+          <div><dt class="font-bold text-navy">SSAFO 2018</dt><dd class="text-cast">Silage, Slurry and Agricultural Fuel Oil regulations â€” clamp design and capacity.</dd></div>
+          <div><dt class="font-bold text-navy">BS EN 14992</dt><dd class="text-cast">Precast wall elements â€” UKCA marked.</dd></div>
+          <div><dt class="font-bold text-navy">BS 8500-1:2023</dt><dd class="text-cast">Concrete spec â€” DC-3/DC-4 designations for aggressive ground.</dd></div>
+          <div><dt class="font-bold text-navy">BS EN 206</dt><dd class="text-cast">Concrete exposure classes â€” XA3 for chemical aggressive environments.</dd></div>
+          <div><dt class="font-bold text-navy">BS EN 1992 (Eurocode 2)</dt><dd class="text-cast">Concrete structural design â€” surcharge and vehicle-loading checks.</dd></div>
         </dl>
       </div>
     </div>
@@ -219,7 +219,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
           <p class="eyebrow text-navy mb-2">Configure your clamp</p>
-          <h2 class="font-display text-display-md">Send wall heights and run length — we will quote inside 24 hours.</h2>
+          <h2 class="font-display text-display-md">Send wall heights and run length â€” we will quote inside 24 hours.</h2>
         </div>
         <div class="flex flex-wrap gap-3 shrink-0">
           <a href="/quote?product=Silage%20Clamp%20Walls" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
@@ -270,11 +270,11 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
       defaultMode="supply"
       supply={{
         price: 'Bespoke quote',
-        leadTime: '3–5 weeks',
+        leadTime: '3â€“5 weeks',
         includes: [
           'Prestressed panels in 95 / 145 / 180mm thicknesses',
           'Heights 1.0m, 1.2m or 1.5m; custom or 15\' / 20\' lengths',
-          'C40/50 sulphate-resisting (XA3) for pH 3.8–4.2 service',
+          'C40/50 sulphate-resisting (XA3) for pH 3.8â€“4.2 service',
           'Delivery on our HIAB to your slab',
         ],
         excludes: [
@@ -285,7 +285,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
       }}
       fitted={{
         price: 'Bespoke quote',
-        leadTime: '6–8 weeks (incl. site slot)',
+        leadTime: '6â€“8 weeks (incl. site slot)',
         includes: [
           'Everything in supply only',
           'Two-man install crew with HIAB and 35t crane',
@@ -297,7 +297,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
           'Effluent tank and pipework fit-out',
         ],
       }}
-      note=". Vertical Cantilever Panels (no supporting posts), bespoke push-wall thickenings and ramp returns priced individually — bookings for the May silage cut close mid-winter."
+      note=". Vertical Cantilever Panels (no supporting posts), bespoke push-wall thickenings and ramp returns priced individually â€” bookings for the May silage cut close mid-winter."
     />
   </section>
 

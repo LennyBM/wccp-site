@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
@@ -18,12 +18,12 @@ const tocSections = [
   { id: 'downloads', label: 'Downloads' },
 ];
 
-// Cattle slats — slip-resistant, BS EN 12737, dairy and beef cubicle housing.
+// Cattle slats â€” slip-resistant, BS EN 12737, dairy and beef cubicle housing.
 const specs = [
-  { variant: 'Cattle Gang Slat 3.0m', bed: '3000 × 1000 × 175mm', style: '38mm slot · Surefoot top finish', use: 'Standard dairy cubicle passages' },
-  { variant: 'Cattle Gang Slat 3.5m', bed: '3500 × 1000 × 200mm', style: '38mm slot · Surefoot top finish', use: 'Wider dairy and beef passages' },
-  { variant: 'Cattle Gang Slat 4.0m', bed: '4000 × 1000 × 225mm', style: '38mm slot · twin-tee profile', use: 'Long spans · fully-slatted beef sheds' },
-  { variant: 'Calf Slat 2.4m', bed: '2400 × 800 × 150mm', style: '32mm slot · Surefoot top finish', use: 'Calf rearing pens (>3 months)' },
+  { variant: 'Cattle Gang Slat 3.0m', bed: '3000 Ã— 1000 Ã— 175mm', style: '38mm slot Â· Surefoot top finish', use: 'Standard dairy cubicle passages' },
+  { variant: 'Cattle Gang Slat 3.5m', bed: '3500 Ã— 1000 Ã— 200mm', style: '38mm slot Â· Surefoot top finish', use: 'Wider dairy and beef passages' },
+  { variant: 'Cattle Gang Slat 4.0m', bed: '4000 Ã— 1000 Ã— 225mm', style: '38mm slot Â· twin-tee profile', use: 'Long spans Â· fully-slatted beef sheds' },
+  { variant: 'Calf Slat 2.4m', bed: '2400 Ã— 800 Ã— 150mm', style: '32mm slot Â· Surefoot top finish', use: 'Calf rearing pens (>3 months)' },
   { variant: 'Bespoke Cattle Slat', bed: 'To 5m span on twin-tee', style: 'Engineer-detailed for the loading', use: 'Heavy beef finishing, AD digester yards' },
 ];
 
@@ -38,18 +38,18 @@ const applications = [
 ];
 
 const related = [
-  { href: '/products/slatted-lids', label: 'Slatted Lids', meta: 'Lift-out · BS EN 12737' },
+  { href: '/products/slatted-lids', label: 'Slatted Lids', meta: 'Lift-out Â· BS EN 12737' },
   { href: '/products/cattle-cubicles', label: 'Cattle Cubicles', meta: 'AHDB 2024 sized' },
   { href: '/products/slurry-storage', label: 'Slurry Storage', meta: 'SSAFO 2018-compliant' },
-  { href: '/products/cubicle-end-walls', label: 'Cubicle End Walls', meta: 'Single + double row · trough option' },
+  { href: '/products/cubicle-end-walls', label: 'Cubicle End Walls', meta: 'Single + double row Â· trough option' },
 ];
 
 const faqs = [
-  { q: 'How slip-resistant is the surface?', a: 'Every cattle slat we cast has the Surefoot grid texture — a precise pattern of grooves at 50mm centres, 8mm deep, in both directions. AHDB cow-flow research shows this finish maintains traction for the full 15-year design life. Worn slats are the single biggest cause of lameness in cubicle herds — a fresh-cast WCCP slat addresses that head-on.' },
+  { q: 'How slip-resistant is the surface?', a: 'Every cattle slat we cast has the Surefoot grid texture â€” a precise pattern of grooves at 50mm centres, 8mm deep, in both directions. AHDB cow-flow research shows this finish maintains traction for the full 15-year design life. Worn slats are the single biggest cause of lameness in cubicle herds â€” a fresh-cast WCCP slat addresses that head-on.' },
   { q: 'What slot width should I use?', a: 'BS EN 12737 sets 38mm as the cattle standard for adult dairy and beef. Calf slats use 32mm. Anything wider risks foot trapping; anything narrower stops dung clearing through. We cast to 38mm as standard but can quote 35mm for very young or smaller-stature beef.' },
-  { q: 'Will they take a tractor?', a: 'Yes — to the rated load. Our 3m gang slat carries 30kN/m² imposed (about 3 tonnes per square metre), enough for any farm tractor with a feeder bucket. The 4m twin-tee carries 25kN/m². For tracked machines or large telehandlers we engineer-detail bespoke spans with extra reinforcement.' },
-  { q: 'How do they bed onto the channel?', a: 'On a 75mm × 200mm bedding ledge cast into the channel wall, with a 10mm bedding-mortar joint and a 5mm gap to the next slat for thermal movement. The install drawing comes with the order. Set the slats with a tractor and chains through the cast-in lifting eyes.' },
-  { q: 'What is the lead time?', a: 'Catalogue 3m and 3.5m gang slats run 2 to 4 weeks. Bespoke 4m and twin-tee profiles 4 to 6 weeks. Spring and autumn shed-build seasons book up early — get the order in.' },
+  { q: 'Will they take a tractor?', a: 'Yes â€” to the rated load. Our 3m gang slat carries 30kN/mÂ² imposed (about 3 tonnes per square metre), enough for any farm tractor with a feeder bucket. The 4m twin-tee carries 25kN/mÂ². For tracked machines or large telehandlers we engineer-detail bespoke spans with extra reinforcement.' },
+  { q: 'How do they bed onto the channel?', a: 'On a 75mm Ã— 200mm bedding ledge cast into the channel wall, with a 10mm bedding-mortar joint and a 5mm gap to the next slat for thermal movement. The install drawing comes with the order. Set the slats with a tractor and chains through the cast-in lifting eyes.' },
+  { q: 'What is the lead time?', a: 'Catalogue 3m and 3.5m gang slats run 2 to 4 weeks. Bespoke 4m and twin-tee profiles 4 to 6 weeks. Spring and autumn shed-build seasons book up early â€” get the order in.' },
 ];
 
 const productSchema = {
@@ -63,10 +63,10 @@ const productSchema = {
     { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 12737:2008+A1:2011 (livestock slats)' },
     { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
     { '@type': 'PropertyValue', name: 'Slot width', value: '38mm cattle / 32mm calf' },
-    { '@type': 'PropertyValue', name: 'Top finish', value: 'Surefoot grid texture (50mm × 50mm × 8mm)' },
+    { '@type': 'PropertyValue', name: 'Top finish', value: 'Surefoot grid texture (50mm Ã— 50mm Ã— 8mm)' },
     { '@type': 'PropertyValue', name: 'Span range', value: '2.4m to 5m on twin-tee' },
-    { '@type': 'PropertyValue', name: 'Imposed load', value: '25–30kN/m² (tractor traffic)' },
-    { '@type': 'PropertyValue', name: 'Lead time', value: '2–4 weeks catalogue, 4–6 weeks bespoke' },
+    { '@type': 'PropertyValue', name: 'Imposed load', value: '25â€“30kN/mÂ² (tractor traffic)' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '2â€“4 weeks catalogue, 4â€“6 weeks bespoke' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
   ],
   offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
@@ -84,9 +84,9 @@ const faqSchema = {
 ---
 
 <BaseLayout
-  title="Cattle Slats — Slip-resistant gang slats · BS EN 12737"
+  title="Cattle Slats â€” Slip-resistant gang slats Â· BS EN 12737"
   description="Precast concrete cattle slats and gang slats with Surefoot slip-resistant finish. BS EN 12737 standard. 2.4m to 5m spans for dairy, beef and calf housing. Cast in North Devon."
-  image="/og-default.png"
+  image="/og/home.png"
   schema="Product"
   schemaData={productSchema}
   whatsappContext="Cattle Slats"
@@ -100,11 +100,11 @@ const faqSchema = {
     <div class="container-wccp py-16 md:py-20">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <p class="eyebrow text-yellow mb-4">Agricultural · dairy · beef</p>
+          <p class="eyebrow text-yellow mb-4">Agricultural Â· dairy Â· beef</p>
           <h1 class="font-display text-display-xl text-white mb-4">Cattle Slats.</h1>
           <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">Surefoot finish. No slip. No lameness.</p>
           <p class="text-lg lg:text-xl text-cast leading-relaxed font-medium text-white/95 mb-6 max-w-xl">
-            Slip-resistant precast concrete cattle slats and gang slats — Surefoot grid finish
+            Slip-resistant precast concrete cattle slats and gang slats â€” Surefoot grid finish
             cast in, 38mm slots for adult cattle and 32mm for calves. Cast to BS EN 12737 in
             C40/50 concrete. 2.4m to 5m spans for dairy, beef and calf housing.
             Catalogue lead time 2-4 weeks.
@@ -112,20 +112,20 @@ const faqSchema = {
           <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
             A cattle slat is a precast concrete floor element with cast-in slots that let
             dung pass through into the slurry channel below. UK cattle slats use 38&nbsp;mm
-            slots to BS EN 12737. WCCP slats add the Surefoot grid finish — 8&nbsp;mm grooves
-            at 50&nbsp;mm centres — for the design life of the herd.
+            slots to BS EN 12737. WCCP slats add the Surefoot grid finish â€” 8&nbsp;mm grooves
+            at 50&nbsp;mm centres â€” for the design life of the herd.
           </blockquote>
           <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
             We cast and deliver across England, Wales and into Scotland from the Holsworthy
             yard. Catalogue and bespoke spans engineered to suit your herd and shed.
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
-            <li class="flex gap-2"><span class="text-yellow">·</span> BS EN 12737</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Surefoot finish</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 38mm slots cattle</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 32mm slots calves</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Spans to 5m</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 2–4 week lead</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> BS EN 12737</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> Surefoot finish</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 38mm slots cattle</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 32mm slots calves</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> Spans to 5m</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 2â€“4 week lead</li>
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Cattle%20Slats" class="btn-primary">Configure a quote</a>
@@ -137,8 +137,8 @@ const faqSchema = {
         </div>
         <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
           <div>
-            <p class="text-cast-600 text-sm font-mono">📷 Photo needed</p>
-            <p class="text-cast text-xs mt-2">Hero shot — fresh-cast cattle slats stacked at the Holsworthy yard or laid in a Devon dairy passage with cattle on, top-down or low angle</p>
+            <p class="text-cast-600 text-sm font-mono">ðŸ“· Photo needed</p>
+            <p class="text-cast text-xs mt-2">Hero shot â€” fresh-cast cattle slats stacked at the Holsworthy yard or laid in a Devon dairy passage with cattle on, top-down or low angle</p>
           </div>
         </div>
       </div>
@@ -179,7 +179,7 @@ const faqSchema = {
       </table>
     </div>
     <p class="text-cast text-sm mt-4">
-      Slats are batch-tested to BS EN 12737 — every cast carries a date stamp and the test
+      Slats are batch-tested to BS EN 12737 â€” every cast carries a date stamp and the test
       certificate is on file at the yard. Lifting eyes are cast in for tractor-and-chain set.
     </p>
   </section>
@@ -195,9 +195,9 @@ const faqSchema = {
         {[
           'Run of 3m gang slats laid in a dairy cubicle passage with cattle on',
           'Close-up of the Surefoot grid finish on the top face',
-          'Cross-section of slat profile — slot, rib and reinforcement',
+          'Cross-section of slat profile â€” slot, rib and reinforcement',
           'Slat being lifted into a beef finishing shed by tractor',
-          'Calf slat (32mm slot) compared to cattle slat (38mm) — side by side',
+          'Calf slat (32mm slot) compared to cattle slat (38mm) â€” side by side',
           '4m twin-tee slat in fully-slatted beef shed',
           'Bedding ledge and joint detail at the channel wall',
           'AD digester yard with engineered cattle slats over the feedstock pit',
@@ -205,7 +205,7 @@ const faqSchema = {
           <figure>
             <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
               <div>
-                <p class="text-cast-600 text-sm font-mono">📷 Photo needed</p>
+                <p class="text-cast-600 text-sm font-mono">ðŸ“· Photo needed</p>
                 <p class="text-cast text-xs mt-2">{d}</p>
               </div>
             </div>
@@ -224,13 +224,13 @@ const faqSchema = {
           <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
           <p class="text-cast-700 text-lg leading-relaxed mb-6">
             From a 100-cow dairy passage retro-fit to a 400-head fully-slatted beef finishing
-            shed, the slat is the same technology — sized to span, loading and slot for the
+            shed, the slat is the same technology â€” sized to span, loading and slot for the
             stock that lives on it.
           </p>
           <ul class="space-y-3">
             {applications.map((a) => (
               <li class="flex gap-3 text-cast-700 leading-relaxed">
-                <span class="text-ember font-bold mt-1">·</span>
+                <span class="text-ember font-bold mt-1">Â·</span>
                 <span>{a}</span>
               </li>
             ))}
@@ -243,19 +243,19 @@ const faqSchema = {
           <dl class="space-y-4 text-sm">
             <div>
               <dt class="font-bold text-navy">BS EN 12737:2008+A1:2011</dt>
-              <dd class="text-cast">Precast concrete livestock slats — slot width, surface finish, structural performance.</dd>
+              <dd class="text-cast">Precast concrete livestock slats â€” slot width, surface finish, structural performance.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BS 5502-22:2003</dt>
-              <dd class="text-cast">Buildings and structures for agriculture — cattle housing loadings and detail.</dd>
+              <dd class="text-cast">Buildings and structures for agriculture â€” cattle housing loadings and detail.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BS 8500-1:2023</dt>
-              <dd class="text-cast">Concrete specification — C40/50 mix for the dairy slurry environment.</dd>
+              <dd class="text-cast">Concrete specification â€” C40/50 mix for the dairy slurry environment.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">SSAFO Regulations 2018</dt>
-              <dd class="text-cast">Silage, Slurry & Agricultural Fuel Oil — slurry channel inspectability.</dd>
+              <dd class="text-cast">Silage, Slurry & Agricultural Fuel Oil â€” slurry channel inspectability.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">AHDB Cow-Flow Guidance</dt>
@@ -273,7 +273,7 @@ const faqSchema = {
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
           <p class="eyebrow text-navy mb-2">Configure your slat run</p>
-          <h2 class="font-display text-display-md">Send passage width, span and stocking — we will quote inside 24 hours.</h2>
+          <h2 class="font-display text-display-md">Send passage width, span and stocking â€” we will quote inside 24 hours.</h2>
         </div>
         <div class="flex flex-wrap gap-3 shrink-0">
           <a href="/quote?product=Cattle%20Slats" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
@@ -332,7 +332,7 @@ const faqSchema = {
       defaultMode="fitted"
       supply={{
         price: 'Bespoke quote',
-        leadTime: '2–4 weeks',
+        leadTime: '2â€“4 weeks',
         includes: [
           'Cattle slats cast to BS EN 12737',
           'Surefoot slip-resistant top finish',
@@ -346,7 +346,7 @@ const faqSchema = {
       }}
       fitted={{
         price: 'Bespoke quote (incl. install)',
-        leadTime: '4–6 weeks (incl. site slot)',
+        leadTime: '4â€“6 weeks (incl. site slot)',
         includes: [
           'Everything in supply only',
           'Two-man install crew with HIAB',
@@ -358,7 +358,7 @@ const faqSchema = {
           'Mains electrical or scrape-system fit-out',
         ],
       }}
-      note=". Bespoke spans, twin-tee profiles and AD digester slats priced individually — send shed sketch and stocking and we'll come back within a working day."
+      note=". Bespoke spans, twin-tee profiles and AD digester slats priced individually â€” send shed sketch and stocking and we'll come back within a working day."
     />
   </section>
 

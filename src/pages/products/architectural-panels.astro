@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
@@ -18,18 +18,18 @@ const tocSections = [
 ];
 
 const specs = [
-  { variant: 'Board-marked panel', size: 'Up to 8m × 3.5m', finish: 'Sawn-timber board impression, vertical or horizontal', use: 'Civic buildings, schools, listed-context infill' },
-  { variant: 'Exposed-aggregate panel', size: 'Up to 8m × 3.5m', finish: 'Local-stone or recycled aggregate face, retarder + wash', use: 'Universities, headquarters, residential mass' },
-  { variant: 'Acid-etched panel', size: 'Up to 8m × 3.5m', finish: 'Light, medium or deep etch — uniform matte', use: 'Galleries, hotels, premium commercial' },
-  { variant: 'Polished / honed panel', size: 'Up to 6m × 3m', finish: 'Mechanical grind to honed or full polish', use: 'Lobbies, feature spandrels, terrazzo-style facing' },
-  { variant: 'Pigmented self-finish', size: 'Up to 8m × 3.5m', finish: 'Iron-oxide pigments through-cast in white or grey base', use: 'Coloured facades — cream, ochre, charcoal, oxide red' },
-  { variant: 'Sandwich insulated panel', size: 'Up to 8m × 3.5m', finish: 'Outer leaf + PIR/mineral wool + inner leaf', use: 'Loadbearing facades to Part L 2021 U-values' },
+  { variant: 'Board-marked panel', size: 'Up to 8m Ã— 3.5m', finish: 'Sawn-timber board impression, vertical or horizontal', use: 'Civic buildings, schools, listed-context infill' },
+  { variant: 'Exposed-aggregate panel', size: 'Up to 8m Ã— 3.5m', finish: 'Local-stone or recycled aggregate face, retarder + wash', use: 'Universities, headquarters, residential mass' },
+  { variant: 'Acid-etched panel', size: 'Up to 8m Ã— 3.5m', finish: 'Light, medium or deep etch â€” uniform matte', use: 'Galleries, hotels, premium commercial' },
+  { variant: 'Polished / honed panel', size: 'Up to 6m Ã— 3m', finish: 'Mechanical grind to honed or full polish', use: 'Lobbies, feature spandrels, terrazzo-style facing' },
+  { variant: 'Pigmented self-finish', size: 'Up to 8m Ã— 3.5m', finish: 'Iron-oxide pigments through-cast in white or grey base', use: 'Coloured facades â€” cream, ochre, charcoal, oxide red' },
+  { variant: 'Sandwich insulated panel', size: 'Up to 8m Ã— 3.5m', finish: 'Outer leaf + PIR/mineral wool + inner leaf', use: 'Loadbearing facades to Part L 2021 U-values' },
 ];
 
 const applications = [
   'Primary and secondary school facades on DfE frameworks',
   'University and civic buildings in conservation contexts',
-  'Mid-rise residential — RC frame infill and loadbearing',
+  'Mid-rise residential â€” RC frame infill and loadbearing',
   'Hotel and gallery feature elevations',
   'Headquarters office cladding to BREEAM Excellent',
   'Listed-context extensions where brick is wrong',
@@ -37,23 +37,23 @@ const applications = [
 ];
 
 const related = [
-  { href: '/products/custom-plinths', label: 'Custom Plinths', meta: 'Bespoke bases · C40/50' },
-  { href: '/products/retaining-walls', label: 'Retaining Walls', meta: 'L-walls · cantilever' },
-  { href: '/products/lintels', label: 'Precast Lintels', meta: 'Prestressed · reinforced' },
-  { href: '/products/heelstone-coping', label: 'Heelstone Coping', meta: 'Weathered · twice-weathered' },
+  { href: '/products/custom-plinths', label: 'Custom Plinths', meta: 'Bespoke bases Â· C40/50' },
+  { href: '/products/retaining-walls', label: 'Retaining Walls', meta: 'L-walls Â· cantilever' },
+  { href: '/products/lintels', label: 'Precast Lintels', meta: 'Prestressed Â· reinforced' },
+  { href: '/products/heelstone-coping', label: 'Heelstone Coping', meta: 'Weathered Â· twice-weathered' },
 ];
 
 const faqs = [
   { q: 'What standard do your architectural panels meet?', a: 'We cast architectural panels to BS EN 14992:2007+A1:2012 (precast concrete wall elements) under our BS EN 13369 Factory Production Control. UKCA marked. Concrete is C40/50 to BS 8500-1:2023 unless the architect specifies higher. We produce a panel-by-panel test record and DoP for each consignment.' },
-  { q: 'Can you match a sample brick or stone?', a: 'Yes — send us a sample and we will mix to it. Most matches sit inside a four-week sample programme: we cast three trial panels at 600 × 600mm, you sign one off, and that becomes the master reference. Pigments are inorganic iron oxides — no fade, BBA-tested for 60 years exterior.' },
-  { q: 'How big can a single panel go?', a: 'The casting bed limits us to about 8m × 3.5m as a single piece. Above that we joint — a 12mm shadow gap or a flush stitch with grout-injected dowels. Lifting is the constraint on most jobs: a 3.5m tall × 6m panel weighs around 9 tonnes and needs a 50t crane on site.' },
-  { q: 'Are they loadbearing or rainscreen?', a: 'Both. Loadbearing sandwich panels carry floor loads and form the thermal envelope in one piece — useful for school and residential frames. Rainscreen panels hang off a steel or RC frame on cast-in lifting sockets and adjustable Halfen channels behind. We design either to BS EN 1992 with a chartered engineer.' },
-  { q: 'What is a realistic lead time?', a: 'Sample programme: 3-4 weeks. Production after sign-off: 8-12 weeks for a typical school facade, longer for complex geometry or heavily textured finishes. We need the architect drawings issued for construction before we cut moulds — moulds are the long-lead item.' },
+  { q: 'Can you match a sample brick or stone?', a: 'Yes â€” send us a sample and we will mix to it. Most matches sit inside a four-week sample programme: we cast three trial panels at 600 Ã— 600mm, you sign one off, and that becomes the master reference. Pigments are inorganic iron oxides â€” no fade, BBA-tested for 60 years exterior.' },
+  { q: 'How big can a single panel go?', a: 'The casting bed limits us to about 8m Ã— 3.5m as a single piece. Above that we joint â€” a 12mm shadow gap or a flush stitch with grout-injected dowels. Lifting is the constraint on most jobs: a 3.5m tall Ã— 6m panel weighs around 9 tonnes and needs a 50t crane on site.' },
+  { q: 'Are they loadbearing or rainscreen?', a: 'Both. Loadbearing sandwich panels carry floor loads and form the thermal envelope in one piece â€” useful for school and residential frames. Rainscreen panels hang off a steel or RC frame on cast-in lifting sockets and adjustable Halfen channels behind. We design either to BS EN 1992 with a chartered engineer.' },
+  { q: 'What is a realistic lead time?', a: 'Sample programme: 3-4 weeks. Production after sign-off: 8-12 weeks for a typical school facade, longer for complex geometry or heavily textured finishes. We need the architect drawings issued for construction before we cut moulds â€” moulds are the long-lead item.' },
 ];
 
 const productSchema = {
   name: 'Architectural Precast Panels',
-  description: 'Bespoke architectural precast concrete panels — board-marked, exposed-aggregate, acid-etched and polished finishes. UKCA marked to BS EN 14992. Cast at our Holsworthy yard for schools, civic buildings, residential and commercial facades UK-wide.',
+  description: 'Bespoke architectural precast concrete panels â€” board-marked, exposed-aggregate, acid-etched and polished finishes. UKCA marked to BS EN 14992. Cast at our Holsworthy yard for schools, civic buildings, residential and commercial facades UK-wide.',
   brand: { '@type': 'Brand', name: site.name },
   manufacturer: { '@type': 'Organization', name: site.name },
   category: 'Architectural precast concrete wall element',
@@ -63,7 +63,7 @@ const productSchema = {
     { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
     { '@type': 'PropertyValue', name: 'Factory Production Control', value: 'BS EN 13369' },
     { '@type': 'PropertyValue', name: 'Marking', value: 'UKCA' },
-    { '@type': 'PropertyValue', name: 'Maximum panel size', value: '8m × 3.5m single cast' },
+    { '@type': 'PropertyValue', name: 'Maximum panel size', value: '8m Ã— 3.5m single cast' },
     { '@type': 'PropertyValue', name: 'Finishes', value: 'Board-marked / exposed aggregate / acid-etched / polished / pigmented' },
     { '@type': 'PropertyValue', name: 'Lead time', value: '8-12 weeks after sample sign-off' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
@@ -83,9 +83,9 @@ const faqSchema = {
 ---
 
 <BaseLayout
-  title="Architectural Precast Panels — Board-marked, Etched, Polished · BS EN 14992"
-  description="Bespoke architectural precast concrete panels — board-marked, exposed-aggregate, acid-etched and polished. UKCA marked to BS EN 14992. Schools, civic, residential. Cast in North Devon."
-  image="/og-default.png"
+  title="Architectural Precast Panels â€” Board-marked, Etched, Polished Â· BS EN 14992"
+  description="Bespoke architectural precast concrete panels â€” board-marked, exposed-aggregate, acid-etched and polished. UKCA marked to BS EN 14992. Schools, civic, residential. Cast in North Devon."
+  image="/og/home.png"
   schema="Product"
   schemaData={productSchema}
   whatsappContext="Architectural Panels"
@@ -99,33 +99,33 @@ const faqSchema = {
     <div class="container-wccp py-16 md:py-20">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <p class="eyebrow text-yellow mb-4">Architectural · facades · structural</p>
+          <p class="eyebrow text-yellow mb-4">Architectural Â· facades Â· structural</p>
           <h1 class="font-display text-display-xl text-white mb-4">Architectural Panels.</h1>
-          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">A facade you specified — not one you settled for.</p>
+          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">A facade you specified â€” not one you settled for.</p>
           <p class="text-lg lg:text-xl text-cast leading-relaxed font-medium text-white/95 mb-6 max-w-xl">
             Architectural precast panels in board-marked, exposed-aggregate, acid-etched and
             polished finishes. UKCA marked to BS EN 14992, cast in C40/50 concrete to BS 8500-1.
-            Up to 8m × 3.5m single-piece. Sample programme 3-4 weeks; production 8-12 weeks
+            Up to 8m Ã— 3.5m single-piece. Sample programme 3-4 weeks; production 8-12 weeks
             after architect sign-off.
           </p>
           <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
             Architectural precast lets the architect specify a facade with the depth, mass and
             shadow of cast stone, at the speed of off-site manufacture. We mould, cast, finish
-            and dispatch from a single Devon yard — one accountable supplier for the whole
+            and dispatch from a single Devon yard â€” one accountable supplier for the whole
             elevation.
           </blockquote>
           <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
             Schools, civic buildings, residential mass and university campuses across the
             South West, Wales and London. We work direct with the architect from RIBA Stage 3
-            onwards — sample, mock-up, sign-off, cast.
+            onwards â€” sample, mock-up, sign-off, cast.
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
-            <li class="flex gap-2"><span class="text-yellow">·</span> BS EN 14992</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> UKCA marked</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> C40/50 concrete</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Up to 8m × 3.5m</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 4 finish families</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 8-12 week make</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> BS EN 14992</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> UKCA marked</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> C40/50 concrete</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> Up to 8m Ã— 3.5m</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 4 finish families</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 8-12 week make</li>
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Architectural%20Panels" class="btn-primary">Configure a quote</a>
@@ -138,7 +138,7 @@ const faqSchema = {
         <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
           <div>
             <p class="text-cast-600 text-sm font-mono">Photo needed</p>
-            <p class="text-cast text-xs mt-2">Hero shot — board-marked panel in raking afternoon light, full elevation visible, school or civic context preferred</p>
+            <p class="text-cast text-xs mt-2">Hero shot â€” board-marked panel in raking afternoon light, full elevation visible, school or civic context preferred</p>
           </div>
         </div>
       </div>
@@ -152,7 +152,7 @@ const faqSchema = {
       <h2 class="font-display text-display-lg mb-4">Finish families and panel sizes.</h2>
       <p class="text-cast-700 text-lg">
         Four core finish families, all available in white, grey or pigmented base. Bespoke
-        textures — fluted, ribbed, fossil-cast — quoted on application against architect drawings.
+        textures â€” fluted, ribbed, fossil-cast â€” quoted on application against architect drawings.
       </p>
     </div>
 
@@ -195,18 +195,18 @@ const faqSchema = {
       <div class="max-w-2xl mb-10">
         <p class="eyebrow text-cast mb-3">Finishes & references</p>
         <h2 class="font-display text-display-lg mb-4 text-navy">Finish library and reference projects.</h2>
-        <p class="text-cast-700 text-lg">Photo plates being commissioned — placeholder shot briefs below for each tile.</p>
+        <p class="text-cast-700 text-lg">Photo plates being commissioned â€” placeholder shot briefs below for each tile.</p>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {[
-          { caption: 'Board-marked · vertical sawn-timber impression', shot: 'Close-up of board-marked panel face — raking light to show timber grain shadow' },
-          { caption: 'Exposed aggregate · Devon flint blend', shot: 'Exposed-aggregate face with local flint — washed reveal' },
-          { caption: 'Acid-etched · medium etch', shot: 'Acid-etched panel detail showing matte uniform finish' },
-          { caption: 'Polished · interior spandrel', shot: 'Honed/polished panel installed in a lobby — terrazzo-style face' },
-          { caption: 'Pigmented · ochre iron-oxide', shot: 'Full elevation of ochre pigmented panels — residential context' },
-          { caption: 'Sandwich · loadbearing section', shot: 'Sectional cut showing sandwich panel — outer leaf, PIR core, inner leaf' },
-          { caption: 'Cast-in fixings · Halfen channel', shot: 'Detail of cast-in Halfen channel and anchor plate on rear face of panel' },
-          { caption: 'Sample programme · 600 × 600 trials', shot: 'Three trial sample panels lined up at yard for architect sign-off' },
+          { caption: 'Board-marked Â· vertical sawn-timber impression', shot: 'Close-up of board-marked panel face â€” raking light to show timber grain shadow' },
+          { caption: 'Exposed aggregate Â· Devon flint blend', shot: 'Exposed-aggregate face with local flint â€” washed reveal' },
+          { caption: 'Acid-etched Â· medium etch', shot: 'Acid-etched panel detail showing matte uniform finish' },
+          { caption: 'Polished Â· interior spandrel', shot: 'Honed/polished panel installed in a lobby â€” terrazzo-style face' },
+          { caption: 'Pigmented Â· ochre iron-oxide', shot: 'Full elevation of ochre pigmented panels â€” residential context' },
+          { caption: 'Sandwich Â· loadbearing section', shot: 'Sectional cut showing sandwich panel â€” outer leaf, PIR core, inner leaf' },
+          { caption: 'Cast-in fixings Â· Halfen channel', shot: 'Detail of cast-in Halfen channel and anchor plate on rear face of panel' },
+          { caption: 'Sample programme Â· 600 Ã— 600 trials', shot: 'Three trial sample panels lined up at yard for architect sign-off' },
         ].map((img) => (
           <figure>
             <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-4 text-center">
@@ -237,7 +237,7 @@ const faqSchema = {
           <ul class="space-y-3">
             {applications.map((a) => (
               <li class="flex gap-3 text-cast-700 leading-relaxed">
-                <span class="text-ember font-bold mt-1">·</span>
+                <span class="text-ember font-bold mt-1">Â·</span>
                 <span>{a}</span>
               </li>
             ))}
@@ -250,15 +250,15 @@ const faqSchema = {
           <dl class="space-y-4 text-sm">
             <div>
               <dt class="font-bold text-navy">BS EN 14992:2007+A1:2012</dt>
-              <dd class="text-cast">Precast concrete wall elements — geometry, durability, structural performance.</dd>
+              <dd class="text-cast">Precast concrete wall elements â€” geometry, durability, structural performance.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BS EN 13369</dt>
-              <dd class="text-cast">Common rules for precast concrete products — Factory Production Control.</dd>
+              <dd class="text-cast">Common rules for precast concrete products â€” Factory Production Control.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BS 8500-1:2023</dt>
-              <dd class="text-cast">Concrete specification — exposure classes XC3/XF1 minimum for external panels.</dd>
+              <dd class="text-cast">Concrete specification â€” exposure classes XC3/XF1 minimum for external panels.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BS EN 1992-1-1 (Eurocode 2)</dt>
@@ -280,7 +280,7 @@ const faqSchema = {
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
           <p class="eyebrow text-navy mb-2">Specify your facade</p>
-          <h2 class="font-display text-display-md">Send us the elevation drawings and a finish reference — we will quote and propose a sample programme inside a week.</h2>
+          <h2 class="font-display text-display-md">Send us the elevation drawings and a finish reference â€” we will quote and propose a sample programme inside a week.</h2>
         </div>
         <div class="flex flex-wrap gap-3 shrink-0">
           <a href="/quote?product=Architectural%20Panels" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
@@ -339,7 +339,7 @@ const faqSchema = {
       defaultMode="supply"
       supply={{
         price: 'Bespoke quote',
-        leadTime: '8–12 weeks (post sign-off)',
+        leadTime: '8â€“12 weeks (post sign-off)',
         includes: [
           'Architect sample programme + sign-off panels',
           'Cast panels with cast-in fixings to engineer schedule',
@@ -354,7 +354,7 @@ const faqSchema = {
       }}
       fitted={{
         price: 'Bespoke quote (with erection partner)',
-        leadTime: '12–16 weeks (incl. erection slot)',
+        leadTime: '12â€“16 weeks (incl. erection slot)',
         includes: [
           'Everything in supply only',
           'Specialist erection sub-contractor coordinated by WCCP',
@@ -366,7 +366,7 @@ const faqSchema = {
           'Window / curtain-wall interface (separate package)',
         ],
       }}
-      note=". Architectural panel work is always bespoke — drawings, sample programme and finish reference are needed before we can confirm a quote."
+      note=". Architectural panel work is always bespoke â€” drawings, sample programme and finish reference are needed before we can confirm a quote."
     />
   </section>
 

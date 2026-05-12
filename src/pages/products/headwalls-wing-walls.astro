@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
@@ -18,14 +18,14 @@ const tocSections = [
   { id: 'downloads', label: 'Downloads' },
 ];
 
-// Headwalls and wing walls — culvert outfalls, CIRIA C786, 600mm to 3000mm spans.
+// Headwalls and wing walls â€” culvert outfalls, CIRIA C786, 600mm to 3000mm spans.
 const specs = [
-  { variant: 'Headwall — 600mm pipe', bed: '1500 × 1200 × 200mm', style: 'Pipe socket cast in · splayed wings', use: 'Field drains, small culverts, ditch crossings' },
-  { variant: 'Headwall — 900mm pipe', bed: '2000 × 1400 × 250mm', style: 'Pipe socket cast in · splayed wings', use: 'Standard farm and estate culverts' },
-  { variant: 'Headwall — 1200mm pipe', bed: '2400 × 1600 × 250mm', style: 'Pipe socket cast in · splayed wings', use: 'Highway and rural-road culverts' },
-  { variant: 'Headwall — 1800mm pipe', bed: '3200 × 2000 × 300mm', style: 'Pipe socket cast in · splayed wings', use: 'Major culverts, river crossings' },
-  { variant: 'Headwall — 3000mm span', bed: 'Bespoke to spec', style: 'Box culvert outfall · engineer-detailed', use: 'River and large drainage outfalls' },
-  { variant: 'Wing Wall — paired', bed: 'Bespoke to spec', style: 'Cantilever splay · 30°/45°/60°', use: 'Embankment retention at outfall' },
+  { variant: 'Headwall â€” 600mm pipe', bed: '1500 Ã— 1200 Ã— 200mm', style: 'Pipe socket cast in Â· splayed wings', use: 'Field drains, small culverts, ditch crossings' },
+  { variant: 'Headwall â€” 900mm pipe', bed: '2000 Ã— 1400 Ã— 250mm', style: 'Pipe socket cast in Â· splayed wings', use: 'Standard farm and estate culverts' },
+  { variant: 'Headwall â€” 1200mm pipe', bed: '2400 Ã— 1600 Ã— 250mm', style: 'Pipe socket cast in Â· splayed wings', use: 'Highway and rural-road culverts' },
+  { variant: 'Headwall â€” 1800mm pipe', bed: '3200 Ã— 2000 Ã— 300mm', style: 'Pipe socket cast in Â· splayed wings', use: 'Major culverts, river crossings' },
+  { variant: 'Headwall â€” 3000mm span', bed: 'Bespoke to spec', style: 'Box culvert outfall Â· engineer-detailed', use: 'River and large drainage outfalls' },
+  { variant: 'Wing Wall â€” paired', bed: 'Bespoke to spec', style: 'Cantilever splay Â· 30Â°/45Â°/60Â°', use: 'Embankment retention at outfall' },
 ];
 
 const applications = [
@@ -39,17 +39,17 @@ const applications = [
 ];
 
 const related = [
-  { href: '/products/culverts', label: 'Culverts', meta: 'Reinforced precast · DMRB CD 360' },
-  { href: '/products/retaining-walls', label: 'Retaining Walls', meta: 'L-shape & T-shape · to 6m' },
-  { href: '/products/soakaways-chambers', label: 'Soakaways & Chambers', meta: 'BS EN 1917 · drainage' },
-  { href: '/products/cantilever-walls', label: 'Cantilever Walls', meta: 'Free-standing · clamp & bay' },
+  { href: '/products/culverts', label: 'Culverts', meta: 'Reinforced precast Â· DMRB CD 360' },
+  { href: '/products/retaining-walls', label: 'Retaining Walls', meta: 'L-shape & T-shape Â· to 6m' },
+  { href: '/products/soakaways-chambers', label: 'Soakaways & Chambers', meta: 'BS EN 1917 Â· drainage' },
+  { href: '/products/cantilever-walls', label: 'Cantilever Walls', meta: 'Free-standing Â· clamp & bay' },
 ];
 
 const faqs = [
-  { q: 'What is CIRIA C786?', a: 'CIRIA C786 — "Culvert, screen and outfall manual" (2019, updates 2024) — is the UK best-practice guide for designing pipe outfalls, headwalls and trash screens. It covers hydraulic capacity, scour protection, fish-passage where relevant, and maintenance access. Every WCCP headwall is detailed against C786 and signed off by our consulting engineer.' },
-  { q: 'Do you offer trash screens and grilles?', a: 'Yes. We supply a galvanised mild-steel debris screen sized to the pipe, with sloping bars at 75mm centres and a hinged maintenance access. Detailing follows CIRIA C786 — the screen is set forward of the pipe so debris can be raked clear without entering the watercourse.' },
-  { q: 'What about Environment Agency consents?', a: 'Any outfall to a designated watercourse needs an EA Land Drainage Consent or, in main-river territory, a Flood Risk Activity Permit. We supply the precast and the structural calculations; the consent application is the contractor’s or designer’s responsibility, but we have helped on dozens of submissions and we know what the EA wants to see.' },
-  { q: 'Can you do bespoke shapes?', a: 'Yes — most headwalls past 1200mm pipe are bespoke. Splay angles, wing-wall heights, scour aprons and fish-baffle details all change with the site. Send us the long-section and a hydraulic summary and our engineer will detail to suit.' },
+  { q: 'What is CIRIA C786?', a: 'CIRIA C786 â€” "Culvert, screen and outfall manual" (2019, updates 2024) â€” is the UK best-practice guide for designing pipe outfalls, headwalls and trash screens. It covers hydraulic capacity, scour protection, fish-passage where relevant, and maintenance access. Every WCCP headwall is detailed against C786 and signed off by our consulting engineer.' },
+  { q: 'Do you offer trash screens and grilles?', a: 'Yes. We supply a galvanised mild-steel debris screen sized to the pipe, with sloping bars at 75mm centres and a hinged maintenance access. Detailing follows CIRIA C786 â€” the screen is set forward of the pipe so debris can be raked clear without entering the watercourse.' },
+  { q: 'What about Environment Agency consents?', a: 'Any outfall to a designated watercourse needs an EA Land Drainage Consent or, in main-river territory, a Flood Risk Activity Permit. We supply the precast and the structural calculations; the consent application is the contractorâ€™s or designerâ€™s responsibility, but we have helped on dozens of submissions and we know what the EA wants to see.' },
+  { q: 'Can you do bespoke shapes?', a: 'Yes â€” most headwalls past 1200mm pipe are bespoke. Splay angles, wing-wall heights, scour aprons and fish-baffle details all change with the site. Send us the long-section and a hydraulic summary and our engineer will detail to suit.' },
   { q: 'What is the lead time?', a: 'Catalogue headwalls (600mm to 1200mm pipe) ship in 4 to 6 weeks. Bespoke and large-span outfalls run 6 to 10 weeks for the design-and-cast cycle. Highway and Network Rail jobs add 2 weeks for client design approval.' },
 ];
 
@@ -64,10 +64,10 @@ const productSchema = {
     { '@type': 'PropertyValue', name: 'Standard', value: 'CIRIA C786 (Culvert, screen and outfall manual)' },
     { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
     { '@type': 'PropertyValue', name: 'Pipe range', value: '600mm to 3000mm span' },
-    { '@type': 'PropertyValue', name: 'Wing wall splay', value: '30° / 45° / 60° (specify)' },
-    { '@type': 'PropertyValue', name: 'Trash screen', value: 'Galvanised mild steel — optional' },
+    { '@type': 'PropertyValue', name: 'Wing wall splay', value: '30Â° / 45Â° / 60Â° (specify)' },
+    { '@type': 'PropertyValue', name: 'Trash screen', value: 'Galvanised mild steel â€” optional' },
     { '@type': 'PropertyValue', name: 'Compliance', value: 'BS EN 14844 (precast box culverts) where applicable' },
-    { '@type': 'PropertyValue', name: 'Lead time', value: '4–6 weeks catalogue, 6–10 weeks bespoke' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '4â€“6 weeks catalogue, 6â€“10 weeks bespoke' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
   ],
   offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
@@ -85,9 +85,9 @@ const faqSchema = {
 ---
 
 <BaseLayout
-  title="Headwalls & Wing Walls — Precast culvert outfalls · CIRIA C786"
+  title="Headwalls & Wing Walls â€” Precast culvert outfalls Â· CIRIA C786"
   description="Precast concrete headwalls and wing walls for culvert outfalls. CIRIA C786 detailing, 600mm to 3000mm spans. Trash screens and bespoke splays. Cast in North Devon."
-  image="/og-default.png"
+  image="/og/home.png"
   schema="Product"
   schemaData={productSchema}
   whatsappContext="Headwalls and Wing Walls"
@@ -101,11 +101,11 @@ const faqSchema = {
     <div class="container-wccp py-16 md:py-20">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <p class="eyebrow text-yellow mb-4">Civils · drainage · highways</p>
+          <p class="eyebrow text-yellow mb-4">Civils Â· drainage Â· highways</p>
           <h1 class="font-display text-display-xl text-white mb-4">Headwalls & Wing Walls.</h1>
           <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">CIRIA-detailed. Engineer-signed. Lifted in a day.</p>
           <p class="text-lg lg:text-xl text-cast leading-relaxed font-medium text-white/95 mb-6 max-w-xl">
-            Precast headwalls and wing walls for culvert outfalls — pipe sockets cast in,
+            Precast headwalls and wing walls for culvert outfalls â€” pipe sockets cast in,
             splayed wings, scour aprons and trash screens detailed to CIRIA C786. Catalogue
             sizes from 600mm to 1200mm pipe; bespoke from 1800mm up to 3000mm span. Cast in
             C40/50 to BS 8500-1:2023. Civils lead time 4-6 weeks.
@@ -117,16 +117,16 @@ const faqSchema = {
             and screen access. WCCP cast catalogue and bespoke headwalls to suit.
           </blockquote>
           <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
-            Highway, Network Rail, water-utility and farm outfalls — we cast, deliver
+            Highway, Network Rail, water-utility and farm outfalls â€” we cast, deliver
             and install across the UK from the Holsworthy yard.
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
-            <li class="flex gap-2"><span class="text-yellow">·</span> CIRIA C786 detailed</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 600mm to 3000mm</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Splay 30°/45°/60°</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Trash screen option</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Engineer-signed</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 4–6 week lead</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> CIRIA C786 detailed</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 600mm to 3000mm</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> Splay 30Â°/45Â°/60Â°</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> Trash screen option</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> Engineer-signed</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 4â€“6 week lead</li>
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Headwalls%20%26%20Wing%20Walls" class="btn-primary">Configure a quote</a>
@@ -138,8 +138,8 @@ const faqSchema = {
         </div>
         <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
           <div>
-            <p class="text-cast-600 text-sm font-mono">📷 Photo needed</p>
-            <p class="text-cast text-xs mt-2">Hero shot — installed precast headwall at a culvert outfall, showing splayed wing walls, pipe socket and water flow, ideally a Devon or Somerset highway job</p>
+            <p class="text-cast-600 text-sm font-mono">ðŸ“· Photo needed</p>
+            <p class="text-cast text-xs mt-2">Hero shot â€” installed precast headwall at a culvert outfall, showing splayed wing walls, pipe socket and water flow, ideally a Devon or Somerset highway job</p>
           </div>
         </div>
       </div>
@@ -195,10 +195,10 @@ const faqSchema = {
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {[
           'Standard 900mm headwall installed on a Devon highway outfall',
-          'Splayed wing walls — 45° detail at embankment retention',
-          'Trash screen and hinged maintenance access — close-up',
+          'Splayed wing walls â€” 45Â° detail at embankment retention',
+          'Trash screen and hinged maintenance access â€” close-up',
           '1800mm pipe headwall being lifted into position by 50t crane',
-          'Scour apron detail at the toe — stone pitching and concrete',
+          'Scour apron detail at the toe â€” stone pitching and concrete',
           'Pipe socket cast-in detail before delivery',
           'Bespoke 3m box culvert outfall with paired wing walls',
           'CIRIA C786-compliant general arrangement drawing',
@@ -206,7 +206,7 @@ const faqSchema = {
           <figure>
             <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
               <div>
-                <p class="text-cast-600 text-sm font-mono">📷 Photo needed</p>
+                <p class="text-cast-600 text-sm font-mono">ðŸ“· Photo needed</p>
                 <p class="text-cast text-xs mt-2">{d}</p>
               </div>
             </div>
@@ -225,12 +225,12 @@ const faqSchema = {
           <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
           <p class="text-cast-700 text-lg leading-relaxed mb-6">
             From a 600mm field-drain ditch crossing on a Devon farm to a 3m river outfall on
-            an A-road improvement, the engineering is the same — CIRIA C786, properly detailed.
+            an A-road improvement, the engineering is the same â€” CIRIA C786, properly detailed.
           </p>
           <ul class="space-y-3">
             {applications.map((a) => (
               <li class="flex gap-3 text-cast-700 leading-relaxed">
-                <span class="text-ember font-bold mt-1">·</span>
+                <span class="text-ember font-bold mt-1">Â·</span>
                 <span>{a}</span>
               </li>
             ))}
@@ -243,19 +243,19 @@ const faqSchema = {
           <dl class="space-y-4 text-sm">
             <div>
               <dt class="font-bold text-navy">CIRIA C786 (2019, 2024 updates)</dt>
-              <dd class="text-cast">Culvert, screen and outfall manual — UK design reference for headwalls and trash screens.</dd>
+              <dd class="text-cast">Culvert, screen and outfall manual â€” UK design reference for headwalls and trash screens.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">DMRB CD 360</dt>
-              <dd class="text-cast">Highway drainage design — culvert and outfall requirements for trunk roads.</dd>
+              <dd class="text-cast">Highway drainage design â€” culvert and outfall requirements for trunk roads.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BS EN 14844</dt>
-              <dd class="text-cast">Precast concrete box culverts — applicable to large-span outfall bases.</dd>
+              <dd class="text-cast">Precast concrete box culverts â€” applicable to large-span outfall bases.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BS 8500-1:2023</dt>
-              <dd class="text-cast">Concrete specification — C40/50 mix for buried and submerged conditions.</dd>
+              <dd class="text-cast">Concrete specification â€” C40/50 mix for buried and submerged conditions.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">EA Land Drainage Byelaws</dt>
@@ -273,7 +273,7 @@ const faqSchema = {
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
           <p class="eyebrow text-navy mb-2">Configure your outfall</p>
-          <h2 class="font-display text-display-md">Send the long-section and pipe size — we will quote inside 48 hours.</h2>
+          <h2 class="font-display text-display-md">Send the long-section and pipe size â€” we will quote inside 48 hours.</h2>
         </div>
         <div class="flex flex-wrap gap-3 shrink-0">
           <a href="/quote?product=Headwalls%20%26%20Wing%20Walls" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
@@ -332,7 +332,7 @@ const faqSchema = {
       defaultMode="supply"
       supply={{
         price: 'Bespoke quote',
-        leadTime: '4–6 weeks',
+        leadTime: '4â€“6 weeks',
         includes: [
           'Precast headwall and wing-wall units cast to spec',
           'Pipe socket cast in to suit pipe make',
@@ -347,7 +347,7 @@ const faqSchema = {
       }}
       fitted={{
         price: 'Bespoke quote (incl. install)',
-        leadTime: '6–10 weeks (incl. site slot)',
+        leadTime: '6â€“10 weeks (incl. site slot)',
         includes: [
           'Everything in supply only',
           'CSCS-carded install crew with crane',
@@ -359,7 +359,7 @@ const faqSchema = {
           'Environment Agency consent application',
         ],
       }}
-      note=". Highway, Network Rail and major outfall works priced individually — send the long-section and we'll come back within two working days."
+      note=". Highway, Network Rail and major outfall works priced individually â€” send the long-section and we'll come back within two working days."
     />
   </section>
 

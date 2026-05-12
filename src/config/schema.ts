@@ -1,4 +1,4 @@
-// Typed JSON-LD schema.org generators for WCCP.
+﻿// Typed JSON-LD schema.org generators for WCCP.
 //
 // CLIENT CONSTRAINT (Kim): no public prices anywhere, including JSON-LD.
 // All builders run through stripPriceFields(). Keyed off site.pricingPolicy.
@@ -55,7 +55,7 @@ const orgRef = {
 
 const seller = { ...orgRef };
 
-// ── Organization ─────────────────────────────────────────────────────
+// â”€â”€ Organization â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export function buildOrganizationSchema() {
   return {
@@ -81,14 +81,14 @@ export function buildOrganizationSchema() {
   };
 }
 
-// ── LocalBusiness ────────────────────────────────────────────────────
+// â”€â”€ LocalBusiness â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export function buildLocalBusinessSchema() {
   return {
     '@type': 'LocalBusiness',
     '@id': `${site.url}/#localbusiness`,
     name: site.name,
-    image: `${site.url}/og-default.png`,
+    image: `${site.url}/og/home.png`,
     url: site.url,
     telephone: site.contact.phoneIntl,
     address: orgAddress,
@@ -102,7 +102,7 @@ export function buildLocalBusinessSchema() {
   };
 }
 
-// ── Product (price-stripped) ─────────────────────────────────────────
+// â”€â”€ Product (price-stripped) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export function buildProductSchema(d: Record<string, unknown>) {
   let offers: unknown = d.offers;
@@ -139,7 +139,7 @@ export function buildProductSchema(d: Record<string, unknown>) {
   };
 }
 
-// ── Service (price-stripped, area auto-filled) ───────────────────────
+// â”€â”€ Service (price-stripped, area auto-filled) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export function buildServiceSchema(d: Record<string, unknown>) {
   const provider = d.provider ?? {
@@ -159,7 +159,7 @@ export function buildServiceSchema(d: Record<string, unknown>) {
   return { '@type': 'Service', provider, areaServed, ...rest, ...safeCatalog };
 }
 
-// ── Article ──────────────────────────────────────────────────────────
+// â”€â”€ Article â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export function buildArticleSchema(d: Record<string, unknown>) {
   const headline = (d.headline as string | undefined) ?? site.name;
@@ -171,7 +171,7 @@ export function buildArticleSchema(d: Record<string, unknown>) {
   return { '@type': 'Article', headline, author, datePublished, ...rest };
 }
 
-// ── FAQPage ──────────────────────────────────────────────────────────
+// â”€â”€ FAQPage â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export interface FAQItem {
   question: string;
@@ -191,13 +191,13 @@ export function buildFAQPageSchema(d: Record<string, unknown>) {
   };
 }
 
-// ── HowTo ────────────────────────────────────────────────────────────
+// â”€â”€ HowTo â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export function buildHowToSchema(d: Record<string, unknown>) {
   return { '@type': 'HowTo', ...d };
 }
 
-// ── BreadcrumbList (auto-generated from URL path) ────────────────────
+// â”€â”€ BreadcrumbList (auto-generated from URL path) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 const SLUG_LABELS: Record<string, string> = {
   products: 'Products',
@@ -249,7 +249,7 @@ export function buildBreadcrumbSchema(pathname: string | undefined) {
   };
 }
 
-// ── Graph assembler ──────────────────────────────────────────────────
+// â”€â”€ Graph assembler â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export type SchemaType =
   | 'Organization'

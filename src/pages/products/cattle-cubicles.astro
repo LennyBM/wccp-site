@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
@@ -18,20 +18,20 @@ const tocSections = [
   { id: 'downloads', label: 'Downloads' },
 ];
 
-// WCCP cubicle range — sizes published in feet/inches by the yard, with metric equivalents.
+// WCCP cubicle range â€” sizes published in feet/inches by the yard, with metric equivalents.
 // Front-leg mushroom design on the cow cubicles; smaller-stature variants for youngstock.
 const specs = [
-  { variant: '7’6" × 4’ Cow Cubicle', bed: "7'6\" × 4'0\" (2286 × 1219mm)", style: 'Front-leg mushroom', use: 'Larger-frame Holstein and modern dairy herds' },
-  { variant: '7’6" × 3’9" Cow Cubicle', bed: "7'6\" × 3'9\" (2286 × 1143mm)", style: 'Front-leg mushroom', use: 'Standard dairy herd' },
-  { variant: '7’ × 3’9" Young Stock Cubicle', bed: "7'0\" × 3'9\" (2134 × 1143mm)", style: 'Sized for young and small stock', use: 'In-calf heifers and rearing groups' },
-  { variant: '6’6" × 3’3" Young Stock Cubicle', bed: "6'6\" × 3'3\" (1981 × 991mm)", style: 'Sized for young and small stock', use: 'Smaller youngstock — train them young' },
-  { variant: 'Portable Blank Cow Cubicle Bed', bed: "To suit your cubicle make", style: 'Free-standing — accepts most cubicle hoops', use: 'Re-roofed barns, retro-fits, tenanted lets' },
+  { variant: '7â€™6" Ã— 4â€™ Cow Cubicle', bed: "7'6\" Ã— 4'0\" (2286 Ã— 1219mm)", style: 'Front-leg mushroom', use: 'Larger-frame Holstein and modern dairy herds' },
+  { variant: '7â€™6" Ã— 3â€™9" Cow Cubicle', bed: "7'6\" Ã— 3'9\" (2286 Ã— 1143mm)", style: 'Front-leg mushroom', use: 'Standard dairy herd' },
+  { variant: '7â€™ Ã— 3â€™9" Young Stock Cubicle', bed: "7'0\" Ã— 3'9\" (2134 Ã— 1143mm)", style: 'Sized for young and small stock', use: 'In-calf heifers and rearing groups' },
+  { variant: '6â€™6" Ã— 3â€™3" Young Stock Cubicle', bed: "6'6\" Ã— 3'3\" (1981 Ã— 991mm)", style: 'Sized for young and small stock', use: 'Smaller youngstock â€” train them young' },
+  { variant: 'Portable Blank Cow Cubicle Bed', bed: "To suit your cubicle make", style: 'Free-standing â€” accepts most cubicle hoops', use: 'Re-roofed barns, retro-fits, tenanted lets' },
   { variant: 'Precast heelstones (sand beds)', bed: "Standard or to spec", style: 'Eliminates on-site shutter forming', use: 'Sand bed and loose-bedding cubicle formation' },
 ];
 
 const applications = [
   'Loose-housed dairy parlours retro-fitted with cubicles',
-  'New-build robotic milking sheds — DeLaval, Lely, GEA',
+  'New-build robotic milking sheds â€” DeLaval, Lely, GEA',
   'Beef suckler housing on grant-funded steel-frame buildings',
   'Heifer rearing units with grouped age bands',
   'Tenanted units needing portable, removable cubicle rows',
@@ -40,18 +40,18 @@ const applications = [
 ];
 
 const related = [
-  { href: '/products/cubicle-end-walls', label: 'Cubicle End Walls', meta: 'Single + double row · trough option' },
-  { href: '/products/water-troughs', label: 'Water Troughs', meta: 'Single + double row · 1300×600' },
-  { href: '/products/milking-robot-bases', label: 'Milking Robot Bases', meta: 'DeLaval VMS · Lely Astronaut' },
+  { href: '/products/cubicle-end-walls', label: 'Cubicle End Walls', meta: 'Single + double row Â· trough option' },
+  { href: '/products/water-troughs', label: 'Water Troughs', meta: 'Single + double row Â· 1300Ã—600' },
+  { href: '/products/milking-robot-bases', label: 'Milking Robot Bases', meta: 'DeLaval VMS Â· Lely Astronaut' },
   { href: '/products/slurry-storage', label: 'Slurry Storage', meta: 'SSAFO 2018-compliant' },
 ];
 
 const faqs = [
-  { q: 'What sizing do you follow for the cubicles?', a: 'We work to AHDB Dairy 2024 dimensions: 2.4m × 1.2m bed for the mature Holstein, neck rail at 1.15m, brisket board at 1.7m. Jersey, Friesian and beef variants follow the same logic, scaled by liveweight. We size on the heaviest 15% of the herd, not the average — that is the AHDB recommendation and it is what stops cubicle-rejection lameness.' },
-  { q: 'Fixed or portable — which do I want?', a: 'Fixed cubicles bolt to a cast-in upstand or floor pocket and are the standard for new builds. Portable cantilever cubicles sit on a base rail and can be lifted out — they suit reroofed sheds, tenanted units and farms that want to flex bed numbers between groups. Portable units cost about 25% more per cubicle.' },
-  { q: 'How long does install take?', a: 'A two-man crew with a HIAB sets a 60-cubicle row in a day on a flat slab. We deliver to programme, supply the install drawing and the bedding-mortar spec. We can also project-manage the install if you want a turn-key job — talk to the yard.' },
-  { q: 'Do they suit a robot herd?', a: 'Yes — robot herds need the cubicle right because the cow chooses when to lie. We size to the higher-yielding 15%, set the neck rail forward, and use a soft brisket board so cows rise easily and head to the robot. Lely, DeLaval and GEA all publish cow-flow guides we work to.' },
-  { q: 'What is the lead time?', a: 'Catalogue cubicle divisions ship in 2 to 3 weeks. Bespoke heights or finishes run 4 to 6 weeks. Spring and autumn are our busy seasons — get the order in early if your shed is going up to a programme.' },
+  { q: 'What sizing do you follow for the cubicles?', a: 'We work to AHDB Dairy 2024 dimensions: 2.4m Ã— 1.2m bed for the mature Holstein, neck rail at 1.15m, brisket board at 1.7m. Jersey, Friesian and beef variants follow the same logic, scaled by liveweight. We size on the heaviest 15% of the herd, not the average â€” that is the AHDB recommendation and it is what stops cubicle-rejection lameness.' },
+  { q: 'Fixed or portable â€” which do I want?', a: 'Fixed cubicles bolt to a cast-in upstand or floor pocket and are the standard for new builds. Portable cantilever cubicles sit on a base rail and can be lifted out â€” they suit reroofed sheds, tenanted units and farms that want to flex bed numbers between groups. Portable units cost about 25% more per cubicle.' },
+  { q: 'How long does install take?', a: 'A two-man crew with a HIAB sets a 60-cubicle row in a day on a flat slab. We deliver to programme, supply the install drawing and the bedding-mortar spec. We can also project-manage the install if you want a turn-key job â€” talk to the yard.' },
+  { q: 'Do they suit a robot herd?', a: 'Yes â€” robot herds need the cubicle right because the cow chooses when to lie. We size to the higher-yielding 15%, set the neck rail forward, and use a soft brisket board so cows rise easily and head to the robot. Lely, DeLaval and GEA all publish cow-flow guides we work to.' },
+  { q: 'What is the lead time?', a: 'Catalogue cubicle divisions ship in 2 to 3 weeks. Bespoke heights or finishes run 4 to 6 weeks. Spring and autumn are our busy seasons â€” get the order in early if your shed is going up to a programme.' },
 ];
 
 const productSchema = {
@@ -72,11 +72,11 @@ const productSchema = {
     { '@type': 'PropertyValue', name: 'Standard', value: 'BS 5502-22:2003 (agricultural buildings)' },
     { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
     { '@type': 'PropertyValue', name: 'Sizing reference', value: 'AHDB Dairy 2024 cubicle dimensions' },
-    { '@type': 'PropertyValue', name: 'Standard bed size', value: '2.4m × 1.2m (Holstein)' },
+    { '@type': 'PropertyValue', name: 'Standard bed size', value: '2.4m Ã— 1.2m (Holstein)' },
     { '@type': 'PropertyValue', name: 'Neck rail height', value: '1.15m (Holstein standard)' },
     { '@type': 'PropertyValue', name: 'Brisket board position', value: '1.70m from kerb' },
     { '@type': 'PropertyValue', name: 'Variants', value: 'Holstein / Jersey / Beef / Youngstock / Portable' },
-    { '@type': 'PropertyValue', name: 'Lead time', value: '2–3 weeks catalogue, 4–6 weeks bespoke' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '2â€“3 weeks catalogue, 4â€“6 weeks bespoke' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
   ],
   offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
@@ -94,9 +94,9 @@ const faqSchema = {
 ---
 
 <BaseLayout
-  title="Cattle Cubicles — Fixed & Portable · AHDB 2024 sizing"
-  description="Precast cattle cubicles to AHDB 2024 dimensions. Holstein 2.4m × 1.2m bed, neck rail 1.15m, brisket 1.7m. Jersey, beef and portable variants. Cast in North Devon."
-  image="/og/cattle-cubicles.png"
+  title="Cattle Cubicles â€” Fixed & Portable Â· AHDB 2024 sizing"
+  description="Precast cattle cubicles to AHDB 2024 dimensions. Holstein 2.4m Ã— 1.2m bed, neck rail 1.15m, brisket 1.7m. Jersey, beef and portable variants. Cast in North Devon."
+  image="/og/home.png"
   schema="Product"
   schemaData={productSchema}
   whatsappContext="Cattle Cubicles"
@@ -110,11 +110,11 @@ const faqSchema = {
     <div class="container-wccp py-16 md:py-20">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <p class="eyebrow text-yellow mb-4">Agricultural · dairy · beef</p>
+          <p class="eyebrow text-yellow mb-4">Agricultural Â· dairy Â· beef</p>
           <h1 class="font-display text-display-xl text-white mb-4">Cattle Cubicles.</h1>
           <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">Sized to the breed. Built to outlive the shed.</p>
           <p class="text-lg lg:text-xl text-cast leading-relaxed font-medium text-white/95 mb-6 max-w-xl">
-            A UK Holstein-Friesian cattle cubicle measures 2.4m × 1.2m bed, with a 1.15m neck rail and
+            A UK Holstein-Friesian cattle cubicle measures 2.4m Ã— 1.2m bed, with a 1.15m neck rail and
             a 1.7m brisket board, sized to AHDB Dairy 2024 dimensions. WCCP cast cubicles in C40/50
             concrete to BS 5502-22, with fixed and portable variants for dairy, beef and youngstock.
             Catalogue lead time 2-3 weeks.
@@ -128,15 +128,15 @@ const faqSchema = {
           <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
             Fixed and portable precast cubicle systems sized to AHDB 2024 dimensions.
             Holstein, Jersey, Friesian, beef-suckler and youngstock variants. We cast,
-            deliver and install UK-wide — and into Europe on planned runs.
+            deliver and install UK-wide â€” and into Europe on planned runs.
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
-            <li class="flex gap-2"><span class="text-yellow">·</span> AHDB 2024 sized</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 2.4m × 1.2m bed</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Neck rail 1.15m</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Brisket 1.7m</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Fixed + portable</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 2–3 week lead</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> AHDB 2024 sized</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 2.4m Ã— 1.2m bed</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> Neck rail 1.15m</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> Brisket 1.7m</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> Fixed + portable</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 2â€“3 week lead</li>
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Cattle%20Cubicles" class="btn-primary">Configure a quote</a>
@@ -147,7 +147,7 @@ const faqSchema = {
           </div>
         </div>
         <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
-          <img src="/images/products/cubicles/wccp-cubicles-portable-cubicles-1024x768.jpg" alt="Precast concrete portable cattle cubicles — West Country Concrete Products, Devon" class="w-full h-full object-cover" loading="eager" decoding="async" />
+          <img src="/images/products/cubicles/wccp-cubicles-portable-cubicles-1024x768.jpg" alt="Precast concrete portable cattle cubicles â€” West Country Concrete Products, Devon" class="w-full h-full object-cover" loading="eager" decoding="async" />
         </div>
       </div>
     </div>
@@ -159,8 +159,8 @@ const faqSchema = {
       <p class="eyebrow text-cast mb-3">Specification</p>
       <h2 class="font-display text-display-lg mb-4">Variants, sizing and weights.</h2>
       <p class="text-cast-700 text-lg">
-        AHDB Dairy 2024 dimensions for the standard catalogue. Bespoke sizes — wider beds,
-        adjusted neck-rail heights, dished kerb profiles — quoted on application.
+        AHDB Dairy 2024 dimensions for the standard catalogue. Bespoke sizes â€” wider beds,
+        adjusted neck-rail heights, dished kerb profiles â€” quoted on application.
       </p>
     </div>
 
@@ -187,13 +187,13 @@ const faqSchema = {
       </table>
     </div>
     <p class="text-cast text-sm mt-4">
-      All cubicle metalwork is available direct from us — if you are forming your own beds with our heelstone coping
+      All cubicle metalwork is available direct from us â€” if you are forming your own beds with our heelstone coping
       we can supply all the appropriate accessories to complete the job. For longer beds, position the cubicle further
       away from the back wall as this part is only lunging space.
     </p>
 
     <p class="text-cast text-sm mt-4">
-      Size cubicles on the heaviest 15% of the herd, not the average — AHDB Dairy 2024 recommendation.
+      Size cubicles on the heaviest 15% of the herd, not the average â€” AHDB Dairy 2024 recommendation.
       We will size them with you against your milk records before you order.
     </p>
   </section>
@@ -204,14 +204,14 @@ const faqSchema = {
     background="bone"
     cols={4}
     images={[
-      { src: '/images/products/cubicles/wccp-cubicles-portable-cow-cubicles.jpg', alt: 'Portable precast concrete cow cubicle bed with galvanised hoop frame and heel-step by West Country Concrete Products, Devon', caption: 'Portable cubicle bed · cast at Holsworthy' },
+      { src: '/images/products/cubicles/wccp-cubicles-portable-cow-cubicles.jpg', alt: 'Portable precast concrete cow cubicle bed with galvanised hoop frame and heel-step by West Country Concrete Products, Devon', caption: 'Portable cubicle bed Â· cast at Holsworthy' },
       { src: '/images/products/cubicles/wccp-cubicles-cubicle-trough-slider-1-1024x438.jpg', alt: 'Long precast concrete cubicle bed with integrated end-of-row water trough cast by WCCP Devon', caption: 'Cubicle bed with end-of-row water trough' },
       { src: '/images/products/cubicles/wccp-cubicles-young-stock-cubicle-300x228.jpg', alt: 'Single young-stock precast concrete cubicle bed with galvanised cubicle hoop by WCCP Devon', caption: 'Young-stock cubicle bed' },
-      { src: '/images/products/cubicles/wccp-cubicles-young-stock-portable-cubicle-300x212.jpg', alt: 'Dimensioned profile drawing of WCCP precast concrete young-stock portable cubicle, Devon', caption: 'Young-stock portable cubicle · profile drawing' },
-      { src: '/images/products/cubicles/wccp-cubicles-portable-cubicle-profile1-300x212.jpg', alt: 'Profile drawing of a WCCP precast concrete portable cattle cubicle, Devon', caption: 'Portable cubicle · profile drawing' },
-      { src: '/images/products/cubicles/wccp-cubicles-portable-cubicle-with-heel-head-rail-riser1-300x212.jpg', alt: 'Profile drawing of a WCCP portable cubicle with heel stone and headrail riser, Devon', caption: 'Cubicle + heelstone + headrail riser · drawing' },
-      { src: '/images/products/cubicles/wccp-cubicles-cubicle-row-with-head-rail-riser-300x225.jpg', alt: '3D rendering of a full row of precast concrete cattle cubicles with headrail riser by WCCP Devon', caption: 'Full cubicle row with headrail · 3D drawing' },
-      { src: '/images/products/cubicles/wccp-cubicles-headrail-riser-300x225.jpg', alt: 'Close-up of the galvanised headrail-riser bracket on a WCCP precast concrete cattle cubicle, Devon', caption: 'Galvanised headrail-riser bracket · detail' },
+      { src: '/images/products/cubicles/wccp-cubicles-young-stock-portable-cubicle-300x212.jpg', alt: 'Dimensioned profile drawing of WCCP precast concrete young-stock portable cubicle, Devon', caption: 'Young-stock portable cubicle Â· profile drawing' },
+      { src: '/images/products/cubicles/wccp-cubicles-portable-cubicle-profile1-300x212.jpg', alt: 'Profile drawing of a WCCP precast concrete portable cattle cubicle, Devon', caption: 'Portable cubicle Â· profile drawing' },
+      { src: '/images/products/cubicles/wccp-cubicles-portable-cubicle-with-heel-head-rail-riser1-300x212.jpg', alt: 'Profile drawing of a WCCP portable cubicle with heel stone and headrail riser, Devon', caption: 'Cubicle + heelstone + headrail riser Â· drawing' },
+      { src: '/images/products/cubicles/wccp-cubicles-cubicle-row-with-head-rail-riser-300x225.jpg', alt: '3D rendering of a full row of precast concrete cattle cubicles with headrail riser by WCCP Devon', caption: 'Full cubicle row with headrail Â· 3D drawing' },
+      { src: '/images/products/cubicles/wccp-cubicles-headrail-riser-300x225.jpg', alt: 'Close-up of the galvanised headrail-riser bracket on a WCCP precast concrete cattle cubicle, Devon', caption: 'Galvanised headrail-riser bracket Â· detail' },
     ]}
   />
 
@@ -224,12 +224,12 @@ const faqSchema = {
           <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
           <p class="text-cast-700 text-lg leading-relaxed mb-6">
             From a 60-cow Devon dairy retrofit to a 400-cow robot shed in Somerset, we cast
-            the same cubicle system — sized to your herd, delivered to your programme.
+            the same cubicle system â€” sized to your herd, delivered to your programme.
           </p>
           <ul class="space-y-3">
             {applications.map((a) => (
               <li class="flex gap-3 text-cast-700 leading-relaxed">
-                <span class="text-ember font-bold mt-1">·</span>
+                <span class="text-ember font-bold mt-1">Â·</span>
                 <span>{a}</span>
               </li>
             ))}
@@ -242,23 +242,23 @@ const faqSchema = {
           <dl class="space-y-4 text-sm">
             <div>
               <dt class="font-bold text-navy">AHDB Dairy 2024</dt>
-              <dd class="text-cast">Cubicle dimensions guide — bed size, neck rail, brisket board sized to herd liveweight distribution.</dd>
+              <dd class="text-cast">Cubicle dimensions guide â€” bed size, neck rail, brisket board sized to herd liveweight distribution.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BS 5502-22:2003</dt>
-              <dd class="text-cast">Buildings and structures for agriculture — cattle housing. Loadings and detailing.</dd>
+              <dd class="text-cast">Buildings and structures for agriculture â€” cattle housing. Loadings and detailing.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BS 8500-1:2023</dt>
-              <dd class="text-cast">Concrete specification — C40/50 mix designed for the dairy environment.</dd>
+              <dd class="text-cast">Concrete specification â€” C40/50 mix designed for the dairy environment.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BS EN 13369</dt>
-              <dd class="text-cast">Common rules for precast concrete products — factory production control.</dd>
+              <dd class="text-cast">Common rules for precast concrete products â€” factory production control.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">DEFRA Code of Recommendations</dt>
-              <dd class="text-cast">Welfare of livestock — cattle. Stocking densities and lying-comfort guidance.</dd>
+              <dd class="text-cast">Welfare of livestock â€” cattle. Stocking densities and lying-comfort guidance.</dd>
             </div>
           </dl>
         </div>
@@ -272,7 +272,7 @@ const faqSchema = {
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
           <p class="eyebrow text-navy mb-2">Configure your cubicle row</p>
-          <h2 class="font-display text-display-md">Tell us herd size, breed and shed dimensions — we will quote inside 24 hours.</h2>
+          <h2 class="font-display text-display-md">Tell us herd size, breed and shed dimensions â€” we will quote inside 24 hours.</h2>
         </div>
         <div class="flex flex-wrap gap-3 shrink-0">
           <a href="/quote?product=Cattle%20Cubicles" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
@@ -331,7 +331,7 @@ const faqSchema = {
       defaultMode="fitted"
       supply={{
         price: 'Bespoke quote',
-        leadTime: '2–3 weeks',
+        leadTime: '2â€“3 weeks',
         includes: [
           'Cast cubicle divisions to AHDB 2024 sizing',
           'Bedding-mortar spec & install drawing',
@@ -345,7 +345,7 @@ const faqSchema = {
       }}
       fitted={{
         price: 'Bespoke quote (incl. install)',
-        leadTime: '4–6 weeks (incl. site slot)',
+        leadTime: '4â€“6 weeks (incl. site slot)',
         includes: [
           'Everything in supply only',
           'Two-man install crew with HIAB',
@@ -357,7 +357,7 @@ const faqSchema = {
           'Mains electrical or scrape-system fit-out',
         ],
       }}
-      note=". Smaller batches and bespoke bed sizes priced individually — send the shed dimensions and we'll come back within a working day."
+      note=". Smaller batches and bespoke bed sizes priced individually â€” send the shed dimensions and we'll come back within a working day."
     />
   </section>
 

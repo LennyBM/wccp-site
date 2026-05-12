@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
@@ -9,23 +9,23 @@ import { site } from '@/config/site';
 import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
 
 const aWallSpecs = [
-  { height: '2500mm', weight: '2,300 kg', notes: '1200mm wide × 1300mm deep base' },
-  { height: '3000mm', weight: '2,500 kg', notes: '1200mm wide × 1300mm deep base' },
-  { height: '3500mm', weight: '2,700 kg', notes: '1200mm wide × 1300mm deep base' },
+  { height: '2500mm', weight: '2,300 kg', notes: '1200mm wide Ã— 1300mm deep base' },
+  { height: '3000mm', weight: '2,500 kg', notes: '1200mm wide Ã— 1300mm deep base' },
+  { height: '3500mm', weight: '2,700 kg', notes: '1200mm wide Ã— 1300mm deep base' },
 ];
 
 const aWallFeatures = [
-  '2.5m, 3m or 3.5m high · 1200mm wide × 1300mm deep base',
+  '2.5m, 3m or 3.5m high Â· 1200mm wide Ã— 1300mm deep base',
   'Optional fork slots on the front',
-  'Raised base on the sides — placement from any side',
+  'Raised base on the sides â€” placement from any side',
   'Integrated anchoring points',
-  'Free-standing push-walls / bay walls — drive against during filling',
+  'Free-standing push-walls / bay walls â€” drive against during filling',
 ];
 
 const lWallSpecs = [
-  { height: '2500mm', base: '1400mm deep · 1200mm wide', weight: '2,000 kg' },
-  { height: '3000mm', base: '1605mm deep · 1200mm wide', weight: '2,230 kg' },
-  { height: '4000mm', base: '2155mm deep · 1000mm wide', weight: '2,660 kg' },
+  { height: '2500mm', base: '1400mm deep Â· 1200mm wide', weight: '2,000 kg' },
+  { height: '3000mm', base: '1605mm deep Â· 1200mm wide', weight: '2,230 kg' },
+  { height: '4000mm', base: '2155mm deep Â· 1000mm wide', weight: '2,660 kg' },
 ];
 
 const lWallFeatures = [
@@ -37,8 +37,8 @@ const lWallFeatures = [
 ];
 
 const tWallSpecs = [
-  { height: '2500mm', base: '2390mm wide base · 1200mm wide', weight: '2,400 kg' },
-  { height: '3000mm', base: '2600mm wide base · 1200mm wide', weight: '2,700 kg' },
+  { height: '2500mm', base: '2390mm wide base Â· 1200mm wide', weight: '2,400 kg' },
+  { height: '3000mm', base: '2600mm wide base Â· 1200mm wide', weight: '2,700 kg' },
 ];
 
 const tWallFeatures = [
@@ -50,19 +50,19 @@ const tWallFeatures = [
 ];
 
 const betonSpecs = [
-  { type: 'Single 800', size: '800 × 800 × 800mm', weight: '1,200 kg' },
-  { type: 'Double 1600', size: '1600 × 800 × 800mm', weight: '2,400 kg' },
-  { type: 'Triple 1800', size: '1800 × 600 × 600mm', weight: '1,550 kg' },
-  { type: 'Double 1200', size: '1200 × 600 × 600mm', weight: '1,033 kg' },
-  { type: 'Single 600', size: '600 × 600 × 600mm', weight: '517 kg' },
+  { type: 'Single 800', size: '800 Ã— 800 Ã— 800mm', weight: '1,200 kg' },
+  { type: 'Double 1600', size: '1600 Ã— 800 Ã— 800mm', weight: '2,400 kg' },
+  { type: 'Triple 1800', size: '1800 Ã— 600 Ã— 600mm', weight: '1,550 kg' },
+  { type: 'Double 1200', size: '1200 Ã— 600 Ã— 600mm', weight: '1,033 kg' },
+  { type: 'Single 600', size: '600 Ã— 600 Ã— 600mm', weight: '517 kg' },
 ];
 
 const betonFeatures = [
-  '800×800×800mm singles (1,200kg) and 1600mm doubles (2,400kg)',
-  '1800×600×600mm triples (1,550kg), 1200mm doubles (1,033kg), 600mm singles (517kg)',
+  '800Ã—800Ã—800mm singles (1,200kg) and 1600mm doubles (2,400kg)',
+  '1800Ã—600Ã—600mm triples (1,550kg), 1200mm doubles (1,033kg), 600mm singles (517kg)',
   'Smooth or stepped sloping end blocks',
   'Ridged & flat-top capping blocks available',
-  'Lift in / lift out, rearrange — true modular bay storage',
+  'Lift in / lift out, rearrange â€” true modular bay storage',
 ];
 
 const applications = [
@@ -84,16 +84,16 @@ const related = [
 ];
 
 const faqs = [
-  { q: "What's the difference between A, L and T walls?", a: "All three are named WCCP Free-Standing Wall Sections. 'A' Walls are push-walls and bay walls — 2.5m, 3m or 3.5m high, 1200mm wide × 1300mm deep base, with optional fork slots and raised side bases for placement from any direction. 'L' Walls are heavier-duty retention units at 2.5m or 3m, 1200mm wide on a 1400mm or 1600mm deep base. 'T' Walls go higher — 2.5m, 3m, 3.5m or 4m high — with very heavy-duty reinforcement on a wider base." },
-  { q: 'Do they need a foundation?', a: 'A, L and T Walls are free-standing — no concrete strip footing required. They sit on a compacted hardcore base. L and T Walls have integrated anchoring holes if you need to tie them down for high-load or high-wind situations. A Walls have integrated anchoring points for the same reason.' },
-  { q: 'How are the blocks lifted and re-positioned?', a: "All units have integrated lifting eyes or brackets. The 'L' Walls offer lifting brackets for level positioning. The Interlocking Beton Blocks are designed to lift in, lift out and rearrange — that's the whole point of the system. A 25-tonne crane or 20-tonne teleporter handles the largest singles." },
-  { q: 'What sizes do the Interlocking Beton Blocks come in?', a: 'Singles at 800×800×800mm and 1,200kg, doubles at 1,600mm and 2,400kg. Triples at 1,800×600×600mm (1,550kg), doubles at 1,200×600×600mm (1,033kg) and singles at 600×600×600mm (517kg). Smooth or stepped sloping end blocks plus ridged and flat-top capping blocks available for finishing the run.' },
-  { q: 'Lead time and delivery?', a: 'Catalogue heights ship in 2 to 4 weeks. Delivery is on a HIAB lorry that can offload itself. The taller T Walls travel as wide loads — we will book the haulage and notify the police where required.' },
+  { q: "What's the difference between A, L and T walls?", a: "All three are named WCCP Free-Standing Wall Sections. 'A' Walls are push-walls and bay walls â€” 2.5m, 3m or 3.5m high, 1200mm wide Ã— 1300mm deep base, with optional fork slots and raised side bases for placement from any direction. 'L' Walls are heavier-duty retention units at 2.5m or 3m, 1200mm wide on a 1400mm or 1600mm deep base. 'T' Walls go higher â€” 2.5m, 3m, 3.5m or 4m high â€” with very heavy-duty reinforcement on a wider base." },
+  { q: 'Do they need a foundation?', a: 'A, L and T Walls are free-standing â€” no concrete strip footing required. They sit on a compacted hardcore base. L and T Walls have integrated anchoring holes if you need to tie them down for high-load or high-wind situations. A Walls have integrated anchoring points for the same reason.' },
+  { q: 'How are the blocks lifted and re-positioned?', a: "All units have integrated lifting eyes or brackets. The 'L' Walls offer lifting brackets for level positioning. The Interlocking Beton Blocks are designed to lift in, lift out and rearrange â€” that's the whole point of the system. A 25-tonne crane or 20-tonne teleporter handles the largest singles." },
+  { q: 'What sizes do the Interlocking Beton Blocks come in?', a: 'Singles at 800Ã—800Ã—800mm and 1,200kg, doubles at 1,600mm and 2,400kg. Triples at 1,800Ã—600Ã—600mm (1,550kg), doubles at 1,200Ã—600Ã—600mm (1,033kg) and singles at 600Ã—600Ã—600mm (517kg). Smooth or stepped sloping end blocks plus ridged and flat-top capping blocks available for finishing the run.' },
+  { q: 'Lead time and delivery?', a: 'Catalogue heights ship in 2 to 4 weeks. Delivery is on a HIAB lorry that can offload itself. The taller T Walls travel as wide loads â€” we will book the haulage and notify the police where required.' },
 ];
 
 const productSchema = {
-  name: "Free-Standing Walls & Interlocking Blocks — 'A' / 'L' / 'T' Walls & Beton Blocks",
-  description: "WCCP named Free-Standing Wall Sections range. 'A' Walls (2.5m / 3m / 3.5m high, 1200mm wide × 1300mm deep base, 2,300 / 2,500 / 2,680kg, optional fork slots, integrated anchoring points). 'L' Walls (2.5m / 3m, 1200mm wide × 1400 or 1600mm deep base, 2,000 / 2,240kg, very heavy-duty reinforcement, lifting brackets). 'T' Walls (2.5m / 3m / 3.5m / 4m, 1200mm wide, 2,360 / 2,660 / 3,180 / 3,340kg). Plus Interlocking Beton Blocks (singles, doubles and triples, 517kg up to 2,400kg).",
+  name: "Free-Standing Walls & Interlocking Blocks â€” 'A' / 'L' / 'T' Walls & Beton Blocks",
+  description: "WCCP named Free-Standing Wall Sections range. 'A' Walls (2.5m / 3m / 3.5m high, 1200mm wide Ã— 1300mm deep base, 2,300 / 2,500 / 2,680kg, optional fork slots, integrated anchoring points). 'L' Walls (2.5m / 3m, 1200mm wide Ã— 1400 or 1600mm deep base, 2,000 / 2,240kg, very heavy-duty reinforcement, lifting brackets). 'T' Walls (2.5m / 3m / 3.5m / 4m, 1200mm wide, 2,360 / 2,660 / 3,180 / 3,340kg). Plus Interlocking Beton Blocks (singles, doubles and triples, 517kg up to 2,400kg).",
   brand: { '@type': 'Brand', name: site.name },
   manufacturer: { '@type': 'Organization', name: site.name },
   category: 'Precast free-standing walls & interlocking blocks',
@@ -102,16 +102,16 @@ const productSchema = {
   additionalProperty: [
     { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 13369 / BS EN 14992' },
     { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
-    { '@type': 'PropertyValue', name: "Named: 'A' Walls", value: '2.5m / 3m / 3.5m high, 1200mm wide × 1300mm deep base, 2,300 / 2,500 / 2,680 kg' },
+    { '@type': 'PropertyValue', name: "Named: 'A' Walls", value: '2.5m / 3m / 3.5m high, 1200mm wide Ã— 1300mm deep base, 2,300 / 2,500 / 2,680 kg' },
     { '@type': 'PropertyValue', name: "'A' Wall features", value: 'Optional fork slots; raised base on sides; integrated anchoring points' },
     { '@type': 'PropertyValue', name: "Named: 'L' Walls", value: '2.5m / 3m high, 1200mm wide on 1400 / 1600mm deep base, 2,000 / 2,240 kg' },
     { '@type': 'PropertyValue', name: "'L' Wall features", value: 'Integrated anchoring holes; very heavy-duty reinforcement; lifting brackets available' },
     { '@type': 'PropertyValue', name: "Named: 'T' Walls", value: '2.5m / 3m (2200/2600mm base) and 3.5m / 4m (2000mm base) high, 1200mm wide, 2,360 / 2,660 / 3,180 / 3,340 kg' },
     { '@type': 'PropertyValue', name: "'T' Wall features", value: 'Integrated anchoring holes; very heavy-duty reinforcement' },
-    { '@type': 'PropertyValue', name: 'Interlocking Beton Blocks', value: '800×800×800mm singles (1,200kg) & 1600mm doubles (2,400kg); 1800×600×600 triples (1,550kg), 1200mm doubles (1,033kg), 600mm singles (517kg)' },
+    { '@type': 'PropertyValue', name: 'Interlocking Beton Blocks', value: '800Ã—800Ã—800mm singles (1,200kg) & 1600mm doubles (2,400kg); 1800Ã—600Ã—600 triples (1,550kg), 1200mm doubles (1,033kg), 600mm singles (517kg)' },
     { '@type': 'PropertyValue', name: 'Beton end / capping options', value: 'Smooth or stepped sloping end blocks; ridged & flat-top capping blocks' },
     { '@type': 'PropertyValue', name: 'Foundation', value: 'Compacted hardcore base (no concrete strip required for free-standing units)' },
-    { '@type': 'PropertyValue', name: 'Lead time', value: '2–4 weeks' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '2â€“4 weeks' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
   ],
   offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
@@ -125,9 +125,9 @@ const faqSchema = {
 ---
 
 <BaseLayout
-  title="Free-Standing Walls & Blocks — 'A', 'L', 'T' & Interlocking Beton"
-  description="WCCP named Free-Standing Wall Sections range. 'A' Walls 2.5–3.5m, 'L' Walls 2.5–3m, 'T' Walls 2.5–4m, plus Interlocking Beton Blocks (800×800 singles, 1600 doubles, 1800 triples). Heavy-duty reinforcement, integrated anchoring. Cast in North Devon."
-  image="/og/l-blocks.png"
+  title="Free-Standing Walls & Blocks â€” 'A', 'L', 'T' & Interlocking Beton"
+  description="WCCP named Free-Standing Wall Sections range. 'A' Walls 2.5â€“3.5m, 'L' Walls 2.5â€“3m, 'T' Walls 2.5â€“4m, plus Interlocking Beton Blocks (800Ã—800 singles, 1600 doubles, 1800 triples). Heavy-duty reinforcement, integrated anchoring. Cast in North Devon."
+  image="/og/home.png"
   schema="Product"
   schemaData={productSchema}
   whatsappContext="Free-Standing Walls"
@@ -139,7 +139,7 @@ const faqSchema = {
     <div class="container-wccp py-16 md:py-20">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <p class="eyebrow text-yellow mb-4">Civils · agricultural · bulk storage</p>
+          <p class="eyebrow text-yellow mb-4">Civils Â· agricultural Â· bulk storage</p>
           <h1 class="font-display text-display-xl text-white mb-4">Free-standing walls &amp; blocks &mdash; A, L, T and Interlocking Beton.</h1>
           <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">
             Bay walls, push-walls, bunds. Move them when the job moves.
@@ -156,16 +156,16 @@ const faqSchema = {
             C40/50 concrete. <strong class="text-white">'A' Walls</strong> 2.5-3.5m for push-walls and bay walls;
             <strong class="text-white">'L' Walls</strong> 2.5-3m heavy-duty retention; <strong class="text-white">'T' Walls</strong> 2.5-4m tall retention;
             <strong class="text-white">Beton Blocks</strong> 517-2,400kg modular. Stack-and-go install on compacted
-            hardcore — no tieback or in-situ heel needed. Suit silage, grain, aggregate
+            hardcore â€” no tieback or in-situ heel needed. Suit silage, grain, aggregate
             and biomass storage bays. Lead time 2-4 weeks.
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
-            <li class="flex gap-2"><span class="text-yellow">·</span> 'A' Walls 2.5–3.5m</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 'L' Walls 2.5–3m</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 'T' Walls 2.5–4m</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Beton blocks</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> Heavy-duty reinforcement</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 2–4 week lead</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 'A' Walls 2.5â€“3.5m</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 'L' Walls 2.5â€“3m</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 'T' Walls 2.5â€“4m</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> Beton blocks</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> Heavy-duty reinforcement</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 2â€“4 week lead</li>
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Free-Standing+Walls" class="btn-primary">Configure a quote</a>
@@ -173,7 +173,7 @@ const faqSchema = {
           </div>
         </div>
         <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
-          <img src="/images/products/home/wccp-home-free-standing-wall-section.jpg" alt="Free-standing precast concrete wall section — West Country Concrete Products, Devon" class="w-full h-full object-cover" loading="eager" decoding="async" />
+          <img src="/images/products/home/wccp-home-free-standing-wall-section.jpg" alt="Free-standing precast concrete wall section â€” West Country Concrete Products, Devon" class="w-full h-full object-cover" loading="eager" decoding="async" />
         </div>
       </div>
     </div>
@@ -184,7 +184,7 @@ const faqSchema = {
     <div class="card p-8 md:p-12 border-2 border-ember/20">
       <div class="grid lg:grid-cols-2 gap-10 items-start">
         <div>
-          <p class="eyebrow text-ember mb-3">Named system · push-walls / bay walls</p>
+          <p class="eyebrow text-ember mb-3">Named system Â· push-walls / bay walls</p>
           <h2 class="font-display text-display-lg text-navy mb-4">'A' Walls.</h2>
           <p class="text-cast-700 text-lg leading-relaxed mb-4">
             Free-standing push-walls and bay walls. 1200mm wide on a 1300mm deep base. Heights of
@@ -193,7 +193,7 @@ const faqSchema = {
             anchoring points.
           </p>
           <ul class="space-y-2 text-sm">
-            {aWallFeatures.map((f) => (<li class="flex gap-2 text-cast-700"><span class="text-ember font-bold">·</span><span>{f}</span></li>))}
+            {aWallFeatures.map((f) => (<li class="flex gap-2 text-cast-700"><span class="text-ember font-bold">Â·</span><span>{f}</span></li>))}
           </ul>
         </div>
         <div>
@@ -229,7 +229,7 @@ const faqSchema = {
       <div class="card p-8 md:p-12 border-2 border-ember/20">
         <div class="grid lg:grid-cols-2 gap-10 items-start">
           <div>
-            <p class="eyebrow text-ember mb-3">Named system · heavy-duty retention</p>
+            <p class="eyebrow text-ember mb-3">Named system Â· heavy-duty retention</p>
             <h2 class="font-display text-display-lg text-navy mb-4">'L' Walls.</h2>
             <p class="text-cast-700 text-lg leading-relaxed mb-4">
               Free-standing 'L' shaped retaining walls. 2.5m or 3m high, 1200mm wide, on a 1400mm
@@ -238,7 +238,7 @@ const faqSchema = {
               for level positioning.
             </p>
             <ul class="space-y-2 text-sm">
-              {lWallFeatures.map((f) => (<li class="flex gap-2 text-cast-700"><span class="text-ember font-bold">·</span><span>{f}</span></li>))}
+              {lWallFeatures.map((f) => (<li class="flex gap-2 text-cast-700"><span class="text-ember font-bold">Â·</span><span>{f}</span></li>))}
             </ul>
           </div>
           <div>
@@ -274,7 +274,7 @@ const faqSchema = {
     <div class="card p-8 md:p-12 border-2 border-ember/20">
       <div class="grid lg:grid-cols-2 gap-10 items-start">
         <div>
-          <p class="eyebrow text-ember mb-3">Named system · tall retention</p>
+          <p class="eyebrow text-ember mb-3">Named system Â· tall retention</p>
           <h2 class="font-display text-display-lg text-navy mb-4">'T' Walls.</h2>
           <p class="text-cast-700 text-lg leading-relaxed mb-4">
             Free-standing 'T' shaped walls for taller free-standing retention. 2.5m, 3m, 3.5m and
@@ -283,7 +283,7 @@ const faqSchema = {
             anchoring holes; very heavy-duty reinforcement.
           </p>
           <ul class="space-y-2 text-sm">
-            {tWallFeatures.map((f) => (<li class="flex gap-2 text-cast-700"><span class="text-ember font-bold">·</span><span>{f}</span></li>))}
+            {tWallFeatures.map((f) => (<li class="flex gap-2 text-cast-700"><span class="text-ember font-bold">Â·</span><span>{f}</span></li>))}
           </ul>
         </div>
         <div>
@@ -322,13 +322,13 @@ const faqSchema = {
             <p class="eyebrow text-ember mb-3">Modular system</p>
             <h2 class="font-display text-display-lg text-navy mb-4">Interlocking Beton Blocks.</h2>
             <p class="text-cast-700 text-lg leading-relaxed mb-4">
-              Modular bay-storage blocks. 800×800×800mm singles (1,200kg) and 1600mm doubles
-              (2,400kg). Plus 1800×600×600mm triples (1,550kg), 1200mm doubles (1,033kg) and 600mm
+              Modular bay-storage blocks. 800Ã—800Ã—800mm singles (1,200kg) and 1600mm doubles
+              (2,400kg). Plus 1800Ã—600Ã—600mm triples (1,550kg), 1200mm doubles (1,033kg) and 600mm
               singles (517kg). Smooth or stepped sloping end blocks. Ridged and flat-top capping
               blocks available to finish the run. Lift in, lift out, rearrange next year.
             </p>
             <ul class="space-y-2 text-sm">
-              {betonFeatures.map((f) => (<li class="flex gap-2 text-cast-700"><span class="text-ember font-bold">·</span><span>{f}</span></li>))}
+              {betonFeatures.map((f) => (<li class="flex gap-2 text-cast-700"><span class="text-ember font-bold">Â·</span><span>{f}</span></li>))}
             </ul>
           </div>
           <div>
@@ -364,20 +364,20 @@ const faqSchema = {
       <div>
         <p class="eyebrow text-cast mb-3">Where they go</p>
         <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
-        <p class="text-cast-700 text-lg leading-relaxed mb-6">From a 60-cow Devon silage clamp to a 4m T-wall woodchip bay at an AD plant — pick the family that fits the loading.</p>
+        <p class="text-cast-700 text-lg leading-relaxed mb-6">From a 60-cow Devon silage clamp to a 4m T-wall woodchip bay at an AD plant â€” pick the family that fits the loading.</p>
         <ul class="space-y-3">
-          {applications.map((a) => (<li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">·</span><span>{a}</span></li>))}
+          {applications.map((a) => (<li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">Â·</span><span>{a}</span></li>))}
         </ul>
       </div>
       <div class="card p-8">
         <p class="eyebrow text-cast mb-3">Standards & certification</p>
         <h3 class="font-display text-2xl font-bold text-navy mb-4">Cast and certified for free-standing retention.</h3>
         <dl class="space-y-4 text-sm">
-          <div><dt class="font-bold text-navy">BS EN 13369</dt><dd class="text-cast">Common rules for precast concrete — factory production control.</dd></div>
-          <div><dt class="font-bold text-navy">BS EN 14992</dt><dd class="text-cast">Precast wall elements — UKCA marking.</dd></div>
-          <div><dt class="font-bold text-navy">BS EN 1992-1-1 (Eurocode 2)</dt><dd class="text-cast">Concrete structural design — overturning and bearing checks.</dd></div>
-          <div><dt class="font-bold text-navy">BS 8500-1:2023</dt><dd class="text-cast">Concrete spec — designated mixes for the storage environment.</dd></div>
-          <div><dt class="font-bold text-navy">BS 5502-22:2003</dt><dd class="text-cast">Agricultural buildings — silage and bulk-storage loadings.</dd></div>
+          <div><dt class="font-bold text-navy">BS EN 13369</dt><dd class="text-cast">Common rules for precast concrete â€” factory production control.</dd></div>
+          <div><dt class="font-bold text-navy">BS EN 14992</dt><dd class="text-cast">Precast wall elements â€” UKCA marking.</dd></div>
+          <div><dt class="font-bold text-navy">BS EN 1992-1-1 (Eurocode 2)</dt><dd class="text-cast">Concrete structural design â€” overturning and bearing checks.</dd></div>
+          <div><dt class="font-bold text-navy">BS 8500-1:2023</dt><dd class="text-cast">Concrete spec â€” designated mixes for the storage environment.</dd></div>
+          <div><dt class="font-bold text-navy">BS 5502-22:2003</dt><dd class="text-cast">Agricultural buildings â€” silage and bulk-storage loadings.</dd></div>
         </dl>
       </div>
     </div>
@@ -388,7 +388,7 @@ const faqSchema = {
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
           <p class="eyebrow text-navy mb-2">Configure your bay or wall</p>
-          <h2 class="font-display text-display-md">Send the loading and run length — we will spec A, L, T or Beton.</h2>
+          <h2 class="font-display text-display-md">Send the loading and run length â€” we will spec A, L, T or Beton.</h2>
         </div>
         <div class="flex flex-wrap gap-3 shrink-0">
           <a href="/quote?product=Free-Standing+Walls" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
@@ -439,7 +439,7 @@ const faqSchema = {
       defaultMode="supply"
       supply={{
         price: 'Bespoke quote',
-        leadTime: '2–4 weeks',
+        leadTime: '2â€“4 weeks',
         includes: [
           "Cast 'A', 'L', 'T' Wall or Interlocking Beton Block to spec",
           'Integrated anchoring points / holes',
@@ -453,7 +453,7 @@ const faqSchema = {
       }}
       fitted={{
         price: 'Bespoke quote (incl. install)',
-        leadTime: '3–4 weeks (incl. site slot)',
+        leadTime: '3â€“4 weeks (incl. site slot)',
         includes: [
           'Everything in supply only',
           'Two-man crew with HIAB / teleporter to set units',
@@ -465,7 +465,7 @@ const faqSchema = {
           'Backfill or stored-material handling',
         ],
       }}
-      note="'A', 'L', 'T' Walls and bespoke face finishes all priced individually — unit count drives the rate. Send the bay layout for an inside-a-day quote."
+      note="'A', 'L', 'T' Walls and bespoke face finishes all priced individually â€” unit count drives the rate. Send the bay layout for an inside-a-day quote."
     />
   </section>
 

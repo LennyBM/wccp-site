@@ -1,13 +1,13 @@
----
+﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import CapacityIndicator from '@/components/CapacityIndicator.astro';
 import { site } from '@/config/site';
 
 const productTiles = [
   { value: 'slurry-storage',     label: 'Slurry storage',      desc: 'Above-ground panel stores, lagoon walls, channels.' },
-  { value: 'retaining-wall',     label: 'Retaining wall',      desc: 'King post, L-block, cantilever — to spec.' },
+  { value: 'retaining-wall',     label: 'Retaining wall',      desc: 'King post, L-block, cantilever â€” to spec.' },
   { value: 'cattle-cubicles',    label: 'Cattle cubicles',     desc: 'Holstein, Jersey or beef. Heads-in or heads-out.' },
-  { value: 'prestressed-panels', label: 'Prestressed panels',  desc: '100/150/180/280mm · BS EN 14992.' },
+  { value: 'prestressed-panels', label: 'Prestressed panels',  desc: '100/150/180/280mm Â· BS EN 14992.' },
   { value: 'feed-troughs',       label: 'Feed troughs',        desc: 'Single, twin or barrier-rail trough lines.' },
   { value: 'silage-clamp',       label: 'Silage clamp',        desc: 'C40/50 sulphate-resisting walls and aprons.' },
   { value: 'bespoke',            label: 'Bespoke',             desc: "Drawing? Sketch? Photo on a fag packet?" },
@@ -23,10 +23,10 @@ const steps = [
 ];
 
 const howItWorks = [
-  { n: '01', t: 'You tell us what you need',     d: 'A few clicks, or a photo on WhatsApp. We work with rough — full drawings come later.' },
+  { n: '01', t: 'You tell us what you need',     d: 'A few clicks, or a photo on WhatsApp. We work with rough â€” full drawings come later.' },
   { n: '02', t: 'We come back within 24 hours',  d: 'A real person, by phone or email. We confirm we can do it, ask any blockers, and book a costing slot.' },
   { n: '03', t: 'You get a written quote',       d: 'Itemised, with capacity calcs and lead time. Grant-formatted if you need it.' },
-  { n: '04', t: 'We make it. You get it.',       d: 'Manufactured at the Holsworthy yard. Own fleet UK-wide, hauliered nationwide and into Europe — recent runs to Germany, the Netherlands and the Outer Hebrides.' },
+  { n: '04', t: 'We make it. You get it.',       d: 'Manufactured at the Holsworthy yard. Own fleet UK-wide, hauliered nationwide and into Europe â€” recent runs to Germany, the Netherlands and the Outer Hebrides.' },
 ];
 
 const trust = [
@@ -38,7 +38,7 @@ const trust = [
 
 const timeframes = [
   { v: 'urgent',    l: 'Under 2 weeks' },
-  { v: '2-6wk',     l: '2 – 6 weeks' },
+  { v: '2-6wk',     l: '2 â€“ 6 weeks' },
   { v: '6wk-plus',  l: '6 weeks +' },
   { v: 'planning',  l: 'Just planning' },
 ];
@@ -46,9 +46,9 @@ const timeframes = [
 
 <BaseLayout
   title="Get a quote in 24 hours"
-  description="Configure a precast concrete quote with WCCP. Slurry storage, retaining walls, cubicles, prestressed panels, bespoke. Same-day callback Mon–Fri."
-  image="/og-default.png"
-  imageAlt="WCCP quote configurator — get a written precast concrete quote within 24 hours, cast in Holsworthy, North Devon"
+  description="Configure a precast concrete quote with WCCP. Slurry storage, retaining walls, cubicles, prestressed panels, bespoke. Same-day callback Monâ€“Fri."
+  image="/og/home.png"
+  imageAlt="WCCP quote configurator â€” get a written precast concrete quote within 24 hours, cast in Holsworthy, North Devon"
   schema="Article"
 >
   <!-- Hero -->
@@ -64,7 +64,7 @@ const timeframes = [
     </div>
   </section>
 
-  <!-- Live capacity indicator — sits above the form so prospects see lead-time up front -->
+  <!-- Live capacity indicator â€” sits above the form so prospects see lead-time up front -->
   <section class="container-wccp pt-6 pb-2">
     <CapacityIndicator weeks={4} />
   </section>
@@ -114,7 +114,7 @@ const timeframes = [
         <div class="mb-8">
           <p class="eyebrow text-ember mb-3">Step 1 of 5</p>
           <h2 id="quote-step1-heading" class="font-display text-display-lg mb-3">What are you looking to build?</h2>
-          <p class="text-cast-700 text-lg max-w-2xl">Pick the closest match. We can refine later — this is just to point us at the right team.</p>
+          <p class="text-cast-700 text-lg max-w-2xl">Pick the closest match. We can refine later â€” this is just to point us at the right team.</p>
         </div>
 
         <p class="text-sm font-semibold text-ember mb-3 hidden" id="error-product" role="alert" data-error="product">Please pick a product type to continue.</p>
@@ -182,7 +182,7 @@ const timeframes = [
               <option value="150mm">150mm</option>
               <option value="180mm">180mm</option>
               <option value="280mm">280mm</option>
-              <option value="unsure">Not sure — please advise</option>
+              <option value="unsure">Not sure â€” please advise</option>
             </select>
           </label>
         </div>
@@ -208,7 +208,7 @@ const timeframes = [
         <!-- Slurry -->
         <div data-product="slurry-storage" class="grid md:grid-cols-2 gap-5" hidden>
           <label class="block">
-            <span class="block text-sm font-bold text-navy mb-2">Required capacity (m³)</span>
+            <span class="block text-sm font-bold text-navy mb-2">Required capacity (mÂ³)</span>
             <input type="number" min="0" inputmode="numeric" pattern="[0-9]*" name="slurry_capacity" class="input" placeholder="e.g. 2,400" data-field="slurry_capacity" />
           </label>
           <label class="block">
@@ -238,7 +238,7 @@ const timeframes = [
         <div data-product="bespoke other" hidden>
           <label class="block">
             <span class="block text-sm font-bold text-navy mb-2">Tell us what you need</span>
-            <textarea name="bespoke_brief" rows="5" class="input" placeholder="Rough dimensions, drawings if you have them, what it's doing on site…" data-field="bespoke_brief"></textarea>
+            <textarea name="bespoke_brief" rows="5" class="input" placeholder="Rough dimensions, drawings if you have them, what it's doing on siteâ€¦" data-field="bespoke_brief"></textarea>
           </label>
         </div>
       </section>
@@ -269,19 +269,19 @@ const timeframes = [
             </span>
             <select name="exposure" class="input" data-field="exposure">
               <option value="">Auto-suggest from product</option>
-              <option value="XC2">XC2 — wet, rarely dry</option>
-              <option value="XC4">XC4 — cyclic wet/dry</option>
-              <option value="XA2">XA2 — moderate chemical (slurry)</option>
-              <option value="XA3">XA3 — high chemical attack</option>
-              <option value="XF3">XF3 — freeze/thaw, no de-icer</option>
+              <option value="XC2">XC2 â€” wet, rarely dry</option>
+              <option value="XC4">XC4 â€” cyclic wet/dry</option>
+              <option value="XA2">XA2 â€” moderate chemical (slurry)</option>
+              <option value="XA3">XA3 â€” high chemical attack</option>
+              <option value="XF3">XF3 â€” freeze/thaw, no de-icer</option>
             </select>
           </label>
           <label class="block">
             <span class="block text-sm font-bold text-navy mb-2">Foundation already in place?</span>
             <select name="foundation" class="input" data-field="foundation">
               <option value="">Select</option>
-              <option value="yes">Yes — foundation cast</option>
-              <option value="no">No — need to design or install</option>
+              <option value="yes">Yes â€” foundation cast</option>
+              <option value="no">No â€” need to design or install</option>
               <option value="partial">Partial / under design</option>
             </select>
           </label>
@@ -307,7 +307,7 @@ const timeframes = [
             <span id="error-site_postcode" class="text-xs text-danger font-semibold mt-1 hidden block" role="alert" data-error="site_postcode">Please enter a valid UK postcode.</span>
           </label>
 
-          <!-- Live delivery-zone indicator — populated by JS as the user types -->
+          <!-- Live delivery-zone indicator â€” populated by JS as the user types -->
           <div
             id="delivery-zone-result"
             class="mt-3 p-3 rounded-md border text-sm hidden"
@@ -325,7 +325,7 @@ const timeframes = [
           </div>
 
           <p class="text-xs text-cast mt-2">
-            Outside the UK? <a href="/reach" class="text-ember font-semibold hover:underline">See our delivery footprint</a> — we ship to Europe on planned runs.
+            Outside the UK? <a href="/reach" class="text-ember font-semibold hover:underline">See our delivery footprint</a> â€” we ship to Europe on planned runs.
           </p>
         </div>
 
@@ -352,7 +352,7 @@ const timeframes = [
 
         <div class="card p-6 mb-8 bg-bone-50 border-yellow border-l-4" data-summary>
           <p class="eyebrow text-cast mb-2">Your enquiry, in a nutshell</p>
-          <p class="text-navy text-lg leading-relaxed" data-summary-text>—</p>
+          <p class="text-navy text-lg leading-relaxed" data-summary-text>â€”</p>
         </div>
 
         <div class="grid md:grid-cols-2 gap-5">
@@ -376,13 +376,13 @@ const timeframes = [
             <span id="error-phone" class="text-xs text-danger font-semibold mt-1 hidden block" role="alert" data-error="phone">Please enter a valid UK phone number.</span>
           </label>
           <label class="block md:col-span-2">
-            <span class="block text-sm font-bold text-navy mb-2">Notes — anything we should know</span>
-            <textarea name="notes" rows="4" class="input" placeholder="Drawings, special requirements, deadlines, who recommended us…" data-field="notes"></textarea>
+            <span class="block text-sm font-bold text-navy mb-2">Notes â€” anything we should know</span>
+            <textarea name="notes" rows="4" class="input" placeholder="Drawings, special requirements, deadlines, who recommended usâ€¦" data-field="notes"></textarea>
           </label>
 
           <label class="block md:col-span-2">
             <span class="block text-sm font-bold text-navy mb-2">
-              Got drawings or a sketch? <span class="text-cast font-normal text-xs">(optional — PDF, JPG, PNG, DWG, DXF, up to 10 MB per file)</span>
+              Got drawings or a sketch? <span class="text-cast font-normal text-xs">(optional â€” PDF, JPG, PNG, DWG, DXF, up to 10 MB per file)</span>
             </span>
             <div class="card p-4 border-dashed bg-bone-50 hover:border-ember transition-colors" data-upload-zone>
               <input
@@ -451,7 +451,7 @@ const timeframes = [
 
       <!-- Navigation -->
       <div class="flex flex-wrap items-center justify-between gap-4 mt-10 pt-8 border-t border-cast-100">
-        <button type="button" class="btn-ghost" data-back hidden>← Back</button>
+        <button type="button" class="btn-ghost" data-back hidden>â† Back</button>
         <div class="ml-auto flex flex-wrap items-center gap-4">
           <!-- Reset cluster: button + inline confirm. No native confirm() dialog. -->
           <div class="flex items-center gap-2" data-reset-cluster>
@@ -459,11 +459,11 @@ const timeframes = [
             <span class="hidden items-center gap-2 text-sm" data-reset-confirm role="alert">
               <span class="text-cast">Clear all answers?</span>
               <button type="button" class="text-ember font-bold hover:underline" data-reset-yes>Yes, reset</button>
-              <span class="text-cast-300" aria-hidden="true">·</span>
+              <span class="text-cast-300" aria-hidden="true">Â·</span>
               <button type="button" class="text-cast font-semibold hover:underline" data-reset-no>Cancel</button>
             </span>
           </div>
-          <button type="button" class="btn-primary" data-next>Continue →</button>
+          <button type="button" class="btn-primary" data-next>Continue â†’</button>
           <button type="submit" class="btn-primary text-lg px-10" data-submit hidden>Get my quote</button>
         </div>
       </div>
@@ -479,13 +479,13 @@ const timeframes = [
       <div class="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-cast">
         <p data-reply-promise>
           <span class="font-semibold text-navy">We reply within 1 working day.</span>
-          Mon–Fri 07:30–17:00, calls returned same-day.
+          Monâ€“Fri 07:30â€“17:00, calls returned same-day.
         </p>
         <p class="flex items-center gap-1.5" data-saved-note>
           <svg class="w-3.5 h-3.5 text-ember shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
             <polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          <span>Saved · resume any time on this device.</span>
+          <span>Saved Â· resume any time on this device.</span>
         </p>
       </div>
     </form>
@@ -499,13 +499,13 @@ const timeframes = [
       </div>
       <p class="eyebrow text-ember mb-3">Enquiry received</p>
       <h2 class="font-display text-display-lg text-navy mb-4">
-        Thanks — we'll call from <a href={`tel:${site.contact.phoneIntl}`} class="text-ember hover:underline">{site.contact.phone}</a> within 1 working day.
+        Thanks â€” we'll call from <a href={`tel:${site.contact.phoneIntl}`} class="text-ember hover:underline">{site.contact.phone}</a> within 1 working day.
       </h2>
       <p class="text-cast-700 text-lg max-w-xl mx-auto leading-relaxed mb-3">
         A real person at the Holsworthy yard reads every enquiry. We confirm we can do it, ask any blockers, and book your costing slot.
       </p>
       <p class="text-cast text-sm max-w-xl mx-auto leading-relaxed mb-8">
-        Office hours: Mon–Fri 07:30–17:00. Caller-ID will show <strong class="text-navy">{site.contact.phone}</strong> — please pick up if you can, otherwise we'll leave a voicemail and email.
+        Office hours: Monâ€“Fri 07:30â€“17:00. Caller-ID will show <strong class="text-navy">{site.contact.phone}</strong> â€” please pick up if you can, otherwise we'll leave a voicemail and email.
       </p>
       <div class="flex flex-wrap justify-center gap-3">
         <a href="/products" class="btn-secondary">Browse products</a>
@@ -522,7 +522,7 @@ const timeframes = [
 
       <div class="card p-6 md:p-8">
         <p class="eyebrow text-ember mb-3">All-in-one form</p>
-        <h2 class="font-display text-display-md text-navy mb-2">JavaScript disabled — full form below</h2>
+        <h2 class="font-display text-display-md text-navy mb-2">JavaScript disabled â€” full form below</h2>
         <p class="text-cast">Fill in what you can. Skip what doesn't apply.</p>
       </div>
 
@@ -530,7 +530,7 @@ const timeframes = [
         <legend class="font-display text-display-sm text-navy mb-4">1. Product</legend>
         <div class="grid sm:grid-cols-2 gap-3">
           {productTiles.map((p) => (
-            <label class="flex items-start gap-3"><input type="radio" name="product" value={p.value} class="mt-1 accent-ember" /><span><strong class="text-navy">{p.label}</strong> — <span class="text-cast text-sm">{p.desc}</span></span></label>
+            <label class="flex items-start gap-3"><input type="radio" name="product" value={p.value} class="mt-1 accent-ember" /><span><strong class="text-navy">{p.label}</strong> â€” <span class="text-cast text-sm">{p.desc}</span></span></label>
           ))}
         </div>
       </fieldset>
@@ -540,7 +540,7 @@ const timeframes = [
         <label class="block"><span class="block text-sm font-bold text-navy mb-2">Wall height (m)</span><input type="text" name="wall_height" class="input" /></label>
         <label class="block"><span class="block text-sm font-bold text-navy mb-2">Run length (m)</span><input type="text" name="wall_length" class="input" /></label>
         <label class="block"><span class="block text-sm font-bold text-navy mb-2">Number of cubicles</span><input type="text" name="cubicle_count" class="input" /></label>
-        <label class="block"><span class="block text-sm font-bold text-navy mb-2">Slurry capacity (m³)</span><input type="text" name="slurry_capacity" class="input" /></label>
+        <label class="block"><span class="block text-sm font-bold text-navy mb-2">Slurry capacity (mÂ³)</span><input type="text" name="slurry_capacity" class="input" /></label>
         <label class="block md:col-span-2"><span class="block text-sm font-bold text-navy mb-2">Bespoke brief</span><textarea name="bespoke_brief" rows="3" class="input"></textarea></label>
       </fieldset>
 
@@ -576,7 +576,7 @@ const timeframes = [
     <div class="container-wccp">
       <div class="max-w-2xl mb-10">
         <p class="eyebrow text-cast mb-3">How it works</p>
-        <h2 class="font-display text-display-lg">Quote → call → cast → delivered.</h2>
+        <h2 class="font-display text-display-lg">Quote â†’ call â†’ cast â†’ delivered.</h2>
       </div>
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
         {howItWorks.map((s) => (
@@ -598,7 +598,7 @@ const timeframes = [
         <h2 class="font-display text-display-lg mb-4">Honest, dated, written.</h2>
         <p class="text-cast-700 text-lg leading-relaxed mb-4">
           We won't quote a price we can't hold. Lead times are real, in writing, with the manufacturing slot reserved.
-          If something on site changes the spec, we'll re-quote — but we don't sneak charges in at delivery.
+          If something on site changes the spec, we'll re-quote â€” but we don't sneak charges in at delivery.
         </p>
         <p class="text-cast-700 text-lg leading-relaxed">
           Grant-funded jobs come on Defra-friendly templates with capacity calcs attached. If you're applying for
@@ -622,7 +622,7 @@ const timeframes = [
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
           <h2 class="font-display text-display-md text-white mb-2">Rather just talk to a person?</h2>
-          <p class="text-white/90">Same-day callback Mon–Fri. Or send a WhatsApp with photos.</p>
+          <p class="text-white/90">Same-day callback Monâ€“Fri. Or send a WhatsApp with photos.</p>
         </div>
         <div class="flex flex-wrap gap-3">
           <a href={`tel:${site.contact.phoneIntl}`} class="btn-yellow">Call {site.contact.phone}</a>
@@ -662,7 +662,7 @@ const timeframes = [
 
       const labels = {
         product: Object.fromEntries([...form.querySelectorAll('input[name="product"]')].map(r => [r.value, r.closest('label').querySelector('.font-display').textContent.trim()])),
-        timeframe: { 'urgent': 'within 2 weeks', '2-6wk': 'in 2–6 weeks', '6wk-plus': 'in 6+ weeks', 'planning': '— still planning' },
+        timeframe: { 'urgent': 'within 2 weeks', '2-6wk': 'in 2â€“6 weeks', '6wk-plus': 'in 6+ weeks', 'planning': 'â€” still planning' },
         load_type: { 'light-agri': 'light agricultural load', 'heavy-plant': 'heavy plant load', 'liquid': 'liquid retention', 'bulk': 'bulk material retention' },
       };
 
@@ -706,9 +706,9 @@ const timeframes = [
         const parts = [];
         if (d.product) parts.push(`You said you need ${labels.product[d.product] || d.product}`);
         const sizing = [];
-        if (d.wall_height && d.wall_length) sizing.push(`${d.wall_height}m × ${d.wall_length}m${d.wall_thickness ? `, ${d.wall_thickness}` : ''}`);
+        if (d.wall_height && d.wall_length) sizing.push(`${d.wall_height}m Ã— ${d.wall_length}m${d.wall_thickness ? `, ${d.wall_thickness}` : ''}`);
         if (d.cubicle_count) sizing.push(`${d.cubicle_count} cubicles${d.cubicle_breed ? ` (${d.cubicle_breed})` : ''}`);
-        if (d.slurry_capacity) sizing.push(`${d.slurry_capacity}m³ capacity${d.slurry_height ? ` at ${d.slurry_height}m retained` : ''}`);
+        if (d.slurry_capacity) sizing.push(`${d.slurry_capacity}mÂ³ capacity${d.slurry_height ? ` at ${d.slurry_height}m retained` : ''}`);
         if (d.trough_length) sizing.push(`${d.trough_length}m of ${d.trough_type || 'trough'}`);
         if (sizing.length) parts.push(`(${sizing.join(', ')})`);
         if (d.load_type) parts.push(`for ${labels.load_type[d.load_type]}`);
@@ -791,10 +791,10 @@ const timeframes = [
       };
 
       // ---- Postcode delivery-zone picker ----
-      // Outward-code prefixes mapped to delivery zones. Order matters — we
+      // Outward-code prefixes mapped to delivery zones. Order matters â€” we
       // match longest-prefix first so e.g. "EX23" wins over "EX".
       // Approximate driving distance from Holsworthy (EX22 7HH) to each
-      // postcode area centroid — a trust signal, not router precision.
+      // postcode area centroid â€” a trust signal, not router precision.
       const POSTCODE_MILES = {
         EX: 35, PL: 45, TR: 95, TQ: 70, TA: 60, BS: 90, BA: 80, DT: 100, SP: 120,
         SN: 130, GL: 130, OX: 170, RG: 180, SL: 200, GU: 200, PO: 170, SO: 140, BH: 130,
@@ -820,36 +820,36 @@ const timeframes = [
       };
 
       const ZONE_RULES = [
-        // Yard radius — same-week, own fleet
+        // Yard radius â€” same-week, own fleet
         { prefix: ['EX', 'PL', 'TR', 'TQ', 'TA', 'BS', 'BA', 'DT', 'SP'],
-          zone: 'core', label: 'Core delivery zone — own fleet, same-week.', detail: 'Holsworthy yard delivers across the South West weekly on its own HIAB fleet.' },
-        // Wider UK — planned runs, weekly
+          zone: 'core', label: 'Core delivery zone â€” own fleet, same-week.', detail: 'Holsworthy yard delivers across the South West weekly on its own HIAB fleet.' },
+        // Wider UK â€” planned runs, weekly
         { prefix: ['SN', 'GL', 'OX', 'RG', 'SL', 'GU', 'PO', 'SO', 'BH', 'CF', 'NP', 'SA', 'LD', 'SY', 'HR', 'WR'],
-          zone: 'planned-uk', label: 'UK planned-run zone — typically 2 weeks.', detail: 'We schedule a delivery slot on the next outbound run from Holsworthy.' },
+          zone: 'planned-uk', label: 'UK planned-run zone â€” typically 2 weeks.', detail: 'We schedule a delivery slot on the next outbound run from Holsworthy.' },
         // Wales/midlands/north-west
         { prefix: ['LL', 'CH', 'CW', 'ST', 'TF', 'WV', 'DY', 'B', 'CV', 'NN', 'LE', 'DE', 'NG', 'LN', 'MK', 'LU', 'HP'],
-          zone: 'planned-uk', label: 'UK planned-run zone — typically 2 weeks.', detail: 'We schedule a delivery slot on the next outbound run from Holsworthy.' },
+          zone: 'planned-uk', label: 'UK planned-run zone â€” typically 2 weeks.', detail: 'We schedule a delivery slot on the next outbound run from Holsworthy.' },
         // North England + Scotland mainland
         { prefix: ['M', 'L', 'PR', 'BB', 'OL', 'BL', 'WA', 'WN', 'SK', 'BD', 'LS', 'HX', 'HD', 'WF', 'S', 'YO', 'HU', 'DN', 'TS', 'DL', 'SR', 'NE', 'DH', 'CA', 'LA', 'DG', 'TD', 'EH', 'KY', 'FK', 'ML', 'G', 'PA', 'KA', 'DD', 'PH', 'AB', 'IV'],
-          zone: 'planned-uk', label: 'Scotland / north England — planned run, 2–3 weeks.', detail: 'We batch loads for Scotland and the north every fortnight.' },
-        // Highlands + Islands — typically planned + ferry
+          zone: 'planned-uk', label: 'Scotland / north England â€” planned run, 2â€“3 weeks.', detail: 'We batch loads for Scotland and the north every fortnight.' },
+        // Highlands + Islands â€” typically planned + ferry
         { prefix: ['HS', 'KW', 'ZE', 'IM'],
-          zone: 'specialist', label: 'Highlands & Islands — planned bespoke load.', detail: 'Recent Outer Hebrides job, 2025. We co-ordinate ferry crossings end-to-end.' },
+          zone: 'specialist', label: 'Highlands & Islands â€” planned bespoke load.', detail: 'Recent Outer Hebrides job, 2025. We co-ordinate ferry crossings end-to-end.' },
         // Northern Ireland
         { prefix: ['BT'],
-          zone: 'specialist', label: 'Northern Ireland — planned bespoke load.', detail: 'We deliver via Cairnryan / Liverpool routes on planned outbound runs.' },
+          zone: 'specialist', label: 'Northern Ireland â€” planned bespoke load.', detail: 'We deliver via Cairnryan / Liverpool routes on planned outbound runs.' },
         // Greater London
         { prefix: ['E', 'EC', 'N', 'NW', 'SE', 'SW', 'W', 'WC', 'BR', 'CR', 'DA', 'EN', 'HA', 'IG', 'KT', 'RM', 'SM', 'TW', 'UB', 'WD'],
-          zone: 'planned-uk', label: 'Greater London — planned-run zone, 2 weeks.', detail: 'Out-of-hours unloading available for restricted-access sites.' },
+          zone: 'planned-uk', label: 'Greater London â€” planned-run zone, 2 weeks.', detail: 'Out-of-hours unloading available for restricted-access sites.' },
         // East Anglia
         { prefix: ['CM', 'CO', 'IP', 'NR', 'PE', 'CB', 'SG', 'AL', 'WD'],
-          zone: 'planned-uk', label: 'UK planned-run zone — typically 2 weeks.', detail: 'We schedule a delivery slot on the next outbound run from Holsworthy.' },
+          zone: 'planned-uk', label: 'UK planned-run zone â€” typically 2 weeks.', detail: 'We schedule a delivery slot on the next outbound run from Holsworthy.' },
       ];
 
       const ZONE_STYLES = {
-        core:       { wrapper: 'bg-yellow/10 border-yellow', icon: 'bg-yellow text-navy',  iconChar: '✓' },
-        'planned-uk': { wrapper: 'bg-bone-200 border-cast-100', icon: 'bg-ember text-white', iconChar: '✓' },
-        specialist: { wrapper: 'bg-bone-200 border-ember',   icon: 'bg-navy text-white',   iconChar: '★' },
+        core:       { wrapper: 'bg-yellow/10 border-yellow', icon: 'bg-yellow text-navy',  iconChar: 'âœ“' },
+        'planned-uk': { wrapper: 'bg-bone-200 border-cast-100', icon: 'bg-ember text-white', iconChar: 'âœ“' },
+        specialist: { wrapper: 'bg-bone-200 border-ember',   icon: 'bg-navy text-white',   iconChar: 'â˜…' },
         unknown:    { wrapper: 'bg-bone-50 border-cast-100', icon: 'bg-cast-500 text-white', iconChar: '?' },
       };
 
@@ -891,10 +891,10 @@ const timeframes = [
           zoneDetail.textContent = rule.detail + milesNote;
         } else if (key === 'planned-uk') {
           zoneTitle.textContent = 'UK planned-run zone.';
-          zoneDetail.textContent = 'We schedule outbound loads from Holsworthy. Typical lead-time 2–3 weeks.' + milesNote;
+          zoneDetail.textContent = 'We schedule outbound loads from Holsworthy. Typical lead-time 2â€“3 weeks.' + milesNote;
         } else {
           zoneTitle.textContent = 'Postcode not recognised.';
-          zoneDetail.textContent = 'Once we have the full postcode we can confirm the route — or send a WhatsApp and we\'ll check.';
+          zoneDetail.textContent = 'Once we have the full postcode we can confirm the route â€” or send a WhatsApp and we\'ll check.';
         }
         zoneEl.classList.remove('hidden');
       };
@@ -904,7 +904,7 @@ const timeframes = [
       // Restore on load if a value was persisted
       if (postcodeInput?.value) renderZone(postcodeInput.value);
 
-      // ---- Drawings upload — show selected files inline + 10MB cap per file ----
+      // ---- Drawings upload â€” show selected files inline + 10MB cap per file ----
       const drawingsInput = form.querySelector('[data-drawings-input]');
       const drawingsList = form.querySelector('[data-drawings-list]');
       const drawingsErr = document.getElementById('error-drawings');
@@ -929,7 +929,7 @@ const timeframes = [
           return `
             <li class="flex items-center justify-between text-xs ${tooBig ? 'text-danger bg-danger/5 border-danger' : 'text-navy bg-white border-cast-100'} rounded px-3 py-2 border">
               <span class="truncate font-mono">${f.name.replace(/[<>&]/g, '')}</span>
-              <span class="shrink-0 ml-2 ${tooBig ? 'font-bold' : 'text-cast'}">${fmtBytes(f.size)}${tooBig ? ' — too big' : ''}</span>
+              <span class="shrink-0 ml-2 ${tooBig ? 'font-bold' : 'text-cast'}">${fmtBytes(f.size)}${tooBig ? ' â€” too big' : ''}</span>
             </li>`;
         }).join('');
         drawingsList.classList.remove('hidden');
@@ -937,13 +937,13 @@ const timeframes = [
 
       // ---- Product lead-time hint (Step 1) ----
       const LEAD_TIMES = {
-        'slurry-storage':    { title: 'Lead time: typically 4–6 weeks',  detail: 'Panel store walls, channels and lagoon walls cast to your spec at the Holsworthy yard.' },
-        'retaining-wall':    { title: 'Lead time: typically 3–6 weeks',  detail: 'King post, L-block and cantilever walls — engineered to your soil and load brief.' },
-        'cattle-cubicles':   { title: 'Lead time: 2–3 weeks for catalogue cubicles', detail: 'Holstein, Jersey and beef sizes held in stock patterns. Bespoke runs add 1–2 weeks.' },
-        'prestressed-panels':{ title: 'Lead time: typically 3–4 weeks',  detail: '100/150/180/280mm panels, BS EN 14992. We confirm a manufacturing slot in writing.' },
-        'feed-troughs':      { title: 'Lead time: typically 3–5 weeks',  detail: 'Single, twin or barrier-rail trough lines, made to length.' },
-        'silage-clamp':      { title: 'Lead time: typically 4–6 weeks',  detail: 'C40/50 sulphate-resisting walls and aprons — Defra-friendly templates available.' },
-        'bespoke':           { title: 'Lead time: typically 4–8 weeks',  detail: 'Bespoke moulds and engineering. Send drawings or a sketch — we cost from anything legible.' },
+        'slurry-storage':    { title: 'Lead time: typically 4â€“6 weeks',  detail: 'Panel store walls, channels and lagoon walls cast to your spec at the Holsworthy yard.' },
+        'retaining-wall':    { title: 'Lead time: typically 3â€“6 weeks',  detail: 'King post, L-block and cantilever walls â€” engineered to your soil and load brief.' },
+        'cattle-cubicles':   { title: 'Lead time: 2â€“3 weeks for catalogue cubicles', detail: 'Holstein, Jersey and beef sizes held in stock patterns. Bespoke runs add 1â€“2 weeks.' },
+        'prestressed-panels':{ title: 'Lead time: typically 3â€“4 weeks',  detail: '100/150/180/280mm panels, BS EN 14992. We confirm a manufacturing slot in writing.' },
+        'feed-troughs':      { title: 'Lead time: typically 3â€“5 weeks',  detail: 'Single, twin or barrier-rail trough lines, made to length.' },
+        'silage-clamp':      { title: 'Lead time: typically 4â€“6 weeks',  detail: 'C40/50 sulphate-resisting walls and aprons â€” Defra-friendly templates available.' },
+        'bespoke':           { title: 'Lead time: typically 4â€“8 weeks',  detail: 'Bespoke moulds and engineering. Send drawings or a sketch â€” we cost from anything legible.' },
         'other':             { title: 'Lead time confirmed once we see the spec', detail: "Tell us what you're doing on site and we'll guide it. Same 24-hour reply window." },
       };
       const leadHint = form.querySelector('[data-leadtime-hint]');
@@ -967,7 +967,7 @@ const timeframes = [
       nextBtn.addEventListener('click', () => { persist(); if (validateStep(state.current)) { state.current = Math.min(state.current + 1, TOTAL); persist(); render(); } });
       backBtn.addEventListener('click', () => { state.current = Math.max(state.current - 1, 1); persist(); render(); });
 
-      // ---- Inline reset (replaces native confirm() — looks dated and breaks flow) ----
+      // ---- Inline reset (replaces native confirm() â€” looks dated and breaks flow) ----
       const resetCluster = form.querySelector('[data-reset-cluster]');
       const resetConfirm = resetCluster?.querySelector('[data-reset-confirm]');
       const resetYes = resetCluster?.querySelector('[data-reset-yes]');
@@ -1040,7 +1040,7 @@ const timeframes = [
           localStorage.removeItem(STORAGE_KEY);
           window.scrollTo({ top: indicator.offsetTop - 10, behavior: 'smooth' });
         } catch {
-          showSubmitError('Something went wrong sending your enquiry. Please try again, or call us on 01409 281437 — Mon–Fri 07:30–17:00.');
+          showSubmitError('Something went wrong sending your enquiry. Please try again, or call us on 01409 281437 â€” Monâ€“Fri 07:30â€“17:00.');
         }
       });
 

@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ProductWarrantyLine from '@/components/ProductWarrantyLine.astro';
 import TrustStrip from '@/components/TrustStrip.astro';
@@ -18,20 +18,20 @@ const tocSections = [
 ];
 
 const specs = [
-  { variant: 'Reception / pre-tank', size: '200 – 600 m³', wall: '300mm sulphate-resisting C40/50', use: 'Slurry / food-waste reception with maceration' },
-  { variant: 'Primary digester wall sections', size: '1000 – 3000 m³', wall: '350-450mm SR C40/50, post-tensioned options', use: 'Mesophilic and thermophilic anaerobic digestion' },
-  { variant: 'Secondary digester / digestate store', size: '1000 – 3000 m³', wall: '350mm SR C40/50', use: 'Pasteurisation, post-digestion, digestate buffer' },
+  { variant: 'Reception / pre-tank', size: '200 â€“ 600 mÂ³', wall: '300mm sulphate-resisting C40/50', use: 'Slurry / food-waste reception with maceration' },
+  { variant: 'Primary digester wall sections', size: '1000 â€“ 3000 mÂ³', wall: '350-450mm SR C40/50, post-tensioned options', use: 'Mesophilic and thermophilic anaerobic digestion' },
+  { variant: 'Secondary digester / digestate store', size: '1000 â€“ 3000 mÂ³', wall: '350mm SR C40/50', use: 'Pasteurisation, post-digestion, digestate buffer' },
   { variant: 'Sandwich (insulated) wall panels', size: 'Project-specific', wall: 'Inner SR + PIR core + outer leaf', use: 'Heated digesters where heat-loss is critical' },
-  { variant: 'Process hopper / dosing tank', size: '20 – 200 m³', wall: '250-300mm SR C40/50', use: 'Solids dosing, liquid feedstock, retentate' },
+  { variant: 'Process hopper / dosing tank', size: '20 â€“ 200 mÂ³', wall: '250-300mm SR C40/50', use: 'Solids dosing, liquid feedstock, retentate' },
   { variant: 'CHP / pump house base + walls', size: 'To engineer schedule', wall: '300mm C40/50, plinth + bund', use: 'Engine room, pump skid, gas upgrade plant' },
   { variant: 'Bunded leak-detection floor', size: 'Per CL:AIRE / EA design', wall: '300mm SR C40/50 with bentonite mat', use: 'Secondary containment beneath all process tanks' },
 ];
 
 const applications = [
-  'Farm-fed AD plants — slurry, FYM, energy crop digesters',
-  'Food-waste AD — depackaging plant, source-segregated FW',
-  'Wastewater treatment digesters — sludge mesophilic plant',
-  'Industrial process AD — distillery, brewery, dairy effluent',
+  'Farm-fed AD plants â€” slurry, FYM, energy crop digesters',
+  'Food-waste AD â€” depackaging plant, source-segregated FW',
+  'Wastewater treatment digesters â€” sludge mesophilic plant',
+  'Industrial process AD â€” distillery, brewery, dairy effluent',
   'Digestate storage and pasteurisation tanks',
   'Biomethane upgrade plant pump and compressor bases',
   'Slurry separator and screw-press housings',
@@ -39,22 +39,22 @@ const applications = [
 
 const related = [
   { href: '/products/slurry-storage', label: 'Slurry Storage', meta: 'SSAFO 2018-compliant tanks' },
-  { href: '/products/retaining-walls', label: 'Retaining Walls', meta: 'L-walls · push-walls' },
-  { href: '/products/custom-plinths', label: 'Custom Plinths', meta: 'CHP & pump bases · C40/50' },
+  { href: '/products/retaining-walls', label: 'Retaining Walls', meta: 'L-walls Â· push-walls' },
+  { href: '/products/custom-plinths', label: 'Custom Plinths', meta: 'CHP & pump bases Â· C40/50' },
   { href: '/products/soakaways-chambers', label: 'Soakaways & Chambers', meta: 'Process drainage' },
 ];
 
 const faqs = [
   { q: 'Why sulphate-resisting concrete on AD plants?', a: 'Anaerobic digestion produces hydrogen sulphide and a sulphate-rich liquor. We cast tanks for AD service in sulphate-resisting C40/50 to BS 8500-1:2023, exposure XA2 / XA3, with CEM III/A or CEM III/B blended cement. We also coat the exposed face with a chemical-resistant epoxy or HDPE liner where the design calls for it. Service life designed to 50 years per BS EN 206.' },
-  { q: 'What size of digester can you build in precast?', a: 'Our system covers 200 m³ reception tanks up to 3000 m³ primary digesters. Above 1500 m³ we typically post-tension the wall ring with horizontal cables in cast-in ducts. Larger digesters are jointed on a vertical seal detail with a hydrophilic waterstop. We have built single-tank installations and multi-tank cascade plants.' },
-  { q: 'Do you do the bund and leak-detection floor too?', a: 'Yes — we cast the bunded slab beneath the tank to Environment Agency / CL:AIRE secondary-containment guidance. Typical detail is a 300mm SR concrete slab with a bentonite mat below and a leak-detection sump cast into the bund kerb. Capacity sized to 110% of the largest tank or 25% of the tank group total, whichever is greater.' },
-  { q: 'How are the tanks made gas-tight?', a: 'Wall-to-floor and wall-to-wall joints use a hydrophilic waterstop plus a cast-in expanding sealant strip. Roof seal is project-specific — single-membrane gas holder, double-membrane store, or fixed concrete roof with gas-take-off. We work with the AD process designer (HZI, WELTEC, EnviTec, BTS, etc.) on the seal schedule.' },
-  { q: 'What is a realistic programme?', a: 'A typical 2000 m³ digester runs 8-12 weeks from drawing sign-off to final wall section despatched. Erection on site adds 2-3 weeks for the tank ring and another 1-2 weeks for the roof. Programme depends on whether the bund slab is in-situ or precast — we can do either. Pre-order long-lead post-tensioning hardware as soon as the design is locked.' },
+  { q: 'What size of digester can you build in precast?', a: 'Our system covers 200 mÂ³ reception tanks up to 3000 mÂ³ primary digesters. Above 1500 mÂ³ we typically post-tension the wall ring with horizontal cables in cast-in ducts. Larger digesters are jointed on a vertical seal detail with a hydrophilic waterstop. We have built single-tank installations and multi-tank cascade plants.' },
+  { q: 'Do you do the bund and leak-detection floor too?', a: 'Yes â€” we cast the bunded slab beneath the tank to Environment Agency / CL:AIRE secondary-containment guidance. Typical detail is a 300mm SR concrete slab with a bentonite mat below and a leak-detection sump cast into the bund kerb. Capacity sized to 110% of the largest tank or 25% of the tank group total, whichever is greater.' },
+  { q: 'How are the tanks made gas-tight?', a: 'Wall-to-floor and wall-to-wall joints use a hydrophilic waterstop plus a cast-in expanding sealant strip. Roof seal is project-specific â€” single-membrane gas holder, double-membrane store, or fixed concrete roof with gas-take-off. We work with the AD process designer (HZI, WELTEC, EnviTec, BTS, etc.) on the seal schedule.' },
+  { q: 'What is a realistic programme?', a: 'A typical 2000 mÂ³ digester runs 8-12 weeks from drawing sign-off to final wall section despatched. Erection on site adds 2-3 weeks for the tank ring and another 1-2 weeks for the roof. Programme depends on whether the bund slab is in-situ or precast â€” we can do either. Pre-order long-lead post-tensioning hardware as soon as the design is locked.' },
 ];
 
 const productSchema = {
   name: 'Precast AD Plant Tanks & Process Structures',
-  description: 'Bespoke precast concrete tanks, hoppers and structures for anaerobic digestion plants. Reception tanks, primary and secondary digesters, digestate stores. Sulphate-resisting C40/50 concrete to BS 8500-1:2023. Capacities 200 to 3000 m³.',
+  description: 'Bespoke precast concrete tanks, hoppers and structures for anaerobic digestion plants. Reception tanks, primary and secondary digesters, digestate stores. Sulphate-resisting C40/50 concrete to BS 8500-1:2023. Capacities 200 to 3000 mÂ³.',
   brand: { '@type': 'Brand', name: site.name },
   manufacturer: { '@type': 'Organization', name: site.name },
   category: 'Precast concrete process tank',
@@ -63,8 +63,8 @@ const productSchema = {
     { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 1992-3 (liquid-retaining structures)' },
     { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 sulphate-resisting (BS 8500-1:2023)' },
     { '@type': 'PropertyValue', name: 'Exposure class', value: 'XA2 / XA3 (chemical attack)' },
-    { '@type': 'PropertyValue', name: 'Capacity range', value: '200 – 3000 m³' },
-    { '@type': 'PropertyValue', name: 'Wall thickness', value: '300 – 450mm depending on diameter' },
+    { '@type': 'PropertyValue', name: 'Capacity range', value: '200 â€“ 3000 mÂ³' },
+    { '@type': 'PropertyValue', name: 'Wall thickness', value: '300 â€“ 450mm depending on diameter' },
     { '@type': 'PropertyValue', name: 'Service life', value: '50 years (BS EN 206)' },
     { '@type': 'PropertyValue', name: 'Lead time', value: '8-12 weeks per digester' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
@@ -84,9 +84,9 @@ const faqSchema = {
 ---
 
 <BaseLayout
-  title="AD Plant Tanks — Precast Digesters & Process Structures · 200–3000 m³"
-  description="Precast tanks, hoppers and structures for anaerobic digestion plants. Sulphate-resisting C40/50 concrete to BS 8500-1, BS EN 1992-3 design. 200 to 3000 m³. Cast in North Devon."
-  image="/og-default.png"
+  title="AD Plant Tanks â€” Precast Digesters & Process Structures Â· 200â€“3000 mÂ³"
+  description="Precast tanks, hoppers and structures for anaerobic digestion plants. Sulphate-resisting C40/50 concrete to BS 8500-1, BS EN 1992-3 design. 200 to 3000 mÂ³. Cast in North Devon."
+  image="/og/home.png"
   schema="Product"
   schemaData={productSchema}
   whatsappContext="AD Plant Tanks"
@@ -100,14 +100,14 @@ const faqSchema = {
     <div class="container-wccp py-16 md:py-20">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <p class="eyebrow text-yellow mb-4">Renewables · AD · process civils</p>
+          <p class="eyebrow text-yellow mb-4">Renewables Â· AD Â· process civils</p>
           <h1 class="font-display text-display-xl text-white mb-4">AD Plant Tanks.</h1>
           <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">Sulphate-resisting. Gas-tight. Built to last 50 years.</p>
           <p class="text-lg lg:text-xl text-cast leading-relaxed font-medium text-white/95 mb-6 max-w-xl">
-            Bespoke precast tanks, hoppers and structures for anaerobic digestion plants —
+            Bespoke precast tanks, hoppers and structures for anaerobic digestion plants â€”
             reception tanks, primary and secondary digesters, digestate stores. Sulphate-resisting
             C40/50 concrete to BS 8500-1:2023, designed to BS EN 1992-3. Capacities 200 to
-            3000 m³.
+            3000 mÂ³.
           </p>
           <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
             AD process liquor is aggressive. We mix sulphate-resisting CEM III concrete, design
@@ -115,17 +115,17 @@ const faqSchema = {
             hydrophilic waterstop. The tank that leaves Devon is the tank that lasts.
           </blockquote>
           <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
-            We work direct with the process designer — HZI, WELTEC, EnviTec, BTS Biogas — and
+            We work direct with the process designer â€” HZI, WELTEC, EnviTec, BTS Biogas â€” and
             with EPC contractors building farm-fed, food-waste and industrial AD plants
             across the UK.
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
-            <li class="flex gap-2"><span class="text-yellow">·</span> SR C40/50</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 200 – 3000 m³</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> BS EN 1992-3</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> XA2 / XA3</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 50-year design life</li>
-            <li class="flex gap-2"><span class="text-yellow">·</span> 8-12 week lead</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> SR C40/50</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 200 â€“ 3000 mÂ³</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> BS EN 1992-3</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> XA2 / XA3</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 50-year design life</li>
+            <li class="flex gap-2"><span class="text-yellow">Â·</span> 8-12 week lead</li>
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=AD%20Plant%20Tanks" class="btn-primary">Configure a quote</a>
@@ -138,7 +138,7 @@ const faqSchema = {
         <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
           <div>
             <p class="text-cast-600 text-sm font-mono">Photo needed</p>
-            <p class="text-cast text-xs mt-2">Hero — completed AD plant aerial showing primary digester, secondary digester and digestate store with green-membrane gas holder</p>
+            <p class="text-cast text-xs mt-2">Hero â€” completed AD plant aerial showing primary digester, secondary digester and digestate store with green-membrane gas holder</p>
           </div>
         </div>
       </div>
@@ -151,7 +151,7 @@ const faqSchema = {
       <p class="eyebrow text-cast mb-3">Specification</p>
       <h2 class="font-display text-display-lg mb-4">Tank types and process structures.</h2>
       <p class="text-cast-700 text-lg">
-        AD-grade structures are always bespoke — capacities below cover the recurring families.
+        AD-grade structures are always bespoke â€” capacities below cover the recurring families.
         Wall thickness, post-tensioning and waterstop detail vary with diameter and process
         temperature. Send us the process drawing and we will return a structural design.
       </p>
@@ -196,18 +196,18 @@ const faqSchema = {
       <div class="max-w-2xl mb-10">
         <p class="eyebrow text-cast mb-3">AD plant references</p>
         <h2 class="font-display text-display-lg mb-4 text-navy">Recent AD installations.</h2>
-        <p class="text-cast-700 text-lg">Photo plates being commissioned — placeholder shot briefs below.</p>
+        <p class="text-cast-700 text-lg">Photo plates being commissioned â€” placeholder shot briefs below.</p>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {[
-          { caption: 'Primary digester · 2500 m³', shot: 'Aerial of erected primary digester ring with green double-membrane gas holder' },
-          { caption: 'Wall sections being erected', shot: 'Mobile crane lifting precast wall section into place on bund slab — site context' },
+          { caption: 'Primary digester Â· 2500 mÂ³', shot: 'Aerial of erected primary digester ring with green double-membrane gas holder' },
+          { caption: 'Wall sections being erected', shot: 'Mobile crane lifting precast wall section into place on bund slab â€” site context' },
           { caption: 'Reception tank and macerator pit', shot: 'Reception tank with cast-in feed hopper and macerator penetration ducts' },
           { caption: 'Bund slab with leak-detection sump', shot: 'Bund slab cast around tank ring with bentonite mat and sump kerb visible' },
           { caption: 'Hydrophilic waterstop detail', shot: 'Close-up of wall-to-floor joint showing hydrophilic strip and cast-in sealant' },
           { caption: 'Sandwich insulated wall panel', shot: 'Sectional cut showing inner SR leaf, PIR core, outer leaf' },
           { caption: 'CHP base with cast-in conduits', shot: 'CHP engine base on AD plant with vibration mounts and gas conduits' },
-          { caption: 'Wall section in mould · cure', shot: 'Curved wall section curing in mould at Holsworthy yard, post-tension ducts visible' },
+          { caption: 'Wall section in mould Â· cure', shot: 'Curved wall section curing in mould at Holsworthy yard, post-tension ducts visible' },
         ].map((img) => (
           <figure>
             <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-4 text-center">
@@ -231,14 +231,14 @@ const faqSchema = {
           <p class="eyebrow text-cast mb-3">Where they go</p>
           <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
           <p class="text-cast-700 text-lg leading-relaxed mb-6">
-            From a 500 m³ farm-fed AD on a Cornish dairy to a 3000 m³ food-waste plant in
+            From a 500 mÂ³ farm-fed AD on a Cornish dairy to a 3000 mÂ³ food-waste plant in
             the Midlands, we cast the structures and coordinate with the process designer
             and the EPC contractor.
           </p>
           <ul class="space-y-3">
             {applications.map((a) => (
               <li class="flex gap-3 text-cast-700 leading-relaxed">
-                <span class="text-ember font-bold mt-1">·</span>
+                <span class="text-ember font-bold mt-1">Â·</span>
                 <span>{a}</span>
               </li>
             ))}
@@ -251,23 +251,23 @@ const faqSchema = {
           <dl class="space-y-4 text-sm">
             <div>
               <dt class="font-bold text-navy">BS EN 1992-3</dt>
-              <dd class="text-cast">Eurocode 2 — design of liquid-retaining and containment structures.</dd>
+              <dd class="text-cast">Eurocode 2 â€” design of liquid-retaining and containment structures.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BS 8500-1:2023</dt>
-              <dd class="text-cast">Concrete specification — sulphate-resisting C40/50, exposure XA2/XA3.</dd>
+              <dd class="text-cast">Concrete specification â€” sulphate-resisting C40/50, exposure XA2/XA3.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BS EN 13369</dt>
-              <dd class="text-cast">Common rules for precast concrete products — Factory Production Control.</dd>
+              <dd class="text-cast">Common rules for precast concrete products â€” Factory Production Control.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">EA / SSAFO 2018</dt>
-              <dd class="text-cast">Silage, slurry and agricultural fuel oil regulations — secondary containment.</dd>
+              <dd class="text-cast">Silage, slurry and agricultural fuel oil regulations â€” secondary containment.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">CL:AIRE / EA guidance</dt>
-              <dd class="text-cast">Bund design and leak-detection — 110% of largest tank or 25% of group.</dd>
+              <dd class="text-cast">Bund design and leak-detection â€” 110% of largest tank or 25% of group.</dd>
             </div>
           </dl>
         </div>
@@ -281,7 +281,7 @@ const faqSchema = {
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
           <p class="eyebrow text-navy mb-2">Configure your AD plant</p>
-          <h2 class="font-display text-display-md">Send us the process drawing and feedstock data — we will return a structural concept and budget within five working days.</h2>
+          <h2 class="font-display text-display-md">Send us the process drawing and feedstock data â€” we will return a structural concept and budget within five working days.</h2>
         </div>
         <div class="flex flex-wrap gap-3 shrink-0">
           <a href="/quote?product=AD%20Plant%20Tanks" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
@@ -340,7 +340,7 @@ const faqSchema = {
       defaultMode="supply"
       supply={{
         price: 'Bespoke quote',
-        leadTime: '8–12 weeks per digester',
+        leadTime: '8â€“12 weeks per digester',
         includes: [
           'Cast wall sections, hoppers, bund elements',
           'Hydrophilic waterstop, sealant strips, fixings',
@@ -355,7 +355,7 @@ const faqSchema = {
       }}
       fitted={{
         price: 'Bespoke quote (with erection partner)',
-        leadTime: '12–16 weeks (incl. erection)',
+        leadTime: '12â€“16 weeks (incl. erection)',
         includes: [
           'Everything in supply only',
           'Specialist erection team coordinated by WCCP',
@@ -367,7 +367,7 @@ const faqSchema = {
           'Permitting and EA application',
         ],
       }}
-      note=". AD work is always bespoke — we coordinate from process drawing through to hydrostatic test against the EPC programme."
+      note=". AD work is always bespoke â€” we coordinate from process drawing through to hydrostatic test against the EPC programme."
     />
   </section>
 
@@ -376,7 +376,7 @@ const faqSchema = {
     <div class="container-wccp text-center">
       <h2 class="font-display text-display-xl mb-4 text-white">Ready to spec it?</h2>
       <p class="text-white/90 text-lg max-w-xl mx-auto mb-8">
-        Send the process drawing and feedstock data — we will return a structural concept and budget.
+        Send the process drawing and feedstock data â€” we will return a structural concept and budget.
       </p>
       <div class="flex flex-wrap justify-center gap-3">
         <a href="/quote?product=AD%20Plant%20Tanks" class="btn-yellow">Configure a quote</a>
