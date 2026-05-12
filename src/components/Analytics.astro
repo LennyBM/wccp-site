@@ -1,0 +1,140 @@
+---
+// Analytics + conversion tracking.
+//
+// Two engines, both optional and env-driven:
+//   - Plausible (privacy-first, no cookies, no consent required under PECR for
+//     basic install): set PUBLIC_PLAUSIBLE_DOMAIN=westcountryconcreteproducts.co.uk
+//   - GA4 (consent-required): set PUBLIC_GA4_ID=G-XXXXXXX. Loaded only after
+//     the visitor accepts analytics via CookieBanner (`wccp:consent` event).
+//
+// Conversion events tracked automatically:
+//   - phone_click   (any tel: link)
+//   - email_click   (any mailto: link)
+//   - whatsapp_click (any wa.me link)
+//   - file_download (PDF / CAD / spec sheets)
+//   - form_submit   (any <form> with data-netlify or data-track-name)
+//
+// Custom events: call `window.wccpTrack('event_name', { key: 'value' })` from
+// anywhere. Both engines receive it (GA4 only post-consent).
+
+const plausibleDomain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN;
+const ga4Id = import.meta.env.PUBLIC_GA4_ID;
+---
+
+{plausibleDomain && (
+  <script
+    is:inline
+    defer
+    data-domain={plausibleDomain}
+    src="https://plausible.io/js/script.outbound-links.file-downloads.tagged-events.js"
+  ></script>
+  <script is:inline>
+    window.plausible = window.plausible || function () { (window.plausible.q = window.plausible.q || []).push(arguments); };
+  </script>
+)}
+
+{ga4Id && (
+  <script is:inline define:vars={{ ga4Id }}>
+    window.__wccpGa4Id = ga4Id;
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    // Consent Mode v2 — deny by default, upgrade on accept.
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
+      functionality_storage: 'granted',
+      security_storage: 'granted',
+      wait_for_update: 500,
+    });
+    gtag('config', ga4Id, { anonymize_ip: true, send_page_view: false });
+
+    function loadGa4(){
+      if (window.__wccpGa4Loaded) return;
+      window.__wccpGa4Loaded = true;
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ga4Id;
+      document.head.appendChild(s);
+      gtag('event', 'page_view', { page_path: location.pathname });
+    }
+
+    try {
+      var saved = JSON.parse(localStorage.getItem('wccp_cookie_consent_v1') || 'null');
+      if (saved && saved.choice === 'all') {
+        gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted' });
+        loadGa4();
+      }
+    } catch(_) {}
+
+    window.addEventListener('wccp:consent', function(e){
+      if (e && e.detail && e.detail.choice === 'all') {
+        gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted' });
+        loadGa4();
+      }
+    });
+  </script>
+)}
+
+<script is:inline>
+  (function () {
+    if (window.__wccpAnalyticsInit) return;
+    window.__wccpAnalyticsInit = true;
+
+    function track(name, props) {
+      try {
+        if (typeof window.plausible === 'function') {
+          window.plausible(name, props ? { props: props } : undefined);
+        }
+      } catch (_) {}
+      try {
+        if (typeof window.gtag === 'function' && window.__wccpGa4Loaded) {
+          window.gtag('event', name, props || {});
+        }
+      } catch (_) {}
+    }
+    window.wccpTrack = track;
+
+    function fileKind(href) {
+      var m = (href || '').toLowerCase().match(/\.(pdf|dwg|dxf|step|stp|stl|zip|csv|xlsx?)(?:\?|#|$)/);
+      return m ? m[1] : null;
+    }
+
+    function onClick(e) {
+      var a = e.target && e.target.closest ? e.target.closest('a') : null;
+      if (!a || !a.href) return;
+      var href = a.getAttribute('href') || '';
+      if (href.indexOf('tel:') === 0) {
+        track('phone_click', { number: href.slice(4), location: a.dataset.trackLocation || 'unknown' });
+        return;
+      }
+      if (href.indexOf('mailto:') === 0) {
+        track('email_click', { to: href.slice(7).split('?')[0], location: a.dataset.trackLocation || 'unknown' });
+        return;
+      }
+      if (/^https?:\/\/(api\.)?wa\.me\//i.test(href) || href.indexOf('whatsapp:') === 0) {
+        track('whatsapp_click', { location: a.dataset.trackLocation || 'unknown' });
+        return;
+      }
+      var fk = fileKind(href);
+      if (fk) {
+        track('file_download', { type: fk, file: href.split('/').pop() });
+      }
+    }
+
+    function onSubmit(e) {
+      var f = e.target;
+      if (!f || f.tagName !== 'FORM') return;
+      var name = f.dataset.trackName || f.getAttribute('name') || 'unnamed';
+      if (f.hasAttribute('data-netlify') || f.dataset.trackName) {
+        track('form_submit', { form: name });
+      }
+    }
+
+    document.addEventListener('click', onClick, { capture: true, passive: true });
+    document.addEventListener('submit', onSubmit, { capture: true });
+  })();
+</script>

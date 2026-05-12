@@ -1,14 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="WCCP — West Country Concrete Products">
-  <!-- Cobalt-blue rounded square (matches header brandmark · navy.700) -->
-  <rect width="64" height="64" rx="10" fill="#3a5cb5"/>
-  <!-- Hairline yellow inner border, mirrors the header brandmark -->
-  <rect x="4" y="4" width="56" height="56" rx="7" fill="none" stroke="#fff005" stroke-opacity="0.35" stroke-width="1.25"/>
-  <!-- Bold WCCP stamp — legible at 16/32px tab sizes -->
-  <text x="32" y="42"
+  <style>
+    .bg { fill: #3a5cb5; }
+    .border { stroke: #fff005; stroke-opacity: 0.35; }
+    .text { fill: #fff005; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #fff005; }
+      .border { stroke: #3a5cb5; stroke-opacity: 0.5; }
+      .text { fill: #131e44; }
+    }
+  </style>
+  <rect class="bg" width="64" height="64" rx="10"/>
+  <rect class="border" x="4" y="4" width="56" height="56" rx="7" fill="none" stroke-width="1.25"/>
+  <text class="text" x="32" y="42"
         font-family="'DM Sans', 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif"
         font-weight="800"
         font-size="22"
         letter-spacing="-1"
-        fill="#fff005"
         text-anchor="middle">WCCP</text>
 </svg>

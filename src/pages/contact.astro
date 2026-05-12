@@ -212,6 +212,7 @@ const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${mapQ
 
         <form id="contact-form" name="contact" method="POST" action="/contact?submitted=true" data-netlify="true" netlify-honeypot="company-fax" class="card p-6 lg:p-10 space-y-8">
           <input type="hidden" name="form-name" value="contact" />
+          <input type="hidden" name="_render_ts" id="render-ts" value="" />
           <p class="hidden"><label>Don't fill this out: <input name="company-fax" /></label></p>
 
           <fieldset data-step="1" class="step-fieldset space-y-5">
@@ -384,10 +385,14 @@ const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${mapQ
                 <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </button>
-            <button type="submit" id="step-submit" class="btn-primary hidden">
-              <span>Send to the yard</span>
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <button type="submit" id="step-submit" class="btn-primary hidden" data-label="Send to the yard" data-loading="Sending…">
+              <span data-submit-label>Send to the yard</span>
+              <svg data-submit-icon class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <polygon points="3 11 22 2 13 21 11 13 3 11" stroke-linejoin="round"/>
+              </svg>
+              <svg data-submit-spinner class="hidden w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="12" cy="12" r="10" stroke-opacity="0.25"/>
+                <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"/>
               </svg>
             </button>
           </div>
@@ -493,9 +498,27 @@ const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${mapQ
         if (window.innerWidth < 1024) form.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
 
+      var RENDER_TS = Date.now();
+      var renderTsInput = document.getElementById('render-ts');
+      if (renderTsInput) renderTsInput.value = String(RENDER_TS);
+
+      var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+      var PHONE_RE = /^[\d\s()+\-]{7,20}$/;
+
       function showFieldError(name, show) {
         const err = document.getElementById('error-' + name);
         if (err) err.classList.toggle('hidden', !show);
+      }
+
+      function markInvalid(el, show) {
+        if (show) {
+          el.classList.add('border-danger');
+          el.setAttribute('aria-invalid', 'true');
+        } else {
+          el.classList.remove('border-danger');
+          el.removeAttribute('aria-invalid');
+        }
+        showFieldError(el.id || el.name, show);
       }
 
       function validateStep() {
@@ -513,14 +536,16 @@ const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${mapQ
               showFieldError(el.name, false);
             }
           } else if (!el.value.trim()) {
-            el.classList.add('border-danger');
-            el.setAttribute('aria-invalid', 'true');
-            showFieldError(el.id || el.name, true);
+            markInvalid(el, true);
+            if (!firstInvalid) firstInvalid = el;
+          } else if (el.type === 'email' && !EMAIL_RE.test(el.value.trim())) {
+            markInvalid(el, true);
+            if (!firstInvalid) firstInvalid = el;
+          } else if (el.type === 'tel' && !PHONE_RE.test(el.value.trim())) {
+            markInvalid(el, true);
             if (!firstInvalid) firstInvalid = el;
           } else {
-            el.classList.remove('border-danger');
-            el.removeAttribute('aria-invalid');
-            showFieldError(el.id || el.name, false);
+            markInvalid(el, false);
           }
         }
         if (firstInvalid) {
@@ -571,6 +596,14 @@ const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${mapQ
       form.addEventListener('change', persist);
       form.addEventListener('submit', function(e) {
         if (!validateStep()) { e.preventDefault(); return; }
+        if (Date.now() - RENDER_TS < 3000) { e.preventDefault(); return; }
+        var btn = document.getElementById('step-submit');
+        if (btn) {
+          btn.disabled = true;
+          btn.querySelector('[data-submit-label]').textContent = btn.dataset.loading;
+          btn.querySelector('[data-submit-icon]').classList.add('hidden');
+          btn.querySelector('[data-submit-spinner]').classList.remove('hidden');
+        }
         try { localStorage.removeItem('wccp-contact-v1'); } catch (_) {}
       });
 

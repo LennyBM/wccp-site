@@ -4,6 +4,18 @@
   command = "npm run build"
   publish = "dist"
 
+[functions]
+  # Netlify auto-discovers functions/ — explicit directory + Node version pin.
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+[[plugins]]
+  package = "netlify-plugin-submit-sitemap"
+  [plugins.inputs]
+    baseUrl = "https://westcountryconcreteproducts.co.uk"
+    sitemapPath = "/sitemap-index.xml"
+    providers = ["google", "bing", "indexnow"]
+
 [build.environment]
   NODE_VERSION = "22.12.0"
   NPM_FLAGS = "--legacy-peer-deps"
@@ -30,7 +42,7 @@
     # CSP allows: self + inline; CookieYes / Cookiebot CMP scripts + iframes;
     # Sentry ingest endpoints; Google Maps embed (used on /contact). Tweak this
     # list if a new vendor is added.
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn-cookieyes.com https://consent.cookiebot.com https://*.sentry.io https://*.ingest.sentry.io; style-src 'self' 'unsafe-inline' https://cdn-cookieyes.com https://consent.cookiebot.com; img-src 'self' data: blob: https://www.google.com https://maps.googleapis.com https://maps.gstatic.com https://imgsct.cookiehub.net https://imgsct.cookiebot.com; font-src 'self' data:; connect-src 'self' https://wa.me https://www.google.com https://*.cookieyes.com https://consent.cookiebot.com https://consentcdn.cookiebot.com https://*.sentry.io https://*.ingest.sentry.io; frame-src https://www.google.com https://consent.cookiebot.com; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn-cookieyes.com https://consent.cookiebot.com https://*.sentry.io https://*.ingest.sentry.io https://plausible.io https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://cdn-cookieyes.com https://consent.cookiebot.com; img-src 'self' data: blob: https://www.google.com https://maps.googleapis.com https://maps.gstatic.com https://imgsct.cookiehub.net https://imgsct.cookiebot.com https://www.google-analytics.com; font-src 'self' data:; connect-src 'self' https://wa.me https://www.google.com https://*.cookieyes.com https://consent.cookiebot.com https://consentcdn.cookiebot.com https://*.sentry.io https://*.ingest.sentry.io https://plausible.io https://www.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src https://www.google.com https://consent.cookiebot.com; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
 
 # Astro static site — long cache on hashed assets
 [[headers]]

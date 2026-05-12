@@ -107,6 +107,7 @@ const timeframes = [
         <label>Don't fill this out: <input name="bot-field" /></label>
       </p>
       <input type="hidden" name="form-name" value="quote" />
+      <input type="hidden" name="_render_ts" id="quote-render-ts" value="" />
 
       <!-- STEP 1 -->
       <section data-step="1" class="step">
@@ -1009,8 +1010,13 @@ const timeframes = [
         submitErr.classList.remove('hidden');
         submitErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
       };
+      var QUOTE_RENDER_TS = Date.now();
+      var quoteRenderTsInput = document.getElementById('quote-render-ts');
+      if (quoteRenderTsInput) quoteRenderTsInput.value = String(QUOTE_RENDER_TS);
+
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
+        if (Date.now() - QUOTE_RENDER_TS < 3000) return;
         persist();
         if (!validateStep(5)) return;
 

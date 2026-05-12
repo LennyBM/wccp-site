@@ -5,8 +5,16 @@ import Footer from '@/components/Footer.astro';
 import MobileStickyBar from '@/components/MobileStickyBar.astro';
 import SchemaOrg from '@/components/SchemaOrg.astro';
 import CookieBanner from '@/components/CookieBanner.astro';
+import Analytics from '@/components/Analytics.astro';
 import { ClientRouter } from 'astro:transitions';
 import { site } from '@/config/site';
+import fs from 'node:fs';
+import path from 'node:path';
+
+const ogDir = path.join(process.cwd(), 'public', 'og');
+const ogFiles = new Set(
+  fs.existsSync(ogDir) ? fs.readdirSync(ogDir).map((f: string) => f.toLowerCase()) : [],
+);
 
 interface Props {
   title?: string;
@@ -40,16 +48,22 @@ const {
 // Falls back to /og-default.png. All paths point at assets that exist in
 // public/og/ — purpose-built 1200x630 cards.
 const ogImageFromPath = (path: string): string => {
-  // Normalise — strip trailing slash (except root)
   const p = path !== '/' && path.endsWith('/') ? path.slice(0, -1) : path;
-  switch (p) {
-    case '/':                       return '/og/home.png';
-    case '/sectors/agricultural':   return '/og/sectors-agricultural.png';
-    case '/sectors/civils':         return '/og/sectors-civils.png';
-    case '/sectors/bespoke':        return '/og/sectors-bespoke.png';
-    case '/products':               return '/og/products.png';
-    default:                        return '/og-default.png';
+
+  const staticMap: Record<string, string> = {
+    '/':                       '/og/home.png',
+    '/sectors/agricultural':   '/og/sectors-agricultural.png',
+    '/sectors/civils':         '/og/sectors-civils.png',
+    '/sectors/bespoke':        '/og/sectors-bespoke.png',
+    '/products':               '/og/products.png',
+  };
+  if (staticMap[p]) return staticMap[p];
+
+  const slug = p.split('/').pop();
+  if (slug && ogFiles.has(`${slug}.png`)) {
+    return `/og/${slug}.png`;
   }
+  return '/og-default.png';
 };
 
 const resolvedImage = image ?? ogImageFromPath(Astro.url.pathname);
@@ -139,7 +153,10 @@ const ogImageIsLocal = resolvedImage.startsWith('/');
     <link rel="alternate" type="application/rss+xml" title={site.name} href="/feed.xml" />
 
     <!-- Schema.org JSON-LD -->
-    <SchemaOrg type={schema} data={schemaData} />
+    <SchemaOrg type={schema} data={schemaData} pathname={Astro.url.pathname} />
+
+    <!-- Analytics (Plausible no-cookie / GA4 consent-gated; both env-controlled) -->
+    <Analytics />
 
     {whatsappContext && <meta name="wccp-whatsapp-context" content={whatsappContext} />}
 

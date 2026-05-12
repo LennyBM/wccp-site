@@ -11,7 +11,7 @@ const { items } = Astro.props;
     <a href={r.href} class="card p-5 group">
       <div class="aspect-[16/10] bg-cast-100 mb-4 rounded overflow-hidden">
         {productThumbnails[r.href] ? (
-          <img src={productThumbnails[r.href]} alt={r.label} class="w-full h-full object-cover" loading="lazy" decoding="async" />
+          <img src={productThumbnails[r.href]} alt={r.label} width="640" height="400" class="w-full h-full object-cover" loading="lazy" decoding="async" />
         ) : (
           <div class="w-full h-full flex items-center justify-center" style="background: linear-gradient(135deg, #3a5cb5 0%, #2e4796 100%);">
             <span class="font-display italic text-cream/40 text-xl">WCCP</span>

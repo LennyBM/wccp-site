@@ -74,6 +74,7 @@ export const site = {
     facebook: 'https://www.facebook.com/westcountryconcreteproducts',
     linkedin: '', // create at launch
     youtube: '',  // create at launch
+    googleBusinessProfile: '', // confirm with Kim — paste the GBP short URL here
   },
 
   // Areas served — used in LocalBusiness schema and location-page generation.

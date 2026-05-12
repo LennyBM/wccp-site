@@ -42,7 +42,7 @@ const alignClass = align === 'center' ? 'mx-auto text-center' : '';
   {/* Background image with hero gradient */}
   {imageUrl && (
     <div aria-hidden="true" class="absolute inset-0">
-      <img src={imageUrl} alt="" class="w-full h-full object-cover opacity-40" />
+      <img src={imageUrl} alt="" class="w-full h-full object-cover opacity-40" loading="eager" fetchpriority="high" decoding="async" />
       <div class="absolute inset-0 hero-gradient"></div>
     </div>
   )}
