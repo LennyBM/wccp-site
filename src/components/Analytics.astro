@@ -1,11 +1,14 @@
 ---
 // Analytics + conversion tracking.
 //
-// Two engines, both optional and env-driven:
+// Three engines, all optional and env-driven:
 //   - Plausible (privacy-first, no cookies, no consent required under PECR for
 //     basic install): set PUBLIC_PLAUSIBLE_DOMAIN=westcountryconcreteproducts.co.uk
 //   - GA4 (consent-required): set PUBLIC_GA4_ID=G-XXXXXXX. Loaded only after
 //     the visitor accepts analytics via CookieBanner (`wccp:consent` event).
+//   - Microsoft Clarity (consent-required, free heatmaps + session replays):
+//     set PUBLIC_CLARITY_ID=xxxxxxxxxx. Loaded only after consent, same gate
+//     as GA4.
 //
 // Conversion events tracked automatically:
 //   - phone_click   (any tel: link)
@@ -19,6 +22,7 @@
 
 const plausibleDomain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN;
 const ga4Id = import.meta.env.PUBLIC_GA4_ID;
+const clarityId = import.meta.env.PUBLIC_CLARITY_ID;
 ---
 
 {plausibleDomain && (
@@ -30,6 +34,31 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID;
   ></script>
   <script is:inline>
     window.plausible = window.plausible || function () { (window.plausible.q = window.plausible.q || []).push(arguments); };
+  </script>
+)}
+
+{clarityId && (
+  <script is:inline define:vars={{ clarityId }}>
+    window.__wccpClarityId = clarityId;
+
+    function loadClarity(){
+      if (window.__wccpClarityLoaded) return;
+      window.__wccpClarityLoaded = true;
+      (function(c,l,a,r,i){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        var t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;
+        var y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, 'clarity', 'script', clarityId);
+    }
+
+    try {
+      var savedC = JSON.parse(localStorage.getItem('wccp_cookie_consent_v1') || 'null');
+      if (savedC && savedC.choice === 'all') loadClarity();
+    } catch(_) {}
+
+    window.addEventListener('wccp:consent', function(e){
+      if (e && e.detail && e.detail.choice === 'all') loadClarity();
+    });
   </script>
 )}
 
