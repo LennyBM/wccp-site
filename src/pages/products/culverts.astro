@@ -9,16 +9,16 @@ import ProductGallery from '@/components/ProductGallery.astro';
 import { site } from '@/config/site';
 import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
 
-// WCCP cast culverts to bespoke sizes up to 3630mm Ã— 2630mm overall in 1000mm
+// WCCP cast culverts to bespoke sizes up to 3630mm × 2630mm overall in 1000mm
 // section widths. Wall thicknesses and reinforcement to suit the application,
 // designed to BS EN 14844:2006+A2:2011.
 const specs = [
-  { spec: 'Maximum overall size', value: '3630 mm Ã— 2630 mm' },
+  { spec: 'Maximum overall size', value: '3630 mm × 2630 mm' },
   { spec: 'Section width', value: '1000 mm (units sit side-by-side along the run)' },
   { spec: 'Standard', value: 'BS EN 14844:2006+A2:2011 (precast box culverts)' },
-  { spec: 'Wall thicknesses', value: 'To suit application â€” designed for the loading and reinforced accordingly' },
+  { spec: 'Wall thicknesses', value: 'To suit application — designed for the loading and reinforced accordingly' },
   { spec: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
-  { spec: 'Bespoke detailing', value: 'Outer faces can be sawn or finished to spec â€” e.g. for visible bridge applications' },
+  { spec: 'Bespoke detailing', value: 'Outer faces can be sawn or finished to spec — e.g. for visible bridge applications' },
 ];
 
 const applications = [
@@ -34,21 +34,21 @@ const applications = [
 const related = [
   { href: '/products/cantilever-walls', label: 'Cantilever Walls', meta: 'Free-standing precast' },
   { href: '/products/king-post-walls', label: 'King Post Walls', meta: 'Steel post + panel infill' },
-  { href: '/products/padstones', label: 'Padstones', meta: '200Ã—200 to 600Ã—600' },
-  { href: '/products/vehicle-pits', label: 'Vehicle Pits', meta: '6.5m / 8m Â· MOT-compliant' },
+  { href: '/products/padstones', label: 'Padstones', meta: '200×200 to 600×600' },
+  { href: '/products/vehicle-pits', label: 'Vehicle Pits', meta: '6.5m / 8m · MOT-compliant' },
 ];
 
 const faqs = [
-  { q: 'What is the maximum culvert size you can cast?', a: 'Up to 3630mm Ã— 2630mm overall dimensions in 1000mm section widths. Wall thicknesses and reinforcement are designed to suit the loading, in accordance with BS EN 14844:2006+A2:2011 (precast box culverts). Larger spans on application.' },
-  { q: 'What are culverts used for?', a: 'Underpasses, stream crossings, vertical chambers, attenuation and storage tanks. In early 2024 we manufactured and supplied two units forming a waterway beneath a footbridge for the railway station at Henley-on-Thames â€” built to the customer\'s requirements with the outer faces finished to spec.' },
+  { q: 'What is the maximum culvert size you can cast?', a: 'Up to 3630mm × 2630mm overall dimensions in 1000mm section widths. Wall thicknesses and reinforcement are designed to suit the loading, in accordance with BS EN 14844:2006+A2:2011 (precast box culverts). Larger spans on application.' },
+  { q: 'What are culverts used for?', a: 'Underpasses, stream crossings, vertical chambers, attenuation and storage tanks. In early 2024 we manufactured and supplied two units forming a waterway beneath a footbridge for the railway station at Henley-on-Thames — built to the customer\'s requirements with the outer faces finished to spec.' },
   { q: 'How are wall thickness and reinforcement determined?', a: 'Each culvert is engineered to the loading and section. We work to BS EN 14844:2006+A2:2011 with structural design to BS EN 1992 (Eurocode 2). Send us the section, the fill height and the live load and we will return a culvert design including wall thickness and rebar schedule.' },
-  { q: 'Can the outer faces be finished?', a: 'Yes â€” outer faces can be sawn or finished to specification. We did exactly that on the Henley-on-Thames railway station job for visible faces under a footbridge. Tell us the architectural finish required when you brief the job.' },
-  { q: 'Lead time?', a: 'Box culverts run 6 to 10 weeks depending on size, reinforcement complexity and current bookings. Talk to us early on a programmed scheme â€” culverts that need rebar drawings approved can be on the critical path.' },
+  { q: 'Can the outer faces be finished?', a: 'Yes — outer faces can be sawn or finished to specification. We did exactly that on the Henley-on-Thames railway station job for visible faces under a footbridge. Tell us the architectural finish required when you brief the job.' },
+  { q: 'Lead time?', a: 'Box culverts run 6 to 10 weeks depending on size, reinforcement complexity and current bookings. Talk to us early on a programmed scheme — culverts that need rebar drawings approved can be on the critical path.' },
 ];
 
 const productSchema = {
   name: 'Precast Concrete Box Culverts',
-  description: 'Precast concrete box culverts to BS EN 14844:2006+A2:2011. Manufactured up to 3630mm Ã— 2630mm overall in 1000mm section widths, with wall thicknesses and reinforcement designed to suit the application. Used for underpasses, stream crossings, vertical chambers, attenuation and storage tanks. Network Rail proven (Henley-on-Thames footbridge).',
+  description: 'Precast concrete box culverts to BS EN 14844:2006+A2:2011. Manufactured up to 3630mm × 2630mm overall in 1000mm section widths, with wall thicknesses and reinforcement designed to suit the application. Used for underpasses, stream crossings, vertical chambers, attenuation and storage tanks. Network Rail proven (Henley-on-Thames footbridge).',
   brand: { '@type': 'Brand', name: site.name },
   manufacturer: { '@type': 'Organization', name: site.name },
   category: 'Precast concrete box culvert',
@@ -56,12 +56,12 @@ const productSchema = {
   additionalProperty: [
     { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 14844:2006+A2:2011 / BS EN 13369' },
     { '@type': 'PropertyValue', name: 'Concrete grade', value: 'C40/50 (BS 8500-1:2023)' },
-    { '@type': 'PropertyValue', name: 'Maximum overall dimensions', value: '3630 mm Ã— 2630 mm' },
+    { '@type': 'PropertyValue', name: 'Maximum overall dimensions', value: '3630 mm × 2630 mm' },
     { '@type': 'PropertyValue', name: 'Section width', value: '1000 mm (units sit side-by-side)' },
     { '@type': 'PropertyValue', name: 'Wall and rebar', value: 'Designed to suit application loading' },
     { '@type': 'PropertyValue', name: 'Outer face finish', value: 'Sawn or finished to specification (e.g. visible bridge applications)' },
     { '@type': 'PropertyValue', name: 'Notable project', value: 'Henley-on-Thames railway station footbridge waterway (2024)' },
-    { '@type': 'PropertyValue', name: 'Lead time', value: '6â€“10 weeks bespoke' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '6–10 weeks bespoke' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
   ],
   offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
@@ -71,8 +71,8 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
 ---
 
 <BaseLayout
-  title="Box Culverts â€” BS EN 14844 Â· up to 3630 Ã— 2630mm"
-  description="Precast concrete box culverts to BS EN 14844:2006+A2:2011. Up to 3630mm Ã— 2630mm overall in 1000mm section widths, walls and reinforcement designed to suit. Underpasses, stream crossings, attenuation. Cast in North Devon."
+  title="Box Culverts — BS EN 14844 · up to 3630 × 2630mm"
+  description="Precast concrete box culverts to BS EN 14844:2006+A2:2011. Up to 3630mm × 2630mm overall in 1000mm section widths, walls and reinforcement designed to suit. Underpasses, stream crossings, attenuation. Cast in North Devon."
   image="/og/home.png"
   schema="Product"
   schemaData={productSchema}
@@ -85,31 +85,31 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
     <div class="container-wccp py-16 md:py-20">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <p class="eyebrow text-yellow mb-4">Civils Â· drainage Â· highways</p>
+          <p class="eyebrow text-yellow mb-4">Civils · drainage · highways</p>
           <h1 class="font-display text-display-xl text-white mb-4">Box Culverts.</h1>
-          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">Up to 3630 Ã— 2630mm. Bespoke walls and reinforcement to BS EN 14844.</p>
+          <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">Up to 3630 × 2630mm. Bespoke walls and reinforcement to BS EN 14844.</p>
           <h2 class="sr-only">What size box culvert can WCCP cast?</h2>
           <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
             <strong class="not-italic text-white">What size box culvert can WCCP cast?</strong>
             We have the capability to manufacture precast concrete culverts up to
-            <strong class="text-white">3630&nbsp;mm Ã— 2630&nbsp;mm</strong> overall dimensions in
+            <strong class="text-white">3630&nbsp;mm × 2630&nbsp;mm</strong> overall dimensions in
             1000&nbsp;mm section widths. Wall thicknesses and reinforcement to suit the application,
             designed to <strong class="text-white">BS&nbsp;EN&nbsp;14844:2006+A2:2011</strong>.
           </blockquote>
           <p class="text-lg lg:text-xl text-white/95 leading-relaxed mb-6 max-w-xl font-medium">
-            Precast box culverts up to 3630 Ã— 2630mm in 1000mm section widths, cast to
+            Precast box culverts up to 3630 × 2630mm in 1000mm section widths, cast to
             BS EN 14844:2006+A2:2011 in C40/50 concrete with walls and reinforcement
             designed to suit. Suits highway, agricultural watercourse, underpass and
             SuDS schemes. Bespoke skews, sawn outer faces and inlet/outlet detailing
             on every order. Lead time 6-10 weeks; Network Rail proven (Henley-on-Thames).
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> BS EN 14844</li>
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> Up to 3630 Ã— 2630mm</li>
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> 1000mm section widths</li>
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> Bespoke walls / rebar</li>
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> Sawn outer faces option</li>
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> Network Rail proven</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> BS EN 14844</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Up to 3630 × 2630mm</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 1000mm section widths</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Bespoke walls / rebar</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Sawn outer faces option</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Network Rail proven</li>
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Culverts" class="btn-primary">Configure a quote</a>
@@ -117,7 +117,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
           </div>
         </div>
         <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
-          <img src="/images/products/culverts/wccp-culverts-20240308-121028-reduced-1024x768.jpg" alt="Precast concrete box culverts being placed on site â€” West Country Concrete Products, Devon" class="w-full h-full object-cover" loading="eager" decoding="async" />
+          <img src="/images/products/culverts/wccp-culverts-20240308-121028-reduced-1024x768.jpg" alt="Precast concrete box culverts being placed on site — West Country Concrete Products, Devon" class="w-full h-full object-cover" loading="eager" decoding="async" />
         </div>
       </div>
     </div>
@@ -148,7 +148,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
       </table>
     </div>
     <p class="text-cast text-sm mt-4">
-      Each culvert is engineered to the application â€” send the section, fill height, loading and crossing layout
+      Each culvert is engineered to the application — send the section, fill height, loading and crossing layout
       and we will return a culvert design with wall thicknesses, reinforcement schedule and weight calculations.
     </p>
   </section>
@@ -173,20 +173,20 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
         <div>
           <p class="eyebrow text-cast mb-3">Where they go</p>
           <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
-          <p class="text-cast-700 text-lg leading-relaxed mb-6">From a 1m drainage culvert under a farm track to a 3.6m bridge section on a road scheme â€” same yard, same paperwork.</p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">From a 1m drainage culvert under a farm track to a 3.6m bridge section on a road scheme — same yard, same paperwork.</p>
           <ul class="space-y-3">
-            {applications.map((a) => (<li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">Â·</span><span>{a}</span></li>))}
+            {applications.map((a) => (<li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">·</span><span>{a}</span></li>))}
           </ul>
         </div>
         <div class="card p-8">
           <p class="eyebrow text-cast mb-3">Standards & certification</p>
           <h3 class="font-display text-2xl font-bold text-navy mb-4">Engineered, marked, certified.</h3>
           <dl class="space-y-4 text-sm">
-            <div><dt class="font-bold text-navy">BS EN 14844:2006+A2:2011</dt><dd class="text-cast">Precast concrete box culverts â€” the live product standard for our range.</dd></div>
-            <div><dt class="font-bold text-navy">BS EN 13369</dt><dd class="text-cast">Common rules for precast â€” factory production control.</dd></div>
-            <div><dt class="font-bold text-navy">BS EN 1992 (Eurocode 2)</dt><dd class="text-cast">Concrete structural design â€” section, joint and bearing checks.</dd></div>
-            <div><dt class="font-bold text-navy">BS 5400 / BS EN 1991-2</dt><dd class="text-cast">Highway loadings â€” HA, HB30, HB45 traffic loads.</dd></div>
-            <div><dt class="font-bold text-navy">BS 8500-1:2023</dt><dd class="text-cast">Concrete spec â€” designated mixes for the exposure class.</dd></div>
+            <div><dt class="font-bold text-navy">BS EN 14844:2006+A2:2011</dt><dd class="text-cast">Precast concrete box culverts — the live product standard for our range.</dd></div>
+            <div><dt class="font-bold text-navy">BS EN 13369</dt><dd class="text-cast">Common rules for precast — factory production control.</dd></div>
+            <div><dt class="font-bold text-navy">BS EN 1992 (Eurocode 2)</dt><dd class="text-cast">Concrete structural design — section, joint and bearing checks.</dd></div>
+            <div><dt class="font-bold text-navy">BS 5400 / BS EN 1991-2</dt><dd class="text-cast">Highway loadings — HA, HB30, HB45 traffic loads.</dd></div>
+            <div><dt class="font-bold text-navy">BS 8500-1:2023</dt><dd class="text-cast">Concrete spec — designated mixes for the exposure class.</dd></div>
           </dl>
         </div>
       </div>
@@ -198,7 +198,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
           <p class="eyebrow text-navy mb-2">Configure your culvert</p>
-          <h2 class="font-display text-display-md">Send section, fill height and loading â€” we will quote inside 24 hours.</h2>
+          <h2 class="font-display text-display-md">Send section, fill height and loading — we will quote inside 24 hours.</h2>
         </div>
         <div class="flex flex-wrap gap-3 shrink-0">
           <a href="/quote?product=Culverts" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
@@ -249,7 +249,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
       defaultMode="supply"
       supply={{
         price: 'Bespoke quote',
-        leadTime: '6â€“10 weeks',
+        leadTime: '6–10 weeks',
         includes: [
           'Box-culvert sections to BS EN 14844:2006+A2:2011',
           'Wall thicknesses and reinforcement designed to your loading',
@@ -264,7 +264,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
       }}
       fitted={{
         price: 'Bespoke quote (incl. install)',
-        leadTime: '10â€“14 weeks (incl. site slot)',
+        leadTime: '10–14 weeks (incl. site slot)',
         includes: [
           'Everything in supply only',
           'Four-man install crew with 50t crane',

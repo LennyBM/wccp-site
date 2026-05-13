@@ -18,19 +18,19 @@ const tocSections = [
   { id: 'downloads', label: 'Downloads' },
 ];
 
-// WCCP precast dish channels â€” surface drainage runs, BS EN 1433, SuDS-compatible.
+// WCCP precast dish channels — surface drainage runs, BS EN 1433, SuDS-compatible.
 const specs = [
-  { variant: 'Standard 305mm dish', bed: '305mm wide Ã— 915mm long Ã— 125mm deep', style: 'Class C250 â€” light traffic', use: 'Yards, footpaths, light-vehicle areas' },
-  { variant: 'Heavy 450mm dish', bed: '450mm wide Ã— 915mm long Ã— 150mm deep', style: 'Class D400 â€” full traffic', use: 'Adoptable carriageways, estate roads' },
-  { variant: 'Industrial 600mm dish', bed: '600mm wide Ã— 915mm long Ã— 175mm deep', style: 'Class E600 â€” HGV areas', use: 'Industrial yards, lorry parks, ports' },
-  { variant: 'Half-batter dish', bed: '305mm Ã— 915mm â€” kerb-aligned profile', style: 'Class D400 â€” kerbline runs', use: 'Highway kerb gulley alternatives' },
-  { variant: 'Falls dish (graded)', bed: '305mm Ã— 915mm â€” 1:80 cast fall', style: 'Class D400 with built-in fall', use: 'Flat-area falls, slow-flow channels' },
+  { variant: 'Standard 305mm dish', bed: '305mm wide × 915mm long × 125mm deep', style: 'Class C250 — light traffic', use: 'Yards, footpaths, light-vehicle areas' },
+  { variant: 'Heavy 450mm dish', bed: '450mm wide × 915mm long × 150mm deep', style: 'Class D400 — full traffic', use: 'Adoptable carriageways, estate roads' },
+  { variant: 'Industrial 600mm dish', bed: '600mm wide × 915mm long × 175mm deep', style: 'Class E600 — HGV areas', use: 'Industrial yards, lorry parks, ports' },
+  { variant: 'Half-batter dish', bed: '305mm × 915mm — kerb-aligned profile', style: 'Class D400 — kerbline runs', use: 'Highway kerb gulley alternatives' },
+  { variant: 'Falls dish (graded)', bed: '305mm × 915mm — 1:80 cast fall', style: 'Class D400 with built-in fall', use: 'Flat-area falls, slow-flow channels' },
   { variant: 'Bend / junction units', bed: 'To suit run geometry', style: 'Class to match adjacent run', use: 'Direction changes, side-entry junctions' },
 ];
 
 const applications = [
   'Adoptable carriageway and estate-road surface drainage',
-  'Industrial and logistics yards â€” HGV-loaded surfaces',
+  'Industrial and logistics yards — HGV-loaded surfaces',
   'Farm and agricultural concrete-yard runoff control',
   'Public realm and footpath drainage',
   'SuDS source-control conveyance to soakaways',
@@ -40,17 +40,17 @@ const applications = [
 
 const related = [
   { href: '/products/sand-channels', label: 'Sand Channels', meta: 'Forecourt and yard drainage' },
-  { href: '/products/kerbs', label: 'Kerbs', meta: 'BS EN 1340 Â· half-batter, bullnose' },
-  { href: '/products/soakaways-chambers', label: 'Soakaways & Chambers', meta: 'BS 5911-3 Â· SuDS systems' },
-  { href: '/products/pipe-culverts', label: 'Pipe Culverts', meta: 'BS 5911-1 Â· 300â€“1800mm' },
+  { href: '/products/kerbs', label: 'Kerbs', meta: 'BS EN 1340 · half-batter, bullnose' },
+  { href: '/products/soakaways-chambers', label: 'Soakaways & Chambers', meta: 'BS 5911-3 · SuDS systems' },
+  { href: '/products/pipe-culverts', label: 'Pipe Culverts', meta: 'BS 5911-1 · 300–1800mm' },
 ];
 
 const faqs = [
-  { q: 'What standard do your dish channels meet?', a: 'BS EN 1433:2002+A1:2005 â€” drainage channels for vehicular and pedestrian areas. We supply Classes C250 (light), D400 (carriageway) and E600 (HGV areas) depending on your loading. Cast in C40/50 concrete to BS 8500-1:2023, factory-production-controlled to BS EN 13369 and UKCA marked.' },
-  { q: 'Are they SuDS-compatible?', a: 'Yes â€” dish channels are commonly used as conveyance components in SuDS source-control systems, feeding from impermeable surfaces into soakaways, swales or attenuation tanks. They satisfy CIRIA C753 SuDS Manual conveyance criteria and integrate with our BS 5911-3 soakaway chambers. Specify the falls and outfall on your drainage layout and we will batch the run accordingly.' },
-  { q: 'Do you cast bends and junctions?', a: 'Yes â€” 90-degree and 45-degree bends, T-junctions and graded falls units are all cast in-house at Holsworthy. Send the drainage GA and we will set out the run with named pieces â€” straight runs, bends, end-stops and outfall connections â€” so the gangs install kit-of-parts on site.' },
-  { q: 'How are they bedded?', a: 'Standard bedding is a Class S granular bed on a 100mm C20 lean-mix base, with cement-mortar joints between units to BS EN 1433 watertightness. For trafficked carriageway use we recommend a 150mm C32/40 surround â€” full bedding detail supplied with the spec sheet.' },
-  { q: 'What is the lead time?', a: 'Catalogue 305mm and 450mm dish ship in 2 to 3 weeks. Bespoke widths, falls runs and graded units run 4 to 6 weeks. We schedule highways orders around your possession dates â€” give us the works programme early.' },
+  { q: 'What standard do your dish channels meet?', a: 'BS EN 1433:2002+A1:2005 — drainage channels for vehicular and pedestrian areas. We supply Classes C250 (light), D400 (carriageway) and E600 (HGV areas) depending on your loading. Cast in C40/50 concrete to BS 8500-1:2023, factory-production-controlled to BS EN 13369 and UKCA marked.' },
+  { q: 'Are they SuDS-compatible?', a: 'Yes — dish channels are commonly used as conveyance components in SuDS source-control systems, feeding from impermeable surfaces into soakaways, swales or attenuation tanks. They satisfy CIRIA C753 SuDS Manual conveyance criteria and integrate with our BS 5911-3 soakaway chambers. Specify the falls and outfall on your drainage layout and we will batch the run accordingly.' },
+  { q: 'Do you cast bends and junctions?', a: 'Yes — 90-degree and 45-degree bends, T-junctions and graded falls units are all cast in-house at Holsworthy. Send the drainage GA and we will set out the run with named pieces — straight runs, bends, end-stops and outfall connections — so the gangs install kit-of-parts on site.' },
+  { q: 'How are they bedded?', a: 'Standard bedding is a Class S granular bed on a 100mm C20 lean-mix base, with cement-mortar joints between units to BS EN 1433 watertightness. For trafficked carriageway use we recommend a 150mm C32/40 surround — full bedding detail supplied with the spec sheet.' },
+  { q: 'What is the lead time?', a: 'Catalogue 305mm and 450mm dish ship in 2 to 3 weeks. Bespoke widths, falls runs and graded units run 4 to 6 weeks. We schedule highways orders around your possession dates — give us the works programme early.' },
 ];
 
 const productSchema = {
@@ -67,8 +67,8 @@ const productSchema = {
     { '@type': 'PropertyValue', name: 'Width range', value: '305mm to 600mm' },
     { '@type': 'PropertyValue', name: 'Effective length', value: '915mm standard' },
     { '@type': 'PropertyValue', name: 'SuDS compatibility', value: 'CIRIA C753 conveyance' },
-    { '@type': 'PropertyValue', name: 'Factory production control', value: 'BS EN 13369 Â· UKCA marked' },
-    { '@type': 'PropertyValue', name: 'Lead time', value: '2â€“3 weeks catalogue, 4â€“6 weeks bespoke' },
+    { '@type': 'PropertyValue', name: 'Factory production control', value: 'BS EN 13369 · UKCA marked' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '2–3 weeks catalogue, 4–6 weeks bespoke' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
   ],
   offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
@@ -86,7 +86,7 @@ const faqSchema = {
 ---
 
 <BaseLayout
-  title="Dish Channels â€” BS EN 1433 Â· D400 / E600 Â· SuDS-compatible"
+  title="Dish Channels — BS EN 1433 · D400 / E600 · SuDS-compatible"
   description="Precast dish channels to BS EN 1433. Surface drainage for adoptable roads, industrial yards and SuDS systems. Class C250, D400 and E600. Cast in North Devon."
   image="/og/home.png"
   schema="Product"
@@ -102,14 +102,14 @@ const faqSchema = {
     <div class="container-wccp py-16 md:py-20">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <p class="eyebrow text-yellow mb-4">Civils Â· drainage Â· SuDS</p>
+          <p class="eyebrow text-yellow mb-4">Civils · drainage · SuDS</p>
           <h1 class="font-display text-display-xl text-white mb-4">Dish Channels.</h1>
           <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">Surface water captured. Carriageway dry.</p>
           <p class="text-lg lg:text-xl text-cast leading-relaxed font-medium text-white/95 mb-6 max-w-xl">
             Precast dish channels to BS EN 1433 for surface drainage on roads, industrial
             yards and SuDS systems. Cast in 305mm, 450mm and 600mm widths in 915mm units,
             Classes C250, D400 and E600 to suit loading. C40/50 concrete to BS 8500-1:2023,
-            UKCA marked. Catalogue lead time 2â€“3 weeks.
+            UKCA marked. Catalogue lead time 2–3 weeks.
           </p>
           <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
             A 450&nbsp;mm dish channel cast to BS EN 1433 Class D400 carries the full
@@ -117,17 +117,17 @@ const faqSchema = {
             and feeds straight into a BS 5911-3 soakaway chamber as part of a SuDS train.
           </blockquote>
           <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
-            We cast straights, bends, T-junctions and falls units in matching profiles â€”
+            We cast straights, bends, T-junctions and falls units in matching profiles —
             kit-of-parts delivered to your drainage layout. Cast at Holsworthy, delivered
             UK-wide.
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> BS EN 1433</li>
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> C250â€“E600</li>
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> 305â€“600mm wide</li>
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> SuDS-compatible</li>
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> UKCA marked</li>
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> 2â€“6 week lead</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> BS EN 1433</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> C250–E600</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 305–600mm wide</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> SuDS-compatible</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> UKCA marked</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 2–6 week lead</li>
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Dish%20Channels" class="btn-primary">Configure a quote</a>
@@ -154,7 +154,7 @@ const faqSchema = {
       <h2 class="font-display text-display-lg mb-4">Widths, classes and formats.</h2>
       <p class="text-cast-700 text-lg">
         Six catalogue formats covering footpath to HGV-yard duty. Bends, T-junctions and
-        graded fall units cast to suit your drainage layout â€” send the GA, we will set out
+        graded fall units cast to suit your drainage layout — send the GA, we will set out
         the run.
       </p>
     </div>
@@ -183,11 +183,11 @@ const faqSchema = {
     </div>
     <p class="text-cast text-sm mt-4">
       All units UKCA marked, factory production controlled to BS EN 13369. Mortar-joint and
-      bedding details supplied with the spec sheet â€” Class S granular on 100mm C20 lean-mix base.
+      bedding details supplied with the spec sheet — Class S granular on 100mm C20 lean-mix base.
     </p>
 
     <p class="text-cast text-sm mt-4">
-      Bespoke widths and inverted-fall units are cast on order â€” talk to engineering with
+      Bespoke widths and inverted-fall units are cast on order — talk to engineering with
       the drainage GA and outfall invert and we will work the falls back through the run.
     </p>
   </section>
@@ -198,14 +198,14 @@ const faqSchema = {
     background="bone"
     cols={4}
     images={[
-      { src: '', alt: 'Dish channel yard stockpile', caption: 'Stockpile Â· 450mm dish units stacked in Holsworthy yard, freshly cast' },
-      { src: '', alt: 'Dish channel install', caption: 'Install Â· gang setting 305mm dish channel into mortar bed on estate road' },
-      { src: '', alt: 'Dish channel profile', caption: 'Profile Â· close-up of the dish cross-section showing 1:8 batter' },
-      { src: '', alt: 'Dish channel D400 highway', caption: 'D400 carriageway run Â· adoptable road, kerbline visible' },
-      { src: '', alt: 'Dish channel bend unit', caption: '90-degree bend unit Â· cast in matching profile to straight run' },
-      { src: '', alt: 'Dish channel SuDS connection', caption: 'SuDS outfall Â· dish channel running into precast soakaway chamber' },
-      { src: '', alt: 'Dish channel yard HGV', caption: 'E600 industrial yard Â· 600mm dish carrying HGV runoff' },
-      { src: '', alt: 'Dish channel falls run', caption: 'Falls unit Â· graded 1:80 dish handling slow-flow capture' },
+      { src: '', alt: 'Dish channel yard stockpile', caption: 'Stockpile · 450mm dish units stacked in Holsworthy yard, freshly cast' },
+      { src: '', alt: 'Dish channel install', caption: 'Install · gang setting 305mm dish channel into mortar bed on estate road' },
+      { src: '', alt: 'Dish channel profile', caption: 'Profile · close-up of the dish cross-section showing 1:8 batter' },
+      { src: '', alt: 'Dish channel D400 highway', caption: 'D400 carriageway run · adoptable road, kerbline visible' },
+      { src: '', alt: 'Dish channel bend unit', caption: '90-degree bend unit · cast in matching profile to straight run' },
+      { src: '', alt: 'Dish channel SuDS connection', caption: 'SuDS outfall · dish channel running into precast soakaway chamber' },
+      { src: '', alt: 'Dish channel yard HGV', caption: 'E600 industrial yard · 600mm dish carrying HGV runoff' },
+      { src: '', alt: 'Dish channel falls run', caption: 'Falls unit · graded 1:80 dish handling slow-flow capture' },
     ]}
   />
 
@@ -223,7 +223,7 @@ const faqSchema = {
           <ul class="space-y-3">
             {applications.map((a) => (
               <li class="flex gap-3 text-cast-700 leading-relaxed">
-                <span class="text-ember font-bold mt-1">Â·</span>
+                <span class="text-ember font-bold mt-1">·</span>
                 <span>{a}</span>
               </li>
             ))}
@@ -236,27 +236,27 @@ const faqSchema = {
           <dl class="space-y-4 text-sm">
             <div>
               <dt class="font-bold text-navy">BS EN 1433:2002+A1:2005</dt>
-              <dd class="text-cast">Drainage channels for vehicular and pedestrian areas â€” loading classes A15 to F900.</dd>
+              <dd class="text-cast">Drainage channels for vehicular and pedestrian areas — loading classes A15 to F900.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">CIRIA C753</dt>
-              <dd class="text-cast">SuDS Manual â€” surface water management, conveyance and source control.</dd>
+              <dd class="text-cast">SuDS Manual — surface water management, conveyance and source control.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BS 8500-1:2023</dt>
-              <dd class="text-cast">Concrete specification â€” C40/50 mix designed for exposure class XF3/XD3.</dd>
+              <dd class="text-cast">Concrete specification — C40/50 mix designed for exposure class XF3/XD3.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BS EN 1992 / Eurocode 2</dt>
-              <dd class="text-cast">Design of concrete structures â€” durability and detailing.</dd>
+              <dd class="text-cast">Design of concrete structures — durability and detailing.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BS EN 13369</dt>
-              <dd class="text-cast">Common rules for precast concrete products â€” factory production control.</dd>
+              <dd class="text-cast">Common rules for precast concrete products — factory production control.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">DMRB CD 532</dt>
-              <dd class="text-cast">Design Manual for Roads and Bridges â€” surface and sub-surface drainage.</dd>
+              <dd class="text-cast">Design Manual for Roads and Bridges — surface and sub-surface drainage.</dd>
             </div>
           </dl>
         </div>
@@ -270,7 +270,7 @@ const faqSchema = {
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
           <p class="eyebrow text-navy mb-2">Configure your drainage run</p>
-          <h2 class="font-display text-display-md">Tell us the run length, loading class and outfall â€” we will quote inside 24 hours.</h2>
+          <h2 class="font-display text-display-md">Tell us the run length, loading class and outfall — we will quote inside 24 hours.</h2>
         </div>
         <div class="flex flex-wrap gap-3 shrink-0">
           <a href="/quote?product=Dish%20Channels" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
@@ -329,7 +329,7 @@ const faqSchema = {
       defaultMode="supply"
       supply={{
         price: 'Bespoke quote',
-        leadTime: '2â€“6 weeks',
+        leadTime: '2–6 weeks',
         includes: [
           'BS EN 1433 dish units to specified class',
           'Bends, junctions and falls units cast to GA',
@@ -343,7 +343,7 @@ const faqSchema = {
       }}
       fitted={{
         price: 'Bespoke quote (incl. install)',
-        leadTime: '6â€“10 weeks (incl. site slot)',
+        leadTime: '6–10 weeks (incl. site slot)',
         includes: [
           'Everything in supply only',
           'Civils crew with setting-out',
@@ -355,7 +355,7 @@ const faqSchema = {
           'Traffic-management costs',
         ],
       }}
-      note=". Bespoke widths, falls and SuDS-integrated runs priced individually â€” send the drainage GA and outfall invert and we'll come back within a working day."
+      note=". Bespoke widths, falls and SuDS-integrated runs priced individually — send the drainage GA and outfall invert and we'll come back within a working day."
     />
   </section>
 

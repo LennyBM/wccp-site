@@ -10,34 +10,34 @@ import ProductGallery from '@/components/ProductGallery.astro';
 import { site } from '@/config/site';
 import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
 
-// Stocked range â€” three thicknesses (95 / 145 / 180mm) Ã— three heights (1.0 / 1.2 / 1.5m)
-// Ã— two stocked lengths (15ft = 4572mm, 20ft = 6096mm). Custom lengths to order.
+// Stocked range — three thicknesses (95 / 145 / 180mm) × three heights (1.0 / 1.2 / 1.5m)
+// × two stocked lengths (15ft = 4572mm, 20ft = 6096mm). Custom lengths to order.
 // Weights from WCCP published spec table.
 const specs15 = [
-  { panel: '1000 Ã— 95mm',  weight: '1,042 kg', height: '1.0m', thickness: '95mm' },
-  { panel: '1200 Ã— 95mm',  weight: '1,251 kg', height: '1.2m', thickness: '95mm' },
-  { panel: '1500 Ã— 95mm',  weight: '1,564 kg', height: '1.5m', thickness: '95mm' },
-  { panel: '1000 Ã— 145mm', weight: '1,591 kg', height: '1.0m', thickness: '145mm' },
-  { panel: '1200 Ã— 145mm', weight: '1,909 kg', height: '1.2m', thickness: '145mm' },
-  { panel: '1500 Ã— 145mm', weight: '2,387 kg', height: '1.5m', thickness: '145mm' },
-  { panel: '1000 Ã— 180mm', weight: '1,975 kg', height: '1.0m', thickness: '180mm' },
-  { panel: '1200 Ã— 180mm', weight: '2,370 kg', height: '1.2m', thickness: '180mm' },
-  { panel: '1500 Ã— 180mm', weight: '2,963 kg', height: '1.5m', thickness: '180mm' },
+  { panel: '1000 × 95mm',  weight: '1,042 kg', height: '1.0m', thickness: '95mm' },
+  { panel: '1200 × 95mm',  weight: '1,251 kg', height: '1.2m', thickness: '95mm' },
+  { panel: '1500 × 95mm',  weight: '1,564 kg', height: '1.5m', thickness: '95mm' },
+  { panel: '1000 × 145mm', weight: '1,591 kg', height: '1.0m', thickness: '145mm' },
+  { panel: '1200 × 145mm', weight: '1,909 kg', height: '1.2m', thickness: '145mm' },
+  { panel: '1500 × 145mm', weight: '2,387 kg', height: '1.5m', thickness: '145mm' },
+  { panel: '1000 × 180mm', weight: '1,975 kg', height: '1.0m', thickness: '180mm' },
+  { panel: '1200 × 180mm', weight: '2,370 kg', height: '1.2m', thickness: '180mm' },
+  { panel: '1500 × 180mm', weight: '2,963 kg', height: '1.5m', thickness: '180mm' },
 ];
 
 const specs20 = [
-  { panel: '1000 Ã— 95mm',  weight: '1,390 kg', height: '1.0m', thickness: '95mm' },
-  { panel: '1200 Ã— 95mm',  weight: '1,668 kg', height: '1.2m', thickness: '95mm' },
-  { panel: '1500 Ã— 95mm',  weight: '2,085 kg', height: '1.5m', thickness: '95mm' },
-  { panel: '1000 Ã— 145mm', weight: '2,121 kg', height: '1.0m', thickness: '145mm' },
-  { panel: '1200 Ã— 145mm', weight: '2,546 kg', height: '1.2m', thickness: '145mm' },
-  { panel: '1500 Ã— 145mm', weight: '3,182 kg', height: '1.5m', thickness: '145mm' },
-  { panel: '1000 Ã— 180mm', weight: '2,633 kg', height: '1.0m', thickness: '180mm' },
-  { panel: '1200 Ã— 180mm', weight: '3,160 kg', height: '1.2m', thickness: '180mm' },
-  { panel: '1500 Ã— 180mm', weight: '3,950 kg', height: '1.5m', thickness: '180mm' },
+  { panel: '1000 × 95mm',  weight: '1,390 kg', height: '1.0m', thickness: '95mm' },
+  { panel: '1200 × 95mm',  weight: '1,668 kg', height: '1.2m', thickness: '95mm' },
+  { panel: '1500 × 95mm',  weight: '2,085 kg', height: '1.5m', thickness: '95mm' },
+  { panel: '1000 × 145mm', weight: '2,121 kg', height: '1.0m', thickness: '145mm' },
+  { panel: '1200 × 145mm', weight: '2,546 kg', height: '1.2m', thickness: '145mm' },
+  { panel: '1500 × 145mm', weight: '3,182 kg', height: '1.5m', thickness: '145mm' },
+  { panel: '1000 × 180mm', weight: '2,633 kg', height: '1.0m', thickness: '180mm' },
+  { panel: '1200 × 180mm', weight: '3,160 kg', height: '1.2m', thickness: '180mm' },
+  { panel: '1500 × 180mm', weight: '3,950 kg', height: '1.5m', thickness: '180mm' },
 ];
 
-// Optional extras â€” direct from the old WCCP product page
+// Optional extras — direct from the old WCCP product page
 const extras = [
   'Double stressed to accept loading from both sides',
   'Bolts and brackets to fix panels to steel posts',
@@ -46,30 +46,30 @@ const extras = [
   'Lifting clutch that fits the cast-in panel rebate',
 ];
 
-// Vertical Cantilever Panels â€” 180mm thick prestressed panels stood vertically
+// Vertical Cantilever Panels — 180mm thick prestressed panels stood vertically
 // with no king post support. Spec from brochure page 2.
 const cantileverSpecs = [
   { thickness: '180mm', material: 'Slurry',                            retained: 'up to 3.7 m' },
   { thickness: '180mm', material: 'Silage (with 10 t vehicle surcharge)', retained: 'up to 3.2 m' },
   { thickness: '180mm', material: 'Earth',                             retained: 'up to 3.4 m' },
-  { thickness: '145mm', material: 'Slurry / silage / earth (reduced)', retained: '0.3â€“0.4 m less than 180mm equivalent' },
+  { thickness: '145mm', material: 'Slurry / silage / earth (reduced)', retained: '0.3–0.4 m less than 180mm equivalent' },
 ];
 
 const applications = [
   'SSAFO 2018-compliant slurry stores up to 6.0m wall height',
-  'Silage clamp walls â€” push-off ends, transition bays, ramp returns',
+  'Silage clamp walls — push-off ends, transition bays, ramp returns',
   'Grain stores and bulk-aggregate bay divisions',
   'L-block alternative on cantilever retaining walls',
   'Bunds for fuel tanks, transformers and process plant',
   'Push walls for waste-transfer and recycling sites',
-  'Boundary and security walls â€” exposed-aggregate finishes available',
+  'Boundary and security walls — exposed-aggregate finishes available',
 ];
 
 const related = [
-  { href: '/products/king-post-walls', label: 'King Post Walls', meta: 'Steel posts Â· panel infill' },
-  { href: '/products/l-blocks', label: 'L-Block Retaining', meta: '600mm to 4.0m Â· interlocking' },
-  { href: '/products/slurry-storage', label: 'Slurry Storage', meta: 'SSAFO Â· 250â€“5000mÂ³' },
-  { href: '/products/silage-clamp-walls', label: 'Silage Clamp Walls', meta: 'C40/50 Â· sulphate-resisting' },
+  { href: '/products/king-post-walls', label: 'King Post Walls', meta: 'Steel posts · panel infill' },
+  { href: '/products/l-blocks', label: 'L-Block Retaining', meta: '600mm to 4.0m · interlocking' },
+  { href: '/products/slurry-storage', label: 'Slurry Storage', meta: 'SSAFO · 250–5000m³' },
+  { href: '/products/silage-clamp-walls', label: 'Silage Clamp Walls', meta: 'C40/50 · sulphate-resisting' },
 ];
 
 const faqs = [
@@ -79,19 +79,19 @@ const faqs = [
   },
   {
     q: 'How are the panels installed?',
-    a: 'Panels are typically lifted into pre-cast pockets in a strip footing or bolted to a steel king-post system. We supply the lifting points cast in, the install drawing and the recommended bedding mortar. A two-man crew with a 35-tonne crane will set 30â€“40 panels a day on a level pad.',
+    a: 'Panels are typically lifted into pre-cast pockets in a strip footing or bolted to a steel king-post system. We supply the lifting points cast in, the install drawing and the recommended bedding mortar. A two-man crew with a 35-tonne crane will set 30–40 panels a day on a level pad.',
   },
   {
     q: 'Are panels suitable for slurry contact?',
-    a: 'Yes â€” for slurry use we cast in C40/50 with sulphate-resisting CEM II/B-V or CEM III/A binder and an aggressive-chemical (DC-3 or DC-4) designation under BS 8500. We supply the SSAFO 2018 capacity statement, the structural calcs and the mix certificate as one PDF pack.',
+    a: 'Yes — for slurry use we cast in C40/50 with sulphate-resisting CEM II/B-V or CEM III/A binder and an aggressive-chemical (DC-3 or DC-4) designation under BS 8500. We supply the SSAFO 2018 capacity statement, the structural calcs and the mix certificate as one PDF pack.',
   },
   {
     q: 'What is the lead time on a typical order?',
-    a: 'Catalogue thicknesses (100, 150, 180, 280mm) at standard heights are usually 2 to 4 weeks from order. Bespoke heights, finishes and pocket details run 6 to 8 weeks. Spring and autumn are the busy seasons â€” talk to us early if you have a programme date.',
+    a: 'Catalogue thicknesses (100, 150, 180, 280mm) at standard heights are usually 2 to 4 weeks from order. Bespoke heights, finishes and pocket details run 6 to 8 weeks. Spring and autumn are the busy seasons — talk to us early if you have a programme date.',
   },
   {
     q: 'Can I get exposed-aggregate or board-marked finishes?',
-    a: 'Yes. We cast feature finishes for architectural projects â€” board-marked timber pattern, exposed local aggregate, acid-etched and polished. We sample finishes before commit so you sign off the look before we cast the panel.',
+    a: 'Yes. We cast feature finishes for architectural projects — board-marked timber pattern, exposed local aggregate, acid-etched and polished. We sample finishes before commit so you sign off the look before we cast the panel.',
   },
 ];
 
@@ -111,11 +111,11 @@ const productSchema = {
     { '@type': 'PropertyValue', name: 'Available thicknesses', value: '95mm, 145mm, 180mm' },
     { '@type': 'PropertyValue', name: 'Standard heights', value: '1.0m, 1.2m, 1.5m' },
     { '@type': 'PropertyValue', name: 'Stocked lengths', value: '15ft and 20ft (custom lengths to order)' },
-    { '@type': 'PropertyValue', name: 'Vertical cantilever â€” slurry retention', value: 'up to 3.7m with 180mm panel, no posts' },
-    { '@type': 'PropertyValue', name: 'Vertical cantilever â€” silage', value: 'up to 3.2m with 180mm panel and 10t vehicle surcharge' },
-    { '@type': 'PropertyValue', name: 'Vertical cantilever â€” earth', value: 'up to 3.4m with 180mm panel' },
+    { '@type': 'PropertyValue', name: 'Vertical cantilever — slurry retention', value: 'up to 3.7m with 180mm panel, no posts' },
+    { '@type': 'PropertyValue', name: 'Vertical cantilever — silage', value: 'up to 3.2m with 180mm panel and 10t vehicle surcharge' },
+    { '@type': 'PropertyValue', name: 'Vertical cantilever — earth', value: 'up to 3.4m with 180mm panel' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
-    { '@type': 'PropertyValue', name: 'Lead time', value: '2â€“4 weeks catalogue, 6â€“8 weeks bespoke' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '2–4 weeks catalogue, 6–8 weeks bespoke' },
   ],
   offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
 };
@@ -132,7 +132,7 @@ const faqSchema = {
 ---
 
 <BaseLayout
-  title="Prestressed Wall Panels â€” BS EN 14992 Â· 95/145/180mm"
+  title="Prestressed Wall Panels — BS EN 14992 · 95/145/180mm"
   description="Factory-cast prestressed concrete wall panels: 95mm, 145mm and 180mm thicknesses, standard heights 1.0m / 1.2m / 1.5m, custom and stocked lengths. Vertical cantilever option retains slurry to 3.7m with no posts. CE/UKCA-marked to BS EN 14992."
   image="/og/home.png"
   schema="Product"
@@ -147,7 +147,7 @@ const faqSchema = {
     <div class="container-wccp py-16 md:py-20">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <p class="eyebrow text-yellow mb-4">Civils Â· agricultural Â· slurry</p>
+          <p class="eyebrow text-yellow mb-4">Civils · agricultural · slurry</p>
           <h1 class="font-display text-display-xl text-white mb-4">
             Prestressed Wall Panels.
           </h1>
@@ -161,18 +161,18 @@ const faqSchema = {
           <p class="text-lg lg:text-xl text-white/95 leading-relaxed mb-6 max-w-xl font-medium">
             Prestressed concrete wall panels in 95mm, 145mm and 180mm thicknesses,
             cast to BS EN 14992 and BS 8500-1:2023 in C40/50 sulphate-resisting concrete.
-            Slim-profile, fast-install â€” suits agricultural, civils and AD-plant builds.
+            Slim-profile, fast-install — suits agricultural, civils and AD-plant builds.
             Stocked in 15ft and 20ft lengths; 180mm panels stand vertically and cantilever
             to 3.7m of slurry with no posts. Catalogue lead time 2-4 weeks; bespoke
             pocket details and exposed-aggregate finishes to spec.
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> BS EN 14992 / UKCA</li>
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> BS 8500-1:2023 mix</li>
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> Eurocode 2 design</li>
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> Heights 1.0â€“1.5m</li>
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> 95 / 145 / 180mm</li>
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> 2â€“4 week lead time</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> BS EN 14992 / UKCA</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> BS 8500-1:2023 mix</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Eurocode 2 design</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Heights 1.0–1.5m</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 95 / 145 / 180mm</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 2–4 week lead time</li>
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Prestressed+Wall+Panels" class="btn-primary">Configure a quote</a>
@@ -183,7 +183,7 @@ const faqSchema = {
         </div>
 
         <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden">
-          <img src="/images/products/concrete-panels/wccp-concrete-panels-prestressed-concrete-panels.jpg" alt="Prestressed precast concrete wall panels â€” West Country Concrete Products, Holsworthy Devon" class="w-full h-full object-cover" loading="eager" decoding="async" />
+          <img src="/images/products/concrete-panels/wccp-concrete-panels-prestressed-concrete-panels.jpg" alt="Prestressed precast concrete wall panels — West Country Concrete Products, Holsworthy Devon" class="w-full h-full object-cover" loading="eager" decoding="async" />
         </div>
       </div>
     </div>
@@ -195,8 +195,8 @@ const faqSchema = {
       <p class="eyebrow text-cast mb-3">Specification</p>
       <h2 class="font-display text-display-lg mb-4">Sizes, weights and ratings.</h2>
       <p class="text-cast-700 text-lg">
-        Catalogue thicknesses and heights below. Bespoke combinations â€” cut-outs, pockets, kicker
-        details, exposed-aggregate finishes â€” quoted on application.
+        Catalogue thicknesses and heights below. Bespoke combinations — cut-outs, pockets, kicker
+        details, exposed-aggregate finishes — quoted on application.
       </p>
     </div>
 
@@ -205,7 +205,7 @@ const faqSchema = {
       <table class="spec-table w-full text-left border-collapse">
         <thead class="bg-navy text-white">
           <tr>
-            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Panel (height Ã— thickness)</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Panel (height × thickness)</th>
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Length</th>
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Height</th>
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Thickness</th>
@@ -231,7 +231,7 @@ const faqSchema = {
       <table class="spec-table w-full text-left border-collapse">
         <thead class="bg-navy text-white">
           <tr>
-            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Panel (height Ã— thickness)</th>
+            <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Panel (height × thickness)</th>
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Length</th>
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Height</th>
             <th class="px-4 py-3 font-display text-sm uppercase tracking-wide">Thickness</th>
@@ -253,23 +253,23 @@ const faqSchema = {
     </div>
 
     <p class="text-cast text-sm mt-4">
-      <strong class="text-navy">15ft and 20ft</strong> are standard stocked lengths. Custom lengths to order â€”
+      <strong class="text-navy">15ft and 20ft</strong> are standard stocked lengths. Custom lengths to order —
       site-specific design carried out to BS EN 1992 / Eurocode 2.
     </p>
 
     <div class="mt-10 card p-6 bg-bone-200">
       <p class="eyebrow text-cast mb-3">Optional extras</p>
       <ul class="grid sm:grid-cols-2 gap-2 text-sm text-cast-700">
-        {extras.map((e) => (<li class="flex gap-2"><span class="text-ember font-bold">Â·</span><span>{e}</span></li>))}
+        {extras.map((e) => (<li class="flex gap-2"><span class="text-ember font-bold">·</span><span>{e}</span></li>))}
       </ul>
     </div>
 
-    <!-- ====== Vertical Cantilever Panels â€” flagship use of the 180mm panel ====== -->
+    <!-- ====== Vertical Cantilever Panels — flagship use of the 180mm panel ====== -->
     <div class="mt-16 card p-6 md:p-8 border-l-4 border-yellow">
       <p class="eyebrow text-cast mb-3">Named system</p>
       <h3 class="font-display text-display-md text-navy mb-3">Vertical Cantilever Panels.</h3>
       <p class="text-cast-700 leading-relaxed mb-6 max-w-3xl">
-        Stand a 180mm prestressed panel vertically and cantilever it from the slab â€” no king
+        Stand a 180mm prestressed panel vertically and cantilever it from the slab — no king
         post, no tie-back, no rear bracing. We design, supply and install the cantilever
         run; the panel does the work.
       </p>
@@ -320,12 +320,12 @@ const faqSchema = {
           <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
           <p class="text-cast-700 text-lg leading-relaxed mb-6">
             One panel system, many jobs. From the dairy slurry store to the civils retaining wall on
-            a road scheme â€” same factory, same paperwork, same yard.
+            a road scheme — same factory, same paperwork, same yard.
           </p>
           <ul class="space-y-3">
             {applications.map((a) => (
               <li class="flex gap-3 text-cast-700 leading-relaxed">
-                <span class="text-ember font-bold mt-1">Â·</span>
+                <span class="text-ember font-bold mt-1">·</span>
                 <span>{a}</span>
               </li>
             ))}
@@ -339,7 +339,7 @@ const faqSchema = {
           <dl class="space-y-4 text-sm">
             <div>
               <dt class="font-bold text-navy">BS EN 14992</dt>
-              <dd class="text-cast">Precast concrete products â€” wall elements. Factory production control and CE/UKCA marking.</dd>
+              <dd class="text-cast">Precast concrete products — wall elements. Factory production control and CE/UKCA marking.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BS 8500-1:2023</dt>
@@ -351,11 +351,11 @@ const faqSchema = {
             </div>
             <div>
               <dt class="font-bold text-navy">BS EN 13369</dt>
-              <dd class="text-cast">Common rules for precast concrete products â€” factory production control framework.</dd>
+              <dd class="text-cast">Common rules for precast concrete products — factory production control framework.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">SSAFO 2018</dt>
-              <dd class="text-cast">For agricultural slurry use â€” capacity statement and structural calcs supplied with every store.</dd>
+              <dd class="text-cast">For agricultural slurry use — capacity statement and structural calcs supplied with every store.</dd>
             </div>
           </dl>
         </div>
@@ -369,7 +369,7 @@ const faqSchema = {
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
           <p class="eyebrow text-navy mb-2">Configure your panel run</p>
-          <h2 class="font-display text-display-md">Tell us thickness, height and run length â€” we will quote inside 24 hours.</h2>
+          <h2 class="font-display text-display-md">Tell us thickness, height and run length — we will quote inside 24 hours.</h2>
         </div>
         <div class="flex flex-wrap gap-3 shrink-0">
           <a href="/quote?product=Prestressed+Wall+Panels" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
@@ -426,7 +426,7 @@ const faqSchema = {
   <SpecDownloads
     intro="Panel range overview plus the on-site handling, lifting and storage guidelines."
     downloads={[
-      { href: '/downloads/specs/concrete-panels/wccp-concrete-panels-handling-guidelines.pdf', title: 'Concrete panels â€” handling guidelines', meta: 'PDF Â· 386 KB' },
+      { href: '/downloads/specs/concrete-panels/wccp-concrete-panels-handling-guidelines.pdf', title: 'Concrete panels — handling guidelines', meta: 'PDF · 386 KB' },
     ]}
   />
 
@@ -437,7 +437,7 @@ const faqSchema = {
       defaultMode="supply"
       supply={{
         price: 'Bespoke quote',
-        leadTime: '3â€“4 weeks',
+        leadTime: '3–4 weeks',
         includes: [
           'Factory-cast prestressed panels (95 / 145 / 180mm)',
           'BS EN 14992 UKCA declaration of performance',
@@ -450,7 +450,7 @@ const faqSchema = {
           'Bedding mortar and joint sealant',
         ],
       }}
-      note="Bespoke pocket details, exposed-aggregate finishes and sulphate-resisting variants all priced individually. Install handled by our partner contractors â€” ask the yard for a referral."
+      note="Bespoke pocket details, exposed-aggregate finishes and sulphate-resisting variants all priced individually. Install handled by our partner contractors — ask the yard for a referral."
     />
   </section>
 

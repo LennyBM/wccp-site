@@ -7,11 +7,11 @@ import SpecSheetButton from '@/components/SpecSheetButton.astro';
 import { site } from '@/config/site';
 import RelatedProductGrid from '@/components/RelatedProductGrid.astro';
 
-// Cleanroom kits are configured to the customer's drawing â€” no two layouts are the same.
+// Cleanroom kits are configured to the customer's drawing — no two layouts are the same.
 // What we publish is the kit components and the way they fit together.
 const kit = [
-  { component: 'Vertical wall panel', detail: 'Cast vertical, smooth on both inside and outside faces â€” durable, easy to clean' },
-  { component: '90Â° corner panel', detail: 'Cast as a single corner unit so panels stand unsupported around the box' },
+  { component: 'Vertical wall panel', detail: 'Cast vertical, smooth on both inside and outside faces — durable, easy to clean' },
+  { component: '90° corner panel', detail: 'Cast as a single corner unit so panels stand unsupported around the box' },
   { component: 'Straight run panels', detail: 'Slot between supporting galvanised steel posts on long straight sections' },
   { component: 'Galvanised steel posts', detail: 'Supplied with the panels for straight runs' },
   { component: 'DeLaval / Lely sumps + bases', detail: 'Robot-specific sumps and pit bases supplied alongside the cleanroom kit' },
@@ -28,32 +28,32 @@ const applications = [
 ];
 
 const related = [
-  { href: '/products/milking-robot-bases', label: 'Robot Bases', meta: 'DeLaval Â· Lely Â· GEA Â· BouMatic' },
+  { href: '/products/milking-robot-bases', label: 'Robot Bases', meta: 'DeLaval · Lely · GEA · BouMatic' },
   { href: '/products/cattle-cubicles', label: 'Cattle Cubicles', meta: 'AHDB 2024 sized' },
   { href: '/products/water-troughs', label: 'Water Troughs', meta: 'Single + double row' },
   { href: '/products/slurry-storage', label: 'Slurry Storage', meta: 'SSAFO 2018-compliant' },
 ];
 
 const faqs = [
-  { q: 'How are the clean rooms supplied?', a: 'In kit form, sized to suit the layout you want. Send us your plans and we will quote the supply of a kit to suit your requirements. The wall panels are vertically cast and smooth on both the inside and the outside â€” durable and easy to clean.' },
-  { q: 'Do the panels need supporting posts?', a: 'It depends on the run. The wall panels can be cast with 90Â° corners which lets them stand unsupported. Straight sections of wall we supply with supporting galvanised steel posts.' },
-  { q: 'Can you also supply the milking-equipment bases?', a: 'Yes â€” we can also supply sumps and bases for DeLaval and Lely milking equipment alongside the clean-room kit so it all arrives together.' },
+  { q: 'How are the clean rooms supplied?', a: 'In kit form, sized to suit the layout you want. Send us your plans and we will quote the supply of a kit to suit your requirements. The wall panels are vertically cast and smooth on both the inside and the outside — durable and easy to clean.' },
+  { q: 'Do the panels need supporting posts?', a: 'It depends on the run. The wall panels can be cast with 90° corners which lets them stand unsupported. Straight sections of wall we supply with supporting galvanised steel posts.' },
+  { q: 'Can you also supply the milking-equipment bases?', a: 'Yes — we can also supply sumps and bases for DeLaval and Lely milking equipment alongside the clean-room kit so it all arrives together.' },
   { q: 'What concrete grade?', a: 'C40/50 to BS 8500-1:2023, factory production control to BS EN 13369. Smooth-cast finish on both faces of the panel.' },
   { q: 'Lead time?', a: 'Once we have your plans we can quote within a working day and ship the kit on our typical agricultural lead time. Ring the yard for current capacity.' },
 ];
 
 const productSchema = {
   name: 'Precast Concrete Clean Room Enclosures',
-  description: 'Precast concrete clean rooms supplied in kit form to suit your layout. Vertically-cast wall panels are smooth on both inside and outside making them durable and easy to clean. 90Â° corner panels can stand unsupported; straight runs use galvanised supporting steel posts. Sumps and bases for DeLaval and Lely milking equipment available alongside.',
+  description: 'Precast concrete clean rooms supplied in kit form to suit your layout. Vertically-cast wall panels are smooth on both inside and outside making them durable and easy to clean. 90° corner panels can stand unsupported; straight runs use galvanised supporting steel posts. Sumps and bases for DeLaval and Lely milking equipment available alongside.',
   brand: { '@type': 'Brand', name: site.name },
   manufacturer: { '@type': 'Organization', name: site.name },
   category: 'Precast concrete clean-room enclosure (kit form)',
   material: 'Reinforced concrete, C40/50 (BS 8500-1:2023)',
   additionalProperty: [
-    { '@type': 'PropertyValue', name: 'Supply form', value: 'Kit â€” bespoke to layout' },
+    { '@type': 'PropertyValue', name: 'Supply form', value: 'Kit — bespoke to layout' },
     { '@type': 'PropertyValue', name: 'Standard', value: 'BS EN 13369 / BS 8500-1:2023' },
     { '@type': 'PropertyValue', name: 'Wall panel', value: 'Vertically cast, smooth both faces' },
-    { '@type': 'PropertyValue', name: '90Â° corner panels', value: 'Cast as single unit â€” can stand unsupported' },
+    { '@type': 'PropertyValue', name: '90° corner panels', value: 'Cast as single unit — can stand unsupported' },
     { '@type': 'PropertyValue', name: 'Straight runs', value: 'Galvanised steel posts supplied' },
     { '@type': 'PropertyValue', name: 'Robot equipment', value: 'Sumps and bases for DeLaval and Lely milking equipment available' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
@@ -65,7 +65,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
 ---
 
 <BaseLayout
-  title="Clean Rooms â€” robot fit-out Â· DeLaval Â· Lely Â· GEA Â· BouMatic"
+  title="Clean Rooms — robot fit-out · DeLaval · Lely · GEA · BouMatic"
   description="Cleanroom slabs and machine-pit bases for robotic milking. Tanked floor gully, integrated drainage. Compatible with DeLaval, Lely, GEA and BouMatic. Cast in North Devon."
   image="/og/home.png"
   schema="Product"
@@ -79,7 +79,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
     <div class="container-wccp py-16 md:py-20">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <p class="eyebrow text-yellow mb-4">Agricultural Â· robotic dairy Â· parlour fit-out</p>
+          <p class="eyebrow text-yellow mb-4">Agricultural · robotic dairy · parlour fit-out</p>
           <h1 class="font-display text-display-xl text-white mb-4">Clean Rooms.</h1>
           <p class="text-lg lg:text-xl text-white/95 leading-relaxed font-medium mb-5 max-w-2xl">
             Precast concrete clean-room panels with food-grade smooth finish, suitable for dairy parlours, milking-robot rooms, processing and washdown areas. Cast to BS EN 14992 in C40/50 concrete with sulphate-resisting and acid-resistant variants. Bespoke sizes and integrated drainage detailing. Lead time 3&ndash;6 weeks; sumps and machine bases priced separately.
@@ -91,7 +91,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
           <blockquote class="font-display italic text-base md:text-lg text-white/95 leading-relaxed mb-6 pl-4 border-l-2 border-yellow max-w-xl">
             <strong class="not-italic text-white">What's a precast clean-room enclosure?</strong>
             Vertically-cast wall panels supplied in kit form to suit the layout you want.
-            Smooth on both inside and outside â€” durable and easy to clean. 90Â° corner panels
+            Smooth on both inside and outside — durable and easy to clean. 90° corner panels
             stand unsupported; straight runs use galvanised steel posts.
           </blockquote>
           <p class="text-base text-white/85 leading-relaxed mb-6 max-w-xl">
@@ -100,12 +100,12 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
             equipment available alongside.
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> Kit form</li>
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> Smooth both faces</li>
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> 90Â° corner panels</li>
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> Galvanised posts</li>
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> DeLaval / Lely sumps</li>
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> Cast to your drawing</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Kit form</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Smooth both faces</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 90° corner panels</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Galvanised posts</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> DeLaval / Lely sumps</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Cast to your drawing</li>
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Clean%20Rooms" class="btn-primary">Configure a quote</a>
@@ -122,7 +122,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
     <div class="max-w-2xl mb-10">
       <p class="eyebrow text-cast mb-3">What's in the kit</p>
       <h2 class="font-display text-display-lg mb-4">Kit components.</h2>
-      <p class="text-cast-700 text-lg">Each clean-room kit is configured to your drawing â€” no two layouts are the same. These are the components we cast and supply.</p>
+      <p class="text-cast-700 text-lg">Each clean-room kit is configured to your drawing — no two layouts are the same. These are the components we cast and supply.</p>
     </div>
     <div class="overflow-x-auto">
       <table class="spec-table w-full text-left border-collapse">
@@ -162,20 +162,20 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
         <div>
           <p class="eyebrow text-cast mb-3">Where they go</p>
           <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
-          <p class="text-cast-700 text-lg leading-relaxed mb-6">From a single-box first install to a six-box expansion â€” the cleanroom slab and machine pit cast as matched sets with the robot base.</p>
+          <p class="text-cast-700 text-lg leading-relaxed mb-6">From a single-box first install to a six-box expansion — the cleanroom slab and machine pit cast as matched sets with the robot base.</p>
           <ul class="space-y-3">
-            {applications.map((a) => (<li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">Â·</span><span>{a}</span></li>))}
+            {applications.map((a) => (<li class="flex gap-3 text-cast-700 leading-relaxed"><span class="text-ember font-bold mt-1">·</span><span>{a}</span></li>))}
           </ul>
         </div>
         <div class="card p-8">
           <p class="eyebrow text-cast mb-3">Standards & references</p>
           <h3 class="font-display text-2xl font-bold text-navy mb-4">Cast for the parlour environment.</h3>
           <dl class="space-y-4 text-sm">
-            <div><dt class="font-bold text-navy">BS EN 13369</dt><dd class="text-cast">Common rules for precast concrete â€” factory production control.</dd></div>
-            <div><dt class="font-bold text-navy">BS 8500-1:2023</dt><dd class="text-cast">Concrete spec â€” C40/50 designed mix for the wash-down environment.</dd></div>
-            <div><dt class="font-bold text-navy">BS 5502-22:2003</dt><dd class="text-cast">Agricultural buildings â€” milking parlour design and detailing.</dd></div>
-            <div><dt class="font-bold text-navy">Manufacturer install packs</dt><dd class="text-cast">DeLaval, Lely, GEA, BouMatic â€” published pour tolerances followed exactly.</dd></div>
-            <div><dt class="font-bold text-navy">BS EN 1992 (Eurocode 2)</dt><dd class="text-cast">Concrete structural design â€” slab, gully and pit calculation.</dd></div>
+            <div><dt class="font-bold text-navy">BS EN 13369</dt><dd class="text-cast">Common rules for precast concrete — factory production control.</dd></div>
+            <div><dt class="font-bold text-navy">BS 8500-1:2023</dt><dd class="text-cast">Concrete spec — C40/50 designed mix for the wash-down environment.</dd></div>
+            <div><dt class="font-bold text-navy">BS 5502-22:2003</dt><dd class="text-cast">Agricultural buildings — milking parlour design and detailing.</dd></div>
+            <div><dt class="font-bold text-navy">Manufacturer install packs</dt><dd class="text-cast">DeLaval, Lely, GEA, BouMatic — published pour tolerances followed exactly.</dd></div>
+            <div><dt class="font-bold text-navy">BS EN 1992 (Eurocode 2)</dt><dd class="text-cast">Concrete structural design — slab, gully and pit calculation.</dd></div>
           </dl>
         </div>
       </div>
@@ -187,7 +187,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
           <p class="eyebrow text-navy mb-2">Configure your cleanroom</p>
-          <h2 class="font-display text-display-md">Send robot brand, box count and shed drawing â€” we will quote inside 24 hours.</h2>
+          <h2 class="font-display text-display-md">Send robot brand, box count and shed drawing — we will quote inside 24 hours.</h2>
         </div>
         <div class="flex flex-wrap gap-3 shrink-0">
           <a href="/quote?product=Clean%20Rooms" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
@@ -241,7 +241,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
         leadTime: 'Quoted with kit',
         includes: [
           'Vertically-cast wall panels (smooth both faces)',
-          '90Â° corner panels for unsupported corners',
+          '90° corner panels for unsupported corners',
           'Galvanised supporting steel posts for straight runs',
           'Delivery on our HIAB to your shed',
         ],
@@ -265,7 +265,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
           'Mechanical, electrical and chiller plant',
         ],
       }}
-      note="Every clean-room kit is sized to your robot-box layout. Send the drawing â€” we will quote inside a working day."
+      note="Every clean-room kit is sized to your robot-box layout. Send the drawing — we will quote inside a working day."
     />
   </section>
 

@@ -18,12 +18,12 @@ const tocSections = [
   { id: 'downloads', label: 'Downloads' },
 ];
 
-// Cattle grids â€” highway-grade BS EN 1991-2, HB37.5 loadings.
+// Cattle grids — highway-grade BS EN 1991-2, HB37.5 loadings.
 const specs = [
-  { variant: 'Standard Farm Grid 3.0m Ã— 2.4m', bed: '3000 Ã— 2400 Ã— 600mm pit', style: 'Galvanised top bars Â· concrete base unit', use: 'Farm entrances and field gate replacements' },
-  { variant: 'Standard Farm Grid 3.6m Ã— 2.4m', bed: '3600 Ã— 2400 Ã— 600mm pit', style: 'Galvanised top bars Â· wider span', use: 'Farm yards and double-track entrances' },
-  { variant: 'Highway Grid 4.0m Ã— 2.4m', bed: '4000 Ã— 2400 Ã— 750mm pit', style: 'BS EN 1991-2 HB37.5 Â· highway-grade', use: 'County and rural-road cattle grids' },
-  { variant: 'Estate Grid 5.0m Ã— 3.0m', bed: '5000 Ã— 3000 Ã— 750mm pit', style: 'Heavy-duty highway Â· 40-tonne rated', use: 'A-roads, estate boundaries, NFA hauliers' },
+  { variant: 'Standard Farm Grid 3.0m × 2.4m', bed: '3000 × 2400 × 600mm pit', style: 'Galvanised top bars · concrete base unit', use: 'Farm entrances and field gate replacements' },
+  { variant: 'Standard Farm Grid 3.6m × 2.4m', bed: '3600 × 2400 × 600mm pit', style: 'Galvanised top bars · wider span', use: 'Farm yards and double-track entrances' },
+  { variant: 'Highway Grid 4.0m × 2.4m', bed: '4000 × 2400 × 750mm pit', style: 'BS EN 1991-2 HB37.5 · highway-grade', use: 'County and rural-road cattle grids' },
+  { variant: 'Estate Grid 5.0m × 3.0m', bed: '5000 × 3000 × 750mm pit', style: 'Heavy-duty highway · 40-tonne rated', use: 'A-roads, estate boundaries, NFA hauliers' },
   { variant: 'Bespoke Cattle Grid', bed: 'To suit road width', style: 'Engineer-detailed for the loading', use: 'Bespoke widths and specialist applications' },
 ];
 
@@ -34,21 +34,21 @@ const applications = [
   'Highways England and Welsh Government A-road improvements',
   'Estate boundaries and shooting-ground access tracks',
   'Forestry Commission and woodland access roads',
-  'Agricultural vehicle routes â€” 40-tonne tractor and trailer rated',
+  'Agricultural vehicle routes — 40-tonne tractor and trailer rated',
 ];
 
 const related = [
-  { href: '/products/culverts', label: 'Culverts', meta: 'Reinforced precast Â· DMRB CD 360' },
-  { href: '/products/headwalls-wing-walls', label: 'Headwalls & Wing Walls', meta: 'CIRIA C786 Â· 600â€“3000mm' },
-  { href: '/products/kerbs', label: 'Kerbs', meta: 'BS EN 1340 Â· highway-grade' },
-  { href: '/products/soakaways-chambers', label: 'Soakaways & Chambers', meta: 'BS EN 1917 Â· drainage' },
+  { href: '/products/culverts', label: 'Culverts', meta: 'Reinforced precast · DMRB CD 360' },
+  { href: '/products/headwalls-wing-walls', label: 'Headwalls & Wing Walls', meta: 'CIRIA C786 · 600–3000mm' },
+  { href: '/products/kerbs', label: 'Kerbs', meta: 'BS EN 1340 · highway-grade' },
+  { href: '/products/soakaways-chambers', label: 'Soakaways & Chambers', meta: 'BS EN 1917 · drainage' },
 ];
 
 const faqs = [
-  { q: 'What loading do they take?', a: 'Our farm grids are rated to BS EN 1991-2 LM1 â€” that covers any normal agricultural vehicle including a fully-loaded 40-tonne articulated lorry. Highway-grade grids on county and A-roads carry HB37.5 (the abnormal load case for heavy hauliers). The structural calc comes signed off with the order.' },
-  { q: 'How deep is the pit?', a: '600mm minimum for a farm grid, 750mm for a highway-grade. The pit depth keeps the cattle from stepping across â€” anything shallower and a determined heifer will work it out within a fortnight. We supply a precast pit base as part of the package or detail to suit a poured-in-situ base.' },
+  { q: 'What loading do they take?', a: 'Our farm grids are rated to BS EN 1991-2 LM1 — that covers any normal agricultural vehicle including a fully-loaded 40-tonne articulated lorry. Highway-grade grids on county and A-roads carry HB37.5 (the abnormal load case for heavy hauliers). The structural calc comes signed off with the order.' },
+  { q: 'How deep is the pit?', a: '600mm minimum for a farm grid, 750mm for a highway-grade. The pit depth keeps the cattle from stepping across — anything shallower and a determined heifer will work it out within a fortnight. We supply a precast pit base as part of the package or detail to suit a poured-in-situ base.' },
   { q: 'How do you stop the pit filling with mud?', a: 'A perforated drainage pipe in the base, falling to a soakaway or ditch outfall, plus a hinged maintenance grille at one end so you can rake out twice a year. CIRIA C786 detailing applies where the grid drains to a watercourse.' },
-  { q: 'Do they need a side gate?', a: 'Yes â€” the highway and bridleway code requires a pedestrian and equestrian bypass alongside any cattle grid. We supply matching galvanised gates and bypass kerbs as part of the package, sized to BHS guidance for horse-and-rider bypass.' },
+  { q: 'Do they need a side gate?', a: 'Yes — the highway and bridleway code requires a pedestrian and equestrian bypass alongside any cattle grid. We supply matching galvanised gates and bypass kerbs as part of the package, sized to BHS guidance for horse-and-rider bypass.' },
   { q: 'What is the lead time?', a: 'Catalogue farm grids run 4 to 6 weeks. Highway and estate-grade grids 6 to 10 weeks because the structural sign-off is more involved. Highways England and county council adoption schemes add 2 weeks for client design approval.' },
 ];
 
@@ -66,7 +66,7 @@ const productSchema = {
     { '@type': 'PropertyValue', name: 'Standard widths', value: '3.0m, 3.6m, 4.0m, 5.0m + bespoke' },
     { '@type': 'PropertyValue', name: 'Pit depth', value: '600mm farm / 750mm highway' },
     { '@type': 'PropertyValue', name: 'Bypass gate', value: 'Pedestrian and equestrian bypass supplied' },
-    { '@type': 'PropertyValue', name: 'Lead time', value: '4â€“6 weeks farm, 6â€“10 weeks highway' },
+    { '@type': 'PropertyValue', name: 'Lead time', value: '4–6 weeks farm, 6–10 weeks highway' },
     { '@type': 'PropertyValue', name: 'Country of origin', value: 'United Kingdom (Devon)' },
   ],
   offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', areaServed: 'GB', seller: { '@type': 'Organization', name: site.name } },
@@ -84,7 +84,7 @@ const faqSchema = {
 ---
 
 <BaseLayout
-  title="Cattle Grids â€” Highway-grade precast Â· BS EN 1991-2 HB37.5"
+  title="Cattle Grids — Highway-grade precast · BS EN 1991-2 HB37.5"
   description="Highway-grade precast cattle grids for farm entrances and rural roads. BS EN 1991-2 LM1 and HB37.5 loadings. Galvanised top bars, precast pit. Cast in North Devon."
   image="/og/home.png"
   schema="Product"
@@ -100,7 +100,7 @@ const faqSchema = {
     <div class="container-wccp py-16 md:py-20">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <p class="eyebrow text-yellow mb-4">Civils Â· highways Â· agricultural</p>
+          <p class="eyebrow text-yellow mb-4">Civils · highways · agricultural</p>
           <h1 class="font-display text-display-xl text-white mb-4">Cattle Grids.</h1>
           <p class="font-display italic text-xl md:text-2xl text-yellow leading-tight mb-5">No gate. No latch. No livestock on the road.</p>
           <p class="text-lg lg:text-xl text-cast leading-relaxed font-medium text-white/95 mb-6 max-w-xl">
@@ -120,12 +120,12 @@ const faqSchema = {
             Exmoor, the Brecon Beacons, the Lake District and county roads in between.
           </p>
           <ul class="grid grid-cols-2 gap-3 text-sm mb-8 max-w-md">
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> BS EN 1991-2</li>
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> HB37.5 highway</li>
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> Galvanised top bars</li>
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> Precast pit base</li>
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> Bypass gate inc.</li>
-            <li class="flex gap-2"><span class="text-yellow">Â·</span> 4â€“6 week lead</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> BS EN 1991-2</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> HB37.5 highway</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Galvanised top bars</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Precast pit base</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> Bypass gate inc.</li>
+            <li class="flex gap-2"><span class="text-yellow">·</span> 4–6 week lead</li>
           </ul>
           <div class="flex flex-wrap gap-3">
             <a href="/quote?product=Cattle%20Grids" class="btn-primary">Configure a quote</a>
@@ -138,7 +138,7 @@ const faqSchema = {
         <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
           <div>
             <p class="text-cast-600 text-sm font-mono">ðŸ“· Photo needed</p>
-            <p class="text-cast text-xs mt-2">Hero shot â€” installed cattle grid on a Dartmoor or Exmoor road, three-quarter view showing top bars, pit, side bypass gate and rural setting</p>
+            <p class="text-cast text-xs mt-2">Hero shot — installed cattle grid on a Dartmoor or Exmoor road, three-quarter view showing top bars, pit, side bypass gate and rural setting</p>
           </div>
         </div>
       </div>
@@ -179,8 +179,8 @@ const faqSchema = {
       </table>
     </div>
     <p class="text-cast text-sm mt-4">
-      Top bars are 75mm Ã— 50mm hollow section, hot-dip galvanised to BS EN ISO 1461, set
-      at 125mm centres â€” proven to deter cattle, sheep and ponies. Bypass gate matches.
+      Top bars are 75mm × 50mm hollow section, hot-dip galvanised to BS EN ISO 1461, set
+      at 125mm centres — proven to deter cattle, sheep and ponies. Bypass gate matches.
     </p>
   </section>
 
@@ -194,13 +194,13 @@ const faqSchema = {
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {[
           'Highway-grade cattle grid installed on a county road in Devon',
-          'Galvanised top bars detail â€” close-up of bar spacing',
+          'Galvanised top bars detail — close-up of bar spacing',
           'Precast pit being lifted into excavated formation by 50t crane',
           'Pedestrian and equestrian bypass gate alongside the grid',
-          'Drainage detail â€” perforated pipe in the pit base',
+          'Drainage detail — perforated pipe in the pit base',
           'Estate-grade 5m grid at a National Park boundary',
           'Cross-section drawing of grid, pit and bypass',
-          'Yard storage â€” galvanised top frames stacked at Holsworthy',
+          'Yard storage — galvanised top frames stacked at Holsworthy',
         ].map((d) => (
           <figure>
             <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
@@ -224,13 +224,13 @@ const faqSchema = {
           <h2 class="font-display text-display-lg mb-6">Common applications.</h2>
           <p class="text-cast-700 text-lg leading-relaxed mb-6">
             From a single-track farm entrance in West Devon to a 5m highway grid at a
-            National Park boundary, the engineering scales â€” and the precast pit and
+            National Park boundary, the engineering scales — and the precast pit and
             galvanised top frame come from the same Holsworthy yard.
           </p>
           <ul class="space-y-3">
             {applications.map((a) => (
               <li class="flex gap-3 text-cast-700 leading-relaxed">
-                <span class="text-ember font-bold mt-1">Â·</span>
+                <span class="text-ember font-bold mt-1">·</span>
                 <span>{a}</span>
               </li>
             ))}
@@ -243,23 +243,23 @@ const faqSchema = {
           <dl class="space-y-4 text-sm">
             <div>
               <dt class="font-bold text-navy">BS EN 1991-2:2003+A1:2010</dt>
-              <dd class="text-cast">Eurocode 1 â€” actions on structures, traffic loads on bridges and similar structures.</dd>
+              <dd class="text-cast">Eurocode 1 — actions on structures, traffic loads on bridges and similar structures.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">DMRB CD 357</dt>
-              <dd class="text-cast">Design Manual for Roads and Bridges â€” cattle grid design and loading requirements.</dd>
+              <dd class="text-cast">Design Manual for Roads and Bridges — cattle grid design and loading requirements.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BS 8500-1:2023</dt>
-              <dd class="text-cast">Concrete specification â€” C40/50 mix for the buried pit structure.</dd>
+              <dd class="text-cast">Concrete specification — C40/50 mix for the buried pit structure.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BS EN ISO 1461</dt>
-              <dd class="text-cast">Hot-dip galvanising â€” coating thickness on the steel top frame and bypass gate.</dd>
+              <dd class="text-cast">Hot-dip galvanising — coating thickness on the steel top frame and bypass gate.</dd>
             </div>
             <div>
               <dt class="font-bold text-navy">BHS Bypass Guidance</dt>
-              <dd class="text-cast">British Horse Society â€” pedestrian and equestrian bypass dimensions and gate requirements.</dd>
+              <dd class="text-cast">British Horse Society — pedestrian and equestrian bypass dimensions and gate requirements.</dd>
             </div>
           </dl>
         </div>
@@ -273,7 +273,7 @@ const faqSchema = {
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
           <p class="eyebrow text-navy mb-2">Configure your grid</p>
-          <h2 class="font-display text-display-md">Send road width, loading class and access â€” we will quote inside 48 hours.</h2>
+          <h2 class="font-display text-display-md">Send road width, loading class and access — we will quote inside 48 hours.</h2>
         </div>
         <div class="flex flex-wrap gap-3 shrink-0">
           <a href="/quote?product=Cattle%20Grids" class="btn bg-navy text-white hover:bg-navy-700">Open the configurator</a>
@@ -332,7 +332,7 @@ const faqSchema = {
       defaultMode="supply"
       supply={{
         price: 'Bespoke quote',
-        leadTime: '4â€“6 weeks',
+        leadTime: '4–6 weeks',
         includes: [
           'Precast pit unit cast in C40/50',
           'Galvanised steel top frame and bars',
@@ -346,7 +346,7 @@ const faqSchema = {
       }}
       fitted={{
         price: 'Bespoke quote (incl. install)',
-        leadTime: '6â€“10 weeks (incl. site slot)',
+        leadTime: '6–10 weeks (incl. site slot)',
         includes: [
           'Everything in supply only',
           'CSCS-carded install crew with crane',
@@ -358,7 +358,7 @@ const faqSchema = {
           'Highway closure, traffic management and adoption fees',
         ],
       }}
-      note=". Highway-adopted cattle grids and Highways England schemes priced individually â€” send the long-section and loading class and we'll come back within two working days."
+      note=". Highway-adopted cattle grids and Highways England schemes priced individually — send the long-section and loading class and we'll come back within two working days."
     />
   </section>
 

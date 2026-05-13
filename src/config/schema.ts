@@ -55,7 +55,7 @@ const orgRef = {
 
 const seller = { ...orgRef };
 
-// â”€â”€ Organization â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Organization ─────────────────────────────────────────────────────
 
 export function buildOrganizationSchema() {
   return {
@@ -81,7 +81,7 @@ export function buildOrganizationSchema() {
   };
 }
 
-// â”€â”€ LocalBusiness â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── LocalBusiness ────────────────────────────────────────────────────
 
 export function buildLocalBusinessSchema() {
   return {
@@ -102,7 +102,7 @@ export function buildLocalBusinessSchema() {
   };
 }
 
-// â”€â”€ Product (price-stripped) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Product (price-stripped) ─────────────────────────────────────────
 
 export function buildProductSchema(d: Record<string, unknown>) {
   let offers: unknown = d.offers;
@@ -139,7 +139,7 @@ export function buildProductSchema(d: Record<string, unknown>) {
   };
 }
 
-// â”€â”€ Service (price-stripped, area auto-filled) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Service (price-stripped, area auto-filled) ───────────────────────
 
 export function buildServiceSchema(d: Record<string, unknown>) {
   const provider = d.provider ?? {
@@ -159,7 +159,7 @@ export function buildServiceSchema(d: Record<string, unknown>) {
   return { '@type': 'Service', provider, areaServed, ...rest, ...safeCatalog };
 }
 
-// â”€â”€ Article â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Article ──────────────────────────────────────────────────────────
 
 export function buildArticleSchema(d: Record<string, unknown>) {
   const headline = (d.headline as string | undefined) ?? site.name;
@@ -171,7 +171,7 @@ export function buildArticleSchema(d: Record<string, unknown>) {
   return { '@type': 'Article', headline, author, datePublished, ...rest };
 }
 
-// â”€â”€ FAQPage â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── FAQPage ──────────────────────────────────────────────────────────
 
 export interface FAQItem {
   question: string;
@@ -191,13 +191,13 @@ export function buildFAQPageSchema(d: Record<string, unknown>) {
   };
 }
 
-// â”€â”€ HowTo â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── HowTo ────────────────────────────────────────────────────────────
 
 export function buildHowToSchema(d: Record<string, unknown>) {
   return { '@type': 'HowTo', ...d };
 }
 
-// â”€â”€ BreadcrumbList (auto-generated from URL path) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── BreadcrumbList (auto-generated from URL path) ────────────────────
 
 const SLUG_LABELS: Record<string, string> = {
   products: 'Products',
@@ -249,7 +249,7 @@ export function buildBreadcrumbSchema(pathname: string | undefined) {
   };
 }
 
-// â”€â”€ Graph assembler â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Graph assembler ──────────────────────────────────────────────────
 
 export type SchemaType =
   | 'Organization'
