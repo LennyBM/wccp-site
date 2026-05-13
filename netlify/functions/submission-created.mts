@@ -89,6 +89,15 @@ const submitterEmail = (formName: string, firstName: string): string => `
   </table>
 </body></html>`;
 
+// Agency team — hardcoded BCC on every form submission so the build/launch
+// team always has a copy independent of any client-side mail config. Edit
+// (or empty) post-launch if no longer wanted on every public contact form.
+const AGENCY_BCC = [
+  'leonard@peakemanagement.com',
+  'leonardbmillard@gmail.com',
+  'rebecca@peakemanagement.co.uk',
+];
+
 async function sendResend(
   apiKey: string,
   from: string,
@@ -96,6 +105,7 @@ async function sendResend(
   subject: string,
   html: string,
   replyTo?: string,
+  bcc?: string[],
 ): Promise<void> {
   const res = await fetch(RESEND_ENDPOINT, {
     method: 'POST',
@@ -103,7 +113,14 @@ async function sendResend(
       Authorization: `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ from, to, subject, html, ...(replyTo ? { reply_to: replyTo } : {}) }),
+    body: JSON.stringify({
+      from,
+      to,
+      subject,
+      html,
+      ...(replyTo ? { reply_to: replyTo } : {}),
+      ...(bcc && bcc.length ? { bcc } : {}),
+    }),
   });
   if (!res.ok) {
     const body = await res.text();
@@ -137,7 +154,8 @@ export default async (req: Request, _context: Context) => {
   const submitterEmailAddr = data.email || data.Email || data['email-address'] || data.email_address;
   const firstName = (data['first-name'] || data.firstName || data.name || '').split(' ')[0] || '';
 
-  // 1. Owner notification — always fire
+  // 1. Owner notification — always fire. Agency team BCC'd so they have
+  //    a backup copy of every submission, regardless of env var config.
   try {
     await sendResend(
       apiKey,
@@ -146,6 +164,7 @@ export default async (req: Request, _context: Context) => {
       `[WCCP] ${formName} — new enquiry`,
       ownerEmail(formName, data),
       submitterEmailAddr,
+      AGENCY_BCC,
     );
   } catch (err) {
     console.error('[submission-created] owner email failed', err);
