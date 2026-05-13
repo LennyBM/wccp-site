@@ -142,6 +142,18 @@
   <input name="delivery_zones" /><textarea name="delivery_notes"></textarea>
   <input name="review_flags" /><textarea name="review_notes"></textarea>
   <input type="file" name="logo_files" multiple /><input type="file" name="photo_files" multiple /><input type="file" name="cert_files" multiple />
+  <input name="customer_types" /><input name="revenue_split" /><input name="top_sectors" /><textarea name="customer_types_other"></textarea>
+  <input name="capabilities" /><input name="standard_grade" /><input name="cement_type" /><input name="reinforcement" /><input name="special_concrete" /><input name="finishes" /><input name="sustainability_options" /><textarea name="capability_notes"></textarea>
+  <input name="lorry_ownership" /><input name="fleet_size" /><input name="lorry_features" /><input name="delivery_extras" /><input name="min_order" /><input name="free_delivery" />
+  <input name="install_team" /><input name="install_capabilities" /><input name="install_certs" /><input name="install_speed" />
+  <input name="site_visit" /><input name="quote_validity" /><input name="deposit_required" /><input name="payment_terms" /><input name="payment_methods" /><input name="accept_files" /><input name="pricing_extras" />
+  <input name="contact_channels" /><input name="phone_live" /><input name="email_response" /><input name="ooh_options" /><input name="languages" />
+  <input name="hs_practices" /><input name="riddor_count" />
+  <input name="sustainability" />
+  <input name="memberships" /><textarea name="memberships_other"></textarea>
+  <input name="trade_shows" /><input name="marketing_channels" /><input name="social_active" /><input name="reviews_have" />
+  <input name="features_wanted" /><textarea name="features_other"></textarea>
+  <input name="competitors" /><textarea name="competitive_advantages"></textarea><textarea name="competitive_weaknesses"></textarea><textarea name="competitors_other"></textarea>
   <textarea name="customer_references"></textarea>
   <input name="team_matt_title" /><input name="team_kim_title" /><input name="team_mark_title" /><input name="team_steve_title" /><input name="team_claire_title" /><textarea name="team_others"></textarea>
   <textarea name="kim_bio"></textarea><input name="founded_year" /><textarea name="company_history"></textarea>
@@ -537,10 +549,694 @@
       </div>
     </div>
 
-    <!-- SECTION 8: Team -->
+    <!-- SECTION 8: Customer types -->
     <div class="section">
       <div class="section-head">
         <span class="num">8</span>
+        <h2>Who actually buys from you?</h2>
+        <span class="tag tag-help">HELPS</span>
+      </div>
+      <div class="section-body">
+        <p class="lead">Tick everyone who's a regular customer — even occasionally. Helps us write the copy in their language.</p>
+
+        <div class="prod-category" style="padding-top:0;">— Farming —</div>
+        <div class="opts row3">
+          <label class="opt"><input type="checkbox" name="customer_types" value="dairy-farmers"><span class="opt-label">Dairy farmers</span></label>
+          <label class="opt"><input type="checkbox" name="customer_types" value="beef-farmers"><span class="opt-label">Beef farmers</span></label>
+          <label class="opt"><input type="checkbox" name="customer_types" value="sheep-farmers"><span class="opt-label">Sheep farmers</span></label>
+          <label class="opt"><input type="checkbox" name="customer_types" value="arable-farmers"><span class="opt-label">Arable farmers</span></label>
+          <label class="opt"><input type="checkbox" name="customer_types" value="mixed-farms"><span class="opt-label">Mixed farms</span></label>
+          <label class="opt"><input type="checkbox" name="customer_types" value="pig-farmers"><span class="opt-label">Pig farmers</span></label>
+          <label class="opt"><input type="checkbox" name="customer_types" value="poultry-farmers"><span class="opt-label">Poultry farmers</span></label>
+          <label class="opt"><input type="checkbox" name="customer_types" value="equestrian"><span class="opt-label">Equestrian / livery</span></label>
+          <label class="opt"><input type="checkbox" name="customer_types" value="smallholders"><span class="opt-label">Smallholders</span></label>
+          <label class="opt"><input type="checkbox" name="customer_types" value="estate-managers"><span class="opt-label">Estate managers</span></label>
+        </div>
+
+        <div class="prod-category">— Construction —</div>
+        <div class="opts row3">
+          <label class="opt"><input type="checkbox" name="customer_types" value="main-contractors"><span class="opt-label">Civils main contractors</span></label>
+          <label class="opt"><input type="checkbox" name="customer_types" value="subcontractors"><span class="opt-label">Civils subcontractors</span></label>
+          <label class="opt"><input type="checkbox" name="customer_types" value="groundworkers"><span class="opt-label">Groundworkers</span></label>
+          <label class="opt"><input type="checkbox" name="customer_types" value="architects"><span class="opt-label">Architects</span></label>
+          <label class="opt"><input type="checkbox" name="customer_types" value="structural-engineers"><span class="opt-label">Structural engineers</span></label>
+          <label class="opt"><input type="checkbox" name="customer_types" value="property-developers"><span class="opt-label">Property developers</span></label>
+          <label class="opt"><input type="checkbox" name="customer_types" value="self-builders"><span class="opt-label">Self-builders</span></label>
+          <label class="opt"><input type="checkbox" name="customer_types" value="builders-merchants"><span class="opt-label">Builders merchants (resellers)</span></label>
+          <label class="opt"><input type="checkbox" name="customer_types" value="other-concrete-cos"><span class="opt-label">Other concrete companies</span></label>
+        </div>
+
+        <div class="prod-category">— Public sector / Industrial —</div>
+        <div class="opts row3">
+          <label class="opt"><input type="checkbox" name="customer_types" value="local-councils"><span class="opt-label">Local councils</span></label>
+          <label class="opt"><input type="checkbox" name="customer_types" value="highways"><span class="opt-label">Highways agencies</span></label>
+          <label class="opt"><input type="checkbox" name="customer_types" value="network-rail"><span class="opt-label">Network Rail</span></label>
+          <label class="opt"><input type="checkbox" name="customer_types" value="water-companies"><span class="opt-label">Water companies</span></label>
+          <label class="opt"><input type="checkbox" name="customer_types" value="energy-renewables"><span class="opt-label">Energy / renewables</span></label>
+          <label class="opt"><input type="checkbox" name="customer_types" value="ad-plant-operators"><span class="opt-label">AD plant operators</span></label>
+          <label class="opt"><input type="checkbox" name="customer_types" value="industrial"><span class="opt-label">Industrial sites</span></label>
+          <label class="opt"><input type="checkbox" name="customer_types" value="schools-nhs"><span class="opt-label">Schools / NHS</span></label>
+          <label class="opt"><input type="checkbox" name="customer_types" value="mod"><span class="opt-label">MOD / Defence</span></label>
+        </div>
+
+        <div class="q" style="margin-top:14px;">
+          <label class="qlabel">Roughly what's the split — agricultural vs civils vs bespoke (%)</label>
+          <input type="text" name="revenue_split" placeholder="e.g. 60% ag / 30% civils / 10% bespoke">
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Top 3 sectors by revenue — in order?</label>
+          <input type="text" name="top_sectors" placeholder="e.g. 1. Dairy slurry, 2. Civils retaining, 3. AD tanks">
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Any customer types we've missed?</label>
+          <textarea name="customer_types_other" rows="2"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 9: Materials, quality, in-house capability -->
+    <div class="section">
+      <div class="section-head">
+        <span class="num">9</span>
+        <h2>How you make it — materials &amp; quality</h2>
+        <span class="tag tag-help">HELPS</span>
+      </div>
+      <div class="section-body">
+        <p class="lead">Tap "Yes" for everything that's true. Skip anything you're not sure about.</p>
+
+        <div class="opts row2">
+          <label class="opt"><input type="checkbox" name="capabilities" value="own-batching-plant"><span class="opt-label">Own batching plant on site</span></label>
+          <label class="opt"><input type="checkbox" name="capabilities" value="cube-testing-inhouse"><span class="opt-label">Cube testing in-house</span></label>
+          <label class="opt"><input type="checkbox" name="capabilities" value="every-batch-tested"><span class="opt-label">Every batch tested</span></label>
+          <label class="opt"><input type="checkbox" name="capabilities" value="steam-curing"><span class="opt-label">Steam curing facility</span></label>
+          <label class="opt"><input type="checkbox" name="capabilities" value="rebar-bent-inhouse"><span class="opt-label">Rebar bent in-house</span></label>
+          <label class="opt"><input type="checkbox" name="capabilities" value="mesh-cut-inhouse"><span class="opt-label">Mesh cut in-house</span></label>
+          <label class="opt"><input type="checkbox" name="capabilities" value="welding-inhouse"><span class="opt-label">Welding in-house</span></label>
+          <label class="opt"><input type="checkbox" name="capabilities" value="cad-inhouse"><span class="opt-label">CAD drawings in-house</span></label>
+          <label class="opt"><input type="checkbox" name="capabilities" value="engineering-inhouse"><span class="opt-label">Structural engineer in-house / on call</span></label>
+          <label class="opt"><input type="checkbox" name="capabilities" value="bim-files"><span class="opt-label">BIM / Revit files available</span></label>
+          <label class="opt"><input type="checkbox" name="capabilities" value="cad-blocks"><span class="opt-label">CAD blocks (.dwg) available</span></label>
+          <label class="opt"><input type="checkbox" name="capabilities" value="spec-sheets-pdf"><span class="opt-label">PDF spec sheets per product</span></label>
+        </div>
+
+        <div class="q" style="margin-top:14px;">
+          <label class="qlabel">Standard concrete grade you use?</label>
+          <div class="opts row3">
+            <label class="opt"><input type="radio" name="standard_grade" value="c32-40"><span class="opt-label">C32/40</span></label>
+            <label class="opt"><input type="radio" name="standard_grade" value="c40-50"><span class="opt-label">C40/50</span></label>
+            <label class="opt"><input type="radio" name="standard_grade" value="c50-60"><span class="opt-label">C50/60</span></label>
+            <label class="opt"><input type="radio" name="standard_grade" value="varies"><span class="opt-label">Varies by product</span></label>
+            <label class="opt"><input type="radio" name="standard_grade" value="not-sure"><span class="opt-label">Not sure</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Cement type used?</label>
+          <div class="opts row3">
+            <label class="opt"><input type="radio" name="cement_type" value="cem-1"><span class="opt-label">CEM I (OPC)</span></label>
+            <label class="opt"><input type="radio" name="cement_type" value="cem-2"><span class="opt-label">CEM II (blended)</span></label>
+            <label class="opt"><input type="radio" name="cement_type" value="cem-3"><span class="opt-label">CEM III (GGBS)</span></label>
+            <label class="opt"><input type="radio" name="cement_type" value="mix"><span class="opt-label">Mix of types</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Reinforcement options you offer?</label>
+          <div class="opts row3">
+            <label class="opt"><input type="checkbox" name="reinforcement" value="rebar"><span class="opt-label">Steel rebar</span></label>
+            <label class="opt"><input type="checkbox" name="reinforcement" value="mesh"><span class="opt-label">Steel mesh</span></label>
+            <label class="opt"><input type="checkbox" name="reinforcement" value="fibre"><span class="opt-label">Fibre reinforced</span></label>
+            <label class="opt"><input type="checkbox" name="reinforcement" value="prestressed"><span class="opt-label">Prestressed strand</span></label>
+            <label class="opt"><input type="checkbox" name="reinforcement" value="post-tensioned"><span class="opt-label">Post-tensioned</span></label>
+            <label class="opt"><input type="checkbox" name="reinforcement" value="none"><span class="opt-label">Unreinforced</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Special concrete options available?</label>
+          <div class="opts row2">
+            <label class="opt"><input type="checkbox" name="special_concrete" value="sulphate-resistant"><span class="opt-label">Sulphate resistant<small class="opt-sub">For slurry / AD tanks</small></span></label>
+            <label class="opt"><input type="checkbox" name="special_concrete" value="acid-resistant"><span class="opt-label">Acid resistant<small class="opt-sub">For silage clamps</small></span></label>
+            <label class="opt"><input type="checkbox" name="special_concrete" value="frost-resistant"><span class="opt-label">Frost / freeze-thaw</span></label>
+            <label class="opt"><input type="checkbox" name="special_concrete" value="fast-set"><span class="opt-label">Fast-set / early strength</span></label>
+            <label class="opt"><input type="checkbox" name="special_concrete" value="self-compacting"><span class="opt-label">Self-compacting (SCC)</span></label>
+            <label class="opt"><input type="checkbox" name="special_concrete" value="coloured"><span class="opt-label">Coloured / pigmented</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Finishes you can produce?</label>
+          <div class="opts row2">
+            <label class="opt"><input type="checkbox" name="finishes" value="smooth"><span class="opt-label">Smooth / fair-faced</span></label>
+            <label class="opt"><input type="checkbox" name="finishes" value="textured"><span class="opt-label">Textured / exposed aggregate</span></label>
+            <label class="opt"><input type="checkbox" name="finishes" value="tamped"><span class="opt-label">Tamped / brushed</span></label>
+            <label class="opt"><input type="checkbox" name="finishes" value="polished"><span class="opt-label">Polished / honed</span></label>
+            <label class="opt"><input type="checkbox" name="finishes" value="patterned"><span class="opt-label">Patterned / stamped</span></label>
+            <label class="opt"><input type="checkbox" name="finishes" value="acid-etched"><span class="opt-label">Acid-etched</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Sustainability options?</label>
+          <div class="opts row2">
+            <label class="opt"><input type="checkbox" name="sustainability_options" value="recycled-aggregate"><span class="opt-label">Recycled aggregate available</span></label>
+            <label class="opt"><input type="checkbox" name="sustainability_options" value="ggbs-fly-ash"><span class="opt-label">GGBS / fly ash replacement</span></label>
+            <label class="opt"><input type="checkbox" name="sustainability_options" value="low-carbon-mix"><span class="opt-label">Low-carbon concrete mix</span></label>
+            <label class="opt"><input type="checkbox" name="sustainability_options" value="epd-published"><span class="opt-label">EPDs published</span></label>
+            <label class="opt"><input type="checkbox" name="sustainability_options" value="carbon-reporting"><span class="opt-label">A1–A3 carbon data available</span></label>
+            <label class="opt"><input type="checkbox" name="sustainability_options" value="reach-compliant"><span class="opt-label">REACH compliant</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Anything else about how you make it?</label>
+          <textarea name="capability_notes" rows="2" placeholder="Anything unique about your process..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 10: Delivery operations -->
+    <div class="section">
+      <div class="section-head">
+        <span class="num">10</span>
+        <h2>Delivery — how it works</h2>
+        <span class="tag tag-help">HELPS</span>
+      </div>
+      <div class="section-body">
+
+        <div class="q">
+          <label class="qlabel">Do you own your lorries?</label>
+          <div class="opts row3">
+            <label class="opt"><input type="radio" name="lorry_ownership" value="own-fleet"><span class="opt-label">Own fleet entirely</span></label>
+            <label class="opt"><input type="radio" name="lorry_ownership" value="mostly-own"><span class="opt-label">Mostly own, hire when busy</span></label>
+            <label class="opt"><input type="radio" name="lorry_ownership" value="hauliers"><span class="opt-label">Third-party hauliers</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">How many lorries in the fleet?</label>
+          <div class="opts row3">
+            <label class="opt"><input type="radio" name="fleet_size" value="1-2"><span class="opt-label">1–2</span></label>
+            <label class="opt"><input type="radio" name="fleet_size" value="3-5"><span class="opt-label">3–5</span></label>
+            <label class="opt"><input type="radio" name="fleet_size" value="6-10"><span class="opt-label">6–10</span></label>
+            <label class="opt"><input type="radio" name="fleet_size" value="10-plus"><span class="opt-label">10+</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Lorry capabilities you offer?</label>
+          <div class="opts row2">
+            <label class="opt"><input type="checkbox" name="lorry_features" value="hiab-crane"><span class="opt-label">HIAB / crane offload</span></label>
+            <label class="opt"><input type="checkbox" name="lorry_features" value="moffett"><span class="opt-label">Moffett / piggyback forklift</span></label>
+            <label class="opt"><input type="checkbox" name="lorry_features" value="32t-artic"><span class="opt-label">32t artics for big loads</span></label>
+            <label class="opt"><input type="checkbox" name="lorry_features" value="rigid-only"><span class="opt-label">Rigid only (tight access)</span></label>
+            <label class="opt"><input type="checkbox" name="lorry_features" value="low-loader"><span class="opt-label">Low-loader available</span></label>
+            <label class="opt"><input type="checkbox" name="lorry_features" value="tracker"><span class="opt-label">GPS-tracked vehicles</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Delivery extras?</label>
+          <div class="opts row2">
+            <label class="opt"><input type="checkbox" name="delivery_extras" value="saturday-delivery"><span class="opt-label">Saturday delivery</span></label>
+            <label class="opt"><input type="checkbox" name="delivery_extras" value="out-of-hours"><span class="opt-label">Out-of-hours possible</span></label>
+            <label class="opt"><input type="checkbox" name="delivery_extras" value="pre-call"><span class="opt-label">Pre-call notification</span></label>
+            <label class="opt"><input type="checkbox" name="delivery_extras" value="photo-pod"><span class="opt-label">Photo proof of delivery</span></label>
+            <label class="opt"><input type="checkbox" name="delivery_extras" value="next-day"><span class="opt-label">Next-day possible for stocked items</span></label>
+            <label class="opt"><input type="checkbox" name="delivery_extras" value="emergency-service"><span class="opt-label">Emergency / rush service</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Minimum order for delivery?</label>
+          <div class="opts row3">
+            <label class="opt"><input type="radio" name="min_order" value="none"><span class="opt-label">No minimum</span></label>
+            <label class="opt"><input type="radio" name="min_order" value="1-pallet"><span class="opt-label">1 pallet</span></label>
+            <label class="opt"><input type="radio" name="min_order" value="half-load"><span class="opt-label">Half load</span></label>
+            <label class="opt"><input type="radio" name="min_order" value="full-load"><span class="opt-label">Full load</span></label>
+            <label class="opt"><input type="radio" name="min_order" value="value"><span class="opt-label">By value (£ min)</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Free delivery threshold?</label>
+          <input type="text" name="free_delivery" placeholder="e.g. Free within 30 miles of Holsworthy, or £X order value">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 11: Installation -->
+    <div class="section">
+      <div class="section-head">
+        <span class="num">11</span>
+        <h2>Installation services</h2>
+        <span class="tag tag-help">HELPS</span>
+      </div>
+      <div class="section-body">
+
+        <div class="q">
+          <label class="qlabel">Do you have your own install team?</label>
+          <div class="opts row3">
+            <label class="opt"><input type="radio" name="install_team" value="own-team"><span class="opt-label">Yes — own team</span></label>
+            <label class="opt"><input type="radio" name="install_team" value="approved-installers"><span class="opt-label">Approved installers we recommend</span></label>
+            <label class="opt"><input type="radio" name="install_team" value="customer-arranges"><span class="opt-label">Customer arranges</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Install capabilities?</label>
+          <div class="opts row2">
+            <label class="opt"><input type="checkbox" name="install_capabilities" value="site-survey"><span class="opt-label">Free site survey</span></label>
+            <label class="opt"><input type="checkbox" name="install_capabilities" value="setting-out"><span class="opt-label">Setting out</span></label>
+            <label class="opt"><input type="checkbox" name="install_capabilities" value="groundworks"><span class="opt-label">Groundworks / foundations</span></label>
+            <label class="opt"><input type="checkbox" name="install_capabilities" value="crane-hire"><span class="opt-label">Crane hire included</span></label>
+            <label class="opt"><input type="checkbox" name="install_capabilities" value="hiab-offload"><span class="opt-label">HIAB offload from lorry</span></label>
+            <label class="opt"><input type="checkbox" name="install_capabilities" value="grouting"><span class="opt-label">Grouting / bedding</span></label>
+            <label class="opt"><input type="checkbox" name="install_capabilities" value="fixings-supplied"><span class="opt-label">Fixings supplied</span></label>
+            <label class="opt"><input type="checkbox" name="install_capabilities" value="commissioning"><span class="opt-label">Commissioning / testing</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Install team certifications?</label>
+          <div class="opts row2">
+            <label class="opt"><input type="checkbox" name="install_certs" value="cscs"><span class="opt-label">CSCS cards</span></label>
+            <label class="opt"><input type="checkbox" name="install_certs" value="ipaf"><span class="opt-label">IPAF (cherry picker)</span></label>
+            <label class="opt"><input type="checkbox" name="install_certs" value="pasma"><span class="opt-label">PASMA (scaffold tower)</span></label>
+            <label class="opt"><input type="checkbox" name="install_certs" value="cpcs"><span class="opt-label">CPCS (plant)</span></label>
+            <label class="opt"><input type="checkbox" name="install_certs" value="slinger-signaller"><span class="opt-label">Slinger / signaller trained</span></label>
+            <label class="opt"><input type="checkbox" name="install_certs" value="appointed-person"><span class="opt-label">Appointed Person (lifts)</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">How quick is install once on site?</label>
+          <input type="text" name="install_speed" placeholder="e.g. 60 cubicles in a day with HIAB, retaining walls about 8m a day">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 12: Quoting & ordering -->
+    <div class="section">
+      <div class="section-head">
+        <span class="num">12</span>
+        <h2>Quoting &amp; ordering process</h2>
+        <span class="tag tag-help">HELPS</span>
+      </div>
+      <div class="section-body">
+
+        <div class="q">
+          <label class="qlabel">Free site visit for quotes?</label>
+          <div class="opts row3">
+            <label class="opt"><input type="radio" name="site_visit" value="free-always"><span class="opt-label">Free, always</span></label>
+            <label class="opt"><input type="radio" name="site_visit" value="free-if-order"><span class="opt-label">Free if it leads to an order</span></label>
+            <label class="opt"><input type="radio" name="site_visit" value="charged"><span class="opt-label">Charged</span></label>
+            <label class="opt"><input type="radio" name="site_visit" value="phone-email"><span class="opt-label">We quote by phone / email</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">How long is a quote valid?</label>
+          <div class="opts row3">
+            <label class="opt"><input type="radio" name="quote_validity" value="30-days"><span class="opt-label">30 days</span></label>
+            <label class="opt"><input type="radio" name="quote_validity" value="60-days"><span class="opt-label">60 days</span></label>
+            <label class="opt"><input type="radio" name="quote_validity" value="90-days"><span class="opt-label">90 days</span></label>
+            <label class="opt"><input type="radio" name="quote_validity" value="depends"><span class="opt-label">Depends on the job</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Deposit required to start a job?</label>
+          <div class="opts row3">
+            <label class="opt"><input type="radio" name="deposit_required" value="none"><span class="opt-label">No deposit</span></label>
+            <label class="opt"><input type="radio" name="deposit_required" value="25"><span class="opt-label">25%</span></label>
+            <label class="opt"><input type="radio" name="deposit_required" value="50"><span class="opt-label">50%</span></label>
+            <label class="opt"><input type="radio" name="deposit_required" value="proforma"><span class="opt-label">Pro-forma (full upfront)</span></label>
+            <label class="opt"><input type="radio" name="deposit_required" value="account-only"><span class="opt-label">Trade account only — no deposit</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Trade account payment terms?</label>
+          <div class="opts row3">
+            <label class="opt"><input type="radio" name="payment_terms" value="end-of-month"><span class="opt-label">End of month following</span></label>
+            <label class="opt"><input type="radio" name="payment_terms" value="30-days"><span class="opt-label">30 days</span></label>
+            <label class="opt"><input type="radio" name="payment_terms" value="60-days"><span class="opt-label">60 days</span></label>
+            <label class="opt"><input type="radio" name="payment_terms" value="cash-on-delivery"><span class="opt-label">Cash on delivery</span></label>
+            <label class="opt"><input type="radio" name="payment_terms" value="varies"><span class="opt-label">Varies by customer</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Payment methods accepted?</label>
+          <div class="opts row3">
+            <label class="opt"><input type="checkbox" name="payment_methods" value="bacs"><span class="opt-label">BACS</span></label>
+            <label class="opt"><input type="checkbox" name="payment_methods" value="card"><span class="opt-label">Card</span></label>
+            <label class="opt"><input type="checkbox" name="payment_methods" value="cheque"><span class="opt-label">Cheque</span></label>
+            <label class="opt"><input type="checkbox" name="payment_methods" value="direct-debit"><span class="opt-label">Direct debit</span></label>
+            <label class="opt"><input type="checkbox" name="payment_methods" value="cash"><span class="opt-label">Cash</span></label>
+            <label class="opt"><input type="checkbox" name="payment_methods" value="finance"><span class="opt-label">Finance options</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Drawing files you accept from customers?</label>
+          <div class="opts row3">
+            <label class="opt"><input type="checkbox" name="accept_files" value="dwg"><span class="opt-label">.dwg (AutoCAD)</span></label>
+            <label class="opt"><input type="checkbox" name="accept_files" value="dxf"><span class="opt-label">.dxf</span></label>
+            <label class="opt"><input type="checkbox" name="accept_files" value="pdf"><span class="opt-label">PDF drawings</span></label>
+            <label class="opt"><input type="checkbox" name="accept_files" value="rfa"><span class="opt-label">.rfa (Revit)</span></label>
+            <label class="opt"><input type="checkbox" name="accept_files" value="ifc"><span class="opt-label">.ifc (BIM)</span></label>
+            <label class="opt"><input type="checkbox" name="accept_files" value="sketches"><span class="opt-label">Hand sketches</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Discounts / pricing extras?</label>
+          <div class="opts row2">
+            <label class="opt"><input type="checkbox" name="pricing_extras" value="volume-discount"><span class="opt-label">Volume discounts</span></label>
+            <label class="opt"><input type="checkbox" name="pricing_extras" value="loyalty-pricing"><span class="opt-label">Loyalty / repeat-customer pricing</span></label>
+            <label class="opt"><input type="checkbox" name="pricing_extras" value="match-quote"><span class="opt-label">Match a competing quote</span></label>
+            <label class="opt"><input type="checkbox" name="pricing_extras" value="early-payment-discount"><span class="opt-label">Early payment discount</span></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 13: Office & comms -->
+    <div class="section">
+      <div class="section-head">
+        <span class="num">13</span>
+        <h2>How you communicate with customers</h2>
+        <span class="tag tag-help">HELPS</span>
+      </div>
+      <div class="section-body">
+
+        <div class="q">
+          <label class="qlabel">How do customers usually contact you?</label>
+          <div class="opts row3">
+            <label class="opt"><input type="checkbox" name="contact_channels" value="phone"><span class="opt-label">Phone</span></label>
+            <label class="opt"><input type="checkbox" name="contact_channels" value="email"><span class="opt-label">Email</span></label>
+            <label class="opt"><input type="checkbox" name="contact_channels" value="whatsapp"><span class="opt-label">WhatsApp</span></label>
+            <label class="opt"><input type="checkbox" name="contact_channels" value="walk-in"><span class="opt-label">Walk-in at the yard</span></label>
+            <label class="opt"><input type="checkbox" name="contact_channels" value="text-sms"><span class="opt-label">Text / SMS</span></label>
+            <label class="opt"><input type="checkbox" name="contact_channels" value="online-form"><span class="opt-label">Online form</span></label>
+            <label class="opt"><input type="checkbox" name="contact_channels" value="facebook-msg"><span class="opt-label">Facebook Messenger</span></label>
+            <label class="opt"><input type="checkbox" name="contact_channels" value="referral"><span class="opt-label">Personal referral</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Phone always answered live during office hours?</label>
+          <div class="opts row3">
+            <label class="opt"><input type="radio" name="phone_live" value="always"><span class="opt-label">Always live</span></label>
+            <label class="opt"><input type="radio" name="phone_live" value="answerphone"><span class="opt-label">Sometimes answerphone</span></label>
+            <label class="opt"><input type="radio" name="phone_live" value="email-preferred"><span class="opt-label">Email is better</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Email response time you aim for?</label>
+          <div class="opts row3">
+            <label class="opt"><input type="radio" name="email_response" value="within-hour"><span class="opt-label">Within an hour</span></label>
+            <label class="opt"><input type="radio" name="email_response" value="same-day"><span class="opt-label">Same day</span></label>
+            <label class="opt"><input type="radio" name="email_response" value="24-hours"><span class="opt-label">24 hours</span></label>
+            <label class="opt"><input type="radio" name="email_response" value="48-hours"><span class="opt-label">48 hours</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Out-of-hours options for urgent enquiries?</label>
+          <div class="opts row2">
+            <label class="opt"><input type="checkbox" name="ooh_options" value="mobile-number"><span class="opt-label">Mobile number for emergencies</span></label>
+            <label class="opt"><input type="checkbox" name="ooh_options" value="weekend-cover"><span class="opt-label">Weekend cover available</span></label>
+            <label class="opt"><input type="checkbox" name="ooh_options" value="answerphone-checked"><span class="opt-label">Answerphone checked daily</span></label>
+            <label class="opt"><input type="checkbox" name="ooh_options" value="none"><span class="opt-label">None — back next working day</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Languages spoken at the yard?</label>
+          <div class="opts row3">
+            <label class="opt"><input type="checkbox" name="languages" value="english"><span class="opt-label">English</span></label>
+            <label class="opt"><input type="checkbox" name="languages" value="welsh"><span class="opt-label">Welsh</span></label>
+            <label class="opt"><input type="checkbox" name="languages" value="polish"><span class="opt-label">Polish</span></label>
+            <label class="opt"><input type="checkbox" name="languages" value="romanian"><span class="opt-label">Romanian</span></label>
+            <label class="opt"><input type="checkbox" name="languages" value="other"><span class="opt-label">Other</span></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 14: H&S -->
+    <div class="section">
+      <div class="section-head">
+        <span class="num">14</span>
+        <h2>Health &amp; safety basics</h2>
+        <span class="tag tag-help">HELPS</span>
+      </div>
+      <div class="section-body">
+        <p class="lead">Just tick what's true — these go on the safety page.</p>
+
+        <div class="opts row2">
+          <label class="opt"><input type="checkbox" name="hs_practices" value="named-hs-manager"><span class="opt-label">Named H&amp;S manager</span></label>
+          <label class="opt"><input type="checkbox" name="hs_practices" value="external-hs-consultant"><span class="opt-label">External H&amp;S consultant</span></label>
+          <label class="opt"><input type="checkbox" name="hs_practices" value="risk-assessments"><span class="opt-label">Risk assessment per job</span></label>
+          <label class="opt"><input type="checkbox" name="hs_practices" value="method-statements"><span class="opt-label">Method statements per job</span></label>
+          <label class="opt"><input type="checkbox" name="hs_practices" value="visitor-induction"><span class="opt-label">Site induction for visitors</span></label>
+          <label class="opt"><input type="checkbox" name="hs_practices" value="toolbox-talks"><span class="opt-label">Regular toolbox talks</span></label>
+          <label class="opt"><input type="checkbox" name="hs_practices" value="incident-reporting"><span class="opt-label">Formal incident reporting</span></label>
+          <label class="opt"><input type="checkbox" name="hs_practices" value="all-cscs"><span class="opt-label">All staff CSCS-carded</span></label>
+          <label class="opt"><input type="checkbox" name="hs_practices" value="first-aiders"><span class="opt-label">Trained first aiders</span></label>
+          <label class="opt"><input type="checkbox" name="hs_practices" value="mental-health-fa"><span class="opt-label">Mental health first aiders</span></label>
+          <label class="opt"><input type="checkbox" name="hs_practices" value="drug-alcohol"><span class="opt-label">Drug &amp; alcohol policy</span></label>
+          <label class="opt"><input type="checkbox" name="hs_practices" value="modern-slavery"><span class="opt-label">Modern slavery statement</span></label>
+          <label class="opt"><input type="checkbox" name="hs_practices" value="dust-control"><span class="opt-label">Dust control measures</span></label>
+          <label class="opt"><input type="checkbox" name="hs_practices" value="noise-monitoring"><span class="opt-label">Noise monitoring</span></label>
+        </div>
+
+        <div class="q" style="margin-top:14px;">
+          <label class="qlabel">RIDDOR-reportable incidents in the last 5 years?</label>
+          <div class="opts row3">
+            <label class="opt"><input type="radio" name="riddor_count" value="0"><span class="opt-label">None</span></label>
+            <label class="opt"><input type="radio" name="riddor_count" value="1"><span class="opt-label">1</span></label>
+            <label class="opt"><input type="radio" name="riddor_count" value="2-3"><span class="opt-label">2–3</span></label>
+            <label class="opt"><input type="radio" name="riddor_count" value="more"><span class="opt-label">More — let's talk</span></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 15: Sustainability -->
+    <div class="section optional">
+      <div class="section-head">
+        <span class="num">15</span>
+        <h2>Sustainability &amp; community</h2>
+        <span class="tag tag-skip">NICE TO HAVE</span>
+      </div>
+      <div class="section-body">
+        <div class="opts row2">
+          <label class="opt"><input type="checkbox" name="sustainability" value="solar-pv"><span class="opt-label">Solar PV on the yard</span></label>
+          <label class="opt"><input type="checkbox" name="sustainability" value="led-lighting"><span class="opt-label">LED lighting throughout</span></label>
+          <label class="opt"><input type="checkbox" name="sustainability" value="ev-charging"><span class="opt-label">EV charging available</span></label>
+          <label class="opt"><input type="checkbox" name="sustainability" value="water-recycling"><span class="opt-label">Water recycling</span></label>
+          <label class="opt"><input type="checkbox" name="sustainability" value="concrete-waste-recycled"><span class="opt-label">Concrete waste recycled</span></label>
+          <label class="opt"><input type="checkbox" name="sustainability" value="rainwater-harvesting"><span class="opt-label">Rainwater harvesting</span></label>
+          <label class="opt"><input type="checkbox" name="sustainability" value="biodiversity"><span class="opt-label">Biodiversity initiatives</span></label>
+          <label class="opt"><input type="checkbox" name="sustainability" value="tree-planting"><span class="opt-label">Tree planting / hedgerows</span></label>
+          <label class="opt"><input type="checkbox" name="sustainability" value="apprenticeships"><span class="opt-label">Apprenticeship scheme</span></label>
+          <label class="opt"><input type="checkbox" name="sustainability" value="local-employment"><span class="opt-label">All-local staff</span></label>
+          <label class="opt"><input type="checkbox" name="sustainability" value="local-aggregates"><span class="opt-label">Local aggregate sourcing</span></label>
+          <label class="opt"><input type="checkbox" name="sustainability" value="charity-support"><span class="opt-label">Local charity support</span></label>
+          <label class="opt"><input type="checkbox" name="sustainability" value="net-zero-pledge"><span class="opt-label">Net zero pledge / target</span></label>
+          <label class="opt"><input type="checkbox" name="sustainability" value="b-corp"><span class="opt-label">B Corp / similar certification</span></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 16: Memberships -->
+    <div class="section optional">
+      <div class="section-head">
+        <span class="num">16</span>
+        <h2>Memberships &amp; partnerships</h2>
+        <span class="tag tag-skip">IF EASY</span>
+      </div>
+      <div class="section-body">
+        <p class="lead">Beyond accreditations — any trade bodies, schemes, or partnerships you're a member of?</p>
+        <div class="opts row2">
+          <label class="opt"><input type="checkbox" name="memberships" value="nfu"><span class="opt-label">NFU</span></label>
+          <label class="opt"><input type="checkbox" name="memberships" value="cla"><span class="opt-label">CLA</span></label>
+          <label class="opt"><input type="checkbox" name="memberships" value="fsb"><span class="opt-label">FSB (Federation of Small Businesses)</span></label>
+          <label class="opt"><input type="checkbox" name="memberships" value="cbi"><span class="opt-label">CBI</span></label>
+          <label class="opt"><input type="checkbox" name="memberships" value="holsworthy-chamber"><span class="opt-label">Holsworthy / Devon Chamber</span></label>
+          <label class="opt"><input type="checkbox" name="memberships" value="fwag"><span class="opt-label">FWAG South West</span></label>
+          <label class="opt"><input type="checkbox" name="memberships" value="ahdb"><span class="opt-label">AHDB Dairy partner</span></label>
+          <label class="opt"><input type="checkbox" name="memberships" value="made-in-devon"><span class="opt-label">Made in Devon scheme</span></label>
+          <label class="opt"><input type="checkbox" name="memberships" value="rural-business-network"><span class="opt-label">Rural Business Network</span></label>
+          <label class="opt"><input type="checkbox" name="memberships" value="south-west-business-council"><span class="opt-label">South West Business Council</span></label>
+          <label class="opt"><input type="checkbox" name="memberships" value="delaval-approved"><span class="opt-label">DeLaval approved supplier</span></label>
+          <label class="opt"><input type="checkbox" name="memberships" value="lely-approved"><span class="opt-label">Lely approved supplier</span></label>
+          <label class="opt"><input type="checkbox" name="memberships" value="gea-approved"><span class="opt-label">GEA approved supplier</span></label>
+        </div>
+
+        <div class="q" style="margin-top:14px;">
+          <label class="qlabel">Anything we missed?</label>
+          <textarea name="memberships_other" rows="2"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 17: Trade shows -->
+    <div class="section optional">
+      <div class="section-head">
+        <span class="num">17</span>
+        <h2>Trade shows &amp; marketing</h2>
+        <span class="tag tag-skip">IF EASY</span>
+      </div>
+      <div class="section-body">
+
+        <div class="q">
+          <label class="qlabel">Trade shows you attend?</label>
+          <div class="opts row2">
+            <label class="opt"><input type="checkbox" name="trade_shows" value="devon-county"><span class="opt-label">Devon County Show</span></label>
+            <label class="opt"><input type="checkbox" name="trade_shows" value="royal-cornwall"><span class="opt-label">Royal Cornwall Show</span></label>
+            <label class="opt"><input type="checkbox" name="trade_shows" value="lamma"><span class="opt-label">Lamma</span></label>
+            <label class="opt"><input type="checkbox" name="trade_shows" value="uk-concrete-show"><span class="opt-label">UK Concrete Show</span></label>
+            <label class="opt"><input type="checkbox" name="trade_shows" value="dairy-uk"><span class="opt-label">UK Dairy Expo</span></label>
+            <label class="opt"><input type="checkbox" name="trade_shows" value="dairy-tech"><span class="opt-label">Dairy-Tech</span></label>
+            <label class="opt"><input type="checkbox" name="trade_shows" value="grassland-livestock"><span class="opt-label">Grassland &amp; Muck</span></label>
+            <label class="opt"><input type="checkbox" name="trade_shows" value="south-west-farmer"><span class="opt-label">South West Farmer events</span></label>
+            <label class="opt"><input type="checkbox" name="trade_shows" value="nrm-fair"><span class="opt-label">NRM Construction Show</span></label>
+            <label class="opt"><input type="checkbox" name="trade_shows" value="other-shows"><span class="opt-label">Other</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Marketing you do now?</label>
+          <div class="opts row2">
+            <label class="opt"><input type="checkbox" name="marketing_channels" value="word-of-mouth"><span class="opt-label">Word of mouth (main driver)</span></label>
+            <label class="opt"><input type="checkbox" name="marketing_channels" value="google-ads"><span class="opt-label">Google Ads</span></label>
+            <label class="opt"><input type="checkbox" name="marketing_channels" value="facebook-ads"><span class="opt-label">Facebook Ads</span></label>
+            <label class="opt"><input type="checkbox" name="marketing_channels" value="trade-press"><span class="opt-label">Trade press ads</span></label>
+            <label class="opt"><input type="checkbox" name="marketing_channels" value="direct-mail"><span class="opt-label">Direct mail / leaflet drop</span></label>
+            <label class="opt"><input type="checkbox" name="marketing_channels" value="trade-shows-only"><span class="opt-label">Trade shows only</span></label>
+            <label class="opt"><input type="checkbox" name="marketing_channels" value="vehicle-livery"><span class="opt-label">Vehicle livery</span></label>
+            <label class="opt"><input type="checkbox" name="marketing_channels" value="sponsorship"><span class="opt-label">Local sponsorship</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Social media WCCP currently uses?</label>
+          <div class="opts row3">
+            <label class="opt"><input type="checkbox" name="social_active" value="facebook"><span class="opt-label">Facebook</span></label>
+            <label class="opt"><input type="checkbox" name="social_active" value="instagram"><span class="opt-label">Instagram</span></label>
+            <label class="opt"><input type="checkbox" name="social_active" value="linkedin"><span class="opt-label">LinkedIn</span></label>
+            <label class="opt"><input type="checkbox" name="social_active" value="youtube"><span class="opt-label">YouTube</span></label>
+            <label class="opt"><input type="checkbox" name="social_active" value="tiktok"><span class="opt-label">TikTok</span></label>
+            <label class="opt"><input type="checkbox" name="social_active" value="x-twitter"><span class="opt-label">X / Twitter</span></label>
+            <label class="opt"><input type="checkbox" name="social_active" value="none"><span class="opt-label">None</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Reviews / case studies you have</label>
+          <div class="opts row2">
+            <label class="opt"><input type="checkbox" name="reviews_have" value="google-reviews"><span class="opt-label">Google reviews</span></label>
+            <label class="opt"><input type="checkbox" name="reviews_have" value="facebook-reviews"><span class="opt-label">Facebook reviews</span></label>
+            <label class="opt"><input type="checkbox" name="reviews_have" value="trustpilot"><span class="opt-label">Trustpilot</span></label>
+            <label class="opt"><input type="checkbox" name="reviews_have" value="email-testimonials"><span class="opt-label">Email testimonials</span></label>
+            <label class="opt"><input type="checkbox" name="reviews_have" value="case-studies-written"><span class="opt-label">Written case studies</span></label>
+            <label class="opt"><input type="checkbox" name="reviews_have" value="press-coverage"><span class="opt-label">Press coverage</span></label>
+            <label class="opt"><input type="checkbox" name="reviews_have" value="industry-awards"><span class="opt-label">Industry awards</span></label>
+            <label class="opt"><input type="checkbox" name="reviews_have" value="none-yet"><span class="opt-label">None yet</span></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 18: Website features wanted -->
+    <div class="section optional">
+      <div class="section-head">
+        <span class="num">18</span>
+        <h2>Website features — what would help?</h2>
+        <span class="tag tag-skip">IF EASY</span>
+      </div>
+      <div class="section-body">
+        <p class="lead">Tick anything you'd find useful. Don't worry about cost — we can phase it.</p>
+
+        <div class="opts row2">
+          <label class="opt"><input type="checkbox" name="features_wanted" value="online-quote-tool"><span class="opt-label">Online quote calculator<small class="opt-sub">e.g. for slurry storage size</small></span></label>
+          <label class="opt"><input type="checkbox" name="features_wanted" value="cad-downloads"><span class="opt-label">CAD / BIM download library</span></label>
+          <label class="opt"><input type="checkbox" name="features_wanted" value="spec-sheet-pdfs"><span class="opt-label">PDF spec sheets per product</span></label>
+          <label class="opt"><input type="checkbox" name="features_wanted" value="live-chat"><span class="opt-label">Live chat</span></label>
+          <label class="opt"><input type="checkbox" name="features_wanted" value="customer-login"><span class="opt-label">Customer login portal</span></label>
+          <label class="opt"><input type="checkbox" name="features_wanted" value="order-tracking"><span class="opt-label">Order tracking</span></label>
+          <label class="opt"><input type="checkbox" name="features_wanted" value="newsletter"><span class="opt-label">Email newsletter signup</span></label>
+          <label class="opt"><input type="checkbox" name="features_wanted" value="blog-news"><span class="opt-label">Blog / news section</span></label>
+          <label class="opt"><input type="checkbox" name="features_wanted" value="case-studies"><span class="opt-label">Case studies gallery</span></label>
+          <label class="opt"><input type="checkbox" name="features_wanted" value="testimonials-page"><span class="opt-label">Testimonials page</span></label>
+          <label class="opt"><input type="checkbox" name="features_wanted" value="careers"><span class="opt-label">Careers / jobs page</span></label>
+          <label class="opt"><input type="checkbox" name="features_wanted" value="faq"><span class="opt-label">FAQ section</span></label>
+          <label class="opt"><input type="checkbox" name="features_wanted" value="grants-funding"><span class="opt-label">Grants / funding guide</span></label>
+          <label class="opt"><input type="checkbox" name="features_wanted" value="install-videos"><span class="opt-label">Install / how-to videos</span></label>
+          <label class="opt"><input type="checkbox" name="features_wanted" value="virtual-tour"><span class="opt-label">Virtual yard tour</span></label>
+          <label class="opt"><input type="checkbox" name="features_wanted" value="customer-portal"><span class="opt-label">Reorder portal for repeat customers</span></label>
+        </div>
+
+        <div class="q" style="margin-top:14px;">
+          <label class="qlabel">Anything else you'd want the site to do?</label>
+          <textarea name="features_other" rows="2"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 19: Competitors -->
+    <div class="section optional">
+      <div class="section-head">
+        <span class="num">19</span>
+        <h2>Competitors</h2>
+        <span class="tag tag-skip">IF EASY</span>
+      </div>
+      <div class="section-body">
+        <p class="lead">Who do you usually lose work to, and who do you wish you beat more often?</p>
+
+        <div class="q">
+          <label class="qlabel">Main competitors in your region?</label>
+          <div class="opts row2">
+            <label class="opt"><input type="checkbox" name="competitors" value="cornish-concrete"><span class="opt-label">Cornish Concrete Products</span></label>
+            <label class="opt"><input type="checkbox" name="competitors" value="jp-concrete"><span class="opt-label">JP Concrete</span></label>
+            <label class="opt"><input type="checkbox" name="competitors" value="maen-karne"><span class="opt-label">Maen Karne</span></label>
+            <label class="opt"><input type="checkbox" name="competitors" value="fp-mccann"><span class="opt-label">FP McCann</span></label>
+            <label class="opt"><input type="checkbox" name="competitors" value="poundfield"><span class="opt-label">Poundfield Precast</span></label>
+            <label class="opt"><input type="checkbox" name="competitors" value="spanwright"><span class="opt-label">Spanwright</span></label>
+            <label class="opt"><input type="checkbox" name="competitors" value="mj-harrison"><span class="opt-label">MJ Harrison Supplies</span></label>
+            <label class="opt"><input type="checkbox" name="competitors" value="local-merchants"><span class="opt-label">Local builders merchants</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">What do you do BETTER than them?</label>
+          <textarea name="competitive_advantages" rows="3" placeholder="e.g. Faster lead times, in-house design, local Devon, family business..."></textarea>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Where do you usually lose out to them?</label>
+          <textarea name="competitive_weaknesses" rows="2" placeholder="e.g. Price on volume orders, range of standard sizes..."></textarea>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Other competitors we missed?</label>
+          <textarea name="competitors_other" rows="2"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 20: Team -->
+    <div class="section">
+      <div class="section-head">
+        <span class="num">20</span>
         <h2>The team — confirm titles</h2>
         <span class="tag tag-help">HELPS</span>
       </div>
@@ -576,10 +1272,10 @@
       </div>
     </div>
 
-    <!-- SECTION 9: Customer references (optional) -->
+    <!-- SECTION 21: Customer references (optional) -->
     <div class="section optional">
       <div class="section-head">
-        <span class="num">9</span>
+        <span class="num">21</span>
         <h2>2 or 3 happy customers</h2>
         <span class="tag tag-skip">IF YOU CAN</span>
       </div>
@@ -589,10 +1285,10 @@
       </div>
     </div>
 
-    <!-- SECTION 10: Kim's bio & history (optional) -->
+    <!-- SECTION 22: Kim's bio & history (optional) -->
     <div class="section optional">
       <div class="section-head">
-        <span class="num">10</span>
+        <span class="num">22</span>
         <h2>About Kim &amp; company history</h2>
         <span class="tag tag-skip">ONLY IF EASY</span>
       </div>
@@ -613,10 +1309,10 @@
       </div>
     </div>
 
-    <!-- SECTION 11: Anything else -->
+    <!-- SECTION 23: Anything else -->
     <div class="section optional">
       <div class="section-head">
-        <span class="num">11</span>
+        <span class="num">23</span>
         <h2>Anything else?</h2>
         <span class="tag tag-skip">OPTIONAL</span>
       </div>
