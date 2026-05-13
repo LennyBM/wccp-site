@@ -20,6 +20,7 @@ export default defineConfig({
       // page is marked noindex in BaseLayout and exists only as a content template.
       // The /intake hub is also excluded — internal-only.
       filter: (page) => !page.includes('/news/example-post') && !page.includes('/intake') && !page.includes('/wccpmeeting') && !page.includes('/matt'),
+      // (/matt also excludes /matt-thanks by substring match)
     }),
     ...(sentryEnabled
       ? [

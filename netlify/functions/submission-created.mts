@@ -134,7 +134,7 @@ export default async (req: Request, _context: Context) => {
 
   const formName = body.payload?.form_name ?? 'unknown';
   const data = body.payload?.data ?? {};
-  const submitterEmailAddr = data.email || data.Email || data['email-address'];
+  const submitterEmailAddr = data.email || data.Email || data['email-address'] || data.email_address;
   const firstName = (data['first-name'] || data.firstName || data.name || '').split(' ')[0] || '';
 
   // 1. Owner notification — always fire

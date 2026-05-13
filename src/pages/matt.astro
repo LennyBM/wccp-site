@@ -171,9 +171,18 @@
     <div class="meta">🔴 Red tags = must answer to launch &nbsp;·&nbsp; 🟡 Yellow = helps a lot &nbsp;·&nbsp; ⚪ Grey = only if you've got time</div>
   </div>
 
-  <form name="wccp-matt" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data" id="mainform">
+  <form name="wccp-matt" method="POST" action="/matt-thanks" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data" id="mainform">
     <input type="hidden" name="form-name" value="wccp-matt">
     <p style="display:none"><label>Don't fill this in: <input name="bot-field"></label></p>
+
+    <!-- Reassurance panel -->
+    <div style="background:#f0f4ff;border:1.5px solid #c7d2fe;border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:13px;line-height:1.5;color:#1e3a8a;">
+      <strong style="display:block;margin-bottom:4px;color:#131E44;">📬 Where your answers go when you hit Send:</strong>
+      Straight to <strong>info@wccp.co.uk</strong> and saved in our backup dashboard. We won't lose them.
+      <strong style="display:block;margin-top:8px;color:#131E44;">💾 Want a personal copy?</strong>
+      Tap the button below at any time — it'll download everything you've typed so far as a text file you can keep / email / print.
+      <button type="button" onclick="downloadBackup()" style="margin-top:10px;background:white;border:1.5px solid #3a5cb5;color:#131E44;padding:8px 14px;border-radius:6px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;">💾 Download a backup copy</button>
+    </div>
 
     <!-- SECTION 1: Review staging site -->
     <div class="section">
@@ -1325,6 +1334,11 @@
     <div class="submit-bar">
       <p>Send what you've got — we'll chase anything missing.</p>
       <button type="submit" class="submit-btn">Send to WCCP team →</button>
+      <p style="margin-top:14px;font-size:12px;color:#6b7280;">
+        Want a personal copy first?
+        <button type="button" onclick="downloadBackup()" style="background:none;border:none;color:#3a5cb5;font-weight:700;text-decoration:underline;cursor:pointer;padding:0;font-family:inherit;font-size:12px;">💾 Download a backup</button>
+        before sending.
+      </p>
     </div>
 
   </form>
@@ -1339,6 +1353,43 @@
 </div>
 
 <script>
+  // Download a human-readable backup of all answers before submitting.
+  // This is the user's belt-and-braces copy — works whether the submit
+  // succeeds or fails. Saved as a plain .txt to Matt's downloads folder.
+  function downloadBackup() {
+    const form = document.getElementById('mainform');
+    const fd = new FormData(form);
+    const grouped = {};
+    for (const [k, v] of fd.entries()) {
+      if (k === 'form-name' || k === 'bot-field') continue;
+      if (v instanceof File) {
+        if (v.name) (grouped[k] = grouped[k] || []).push('[file] ' + v.name + ' (' + Math.round(v.size/1024) + ' KB)');
+      } else if (typeof v === 'string' && v.trim()) {
+        (grouped[k] = grouped[k] || []).push(v);
+      }
+    }
+    let out = '═══════════════════════════════════════\n';
+    out += '  WCCP launch form — Matt\'s answers\n';
+    out += '  Backup saved: ' + new Date().toLocaleString('en-GB') + '\n';
+    out += '═══════════════════════════════════════\n\n';
+    for (const k of Object.keys(grouped).sort()) {
+      out += k.toUpperCase().replace(/_/g, ' ') + '\n';
+      out += '  ' + grouped[k].join(', ') + '\n\n';
+    }
+    out += '\n— END —\n\n';
+    out += 'Email a copy to: info@wccp.co.uk\n';
+    out += 'Or open the form again at: wccp-site.netlify.app/matt\n';
+    const blob = new Blob([out], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    const ts = new Date().toISOString().slice(0, 16).replace(/[:T]/g, '-');
+    a.download = 'wccp-matt-form-backup-' + ts + '.txt';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
+  }
+
   // File label
   function showFiles(input) {
     const list = input.parentElement.querySelector('.file-list');
