@@ -1,7 +1,6 @@
 ---
-// Internal — Matt's quick-fill form. Noindex, no nav. Submits via Netlify Forms.
-// After first deploy: Netlify dashboard → Forms → wccp-matt → Notifications →
-// add email notification to info@wccp.co.uk.
+// Internal — Matt's launch-prep questionnaire. Noindex, no nav. Submits via Netlify Forms.
+// After first deploy: Netlify dashboard → Forms → wccp-matt → Notifications → add info@wccp.co.uk.
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -9,30 +8,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Quick form for Matt — WCCP</title>
+<title>WCCP launch form — for Matt</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --navy: #131E44; --navy-mid: #3a5cb5; --yellow: #f5c13b;
-    --red: #c0392b; --green: #27ae60; --bone: #f7f5f0;
-    --cast: #6b7280; --border: #d1d5db; --soft: #f3f4f6;
+    --red: #c0392b; --green: #27ae60; --amber: #e67e22;
+    --bone: #f7f5f0; --cast: #6b7280; --border: #d1d5db; --soft: #f3f4f6;
   }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bone); color: var(--navy); padding: 16px 12px 80px; line-height: 1.5; }
-  .wrap { max-width: 720px; margin: 0 auto; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bone); color: var(--navy); padding: 16px 12px 100px; line-height: 1.5; }
+  .wrap { max-width: 760px; margin: 0 auto; }
 
   .hero { background: var(--navy); color: white; border-radius: 12px; padding: 22px 22px 20px; margin-bottom: 18px; }
-  .hero h1 { font-size: 22px; font-weight: 800; line-height: 1.2; }
+  .hero h1 { font-size: 23px; font-weight: 800; line-height: 1.2; }
   .hero h1 span { color: var(--yellow); }
-  .hero p { font-size: 14px; color: rgba(255,255,255,0.75); margin-top: 8px; }
-  .hero .meta { margin-top: 12px; font-size: 12px; color: rgba(255,255,255,0.55); }
+  .hero p { font-size: 14px; color: rgba(255,255,255,0.78); margin-top: 10px; }
+  .hero .meta { margin-top: 14px; font-size: 12px; color: rgba(255,255,255,0.6); padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.15); }
+  .hero a.preview { display: inline-block; margin-top: 12px; background: var(--yellow); color: var(--navy); padding: 8px 14px; border-radius: 7px; font-weight: 700; font-size: 13px; text-decoration: none; }
+  .hero a.preview:hover { background: white; }
 
   .section { background: white; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 14px; overflow: hidden; }
   .section-head { padding: 14px 18px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
   .section-head .num { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: var(--navy); color: white; font-size: 13px; font-weight: 800; flex-shrink: 0; }
-  .section-head h2 { font-size: 16px; font-weight: 700; flex: 1; }
-  .section-head .tag { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; padding: 3px 8px; border-radius: 4px; }
+  .section-head h2 { font-size: 16px; font-weight: 700; flex: 1; line-height: 1.25; }
+  .section-head .tag { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; padding: 3px 8px; border-radius: 4px; flex-shrink: 0; }
   .tag-must { background: #fde8e8; color: var(--red); }
-  .tag-help { background: #d1fae5; color: #065f46; }
+  .tag-help { background: #fef3cd; color: #92400e; }
   .tag-skip { background: var(--soft); color: var(--cast); }
 
   .section-body { padding: 16px 18px; }
@@ -43,11 +44,12 @@
   .q label.qlabel { display: block; font-size: 14px; font-weight: 700; margin-bottom: 6px; color: var(--navy); }
   .q .hint { font-size: 12.5px; color: var(--cast); margin-bottom: 8px; }
 
-  input[type="text"], input[type="email"], input[type="tel"], input[type="date"], textarea {
+  input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="date"], textarea, select {
     width: 100%; border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 12px; font-family: inherit; font-size: 14px; color: var(--navy); background: white;
   }
-  input:focus, textarea:focus { outline: none; border-color: var(--navy-mid); box-shadow: 0 0 0 3px rgba(58,92,181,0.12); }
+  input:focus, textarea:focus, select:focus { outline: none; border-color: var(--navy-mid); box-shadow: 0 0 0 3px rgba(58,92,181,0.12); }
   textarea { resize: vertical; min-height: 70px; }
+  select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='%23131E44' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 36px; }
 
   /* Radio + checkbox cards */
   .opts { display: grid; gap: 8px; }
@@ -57,21 +59,33 @@
   .opt { display: flex; align-items: flex-start; gap: 9px; padding: 10px 12px; border: 1.5px solid var(--border); border-radius: 7px; cursor: pointer; background: white; transition: all 0.15s; }
   .opt:hover { border-color: var(--navy-mid); background: #f8faff; }
   .opt input { margin-top: 2px; flex-shrink: 0; }
-  .opt input:checked + .opt-label { color: var(--navy); font-weight: 700; }
   .opt:has(input:checked) { border-color: var(--navy); background: #f0f4ff; }
-  .opt-label { font-size: 13.5px; line-height: 1.35; color: #374151; }
+  .opt-label { font-size: 13.5px; line-height: 1.35; color: #374151; font-weight: 600; }
   .opt-sub { display: block; font-size: 11.5px; color: var(--cast); margin-top: 2px; font-weight: 400; }
 
-  /* Product list — denser, scannable */
+  /* Product detail row */
   .prods { display: grid; gap: 6px; }
-  .prod-row { display: grid; grid-template-columns: 1fr auto auto; gap: 10px; align-items: center; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; background: white; }
+  .prod-row { display: grid; grid-template-columns: 1fr; gap: 8px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 7px; background: white; transition: all 0.15s; }
+  @media (min-width: 600px) { .prod-row { grid-template-columns: 1.5fr auto auto; align-items: center; } }
+  .prod-row.is-yes { background: #f0f8f0; border-color: var(--green); }
+  .prod-row.is-no { background: #fdf3f2; border-color: #fcd1cf; opacity: 0.6; }
   .prod-row .pname { font-size: 13.5px; font-weight: 600; color: var(--navy); }
   .prod-row .pname small { display: block; font-size: 11px; color: var(--cast); font-weight: 400; margin-top: 1px; }
-  .prod-pill { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; padding: 4px 8px; border-radius: 4px; cursor: pointer; border: 1px solid var(--border); user-select: none; background: white; font-weight: 600; }
-  .prod-pill input { display: none; }
-  .prod-pill.yes:has(input:checked) { background: var(--green); border-color: var(--green); color: white; }
-  .prod-pill.no:has(input:checked) { background: var(--red); border-color: var(--red); color: white; }
-  .prod-pill:hover { border-color: var(--navy-mid); }
+  .yesno { display: flex; gap: 6px; flex-shrink: 0; }
+  .pill { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; padding: 6px 12px; border-radius: 5px; cursor: pointer; border: 1.5px solid var(--border); user-select: none; background: white; font-weight: 600; flex: 1; justify-content: center; }
+  .pill input { display: none; }
+  .pill.yes:has(input:checked) { background: var(--green); border-color: var(--green); color: white; }
+  .pill.no:has(input:checked) { background: var(--red); border-color: var(--red); color: white; }
+  .lead-select { font-size: 12px; padding: 6px 28px 6px 10px; min-width: 130px; max-width: 160px; background-color: var(--soft); border-width: 1.5px; }
+  .prod-row.is-no .lead-select { display: none; }
+  .prod-category { padding: 12px 0 4px; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--navy-mid); }
+  .prod-category:first-child { padding-top: 0; }
+
+  /* Quick-set buttons for lead times */
+  .quickset { background: #f0f4ff; border: 1px solid #c7d2fe; border-radius: 7px; padding: 10px 12px; margin-bottom: 10px; font-size: 12.5px; }
+  .quickset b { color: var(--navy); }
+  .quickset button { background: var(--navy); color: white; border: none; padding: 5px 10px; border-radius: 5px; font-size: 11.5px; font-weight: 600; margin-left: 6px; cursor: pointer; font-family: inherit; }
+  .quickset button:hover { background: var(--navy-mid); }
 
   /* File input */
   .file-zone { border: 2px dashed var(--border); border-radius: 8px; padding: 14px; text-align: center; background: var(--soft); cursor: pointer; transition: all 0.15s; }
@@ -82,397 +96,532 @@
   .file-list { margin-top: 8px; font-size: 12px; color: var(--green); font-weight: 600; }
 
   /* Submit */
-  .submit-bar { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 18px; margin-top: 16px; text-align: center; }
+  .submit-bar { background: white; border: 2px solid var(--green); border-radius: 12px; padding: 22px; margin-top: 16px; text-align: center; }
   .submit-bar p { font-size: 13px; color: var(--cast); margin-bottom: 12px; }
-  .submit-btn { background: var(--navy); color: white; font-family: inherit; font-size: 16px; font-weight: 700; padding: 14px 32px; border: none; border-radius: 8px; cursor: pointer; transition: all 0.15s; min-width: 200px; }
-  .submit-btn:hover { background: var(--navy-mid); }
+  .submit-btn { background: var(--green); color: white; font-family: inherit; font-size: 17px; font-weight: 800; padding: 16px 36px; border: none; border-radius: 8px; cursor: pointer; transition: all 0.15s; min-width: 240px; }
+  .submit-btn:hover { background: #1f8a4f; }
   .submit-btn:active { transform: scale(0.98); }
-  .submit-status { font-size: 13px; margin-top: 10px; font-weight: 600; min-height: 18px; }
-  .submit-status.ok { color: var(--green); }
-  .submit-status.err { color: var(--red); }
 
   /* Optional section gentler */
+  .section.optional { border-color: #e5e7eb; }
   .section.optional .section-head { background: var(--soft); }
   .section.optional .section-head h2 { color: var(--cast); font-weight: 600; }
 
-  .progress { position: sticky; bottom: 0; background: white; border-top: 2px solid var(--navy); padding: 10px 14px; margin: 16px -12px -80px; font-size: 12.5px; display: flex; align-items: center; justify-content: space-between; }
-  .progress-track { flex: 1; height: 6px; background: var(--soft); border-radius: 3px; margin: 0 12px; overflow: hidden; }
+  /* Sticky progress */
+  .progress { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 2px solid var(--navy); padding: 10px 14px; font-size: 12.5px; display: flex; align-items: center; justify-content: space-between; gap: 8px; z-index: 50; box-shadow: 0 -4px 12px rgba(0,0,0,0.08); }
+  .progress-track { flex: 1; height: 7px; background: var(--soft); border-radius: 3px; overflow: hidden; }
   .progress-fill { height: 100%; background: var(--green); width: 0%; transition: width 0.3s; border-radius: 3px; }
+  .progress strong { color: var(--navy); }
+
+  /* Review checklist */
+  .review-list { background: #fef3cd; border: 1px solid #f5c13b; border-radius: 8px; padding: 12px 14px; }
+  .review-list h3 { font-size: 13px; font-weight: 700; color: #92400e; margin-bottom: 8px; }
+  .review-list .review-item { display: flex; align-items: flex-start; gap: 9px; padding: 7px 0; font-size: 13px; border-top: 1px dashed #fbd76b; }
+  .review-list .review-item:first-of-type { border-top: none; }
+  .review-list .review-item label { cursor: pointer; flex: 1; }
+  .review-list .review-item input { margin-top: 3px; }
 
   @media (max-width: 600px) {
-    body { padding: 12px 8px 80px; }
+    body { padding: 12px 8px 100px; }
     .hero { padding: 18px; }
-    .hero h1 { font-size: 19px; }
+    .hero h1 { font-size: 20px; }
     .section-body { padding: 14px; }
   }
 </style>
 </head>
 <body>
 
-<!-- Hidden static form so Netlify detects all fields at build time -->
+<!-- Hidden static form for Netlify Forms detection at build time -->
 <form name="wccp-matt" data-netlify="true" data-netlify-honeypot="bot-field" netlify hidden enctype="multipart/form-data">
   <input name="bot-field" />
-  <input name="phone" /><input name="email_address" /><input name="hours" /><input name="whatsapp" />
-  <input name="prices" /><input name="logo_decision" /><input name="launch_when" />
-  <input name="products_keep" /><input name="products_remove" /><textarea name="products_other"></textarea>
+  <input name="phone" /><input name="email_address" /><input name="hours" /><input name="whatsapp" /><input name="address" /><input name="ch_number" /><input name="vat_number" />
+  <input name="prices" /><input name="logo_decision" /><input name="launch_when" /><input name="install_offer" /><input name="bespoke_offer" /><input name="quote_turnaround" />
+  <input name="products_keep" /><input name="products_remove" /><input name="lead_default" /><input name="lead_overrides" /><textarea name="products_other"></textarea>
   <input name="accreditations" /><textarea name="accred_notes"></textarea>
-  <input type="file" name="logo_files" multiple /><input type="file" name="photo_files" multiple />
+  <input name="years_trading" /><input name="pl_insurance" /><input name="el_insurance" /><input name="warranty_years" /><textarea name="famous_clients"></textarea>
+  <input name="delivery_zones" /><textarea name="delivery_notes"></textarea>
+  <input name="review_flags" /><textarea name="review_notes"></textarea>
+  <input type="file" name="logo_files" multiple /><input type="file" name="photo_files" multiple /><input type="file" name="cert_files" multiple />
   <textarea name="customer_references"></textarea>
-  <textarea name="team_list"></textarea><textarea name="kim_bio"></textarea><input name="founded_year" />
-  <textarea name="anything_else"></textarea>
+  <input name="team_matt_title" /><input name="team_kim_title" /><input name="team_mark_title" /><input name="team_steve_title" /><input name="team_claire_title" /><textarea name="team_others"></textarea>
+  <textarea name="kim_bio"></textarea><input name="founded_year" /><textarea name="company_history"></textarea>
+  <textarea name="anything_else" />
 </form>
 
 <div class="wrap">
 
   <!-- HERO -->
   <div class="hero">
-    <h1>Hi Matt — quick form to get the <span>WCCP site live</span></h1>
-    <p>Should take about 10 minutes. Skip anything you don't know — just hit Send at the bottom and we'll chase the rest. Replies come straight to info@wccp.co.uk.</p>
-    <div class="meta">Top sections are the ones that unblock the launch. Bottom sections are optional — only fill them if you've got time.</div>
+    <h1>Hi Matt — let's get the <span>WCCP site live</span></h1>
+    <p>Quick form. Skip anything you don't have time for — just hit Send at the bottom and we'll chase the rest. All answers go straight to info@wccp.co.uk.</p>
+    <p><strong>Tip:</strong> The form auto-saves as you go, so you can close it and come back.</p>
+    <a class="preview" href="https://wccp-site.netlify.app" target="_blank" rel="noopener">👀 Open the staging site →</a>
+    <div class="meta">🔴 Red tags = must answer to launch &nbsp;·&nbsp; 🟡 Yellow = helps a lot &nbsp;·&nbsp; ⚪ Grey = only if you've got time</div>
   </div>
 
   <form name="wccp-matt" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data" id="mainform">
     <input type="hidden" name="form-name" value="wccp-matt">
     <p style="display:none"><label>Don't fill this in: <input name="bot-field"></label></p>
 
-    <!-- SECTION 1: Which products do you actually make? -->
+    <!-- SECTION 1: Review staging site -->
     <div class="section">
       <div class="section-head">
         <span class="num">1</span>
-        <h2>Which of these do you actually make?</h2>
+        <h2>Look at the staging site — flag anything that's made up</h2>
         <span class="tag tag-must">MUST</span>
       </div>
       <div class="section-body">
-        <p class="lead">We've built pages for everything we found on your current site. Tick "Yes" if you still make it, "No" if you don't (we'll remove the page). If you're not sure, leave it blank.</p>
+        <p class="lead">Have a quick scroll through <a href="https://wccp-site.netlify.app" target="_blank" rel="noopener" style="color:var(--navy-mid);font-weight:700;">wccp-site.netlify.app</a> on your phone. We've written a lot of content based on best guesses — tick anything that <strong>isn't actually true</strong> for WCCP so we can remove it.</p>
 
-        <div class="prods">
-          <!-- Agricultural -->
-          <div class="prod-row"><div class="pname">Cattle Cubicles <small>Front-leg mushroom, dairy + beef</small></div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="cattle-cubicles">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="cattle-cubicles">No</label></div>
-          <div class="prod-row"><div class="pname">Portable Cubicles</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="portable-cubicles">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="portable-cubicles">No</label></div>
-          <div class="prod-row"><div class="pname">Cubicle End Walls</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="cubicle-end-walls">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="cubicle-end-walls">No</label></div>
-          <div class="prod-row"><div class="pname">Cattle Slats</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="cattle-slats">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="cattle-slats">No</label></div>
-          <div class="prod-row"><div class="pname">Slatted Lids</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="slatted-lids">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="slatted-lids">No</label></div>
-          <div class="prod-row"><div class="pname">Slurry Storage Panels</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="slurry-storage">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="slurry-storage">No</label></div>
-          <div class="prod-row"><div class="pname">Slurry Channels</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="slurry-channels">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="slurry-channels">No</label></div>
-          <div class="prod-row"><div class="pname">V-Section Sand Channels</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="sand-channels">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="sand-channels">No</label></div>
-          <div class="prod-row"><div class="pname">Dish Channels</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="dish-channels">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="dish-channels">No</label></div>
-          <div class="prod-row"><div class="pname">Feed Troughs</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="feed-troughs">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="feed-troughs">No</label></div>
-          <div class="prod-row"><div class="pname">Water Troughs / Drinkers</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="water-troughs">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="water-troughs">No</label></div>
-          <div class="prod-row"><div class="pname">Footbaths</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="footbaths">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="footbaths">No</label></div>
-          <div class="prod-row"><div class="pname">Silage Clamp Walls</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="silage-clamp-walls">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="silage-clamp-walls">No</label></div>
-          <div class="prod-row"><div class="pname">Grain Store Walls</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="grain-store-walls">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="grain-store-walls">No</label></div>
-          <div class="prod-row"><div class="pname">Milking Robot Bases</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="milking-robot-bases">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="milking-robot-bases">No</label></div>
-          <div class="prod-row"><div class="pname">Parlour Bases</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="parlour-bases">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="parlour-bases">No</label></div>
-          <div class="prod-row"><div class="pname">Heelstone Coping</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="heelstone-coping">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="heelstone-coping">No</label></div>
-          <div class="prod-row"><div class="pname">Feed Stop Walling</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="feed-stop-walling">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="feed-stop-walling">No</label></div>
-          <div class="prod-row"><div class="pname">Ventilated Floors</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="ventilated-floors">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="ventilated-floors">No</label></div>
-          <div class="prod-row"><div class="pname">Cattle Grids</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="cattle-grids">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="cattle-grids">No</label></div>
-          <div class="prod-row"><div class="pname">AD Plant Tanks</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="ad-plant-tanks">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="ad-plant-tanks">No</label></div>
-
-          <!-- Civils -->
-          <div class="prod-row" style="margin-top:8px;"><div class="pname" style="color:var(--navy-mid);">— Civils & infrastructure —</div><div></div><div></div></div>
-          <div class="prod-row"><div class="pname">Prestressed Wall Panels</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="prestressed-panels">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="prestressed-panels">No</label></div>
-          <div class="prod-row"><div class="pname">Retaining Walls</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="retaining-walls">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="retaining-walls">No</label></div>
-          <div class="prod-row"><div class="pname">King Post Walls</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="king-post-walls">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="king-post-walls">No</label></div>
-          <div class="prod-row"><div class="pname">Cantilever Walls</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="cantilever-walls">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="cantilever-walls">No</label></div>
-          <div class="prod-row"><div class="pname">L-Blocks</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="l-blocks">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="l-blocks">No</label></div>
-          <div class="prod-row"><div class="pname">Rapid-Fit Blocks (interlocking)</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="rapid-fit-blocks">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="rapid-fit-blocks">No</label></div>
-          <div class="prod-row"><div class="pname">Box Culverts</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="culverts">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="culverts">No</label></div>
-          <div class="prod-row"><div class="pname">Pipe Culverts</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="pipe-culverts">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="pipe-culverts">No</label></div>
-          <div class="prod-row"><div class="pname">Headwalls / Wing Walls</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="headwalls-wing-walls">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="headwalls-wing-walls">No</label></div>
-          <div class="prod-row"><div class="pname">Padstones</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="padstones">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="padstones">No</label></div>
-          <div class="prod-row"><div class="pname">Lintels</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="lintels">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="lintels">No</label></div>
-          <div class="prod-row"><div class="pname">Kerbs</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="kerbs">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="kerbs">No</label></div>
-          <div class="prod-row"><div class="pname">Bridge Beams</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="bridge-beams">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="bridge-beams">No</label></div>
-          <div class="prod-row"><div class="pname">Weighbridge Bases</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="weighbridge-bases">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="weighbridge-bases">No</label></div>
-          <div class="prod-row"><div class="pname">Soakaways / Chambers</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="soakaways-chambers">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="soakaways-chambers">No</label></div>
-
-          <!-- Bespoke -->
-          <div class="prod-row" style="margin-top:8px;"><div class="pname" style="color:var(--navy-mid);">— Bespoke —</div><div></div><div></div></div>
-          <div class="prod-row"><div class="pname">Vehicle Pits</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="vehicle-pits">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="vehicle-pits">No</label></div>
-          <div class="prod-row"><div class="pname">Clean Rooms</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="clean-rooms">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="clean-rooms">No</label></div>
-          <div class="prod-row"><div class="pname">Architectural Panels</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="architectural-panels">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="architectural-panels">No</label></div>
-          <div class="prod-row"><div class="pname">Custom Plinths</div>
-            <label class="prod-pill yes"><input type="checkbox" name="products_keep" value="custom-plinths">Yes</label>
-            <label class="prod-pill no"><input type="checkbox" name="products_remove" value="custom-plinths">No</label></div>
+        <div class="review-list">
+          <h3>⚠️ Things we may have invented — tick to REMOVE:</h3>
+          <div class="review-item"><input type="checkbox" name="review_flags" value="years-since-1971" id="r1"><label for="r1"><strong>"Since 1971"</strong> — if WCCP didn't start in 1971, what's the real year?</label></div>
+          <div class="review-item"><input type="checkbox" name="review_flags" value="units-cast" id="r2"><label for="r2"><strong>"50,000+ units cast & delivered"</strong> — if not true, remove the number</label></div>
+          <div class="review-item"><input type="checkbox" name="review_flags" value="counties-served" id="r3"><label for="r3"><strong>"15 UK counties served"</strong> — remove if not accurate</label></div>
+          <div class="review-item"><input type="checkbox" name="review_flags" value="5m-pl" id="r4"><label for="r4"><strong>"£5m public liability"</strong> — remove if your cover is different</label></div>
+          <div class="review-item"><input type="checkbox" name="review_flags" value="case-studies" id="r5"><label for="r5"><strong>The two case studies</strong> (Higgins Civils roundabout, Trewartha Farm dairy) — remove if these aren't real WCCP jobs</label></div>
+          <div class="review-item"><input type="checkbox" name="review_flags" value="bs-standards" id="r6"><label for="r6"><strong>BS standards on every product</strong> (BS EN 14992, BS 8500-1:2023, Eurocode 2, SSAFO 2018, BS 5502-22) — remove any you don't actually comply with</label></div>
+          <div class="review-item"><input type="checkbox" name="review_flags" value="european-delivery" id="r7"><label for="r7"><strong>"UK-wide & European delivery"</strong> — remove "European" if you only do UK</label></div>
+          <div class="review-item"><input type="checkbox" name="review_flags" value="oem-relationships" id="r8"><label for="r8"><strong>DeLaval / Lely / GEA approved-supplier claims</strong> — remove if you're not on their lists</label></div>
+          <div class="review-item"><input type="checkbox" name="review_flags" value="andigestion-link" id="r9"><label for="r9"><strong>Andigestion / Severn Trent adjacency mentions</strong> — remove if you don't want it on the site</label></div>
         </div>
 
-        <div class="q" style="margin-top: 16px;">
-          <label class="qlabel">Anything you make that's not on this list?</label>
-          <div class="hint">Just type a few words — we'll add pages for them.</div>
-          <textarea name="products_other" placeholder="e.g. specialist precast for..."></textarea>
+        <div class="q" style="margin-top:14px;">
+          <label class="qlabel">Anything else on the site that's wrong, exaggerated, or you want removed?</label>
+          <div class="hint">Just describe it — page name + what's wrong. We'll fix it.</div>
+          <textarea name="review_notes" placeholder="e.g. The agricultural sector page says we do milking parlour bases — we stopped doing those in 2020. Remove."></textarea>
         </div>
       </div>
     </div>
 
-    <!-- SECTION 2: Your contact details -->
+    <!-- SECTION 2: Products -->
     <div class="section">
       <div class="section-head">
         <span class="num">2</span>
-        <h2>Your contact details</h2>
+        <h2>Which products do you actually make? &amp; lead times</h2>
         <span class="tag tag-must">MUST</span>
       </div>
       <div class="section-body">
-        <p class="lead">What goes on the new site — exactly as you want it shown.</p>
+        <p class="lead">For each product: tap <strong>Yes</strong> if you make it, <strong>No</strong> if you don't (we'll remove the page). For "Yes" ones, pick a typical lead time.</p>
+
+        <div class="quickset">
+          <b>Quick shortcut:</b> Set the lead time on all "Yes" products at once →
+          <select id="bulk-lead" style="display:inline-block; width:auto; padding:5px 28px 5px 10px; font-size:11.5px; margin-left:6px;">
+            <option value="">Choose…</option>
+            <option value="1-2-weeks">1–2 weeks</option>
+            <option value="2-4-weeks">2–4 weeks</option>
+            <option value="4-6-weeks">4–6 weeks</option>
+            <option value="6-10-weeks">6–10 weeks</option>
+            <option value="10-plus-weeks">10+ weeks</option>
+          </select>
+          <button type="button" onclick="bulkLead()">Apply to all "Yes"</button>
+        </div>
+
+        <input type="hidden" name="lead_default" id="lead_default_field">
+
+        <div class="prods">
+          <div class="prod-category">— Agricultural —</div>
+          <div class="prod-row" data-product="cattle-cubicles"><div class="pname">Cattle Cubicles <small>Front-leg mushroom, dairy + beef</small></div><div class="yesno"><label class="pill yes"><input type="radio" name="p_cattle-cubicles" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_cattle-cubicles" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_cattle-cubicles"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="portable-cubicles"><div class="pname">Portable Cubicles</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_portable-cubicles" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_portable-cubicles" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_portable-cubicles"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="cubicle-end-walls"><div class="pname">Cubicle End Walls</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_cubicle-end-walls" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_cubicle-end-walls" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_cubicle-end-walls"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="cattle-slats"><div class="pname">Cattle Slats</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_cattle-slats" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_cattle-slats" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_cattle-slats"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="slatted-lids"><div class="pname">Slatted Lids</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_slatted-lids" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_slatted-lids" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_slatted-lids"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="slurry-storage"><div class="pname">Slurry Storage Panels</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_slurry-storage" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_slurry-storage" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_slurry-storage"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="slurry-channels"><div class="pname">Slurry Channels</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_slurry-channels" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_slurry-channels" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_slurry-channels"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="sand-channels"><div class="pname">V-Section Sand Channels</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_sand-channels" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_sand-channels" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_sand-channels"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="dish-channels"><div class="pname">Dish Channels</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_dish-channels" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_dish-channels" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_dish-channels"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="feed-troughs"><div class="pname">Feed Troughs</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_feed-troughs" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_feed-troughs" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_feed-troughs"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="water-troughs"><div class="pname">Water Troughs / Drinkers</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_water-troughs" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_water-troughs" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_water-troughs"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="footbaths"><div class="pname">Footbaths</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_footbaths" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_footbaths" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_footbaths"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="silage-clamp-walls"><div class="pname">Silage Clamp Walls</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_silage-clamp-walls" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_silage-clamp-walls" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_silage-clamp-walls"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="grain-store-walls"><div class="pname">Grain Store Walls</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_grain-store-walls" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_grain-store-walls" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_grain-store-walls"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="milking-robot-bases"><div class="pname">Milking Robot Bases</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_milking-robot-bases" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_milking-robot-bases" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_milking-robot-bases"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="parlour-bases"><div class="pname">Parlour Bases</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_parlour-bases" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_parlour-bases" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_parlour-bases"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="heelstone-coping"><div class="pname">Heelstone Coping</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_heelstone-coping" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_heelstone-coping" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_heelstone-coping"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="feed-stop-walling"><div class="pname">Feed Stop Walling</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_feed-stop-walling" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_feed-stop-walling" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_feed-stop-walling"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="ventilated-floors"><div class="pname">Ventilated Floors</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_ventilated-floors" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_ventilated-floors" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_ventilated-floors"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="cattle-grids"><div class="pname">Cattle Grids</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_cattle-grids" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_cattle-grids" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_cattle-grids"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="ad-plant-tanks"><div class="pname">AD Plant Tanks</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_ad-plant-tanks" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_ad-plant-tanks" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_ad-plant-tanks"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+
+          <div class="prod-category">— Civils &amp; infrastructure —</div>
+          <div class="prod-row" data-product="prestressed-panels"><div class="pname">Prestressed Wall Panels</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_prestressed-panels" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_prestressed-panels" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_prestressed-panels"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="retaining-walls"><div class="pname">Retaining Walls</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_retaining-walls" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_retaining-walls" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_retaining-walls"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="king-post-walls"><div class="pname">King Post Walls</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_king-post-walls" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_king-post-walls" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_king-post-walls"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="cantilever-walls"><div class="pname">Cantilever Walls</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_cantilever-walls" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_cantilever-walls" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_cantilever-walls"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="l-blocks"><div class="pname">L-Blocks</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_l-blocks" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_l-blocks" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_l-blocks"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="rapid-fit-blocks"><div class="pname">Rapid-Fit Blocks (interlocking)</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_rapid-fit-blocks" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_rapid-fit-blocks" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_rapid-fit-blocks"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="culverts"><div class="pname">Box Culverts</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_culverts" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_culverts" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_culverts"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="pipe-culverts"><div class="pname">Pipe Culverts</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_pipe-culverts" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_pipe-culverts" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_pipe-culverts"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="headwalls-wing-walls"><div class="pname">Headwalls / Wing Walls</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_headwalls-wing-walls" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_headwalls-wing-walls" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_headwalls-wing-walls"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="padstones"><div class="pname">Padstones</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_padstones" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_padstones" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_padstones"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="lintels"><div class="pname">Lintels</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_lintels" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_lintels" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_lintels"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="kerbs"><div class="pname">Kerbs</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_kerbs" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_kerbs" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_kerbs"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="bridge-beams"><div class="pname">Bridge Beams</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_bridge-beams" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_bridge-beams" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_bridge-beams"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="weighbridge-bases"><div class="pname">Weighbridge Bases</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_weighbridge-bases" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_weighbridge-bases" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_weighbridge-bases"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="soakaways-chambers"><div class="pname">Soakaways / Chambers</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_soakaways-chambers" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_soakaways-chambers" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_soakaways-chambers"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+
+          <div class="prod-category">— Bespoke —</div>
+          <div class="prod-row" data-product="vehicle-pits"><div class="pname">Vehicle Pits</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_vehicle-pits" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_vehicle-pits" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_vehicle-pits"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="clean-rooms"><div class="pname">Clean Rooms</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_clean-rooms" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_clean-rooms" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_clean-rooms"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="architectural-panels"><div class="pname">Architectural Panels</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_architectural-panels" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_architectural-panels" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_architectural-panels"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+          <div class="prod-row" data-product="custom-plinths"><div class="pname">Custom Plinths</div><div class="yesno"><label class="pill yes"><input type="radio" name="p_custom-plinths" value="yes" onchange="handleProdToggle(this)">Yes</label><label class="pill no"><input type="radio" name="p_custom-plinths" value="no" onchange="handleProdToggle(this)">No</label></div><select class="lead-select" name="lead_custom-plinths"><option value="">Lead time…</option><option value="1-2-weeks">1–2 weeks</option><option value="2-4-weeks">2–4 weeks</option><option value="4-6-weeks">4–6 weeks</option><option value="6-10-weeks">6–10 weeks</option><option value="10-plus-weeks">10+ weeks</option></select></div>
+        </div>
+
+        <div class="q" style="margin-top: 16px;">
+          <label class="qlabel">Anything you make that isn't on this list?</label>
+          <textarea name="products_other" placeholder="e.g. specialist precast for..."></textarea>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Do you offer installation, or just supply the product?</label>
+          <div class="opts row3">
+            <label class="opt"><input type="radio" name="install_offer" value="supply-only"><span class="opt-label">Supply only<small class="opt-sub">Customer fits it</small></span></label>
+            <label class="opt"><input type="radio" name="install_offer" value="supply-and-fit"><span class="opt-label">Supply + fit<small class="opt-sub">We do it</small></span></label>
+            <label class="opt"><input type="radio" name="install_offer" value="both"><span class="opt-label">Both options<small class="opt-sub">Customer chooses</small></span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Do you make bespoke / one-off products to spec?</label>
+          <div class="opts row3">
+            <label class="opt"><input type="radio" name="bespoke_offer" value="yes-routine"><span class="opt-label">Yes, routine<small class="opt-sub">Big part of business</small></span></label>
+            <label class="opt"><input type="radio" name="bespoke_offer" value="yes-sometimes"><span class="opt-label">Sometimes<small class="opt-sub">If it's worthwhile</small></span></label>
+            <label class="opt"><input type="radio" name="bespoke_offer" value="no"><span class="opt-label">No<small class="opt-sub">Catalogue only</small></span></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: Contact + delivery -->
+    <div class="section">
+      <div class="section-head">
+        <span class="num">3</span>
+        <h2>Contact details &amp; delivery coverage</h2>
+        <span class="tag tag-must">MUST</span>
+      </div>
+      <div class="section-body">
 
         <div class="q">
           <label class="qlabel">Main phone number</label>
           <input type="tel" name="phone" placeholder="e.g. 01409 281437">
         </div>
         <div class="q">
-          <label class="qlabel">Email address for enquiries</label>
+          <label class="qlabel">Email for enquiries</label>
           <input type="email" name="email_address" placeholder="e.g. info@wccp.co.uk">
         </div>
         <div class="q">
-          <label class="qlabel">WhatsApp number (if different)</label>
-          <div class="hint">Leave blank if it's the same as the phone above.</div>
+          <label class="qlabel">WhatsApp number (leave blank if same as phone)</label>
           <input type="tel" name="whatsapp" placeholder="e.g. 07970 520123">
         </div>
         <div class="q">
           <label class="qlabel">Opening hours</label>
           <input type="text" name="hours" placeholder="e.g. Mon-Fri 7:30am-5:00pm">
         </div>
+        <div class="q">
+          <label class="qlabel">Full yard address</label>
+          <textarea name="address" rows="2" placeholder="e.g. Chilsworthy, Holsworthy, Devon EX22 7BG"></textarea>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Where do you actually deliver to?</label>
+          <div class="hint">Tick everywhere you regularly deliver — even just sometimes.</div>
+          <div class="opts row3">
+            <label class="opt"><input type="checkbox" name="delivery_zones" value="devon"><span class="opt-label">Devon</span></label>
+            <label class="opt"><input type="checkbox" name="delivery_zones" value="cornwall"><span class="opt-label">Cornwall</span></label>
+            <label class="opt"><input type="checkbox" name="delivery_zones" value="somerset"><span class="opt-label">Somerset</span></label>
+            <label class="opt"><input type="checkbox" name="delivery_zones" value="dorset"><span class="opt-label">Dorset</span></label>
+            <label class="opt"><input type="checkbox" name="delivery_zones" value="wiltshire"><span class="opt-label">Wiltshire</span></label>
+            <label class="opt"><input type="checkbox" name="delivery_zones" value="south-wales"><span class="opt-label">South Wales</span></label>
+            <label class="opt"><input type="checkbox" name="delivery_zones" value="rest-of-sw"><span class="opt-label">Rest of SW England</span></label>
+            <label class="opt"><input type="checkbox" name="delivery_zones" value="uk-wide"><span class="opt-label">UK-wide<small class="opt-sub">Anywhere in mainland UK</small></span></label>
+            <label class="opt"><input type="checkbox" name="delivery_zones" value="europe"><span class="opt-label">Europe<small class="opt-sub">Channel Islands, Ireland, etc</small></span></label>
+          </div>
+        </div>
+        <div class="q">
+          <label class="qlabel">Anything to note about delivery? (free zones, premium zones, minimum order)</label>
+          <textarea name="delivery_notes" placeholder="e.g. Free delivery within 30 miles. £200 surcharge over the Tamar. Minimum 2-pallet order outside Devon."></textarea>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">How quickly do you usually turn a quote around?</label>
+          <div class="opts row3">
+            <label class="opt"><input type="radio" name="quote_turnaround" value="same-day"><span class="opt-label">Same day</span></label>
+            <label class="opt"><input type="radio" name="quote_turnaround" value="24-48h"><span class="opt-label">24–48 hours</span></label>
+            <label class="opt"><input type="radio" name="quote_turnaround" value="2-5-days"><span class="opt-label">2–5 days</span></label>
+            <label class="opt"><input type="radio" name="quote_turnaround" value="1-week-plus"><span class="opt-label">A week or more</span></label>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- SECTION 3: Accreditations -->
-    <div class="section">
-      <div class="section-head">
-        <span class="num">3</span>
-        <h2>Which of these accreditations do you actually have?</h2>
-        <span class="tag tag-must">MUST</span>
-      </div>
-      <div class="section-body">
-        <p class="lead">We've put loads on the site — let's only keep the ones you really hold (with current certificates). Tick the ones that are true:</p>
-
-        <div class="opts row2">
-          <label class="opt"><input type="checkbox" name="accreditations" value="iso-9001"><span class="opt-label">ISO 9001<small class="opt-sub">Quality management</small></span></label>
-          <label class="opt"><input type="checkbox" name="accreditations" value="iso-14001"><span class="opt-label">ISO 14001<small class="opt-sub">Environmental</small></span></label>
-          <label class="opt"><input type="checkbox" name="accreditations" value="iso-45001"><span class="opt-label">ISO 45001<small class="opt-sub">Health & safety</small></span></label>
-          <label class="opt"><input type="checkbox" name="accreditations" value="ce-ukca"><span class="opt-label">CE / UKCA marking<small class="opt-sub">Factory Production Control</small></span></label>
-          <label class="opt"><input type="checkbox" name="accreditations" value="chas"><span class="opt-label">CHAS<small class="opt-sub">Contractor health & safety</small></span></label>
-          <label class="opt"><input type="checkbox" name="accreditations" value="constructionline"><span class="opt-label">Constructionline<small class="opt-sub">Bronze / Silver / Gold</small></span></label>
-          <label class="opt"><input type="checkbox" name="accreditations" value="mpa-precast"><span class="opt-label">MPA Precast<small class="opt-sub">Trade body member</small></span></label>
-          <label class="opt"><input type="checkbox" name="accreditations" value="fps"><span class="opt-label">FPS<small class="opt-sub">Federation of Piling Specialists</small></span></label>
-          <label class="opt"><input type="checkbox" name="accreditations" value="made-in-britain"><span class="opt-label">Made in Britain<small class="opt-sub">Member</small></span></label>
-          <label class="opt"><input type="checkbox" name="accreditations" value="nbs-source"><span class="opt-label">NBS Source<small class="opt-sub">Architect specification database</small></span></label>
-        </div>
-
-        <div class="q" style="margin-top:14px;">
-          <label class="qlabel">Anything to note? Certificates expired, in progress, or other accreditations not listed?</label>
-          <textarea name="accred_notes" placeholder="e.g. ISO 9001 expires Dec 2026, in process of getting ISO 45001..."></textarea>
-        </div>
-      </div>
-    </div>
-
-    <!-- SECTION 4: Quick decisions -->
+    <!-- SECTION 4: Accreditations -->
     <div class="section">
       <div class="section-head">
         <span class="num">4</span>
+        <h2>Accreditations — which do you actually have?</h2>
+        <span class="tag tag-must">MUST</span>
+      </div>
+      <div class="section-body">
+        <p class="lead">We've put loads on the site. Tick <strong>only</strong> the ones you really hold with a current certificate — we'll strip the rest.</p>
+
+        <div class="opts row2">
+          <label class="opt"><input type="checkbox" name="accreditations" value="iso-9001"><span class="opt-label">ISO 9001<small class="opt-sub">Quality</small></span></label>
+          <label class="opt"><input type="checkbox" name="accreditations" value="iso-14001"><span class="opt-label">ISO 14001<small class="opt-sub">Environmental</small></span></label>
+          <label class="opt"><input type="checkbox" name="accreditations" value="iso-45001"><span class="opt-label">ISO 45001<small class="opt-sub">Health &amp; safety</small></span></label>
+          <label class="opt"><input type="checkbox" name="accreditations" value="ce-ukca"><span class="opt-label">CE / UKCA marking<small class="opt-sub">Factory Production Control</small></span></label>
+          <label class="opt"><input type="checkbox" name="accreditations" value="chas"><span class="opt-label">CHAS</span></label>
+          <label class="opt"><input type="checkbox" name="accreditations" value="constructionline"><span class="opt-label">Constructionline<small class="opt-sub">Bronze / Silver / Gold / Platinum</small></span></label>
+          <label class="opt"><input type="checkbox" name="accreditations" value="mpa-precast"><span class="opt-label">MPA Precast</span></label>
+          <label class="opt"><input type="checkbox" name="accreditations" value="fps"><span class="opt-label">FPS<small class="opt-sub">Federation of Piling Specialists</small></span></label>
+          <label class="opt"><input type="checkbox" name="accreditations" value="made-in-britain"><span class="opt-label">Made in Britain</span></label>
+          <label class="opt"><input type="checkbox" name="accreditations" value="nbs-source"><span class="opt-label">NBS Source<small class="opt-sub">Architect spec database</small></span></label>
+          <label class="opt"><input type="checkbox" name="accreditations" value="bes-6001"><span class="opt-label">BES 6001<small class="opt-sub">Responsible sourcing</small></span></label>
+          <label class="opt"><input type="checkbox" name="accreditations" value="achilles"><span class="opt-label">Achilles<small class="opt-sub">Utility supplier</small></span></label>
+        </div>
+
+        <div class="q" style="margin-top:14px;">
+          <label class="qlabel">Constructionline level? Anything expired or in progress?</label>
+          <textarea name="accred_notes" placeholder="e.g. Constructionline Silver, expires Dec 2026. ISO 45001 in progress."></textarea>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Certificates — upload scans or photos (any format)</label>
+          <label class="file-zone">
+            <input type="file" name="cert_files" multiple accept="image/*,.pdf" onchange="showFiles(this)">
+            <p><strong>📎 Tap to choose files</strong></p>
+            <div class="file-list"></div>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 5: Trust signals -->
+    <div class="section">
+      <div class="section-head">
+        <span class="num">5</span>
+        <h2>Trust signals — real numbers for the site</h2>
+        <span class="tag tag-must">MUST</span>
+      </div>
+      <div class="section-body">
+        <p class="lead">These appear in the footer and on the About page. Only fill in what's true.</p>
+
+        <div class="q">
+          <label class="qlabel">When did WCCP actually start trading?</label>
+          <div class="hint">The year the business first started — under any name. Companies House says the Ltd was incorporated 2009.</div>
+          <input type="text" name="founded_year" placeholder="e.g. 1971">
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Years trading (if different from above)</label>
+          <input type="text" name="years_trading" placeholder="e.g. 50+, or just leave blank">
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Public liability insurance — limit?</label>
+          <div class="opts row3">
+            <label class="opt"><input type="radio" name="pl_insurance" value="1m"><span class="opt-label">£1m</span></label>
+            <label class="opt"><input type="radio" name="pl_insurance" value="2m"><span class="opt-label">£2m</span></label>
+            <label class="opt"><input type="radio" name="pl_insurance" value="5m"><span class="opt-label">£5m</span></label>
+            <label class="opt"><input type="radio" name="pl_insurance" value="10m"><span class="opt-label">£10m</span></label>
+            <label class="opt"><input type="radio" name="pl_insurance" value="other"><span class="opt-label">Other / not sure</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Employer's liability insurance — limit?</label>
+          <div class="opts row3">
+            <label class="opt"><input type="radio" name="el_insurance" value="5m"><span class="opt-label">£5m</span></label>
+            <label class="opt"><input type="radio" name="el_insurance" value="10m"><span class="opt-label">£10m</span></label>
+            <label class="opt"><input type="radio" name="el_insurance" value="other"><span class="opt-label">Other / not sure</span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Standard product warranty</label>
+          <div class="opts row3">
+            <label class="opt"><input type="radio" name="warranty_years" value="none"><span class="opt-label">No formal warranty</span></label>
+            <label class="opt"><input type="radio" name="warranty_years" value="1-year"><span class="opt-label">1 year</span></label>
+            <label class="opt"><input type="radio" name="warranty_years" value="2-year"><span class="opt-label">2 years</span></label>
+            <label class="opt"><input type="radio" name="warranty_years" value="5-year"><span class="opt-label">5 years</span></label>
+            <label class="opt"><input type="radio" name="warranty_years" value="10-year"><span class="opt-label">10 years</span></label>
+            <label class="opt"><input type="radio" name="warranty_years" value="design-life"><span class="opt-label">"Design life"<small class="opt-sub">50+ years</small></span></label>
+          </div>
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Companies House number (for the footer)</label>
+          <input type="text" name="ch_number" placeholder="e.g. 06743210">
+        </div>
+
+        <div class="q">
+          <label class="qlabel">VAT number (for the footer)</label>
+          <input type="text" name="vat_number" placeholder="e.g. GB123456789">
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Famous customers / projects you'd like name-dropped</label>
+          <div class="hint">Big farms, civils contractors, councils, or specific jobs you're proud of. We'll get permission before naming anyone.</div>
+          <textarea name="famous_clients" rows="3" placeholder="e.g. Higgins Civils — A30 retaining works · Trewartha Farm — 4,000m³ slurry store"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 6: Quick decisions -->
+    <div class="section">
+      <div class="section-head">
+        <span class="num">6</span>
         <h2>Three quick decisions</h2>
         <span class="tag tag-must">MUST</span>
       </div>
       <div class="section-body">
 
         <div class="q">
-          <label class="qlabel">Do you want prices on the website?</label>
+          <label class="qlabel">Prices on the website?</label>
           <div class="opts row3">
             <label class="opt"><input type="radio" name="prices" value="hide"><span class="opt-label">No prices<small class="opt-sub">"Get a quote" only</small></span></label>
             <label class="opt"><input type="radio" name="prices" value="show"><span class="opt-label">Yes, show prices</span></label>
-            <label class="opt"><input type="radio" name="prices" value="from"><span class="opt-label">"From £X" only<small class="opt-sub">Starting prices</small></span></label>
+            <label class="opt"><input type="radio" name="prices" value="from"><span class="opt-label">"From £X" only</span></label>
           </div>
         </div>
 
         <div class="q">
           <label class="qlabel">The logo — what do you want to do?</label>
           <div class="opts row3">
-            <label class="opt"><input type="radio" name="logo_decision" value="keep"><span class="opt-label">Keep current<small class="opt-sub">As it is now</small></span></label>
-            <label class="opt"><input type="radio" name="logo_decision" value="refresh"><span class="opt-label">Small refresh<small class="opt-sub">Tidy up</small></span></label>
-            <label class="opt"><input type="radio" name="logo_decision" value="redesign"><span class="opt-label">Full redesign<small class="opt-sub">Brand new</small></span></label>
+            <label class="opt"><input type="radio" name="logo_decision" value="keep"><span class="opt-label">Keep current</span></label>
+            <label class="opt"><input type="radio" name="logo_decision" value="refresh"><span class="opt-label">Small refresh</span></label>
+            <label class="opt"><input type="radio" name="logo_decision" value="redesign"><span class="opt-label">Full redesign</span></label>
           </div>
         </div>
 
         <div class="q">
           <label class="qlabel">When do you want the site live?</label>
-          <div class="hint">No pressure — just so we know what to aim for.</div>
           <div class="opts row3">
             <label class="opt"><input type="radio" name="launch_when" value="asap"><span class="opt-label">ASAP<small class="opt-sub">Next few weeks</small></span></label>
             <label class="opt"><input type="radio" name="launch_when" value="devon-show"><span class="opt-label">Devon Show<small class="opt-sub">21–23 May</small></span></label>
             <label class="opt"><input type="radio" name="launch_when" value="royal-cornwall"><span class="opt-label">Royal Cornwall<small class="opt-sub">4–6 June</small></span></label>
-            <label class="opt"><input type="radio" name="launch_when" value="summer"><span class="opt-label">Summer 2026<small class="opt-sub">No rush</small></span></label>
+            <label class="opt"><input type="radio" name="launch_when" value="summer"><span class="opt-label">Summer 2026</span></label>
             <label class="opt"><input type="radio" name="launch_when" value="autumn"><span class="opt-label">Autumn 2026</span></label>
-            <label class="opt"><input type="radio" name="launch_when" value="flexible"><span class="opt-label">Whenever it's right</span></label>
+            <label class="opt"><input type="radio" name="launch_when" value="flexible"><span class="opt-label">No rush</span></label>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- SECTION 5: Files -->
+    <!-- SECTION 7: Files -->
     <div class="section">
       <div class="section-head">
-        <span class="num">5</span>
-        <h2>Upload your logo &amp; photos</h2>
+        <span class="num">7</span>
+        <h2>Upload logo &amp; photos</h2>
         <span class="tag tag-must">MUST</span>
       </div>
       <div class="section-body">
-        <p class="lead">If you've got files to hand, drop them in here. If not, no worries — just leave it and we'll chase later.</p>
-
         <div class="q">
           <label class="qlabel">Logo files</label>
-          <div class="hint">Best is an editable file (.ai, .eps, .svg or .pdf). A high-res PNG works too.</div>
+          <div class="hint">Best is an editable file (.ai, .eps, .svg, .pdf). High-res PNG is also fine.</div>
           <label class="file-zone">
             <input type="file" name="logo_files" multiple accept=".ai,.eps,.svg,.pdf,.png,.jpg,.jpeg" onchange="showFiles(this)">
-            <p><strong>📎 Tap to choose files</strong><br>or drop files here</p>
+            <p><strong>📎 Tap to choose files</strong></p>
             <div class="file-list"></div>
           </label>
         </div>
 
         <div class="q">
-          <label class="qlabel">Any photos you have (yard, products, team, customers)</label>
-          <div class="hint">Phone photos are absolutely fine. Send anything you've got.</div>
+          <label class="qlabel">Any photos you have — yard, products, team, customers, installs</label>
+          <div class="hint">Phone photos are fine. Anything you've got — drag them in or tap to pick.</div>
           <label class="file-zone">
             <input type="file" name="photo_files" multiple accept="image/*,video/*" onchange="showFiles(this)">
-            <p><strong>📎 Tap to choose photos</strong><br>or drop files here</p>
+            <p><strong>📎 Tap to choose photos</strong></p>
             <div class="file-list"></div>
           </label>
         </div>
       </div>
     </div>
 
-    <!-- SECTION 6: Customer references -->
-    <div class="section optional">
+    <!-- SECTION 8: Team -->
+    <div class="section">
       <div class="section-head">
-        <span class="num">6</span>
-        <h2>2 or 3 happy customers</h2>
-        <span class="tag tag-help">HELPFUL</span>
+        <span class="num">8</span>
+        <h2>The team — confirm titles</h2>
+        <span class="tag tag-help">HELPS</span>
       </div>
       <div class="section-body">
-        <p class="lead">Customers we could ring for a quick testimonial. Just names + phone numbers. We'll do the calling.</p>
+        <p class="lead">We've got these names — confirm the job titles for the Team page, or correct anything wrong.</p>
+
         <div class="q">
-          <textarea name="customer_references" rows="4" placeholder="e.g.&#10;1. John Smith — Trewartha Farm — 07000 000000&#10;2. Sarah Jones — Higgins Civils — 01234 567890"></textarea>
+          <label class="qlabel">Kim Rumsam</label>
+          <input type="text" name="team_kim_title" placeholder="Managing Director" value="Managing Director">
+        </div>
+        <div class="q">
+          <label class="qlabel">Matt (you!)</label>
+          <input type="text" name="team_matt_title" placeholder="CAD / Engineer" value="CAD / Engineer">
+        </div>
+        <div class="q">
+          <label class="qlabel">Mark</label>
+          <input type="text" name="team_mark_title" placeholder="General Manager / Sales Manager" value="General Manager / Sales Manager">
+        </div>
+        <div class="q">
+          <label class="qlabel">Steve Grave</label>
+          <input type="text" name="team_steve_title" placeholder="Sales Manager" value="Sales Manager">
+        </div>
+        <div class="q">
+          <label class="qlabel">Claire</label>
+          <input type="text" name="team_claire_title" placeholder="MD's PA" value="MD's PA">
+        </div>
+
+        <div class="q">
+          <label class="qlabel">Anyone else who should be on the Team page?</label>
+          <div class="hint">Names, job titles, years at WCCP. Even rough: "Dave, yard foreman, 15 years."</div>
+          <textarea name="team_others" rows="3" placeholder="e.g. Dave — yard foreman — 15 years..."></textarea>
         </div>
       </div>
     </div>
 
-    <!-- SECTION 7: Team & history (optional) -->
+    <!-- SECTION 9: Customer references (optional) -->
     <div class="section optional">
       <div class="section-head">
-        <span class="num">7</span>
-        <h2>Team &amp; history</h2>
-        <span class="tag tag-skip">ONLY IF YOU HAVE TIME</span>
+        <span class="num">9</span>
+        <h2>2 or 3 happy customers</h2>
+        <span class="tag tag-skip">IF YOU CAN</span>
       </div>
       <div class="section-body">
-        <p class="lead">This is for the "About" and "Team" pages. Skip if you're busy — we can come back to it after the site is live.</p>
+        <p class="lead">Customers we could ring for a quick testimonial. We'll do the calling. Just names + numbers.</p>
+        <textarea name="customer_references" rows="4" placeholder="e.g.&#10;1. John Smith — Trewartha Farm — 07000 000000&#10;2. Sarah Jones — Higgins Civils — 01234 567890"></textarea>
+      </div>
+    </div>
 
-        <div class="q">
-          <label class="qlabel">Team list — who works there?</label>
-          <div class="hint">Just names and job titles. Even rough — "Dave (yard manager, 15 years), Sarah (office), etc."</div>
-          <textarea name="team_list" rows="3" placeholder="e.g. Kim Rumsam — MD..."></textarea>
-        </div>
+    <!-- SECTION 10: Kim's bio & history (optional) -->
+    <div class="section optional">
+      <div class="section-head">
+        <span class="num">10</span>
+        <h2>About Kim &amp; company history</h2>
+        <span class="tag tag-skip">ONLY IF EASY</span>
+      </div>
+      <div class="section-body">
+        <p class="lead">For the "About" page. Skip if busy — we can come back to it.</p>
 
         <div class="q">
           <label class="qlabel">A few sentences about Kim</label>
-          <div class="hint">How he came to WCCP, what he cares about. We'll polish it.</div>
+          <div class="hint">Background, how he came to WCCP, what he cares about. We'll polish it.</div>
           <textarea name="kim_bio" rows="3"></textarea>
         </div>
 
         <div class="q">
-          <label class="qlabel">When did WCCP actually start trading?</label>
-          <div class="hint">The year the business first started — under any name.</div>
-          <input type="text" name="founded_year" placeholder="e.g. 1971">
+          <label class="qlabel">Quick company history</label>
+          <div class="hint">When/how it started, key moments. Rough notes fine.</div>
+          <textarea name="company_history" rows="3"></textarea>
         </div>
       </div>
     </div>
 
-    <!-- SECTION 8: Anything else -->
+    <!-- SECTION 11: Anything else -->
     <div class="section optional">
       <div class="section-head">
-        <span class="num">8</span>
+        <span class="num">11</span>
         <h2>Anything else?</h2>
         <span class="tag tag-skip">OPTIONAL</span>
       </div>
       <div class="section-body">
-        <div class="q">
-          <textarea name="anything_else" rows="3" placeholder="Anything you want us to know, change, or ask about..."></textarea>
-        </div>
+        <textarea name="anything_else" rows="3" placeholder="Anything you want us to know, change, or ask about..."></textarea>
       </div>
     </div>
 
@@ -480,39 +629,54 @@
     <div class="submit-bar">
       <p>Send what you've got — we'll chase anything missing.</p>
       <button type="submit" class="submit-btn">Send to WCCP team →</button>
-      <div class="submit-status" id="status"></div>
     </div>
 
   </form>
 
-  <!-- Progress -->
-  <div class="progress">
-    <span><strong id="progress-num">0</strong> of <strong id="progress-total">0</strong> answered</span>
-    <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
-    <span id="progress-pct">0%</span>
-  </div>
+</div>
 
+<!-- Sticky progress -->
+<div class="progress">
+  <span><strong id="progress-num">0</strong>/<strong id="progress-total">0</strong></span>
+  <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+  <span id="progress-pct">0%</span>
 </div>
 
 <script>
-  // Show selected filenames in the file-zone label
+  // File label
   function showFiles(input) {
     const list = input.parentElement.querySelector('.file-list');
     if (!list) return;
     if (input.files.length === 0) { list.textContent = ''; return; }
-    const names = [...input.files].map(f => '✓ ' + f.name).join(' · ');
-    list.textContent = names;
+    list.textContent = [...input.files].map(f => '✓ ' + f.name).join(' · ');
   }
 
-  // Save form state to localStorage so progress isn't lost
+  // Handle product yes/no toggle to color the row
+  function handleProdToggle(input) {
+    const row = input.closest('.prod-row');
+    if (!row) return;
+    row.classList.remove('is-yes', 'is-no');
+    if (input.value === 'yes') row.classList.add('is-yes');
+    else if (input.value === 'no') row.classList.add('is-no');
+  }
+
+  // Bulk lead time setter
+  function bulkLead() {
+    const sel = document.getElementById('bulk-lead').value;
+    if (!sel) return;
+    document.querySelectorAll('.prod-row.is-yes .lead-select').forEach(s => { s.value = sel; });
+    document.getElementById('lead_default_field').value = sel;
+    updateProgress();
+    saveState();
+  }
+
+  // localStorage save/restore
   const form = document.getElementById('mainform');
-  const STORAGE_KEY = 'wccp-matt-form';
+  const STORAGE_KEY = 'wccp-matt-form-v2';
   function saveState() {
     const data = {};
     new FormData(form).forEach((v, k) => {
-      if (typeof v === 'string') {
-        data[k] = data[k] ? data[k] + ',' + v : v;
-      }
+      if (typeof v === 'string') data[k] = data[k] ? data[k] + ',' + v : v;
     });
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch (e) {}
   }
@@ -523,8 +687,9 @@
         const els = form.querySelectorAll('[name="' + k + '"]');
         els.forEach(el => {
           if (el.type === 'checkbox' || el.type === 'radio') {
-            if (String(v).split(',').includes(el.value)) el.checked = true;
-          } else if (el.type !== 'file') {
+            if (String(v).split(',').includes(el.value)) { el.checked = true; handleProdToggle(el); }
+          } else if (el.type === 'file') { /* skip */ }
+          else if (el.tagName === 'SELECT' || el.tagName === 'TEXTAREA' || el.type === 'text' || el.type === 'tel' || el.type === 'email' || el.type === 'number') {
             el.value = v;
           }
         });
@@ -532,18 +697,16 @@
     } catch (e) {}
   }
 
-  // Progress tracker
+  // Progress
   function updateProgress() {
-    const fields = form.querySelectorAll('input[name]:not([type=hidden]):not([name=bot-field]), textarea[name], select[name]');
     const groups = new Map();
-    fields.forEach(el => {
-      const n = el.name;
-      if (!groups.has(n)) groups.set(n, []);
-      groups.get(n).push(el);
+    form.querySelectorAll('input[name]:not([type=hidden]):not([name=bot-field]), textarea[name], select[name]').forEach(el => {
+      if (!groups.has(el.name)) groups.set(el.name, []);
+      groups.get(el.name).push(el);
     });
     let total = 0, done = 0;
     for (const [name, els] of groups) {
-      if (name === 'form-name' || name === 'bot-field') continue;
+      if (name === 'form-name' || name === 'bot-field' || name.startsWith('lead_')) continue;
       total++;
       const filled = els.some(el => {
         if (el.type === 'checkbox' || el.type === 'radio') return el.checked;
@@ -554,19 +717,16 @@
     }
     document.getElementById('progress-num').textContent = done;
     document.getElementById('progress-total').textContent = total;
-    document.getElementById('progress-pct').textContent = Math.round((done / total) * 100) + '%';
-    document.getElementById('progress-fill').style.width = ((done / total) * 100) + '%';
+    const pct = total ? Math.round((done / total) * 100) : 0;
+    document.getElementById('progress-pct').textContent = pct + '%';
+    document.getElementById('progress-fill').style.width = pct + '%';
   }
 
   restoreState();
   updateProgress();
   form.addEventListener('input', () => { saveState(); updateProgress(); });
   form.addEventListener('change', () => { saveState(); updateProgress(); });
-
-  // Clear localStorage on successful submit (Netlify redirects, but if not, listener fires first)
-  form.addEventListener('submit', () => {
-    try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
-  });
+  form.addEventListener('submit', () => { try { localStorage.removeItem(STORAGE_KEY); } catch (e) {} });
 </script>
 
 </body>
