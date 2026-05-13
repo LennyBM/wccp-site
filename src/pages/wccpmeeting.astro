@@ -1,0 +1,521 @@
+---
+// Internal meeting checklist — not linked anywhere, noindex, excluded from sitemap.
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>WCCP Meeting — 13 May 2026, 1:30pm</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #131E44; --navy-mid: #3a5cb5; --yellow: #f5c13b;
+    --red: #c0392b; --amber: #e67e22; --green: #27ae60;
+    --bone: #f7f5f0; --cast: #6b7280; --border: #d1d5db;
+  }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.5; background: var(--bone); color: var(--navy); padding: 24px 16px 60px; }
+  .page { max-width: 860px; margin: 0 auto; }
+  .header { background: var(--navy); color: white; border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; }
+  .header-left h1 { font-size: 22px; font-weight: 800; letter-spacing: -0.3px; line-height: 1.2; }
+  .header-left h1 span { color: var(--yellow); }
+  .header-left p { margin-top: 6px; font-size: 13px; color: rgba(255,255,255,0.6); }
+  .header-right { text-align: right; flex-shrink: 0; }
+  .header-right .time { font-size: 28px; font-weight: 800; color: var(--yellow); line-height: 1; }
+  .header-right .date { font-size: 12px; color: rgba(255,255,255,0.55); margin-top: 4px; }
+  .must-banner { background: var(--red); color: white; border-radius: 8px; padding: 14px 20px; margin-bottom: 20px; font-weight: 700; font-size: 13px; display: flex; align-items: flex-start; gap: 10px; }
+  .must-banner .icon { font-size: 18px; flex-shrink: 0; }
+  .must-banner ul { margin: 6px 0 0 20px; font-weight: 500; font-size: 13px; }
+  .must-banner ul li { margin-bottom: 2px; }
+  .section { background: white; border-radius: 10px; border: 1px solid var(--border); margin-bottom: 16px; overflow: hidden; }
+  .section-header { display: flex; align-items: center; gap: 10px; padding: 13px 18px; border-bottom: 1px solid var(--border); }
+  .section-header .badge { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; font-size: 11px; font-weight: 800; flex-shrink: 0; color: white; }
+  .badge-red { background: var(--red); } .badge-amber { background: var(--amber); } .badge-green { background: var(--green); } .badge-navy { background: var(--navy-mid); }
+  .section-header h2 { font-size: 14px; font-weight: 700; flex: 1; }
+  .section-header .count { font-size: 11px; color: var(--cast); font-weight: 500; }
+  .items { padding: 6px 0; }
+  .item { display: grid; grid-template-columns: 20px 1fr auto; align-items: start; gap: 8px; padding: 9px 18px; border-bottom: 1px solid #f3f4f6; transition: background 0.15s; }
+  .item:last-child { border-bottom: none; }
+  .item:hover { background: #fafafa; }
+  .item.done { opacity: 0.45; }
+  .item.done .label { text-decoration: line-through; }
+  .item input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--navy); cursor: pointer; margin-top: 2px; flex-shrink: 0; }
+  .item .label { font-weight: 600; font-size: 13.5px; color: var(--navy); line-height: 1.3; }
+  .item .sub { font-size: 12px; color: var(--cast); margin-top: 2px; line-height: 1.4; }
+  .item .tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 2px 7px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+  .tag-r { background: #fde8e8; color: var(--red); } .tag-a { background: #fef3cd; color: #92400e; }
+  .tag-g { background: #d1fae5; color: #065f46; } .tag-b { background: #dbeafe; color: #1e40af; }
+  .tag-p { background: #ede9fe; color: #5b21b6; }
+  .how-toggle { display: inline-flex; align-items: center; gap: 4px; margin-top: 5px; font-size: 11.5px; font-weight: 700; color: var(--navy-mid); cursor: pointer; background: none; border: none; padding: 0; text-decoration: underline; text-underline-offset: 2px; }
+  .how-toggle:hover { color: var(--navy); }
+  .how-block { display: none; margin-top: 8px; background: #f0f4ff; border-left: 3px solid var(--navy-mid); border-radius: 0 6px 6px 0; padding: 10px 12px; }
+  .how-block.open { display: block; }
+  .how-block ol { margin: 0 0 0 16px; padding: 0; }
+  .how-block ol li { font-size: 12px; color: #1e3a8a; line-height: 1.55; margin-bottom: 3px; }
+  .how-block ol li strong { font-weight: 700; }
+  .how-block .how-note { font-size: 11.5px; color: #374151; margin-top: 6px; font-style: italic; }
+  .notes-section { background: white; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 16px; overflow: hidden; }
+  .notes-header { padding: 13px 18px; border-bottom: 1px solid var(--border); font-size: 14px; font-weight: 700; color: var(--navy); }
+  .notes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .notes-col { padding: 14px 18px; }
+  .notes-col:first-child { border-right: 1px solid var(--border); }
+  .notes-col h3 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--cast); margin-bottom: 8px; }
+  .notes-col textarea { width: 100%; min-height: 100px; border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; font-family: inherit; font-size: 13px; color: var(--navy); resize: vertical; background: #fafafa; }
+  .notes-col textarea:focus { outline: 2px solid var(--navy-mid); background: white; }
+  .footer { text-align: center; font-size: 11px; color: var(--cast); margin-top: 24px; }
+  .progress-bar { background: #e5e7eb; border-radius: 4px; height: 6px; margin: 12px 18px 14px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--green); border-radius: 4px; width: 0%; transition: width 0.3s; }
+  .progress-label { text-align: right; font-size: 11px; color: var(--cast); padding: 0 18px 8px; }
+  .sub-heading { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--cast); padding: 10px 18px 6px; border-top: 1px solid var(--border); }
+  .sub-heading:first-of-type { border-top: none; }
+  @media print {
+    body { background: white; padding: 0; font-size: 12px; }
+    .header { border-radius: 0; }
+    .section, .notes-section { break-inside: avoid; }
+    textarea { border: 1px solid #ccc !important; background: white !important; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="header-left">
+      <h1>WCCP Meeting — <span>Everything we need</span></h1>
+      <p>Kim Rumsam · Holsworthy yard · Matt + Rebecca attending</p>
+      <p style="margin-top:10px; font-size:12px; color:rgba(255,255,255,0.45);">
+        🔴 Critical — must leave with today &nbsp;·&nbsp; 🟡 Hand over this week &nbsp;·&nbsp; 🟢 During build (weeks 2–6)
+      </p>
+    </div>
+    <div class="header-right">
+      <div class="time">1:30pm</div>
+      <div class="date">Tuesday 13 May 2026</div>
+    </div>
+  </div>
+
+  <div class="must-banner">
+    <span class="icon">🚨</span>
+    <div>
+      DO NOT LEAVE WITHOUT:
+      <ul>
+        <li>GA4 + Search Console + Google Business Profile access added (email: leonardbmillard@gmail.com)</li>
+        <li>WordPress / current site admin login</li>
+        <li>Bluehost / JustHost cPanel login from Kim</li>
+        <li>Logo vector files (.ai / .eps / .svg) on USB or shared drive link</li>
+        <li>All existing photos on USB or Drive link — everything they own</li>
+        <li>Photo shoot date locked in the diary</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="badge badge-red">1</span>
+      <h2>Digital access — add leonardbmillard@gmail.com as admin/owner</h2>
+      <span class="count">7 items</span>
+    </div>
+    <div class="items" id="s1">
+      <div class="item">
+        <input type="checkbox" onchange="tick(this)">
+        <div class="body">
+          <div class="label">Google Analytics 4 (GA4)</div>
+          <div class="sub">This is the tool that shows how many people visit your website and what they do on it. We need to see your data so we can measure whether the new site is working.</div>
+          <button class="how-toggle" onclick="toggleHow(this)">▶ How to do this</button>
+          <div class="how-block">
+            <ol>
+              <li>On Kim's computer, go to <strong>analytics.google.com</strong> and sign in with the Google account linked to WCCP.</li>
+              <li>Click the <strong>cog icon</strong> (Admin) in the bottom-left corner.</li>
+              <li>In the middle column ("Property"), click <strong>Property access management</strong>.</li>
+              <li>Click the blue <strong>+ Add users</strong> button in the top right.</li>
+              <li>Type in <strong>leonardbmillard@gmail.com</strong>, tick <strong>Editor</strong>, then click <strong>Add</strong>.</li>
+            </ol>
+            <p class="how-note">If Kim can't find it, search "Google Analytics" on Google and sign in — it'll be there if it was ever set up. If there's no account at all, tell us and we'll set one up from scratch.</p>
+          </div>
+        </div>
+        <span class="tag tag-r">TODAY</span>
+      </div>
+      <div class="item">
+        <input type="checkbox" onchange="tick(this)">
+        <div class="body">
+          <div class="label">Google Search Console</div>
+          <div class="sub">This shows what search terms people type into Google before landing on your site, and which pages Google has found. Essential for understanding where you currently rank.</div>
+          <button class="how-toggle" onclick="toggleHow(this)">▶ How to do this</button>
+          <div class="how-block">
+            <ol>
+              <li>Go to <strong>search.google.com/search-console</strong> and sign in with the WCCP Google account.</li>
+              <li>Make sure the correct property is selected — it should say <strong>westcountryconcreteproducts.co.uk</strong> at the top left.</li>
+              <li>Click <strong>Settings</strong> (cog icon, bottom left) → <strong>Users and permissions</strong> → <strong>Add user</strong>.</li>
+              <li>Enter <strong>leonardbmillard@gmail.com</strong>, set permission to <strong>Owner</strong>, click <strong>Add</strong>.</li>
+            </ol>
+            <p class="how-note">If Kim isn't sure if it's set up, search "Google Search Console" and try signing in. If no data comes up, we'll sort the setup — it just takes a few minutes to verify.</p>
+          </div>
+        </div>
+        <span class="tag tag-r">TODAY</span>
+      </div>
+      <div class="item">
+        <input type="checkbox" onchange="tick(this)">
+        <div class="body">
+          <div class="label">Google Business Profile</div>
+          <div class="sub">The panel that appears on the right side of Google when someone searches "West Country Concrete Products" — shows address, phone, hours and reviews. <strong style="color:var(--red);">We don't know if WCCP even has one yet</strong> — checking and claiming this is one of the highest-value things we can do today.</div>
+          <button class="how-toggle" onclick="toggleHow(this)">▶ How to do this</button>
+          <div class="how-block">
+            <ol>
+              <li><strong>First — check if one exists:</strong> search <strong>"West Country Concrete Products"</strong> on Google. If a panel appears on the right with the address and a map, it exists.</li>
+              <li><strong>If Kim owns it already:</strong> when logged into his Google account, the panel will show an <strong>"Edit profile"</strong> button. Click that → Menu (three dots) → Business Profile settings → Managers → Add → <strong>leonardbmillard@gmail.com</strong> → Manager → Invite.</li>
+              <li><strong>If it exists but Kim doesn't own it</strong> (no Edit button): click <strong>"Claim this business"</strong> in the panel. Google will ask Kim to verify by phone call to the business number or a postcard to the yard. Start this today.</li>
+              <li><strong>If no panel exists at all:</strong> go to <strong>business.google.com</strong>, click <strong>Manage now</strong>, and add the business from scratch. Needs verification by phone or postcard.</li>
+            </ol>
+            <p class="how-note">If verification needs a postcard, Google sends it to the Holsworthy yard address and it arrives in 5–14 days. Start the process today so it's not a blocker. Once verified, add leonardbmillard@gmail.com as Manager.</p>
+          </div>
+        </div>
+        <span class="tag tag-r">TODAY</span>
+      </div>
+      <div class="item">
+        <input type="checkbox" onchange="tick(this)">
+        <div class="body">
+          <div class="label">Current website (WordPress) admin login</div>
+          <div class="sub">We need to log into the back-end of the existing website to read content, check what pages exist, and eventually switch traffic to the new site.</div>
+          <button class="how-toggle" onclick="toggleHow(this)">▶ How to do this</button>
+          <div class="how-block">
+            <ol>
+              <li>The login page is almost always at <strong>westcountryconcreteproducts.co.uk/wp-admin</strong> — try that in a browser.</li>
+              <li>Kim (or whoever manages the site) logs in with their username and password.</li>
+              <li>To add us: in the left menu go to <strong>Users → Add New</strong>. Enter a username, put <strong>leonardbmillard@gmail.com</strong> as the email, set role to <strong>Administrator</strong>, click <strong>Add New User</strong>.</li>
+            </ol>
+            <p class="how-note">If Kim doesn't have the login details, ask who built the original site — they'll have the admin login. Alternatively, the hosting company (Bluehost) can reset the password.</p>
+          </div>
+        </div>
+        <span class="tag tag-r">TODAY</span>
+      </div>
+      <div class="item">
+        <input type="checkbox" onchange="tick(this)">
+        <div class="body">
+          <div class="label">Bluehost / JustHost — Kim's cPanel login</div>
+          <div class="sub">The WCCP website is hosted at JustHost, which is now part of Bluehost. This is where the website files live AND where the domain is managed. We need Kim's login to add email records and point the domain at the new site on launch day.</div>
+          <button class="how-toggle" onclick="toggleHow(this)">▶ How to do this</button>
+          <div class="how-block">
+            <ol>
+              <li>Ask Kim to search his email for <strong>"JustHost"</strong> or <strong>"Bluehost"</strong> — there'll be an old welcome email or invoice with his username.</li>
+              <li>The login page is <strong>bluehost.com</strong> → click <strong>Log In</strong> in the top right.</li>
+              <li>We don't need Kim to do anything technical in there — we just need his <strong>username and password</strong> so we can log in and make the three changes ourselves.</li>
+              <li>If he's forgotten the password: on the Bluehost login page, click <strong>Forgot your password?</strong> and reset it to his email.</li>
+            </ol>
+            <p class="how-note">We need to add 3 small technical records inside Bluehost so that emails from the new site don't land in spam (this takes about 5 minutes). We also need it to point the web address at the new site on launch day — getting this login is essential.</p>
+          </div>
+        </div>
+        <span class="tag tag-r">TODAY</span>
+      </div>
+      <div class="item">
+        <input type="checkbox" onchange="tick(this)">
+        <div class="body">
+          <div class="label">Domain — confirm both web addresses are still registered in Bluehost</div>
+          <div class="sub">Confirm westcountryconcreteproducts.co.uk AND west-country-concrete-products.co.uk are owned by Kim and not about to expire.</div>
+          <button class="how-toggle" onclick="toggleHow(this)">▶ How to do this</button>
+          <div class="how-block">
+            <ol>
+              <li>Once logged into Bluehost, look for a <strong>Domains</strong> section in the dashboard.</li>
+              <li>Check both domains are listed and look at the <strong>expiry date</strong> — if either expires within 6 months, renew it now.</li>
+              <li>If the hyphenated version (west-country-concrete-products.co.uk) isn't listed, it may have lapsed — tell us immediately so we can re-register before anyone else buys it.</li>
+            </ol>
+            <p class="how-note">We'll set up the hyphenated version to automatically redirect to the main one — so anyone typing either version ends up on the right site.</p>
+          </div>
+        </div>
+        <span class="tag tag-a">THIS WEEK</span>
+      </div>
+      <div class="item">
+        <input type="checkbox" onchange="tick(this)">
+        <div class="body">
+          <div class="label">Facebook page admin access</div>
+          <div class="sub">WCCP has an active Facebook page. We need admin access to post updates, run ads, and link it properly to the new site.</div>
+          <button class="how-toggle" onclick="toggleHow(this)">▶ How to do this</button>
+          <div class="how-block">
+            <ol>
+              <li>Kim logs into Facebook on his phone or computer.</li>
+              <li>Go to the <strong>WCCP Facebook page</strong> (not his personal profile — the business page).</li>
+              <li>Click <strong>Settings</strong> → <strong>Page roles</strong> or <strong>New Pages Experience → People</strong>.</li>
+              <li>Click <strong>Add</strong>, search for <strong>leonardbmillard@gmail.com</strong>, set role to <strong>Admin</strong>, click <strong>Save</strong>.</li>
+            </ol>
+            <p class="how-note">If a previous agency set up the page they may still be listed as admin — remove them at the same time.</p>
+          </div>
+        </div>
+        <span class="tag tag-a">THIS WEEK</span>
+      </div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="p1"></div></div>
+    <div class="progress-label" id="l1">0 / 7 done</div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="badge badge-red">2</span>
+      <h2>Brand &amp; photography assets — USB or shared Drive link</h2>
+      <span class="count">7 items</span>
+    </div>
+    <div class="items" id="s2">
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Logo — vector source files</div><div class="sub">.ai / .eps / .svg / .pdf — whichever they have. NOT just a JPEG. We need an editable file.</div></div><span class="tag tag-r">TODAY</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Entire existing photography library</div><div class="sub">Every photo they own — products, yard, team, customers, phone shots, everything. USB or Google Drive. Original resolution.</div></div><span class="tag tag-r">TODAY</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Any video content</div><div class="sub">Phone footage, old promotional video, trade show clips — anything. Even rough/shaky footage is useful B-roll.</div></div><span class="tag tag-r">TODAY</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Current brochure PDF + any printed marketing</div><div class="sub">Brochures, flyers, trade show materials, spec sheets — PDF or physical to scan.</div></div><span class="tag tag-r">TODAY</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Accreditation certificates — all of them</div><div class="sub">ISO 9001, ISO 14001, ISO 45001 (if held), CHAS, Constructionline, MPA Precast, Made in Britain, CE/UKCA. Include expiry dates. Scans are fine.</div></div><span class="tag tag-a">THIS WEEK</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Insurance certificates</div><div class="sub">Public liability (£5m+), employer's liability, professional indemnity — limits and certificate numbers for trust signals on the site.</div></div><span class="tag tag-a">THIS WEEK</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Any existing CAD files / datasheets / spec sheet PDFs</div><div class="sub">.dwg, .dxf, existing product spec PDFs — whatever exists per product family. For the downloads section on the new site.</div></div><span class="tag tag-a">THIS WEEK</span></div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="p2"></div></div>
+    <div class="progress-label" id="l2">0 / 7 done</div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="badge badge-red">3</span>
+      <h2>Photography shoot logistics — Rebecca leads this with Kim</h2>
+      <span class="count">8 items</span>
+    </div>
+    <div class="items" id="s3">
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Shoot date locked — Day 1 (factory + yard + staff)</div><div class="sub">Needs overcast forecast. Book 3–4 weeks out. Holsworthy/Chilsworthy site. Factory floor, exterior, portraits of named staff.</div></div><span class="tag tag-r">TODAY</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Shoot date locked — Day 2 (customers + drone)</div><div class="sub">2 farm visits confirmed. Dairy farmer + civils contractor minimum. Drone over yard (CAA-registered photographer required).</div></div><span class="tag tag-r">TODAY</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Staff photo permission slips — all staff who'll appear on camera</div><div class="sub">Signed model release required before shoot. Kim to circulate to team before shoot day. We can provide the template.</div></div><span class="tag tag-r">TODAY</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">2–3 customers confirmed willing to be photographed on their farm</div><div class="sub">We want: dairy farmer (slurry/cubicles), civils contractor (retaining wall), arable/mixed farm (grain/silage). Signed permission before shoot.</div></div><span class="tag tag-r">TODAY</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Kim confirms drone access to the yard</div><div class="sub">Photographer must be CAA-registered (A2 CofC minimum) with £5m+ public liability. Kim to confirm no restrictions at the Chilsworthy site.</div></div><span class="tag tag-r">TODAY</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Kim's own portrait — confirm he'll be in the yard on shoot day</div><div class="sub">Candid walking the yard preferred (35mm). Named MD photo is a major trust signal on the About and Team pages.</div></div><span class="tag tag-a">THIS WEEK</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Staff headcount + names for portrait list</div><div class="sub">Yard manager, apprentice, office/sales lead, welder/cage maker, drivers — confirm who'll be present on shoot day and their names/job titles.</div></div><span class="tag tag-a">THIS WEEK</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Product samples set aside for studio still-life</div><div class="sub">One example of: slot panel, cattle slat, retaining L-block, bespoke cast. Set aside before shoot day.</div></div><span class="tag tag-b">BUILD</span></div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="p3"></div></div>
+    <div class="progress-label" id="l3">0 / 8 done</div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="badge badge-amber">4</span>
+      <h2>Product data — for spec tables, quote tool &amp; schema markup</h2>
+      <span class="count">6 items</span>
+    </div>
+    <div class="items" id="s4">
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Full stocklist / product database</div><div class="sub">Export from Sage/Xero, spreadsheet, or PDF catalogue. Need dimensions, weights, concrete grades per product family. NOT a page per SKU — we need the raw data to drive the spec tables.</div></div><span class="tag tag-a">THIS WEEK</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Lead times by product family</div><div class="sub">Typical turnaround for: cattle cubicles / slurry panels / retaining walls / bespoke. Drives the "Need this in X weeks?" CTAs across the site.</div></div><span class="tag tag-a">THIS WEEK</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Delivery coverage — postcodes/counties + cost zones</div><div class="sub">Where do you actually deliver? Free zone, standard zone, premium zone? Even rough — we'll turn it into a map and CTA copy.</div></div><span class="tag tag-a">THIS WEEK</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Supply-only vs fitted split — by product family</div><div class="sub">Which products do you install? Which are supply-only? Which both? Affects every product page CTA.</div></div><span class="tag tag-a">THIS WEEK</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">OEM relationships — DeLaval, Lely, GEA</div><div class="sub">Are you on any approved-supplier lists? Any paperwork? Major trust signal for milking robot bases + cubicle pages.</div></div><span class="tag tag-b">BUILD</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Product warranties — terms and limits</div><div class="sub">Do you offer written warranties? What's covered, for how long? Goes on every product page as a trust signal.</div></div><span class="tag tag-b">BUILD</span></div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="p4"></div></div>
+    <div class="progress-label" id="l4">0 / 6 done</div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="badge badge-amber">5</span>
+      <h2>Customers, testimonials &amp; case studies</h2>
+      <span class="count">4 items</span>
+    </div>
+    <div class="items" id="s5">
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Any existing testimonials — emails, letters, texts, Google reviews</div><div class="sub">Forward anything — even a WhatsApp "good job lads." We'll work with it and get written permission to use.</div></div><span class="tag tag-r">TODAY</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Any existing case study documentation</div><div class="sub">Even informal — job photos on a phone, a delivery note with a big order, an old Facebook post about a project. Anything we can build a case study from.</div></div><span class="tag tag-r">TODAY</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Top 30 customers by revenue — name, sector, main products</div><div class="sub">CSV, spreadsheet or a handwritten list. Helps us understand the revenue mix and target the right personas in the copy.</div></div><span class="tag tag-a">THIS WEEK</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">5 customers willing to give named testimonials + appear in case studies</div><div class="sub">Name + phone/email + what they bought + brief description of job. We'll contact them. At least one per sector (ag, civils, bespoke).</div></div><span class="tag tag-a">THIS WEEK</span></div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="p5"></div></div>
+    <div class="progress-label" id="l5">0 / 4 done</div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="badge badge-navy">6</span>
+      <h2>Decisions to lock — can't write the site until these are confirmed</h2>
+      <span class="count">10 items</span>
+    </div>
+    <div class="items" id="s6">
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Founding year — is it 1971?</div><div class="sub">The Ltd was incorporated 2009 (formerly South Molton Concrete Products Ltd) but site says "50+ years." When did the trading business actually start? The answer drives the heritage headline across the whole site.</div></div><span class="tag tag-r">TODAY</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">The 2022 incident — agreed positioning</div><div class="sub">It's on Page 1 Google for WCCP + Holsworthy. We need an agreed line: silent / brief mention / safety-forward narrative. This affects the About page and any H&amp;S content.</div></div><span class="tag tag-r">TODAY</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Logo — keep as-is, wordmark refresh, or full redesign?</div><div class="sub">We have a working CSS logo in the build already. A full redesign is a separate brief and cost. Need a decision today so it doesn't hold up the build.</div></div><span class="tag tag-r">TODAY</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Phone numbers — which go on the site?</div><div class="sub">01409 281437 (main) and 07970 520123 (mobile) — both? Main only? Is there a dedicated quotes line?</div></div><span class="tag tag-r">TODAY</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Email addresses — which are live and monitored?</div><div class="sub">Confirm which of info@, quotes@, accounts@ are real inboxes that get checked. Don't want to publish an address nobody reads.</div></div><span class="tag tag-r">TODAY</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">WhatsApp Business number</div><div class="sub">Currently using 07970 520123 — is this the WhatsApp number? Separate Business account? We have WhatsApp CTAs built into the site that need a confirmed number.</div></div><span class="tag tag-r">TODAY</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Revenue split — agricultural vs civils vs bespoke (approx. %)</div><div class="sub">Rough % is fine. Shapes the homepage sector weighting and which case studies get top billing.</div></div><span class="tag tag-r">TODAY</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Launch deadline — Devon County Show (21–23 May) or Royal Cornwall (4–6 June)?</div><div class="sub">A hard deadline shapes the whole build schedule. If no show deadline, confirm the target window so we can work backwards.</div></div><span class="tag tag-r">TODAY</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Tone of voice — plain Devon English with named customers — approved?</div><div class="sub">Kim to read and sign off sample copy before we write the full site. Verbal approval today; written sign-off within 7 days.</div></div><span class="tag tag-a">THIS WEEK</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Trademark application — proceed with IPO Class 19 filing?</div><div class="sub">£170/class. Our working assumption is no registered TM exists. Worth filing during the build. Kim's call. Takes ~4 months to register.</div></div><span class="tag tag-b">BUILD</span></div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="p6"></div></div>
+    <div class="progress-label" id="l6">0 / 10 done</div>
+  </div>
+
+  <!-- SECTION 7 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="badge badge-navy">7</span>
+      <h2>Company info — About page, trust signals &amp; schema markup</h2>
+      <span class="count">7 items</span>
+    </div>
+    <div class="items" id="s7">
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Staff list — names, job titles, years at WCCP</div><div class="sub">For the Team page. Even informal — "Dave, yard foreman, 18 years." Named people are the single biggest trust signal for a Devon trade business.</div></div><span class="tag tag-a">THIS WEEK</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Kim's bio — background, how he came to WCCP, what he cares about</div><div class="sub">3–5 sentences in his own words or notes. We'll write it up properly. MD bio builds enormous trust for a small B2B business.</div></div><span class="tag tag-a">THIS WEEK</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Accreditation status — confirm which are currently held and valid</div><div class="sub">ISO 9001 / ISO 14001 / ISO 45001 / CHAS / Constructionline level / MPA Precast / FPS / Made in Britain / NBS Source / Barbour Product Search — tick what's current.</div></div><span class="tag tag-a">THIS WEEK</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Andigestion / Severn Trent adjacency — confirm the story</div><div class="sub">WCCP yard is adjacent to Holsworthy Biogas Plant (now owned by Severn Trent). Customer? Neighbour? Strategic partner? Affects the AD plant components page.</div></div><span class="tag tag-r">TODAY</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">H&amp;S summary — RIDDOR count, named H&amp;S manager, current training programme</div><div class="sub">For the Safety/Standards page. A strong, transparent H&amp;S record is a reputational asset — especially important context.</div></div><span class="tag tag-b">BUILD</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">EPDs / carbon footprint data — do they exist?</div><div class="sub">Environmental Product Declarations, A1–A3 carbon data, any sustainability reporting. Major civils framework requirement. If none exist, flag for year 1.</div></div><span class="tag tag-b">BUILD</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Succession horizon — is Kim planning to grow, sell, or hand over?</div><div class="sub">Affects how we position the brand — growth story vs. legacy story vs. acquisition story. Shapes the About page narrative significantly.</div></div><span class="tag tag-r">TODAY</span></div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="p7"></div></div>
+    <div class="progress-label" id="l7">0 / 7 done</div>
+  </div>
+
+  <!-- SECTION 8: Rebecca's shot list -->
+  <div class="section">
+    <div class="section-header">
+      <span class="badge badge-navy">8</span>
+      <h2>Rebecca's shot list — full photography &amp; video brief</h2>
+      <span class="count">35 shots + 3 video briefs</span>
+    </div>
+    <div style="padding: 12px 18px 10px; background: #fffbeb; border-bottom: 1px solid #fde68a;">
+      <p style="font-size: 12.5px; font-weight: 600; color: #92400e;">
+        📋 Share this list with Kim today so he can brief his team and arrange farm visits before shoot day.
+        Photographer: Devon-based, documentary/architectural style, CAA-registered drone licence, £5m+ public liability.
+        Book on a forecast-overcast day — flat soft light is best for concrete. Budget: £4,000–6,500 inclusive of edit.
+      </p>
+    </div>
+
+    <p class="sub-heading">Day 1 — Factory, yard &amp; staff (Holsworthy/Chilsworthy site)</p>
+    <div class="items" id="s8a">
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Wide hero — yard at first light</div><div class="sub">Stacked products in foreground, factory and sky behind. Low ground fog if possible. Tripod, eye level. This is the homepage hero candidate.</div></div><span class="tag tag-p">PHOTO</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Approach from the road — main gate and signage</div><div class="sub">Shows scale of operation in context. The "arriving at WCCP" shot — sets the scene for the About page.</div></div><span class="tag tag-p">PHOTO</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Detail of yard signage and weathered concrete texture</div><div class="sub">Close up on the character of the place. Good for hero backgrounds across the site.</div></div><span class="tag tag-p">PHOTO</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Lorries lined up at end of day — golden hour</div><div class="sub">Telephoto compression. Shows fleet size and scale of delivery operation. Strong trust signal.</div></div><span class="tag tag-p">PHOTO</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">The pour — concrete going into the mould</div><div class="sub">Close on vibrating poker entering wet mix. Intentional motion blur on hands. One of the most important process shots on the site.</div></div><span class="tag tag-p">PHOTO</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Cure — slabs under polythene with condensation</div><div class="sub">Macro detail. Shows the care taken — concrete needs time, it's not rushed. Good for product pages.</div></div><span class="tag tag-p">PHOTO</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Demould — staff striking the shutters</div><div class="sub">Candid, not posed. The moment of reveal. Shows physical effort and craft. Strong for process section.</div></div><span class="tag tag-p">PHOTO</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Reinforcement cage being lifted by overhead crane</div><div class="sub">Wide shot. Shows the scale of the work and the engineering inside each product. Good for About and product pages.</div></div><span class="tag tag-p">PHOTO</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Hands rough-screeding — close macro</div><div class="sub">Fingers, mix, trowel. The dignity of skilled manual work. Strong social media shot.</div></div><span class="tag tag-p">PHOTO</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">QC inspection — staff member with notebook beside cured product</div><div class="sub">Environmental portrait, found light if possible. Shows quality control is real, not just a line on the website.</div></div><span class="tag tag-p">PHOTO</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">End of shift — boots, hi-vis on pegs, low light</div><div class="sub">No faces needed. Texture and humanity. Good for About page and social.</div></div><span class="tag tag-p">PHOTO</span></div>
+    </div>
+
+    <p class="sub-heading">Day 1 — Staff portraits (same framing for every person — consistent, dignified)</p>
+    <div class="items" id="s8b">
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Kim Rumsam — MD/owner</div><div class="sub">Walking the yard, candid not posed. 35mm. The most important portrait on the site — named MD = trust.</div></div><span class="tag tag-p">PORTRAIT</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Yard manager — half-body, against batching plant, direct gaze</div><div class="sub">Name, job title and years of service needed from Kim before shoot day.</div></div><span class="tag tag-p">PORTRAIT</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Apprentice — same framing as yard manager</div><div class="sub">Generational pairing is a strong story — veteran beside newest recruit side by side on the Team page.</div></div><span class="tag tag-p">PORTRAIT</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Office / sales lead — at desk with product samples or plans visible</div><div class="sub">The person customers actually speak to when they call. Put a face to the voice.</div></div><span class="tag tag-p">PORTRAIT</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Welder / cage maker — with tools, steel reinforcement cages behind</div><div class="sub">Shows in-house engineering capability. Strong visual for product and About pages.</div></div><span class="tag tag-p">PORTRAIT</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Drivers — two together, beside the lorry cab</div><div class="sub">Combined years of service as a caption. Shows reliability and continuity of the team.</div></div><span class="tag tag-p">PORTRAIT</span></div>
+    </div>
+
+    <p class="sub-heading">Day 2 — Drone (CAA-registered photographer required, A2 CofC minimum)</p>
+    <div class="items" id="s8c">
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Vertical top-down of yard — stacked products as graphic pattern</div><div class="sub">100m altitude. Rows of precast units from above look stunning. Key homepage hero candidate.</div></div><span class="tag tag-p">DRONE</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Oblique — factory + Devon farmland context, golden hour</div><div class="sub">Shows WCCP is rooted in the landscape — rural, Devon, real. Strong for brand film intro.</div></div><span class="tag tag-p">DRONE</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Install on farm — drone over finished slurry tank or silage clamp, tractor for scale</div><div class="sub">Coordinate with one of the customer farm visits. Shows product in use, not just in the yard.</div></div><span class="tag tag-p">DRONE</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Lorry travelling a Devon B-road — hedgerows either side, drone tracking</div><div class="sub">Cinematic. The "we come to you" delivery shot. Strong for social and the brand film.</div></div><span class="tag tag-p">DRONE</span></div>
+    </div>
+
+    <p class="sub-heading">Day 2 — Customer farm visits (2 farms, pre-arranged by Kim, signed permission required)</p>
+    <div class="items" id="s8d">
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Dairy farmer — named, beside completed slurry store, cattle in shot if possible</div><div class="sub">The single most valuable customer photo on the site. Real farmer, real name, real product installed.</div></div><span class="tag tag-p">CUSTOMER</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Civil contractor foreman on-site beside retaining wall install</div><div class="sub">Hard hat, honest, environmental portrait. Shows WCCP works for professional contractors, not just farms.</div></div><span class="tag tag-p">CUSTOMER</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Two-generation farm family — father + adult son/daughter beside their barn or product</div><div class="sub">Succession story shot. Incredibly powerful for the agricultural audience — they understand passing the farm on.</div></div><span class="tag tag-p">CUSTOMER</span></div>
+    </div>
+
+    <p class="sub-heading">Studio / half day — product close-ups &amp; atmosphere shots</p>
+    <div class="items" id="s8e">
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Slot panel — texture macro, raking light to show concrete grain</div><div class="sub">Kim to set aside a sample before shoot day. The material itself is the product — show it properly.</div></div><span class="tag tag-p">STUDIO</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Cattle slat — full elevation on neutral backdrop, studio light</div><div class="sub">Clean product shot for the cattle cubicle and slurry channel pages.</div></div><span class="tag tag-p">STUDIO</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Retaining wall L-block — three-quarter studio, with hand or ruler for scale</div><div class="sub">People need to understand how big these things are. A hand beside it makes it real.</div></div><span class="tag tag-p">STUDIO</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Tea break — mugs, hands, no faces needed</div><div class="sub">Texture and humanity. Good for About page and social. Takes 5 minutes.</div></div><span class="tag tag-p">ATMOS</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Order paperwork — clipboard, biro, real handwriting, macro</div><div class="sub">The "we take your order seriously" shot. No staging needed — just photograph the real thing.</div></div><span class="tag tag-p">ATMOS</span></div>
+    </div>
+
+    <p class="sub-heading">Video — capture as B-roll on the same shoot days (saves £3–4k vs separate days)</p>
+    <div class="items" id="s8f">
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Process B-roll — pour, demould, lorry loading</div><div class="sub">For a 60–90 second product process video. Shoot locked-off and handheld versions of each step. No narration needed on the day — we add voiceover in edit.</div></div><span class="tag tag-g">VIDEO</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Customer interview — camera A (talking head) + camera B (locked-off cutaway)</div><div class="sub">For case study video. Kim makes the intro. 10–15 minutes with the farmer or contractor on their site. Questions: what did you need, what did WCCP do, what's it been like since?</div></div><span class="tag tag-g">VIDEO</span></div>
+      <div class="item"><input type="checkbox" onchange="tick(this)"><div class="body"><div class="label">Drone B-roll — yard and Devon countryside</div><div class="sub">For the 90-second brand film. Slow passes over yard, stacked product, lorry on road, farm in distance. Atmospheric wide shots, no script needed on the day.</div></div><span class="tag tag-g">VIDEO</span></div>
+    </div>
+
+    <div style="padding: 10px 18px 12px; background: #f9fafb; border-top: 1px solid var(--border);">
+      <p style="font-size: 12px; color: var(--cast);">
+        <strong style="color:var(--navy);">Total deliverables from photographer:</strong>
+        35 hero shots edited + ~150 supporting/alternate shots · All RAW files to a Google Drive Kim owns ·
+        Edited JPGs at 3 sizes (web hero, web product, social square) · Drone stills + B-roll clips ·
+        Full commercial usage rights in perpetuity.
+      </p>
+    </div>
+  </div>
+
+  <!-- Notes -->
+  <div class="notes-section">
+    <div class="notes-header">Meeting notes</div>
+    <div class="notes-grid">
+      <div class="notes-col">
+        <h3>What Kim said / decisions made</h3>
+        <textarea placeholder="Key answers, confirmations, anything to follow up..."></textarea>
+      </div>
+      <div class="notes-col">
+        <h3>Actions before next meeting</h3>
+        <textarea placeholder="Who's doing what, by when..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overall progress -->
+  <div class="section" style="margin-bottom:8px;">
+    <div style="padding: 16px 18px; display:flex; align-items:center; gap:16px;">
+      <div style="flex:1;">
+        <div style="font-weight:700; font-size:13px; margin-bottom:6px;">Overall progress</div>
+        <div class="progress-bar" style="margin:0; height:8px;"><div class="progress-fill" id="p-total"></div></div>
+      </div>
+      <div style="font-size:22px; font-weight:800; color:var(--navy);" id="l-total">0 / ?</div>
+    </div>
+  </div>
+
+  <div class="footer">WCCP internal meeting checklist · 13 May 2026 · Not linked publicly · Print with Ctrl/Cmd+P</div>
+
+</div>
+
+<script>
+  function toggleHow(btn) {
+    var block = btn.nextElementSibling;
+    var open = block.classList.toggle('open');
+    btn.textContent = (open ? '▼' : '▶') + ' How to do this';
+  }
+
+  function tick(cb) {
+    var item = cb.closest('.item');
+    if (cb.checked) item.classList.add('done');
+    else item.classList.remove('done');
+    updateProgress();
+  }
+
+  function updateProgress() {
+    var sections = ['s1','s2','s3','s4','s5','s6','s7','s8a','s8b','s8c','s8d','s8e','s8f'];
+    var totalDone = 0, totalAll = 0;
+    sections.forEach(function(id, i) {
+      var section = document.getElementById(id);
+      if (!section) return;
+      var all = section.querySelectorAll('input[type="checkbox"]');
+      var done = section.querySelectorAll('input[type="checkbox"]:checked');
+      var pct = all.length ? Math.round((done.length / all.length) * 100) : 0;
+      var fill = document.getElementById('p' + (i + 1));
+      var label = document.getElementById('l' + (i + 1));
+      if (fill) fill.style.width = pct + '%';
+      if (label) label.textContent = done.length + ' / ' + all.length + ' done';
+      totalDone += done.length;
+      totalAll += all.length;
+    });
+    var totalFill = document.getElementById('p-total');
+    var totalLabel = document.getElementById('l-total');
+    var totalPct = totalAll ? Math.round((totalDone / totalAll) * 100) : 0;
+    if (totalFill) totalFill.style.width = totalPct + '%';
+    if (totalLabel) totalLabel.textContent = totalDone + ' / ' + totalAll;
+  }
+
+  updateProgress();
+</script>
+</body>
+</html>

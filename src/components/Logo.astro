@@ -28,7 +28,7 @@ interface Props {
 
 const {
   class: className = '',
-  withWordmark = true,
+  withWordmark = false,
 } = Astro.props;
 ---
 
@@ -43,11 +43,8 @@ const {
            overflow-hidden flex-shrink-0"
     aria-hidden="true"
   >
-    {/* Hairline yellow inner stroke detail */}
-    <span class="absolute inset-[3px] rounded-md border border-yellow-400/35 pointer-events-none"></span>
-
     {/* Stacked wordmark inside the square */}
-    <span class="relative flex flex-col items-center justify-center leading-[0.95] text-yellow-400 select-none">
+    <span class="relative flex flex-col items-start justify-center leading-[0.95] text-yellow-400 select-none pl-[5px]">
       <span class="wccp-mark-line block">WEST</span>
       <span class="wccp-mark-line block">COUNTRY</span>
       <span class="wccp-mark-line wccp-mark-line--rule block">CONCRETE</span>
@@ -89,11 +86,9 @@ const {
       font-size: 9px;
     }
   }
-  /* Hairline rule between WEST/COUNTRY and CONCRETE/PRODUCTS halves */
   .wccp-lockup .wccp-mark-line--rule {
     margin-top: 2px;
     padding-top: 2px;
-    border-top: 0.5px solid rgba(255, 240, 5, 0.45);
   }
 
   /* === Hover state — subtle scale + soft shadow + wordmark rule extension.

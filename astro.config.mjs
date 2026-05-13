@@ -19,7 +19,7 @@ export default defineConfig({
       // Exclude noindex/demo pages from the public sitemap. The /news/example-post
       // page is marked noindex in BaseLayout and exists only as a content template.
       // The /intake hub is also excluded — internal-only.
-      filter: (page) => !page.includes('/news/example-post') && !page.includes('/intake'),
+      filter: (page) => !page.includes('/news/example-post') && !page.includes('/intake') && !page.includes('/wccpmeeting'),
     }),
     ...(sentryEnabled
       ? [
