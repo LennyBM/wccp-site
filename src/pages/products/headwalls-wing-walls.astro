@@ -186,35 +186,19 @@ const faqSchema = {
   </section>
 
   <!-- Gallery -->
-  <section id="gallery" class="bg-bone-200 py-20">
-    <div class="container-wccp">
-      <div class="max-w-2xl mb-10">
-        <p class="eyebrow text-cast mb-3">The range</p>
-        <h2 class="font-display text-display-lg mb-4 text-navy">Headwalls in service.</h2>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {[
-          'Standard 900mm headwall installed on a Devon highway outfall',
-          'Splayed wing walls — 45° detail at embankment retention',
-          'Trash screen and hinged maintenance access — close-up',
-          '1800mm pipe headwall being lifted into position by 50t crane',
-          'Scour apron detail at the toe — stone pitching and concrete',
-          'Pipe socket cast-in detail before delivery',
-          'Bespoke 3m box culvert outfall with paired wing walls',
-          'CIRIA C786-compliant general arrangement drawing',
-        ].map((d) => (
-          <figure>
-            <div class="aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
-              <div>
-                <p class="text-cast-600 text-sm font-mono">ðŸ“· Photo needed</p>
-                <p class="text-cast text-xs mt-2">{d}</p>
-              </div>
-            </div>
-          </figure>
-        ))}
-      </div>
-    </div>
-  </section>
+  <div id=”gallery” class=”section-reveal”>
+  <ProductGallery
+    eyebrow=”The range”
+    heading=”Headwalls in stock.”
+    background=”bone”
+    cols={3}
+    images={[
+      { src: '/images/products/headwalls/wccp-headwalls-trapezoid-stacked-with-culvert.jpg', alt: 'Precast concrete headwall sections stacked on pallets with a box culvert visible behind at the WCCP yard, Chilsworthy, Devon', caption: 'Headwalls stacked · culvert behind' },
+      { src: '/images/products/headwalls/wccp-headwalls-trapezoid-stacked-angle.jpg', alt: 'Precast concrete trapezoid headwall units with lifting holes stacked three-high at WCCP Devon, showing tapered profile detail', caption: 'Trapezoid profile · lifting holes' },
+      { src: '/images/products/headwalls/wccp-headwalls-yard-stock-pyramid.jpg', alt: 'Wide view of precast concrete headwall and catchpit sections stacked in pyramid formation at the WCCP yard, Chilsworthy, Devon', caption: 'Yard stock · headwall pyramid' },
+    ]}
+  />
+  </div>
 
   <!-- Applications -->
   <section class="bg-white py-20">
