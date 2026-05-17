@@ -112,12 +112,10 @@ const capabilities = [
         role="img"
         aria-label="Live still from the Holsworthy yard, panel bay 3"
       >
-        <div class="absolute inset-0 bg-cast-100 flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
-          <div>
-            <p class="text-cast-600 text-sm font-mono">📷 Photo needed</p>
-            <p class="text-cast text-xs mt-2">Holsworthy yard panel bay 3 — recent webcam still</p>
-          </div>
-        </div>
+        <picture>
+          <source srcset="/images/wccp-yard-aerial-chilsworthy-holsworthy.webp" type="image/webp" />
+          <img src="/images/wccp-yard-aerial-chilsworthy-holsworthy.png" alt="Aerial view of the WCCP precast yard at Chilsworthy, Holsworthy" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
+        </picture>
 
         <!-- Timestamp badge -->
         <div class="absolute top-4 right-4 z-10">

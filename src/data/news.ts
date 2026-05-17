@@ -8,7 +8,9 @@ export type NewsPost = {
   iso: string;           // ISO date, e.g. '2026-04-15'
   title: string;
   excerpt: string;
-  imageDescription: string; // brief — used in 📷 Photo needed placeholder until real photography lands
+  imageDescription: string; // brief — used in placeholder until real photography lands
+  image?: string;        // optional real image path (public/-served)
+  imageAlt?: string;
 };
 
 export const newsPosts: NewsPost[] = [
@@ -21,6 +23,8 @@ export const newsPosts: NewsPost[] = [
     excerpt:
       'The Slurry Infrastructure Grant Round 4 is open — £74 million on the table, deadline 30 September 2026. Here is what to look at first if you might apply.',
     imageDescription: 'Aerial drone shot of a completed slurry storage tank on a Devon dairy farm — WCCP installed.',
+    image: '/images/case-studies/dairy-farm-slurry.jpg',
+    imageAlt: 'Dairy farm slurry storage — WCCP precast installation',
   },
   {
     slug: 'chilsworthy-yard-modernisation',
@@ -29,8 +33,10 @@ export const newsPosts: NewsPost[] = [
     iso: '2026-03-01',
     title: 'Inside our 2023 move to Chilsworthy.',
     excerpt:
-      '46 jobs, modern plant, a new circular-economy footprint — and the Severn Trent biogas neighbour that helps make it work. The story of the move from Shebbear.',
+      '38 jobs, modern plant, a new circular-economy footprint — and the Severn Trent biogas neighbour that helps make it work. The story of the move from Shebbear.',
     imageDescription: 'Wide shot of the Chilsworthy yard from above showing the casting beds, batching plant and stockyard.',
+    image: '/images/wccp-yard-aerial-chilsworthy-holsworthy.png',
+    imageAlt: 'Aerial view of the WCCP Chilsworthy yard showing casting beds and batching plant',
   },
   {
     slug: 'example-post',
@@ -39,8 +45,10 @@ export const newsPosts: NewsPost[] = [
     iso: '2026-03-12',
     title: 'New 46-job yard opens at Holsworthy.',
     excerpt:
-      'After two years of planning and a winter of fit-out, the new yard near Chilsworthy is open. Better moulds, better cranes, more capacity — and 46 new jobs for North Devon.',
+      'After two years of planning and a winter of fit-out, the new yard near Chilsworthy is open. Better moulds, better cranes, more capacity — and 38 new jobs for North Devon.',
     imageDescription: 'Group photo of the WCCP team in front of the new Chilsworthy yard signage on opening day.',
+    image: '/images/process/demould.jpg',
+    imageAlt: 'Precast concrete being demoulded at the WCCP Chilsworthy yard',
   },
   {
     slug: '#',
@@ -51,6 +59,8 @@ export const newsPosts: NewsPost[] = [
     excerpt:
       'Three days at the NAEC Stoneleigh. Highlights: more interest than ever in slurry covers, plenty of robot-base questions, and a steady queue at the cubicle stand.',
     imageDescription: 'WCCP stand at Dairy-Tech 2026 with cubicle and trough display, team members talking to visitors.',
+    image: '/images/team/wccp-team-kim-claire-yorkshire-agricultural-show.jpg',
+    imageAlt: 'Kim and Claire at the WCCP exhibition stand',
   },
   {
     slug: '#',
@@ -61,6 +71,8 @@ export const newsPosts: NewsPost[] = [
     excerpt:
       "DEFRA have confirmed the Slurry Infrastructure Grant Round 4 details. We've updated our guide and our calculator to match the new eligibility rules.",
     imageDescription: 'Close-up shot of a finished slurry channel installation with prestressed wall panels behind.',
+    image: '/images/products/slurry-handling/wccp-slurry-channels-rows-with-factory.jpg',
+    imageAlt: 'Precast slurry channels stacked at the WCCP yard with factory buildings behind',
   },
   {
     slug: '#',
@@ -71,6 +83,8 @@ export const newsPosts: NewsPost[] = [
     excerpt:
       "We're back at LAMMA at the NEC. Cubicles, troughs, and the full slurry range on display. Bring your drawings and we'll quote on the stand.",
     imageDescription: 'WCCP team at LAMMA stand 4.730 with branded backdrop and product samples.',
+    image: '/images/team/wccp-team-claire-west-country-farming-machinery-show.jpg',
+    imageAlt: 'Claire at a West Country farming and machinery show',
   },
   {
     slug: '#',
@@ -81,6 +95,8 @@ export const newsPosts: NewsPost[] = [
     excerpt:
       'Our new 280mm prestressed panel is now in stock. Engineered for slurry depths to 4.5m, with the same lifting and joint detail as the rest of the range.',
     imageDescription: 'Stack of 280mm prestressed panels in the Chilsworthy yard with crane in background, showing scale.',
+    image: '/images/products/concrete-panels/wccp-concrete-panels-stacked-colour-coded-yard.jpg',
+    imageAlt: 'Prestressed concrete panels colour-coded and stacked at the WCCP yard',
   },
   {
     slug: '#',
@@ -91,6 +107,8 @@ export const newsPosts: NewsPost[] = [
     excerpt:
       "Show season is back. Here's where you'll find us: Royal Cornwall, Devon County, Bath & West, North Devon, Great Yorkshire and the Royal Welsh.",
     imageDescription: 'Photo from a previous county show — WCCP stand with footbath display and team in branded polos.',
+    image: '/images/team/wccp-team-kim-claire-north-devon-show.jpg',
+    imageAlt: 'Kim and Claire at the WCCP stand at the North Devon Show',
   },
   {
     slug: '#',
@@ -101,6 +119,8 @@ export const newsPosts: NewsPost[] = [
     excerpt:
       "DEFRA hasn't published the FETF 2026 list yet, but here's our read on which of our products are likely to qualify based on the 2024 and 2025 rounds.",
     imageDescription: 'Photo of a DEFRA-eligible product such as a feed trough or footbath in situ on a working farm.',
+    image: '/images/products/home/wccp-home-footbath-at-bath-and-west-show-scaled.jpg',
+    imageAlt: 'WCCP precast cattle footbath on display at the Bath and West Show',
   },
   {
     slug: '#',
@@ -111,5 +131,7 @@ export const newsPosts: NewsPost[] = [
     excerpt:
       "Driver Jake passed his C+E ticket this month. We sponsored the training because he's the right person and the right person is worth investing in.",
     imageDescription: 'Photo of driver Jake with his C+E pass certificate, ideally beside one of the WCCP delivery lorries.',
+    image: '/images/team/wccp-team-jake-c-e-hgv-license-pass.jpg',
+    imageAlt: 'Jake with his C+E HGV licence pass certificate at WCCP',
   },
 ];

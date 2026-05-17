@@ -27,28 +27,34 @@ const sectors = [
     label: 'Agricultural',
     desc: 'Slurry, cubicles, troughs, silage clamps, milking robot bases.',
     icon: 'M3 21h18M5 21V8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v13M9 21V11M15 21V11',
+    image: '/images/products/cattle-cubicles-wide.jpg',
+    imageAlt: 'WCCP precast cattle cubicles installed on a dairy farm',
   },
   {
     href: '/sectors/civils',
     label: 'Civils & Infrastructure',
     desc: 'Retaining walls, culverts, padstones, vehicle pits.',
     icon: 'M2 22h20M3 22V8l9-6 9 6v14M9 22V12h6v10',
+    image: '/images/case-studies/civils-retaining.jpg',
+    imageAlt: 'WCCP precast retaining wall units on a civils site',
   },
   {
     href: '/sectors/bespoke',
     label: 'Bespoke',
     desc: "If it's precast and it can be delivered, we can make it.",
     icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5',
+    image: '/images/atmosphere/dairy-context.jpg',
+    imageAlt: 'Bespoke precast concrete products at the WCCP Holsworthy yard',
   },
 ];
 
 const flagshipProducts = [
-  { href: '/products/cattle-cubicles',        label: 'Cattle Cubicles',         meta: 'Holstein / Jersey / beef' },
-  { href: '/products/slurry-storage',         label: 'Slurry Storage',          meta: 'SSAFO 2018 · 6-month capacity' },
-  { href: '/products/prestressed-panels',     label: 'Prestressed Wall Panels', meta: '100/150/180/280mm · BS EN 14992' },
-  { href: '/products/milking-robot-bases',    label: 'Milking Robot Bases',     meta: 'DeLaval VMS · Lely Astronaut' },
-  { href: '/products/retaining-walls',        label: 'Retaining Walls',         meta: 'King Post · L-Block · Cantilever' },
-  { href: '/products/silage-clamp-walls',     label: 'Silage Clamp Walls',      meta: 'C40/50 · sulphate-resisting' },
+  { href: '/products/cattle-cubicles',        label: 'Cattle Cubicles',         meta: 'Holstein / Jersey / beef',              image: '/images/products/cubicles/wccp-cubicles-portable-cubicles-1024x768.jpg', imageAlt: 'WCCP precast portable cattle cubicles' },
+  { href: '/products/slurry-storage',         label: 'Slurry Storage',          meta: 'SSAFO 2018 · 6-month capacity',         image: '/images/products/slurry-handling/wccp-slurry-channels-rows-with-factory.jpg', imageAlt: 'WCCP precast slurry channels stacked at the yard' },
+  { href: '/products/prestressed-panels',     label: 'Prestressed Wall Panels', meta: '100/150/180/280mm · BS EN 14992',        image: '/images/products/concrete-panels/wccp-concrete-panels-prestressed-concrete-panels.jpg', imageAlt: 'WCCP prestressed concrete wall panels' },
+  { href: '/products/milking-robot-bases',    label: 'Milking Robot Bases',     meta: 'DeLaval VMS · Lely Astronaut',           image: '/images/products/lely-milking-robot-bases/wccp-lely-milking-robot-bases-lely-a4-sump-base-and-surround.png', imageAlt: 'WCCP Lely A4 milking robot sump base and surround' },
+  { href: '/products/retaining-walls',        label: 'Retaining Walls',         meta: 'King Post · L-Block · Cantilever',       image: '/images/products/retaining-walls/wccp-retaining-walls-l-t-wall-1024x732.jpg', imageAlt: 'WCCP precast L-block retaining wall' },
+  { href: '/products/silage-clamp-walls',     label: 'Silage Clamp Walls',      meta: 'C40/50 · sulphate-resisting',            image: '/images/products/home/wccp-home-free-standing-wall-section.jpg', imageAlt: 'WCCP precast free-standing wall section for silage clamps' },
 ];
 
 const stats = [
@@ -228,20 +234,11 @@ const trustLogos = ['CE / UKCA', 'BS EN 14992', 'BS 8500-1:2023', 'Eurocode 2', 
     <div class="grid md:grid-cols-3 gap-6 reveal-stagger">
       {sectors.map((s) => (
         <a href={s.href} class="card overflow-hidden group block">
-          <!-- Image area — placeholders pending real WCCP yard photography -->
-          <div class="aspect-[4/3] bg-cast-100 relative overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-8 text-center">
-            <div>
-              <p class="text-cast-600 text-sm font-mono">📷 Photo needed</p>
-              {s.href === '/sectors/agricultural' && (
-                <p class="text-cast text-xs mt-2">Cattle in WCCP cubicles or feeding at WCCP feed troughs — Devon dairy farm</p>
-              )}
-              {s.href === '/sectors/civils' && (
-                <p class="text-cast text-xs mt-2">WCCP precast retaining walls or culverts on a UK civils site</p>
-              )}
-              {s.href === '/sectors/bespoke' && (
-                <p class="text-cast text-xs mt-2">Bespoke WCCP precast units on pallets at the Holsworthy yard</p>
-              )}
-            </div>
+          <div class="aspect-[4/3] bg-cast-100 relative overflow-hidden">
+            <picture>
+              <source srcset={s.image.replace(/\.(jpe?g|png)$/i, '.webp')} type="image/webp" />
+              <img src={s.image} alt={s.imageAlt} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" loading="lazy" decoding="async" />
+            </picture>
           </div>
           <div class="p-6">
             <h3 class="font-display text-2xl font-bold text-navy mb-2 transition-colors duration-200 group-hover:text-ember">
@@ -281,11 +278,11 @@ const trustLogos = ['CE / UKCA', 'BS EN 14992', 'BS 8500-1:2023', 'Eurocode 2', 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 reveal-stagger">
         {flagshipProducts.map((p) => (
           <a href={p.href} class="card p-6 group block">
-            <div class="mb-5 relative aspect-[4/3] bg-cast-100 rounded overflow-hidden flex items-center justify-center border-2 border-dashed border-cast-300 p-6 text-center">
-              <div>
-                <p class="text-cast-600 text-sm font-mono">📷 Photo needed</p>
-                <p class="text-cast text-xs mt-2 leading-snug">{p.label} — finished installation, working scale visible</p>
-              </div>
+            <div class="mb-5 relative aspect-[4/3] bg-cast-100 rounded overflow-hidden">
+              <picture>
+                <source srcset={p.image.replace(/\.(jpe?g|png)$/i, '.webp')} type="image/webp" />
+                <img src={p.image} alt={p.imageAlt} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" loading="lazy" decoding="async" />
+              </picture>
               <div aria-hidden="true" class="absolute top-2 right-2 w-2 h-2 bg-ember rounded-full transition-all duration-400 group-hover:scale-150 group-hover:shadow-glow-ember pointer-events-none"></div>
             </div>
             <h3 class="font-display text-lg font-bold text-navy mb-1 transition-colors duration-200 group-hover:text-ember">
