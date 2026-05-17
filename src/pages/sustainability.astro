@@ -7,9 +7,6 @@ const standards = [
   { name: 'BS EN 14992', body: 'European standard for precast concrete wall elements. All prestressed and reinforced wall panels conform.', status: 'current' },
   { name: 'BS 8500-1:2023', body: 'UK specification for concrete. Mix designs documented and traceable, including sulphate-resisting and low-permeability variants.', status: 'current' },
   { name: 'BS EN 1992 (Eurocode 2)', body: 'Design of concrete structures. All bespoke and structural elements designed and detailed to Eurocode 2.', status: 'current' },
-  { name: 'ISO 9001 — Quality management', body: 'Quality management system implementation underway. Internal procedures aligned; external certification scheduled.', status: 'in-progress' },
-  { name: 'ISO 14001 — Environmental management', body: 'Environmental management system being formalised at the new Chilsworthy site. Certification target 2026.', status: 'in-progress' },
-  { name: 'BES 6001 — Responsible sourcing', body: 'Responsible sourcing certification under preparation. Aggregate and cement supply chains being audited.', status: 'in-progress' },
 ];
 
 const principles = [
@@ -34,7 +31,7 @@ const principles = [
 
 <BaseLayout
   title="Sustainability & accreditations — standards, certifications, the journey"
-  description="West Country Concrete Products holds CE/UKCA marking, conforms to BS EN 14992, BS 8500-1:2023 and BS EN 1992. ISO 9001/14001 and BES 6001 certifications in progress. Co-located with Severn Trent biogas at Chilsworthy."
+  description="West Country Concrete Products holds CE/UKCA marking, conforms to BS EN 14992, BS 8500-1:2023 and BS EN 1992. Co-located with Severn Trent biogas at Chilsworthy."
   schema="Organization"
 >
   <!-- Hero -->
@@ -77,23 +74,19 @@ const principles = [
     <div class="container-wccp">
       <div class="max-w-2xl mb-12">
         <p class="eyebrow text-cast mb-3">Accreditations & standards</p>
-        <h2 class="font-display text-display-lg">What we hold, and what's next.</h2>
+        <h2 class="font-display text-display-lg">What we hold.</h2>
         <p class="text-cast-700 text-lg mt-4">
-          Current accreditations are listed first. Certifications in progress are listed below them — we'll
-          update this page as each lands.
+          The British and European standards we conform to — covering product marking, concrete
+          specification, structural design and panel manufacture.
         </p>
       </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-4">
         {standards.map((s) => (
-          <div class={`card p-6 ${s.status === 'in-progress' ? 'border-dashed' : ''}`}>
+          <div class="card p-6">
             <div class="flex items-start justify-between gap-3 mb-3">
               <h3 class="font-display text-lg font-bold text-navy">{s.name}</h3>
-              {s.status === 'current' ? (
-                <span class="trust-badge bg-navy text-white text-xs flex-shrink-0">Current</span>
-              ) : (
-                <span class="trust-badge bg-yellow text-navy text-xs flex-shrink-0">In progress</span>
-              )}
+              <span class="trust-badge bg-navy text-white text-xs flex-shrink-0">Current</span>
             </div>
             <p class="text-cast text-sm leading-relaxed">{s.body}</p>
           </div>
@@ -119,20 +112,15 @@ const principles = [
         <a href="/contact" class="btn-secondary">Ask about a specific product</a>
       </div>
       <div class="card p-8 border-2 border-yellow bg-yellow/5">
-        <p class="eyebrow text-ember mb-3">Disclosure published Q1 2026</p>
-        <h3 class="font-display text-2xl font-bold text-navy mb-4">Read the full carbon disclosure.</h3>
+        <p class="eyebrow text-ember mb-3">Coming soon</p>
+        <h3 class="font-display text-2xl font-bold text-navy mb-4">Carbon disclosure in preparation.</h3>
         <p class="text-cast-700 leading-relaxed mb-5">
-          Embodied CO₂e per m³ for every standard WCCP mix — C32/40, C40/50 SR, C50/60 and the
-          C40/50 low-carbon mix. EPD-aligned A1–A3 figures, methodology open, reviewed quarterly.
+          We're working on embodied CO₂e per m³ figures for our standard mixes — C32/40, C40/50, C40/50 SR and C50/60. When independently verified, they'll be published here.
         </p>
         <ul class="space-y-2 text-cast text-sm mb-6">
           <li class="flex items-start gap-3">
             <span class="text-ember font-bold">·</span>
-            <span>kgCO₂e/m³ for all 4 standard mixes</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-ember font-bold">·</span>
-            <span>Benchmarked against the UK industry average</span>
+            <span>kgCO₂e/m³ for standard mixes</span>
           </li>
           <li class="flex items-start gap-3">
             <span class="text-ember font-bold">·</span>
@@ -140,11 +128,11 @@ const principles = [
           </li>
           <li class="flex items-start gap-3">
             <span class="text-ember font-bold">·</span>
-            <span>Initiatives: GGBS, on-site solar, electric loader trial, UK aggregate</span>
+            <span>Initiatives: GGBS, local aggregate, reduced transport miles</span>
           </li>
         </ul>
-        <a href="/sustainability/carbon" class="btn-yellow inline-flex items-center gap-2">
-          <span>Read the full carbon disclosure</span>
+        <a href="/contact" class="btn-yellow inline-flex items-center gap-2">
+          <span>Ask for a figure at quote stage</span>
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
             <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
             <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
@@ -186,36 +174,21 @@ const principles = [
     </div>
   </section>
 
-  <!-- EPD-readiness roadmap -->
-  {/* CLIENT: confirm exact target dates for each EPD milestone below. */}
+  <!-- EPD / carbon — aspirational, no dates claimed -->
   <section class="container-wccp py-20 border-t border-cast-100">
-    <div class="max-w-2xl mb-12">
-      <p class="eyebrow text-cast mb-3">EPD readiness</p>
-      <h2 class="font-display text-display-lg">Roadmap to a published EPD.</h2>
-      <p class="text-cast-700 text-lg mt-4">
-        Environmental Product Declarations are how architects and BREEAM assessors compare embodied
-        carbon between manufacturers. Here's where we are.
+    <div class="max-w-2xl">
+      <p class="eyebrow text-cast mb-3">What's next</p>
+      <h2 class="font-display text-display-lg mb-4">Environmental Product Declarations.</h2>
+      <p class="text-cast-700 text-lg leading-relaxed mb-4">
+        EPDs are how architects and BREEAM assessors compare embodied carbon between manufacturers.
+        We're working toward published declarations for our main product families — but we won't
+        claim dates until we're confident in them.
+      </p>
+      <p class="text-cast-700 text-lg leading-relaxed">
+        In the meantime, if you need an indicative carbon figure for a specification, ask at quote
+        stage and we'll share what we have.
       </p>
     </div>
-    <ol class="space-y-4 max-w-3xl">
-      {[
-        { stage: 'Stage 1', title: 'Mix-design carbon figures (internal)', when: 'In progress', body: 'kgCO₂e/m³ calculated for C32/40, C40/50, C40/50 SR and C50/60 mixes against UK industry baselines.' },
-        { stage: 'Stage 2', title: 'Verified A1–A3 figures per BS EN 15804+A2', when: 'Target Q3 2026 — CLIENT: confirm', body: 'Independent verification of cradle-to-gate carbon for our standard product families.' },
-        { stage: 'Stage 3', title: 'Product-specific EPDs published', when: 'Target Q1 2027 — CLIENT: confirm', body: 'Cattle cubicles, prestressed wall panels and slurry storage panels first — these have the highest spec-driven demand.' },
-        { stage: 'Stage 4', title: 'Whole-range EPD coverage', when: 'Target 2028 — CLIENT: confirm', body: 'Bespoke and lower-volume products covered under family-EPD methodology.' },
-      ].map((item) => (
-        <li class="card p-6 flex flex-col md:flex-row gap-4 md:items-start">
-          <div class="md:w-32 shrink-0">
-            <p class="eyebrow text-ember">{item.stage}</p>
-            <p class="text-xs text-cast mt-1">{item.when}</p>
-          </div>
-          <div>
-            <h3 class="font-display text-lg font-bold text-navy-700 mb-2">{item.title}</h3>
-            <p class="text-cast-700 leading-relaxed">{item.body}</p>
-          </div>
-        </li>
-      ))}
-    </ol>
   </section>
 
   <!-- CTA -->
